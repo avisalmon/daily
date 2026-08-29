@@ -202,6 +202,45 @@ def test_compound_interest_matches_the_numbers_in_the_article():
 # Rendering. The CSS broke once from overlapping edits and shipped unnoticed.
 # --------------------------------------------------------------------------
 
+# --------------------------------------------------------------------------
+# The research bank: a pool of undated deep researches.
+# --------------------------------------------------------------------------
+
+def test_bank_index_matches_the_files_on_disk():
+    import research_bank
+
+    data = research_bank.load()
+    for item in data["items"]:
+        pdf = research_bank.BANK_DIR / item["file"]
+        assert item.get("missing") == (not pdf.exists()), (
+            f"{item['id']} 'missing' flag is stale - run research_bank.py scan"
+        )
+
+
+def test_bank_ids_are_unique():
+    import research_bank
+
+    ids = [i["id"] for i in research_bank.load()["items"]]
+    assert len(ids) == len(set(ids))
+
+
+def test_a_bank_research_is_never_used_twice():
+    import research_bank
+
+    used = [i["used_in"] for i in research_bank.load()["items"] if i.get("used_in")]
+    assert len(used) == len(set(used)), "two bank items claim the same edition"
+
+
+def test_claimed_bank_research_is_on_disk_for_its_edition():
+    import research_bank
+
+    for item in research_bank.load()["items"]:
+        if not item.get("used_in"):
+            continue
+        expected = ROOT / "data" / "research" / f"{item['used_in']}-{item['id']}.pdf"
+        assert expected.exists(), f"{item['id']} claims {item['used_in']} but {expected.name} is gone"
+
+
 def test_css_braces_are_balanced():
     css = re.sub(r"/\*.*?\*/", "", CSS.read_text(encoding="utf-8"), flags=re.S)
     assert css.count("{") == css.count("}")

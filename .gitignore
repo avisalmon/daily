@@ -29,8 +29,10 @@ tools/browser/out/
 *.cookies
 storage-state*.json
 
-# Incoming research source PDFs (inputs, not artifacts)
+# Incoming research source PDFs (inputs, not artifacts).
+# The bank index IS committed - it is the record of what we hold.
 data/research/*.pdf
+data/research/bank/*.pdf
 
 # Transient news cache from the editorial meeting
 data/_news_cache.json

@@ -39,9 +39,21 @@ user can decide in a single pass.
 link. Order by **interest, not recency**. The user picks 5–10.
 
 ### ב. נושא למחקר עומק (כתבה ראשית)
-3–5 topics. Wider than AI — Israel, science, technology, economics. Each states
-the topic, why it matters now, and **the question the research should answer**.
-A good topic has a real question; "מה חדש ב-AI" is not one.
+
+**First, check the bank** — the user may already have a research ready:
+
+```powershell
+.\.venv\Scripts\python.exe scripts\research_bank.py
+```
+
+Anything under `AVAILABLE` is a lead that can run **tomorrow**, with no waiting.
+Present those first, by title, marked `מוכן — מחקר קיים בבנק`. An item flagged
+`[NO TEXT LAYER]` is a scanned PDF: say so, because it cannot be summarized.
+
+Then propose 3–5 **new** topics. Wider than AI — Israel, science, technology,
+economics. Each states the topic, why it matters now, and **the question the
+research should answer**. A good topic has a real question; "מה חדש ב-AI" is
+not one. Make clear these need the user to run the research first.
 
 ### ג. נושא ללימוד
 3–5 "מה זה…" topics at high-school level. Bias toward **visually explainable**
@@ -57,8 +69,18 @@ decisions held only in conversation are lost.
 
 Then tell the user:
 1. The plan file path.
-2. The research question they're taking to NotebookLM/Gemini.
-3. Where the PDF goes: `data/research/YYYY-MM-DD-slug.pdf`.
+2. **If the lead came from the bank**, claim it — this dates the PDF and stops
+   it being offered again:
+   ```powershell
+   .\.venv\Scripts\python.exe scripts\research_bank.py use <id> YYYY-MM-DD
+   ```
+   Nothing else is needed; the research is already in hand.
+3. **If the lead is a new topic**, give them the research question to take to
+   NotebookLM/Gemini, and where the PDF goes:
+   `data/research/YYYY-MM-DD-slug.pdf`.
+
+Researches for *later* days go in `data/research/bank/` under any filename —
+that is the bank, and it is scanned automatically at the next meeting.
 
 ## Do not
 

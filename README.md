@@ -45,13 +45,29 @@ Then serve the folder and open `index.html`:
 data/editions/    one JSON per edition - the source of truth for a paper
 data/topics/      one JSON per learning topic (explanation, simulator, quiz)
 data/plans/       editorial decisions + what was fact-checked, per edition
+data/research/    the research PDF bound to each edition
+data/research/bank/  undated researches waiting for a future edition
 data/ledger.json  editorial memory: printed, and proposed-but-not-used
 templates/        Jinja2: edition, topic, archive, search, catalog
 assets/css/       the whole visual design
-scripts/          build_site, validate, fetch_news, ledger, weather
+scripts/          build_site, validate, fetch_news, ledger, weather, research_bank
 docs/             SPEC (contract) · RUNBOOK (procedure) · BKM (why) · VISUAL_SPEC
 editions/ learn/  generated output - committed, so the site is servable as-is
 ```
+
+## The research bank
+
+Deep research is run externally and handed in as a PDF. Anything ready for a
+*future* day goes in `data/research/bank/` under any filename:
+
+```powershell
+.\.venv\Scripts\python.exe scripts\research_bank.py            # what's available
+.\.venv\Scripts\python.exe scripts\research_bank.py use <id> 2026-09-02
+```
+
+A banked research is undated; `use` binds it to an edition and stops it being
+offered again. The editorial meeting checks the bank before proposing new
+topics, so a ready research becomes tomorrow's lead with no waiting.
 
 ## How it avoids regressing
 

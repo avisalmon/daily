@@ -1,0 +1,18 @@
+{
+  "items": [
+    {
+      "id": "vibe-coding-and-ai-assisted-development",
+      "file": "vibe-coding.pdf",
+      "title": "Vibe Coding and AI-Assisted Development",
+      "language": "en",
+      "pages": 7,
+      "words": 3204,
+      "extractable": true,
+      "preview": "Vibe Coding and AI-Assisted Development “Vibe coding” refers to using conversational AI to generate software from natural-language prompts. As one cloud provider puts it, this approach promises that “millions of non-coders” could build and launch applications in seconds【1†L11-L19】. In practice, vibe coding involves ite…",
+      "added_at": "2026-08-29T13:11:33+00:00",
+      "used_in": null,
+      "notes": "",
+      "missing": false
+    }
+  ]
+}

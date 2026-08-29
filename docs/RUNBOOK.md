@@ -37,7 +37,21 @@ The edition is dated **tomorrow**.
 
 ## 2. You run the deep research
 
-Externally (NotebookLM / Gemini / ChatGPT). Drop the PDF in:
+**First check the bank** — you may already have one ready:
+
+```powershell
+.\.venv\Scripts\python.exe scripts\research_bank.py
+```
+
+`data/research/bank/` holds undated researches for future days. Drop PDFs there
+any time, under any filename. If tomorrow's lead comes from the bank, claim it:
+
+```powershell
+.\.venv\Scripts\python.exe scripts\research_bank.py use <id> YYYY-MM-DD
+```
+
+Otherwise run the research externally (NotebookLM / Gemini / ChatGPT) and drop
+the PDF in:
 
 ```
 data\research\YYYY-MM-DD-slug.pdf
