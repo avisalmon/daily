@@ -1,0 +1,141 @@
+{% extends "_shell.html.j2" %}
+{% block page_title %}חיפוש בארכיון{% endblock %}
+{% block section_label %}חיפוש בארכיון{% endblock %}
+
+{% block content %}
+<form class="search" role="search" onsubmit="return false;">
+  <label class="search__label" for="q">חפשו מילה או צירוף בכל המהדורות</label>
+  <input class="search__input" type="search" id="q" autocomplete="off"
+         placeholder="למשל: רופא, Nvidia, ריבית דריבית" autofocus>
+  <div class="search__filters">
+    <label><input type="checkbox" class="js-kind" value="lead" checked> כתבות ראשיות</label>
+    <label><input type="checkbox" class="js-kind" value="story" checked> ידיעות</label>
+    <label><input type="checkbox" class="js-kind" value="learning" checked> נושאי לימוד</label>
+  </div>
+</form>
+
+<p class="search__status" id="status">טוען את מפתח החיפוש…</p>
+<ol class="search__results" id="results"></ol>
+
+<script>
+(function () {
+  var BASE = {{ base | tojson }};
+  var input = document.getElementById('q');
+  var status = document.getElementById('status');
+  var results = document.getElementById('results');
+  var boxes = Array.prototype.slice.call(document.querySelectorAll('.js-kind'));
+  var docs = [];
+
+  var KIND_LABEL = { lead: 'כתבה ראשית', story: 'ידיעה', learning: 'נושא לימוד' };
+
+  fetch(BASE + 'assets/search-index.json')
+    .then(function (r) { return r.json(); })
+    .then(function (data) {
+      docs = data;
+      status.textContent = 'מוכן. ' + docs.length + ' פריטים בארכיון.';
+      run();
+    })
+    .catch(function () {
+      status.textContent = 'לא הצלחתי לטעון את מפתח החיפוש.';
+    });
+
+  function norm(s) {
+    return (s || '')
+      .toLowerCase()
+      .replace(/[\u0591-\u05C7]/g, '')   // strip Hebrew niqqud/cantillation
+      .replace(/[\u201C\u201D\u2018\u2019\u05F3\u05F4"']/g, '');
+  }
+
+  // Hebrew one-letter prefixes (ו/ה/ב/כ/ל/מ/ש) glue onto the next word,
+  // so "המים" must still find "מים".
+  var PREFIXES = 'והבכלמש';
+
+  function words(s) {
+    return norm(s).split(/[^0-9a-z\u0590-\u05FF]+/).filter(Boolean);
+  }
+
+  // Match at word start, not anywhere: Hebrew plurals end in "-ים", so a
+  // substring search for "מים" would wrongly hit "אלגוריתמים".
+  function hasTerm(ws, term) {
+    for (var i = 0; i < ws.length; i++) {
+      var w = ws[i];
+      if (w.lastIndexOf(term, 0) === 0) return true;
+      if (w.length > 1 && PREFIXES.indexOf(w.charAt(0)) !== -1 &&
+          w.slice(1).lastIndexOf(term, 0) === 0) return true;
+    }
+    return false;
+  }
+
+  function highlight(text, terms) {
+    var out = document.createElement('span');
+    var lower = norm(text);
+    var hit = -1, hitTerm = '';
+    for (var i = 0; i < terms.length; i++) {
+      var at = lower.indexOf(terms[i]);
+      if (at !== -1 && (hit === -1 || at < hit)) { hit = at; hitTerm = terms[i]; }
+    }
+    if (hit === -1) { out.textContent = text.slice(0, 200); return out; }
+    var start = Math.max(0, hit - 70);
+    var slice = (start > 0 ? '…' : '') + text.slice(start, hit + 190);
+    var idx = norm(slice).indexOf(hitTerm);
+    if (idx === -1) { out.textContent = slice; return out; }
+    out.appendChild(document.createTextNode(slice.slice(0, idx)));
+    var mark = document.createElement('mark');
+    mark.textContent = slice.slice(idx, idx + hitTerm.length);
+    out.appendChild(mark);
+    out.appendChild(document.createTextNode(slice.slice(idx + hitTerm.length)));
+    return out;
+  }
+
+  function run() {
+    var raw = input.value.trim();
+    var kinds = boxes.filter(function (b) { return b.checked; })
+                     .map(function (b) { return b.value; });
+    results.innerHTML = '';
+
+    if (!raw) {
+      status.textContent = docs.length + ' פריטים בארכיון. הקלידו כדי לחפש.';
+      return;
+    }
+
+    var terms = words(raw);
+    var found = docs.filter(function (d) {
+      if (kinds.indexOf(d.kind) === -1) return false;
+      if (!d._w) d._w = words(d.title + ' ' + d.text);
+      return terms.every(function (t) { return hasTerm(d._w, t); });
+    });
+
+    status.textContent = found.length
+      ? found.length + ' תוצאות עבור "' + raw + '"'
+      : 'לא נמצאו תוצאות עבור "' + raw + '"';
+
+    found.slice(0, 80).forEach(function (d) {
+      var li = document.createElement('li');
+      li.className = 'search-hit';
+
+      var a = document.createElement('a');
+      a.className = 'search-hit__title';
+      a.href = BASE + d.href;
+      a.textContent = d.title;
+      li.appendChild(a);
+
+      var meta = document.createElement('p');
+      meta.className = 'search-hit__meta';
+      meta.textContent = KIND_LABEL[d.kind] + ' · ' + d.date_long +
+                         (d.source ? ' · ' + d.source : '');
+      li.appendChild(meta);
+
+      var snip = document.createElement('p');
+      snip.className = 'search-hit__snippet';
+      snip.appendChild(highlight(d.text, terms));
+      li.appendChild(snip);
+
+      results.appendChild(li);
+    });
+  }
+
+  input.addEventListener('input', run);
+  boxes.forEach(function (b) { b.addEventListener('change', run); });
+})();
+</script>
+{% endblock %}

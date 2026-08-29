@@ -1,0 +1,23 @@
+# PLACEHOLDER — scheduled digest run.
+# Disabled until the delivery channel and runner are decided.
+name: daily-digest
+
+on:
+  workflow_dispatch:
+  # schedule:
+  #   - cron: "30 4 * * *"   # 07:30 Asia/Jerusalem
+
+jobs:
+  digest:
+    runs-on: ubuntu-latest
+    if: false
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install -r requirements.txt -e .
+      - run: python -m dailydigest
+        env:
+          AZURE_OPENAI_API_KEY: ${{ secrets.AZURE_OPENAI_API_KEY }}
+          AZURE_OPENAI_ENDPOINT: ${{ secrets.AZURE_OPENAI_ENDPOINT }}

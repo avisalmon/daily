@@ -1,0 +1,448 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#f7f4ec">
+<title>היום בקיצור — מה זה ריבית דריבית?</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@300..900&family=Noto+Serif+Hebrew:wght@300..700&family=Heebo:wght@400..800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/newspaper.css">
+</head>
+<body>
+
+<div class="wrap">
+
+  <header class="masthead masthead--compact">
+    <h1 class="masthead__title">
+      <a href="../index.html">היום <span class="thin">בקיצור</span></a>
+    </h1>
+    <p class="masthead__tagline">דברים שקרו היום ומעניינים אותי</p>
+    <hr class="masthead__rule">
+  </header>
+
+  <nav class="sitenav" aria-label="ניווט ראשי">
+    <a href="../index.html" >המהדורה</a>
+    <a href="../archive.html" >ארכיון</a>
+    <a href="../search.html" >חיפוש</a>
+    <a href="../learn.html" class="is-current">נושאי לימוד</a>
+  </nav>
+
+  <main class="page">
+    <div class="section-head"><span class="section-head__label">לומדים היום</span></div>
+<article class="topic">
+
+  <header class="topic__head">
+    <p class="topic__level">חטיבה עליונה · קריאה של 7 דקות</p>
+    <h1 class="topic__title">מה זה ריבית דריבית?</h1>
+<p class="topic__subtitle">למה הזמן חשוב יותר מהסכום שהפקדתם</p>    <p class="topic__summary">ריבית רגילה מחושבת תמיד על הסכום המקורי. ריבית דריבית מחושבת גם על הרווח שכבר נצבר — ולכן הרווח עצמו מתחיל לייצר רווח. ההבדל נראה זניח בהתחלה ואדיר בסוף.</p>
+    <p class="topic__origin">
+      פורסם לראשונה במהדורת <a href="../editions/2026-08-30.html">יום ראשון, 30 באוגוסט 2026</a>
+    </p>
+  </header>
+
+  <section class="topic__section">
+    <h2 class="topic__heading">שתי דרכים לחשב רווח</h2>
+    <p>נניח שהפקדתם 1,000 שקל בריבית של 10% בשנה. בריבית פשוטה, הריבית מחושבת תמיד על הסכום המקורי בלבד: 100 שקל בשנה הראשונה, 100 בשנייה, 100 בשלישית — לנצח. אחרי עשר שנים צברתם 1,000 שקל ריבית, והסכום הגיע ל-2,000.</p>
+    <p>בריבית דריבית הריבית מחושבת על היתרה הנוכחית, כולל הריבית שכבר נצברה. בשנה הראשונה קיבלתם 100 שקל, ולכן בשנה השנייה הריבית מחושבת על 1,100 שקל והיא 110 שקל. בשלישית על 1,210, וכן הלאה. הרווח עצמו מתחיל לייצר רווח.</p>
+
+    <div class="formula">
+      <p class="formula__label">הנוסחה</p>
+      <p class="formula__line">
+        <span class="formula__name">ריבית פשוטה</span>
+        <span class="formula__expr ltr">A = P · (1 + r · t)</span>
+      </p>
+      <p class="formula__line">
+        <span class="formula__name">ריבית דריבית</span>
+        <span class="formula__expr ltr">A = P · (1 + r)^t</span>
+      </p>
+      <p class="formula__legend">P — הקרן · r — שיעור הריבית השנתי · t — מספר השנים · A — הסכום בסוף</p>
+    </div>
+
+  </section>
+  <section class="topic__section">
+    <h2 class="topic__heading">ההבדל בין קו לעקומה</h2>
+    <p>ריבית פשוטה מוסיפה בכל שנה את אותו סכום בדיוק. אם נסמן את זה על גרף נקבל קו ישר. ריבית דריבית מוסיפה בכל שנה קצת יותר מבשנה הקודמת, כי הבסיס גדל — ולכן נקבל עקומה שנעשית תלולה יותר ויותר.</p>
+    <p>זו אינה גדילה מהירה יותר, אלא גדילה מסוג אחר: לינארית מול מעריכית. בחמש השנים הראשונות ההפרש כמעט לא מורגש. אחרי עשרים שנה כבר קשה לפספס אותו.</p>
+
+
+    <figure class="diagram">
+      <svg viewBox="0 0 520 260" role="img" aria-label="השוואה בין גדילה לינארית לגדילה מעריכית" preserveAspectRatio="xMidYMid meet">
+        <line x1="52" y1="220" x2="500" y2="220" class="diagram__axis"/>
+        <line x1="52" y1="220" x2="52" y2="20" class="diagram__axis"/>
+        <polyline class="diagram__linear" points="52,220 500,150"/>
+        <path class="diagram__exp" d="M52,220 C210,214 330,190 420,120 S488,44 500,26"/>
+        <circle cx="500" cy="150" r="4" class="diagram__dot"/>
+        <circle cx="500" cy="26" r="4" class="diagram__dot diagram__dot--strong"/>
+        <text x="492" y="168" class="diagram__label">ריבית פשוטה</text>
+        <text x="492" y="18" class="diagram__label diagram__label--strong">ריבית דריבית</text>
+        <text x="276" y="248" class="diagram__axis-label">זמן ←</text>
+      </svg>
+      <figcaption>אותה קרן, אותה ריבית — שני סוגי גדילה.</figcaption>
+    </figure>
+  </section>
+  <section class="topic__section">
+    <h2 class="topic__heading">הזמן הוא המשתנה החזק ביותר</h2>
+    <p>בנוסחה של ריבית דריבית, הקרן והריבית מוכפלות — אבל הזמן נמצא במעריך. משתנה במעריך משפיע הרבה יותר חזק ממשתנה בבסיס.</p>
+    <p>נסו את זה במדמה שלמטה: הכפילו את הקרן, והתוצאה הסופית תוכפל בדיוק פי שניים. הכפילו את מספר השנים — והתוצאה תגדל הרבה יותר מפי שניים. אחרי 10 שנים תגיעו ל-2,594 שקל במקום 2,000. אחרי 30 שנה — 17,449 שקל במקום 4,000.</p>
+
+
+  </section>
+  <section class="topic__section">
+    <h2 class="topic__heading">כלל 72</h2>
+    <p>יש קיצור דרך מפורסם להערכה מהירה: חלקו 72 בשיעור הריבית באחוזים, והתוצאה היא מספר השנים המשוער שבו הכסף מכפיל את עצמו.</p>
+    <p>בריבית של 8% הכסף מכפיל את עצמו בערך כל 9 שנים (72 ÷ 8). בריבית של 6% — כל 12 שנים. זו אינה נוסחה מדויקת אלא קירוב טוב לשיעורי ריבית נמוכים ובינוניים, והוא שימושי מאוד לחישוב בראש.</p>
+
+
+  </section>
+  <section class="topic__section">
+    <h2 class="topic__heading">אותה עקומה — בכיוון ההפוך</h2>
+    <p>בדיוק מאותה סיבה, ריבית דריבית עובדת גם לרעתכם. חוב בכרטיס אשראי או הלוואה שלא נפרעת צוברים ריבית על הריבית באותה עקומה בדיוק, רק שהפעם אתם בצד שמשלם.</p>
+    <p>כאן ההבדל דרמטי במיוחד, כי הריבית על אשראי צרכני גבוהה בהרבה מתשואה שגרתית על חיסכון. חוב שנשאר פתוח מספיק זמן יכול לגדול לסכום גדול בהרבה מהסכום שנלקח במקור.</p>
+
+
+  </section>
+
+  <section class="sim" id="sim">
+    <h2 class="topic__heading">מדמה: ריבית פשוטה מול ריבית דריבית</h2>
+    <p class="sim__intro">הזיזו את המחוונים וראו איך שתי העקומות מתפצלות. שימו לב במיוחד למה שקורה כשמאריכים את מספר השנים.</p>
+
+    <div class="sim__controls">
+      <label class="sim__control">
+        <span class="sim__control-head">
+          <span>קרן התחלתית</span>
+          <output id="out-principal" class="ltr"></output>
+        </span>
+        <input type="range" id="in-principal"
+               min="100" max="100000" step="100" value="1000"
+               data-unit="₪">
+      </label>
+      <label class="sim__control">
+        <span class="sim__control-head">
+          <span>ריבית שנתית</span>
+          <output id="out-rate" class="ltr"></output>
+        </span>
+        <input type="range" id="in-rate"
+               min="1" max="20" step="0.5" value="10"
+               data-unit="%">
+      </label>
+      <label class="sim__control">
+        <span class="sim__control-head">
+          <span>מספר שנים</span>
+          <output id="out-years" class="ltr"></output>
+        </span>
+        <input type="range" id="in-years"
+               min="1" max="50" step="1" value="30"
+               data-unit=" שנים">
+      </label>
+      <label class="sim__control">
+        <span class="sim__control-head">
+          <span>הפקדה חודשית</span>
+          <output id="out-monthly" class="ltr"></output>
+        </span>
+        <input type="range" id="in-monthly"
+               min="0" max="5000" step="50" value="0"
+               data-unit="₪">
+      </label>
+    </div>
+
+    <div class="sim__chart">
+      <svg id="sim-svg" viewBox="0 0 640 300" role="img" aria-label="גרף המשווה בין ריבית פשוטה לריבית דריבית" preserveAspectRatio="none">
+        <g id="sim-grid"></g>
+        <polyline id="sim-simple" class="sim__line sim__line--simple" fill="none"/>
+        <polyline id="sim-compound" class="sim__line sim__line--compound" fill="none"/>
+      </svg>
+      <p class="sim__axis">שנים <span id="sim-years-axis" class="ltr"></span></p>
+    </div>
+
+    <div class="sim__readout">
+      <div class="sim__stat">
+        <span class="sim__stat-label">ריבית פשוטה</span>
+        <span class="sim__stat-value ltr" id="sim-out-simple"></span>
+      </div>
+      <div class="sim__stat sim__stat--strong">
+        <span class="sim__stat-label">ריבית דריבית</span>
+        <span class="sim__stat-value ltr" id="sim-out-compound"></span>
+      </div>
+      <div class="sim__stat">
+        <span class="sim__stat-label">ההפרש</span>
+        <span class="sim__stat-value ltr" id="sim-out-gap"></span>
+      </div>
+      <div class="sim__stat">
+        <span class="sim__stat-label">סך ההפקדות</span>
+        <span class="sim__stat-value ltr" id="sim-out-paid"></span>
+      </div>
+    </div>
+    <p class="sim__note" id="sim-note"></p>
+  </section>
+
+  <section class="quiz" id="quiz">
+    <h2 class="topic__heading">בדקו את עצמכם</h2>
+    <form id="quiz-form">
+      <fieldset class="quiz__q" data-answer="1">
+        <legend class="quiz__legend"><span class="quiz__num">1</span>הפקדתם 1,000 ש&#34;ח בריבית דריבית של 10% לשנה. כמה ריבית תקבלו בשנה השנייה?</legend>
+        <label class="quiz__opt">
+          <input type="radio" name="q0" value="0">
+          <span>100 ש&#34;ח</span>
+        </label>
+        <label class="quiz__opt">
+          <input type="radio" name="q0" value="1">
+          <span>110 ש&#34;ח</span>
+        </label>
+        <label class="quiz__opt">
+          <input type="radio" name="q0" value="2">
+          <span>121 ש&#34;ח</span>
+        </label>
+        <label class="quiz__opt">
+          <input type="radio" name="q0" value="3">
+          <span>200 ש&#34;ח</span>
+        </label>
+        <p class="quiz__why">בסוף השנה הראשונה היתרה היא 1,100 ש&#34;ח. הריבית בשנה השנייה מחושבת על היתרה הזו: 10% מ-1,100 הם 110 ש&#34;ח.</p>
+      </fieldset>
+      <fieldset class="quiz__q" data-answer="1">
+        <legend class="quiz__legend"><span class="quiz__num">2</span>מה ההבדל המהותי בין ריבית פשוטה לריבית דריבית?</legend>
+        <label class="quiz__opt">
+          <input type="radio" name="q1" value="0">
+          <span>ריבית דריבית משתמשת בשיעור ריבית גבוה יותר</span>
+        </label>
+        <label class="quiz__opt">
+          <input type="radio" name="q1" value="1">
+          <span>ריבית פשוטה מחושבת על הקרן בלבד, ודריבית גם על הרווח שנצבר</span>
+        </label>
+        <label class="quiz__opt">
+          <input type="radio" name="q1" value="2">
+          <span>ריבית פשוטה משולמת פעם בשנה ודריבית פעם בחודש</span>
+        </label>
+        <label class="quiz__opt">
+          <input type="radio" name="q1" value="3">
+          <span>אין הבדל אמיתי, רק שם אחר</span>
+        </label>
+        <p class="quiz__why">שיעור הריבית יכול להיות זהה לגמרי. ההבדל הוא בבסיס החישוב: ריבית פשוטה תמיד על הקרן המקורית, ריבית דריבית על היתרה המצטברת.</p>
+      </fieldset>
+      <fieldset class="quiz__q" data-answer="1">
+        <legend class="quiz__legend"><span class="quiz__num">3</span>לפי כלל 72, בערך תוך כמה שנים יכפיל את עצמו כסף בריבית של 6% לשנה?</legend>
+        <label class="quiz__opt">
+          <input type="radio" name="q2" value="0">
+          <span>6 שנים</span>
+        </label>
+        <label class="quiz__opt">
+          <input type="radio" name="q2" value="1">
+          <span>12 שנים</span>
+        </label>
+        <label class="quiz__opt">
+          <input type="radio" name="q2" value="2">
+          <span>18 שנים</span>
+        </label>
+        <label class="quiz__opt">
+          <input type="radio" name="q2" value="3">
+          <span>72 שנים</span>
+        </label>
+        <p class="quiz__why">כלל 72 אומר לחלק 72 בשיעור הריבית: 72 ÷ 6 = 12 שנים. זהו קירוב, אך קירוב טוב מאוד לשיעורי ריבית נמוכים ובינוניים.</p>
+      </fieldset>
+      <fieldset class="quiz__q" data-answer="1">
+        <legend class="quiz__legend"><span class="quiz__num">4</span>איזה משתנה משפיע הכי חזק על התוצאה הסופית בריבית דריבית?</legend>
+        <label class="quiz__opt">
+          <input type="radio" name="q3" value="0">
+          <span>הקרן ההתחלתית</span>
+        </label>
+        <label class="quiz__opt">
+          <input type="radio" name="q3" value="1">
+          <span>הזמן</span>
+        </label>
+        <label class="quiz__opt">
+          <input type="radio" name="q3" value="2">
+          <span>מספר הפעמים שבודקים את החשבון</span>
+        </label>
+        <label class="quiz__opt">
+          <input type="radio" name="q3" value="3">
+          <span>אף אחד מהם</span>
+        </label>
+        <p class="quiz__why">הקרן והריבית מוכפלות בנוסחה, אבל הזמן נמצא במעריך. משתנה במעריך משפיע הרבה יותר חזק — לכן הכפלת מספר השנים מגדילה את התוצאה הרבה יותר מהכפלת הקרן.</p>
+      </fieldset>
+      <fieldset class="quiz__q" data-answer="1">
+        <legend class="quiz__legend"><span class="quiz__num">5</span>האם ריבית דריבית יכולה לפעול נגדכם?</legend>
+        <label class="quiz__opt">
+          <input type="radio" name="q4" value="0">
+          <span>לא, היא תמיד מגדילה את ההון</span>
+        </label>
+        <label class="quiz__opt">
+          <input type="radio" name="q4" value="1">
+          <span>כן — חובות צוברים ריבית על ריבית באותה עקומה</span>
+        </label>
+        <label class="quiz__opt">
+          <input type="radio" name="q4" value="2">
+          <span>רק אם הריבית עולה על 20%</span>
+        </label>
+        <label class="quiz__opt">
+          <input type="radio" name="q4" value="3">
+          <span>רק בהלוואות מהבנק ולא בכרטיס אשראי</span>
+        </label>
+        <p class="quiz__why">המנגנון זהה לחלוטין, רק הכיוון הפוך. חוב שלא נפרע צובר ריבית על הריבית שכבר נצברה, ולכן הוא גדל באותה עקומה מעריכית.</p>
+      </fieldset>
+      <fieldset class="quiz__q" data-answer="0">
+        <legend class="quiz__legend"><span class="quiz__num">6</span>הכפלתם את הקרן ההתחלתית מ-1,000 ל-2,000 ש&#34;ח והשארתם את שאר הנתונים ללא שינוי. מה יקרה לסכום הסופי?</legend>
+        <label class="quiz__opt">
+          <input type="radio" name="q5" value="0">
+          <span>יגדל בדיוק פי 2</span>
+        </label>
+        <label class="quiz__opt">
+          <input type="radio" name="q5" value="1">
+          <span>יגדל פי 4</span>
+        </label>
+        <label class="quiz__opt">
+          <input type="radio" name="q5" value="2">
+          <span>יגדל בפחות מפי 2</span>
+        </label>
+        <label class="quiz__opt">
+          <input type="radio" name="q5" value="3">
+          <span>תלוי במספר השנים</span>
+        </label>
+        <p class="quiz__why">הקרן היא גורם מוכפל בנוסחה A = P·(1+r)^t. הכפלת P מכפילה את A בדיוק פי 2. זה בניגוד לזמן, שנמצא במעריך ולכן משפיע הרבה יותר חזק.</p>
+      </fieldset>
+      <div class="quiz__actions">
+        <button type="button" id="quiz-check" class="quiz__btn">בדקו את התשובות</button>
+        <button type="button" id="quiz-reset" class="quiz__btn quiz__btn--ghost">נקו</button>
+        <p class="quiz__score" id="quiz-score" role="status"></p>
+      </div>
+    </form>
+  </section>
+
+  <section class="takeaways">
+    <h2 class="topic__heading">מה חשוב לזכור</h2>
+    <ul class="takeaways__list">
+      <li>ריבית פשוטה מחושבת על הקרן; ריבית דריבית מחושבת גם על הרווח שנצבר.</li>
+      <li>ריבית פשוטה היא קו ישר, ריבית דריבית היא עקומה מעריכית.</li>
+      <li>הזמן נמצא במעריך ולכן הוא המשתנה החזק ביותר בנוסחה.</li>
+      <li>כלל 72: 72 חלקי אחוז הריבית ≈ מספר השנים להכפלת הכסף.</li>
+      <li>אותו מנגנון בדיוק מגדיל גם חובות — באותה עקומה, בכיוון ההפוך.</li>
+    </ul>
+  </section>
+
+</article>
+
+<script>
+/* ===== מדמה ריבית דריבית ===== */
+(function () {
+  var svg = document.getElementById('sim-svg');
+  if (!svg) return;
+
+  var W = 640, H = 300, PAD = 8;
+  var keys = ['principal', 'rate', 'years', 'monthly'];
+  var inputs = {}, outs = {};
+  keys.forEach(function (k) {
+    inputs[k] = document.getElementById('in-' + k);
+    outs[k] = document.getElementById('out-' + k);
+  });
+  if (!inputs.principal) return;
+
+  var fmt = new Intl.NumberFormat('he-IL', { maximumFractionDigits: 0 });
+
+  function series(P, r, years, monthly) {
+    var simple = [], compound = [], paid = [];
+    var comp = P, totalPaid = P;
+    for (var t = 0; t <= years; t++) {
+      if (t > 0) {
+        comp = comp * (1 + r);
+        // הפקדות חודשיות נצברות במהלך השנה וגם הן צוברות ריבית
+        for (var m = 0; m < 12; m++) comp += monthly * Math.pow(1 + r, (12 - m - 1) / 12);
+        totalPaid += monthly * 12;
+      }
+      simple.push(P * (1 + r * t) + monthly * 12 * t);
+      compound.push(comp);
+      paid.push(totalPaid);
+    }
+    return { simple: simple, compound: compound, paid: paid };
+  }
+
+  function points(arr, max, years) {
+    var n = arr.length - 1;
+    return arr.map(function (v, i) {
+      var x = PAD + (i / Math.max(n, 1)) * (W - PAD * 2);
+      var y = H - PAD - (v / max) * (H - PAD * 2);
+      return x.toFixed(1) + ',' + y.toFixed(1);
+    }).join(' ');
+  }
+
+  function render() {
+    var P = +inputs.principal.value;
+    var rPct = +inputs.rate.value;
+    var years = +inputs.years.value;
+    var monthly = +inputs.monthly.value;
+    var r = rPct / 100;
+
+    outs.principal.textContent = fmt.format(P) + ' ₪';
+    outs.rate.textContent = rPct + '%';
+    outs.years.textContent = years + ' שנים';
+    outs.monthly.textContent = monthly ? fmt.format(monthly) + ' ₪' : 'ללא';
+
+    var s = series(P, r, years, monthly);
+    var max = Math.max(s.compound[years], s.simple[years]) * 1.05 || 1;
+
+    document.getElementById('sim-simple').setAttribute('points', points(s.simple, max, years));
+    document.getElementById('sim-compound').setAttribute('points', points(s.compound, max, years));
+
+    var fin = s.compound[years], sim = s.simple[years];
+    document.getElementById('sim-out-simple').textContent = fmt.format(Math.round(sim)) + ' ₪';
+    document.getElementById('sim-out-compound').textContent = fmt.format(Math.round(fin)) + ' ₪';
+    document.getElementById('sim-out-gap').textContent = fmt.format(Math.round(fin - sim)) + ' ₪';
+    document.getElementById('sim-out-paid').textContent = fmt.format(Math.round(s.paid[years])) + ' ₪';
+    document.getElementById('sim-years-axis').textContent = '0 – ' + years;
+
+    var note = document.getElementById('sim-note');
+    var times = s.paid[years] ? fin / s.paid[years] : 0;
+    var rule72 = rPct > 0 ? (72 / rPct) : 0;
+    note.textContent = 'בריבית של ' + rPct + '% הכסף מכפיל את עצמו בערך כל '
+      + rule72.toFixed(1) + ' שנים (כלל 72). אחרי ' + years + ' שנים היתרה גדולה פי '
+      + times.toFixed(1) + ' מסך מה שהפקדתם.';
+  }
+
+  keys.forEach(function (k) { inputs[k].addEventListener('input', render); });
+  render();
+})();
+
+/* ===== בוחן ===== */
+(function () {
+  var form = document.getElementById('quiz-form');
+  if (!form) return;
+  var qs = Array.prototype.slice.call(form.querySelectorAll('.quiz__q'));
+  var scoreEl = document.getElementById('quiz-score');
+
+  document.getElementById('quiz-check').addEventListener('click', function () {
+    var right = 0, answered = 0;
+    qs.forEach(function (q) {
+      var correct = +q.dataset.answer;
+      var picked = q.querySelector('input:checked');
+      q.classList.remove('is-right', 'is-wrong');
+      if (!picked) return;
+      answered++;
+      if (+picked.value === correct) { q.classList.add('is-right'); right++; }
+      else { q.classList.add('is-wrong'); }
+      q.querySelectorAll('.quiz__opt').forEach(function (opt, i) {
+        opt.classList.toggle('is-answer', i === correct);
+      });
+    });
+    if (!answered) { scoreEl.textContent = 'בחרו תשובה לפחות בשאלה אחת.'; return; }
+    scoreEl.textContent = 'ענית נכון על ' + right + ' מתוך ' + qs.length + '.';
+  });
+
+  document.getElementById('quiz-reset').addEventListener('click', function () {
+    form.reset();
+    qs.forEach(function (q) {
+      q.classList.remove('is-right', 'is-wrong');
+      q.querySelectorAll('.quiz__opt').forEach(function (o) { o.classList.remove('is-answer'); });
+    });
+    scoreEl.textContent = '';
+  });
+})();
+</script>
+  </main>
+
+  <footer class="colophon">
+    <span>היום בקיצור</span>
+    <span>יוצר במלואו על ידי בינה מלאכותית</span>
+  </footer>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,264 @@
+{% extends "_shell.html.j2" %}
+
+{% block page_title %}{{ topic.title }}{% endblock %}
+{% block section_label %}לומדים היום{% endblock %}
+
+{% block content %}
+<article class="topic">
+
+  <header class="topic__head">
+    <p class="topic__level">{{ topic.level }}{% if topic.reading_minutes %} · קריאה של {{ topic.reading_minutes }} דקות{% endif %}</p>
+    <h1 class="topic__title">{{ topic.title }}</h1>
+    {% if topic.subtitle %}<p class="topic__subtitle">{{ topic.subtitle }}</p>{% endif %}
+    <p class="topic__summary">{{ topic.summary }}</p>
+    {% if topic.edition %}
+    <p class="topic__origin">
+      פורסם לראשונה במהדורת <a href="{{ base }}editions/{{ topic.edition }}.html">{{ topic.date_long | default(topic.edition) }}</a>
+    </p>
+    {% endif %}
+  </header>
+
+  {% for sec in topic.sections %}
+  <section class="topic__section">
+    <h2 class="topic__heading">{{ sec.heading }}</h2>
+    {% for p in sec.paras %}
+    <p>{{ p }}</p>
+    {% endfor %}
+
+    {% if sec.formula %}
+    <div class="formula">
+      <p class="formula__label">{{ sec.formula.label }}</p>
+      {% for line in sec.formula.lines %}
+      <p class="formula__line">
+        <span class="formula__name">{{ line.name }}</span>
+        <span class="formula__expr ltr">{{ line.expr }}</span>
+      </p>
+      {% endfor %}
+      <p class="formula__legend">{{ sec.formula.legend }}</p>
+    </div>
+    {% endif %}
+
+    {% if sec.diagram and sec.diagram.type == 'linear-vs-exponential' %}
+    <figure class="diagram">
+      <svg viewBox="0 0 520 260" role="img" aria-label="השוואה בין גדילה לינארית לגדילה מעריכית" preserveAspectRatio="xMidYMid meet">
+        <line x1="52" y1="220" x2="500" y2="220" class="diagram__axis"/>
+        <line x1="52" y1="220" x2="52" y2="20" class="diagram__axis"/>
+        <polyline class="diagram__linear" points="52,220 500,150"/>
+        <path class="diagram__exp" d="M52,220 C210,214 330,190 420,120 S488,44 500,26"/>
+        <circle cx="500" cy="150" r="4" class="diagram__dot"/>
+        <circle cx="500" cy="26" r="4" class="diagram__dot diagram__dot--strong"/>
+        <text x="492" y="168" class="diagram__label">ריבית פשוטה</text>
+        <text x="492" y="18" class="diagram__label diagram__label--strong">ריבית דריבית</text>
+        <text x="276" y="248" class="diagram__axis-label">זמן ←</text>
+      </svg>
+      <figcaption>{{ sec.diagram.caption }}</figcaption>
+    </figure>
+    {% endif %}
+  </section>
+  {% endfor %}
+
+  {% if topic.sim and topic.sim.type == 'compound-interest' %}
+  <section class="sim" id="sim">
+    <h2 class="topic__heading">{{ topic.sim.title }}</h2>
+    <p class="sim__intro">{{ topic.sim.intro }}</p>
+
+    <div class="sim__controls">
+      {% for c in topic.sim.controls %}
+      <label class="sim__control">
+        <span class="sim__control-head">
+          <span>{{ c.label }}</span>
+          <output id="out-{{ c.key }}" class="ltr"></output>
+        </span>
+        <input type="range" id="in-{{ c.key }}"
+               min="{{ c.min }}" max="{{ c.max }}" step="{{ c.step }}" value="{{ c.value }}"
+               data-unit="{{ c.unit }}">
+      </label>
+      {% endfor %}
+    </div>
+
+    <div class="sim__chart">
+      <svg id="sim-svg" viewBox="0 0 640 300" role="img" aria-label="גרף המשווה בין ריבית פשוטה לריבית דריבית" preserveAspectRatio="none">
+        <g id="sim-grid"></g>
+        <polyline id="sim-simple" class="sim__line sim__line--simple" fill="none"/>
+        <polyline id="sim-compound" class="sim__line sim__line--compound" fill="none"/>
+      </svg>
+      <p class="sim__axis">שנים <span id="sim-years-axis" class="ltr"></span></p>
+    </div>
+
+    <div class="sim__readout">
+      <div class="sim__stat">
+        <span class="sim__stat-label">ריבית פשוטה</span>
+        <span class="sim__stat-value ltr" id="sim-out-simple"></span>
+      </div>
+      <div class="sim__stat sim__stat--strong">
+        <span class="sim__stat-label">ריבית דריבית</span>
+        <span class="sim__stat-value ltr" id="sim-out-compound"></span>
+      </div>
+      <div class="sim__stat">
+        <span class="sim__stat-label">ההפרש</span>
+        <span class="sim__stat-value ltr" id="sim-out-gap"></span>
+      </div>
+      <div class="sim__stat">
+        <span class="sim__stat-label">סך ההפקדות</span>
+        <span class="sim__stat-value ltr" id="sim-out-paid"></span>
+      </div>
+    </div>
+    <p class="sim__note" id="sim-note"></p>
+  </section>
+  {% endif %}
+
+  {% if topic.quiz %}
+  <section class="quiz" id="quiz">
+    <h2 class="topic__heading">בדקו את עצמכם</h2>
+    <form id="quiz-form">
+      {% for q in topic.quiz %}
+      {% set qi = loop.index0 %}
+      <fieldset class="quiz__q" data-answer="{{ q.answer }}">
+        <legend class="quiz__legend"><span class="quiz__num">{{ loop.index }}</span>{{ q.q }}</legend>
+        {% for opt in q.options %}
+        <label class="quiz__opt">
+          <input type="radio" name="q{{ qi }}" value="{{ loop.index0 }}">
+          <span>{{ opt }}</span>
+        </label>
+        {% endfor %}
+        <p class="quiz__why">{{ q.why }}</p>
+      </fieldset>
+      {% endfor %}
+      <div class="quiz__actions">
+        <button type="button" id="quiz-check" class="quiz__btn">בדקו את התשובות</button>
+        <button type="button" id="quiz-reset" class="quiz__btn quiz__btn--ghost">נקו</button>
+        <p class="quiz__score" id="quiz-score" role="status"></p>
+      </div>
+    </form>
+  </section>
+  {% endif %}
+
+  {% if topic.takeaways %}
+  <section class="takeaways">
+    <h2 class="topic__heading">מה חשוב לזכור</h2>
+    <ul class="takeaways__list">
+      {% for t in topic.takeaways %}
+      <li>{{ t }}</li>
+      {% endfor %}
+    </ul>
+  </section>
+  {% endif %}
+
+</article>
+
+<script>
+/* ===== מדמה ריבית דריבית ===== */
+(function () {
+  var svg = document.getElementById('sim-svg');
+  if (!svg) return;
+
+  var W = 640, H = 300, PAD = 8;
+  var keys = ['principal', 'rate', 'years', 'monthly'];
+  var inputs = {}, outs = {};
+  keys.forEach(function (k) {
+    inputs[k] = document.getElementById('in-' + k);
+    outs[k] = document.getElementById('out-' + k);
+  });
+  if (!inputs.principal) return;
+
+  var fmt = new Intl.NumberFormat('he-IL', { maximumFractionDigits: 0 });
+
+  function series(P, r, years, monthly) {
+    var simple = [], compound = [], paid = [];
+    var comp = P, totalPaid = P;
+    for (var t = 0; t <= years; t++) {
+      if (t > 0) {
+        comp = comp * (1 + r);
+        // הפקדות חודשיות נצברות במהלך השנה וגם הן צוברות ריבית
+        for (var m = 0; m < 12; m++) comp += monthly * Math.pow(1 + r, (12 - m - 1) / 12);
+        totalPaid += monthly * 12;
+      }
+      simple.push(P * (1 + r * t) + monthly * 12 * t);
+      compound.push(comp);
+      paid.push(totalPaid);
+    }
+    return { simple: simple, compound: compound, paid: paid };
+  }
+
+  function points(arr, max, years) {
+    var n = arr.length - 1;
+    return arr.map(function (v, i) {
+      var x = PAD + (i / Math.max(n, 1)) * (W - PAD * 2);
+      var y = H - PAD - (v / max) * (H - PAD * 2);
+      return x.toFixed(1) + ',' + y.toFixed(1);
+    }).join(' ');
+  }
+
+  function render() {
+    var P = +inputs.principal.value;
+    var rPct = +inputs.rate.value;
+    var years = +inputs.years.value;
+    var monthly = +inputs.monthly.value;
+    var r = rPct / 100;
+
+    outs.principal.textContent = fmt.format(P) + ' ₪';
+    outs.rate.textContent = rPct + '%';
+    outs.years.textContent = years + ' שנים';
+    outs.monthly.textContent = monthly ? fmt.format(monthly) + ' ₪' : 'ללא';
+
+    var s = series(P, r, years, monthly);
+    var max = Math.max(s.compound[years], s.simple[years]) * 1.05 || 1;
+
+    document.getElementById('sim-simple').setAttribute('points', points(s.simple, max, years));
+    document.getElementById('sim-compound').setAttribute('points', points(s.compound, max, years));
+
+    var fin = s.compound[years], sim = s.simple[years];
+    document.getElementById('sim-out-simple').textContent = fmt.format(Math.round(sim)) + ' ₪';
+    document.getElementById('sim-out-compound').textContent = fmt.format(Math.round(fin)) + ' ₪';
+    document.getElementById('sim-out-gap').textContent = fmt.format(Math.round(fin - sim)) + ' ₪';
+    document.getElementById('sim-out-paid').textContent = fmt.format(Math.round(s.paid[years])) + ' ₪';
+    document.getElementById('sim-years-axis').textContent = '0 – ' + years;
+
+    var note = document.getElementById('sim-note');
+    var times = s.paid[years] ? fin / s.paid[years] : 0;
+    var rule72 = rPct > 0 ? (72 / rPct) : 0;
+    note.textContent = 'בריבית של ' + rPct + '% הכסף מכפיל את עצמו בערך כל '
+      + rule72.toFixed(1) + ' שנים (כלל 72). אחרי ' + years + ' שנים היתרה גדולה פי '
+      + times.toFixed(1) + ' מסך מה שהפקדתם.';
+  }
+
+  keys.forEach(function (k) { inputs[k].addEventListener('input', render); });
+  render();
+})();
+
+/* ===== בוחן ===== */
+(function () {
+  var form = document.getElementById('quiz-form');
+  if (!form) return;
+  var qs = Array.prototype.slice.call(form.querySelectorAll('.quiz__q'));
+  var scoreEl = document.getElementById('quiz-score');
+
+  document.getElementById('quiz-check').addEventListener('click', function () {
+    var right = 0, answered = 0;
+    qs.forEach(function (q) {
+      var correct = +q.dataset.answer;
+      var picked = q.querySelector('input:checked');
+      q.classList.remove('is-right', 'is-wrong');
+      if (!picked) return;
+      answered++;
+      if (+picked.value === correct) { q.classList.add('is-right'); right++; }
+      else { q.classList.add('is-wrong'); }
+      q.querySelectorAll('.quiz__opt').forEach(function (opt, i) {
+        opt.classList.toggle('is-answer', i === correct);
+      });
+    });
+    if (!answered) { scoreEl.textContent = 'בחרו תשובה לפחות בשאלה אחת.'; return; }
+    scoreEl.textContent = 'ענית נכון על ' + right + ' מתוך ' + qs.length + '.';
+  });
+
+  document.getElementById('quiz-reset').addEventListener('click', function () {
+    form.reset();
+    qs.forEach(function (q) {
+      q.classList.remove('is-right', 'is-wrong');
+      q.querySelectorAll('.quiz__opt').forEach(function (o) { o.classList.remove('is-answer'); });
+    });
+    scoreEl.textContent = '';
+  });
+})();
+</script>
+{% endblock %}

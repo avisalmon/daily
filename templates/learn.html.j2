@@ -1,0 +1,35 @@
+{% extends "_shell.html.j2" %}
+{% block page_title %}נושאי לימוד{% endblock %}
+{% block section_label %}קטלוג נושאי הלימוד{% endblock %}
+
+{% block content %}
+<p class="page__intro">
+  כל נושא שהוסבר בעיתון, מהחדש לישן. הקטלוג גדל עם כל מהדורה.
+  {% if topics | length %}סך הכול {{ topics | length }} נושאים.{% endif %}
+</p>
+
+{% if not topics %}
+<p class="page__empty">עדיין אין נושאים בקטלוג.</p>
+{% else %}
+<ul class="topic-grid">
+  {% for t in topics %}
+  <li class="topic-card">
+    <h3 class="topic-card__title">
+      {% if t.page %}
+      <a href="{{ base }}{{ t.page }}">{{ t.title }}</a>
+      {% else %}
+      {{ t.title }}
+      {% endif %}
+    </h3>
+    <p class="topic-card__date">
+      <a href="{{ base }}{{ t.href }}">{{ t.date_long }}</a>
+    </p>
+    <p class="topic-card__blurb">{{ t.blurb }}</p>
+    {% if not t.page %}
+    <p class="topic-card__pending">עמוד מורחב — בקרוב</p>
+    {% endif %}
+  </li>
+  {% endfor %}
+</ul>
+{% endif %}
+{% endblock %}

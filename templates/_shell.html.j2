@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#f7f4ec">
+<title>{{ site.title }} — {% block page_title %}{% endblock %}</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@300..900&family=Noto+Serif+Hebrew:wght@300..700&family=Heebo:wght@400..800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ base }}assets/css/newspaper.css">
+</head>
+<body>
+
+<div class="wrap">
+
+  <header class="masthead masthead--compact">
+    <h1 class="masthead__title">
+      <a href="{{ base }}index.html">{{ site.title_main }} <span class="thin">{{ site.title_thin }}</span></a>
+    </h1>
+    <p class="masthead__tagline">{{ site.tagline }}</p>
+    <hr class="masthead__rule">
+  </header>
+
+  <nav class="sitenav" aria-label="ניווט ראשי">
+    <a href="{{ base }}index.html" {% if nav == 'edition' %}class="is-current"{% endif %}>המהדורה</a>
+    <a href="{{ base }}archive.html" {% if nav == 'archive' %}class="is-current"{% endif %}>ארכיון</a>
+    <a href="{{ base }}search.html" {% if nav == 'search' %}class="is-current"{% endif %}>חיפוש</a>
+    <a href="{{ base }}learn.html" {% if nav == 'learn' %}class="is-current"{% endif %}>נושאי לימוד</a>
+  </nav>
+
+  <main class="page">
+    <div class="section-head"><span class="section-head__label">{% block section_label %}{% endblock %}</span></div>
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="colophon">
+    <span>{{ site.title }}</span>
+    <span>{{ site.price }}</span>
+  </footer>
+
+</div>
+</body>
+</html>

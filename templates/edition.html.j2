@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#f7f4ec">
+<title>{{ site.title }} — {{ edition.date_long }}</title>
+<meta name="description" content="{{ edition.lead.standfirst }}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@300..900&family=Noto+Serif+Hebrew:wght@300..700&family=Heebo:wght@400..800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ base }}assets/css/newspaper.css">
+</head>
+<body>
+
+{% if not is_latest %}
+<div class="banner">
+  זוהי מהדורת ארכיון מתאריך {{ edition.date_long }} ·
+  <a href="{{ base }}index.html">למהדורה של היום &larr;</a>
+</div>
+{% endif %}
+
+<div class="wrap">
+
+  <header class="masthead">
+    <div class="masthead__meta">
+      <span>{{ site.place }}</span>
+      <span>מהדורה מס׳ {{ edition.number }}</span>
+      <span class="credit">{{ site.price }}</span>
+    </div>
+
+    <h1 class="masthead__title">{{ site.title_main }} <span class="thin">{{ site.title_thin }}</span></h1>
+    <p class="masthead__tagline">{{ site.tagline }}</p>
+
+    <hr class="masthead__rule">
+
+    <div class="masthead__dateline">
+      <span>{{ edition.date_long }}</span>
+      <span>{{ edition.sections | join(' · ') }}</span>
+    </div>
+  </header>
+
+  <nav class="sitenav" aria-label="ניווט ראשי">
+    <a href="{{ base }}index.html" class="is-current">המהדורה</a>
+    <a href="{{ base }}archive.html">ארכיון</a>
+    <a href="{{ base }}search.html">חיפוש</a>
+    <a href="{{ base }}learn.html">נושאי לימוד</a>
+  </nav>
+
+  <!-- ===== סרגל מהדורות — נייד בלבד ===== -->
+  <nav class="editions-bar" aria-label="מהדורות קודמות">
+    <div class="editions-bar__track">
+      <span class="editions-bar__label">מהדורות:</span>
+      {% for ed in archive %}
+      <a class="chip {% if ed.date == edition.date %}is-current{% endif %}"
+         href="{{ base }}{{ ed.href }}">{{ ed.date_short }}</a>
+      {% endfor %}
+    </div>
+  </nav>
+
+  <div class="paper">
+
+    <main class="main">
+
+      <!-- ===== הידיעה המרכזית ===== -->
+      <article class="lead">
+        <div class="lead__text">
+          <p class="kicker">{{ edition.lead.kicker }}</p>
+          <h2 class="lead__headline">{{ edition.lead.headline }}</h2>
+          <p class="lead__standfirst">{{ edition.lead.standfirst }}</p>
+          <div class="lead__body">
+            {% set fig = edition.lead.figure %}
+            {% set fig_after = fig.after | default(1) if fig else 0 %}
+            {% for para in edition.lead.body %}
+            {% if fig and loop.index0 == fig_after %}
+            {% set fmax = fig.max | default(100) %}
+            <figure class="datafig">
+              <figcaption class="datafig__title">{{ fig.title }}</figcaption>
+              <ul class="datafig__bars">
+                {% for bar in fig.bars %}
+                <li class="datafig__row{% if bar.muted %} datafig__row--muted{% endif %}">
+                  <span class="datafig__label">{{ bar.label }}</span>
+                  <span class="datafig__track">
+                    <span class="datafig__bar" style="width: {{ (bar.value / fmax * 100) | round(1) }}%"></span>
+                  </span>
+                  <span class="datafig__value ltr">{{ bar.value }}{{ fig.unit | default('%') }}</span>
+                </li>
+                {% endfor %}
+              </ul>
+              {% if fig.note %}<p class="datafig__note">{{ fig.note }}</p>{% endif %}
+              <p class="datafig__source">{{ fig.source }}</p>
+            </figure>
+            {% endif %}
+            <p>{{ para }}</p>
+            {% endfor %}
+          </div>
+          <p class="byline">
+            {% set lead_href = edition.lead.url if ('://' in edition.lead.url or edition.lead.url.startswith('#')) else base ~ edition.lead.url %}
+            {{ edition.lead.source }} · <span class="ltr">{{ edition.lead.time }}</span> ·
+            <a href="{{ lead_href }}">{{ edition.lead.link_text | default('לכתבה המלאה') }}</a>
+          </p>
+        </div>
+      </article>
+
+      <!-- ===== רשת הידיעות ===== -->
+      {% for section in edition.grid %}
+      <div class="section-head"><span class="section-head__label">{{ section.name }}</span></div>
+      <div class="stories">
+        {% for story in section.stories %}
+        <article class="story {% if story.wide %}story--wide{% endif %}">
+          <h3 class="story__headline"><a href="{{ story.url }}">{{ story.headline }}</a></h3>
+          <p class="story__summary">{{ story.summary }}</p>
+          <p class="story__meta">{{ story.source }} · <span class="ltr">{{ story.time }}</span></p>
+        </article>
+        {% endfor %}
+      </div>
+      {% endfor %}
+
+      <!-- ===== נושא היום ללימוד ===== -->
+      {% if edition.learning %}
+      <div class="section-head"><span class="section-head__label">נושא היום ללימוד</span></div>
+      {% set learn_href = edition.learning.url or (base ~ 'learn/' ~ edition.learning.slug ~ '.html' if edition.learning.slug) %}
+      <section class="learning">
+        <h3 class="learning__title">
+          {% if learn_href %}<a href="{{ learn_href }}">{{ edition.learning.title }}</a>{% else %}{{ edition.learning.title }}{% endif %}
+        </h3>
+        {% for para in edition.learning.body %}
+        <p class="learning__body">{{ para }}</p>
+        {% endfor %}
+        {% if learn_href %}
+        <a class="learning__cta" href="{{ learn_href }}">
+          <span class="learning__cta-main">לעמוד המלא — הסבר, סימולטור ומבחן</span>
+          <span class="learning__cta-arrow" aria-hidden="true">←</span>
+        </a>
+        <p class="learning__more">כל נושאי הלימוד נאספים ב<a href="{{ base }}learn.html">קטלוג הלימוד</a></p>
+        {% endif %}
+      </section>
+      {% endif %}
+
+      <!-- ===== פרשנות ===== -->
+      {% if edition.opinion %}
+      <div class="section-head"><span class="section-head__label">פרשנות וניתוח</span></div>
+      <section class="opinion">
+        {% for op in edition.opinion %}
+        <div class="opinion__item">
+          <span class="opinion__initial" aria-hidden="true">{{ op.author | first }}</span>
+          <div>
+            <p class="opinion__quote">„{{ op.quote }}”</p>
+            <p class="story__meta">{{ op.author }} · {{ op.source }}</p>
+          </div>
+        </div>
+        {% endfor %}
+      </section>
+      {% endif %}
+
+    </main>
+
+    <!-- ===== הטור הצדדי ===== -->
+    <aside class="rail">
+
+      {% if edition.briefs %}
+      <section class="module">
+        <h4 class="module__head">בקצרה</h4>
+        <ol class="briefs">
+          {% for brief in edition.briefs %}
+          <li><a href="{{ brief.url }}">{{ brief.text }}</a></li>
+          {% endfor %}
+        </ol>
+      </section>
+      {% endif %}
+
+      <section class="module module--archive">
+        <h4 class="module__head">מהדורות קודמות</h4>
+        <ul class="archive">
+          {% for ed in archive %}
+          <li class="{% if ed.date == edition.date %}is-current{% endif %}">
+            <a href="{{ base }}{{ ed.href }}">
+              <span>{{ ed.date_short }}</span>
+              <span class="n">מס׳ {{ ed.number }}</span>
+            </a>
+          </li>
+          {% endfor %}
+        </ul>
+      </section>
+
+      {% if edition.almanac %}
+      <section class="module">
+        <h4 class="module__head">מזג האוויר</h4>
+        <div class="almanac"
+             {% if is_latest and edition.almanac.lat %}
+             data-live-weather
+             data-lat="{{ edition.almanac.lat }}"
+             data-lon="{{ edition.almanac.lon }}"
+             data-tz="{{ edition.almanac.tz }}"
+             {% endif %}>
+          <p class="almanac__note" data-w="place">{{ edition.almanac.place }}</p>
+          <p class="almanac__temp" data-w="temp">{{ edition.almanac.temp }}</p>
+          <p class="almanac__note" data-w="conditions">{{ edition.almanac.conditions }}</p>
+          {% if edition.almanac.high is defined %}
+          <p class="almanac__range">
+            <span data-w="range" class="ltr">{{ edition.almanac.high }}° / {{ edition.almanac.low }}°</span>
+            <span data-w="humidity">לחות {{ edition.almanac.humidity }}%</span>
+          </p>
+          {% endif %}
+        </div>
+      </section>
+      {% endif %}
+
+      {% if edition.quote %}
+      <section class="module">
+        <h4 class="module__head">ציטוט היום</h4>
+        <div class="quote-box">
+          <blockquote>{{ edition.quote.text }}</blockquote>
+          <cite>{{ edition.quote.author }}</cite>
+        </div>
+      </section>
+      {% endif %}
+
+    </aside>
+
+  </div>
+
+  <footer class="colophon">
+    <span>{{ site.title }} · מהדורה מס׳ {{ edition.number }}</span>
+    <span>נערך בשעה <span class="ltr">{{ edition.compiled_at }}</span></span>
+    <span>{{ site.colophon }}</span>
+  </footer>
+
+</div>
+
+{% if is_latest %}
+<script>
+/* מזג אוויר חי — מרענן את המודול בעת פתיחת העיתון.
+   Open-Meteo: ללא מפתח, ללא הרשמה. אם הבקשה נכשלת, נשאר הערך שהודפס. */
+(function () {
+  var box = document.querySelector('[data-live-weather]');
+  if (!box || !window.fetch) return;
+
+  var WMO = {
+    0: 'בהיר', 1: 'בהיר בעיקר', 2: 'מעונן חלקית', 3: 'מעונן',
+    45: 'ערפל', 48: 'ערפל מקפיא',
+    51: 'טפטוף קל', 53: 'טפטוף', 55: 'טפטוף חזק',
+    56: 'טפטוף קפוא קל', 57: 'טפטוף קפוא',
+    61: 'גשם קל', 63: 'גשם', 65: 'גשם חזק',
+    66: 'גשם קפוא קל', 67: 'גשם קפוא',
+    71: 'שלג קל', 73: 'שלג', 75: 'שלג כבד', 77: 'גרגרי שלג',
+    80: 'ממטרים קלים', 81: 'ממטרים', 82: 'ממטרים עזים',
+    85: 'ממטרי שלג קלים', 86: 'ממטרי שלג',
+    95: 'סופת רעמים', 96: 'סופת רעמים עם ברד קל', 99: 'סופת רעמים עם ברד'
+  };
+
+  function set(key, text) {
+    var el = box.querySelector('[data-w="' + key + '"]');
+    if (el && text) el.textContent = text;
+  }
+
+  var url = 'https://api.open-meteo.com/v1/forecast'
+    + '?latitude=' + encodeURIComponent(box.dataset.lat)
+    + '&longitude=' + encodeURIComponent(box.dataset.lon)
+    + '&current=temperature_2m,relative_humidity_2m,weather_code'
+    + '&daily=temperature_2m_max,temperature_2m_min'
+    + '&timezone=' + encodeURIComponent(box.dataset.tz)
+    + '&forecast_days=1';
+
+  fetch(url, { mode: 'cors' })
+    .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+    .then(function (d) {
+      var c = d.current, day = d.daily;
+      set('temp', Math.round(c.temperature_2m) + '°');
+      set('conditions', WMO[c.weather_code] || 'לא ידוע');
+      set('humidity', 'לחות ' + Math.round(c.relative_humidity_2m) + '%');
+      set('range', Math.round(day.temperature_2m_max[0]) + '° / '
+                 + Math.round(day.temperature_2m_min[0]) + '°');
+      box.setAttribute('data-live', 'ok');
+    })
+    .catch(function () { /* keep the printed reading */ });
+})();
+</script>
+{% endif %}
+
+</body>
+</html>

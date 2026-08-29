@@ -1,0 +1,37 @@
+# DailyDigest configuration — PLACEHOLDER
+# Everything here is data. Fill in once docs/SPEC.md is agreed.
+
+title: "Daily Digest"
+timezone: "Asia/Jerusalem"
+language: "en"
+
+sources:
+  - name: example-feed
+    type: rss
+    url: "https://example.com/feed.xml"
+    enabled: false
+
+filters:
+  include_keywords: []
+  exclude_keywords: []
+  max_age_hours: 24
+
+selection:
+  max_items: 10
+  max_per_source: 3
+
+summarize:
+  provider: azure_openai   # azure_openai | openai | ollama
+  model: ""
+  prompt: prompts/summarize_item.md
+  max_words: 60
+
+render:
+  format: markdown         # markdown | html
+  template: digest.md.j2
+  group_by: topic          # topic | source | none
+
+delivery:
+  channels: [file]         # file | email
+  recipients: []
+  send_time: "07:30"

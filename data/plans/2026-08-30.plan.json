@@ -1,0 +1,71 @@
+{
+  "edition_date": "2026-08-30",
+  "decided_at": "2026-08-29T14:57:00+03:00",
+  "lead": {
+    "topic": "בינה מלאכותית, אמון המטופלים ורופא המשפחה בעידן ה-AI",
+    "question": "האם הסתמכות גוברת של מטופלים על AI גנרטיבי לפרשנות רפואית מצמצמת את הרלוונטיות של רופא המשפחה, או משנה את תפקידו?",
+    "research_pdf": "data/research/2026-08-30-ai-family-doctor.pdf",
+    "published_pdf": "research/2026-08-30.pdf",
+    "pages": 7,
+    "prepared": "2026-08-25",
+    "evidence_window": "2023-2026"
+  },
+  "briefs": [
+    {
+      "ref": 1,
+      "title_he": "דיווח: Nvidia רוכשת את Hugging Face ב-12.9 מיליארד דולר",
+      "url": "https://arstechnica.com/ai/2026/08/report-nvidia-to-acquire-ai-model-repository-hugging-face-for-13-billion/",
+      "source": "Ars Technica",
+      "published": "2026-08-27T17:55:00Z",
+      "verified": "fetched 2026-08-29; article states $12.9B (headline says $13B); deal NOT finalized; sourced to The Information (one person), talks confirmed to CNBC; Salesforce also bid"
+    },
+    {
+      "ref": 2,
+      "title_he": "בית משפט: החרמת Anthropic על ידי הפנטגון הייתה בלתי חוקית",
+      "url": "https://www.theverge.com/ai-artificial-intelligence/985947/anthropic-supply-chain-risk-lawsuit-judge-ruling",
+      "source": "The Verge",
+      "published": "2026-08-28T01:14:00Z",
+      "verified": "fetched 2026-08-29; Judge Rita F. Lin, N.D. Cal.; First Amendment retaliation; Anthropic's two red lines = mass surveillance of Americans, lethal autonomous weapons; merged with Ars + TechCrunch coverage of same story"
+    },
+    {
+      "ref": 3,
+      "title_he": "OpenAI מפסיקה לספק מודלים ל-Cursor אחרי רכישתה בידי SpaceX",
+      "url": "https://openai.com/index/our-decision-on-cursor-following-its-acquisition-by-spacex",
+      "source": "OpenAI",
+      "published": "2026-08-28T04:00:00Z",
+      "verified": "page returns 403 to fetch; using OpenAI's own RSS summary verbatim as primary source: 'Our decision to wind down our contract providing OpenAI models to Cursor following its acquisition by SpaceX.'"
+    },
+    {
+      "ref": 9,
+      "title_he": "תקן חומרה חדש של Anthropic מאפשר לסוכני AI לשלוט בציוד פיזי",
+      "url": "https://arstechnica.com/ai/2026/08/anthropics-new-hardware-standard-lets-ai-agents-control-the-physical-world/",
+      "source": "Ars Technica",
+      "published": "2026-08-27T20:15:00Z",
+      "verified": "fetched 2026-08-29; standard called MHS; preview partners: AWS, Hugging Face, Raspberry Pi, Automata, Universal Robots; intended to become open source and agent-agnostic"
+    },
+    {
+      "ref": 12,
+      "title_he": "כמה מים באמת צורכת הבינה המלאכותית?",
+      "url": "https://arstechnica.com/ai/2026/08/how-much-of-a-problem-is-ais-water-use/",
+      "source": "Ars Technica",
+      "published": "2026-08-27T11:57:00Z",
+      "verified": "fetched 2026-08-29; Texas data centers <1% of state water today, projected 3-9% by 2040 (UT Austin, Bahadur); liquid cooling is closed-loop; NVIDIA claims cooling at ~113F reduces water need"
+    },
+    {
+      "ref": 13,
+      "title_he": "ההייטק הישראלי לא נח באוגוסט: 580 מיליון דולר גיוסים ומעל 3 מיליארד באקזיטים",
+      "url": "https://www.geektime.co.il/israeli-startup-ecosystem-funding-roundup-august-2026/",
+      "source": "Geektime",
+      "published": "2026-08-28T06:02:00Z",
+      "verified": "fetched 2026-08-29; 12 startups, ~$580M raised, best August since 2022; Visa/BioCatch $2.4B cash; At Bay $575M; Deel/Clarity $50M; caveat: reported deals only, Jul-Aug under-reported"
+    }
+  ],
+  "learning": {
+    "topic": "מה זה ריבית דריבית?",
+    "why": "קלאסיקה פיננסית, ברמת תיכון, ומועמדת מצוינת לסימולטור בשלב ב'"
+  },
+  "notes": [
+    "Lead research is in English; Hebrew article written from it, not machine-translated.",
+    "Learning topic gets a paragraph only — the interactive page is phase 2 per docs/SPEC.md §8."
+  ]
+}

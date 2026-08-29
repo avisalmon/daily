@@ -1,0 +1,36 @@
+.env
+env/
+venv/
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+build/
+dist/
+
+logs/*
+!logs/.gitkeep
+data/raw/*
+!data/raw/.gitkeep
+data/cache/*
+!data/cache/.gitkeep
+output/digests/*
+!output/digests/.gitkeep
+
+# Node / Playwright
+node_modules/
+package-lock.json
+tools/browser/out/
+
+# Never commit anything session-shaped
+*browser-profile*
+*.cookies
+storage-state*.json
+
+# Incoming research source PDFs (inputs, not artifacts)
+data/research/*.pdf
+
+# Transient news cache from the editorial meeting
+data/_news_cache.json

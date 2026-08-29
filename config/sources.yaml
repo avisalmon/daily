@@ -1,0 +1,85 @@
+# Source catalog for the editorial meeting.
+# All feeds below were reachability-tested on 2026-08-29.
+# `verified` records that date.
+
+sources:
+  # --- AI / technology (English) ---
+  - name: "TechCrunch AI"
+    type: rss
+    url: "https://techcrunch.com/category/artificial-intelligence/feed/"
+    topics: [ai, startups]
+    weight: 1.0
+    verified: 2026-08-29
+
+  - name: "The Verge AI"
+    type: rss
+    url: "https://www.theverge.com/rss/ai-artificial-intelligence/index.xml"
+    topics: [ai, consumer]
+    weight: 1.0
+    verified: 2026-08-29
+
+  - name: "Ars Technica AI"
+    type: rss
+    url: "https://arstechnica.com/ai/feed/"
+    topics: [ai, deep-technical]
+    weight: 1.1
+    verified: 2026-08-29
+
+  - name: "MIT Technology Review"
+    type: rss
+    url: "https://www.technologyreview.com/feed/"
+    topics: [ai, science, policy]
+    weight: 1.2
+    verified: 2026-08-29
+
+  - name: "VentureBeat AI"
+    type: rss
+    # NOTE: a trailing slash returns 308. Keep this exact URL.
+    url: "https://venturebeat.com/category/ai/feed"
+    topics: [ai, enterprise]
+    weight: 0.9
+    verified: 2026-08-29
+
+  # --- Primary sources (vendor announcements) ---
+  - name: "OpenAI News"
+    type: rss
+    url: "https://openai.com/news/rss.xml"
+    topics: [ai, primary-source]
+    weight: 1.3
+    verified: 2026-08-29
+
+  - name: "Google AI Blog"
+    type: rss
+    url: "https://blog.google/technology/ai/rss/"
+    topics: [ai, primary-source]
+    weight: 1.3
+    verified: 2026-08-29
+
+  # --- Signal / discussion ---
+  - name: "Hacker News Front Page"
+    type: rss
+    url: "https://hnrss.org/frontpage"
+    topics: [tech, signal]
+    weight: 0.7
+    verified: 2026-08-29
+    notes: "High noise. A signal of what is being discussed, not a source of record."
+
+  # --- Israeli tech (Hebrew) ---
+  - name: "Geektime"
+    type: rss
+    url: "https://www.geektime.co.il/feed/"
+    topics: [israel, tech, startups]
+    weight: 1.0
+    verified: 2026-08-29
+
+  - name: "Ynet — מחשבים"
+    type: rss
+    url: "https://www.ynet.co.il/Integration/StoryRss544.xml"
+    topics: [israel, tech]
+    weight: 0.9
+    verified: 2026-08-29
+
+# --- Rejected ---
+# Calcalist tech (https://www.calcalist.co.il/GeneralRSS/0,16335,L-3704,00.xml)
+#   Returns 403 Forbidden, including with a browser User-Agent. Blocked server-side.
+#   Do not re-add without finding a working endpoint.

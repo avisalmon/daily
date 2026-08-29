@@ -1,0 +1,31 @@
+{% extends "_shell.html.j2" %}
+{% block page_title %}ארכיון המהדורות{% endblock %}
+{% block section_label %}ארכיון המהדורות{% endblock %}
+
+{% block content %}
+<p class="page__intro">
+  כל המהדורות שפורסמו, מהחדשה לישנה. סך הכול {{ archive | length }} מהדורות.
+</p>
+
+{% for group in grouped %}
+<section class="archive-group">
+  <h3 class="archive-group__head">{{ group.label }}</h3>
+  <ul class="archive-list">
+    {% for ed in group.editions %}
+    <li class="archive-item">
+      <a class="archive-item__link" href="{{ base }}{{ ed.href }}">
+        <span class="archive-item__num">מס׳ {{ ed.number }}</span>
+        <span class="archive-item__date">{{ ed.date_long }}</span>
+        <span class="archive-item__headline">{{ ed.headline }}</span>
+      </a>
+      <p class="archive-item__meta">
+        {{ ed.story_count }} ידיעות
+        {% if ed.learning %}· נושא לימוד: {{ ed.learning }}{% endif %}
+        {% if ed.has_research %}· <a href="{{ base }}research/{{ ed.date }}.pdf">מחקר העומק (PDF)</a>{% endif %}
+      </p>
+    </li>
+    {% endfor %}
+  </ul>
+</section>
+{% endfor %}
+{% endblock %}

@@ -1,0 +1,16 @@
+<!-- HTML/email digest template — PLACEHOLDER -->
+<!doctype html>
+<html>
+  <body style="font-family: -apple-system, Segoe UI, sans-serif; max-width: 640px; margin: 0 auto;">
+    <h1>{{ title }} — {{ date }}</h1>
+    {% for item in items %}
+    <div style="margin-bottom: 24px;">
+      <h2 style="font-size: 18px; margin: 0 0 6px;">
+        <a href="{{ item.url }}">{{ item.title }}</a>
+      </h2>
+      <p style="margin: 0 0 4px;">{{ item.summary }}</p>
+      <small style="color: #666;">{{ item.source }}</small>
+    </div>
+    {% endfor %}
+  </body>
+</html>
