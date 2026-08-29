@@ -12,6 +12,7 @@ Put a new rule in exactly one place. Duplicating it guarantees drift.
 | Kind of rule | Home | Enforced by |
 |---|---|---|
 | What must be true of an edition | `docs/SPEC.md` | `scripts/validate.py` |
+| How the paper must sound | `AGENTS.md` (Voice) | `scripts/style.py` |
 | How to run the day | `docs/RUNBOOK.md` (this file) | the checklist in §4 |
 | Why a rule exists, gotchas | `docs/BKM.md` | — |
 | How it must look | `docs/VISUAL_SPEC.md` | `tests/test_newspaper.py` |
@@ -105,11 +106,27 @@ When something goes wrong, ask which layer should have caught it:
 | The problem is… | Add it to |
 |---|---|
 | Wrong or missing data in an edition | `scripts/validate.py` |
+| The paper sounding machine-written | `scripts/style.py` |
 | Wrong behaviour in code | `tests/test_newspaper.py` |
 | A judgement call a human must make | the checklist in §4 |
 | Background on why | `docs/BKM.md` |
 
 Then write the rule down in `docs/SPEC.md` if it is part of the contract.
+
+### Voice, enforced
+
+`scripts/style.py` refuses to publish content containing:
+
+- an **em dash** (`—`), the loudest AI tell there is, or a **spaced en dash**.
+  A tight en dash inside a range (`2023–2026`, `פברואר–מרץ`) is correct and allowed
+- an **emoji** or decorative symbol, anywhere
+- an **arrow glyph** in prose (allowed in a chart axis label)
+- **filler phrases**: `חשוב לציין`, `בשורה התחתונה`, `בעידן שבו`, `אין ספק`,
+  `delve into`, `it's worth noting`, `game-changer`
+- the **`לא רק X אלא גם Y`** construction
+
+Look is checked too: `test_no_card_styling_in_css` fails on any rounded corner,
+because this is a newspaper and not an app.
 
 ### What is enforced today
 

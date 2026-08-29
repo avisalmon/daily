@@ -20,6 +20,7 @@ from pathlib import Path
 from urllib.parse import urlsplit
 
 import ledger
+import style
 
 ROOT = Path(__file__).resolve().parent.parent
 DATA_DIR = ROOT / "data" / "editions"
@@ -303,6 +304,9 @@ def validate(only: str | None = None) -> list[str]:
             _fail(errors, path.name, f"unreadable: {exc}")
             continue
         check_topic(topic, path, errors)
+
+    # The paper must not read as machine-written (docs/SPEC.md).
+    errors += style.check_content()
 
     return errors
 

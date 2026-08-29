@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#f7f4ec">
-<title>{{ site.title }} — {{ edition.date_long }}</title>
+<title>{{ site.title }}, {{ edition.date_long }}</title>
 <meta name="description" content="{{ edition.lead.standfirst }}">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -128,10 +128,7 @@
         <p class="learning__body">{{ para }}</p>
         {% endfor %}
         {% if learn_href %}
-        <a class="learning__cta" href="{{ learn_href }}">
-          <span class="learning__cta-main">לעמוד המלא — הסבר, סימולטור ומבחן</span>
-          <span class="learning__cta-arrow" aria-hidden="true">←</span>
-        </a>
+        <a class="learning__cta" href="{{ learn_href }}">לעמוד המלא: הסבר, סימולטור ומבחן</a>
         <p class="learning__more">כל נושאי הלימוד נאספים ב<a href="{{ base }}learn.html">קטלוג הלימוד</a></p>
         {% endif %}
       </section>

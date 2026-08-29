@@ -241,6 +241,58 @@ def test_claimed_bank_research_is_on_disk_for_its_edition():
         assert expected.exists(), f"{item['id']} claims {item['used_in']} but {expected.name} is gone"
 
 
+# --------------------------------------------------------------------------
+# Voice. The paper must not read as machine-written.
+# --------------------------------------------------------------------------
+
+def test_published_content_has_no_ai_tells():
+    import style
+
+    assert style.check_content() == []
+
+
+def test_style_checker_catches_an_em_dash():
+    import style
+
+    assert style.check_string("הרופא לא נעלם — הוא משנה תפקיד", "x")
+
+
+def test_style_checker_allows_a_tight_range():
+    """2023-2026 is correct typography, not a tell."""
+    import style
+
+    assert style.check_string("ראיות 2023–2026 ובפברואר–מרץ", "x") == []
+
+
+def test_style_checker_catches_emoji_and_filler():
+    import style
+
+    assert style.check_string("נהדר 🚀", "x")
+    assert style.check_string("חשוב לציין שהמגמה נמשכת", "x")
+    assert style.check_string("It's worth noting the trend", "x")
+
+
+def test_rendered_pages_have_no_em_dashes_or_emoji():
+    import style
+
+    pages = [ROOT / "index.html", ROOT / "learn.html", ROOT / "archive.html",
+             *(ROOT / "editions").glob("*.html"), *(ROOT / "learn").glob("*.html")]
+    for page in pages:
+        html = page.read_text(encoding="utf-8")
+        text = re.sub(r"<script.*?</script>|<style.*?</style>|<!--.*?-->", "", html, flags=re.S)
+        text = re.sub(r"<[^>]+>", " ", text)
+        assert "—" not in text, f"{page.name} renders an em dash"
+        assert not style.EMOJI.search(text), f"{page.name} renders an emoji"
+
+
+def test_no_card_styling_in_css():
+    """It is a newspaper, not an app: no rounded corners on content."""
+    css = CSS.read_text(encoding="utf-8")
+    radii = re.findall(r"border-radius:\s*([^;]+);", css)
+    for value in radii:
+        assert value.strip() in ("0", "0px", "50%"), f"card-style border-radius: {value}"
+
+
 def test_css_braces_are_balanced():
     css = re.sub(r"/\*.*?\*/", "", CSS.read_text(encoding="utf-8"), flags=re.S)
     assert css.count("{") == css.count("}")
