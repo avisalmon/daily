@@ -326,7 +326,14 @@ def file_result(question: str, res: dict) -> Path:
     return path
 
 
-def report(res: dict) -> None:
+def report(res: dict, salvageable: bool = False) -> None:
+    """Explain a bad ending.
+
+    If usable prose survived, this warns instead of dying. A run that fails
+    during its final moments still holds an hour of work, and throwing that
+    away because the status field says `failed` is the most expensive possible
+    mistake: the answer is right there in the output.
+    """
     state = res.get("status")
     if state == "completed":
         return
@@ -346,11 +353,22 @@ def report(res: dict) -> None:
                     f"before writing the answer.")
             msg.append("Raise --max-tokens. The budget is a ceiling, not a "
                        "spend: raising it costs nothing unless it is used.")
-        raise SystemExit("\n".join(msg))
+        _end(msg, salvageable)
+        return
     if state == "failed":
         err = res.get("error") or {}
-        raise SystemExit(f"Run failed: {err.get('code')} {err.get('message')}")
-    raise SystemExit(f"Run ended as {state}.")
+        _end([f"Run failed: {err.get('code')} {err.get('message')}"], salvageable)
+        return
+    _end([f"Run ended as {state}."], salvageable)
+
+
+def _end(msg: list[str], salvageable: bool) -> None:
+    if salvageable:
+        print("! " + "\n! ".join(msg))
+        print("! Usable prose survived, so it is being filed anyway. "
+              "Read it before trusting it: the tail may be truncated.")
+        return
+    raise SystemExit("\n".join(msg))
 
 
 # ---------------------------------------------------------------------------
@@ -393,7 +411,7 @@ def main() -> int:
         ap.print_help()
         return 2
 
-    report(res)
+    report(res, salvageable=bool(extract(res)[0]))
     path = file_result(question, res)
     print(f"\nFiled: {path.relative_to(ROOT)}")
     print(f"  {searches_made(res)} web searches · "

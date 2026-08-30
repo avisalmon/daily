@@ -1,0 +1,469 @@
+{
+  "doc": "is-trust-changing-in-the-ai-era-and-is-ai-actually",
+  "file": "is-trust-changing-in-the-ai-era-and-is-ai-actually.md",
+  "extracted_at": "2026-08-30T12:09:15+00:00",
+  "claims": [
+    {
+      "id": "c223577bd",
+      "text": "Prioritise recent peer-reviewed academic research from roughly 2023 to 2026, and large longitudinal survey programmes that measure the same question over many years, so that change over time can actually be established.",
+      "checks": [],
+      "verdict": "unchecked",
+      "disposition": null
+    },
+    {
+      "id": "c480b3963",
+      "text": "So distinguish carefully between (a) a pre-existing long-term trend that continues, (b) a genuine acceleration or reversal that coincides with the arrival of generative AI in late 2022, and (c) a demonstrated causal effect established by experimental or quasi-experimental work.",
+      "checks": [],
+      "verdict": "unchecked",
+      "disposition": null
+    },
+    {
+      "id": "cb7afd7ed",
+      "text": "The “AI era,” marked notably by the late-2022 debut of powerful generative AI (e.g.",
+      "checks": [],
+      "verdict": "unchecked",
+      "disposition": null
+    },
+    {
+      "id": "c73416a97",
+      "text": "We prioritize recent academic research (2023–2026) and longitudinal surveys (e.g.",
+      "checks": [],
+      "verdict": "unchecked",
+      "disposition": null
+    },
+    {
+      "id": "cb3c212ca",
+      "text": "For example, in the United States, the General Social Survey found the share of adults saying “most people can be trusted” fell from 46% in 1972 to 34% in 2018, and a 2023–24 Pew survey found the figure remained at 34% .",
+      "checks": [],
+      "verdict": "unchecked",
+      "disposition": null
+    },
+    {
+      "id": "cae739c7c",
+      "text": "This suggests a decades-long decline in social trust (especially from the 1970s to 1990s), with levels plateauing at historically low levels in recent years.",
+      "checks": [],
+      "verdict": "unchecked",
+      "disposition": null
+    },
+    {
+      "id": "ce859f86d",
+      "text": "Globally, an Ipsos poll (Feb–Mar 2022, 22,534 adults in 30 countries) found that on average only 30% of adults agreed that “most people can be trusted.” However, interpersonal trust varies widely by country, from around 56% in China and India to under 15% in Brazil, Malaysia, and Turkey .",
+      "checks": [],
+      "verdict": "unchecked",
+      "disposition": null
+    },
+    {
+      "id": "c38a717e0",
+      "text": "Denmark ~74%, Norway ~72%) while many low-income or politically unstable countries report very low trust .",
+      "checks": [],
+      "verdict": "unchecked",
+      "disposition": null
+    },
+    {
+      "id": "c0fd11955",
+      "text": "A global study led by the University of Melbourne and KPMG (surveying 48,000 people across 47 countries in late 2024) found that while 66% of people use AI regularly, only 46% are willing to trust AI systems .",
+      "checks": [],
+      "verdict": "unchecked",
+      "disposition": null
+    },
+    {
+      "id": "cf90bed93",
+      "text": "Moreover, comparisons to earlier data show a decline in trust coinciding with the rise of generative AI in 2022: in the 17 countries surveyed before ChatGPT’s release, the share of people willing to trust AI fell from about 63% in 2022 to 56% in 2023 , accompanied by a jump in concern about AI’s risks (the proportion “worried about AI” rose from ~49% to 62% over that period) .",
+      "checks": [],
+      "verdict": "unchecked",
+      "disposition": null
+    },
+    {
+      "id": "cd21f57b8",
+      "text": "The KPMG-Melbourne survey revealed a “clear split” between emerging and advanced economies: roughly three in five people (60%) in emerging economies say they trust AI, compared to only two in five (40%) in advanced economies .",
+      "checks": [],
+      "verdict": "unchecked",
+      "disposition": null
+    },
+    {
+      "id": "c05dbbf41",
+      "text": "For instance, a May 2023 Bentley University–Gallup survey of 5,458 U.S.",
+      "checks": [],
+      "verdict": "unchecked",
+      "disposition": null
+    },
+    {
+      "id": "c0c3d0d61",
+      "text": "68% say AI performs as well as or better than humans at personalizing online content), they are much more skeptical about AI in high-stakes domains – roughly two-thirds of Americans say AI is worse than humans at deciding whom to hire, driving cars, or providing medical advice .",
+      "checks": [],
+      "verdict": "unchecked",
+      "disposition": null
+    },
+    {
+      "id": "ca460f179",
+      "text": "In short, trust in AI systems themselves does not appear to be rising with AI’s popularity – if anything, global trust in AI has declined since late 2022 (category b), and public confidence in AI’s use remains much lower for sensitive tasks, especially among publics in advanced economies.",
+      "checks": [],
+      "verdict": "unchecked",
+      "disposition": null
+    },
+    {
+      "id": "c8cc15ebe",
+      "text": "The Reuters Institute Digital News Report 2023 – based on a massive survey of 93,000 online news consumers across 46 countries – found that only 40% of people on average said they trust “most news, most of the time,” down 2 percentage points from the previous year .",
+      "checks": [],
+      "verdict": "unchecked",
+      "disposition": null
+    },
+    {
+      "id": "cb529c804",
+      "text": "This modest decline in 2022–23 effectively reversed the temporary rise in media trust seen during the COVID-19 pandemic, resuming a prior decades-long slide .",
+      "checks": [],
+      "verdict": "unchecked",
+      "disposition": null
+    },
+    {
+      "id": "cf4e5e1e1",
+      "text": "media trust spiked in 2020 at the pandemic’s outset, then fell again.) In the United States, trust in mainstream media is near historic lows: as of a late 2024 Gallup poll (Sept 2024, ~1,500 U.S.",
+      "checks": [],
+      "verdict": "unchecked",
+      "disposition": null
+    },
+    {
+      "id": "cb2af2468",
+      "text": "adults), only 31% of Americans have a “great deal or fair amount” of confidence in the mass media, essentially tied with the record low of 32% first recorded in 2016 .",
+      "checks": [],
+      "verdict": "unchecked",
+      "disposition": null
+    },
+    {
+      "id": "c794a64e7",
+      "text": "By contrast, in the early 1970s roughly 70% of Americans trusted the media – illustrating a precipitous long-run decline.",
+      "checks": [],
+      "verdict": "unchecked",
+      "disposition": null
+    },
+    {
+      "id": "ccb18d9f3",
+      "text": "Notably, for the third year in a row, more Americans say they have no trust at all in the media (36%) than say they have at least a fair amount of trust (31%) .",
+      "checks": [],
+      "verdict": "unchecked",
+      "disposition": null
+    },
+    {
+      "id": "c1b85cce0",
+      "text": "The recent 2-point dip in global news trust from 2022–23 is consistent with pre-existing trends (category a) rather than a sudden acceleration due solely to AI.",
+      "checks": [],
+      "verdict": "unchecked",
+      "disposition": null
+    },
+    {
+      "id": "c05e52528",
+      "text": "Surveys show the public is highly aware and worried: in an August 2023 YouGov poll of Americans, 85% said they were “very” or “somewhat” concerned about the spread of misleading “deepfake” videos and audio .",
+      "checks": [],
+      "verdict": "unchecked",
+      "disposition": null
+    },
+    {
+      "id": "cf911459f",
+      "text": "A 2024 study in American Political Science Review simulated scenarios of politicians invoking “fake news” or “deepfake” claims to dodge scandals – a prime example of the liar’s dividend tactic – and found that these false claims helped politicians shore up support among their base, but did not significantly reduce overall trust in media .",
+      "checks": [],
+      "verdict": "unchecked",
+      "disposition": null
+    },
+    {
+      "id": "c7de8151f",
+      "text": "The OECD’s 2023 cross-national Trust Survey (nearly 60,000 people in 30 countries) reports that on average just 39% of citizens had “high or moderate” trust in their national government in 2023, down slightly from 43% in 2021 .",
+      "checks": [],
+      "verdict": "unchecked",
+      "disposition": null
+    },
+    {
+      "id": "c8378c88c",
+      "text": "In the U.S., for instance, public trust in the federal government to “do the right thing” most of the time fell from ~73% in 1958 to around 20% in recent years .",
+      "checks": [],
+      "verdict": "unchecked",
+      "disposition": null
+    },
+    {
+      "id": "c822174a5",
+      "text": "By June 2023, only 16% of Americans said they trust the government in Washington almost always or most of the time, one of the lowest levels in seven decades of surveys .",
+      "checks": [],
+      "verdict": "unchecked",
+      "disposition": null
+    },
+    {
+      "id": "c43498088",
+      "text": "A 2025 study analyzing thousands of surveys since 1958 concluded that “globally, trust in representative institutions has generally been declining in recent decades” .",
+      "checks": [],
+      "verdict": "unchecked",
+      "disposition": null
+    },
+    {
+      "id": "c13776435",
+      "text": "Key upcoming events, like the 2024–2026 election cycles in various countries, have fueled speculation that AI-generated fake news or bogus videos could accelerate the erosion of trust in leaders and democratic processes (potentially a category b scenario if it occurs).",
+      "checks": [],
+      "verdict": "unchecked",
+      "disposition": null
+    },
+    {
+      "id": "c39e328b4",
+      "text": "The 2023 Edelman “Trust at Work” report found a “stunning” 23-point higher trust in “My Employer” compared to societal institutions overall among employees (23-point above the general trust index) .",
+      "checks": [],
+      "verdict": "unchecked",
+      "disposition": null
+    },
+    {
+      "id": "c122cec3e",
+      "text": "Microsoft’s 2022 Work Trend Index (20,000 people in 11 countries) highlighted “productivity paranoia,” with 85% of business leaders saying the shift to hybrid work made it challenging to trust that employees are productive .",
+      "checks": [],
+      "verdict": "unchecked",
+      "disposition": null
+    },
+    {
+      "id": "cf619cf7f",
+      "text": "workers (51%) reported in 2023 that their employers were using monitoring technology .",
+      "checks": [],
+      "verdict": "unchecked",
+      "disposition": null
+    },
+    {
+      "id": "c760dd214",
+      "text": "Research by the American Psychological Association found that monitored employees were significantly more likely to feel micromanaged (56% vs 33%) and to report negative mental health impacts from work .",
+      "checks": [],
+      "verdict": "unchecked",
+      "disposition": null
+    },
+    {
+      "id": "cdfe88a41",
+      "text": "adults (Dec 2022), 71% opposed the idea of AI making final hiring decisions (only 7% favored it) , and majorities also opposed AI’s use in firing employees or monitoring workers’ performance .",
+      "checks": [],
+      "verdict": "unchecked",
+      "disposition": null
+    },
+    {
+      "id": "c7f01220d",
+      "text": "job seekers (49%) believe AI recruiting tools are more likely to be biased than human recruiters, according to a 2023 industry poll (American Staffing Association, a promotional source) – a perception that can undermine confidence in AI-based hiring .",
+      "checks": [],
+      "verdict": "unchecked",
+      "disposition": null
+    },
+    {
+      "id": "cf6ace724",
+      "text": "For example, Pew’s 2022–23 polling found 33% of Americans believed greater use of AI in hiring would reduce bias, but 44% said it would actually make hiring more biased .",
+      "checks": [],
+      "verdict": "unchecked",
+      "disposition": null
+    },
+    {
+      "id": "c70b86769",
+      "text": "Where a short-term shift has been observed – such as the drop in global AI trust from 2022 to 2023 – it remains challenging to distinguish whether this is an effect of AI’s arrival or part of normal opinion variation.",
+      "checks": [],
+      "verdict": "unchecked",
+      "disposition": null
+    },
+    {
+      "id": "c3163a45a",
+      "text": "The 2024 APSR experiment found no overall decrease in media trust when subjects were told a real political video was a deepfake , suggesting the liar’s dividend may not be as potent in practice as many fear.",
+      "checks": [],
+      "verdict": "unchecked",
+      "disposition": null
+    },
+    {
+      "id": "c04d630af",
+      "text": "Our analysis relies on several high-quality sources, including peer-reviewed research and large-scale surveys spanning 2023–2026:",
+      "checks": [],
+      "verdict": "unchecked",
+      "disposition": null
+    },
+    {
+      "id": "c6dd8435d",
+      "text": "Provided results from a 2025 global survey (48,000 respondents, 47 countries) on public trust, attitudes, and use of AI, conducted by University of Melbourne researchers in collaboration with KPMG .",
+      "checks": [],
+      "verdict": "unchecked",
+      "disposition": null
+    },
+    {
+      "id": "c029d5f8e",
+      "text": "We cite a 2024 American Political Science Review experimental study on misinformation and the “liar’s dividend,” which is an authoritative scholarly source .",
+      "checks": [],
+      "verdict": "unchecked",
+      "disposition": null
+    },
+    {
+      "id": "ce496c2cb",
+      "text": "We also reference a 2025 British Journal of Political Science study analyzing global trends in political trust since 1958 – a comprehensive, peer-reviewed analysis covering 143 countries.",
+      "checks": [],
+      "verdict": "unchecked",
+      "disposition": null
+    },
+    {
+      "id": "cda0e9767",
+      "text": "The Digital News Report 2023 (12th edition) is a well-regarded annual study of global news consumption and trust, based on a 93,000-person survey across 46 countries .",
+      "checks": [],
+      "verdict": "unchecked",
+      "disposition": null
+    },
+    {
+      "id": "ccf15e384",
+      "text": "For instance, we cited Gallup’s 2024 media confidence poll (approx.",
+      "checks": [],
+      "verdict": "unchecked",
+      "disposition": null
+    },
+    {
+      "id": "c9f76f2db",
+      "text": "adults) for historical comparisons of media trust , as well as a May 2023 Bentley University–Gallup panel survey (5,458 U.S.",
+      "checks": [],
+      "verdict": "unchecked",
+      "disposition": null
+    },
+    {
+      "id": "cf6e00093",
+      "text": "interpersonal trust (1972–2018) and a 2023–24 Pew poll on social trust .",
+      "checks": [],
+      "verdict": "unchecked",
+      "disposition": null
+    },
+    {
+      "id": "c596995b3",
+      "text": "We also used Pew’s Dec 2022 representative survey of 11,004 U.S.",
+      "checks": [],
+      "verdict": "unchecked",
+      "disposition": null
+    },
+    {
+      "id": "c5e61ded8",
+      "text": "adults on AI in hiring and workplace decisions , as well as a Feb 2023 Pew survey (11,004 U.S.",
+      "checks": [],
+      "verdict": "unchecked",
+      "disposition": null
+    },
+    {
+      "id": "cacd3d5ab",
+      "text": "We used the CNA piece (2023) mainly to capture the stark 60% vs 40% trust gap between emerging and advanced economies in AI trust .",
+      "checks": [],
+      "verdict": "unchecked",
+      "disposition": null
+    },
+    {
+      "id": "c62ab22e2",
+      "text": "Provided a summary of the GPO-AI global public opinion survey (21 countries, 2024), offering context on global attitudes toward AI and awareness of ChatGPT .",
+      "checks": [],
+      "verdict": "unchecked",
+      "disposition": null
+    },
+    {
+      "id": "cd689a7f1",
+      "text": "Microsoft’s 2022 Work Trend Index (survey of 20,000 people across 11 countries) is a large-scale industry study on workplace behavior.",
+      "checks": [],
+      "verdict": "unchecked",
+      "disposition": null
+    },
+    {
+      "id": "ce895e9eb",
+      "text": "We cited it for the statistic that 85% of business leaders reported lower trust in employee productivity under hybrid work (“productivity paranoia”) .",
+      "checks": [],
+      "verdict": "unchecked",
+      "disposition": null
+    },
+    {
+      "id": "c79595195",
+      "text": "We referenced an Ipsos Global Advisor survey (22,534 adults in 30 countries, Feb–Mar 2022) on interpersonal trust .",
+      "checks": [],
+      "verdict": "unchecked",
+      "disposition": null
+    },
+    {
+      "id": "c0b9c97ba",
+      "text": "The APA’s Work and Well-Being Survey 2023 provided insights on employee experiences with workplace monitoring technology .",
+      "checks": [],
+      "verdict": "unchecked",
+      "disposition": null
+    },
+    {
+      "id": "cf07edb4e",
+      "text": "We included a summary from a 2026 World Values Survey (WVS) analysis covering decades of global data on trust .",
+      "checks": [],
+      "verdict": "unchecked",
+      "disposition": null
+    },
+    {
+      "id": "c52df7195",
+      "text": "We cited a July 2026 news article reporting results of a Bentley University–Gallup poll (May 2026) on attitudes toward AI’s societal impact .",
+      "checks": [],
+      "verdict": "unchecked",
+      "disposition": null
+    },
+    {
+      "id": "c910ce418",
+      "text": "The Hill is a reputable political news source; it provided a succinct comparison of 2026 vs 2023 U.S.",
+      "checks": [],
+      "verdict": "unchecked",
+      "disposition": null
+    },
+    {
+      "id": "ccfd44d25",
+      "text": "University of Melbourne/MBS – Global Trust in AI Survey (2025) – Gillespie, N.",
+      "checks": [],
+      "verdict": "unchecked",
+      "disposition": null
+    },
+    {
+      "id": "ccc6466f9",
+      "text": "et al., Trust, Attitudes and Use of Artificial Intelligence: A Global Study 2025.",
+      "checks": [],
+      "verdict": "unchecked",
+      "disposition": null
+    },
+    {
+      "id": "cc29bc665",
+      "text": "Survey of 48,000 respondents in 47 countries (Nov 2024–Jan 2025), conducted by University of Melbourne in collaboration with KPMG.",
+      "checks": [],
+      "verdict": "unchecked",
+      "disposition": null
+    },
+    {
+      "id": "c444f4f03",
+      "text": "Found 66% of people use AI regularly, but only 46% are willing to trust AI; trust in AI declined from ~63% (2022) to 56% (2023) in tracked countries, with rising concern about AI’s risks .",
+      "checks": [],
+      "verdict": "unchecked",
+      "disposition": null
+    },
+    {
+      "id": "c4c1090dd",
+      "text": "Notably, ~60% in emerging economies trust AI vs ~40% in advanced economies .",
+      "checks": [],
+      "verdict": "unchecked",
+      "disposition": null
+    },
+    {
+      "id": "c6fbf2a04",
+      "text": "Pew Research Center – Americans’ Trust in One Another (2025) – Silver, L.",
+      "checks": [],
+      "verdict": "unchecked",
+      "disposition": null
+    },
+    {
+      "id": "cb5e39572",
+      "text": "social trust: “most people can be trusted” fell from 46% in 1972 to 34% in 2018, with 34% again in a 2023–24 Pew poll .",
+      "checks": [],
+      "verdict": "unchecked",
+      "disposition": null
+    },
+    {
+      "id": "c396d915f",
+      "text": "Ipsos – Global Interpersonal Trust Survey (2022) – Ipsos Global Advisor poll (22,534 adults, 30 countries, Feb–Mar 2022).",
+      "checks": [],
+      "verdict": "unchecked",
+      "disposition": null
+    },
+    {
+      "id": "c2f3187b0",
+      "text": "Found average 30% of adults say most people can be trusted, with highest levels in China/India (~56%) and lowest in Brazil/Malaysia/Turkey (<15%) .",
+      "checks": [],
+      "verdict": "unchecked",
+      "disposition": null
+    },
+    {
+      "id": "c5282f51f",
+      "text": "Reuters Institute Digital News Report (2023) – Newman, N",
+      "checks": [],
+      "verdict": "unchecked",
+      "disposition": null
+    }
+  ]
+}
