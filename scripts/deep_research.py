@@ -25,8 +25,10 @@ Three things that will bite you, all handled here:
    the API returns 400. `web_search_preview` needs no extra Bing resource.
 2. **`background: true` is required.** It is a long-running job.
 3. **`max_output_tokens` must be generous.** Reasoning tokens count against the
-   budget; at 6K a run died with `incomplete: max_output_tokens` and produced
-   no answer at all. The floor here is 50,000.
+   budget and dominate it. A run with the ceiling at 50,000 spent 44,352 of
+   them reasoning and stopped before writing anything at all: 17 minutes and
+   167K tokens for an empty result. The budget is a ceiling, not a spend, so
+   the floor here is 150,000.
 
 This is expensive per query. Use it for genuine multi-source research; for
 anything simple, o3 or gpt-5.x are better and far cheaper.
@@ -54,9 +56,13 @@ RUNS = ROOT / "data" / "research" / "runs"
 DEFAULT_DEPLOYMENT = "o3-deep-research"
 DEFAULT_ENDPOINT = "https://oai-modelon-westus.cognitiveservices.azure.com/"
 
-# Reasoning tokens count against this. Anything under ~50K risks finishing with
-# no answer at all.
-MIN_OUTPUT_TOKENS = 50_000
+# Reasoning tokens count against this, and on a hard question they dominate.
+# Measured: the "trust in the AI era" run spent 44,352 of its 46,678 output
+# tokens on reasoning and hit the 50K ceiling before writing a single word --
+# 17 minutes and 167K tokens for zero output. The budget is a ceiling, not a
+# spend: an easy question still costs what it costs. So set it high enough that
+# only a runaway hits it.
+MIN_OUTPUT_TOKENS = 150_000
 
 POLL_SECONDS = 15
 # A run is ~10 minutes. Give it an hour before giving up; the id is printed so
@@ -326,11 +332,21 @@ def report(res: dict) -> None:
         return
     if state == "incomplete":
         reason = (res.get("incomplete_details") or {}).get("reason", "?")
-        raise SystemExit(
-            f"Run finished incomplete: {reason}\n"
-            + ("Raise --max-tokens; reasoning tokens count against the budget."
-               if "token" in str(reason) else "")
-        )
+        msg = [f"Run finished incomplete: {reason}"]
+        if "token" in str(reason):
+            usage = res.get("usage") or {}
+            out = usage.get("output_tokens")
+            think = (usage.get("output_tokens_details") or {}).get(
+                "reasoning_tokens")
+            cap = res.get("max_output_tokens")
+            if out and think:
+                msg.append(
+                    f"It used {out:,} output tokens against a {cap:,} ceiling, "
+                    f"and {think:,} of those were reasoning, so it ran out "
+                    f"before writing the answer.")
+            msg.append("Raise --max-tokens. The budget is a ceiling, not a "
+                       "spend: raising it costs nothing unless it is used.")
+        raise SystemExit("\n".join(msg))
     if state == "failed":
         err = res.get("error") or {}
         raise SystemExit(f"Run failed: {err.get('code')} {err.get('message')}")

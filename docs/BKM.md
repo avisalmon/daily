@@ -224,11 +224,35 @@ A claim is printable only when two *different* checkers agree and both showed
 evidence. Everything else is cut, or printed openly as a legend, which is
 usually the better story anyway.
 
+### Give the token ceiling far more headroom than looks sane
+
+Reasoning tokens are charged against `max_output_tokens`, and on a hard
+question they are nearly all of it. The first "trust in the AI era" run spent
+**44,352 of its 46,678 output tokens on reasoning**, hit the 50,000 ceiling,
+and stopped *before writing a single word*: 17 minutes and 167K tokens for an
+empty result. Nothing warns you in advance, and the run is not resumable.
+
+The ceiling is a cap, not a budget. Raising it costs nothing unless it is
+actually used, while setting it too low costs you the entire run. The floor is
+now 150,000.
+
+Note this interacts with the standing brief: demanding twelve domains, a
+disputed-claims section and a source assessment makes the model think harder,
+so a better prompt raises the token ceiling you need.
+
 ### Do not use deep research to test connectivity
 
 A one-word "ping" probe ran to completion at 34 searches and 51,870 tokens. It
 cannot be made lazy, and a trivial question costs about as much as a real one.
 Test the plumbing with `--status` against an existing run instead.
+
+### The client must survive a network blip
+
+A momentary DNS failure killed a submit with a raw traceback. The job is half
+an hour long and lives server-side, so losing the client is a pure own goal.
+`_call` retries transient errors with backoff, and on giving up it prints the
+run id and how to reattach. HTTP errors are still fatal, because a 401 will
+not fix itself by waiting.
 
 ### Claim ids must be content-derived
 
