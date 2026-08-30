@@ -240,6 +240,23 @@ Note this interacts with the standing brief: demanding twelve domains, a
 disputed-claims section and a source assessment makes the model think harder,
 so a better prompt raises the token ceiling you need.
 
+### Verify what you print, cut the rest
+
+The trust document produced 66 claims. Demanding two independent checks on all
+of them made sealing so expensive that the real temptation became skipping the
+gate, which is the single outcome this whole system exists to prevent. A gate
+that is too costly to use is not a gate.
+
+So a claim marked `cut` no longer needs verifying: it is not going to appear
+in print. `cut-unverified` closes a document honestly by cutting everything
+that never got a second check, and `printable` lists what an article may
+actually rest on. The seal now reports both numbers, and the trust document
+sealed at 25 claims cleared and 41 cut.
+
+This is not a loophole. Cutting does not launder an unchecked claim into
+print, it removes it from what may be used, and there is a test that says so.
+Write only from the cleared claims.
+
 ### A real quote from the wrong document defeats the quote rule
 
 This is the most important limitation found so far, and it is a hole in the

@@ -238,3 +238,43 @@ def test_an_unchanged_recheck_leaves_no_reversal_noise(sandbox):
     claim = vr.load("demo")["claims"][0]
     assert "reversals" not in claim
     assert "reversed" not in claim["checks"][0]
+
+
+def test_a_cut_claim_does_not_need_verifying(sandbox):
+    """Verify what you print, cut the rest. Demanding two checks on all 66
+    claims of a document made sealing so expensive that the temptation was to
+    skip the gate, which is the one outcome worth avoiding."""
+    ids = [c["id"] for c in sandbox["claims"]]
+    assert vr.status("demo")["blocking"], "unchecked claims block by default"
+
+    vr.set_disposition("demo", ids[0], "cut")
+    still = {c["id"] for c, _ in vr.status("demo")["blocking"]}
+    assert ids[0] not in still, "a cut claim is not printed, so needs no check"
+    assert ids[1] in still, "an uncut, unchecked claim must still block"
+
+
+def test_cut_unverified_never_touches_a_human_decision(sandbox):
+    ids = [c["id"] for c in sandbox["claims"]]
+    vr.set_disposition("demo", ids[0], "print")
+    n = vr.cut_unverified("demo")
+
+    claims = {c["id"]: c for c in vr.load("demo")["claims"]}
+    assert claims[ids[0]]["disposition"] == "print", "a human's call stands"
+    assert claims[ids[1]]["disposition"] == "cut"
+    assert n == len(ids) - 1
+
+
+def test_cutting_everything_unverified_does_not_launder_it_into_print(sandbox):
+    """The escape hatch must not become a way to print unchecked claims."""
+    ids = [c["id"] for c in sandbox["claims"]]
+    for by in ("checker-a", "checker-b"):
+        vr.import_findings("demo", by, [
+            {"id": ids[0], "verdict": "confirmed", "url": "https://example.com/a",
+             "quote": "The patent was issued in 1843 to Nancy Johnson."}])
+    vr.cut_unverified("demo")
+
+    assert vr.seal("demo") is True
+    keep = [c["id"] for c in vr.printable("demo")]
+    assert keep == [ids[0]], "only the twice-checked claim may be written from"
+    for other in ids[1:]:
+        assert other not in keep

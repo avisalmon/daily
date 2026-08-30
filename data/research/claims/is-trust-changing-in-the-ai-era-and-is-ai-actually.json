@@ -16,7 +16,7 @@
         }
       ],
       "verdict": "single-check",
-      "disposition": null
+      "disposition": "cut"
     },
     {
       "id": "c480b3963",
@@ -31,7 +31,7 @@
         }
       ],
       "verdict": "single-check",
-      "disposition": null
+      "disposition": "cut"
     },
     {
       "id": "cb7afd7ed",
@@ -46,7 +46,7 @@
         }
       ],
       "verdict": "single-check",
-      "disposition": null
+      "disposition": "cut"
     },
     {
       "id": "c73416a97",
@@ -61,7 +61,7 @@
         }
       ],
       "verdict": "single-check",
-      "disposition": null
+      "disposition": "cut"
     },
     {
       "id": "cb3c212ca",
@@ -76,7 +76,7 @@
         }
       ],
       "verdict": "single-check",
-      "disposition": null
+      "disposition": "cut"
     },
     {
       "id": "cae739c7c",
@@ -91,7 +91,7 @@
         }
       ],
       "verdict": "single-check",
-      "disposition": null
+      "disposition": "cut"
     },
     {
       "id": "ce859f86d",
@@ -113,7 +113,7 @@
         }
       ],
       "verdict": "confirmed",
-      "disposition": null
+      "disposition": "print"
     },
     {
       "id": "c38a717e0",
@@ -128,7 +128,7 @@
         }
       ],
       "verdict": "single-check",
-      "disposition": null
+      "disposition": "cut"
     },
     {
       "id": "c0fd11955",
@@ -150,7 +150,7 @@
         }
       ],
       "verdict": "disputed",
-      "disposition": null
+      "disposition": "cut"
     },
     {
       "id": "cf90bed93",
@@ -172,7 +172,7 @@
         }
       ],
       "verdict": "false",
-      "disposition": null
+      "disposition": "cut"
     },
     {
       "id": "cd21f57b8",
@@ -194,7 +194,7 @@
         }
       ],
       "verdict": "disputed",
-      "disposition": null
+      "disposition": "cut"
     },
     {
       "id": "c05dbbf41",
@@ -216,7 +216,7 @@
         }
       ],
       "verdict": "confirmed",
-      "disposition": null
+      "disposition": "print"
     },
     {
       "id": "c0c3d0d61",
@@ -238,7 +238,7 @@
         }
       ],
       "verdict": "confirmed",
-      "disposition": null
+      "disposition": "print"
     },
     {
       "id": "ca460f179",
@@ -253,7 +253,7 @@
         }
       ],
       "verdict": "single-check",
-      "disposition": null
+      "disposition": "cut"
     },
     {
       "id": "c8cc15ebe",
@@ -275,7 +275,7 @@
         }
       ],
       "verdict": "confirmed",
-      "disposition": null
+      "disposition": "print"
     },
     {
       "id": "cb529c804",
@@ -290,7 +290,7 @@
         }
       ],
       "verdict": "single-check",
-      "disposition": null
+      "disposition": "cut"
     },
     {
       "id": "cf4e5e1e1",
@@ -305,7 +305,7 @@
         }
       ],
       "verdict": "single-check",
-      "disposition": null
+      "disposition": "cut"
     },
     {
       "id": "cb2af2468",
@@ -327,7 +327,7 @@
         }
       ],
       "verdict": "confirmed",
-      "disposition": null
+      "disposition": "print"
     },
     {
       "id": "c794a64e7",
@@ -349,7 +349,7 @@
         }
       ],
       "verdict": "confirmed",
-      "disposition": null
+      "disposition": "print"
     },
     {
       "id": "ccb18d9f3",
@@ -371,7 +371,7 @@
         }
       ],
       "verdict": "confirmed",
-      "disposition": null
+      "disposition": "print"
     },
     {
       "id": "c1b85cce0",
@@ -393,7 +393,7 @@
         }
       ],
       "verdict": "confirmed",
-      "disposition": null
+      "disposition": "print"
     },
     {
       "id": "c05e52528",
@@ -415,7 +415,7 @@
         }
       ],
       "verdict": "confirmed",
-      "disposition": null
+      "disposition": "print"
     },
     {
       "id": "cf911459f",
@@ -437,7 +437,7 @@
         }
       ],
       "verdict": "confirmed",
-      "disposition": null
+      "disposition": "print"
     },
     {
       "id": "c7de8151f",
@@ -452,7 +452,7 @@
         }
       ],
       "verdict": "single-check",
-      "disposition": null
+      "disposition": "cut"
     },
     {
       "id": "c8378c88c",
@@ -474,7 +474,7 @@
         }
       ],
       "verdict": "confirmed",
-      "disposition": null
+      "disposition": "print"
     },
     {
       "id": "c822174a5",
@@ -496,7 +496,7 @@
         }
       ],
       "verdict": "confirmed",
-      "disposition": null
+      "disposition": "print"
     },
     {
       "id": "c43498088",
@@ -518,7 +518,7 @@
         }
       ],
       "verdict": "confirmed",
-      "disposition": null
+      "disposition": "print"
     },
     {
       "id": "c13776435",
@@ -533,7 +533,7 @@
         }
       ],
       "verdict": "single-check",
-      "disposition": null
+      "disposition": "cut"
     },
     {
       "id": "c39e328b4",
@@ -548,7 +548,7 @@
         }
       ],
       "verdict": "single-check",
-      "disposition": null
+      "disposition": "cut"
     },
     {
       "id": "c122cec3e",
@@ -570,7 +570,7 @@
         }
       ],
       "verdict": "confirmed",
-      "disposition": null
+      "disposition": "print"
     },
     {
       "id": "cf619cf7f",
@@ -585,7 +585,7 @@
         }
       ],
       "verdict": "single-check",
-      "disposition": null
+      "disposition": "cut"
     },
     {
       "id": "c760dd214",
@@ -600,7 +600,7 @@
         }
       ],
       "verdict": "single-check",
-      "disposition": null
+      "disposition": "cut"
     },
     {
       "id": "cdfe88a41",
@@ -622,7 +622,7 @@
         }
       ],
       "verdict": "confirmed",
-      "disposition": null
+      "disposition": "print"
     },
     {
       "id": "c7f01220d",
@@ -644,7 +644,7 @@
         }
       ],
       "verdict": "confirmed",
-      "disposition": null
+      "disposition": "print"
     },
     {
       "id": "cf6ace724",
@@ -666,7 +666,7 @@
         }
       ],
       "verdict": "false",
-      "disposition": null
+      "disposition": "cut"
     },
     {
       "id": "c70b86769",
@@ -688,7 +688,7 @@
         }
       ],
       "verdict": "false",
-      "disposition": null
+      "disposition": "cut"
     },
     {
       "id": "c3163a45a",
@@ -703,7 +703,7 @@
         }
       ],
       "verdict": "single-check",
-      "disposition": null
+      "disposition": "cut"
     },
     {
       "id": "c04d630af",
@@ -718,7 +718,7 @@
         }
       ],
       "verdict": "single-check",
-      "disposition": null
+      "disposition": "cut"
     },
     {
       "id": "c6dd8435d",
@@ -733,7 +733,7 @@
         }
       ],
       "verdict": "single-check",
-      "disposition": null
+      "disposition": "cut"
     },
     {
       "id": "c029d5f8e",
@@ -755,7 +755,7 @@
         }
       ],
       "verdict": "confirmed",
-      "disposition": null
+      "disposition": "print"
     },
     {
       "id": "ce496c2cb",
@@ -777,7 +777,7 @@
         }
       ],
       "verdict": "confirmed",
-      "disposition": null
+      "disposition": "print"
     },
     {
       "id": "cda0e9767",
@@ -799,7 +799,7 @@
         }
       ],
       "verdict": "confirmed",
-      "disposition": null
+      "disposition": "print"
     },
     {
       "id": "ccf15e384",
@@ -814,7 +814,7 @@
         }
       ],
       "verdict": "single-check",
-      "disposition": null
+      "disposition": "cut"
     },
     {
       "id": "c9f76f2db",
@@ -836,7 +836,7 @@
         }
       ],
       "verdict": "confirmed",
-      "disposition": null
+      "disposition": "print"
     },
     {
       "id": "cf6e00093",
@@ -851,7 +851,7 @@
         }
       ],
       "verdict": "single-check",
-      "disposition": null
+      "disposition": "cut"
     },
     {
       "id": "c596995b3",
@@ -873,7 +873,7 @@
         }
       ],
       "verdict": "confirmed",
-      "disposition": null
+      "disposition": "print"
     },
     {
       "id": "c5e61ded8",
@@ -902,7 +902,7 @@
         }
       ],
       "verdict": "false",
-      "disposition": null,
+      "disposition": "cut",
       "reversals": [
         {
           "by": "gemini-3.1-pro",
@@ -932,7 +932,7 @@
         }
       ],
       "verdict": "false",
-      "disposition": null
+      "disposition": "cut"
     },
     {
       "id": "c62ab22e2",
@@ -947,7 +947,7 @@
         }
       ],
       "verdict": "single-check",
-      "disposition": null
+      "disposition": "cut"
     },
     {
       "id": "cd689a7f1",
@@ -969,7 +969,7 @@
         }
       ],
       "verdict": "confirmed",
-      "disposition": null
+      "disposition": "print"
     },
     {
       "id": "ce895e9eb",
@@ -991,7 +991,7 @@
         }
       ],
       "verdict": "disputed",
-      "disposition": null
+      "disposition": "cut"
     },
     {
       "id": "c79595195",
@@ -1013,7 +1013,7 @@
         }
       ],
       "verdict": "confirmed",
-      "disposition": null
+      "disposition": "print"
     },
     {
       "id": "c0b9c97ba",
@@ -1028,7 +1028,7 @@
         }
       ],
       "verdict": "single-check",
-      "disposition": null
+      "disposition": "cut"
     },
     {
       "id": "cf07edb4e",
@@ -1043,7 +1043,7 @@
         }
       ],
       "verdict": "single-check",
-      "disposition": null
+      "disposition": "cut"
     },
     {
       "id": "c52df7195",
@@ -1058,7 +1058,7 @@
         }
       ],
       "verdict": "single-check",
-      "disposition": null
+      "disposition": "cut"
     },
     {
       "id": "c910ce418",
@@ -1073,7 +1073,7 @@
         }
       ],
       "verdict": "single-check",
-      "disposition": null
+      "disposition": "cut"
     },
     {
       "id": "ccfd44d25",
@@ -1088,7 +1088,7 @@
         }
       ],
       "verdict": "single-check",
-      "disposition": null
+      "disposition": "cut"
     },
     {
       "id": "ccc6466f9",
@@ -1103,7 +1103,7 @@
         }
       ],
       "verdict": "single-check",
-      "disposition": null
+      "disposition": "cut"
     },
     {
       "id": "cc29bc665",
@@ -1118,7 +1118,7 @@
         }
       ],
       "verdict": "single-check",
-      "disposition": null
+      "disposition": "cut"
     },
     {
       "id": "c444f4f03",
@@ -1140,7 +1140,7 @@
         }
       ],
       "verdict": "false",
-      "disposition": null
+      "disposition": "cut"
     },
     {
       "id": "c4c1090dd",
@@ -1155,7 +1155,7 @@
         }
       ],
       "verdict": "single-check",
-      "disposition": null
+      "disposition": "cut"
     },
     {
       "id": "c6fbf2a04",
@@ -1170,7 +1170,7 @@
         }
       ],
       "verdict": "single-check",
-      "disposition": null
+      "disposition": "cut"
     },
     {
       "id": "cb5e39572",
@@ -1185,7 +1185,7 @@
         }
       ],
       "verdict": "single-check",
-      "disposition": null
+      "disposition": "cut"
     },
     {
       "id": "c396d915f",
@@ -1207,7 +1207,7 @@
         }
       ],
       "verdict": "confirmed",
-      "disposition": null
+      "disposition": "print"
     },
     {
       "id": "c2f3187b0",
@@ -1229,7 +1229,7 @@
         }
       ],
       "verdict": "confirmed",
-      "disposition": null
+      "disposition": "print"
     },
     {
       "id": "c5282f51f",
@@ -1244,7 +1244,9 @@
         }
       ],
       "verdict": "single-check",
-      "disposition": null
+      "disposition": "cut"
     }
-  ]
+  ],
+  "sealed_at": "2026-08-30T12:43:26+00:00",
+  "printable": 25
 }

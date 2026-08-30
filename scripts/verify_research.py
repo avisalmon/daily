@@ -367,14 +367,24 @@ def auto_disposition(doc_id: str) -> dict[str, int]:
 
 
 def status(doc_id: str) -> dict:
+    """What still blocks a seal.
+
+    A claim marked `cut` is not going to appear in print, so it does not need
+    verifying. Demanding two checks on every sentence in a 66-claim document
+    made sealing so expensive that the temptation was to skip the gate
+    entirely, which is the one outcome worth avoiding. The rule is therefore:
+    verify what you print, cut the rest.
+    """
     ledger = load(doc_id)
     claims = ledger["claims"]
     tally: dict[str, int] = {}
     blocking = []
     for c in claims:
         tally[c["verdict"]] = tally.get(c["verdict"], 0) + 1
+        if c["disposition"] == "cut":
+            continue
         if c["verdict"] in ("unchecked", "single-check"):
-            blocking.append((c, "not checked twice"))
+            blocking.append((c, "not checked twice, and not cut"))
         elif c["verdict"] == "confirmed":
             if c["disposition"] not in (None, "print", "cut"):
                 blocking.append((c, "confirmed but dispositioned oddly"))
@@ -383,6 +393,30 @@ def status(doc_id: str) -> dict:
         elif c["verdict"] in ("false", "disputed") and c["disposition"] == "print":
             blocking.append((c, f"{c['verdict']} cannot be printed as fact"))
     return {"ledger": ledger, "tally": tally, "blocking": blocking}
+
+
+def cut_unverified(doc_id: str) -> int:
+    """Cut every claim that never got a second check.
+
+    This is the honest way to close a document: it does not pretend those
+    claims were verified, it removes them from what may be printed. Claims
+    already dispositioned by a human are left alone.
+    """
+    ledger = load(doc_id)
+    n = 0
+    for c in ledger["claims"]:
+        if c["disposition"] is None and c["verdict"] in ("unchecked",
+                                                         "single-check"):
+            c["disposition"] = "cut"
+            n += 1
+    save(ledger)
+    return n
+
+
+def printable(doc_id: str) -> list[dict]:
+    """The claims an article may actually rest on."""
+    return [c for c in load(doc_id)["claims"]
+            if c["verdict"] == "confirmed" and c["disposition"] != "cut"]
 
 
 def seal(doc_id: str) -> bool:
@@ -401,10 +435,14 @@ def seal(doc_id: str) -> bool:
             print(f"  ... and {len(st['blocking']) - 15} more")
         return False
 
+    keep = [c for c in ledger["claims"] if c["disposition"] != "cut"]
     ledger["sealed_at"] = _now()
+    ledger["printable"] = len(keep)
     save(ledger)
     _mark_bank(doc_id, "verified")
-    print("\nSEALED. Every claim was checked twice and dispositioned.")
+    print(f"\nSEALED. {len(keep)} claims verified twice and cleared for print; "
+          f"{len(ledger['claims']) - len(keep)} cut. Write only from the "
+          f"cleared claims.")
     return True
 
 
@@ -470,6 +508,14 @@ def main(argv=None) -> int:
                        help="print the confirmed, cut the false; leave disputed to a human")
     p.add_argument("doc")
 
+    p = sub.add_parser("cut-unverified",
+                       help="cut every claim that never got a second check")
+    p.add_argument("doc")
+
+    p = sub.add_parser("printable",
+                       help="the claims an article may actually rest on")
+    p.add_argument("doc")
+
     p = sub.add_parser("seal", help="can this be printed?")
     p.add_argument("doc")
 
@@ -496,6 +542,14 @@ def main(argv=None) -> int:
     elif a.cmd == "auto-disposition":
         counts = auto_disposition(a.doc)
         print(counts or "nothing to auto-dispose; disputed claims need you")
+    elif a.cmd == "cut-unverified":
+        n = cut_unverified(a.doc)
+        print(f"{n} unverified claims cut. They may not be used in writing.")
+    elif a.cmd == "printable":
+        keep = printable(a.doc)
+        print(f"{len(keep)} claims cleared for print:\n")
+        for c in keep:
+            print(f"  {c['id']}  {' '.join(c['text'].split())[:150]}")
     elif a.cmd == "seal":
         return 0 if seal(a.doc) else 1
     return 0

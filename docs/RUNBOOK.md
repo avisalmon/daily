@@ -180,11 +180,19 @@ three passes before any of it reaches the paper:
 
 ```powershell
 python scripts\verify_research.py extract <doc-id>
-# pass A: check each claim yourself, fetching a source and quoting it
-python scripts\verify_research.py check <doc-id> <claim-id> --by <model> `
-    --verdict confirmed|false|disputed|unsupported --url <url> --quote "<verbatim>"
-# pass B: hand the claims to a DIFFERENT model, adversarially framed
-python scripts\verify_research.py show <doc-id>
+
+# generate the adversarial prompt for a checker, then hand it to a sub-agent
+python scripts\verify_research.py brief <doc-id> --for <model>
+
+# record a whole pass at once from the JSON it returns
+python scripts\verify_research.py import <doc-id> --by <model> --file findings.json
+
+# obvious calls: confirmed to print, false to cut, disputed left to you
+python scripts\verify_research.py auto-disposition <doc-id>
+
+# close honestly: anything that never got a second check is cut, not printed
+python scripts\verify_research.py cut-unverified <doc-id>
+python scripts\verify_research.py printable <doc-id>
 python scripts\verify_research.py seal <doc-id>
 ```
 
@@ -196,6 +204,17 @@ prone to myths. A neutral "please check this" gets a neutral rubber stamp.
 Both passes must fetch and quote. A check without a verbatim quote is refused,
 because a model answering from memory reproduces exactly the myths you are
 trying to catch.
+
+**Verify what you print and cut the rest.** A 66-claim document will not get
+two checks on every sentence, and a gate too expensive to use is not a gate.
+`cut-unverified` removes the unchecked claims from what may be written, which
+is honest; it does not pretend they were verified.
+
+**Watch for a checker reversing itself.** The tool prints a warning naming both
+URLs when this happens. It usually means the second pass fetched the wrong
+document: a different survey by the same pollster, or last year's edition of
+the same annual report. A real quote from the wrong page passes every
+mechanical check, so this is the one thing you must judge yourself.
 
 Then decide what to do with what survived:
 
