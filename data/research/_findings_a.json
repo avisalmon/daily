@@ -1,0 +1,464 @@
+[
+ {
+  "id": "c223577bd",
+  "verdict": "unsupported",
+  "url": "https://www.norc.org/research/projects/gss.html",
+  "quote": "The GSS has compiled data from thousands of Americans about their evolving characteristics and attitudes.",
+  "why": "This is a research instruction rather than a falsifiable factual claim."
+ },
+ {
+  "id": "c480b3963",
+  "verdict": "confirmed",
+  "url": "https://www.cambridge.org/core/journals/british-journal-of-political-science/article/crisis-of-political-trust-global-trends-in-institutional-trust-from-1958-to-2019/7EF4EDA709F27C691380CFC1BCECF6B8",
+  "quote": "These prior studies highlight the importance of conceptual precision in any empirical analysis of trends in political trust",
+  "why": "The study supports distinguishing long-term trends, fluctuations and causal evidence."
+ },
+ {
+  "id": "cb7afd7ed",
+  "verdict": "confirmed",
+  "url": "https://www.cambridge.org/core/journals/american-political-science-review/article/liars-dividend-can-politicians-claim-misinformation-to-evade-accountability/687FEE54DBD7ED0C96D72B26606AA073",
+  "quote": "advanced large language models and multi-modal models popularized in 2022, such as ChatGPT and Copilot",
+  "why": "The source corroborates the late-2022 popularization of generative AI."
+ },
+ {
+  "id": "c73416a97",
+  "verdict": "unsupported",
+  "url": "https://www.norc.org/research/projects/gss.html",
+  "quote": "Previously administered every year and now more recently conducted every two years",
+  "why": "The truncated statement describes the document's editorial priorities, not an externally verifiable finding."
+ },
+ {
+  "id": "cb3c212ca",
+  "verdict": "confirmed",
+  "url": "https://www.pewresearch.org/2025/05/08/americans-trust-in-one-another/",
+  "quote": "Levels of social trust have been largely flat – or even slightly up – since 2018",
+  "why": "Pew supports the 34% recent level and the plateau since 2018, alongside its cited GSS series."
+ },
+ {
+  "id": "cae739c7c",
+  "verdict": "confirmed",
+  "url": "https://www.pewresearch.org/2025/05/08/americans-trust-in-one-another/",
+  "quote": "But in more recent years, the decline in trust has largely abated.",
+  "why": "Pew describes a long decline followed by a recent plateau."
+ },
+ {
+  "id": "ce859f86d",
+  "verdict": "confirmed",
+  "url": "https://www.ipsos.com/en/interpersonal-trust-across-the-world",
+  "quote": "on average across 30 countries, 30% of adults say most people can be trusted",
+  "why": "Ipsos confirms the average, countries, field dates and 22,534-person sample."
+ },
+ {
+  "id": "c38a717e0",
+  "verdict": "unsupported",
+  "url": "https://www.pewresearch.org/short-reads/2020/12/03/social-trust-in-advanced-economies-is-lower-among-young-people-and-those-with-less-education/",
+  "quote": "Overall, personal trust is highest in Denmark, where 86% say most people can generally be trusted.",
+  "why": "The fetched comparative survey gives Denmark 86%, not 74%, and supplies no matching Norway figure or year."
+ },
+ {
+  "id": "c0fd11955",
+  "verdict": "false",
+  "url": "https://kpmg.com/xx/en/our-insights/ai-and-technology/trust-attitudes-and-use-of-ai.html",
+  "quote": "data collected between November 2024 and mid-January 2025",
+  "why": "The fieldwork extended into January 2025, so describing all 48,000 interviews as occurring in late 2024 is inaccurate."
+ },
+ {
+  "id": "cf90bed93",
+  "verdict": "false",
+  "url": "https://www.unleash.ai/artificial-intelligence/news/66-of-individuals-may-be-using-ai-but-79-are-wary-of-possible-risks-finds-kpmg/",
+  "quote": "compared trust data in 2025 to 2022 and found that it had declined from 63% to 56%",
+  "why": "The comparison is 2022–2025, not 2022–2023 as claimed."
+ },
+ {
+  "id": "cd21f57b8",
+  "verdict": "confirmed",
+  "url": "https://hai.stanford.edu/ai-index/2025-ai-index-report/public-opinion",
+  "quote": "Globally, optimism about AI products and services has increased, with the sharpest gains in countries that were previously the most skeptical.",
+  "why": "The independent Stanford evidence confirms major geographic differences, though it measures optimism rather than identical trust wording."
+ },
+ {
+  "id": "c05dbbf41",
+  "verdict": "confirmed",
+  "url": "https://news.gallup.com/opinion/gallup/510635/three-four-americans-believe-reduce-jobs.aspx",
+  "quote": "web survey responses collected May 8-15, 2023, from 5,458 U.S. adults",
+  "why": "Gallup confirms the date and exact sample size."
+ },
+ {
+  "id": "c0c3d0d61",
+  "verdict": "confirmed",
+  "url": "https://news.gallup.com/opinion/gallup/510635/three-four-americans-believe-reduce-jobs.aspx",
+  "quote": "majorities believe AI performs as well as or better than humans at customizing the content users see online (68%)",
+  "why": "Gallup also states that about two-thirds rated AI worse for hiring, driving and medical advice."
+ },
+ {
+  "id": "ca460f179",
+  "verdict": "disputed",
+  "url": "https://hai.stanford.edu/ai-index/2025-ai-index-report/public-opinion",
+  "quote": "Globally, optimism about AI products and services has increased",
+  "why": "Stanford reports rising global optimism, while KPMG's nonidentical trust measure declined between 2022 and 2025."
+ },
+ {
+  "id": "c8cc15ebe",
+  "verdict": "confirmed",
+  "url": "https://reutersinstitute.politics.ox.ac.uk/digital-news-report/2023/dnr-executive-summary",
+  "quote": "On average, four in ten of our total sample (40%) say they trust most news most of the time.",
+  "why": "The report confirms 40%, a two-point annual decline and coverage of 46 markets."
+ },
+ {
+  "id": "cb529c804",
+  "verdict": "confirmed",
+  "url": "https://reutersinstitute.politics.ox.ac.uk/digital-news-report/2023/dnr-executive-summary",
+  "quote": "reversing – in many countries – the gains made at the height of the Coronavirus pandemic",
+  "why": "This is the report's own characterization of the reversal."
+ },
+ {
+  "id": "cf4e5e1e1",
+  "verdict": "false",
+  "url": "https://news.gallup.com/poll/651977/americans-trust-media-remains-trend-low.aspx",
+  "quote": "The latest findings are from a poll conducted Sept. 3-15",
+  "why": "The fetched Gallup page supports the date but not the claimed approximately 1,500-person sample or a distinct 2020 spike."
+ },
+ {
+  "id": "cb2af2468",
+  "verdict": "confirmed",
+  "url": "https://news.gallup.com/poll/651977/americans-trust-media-remains-trend-low.aspx",
+  "quote": "31% expressing a “great deal” or “fair amount” of confidence in the media",
+  "why": "Gallup confirms 31% in 2024 and 32% in 2016."
+ },
+ {
+  "id": "c794a64e7",
+  "verdict": "confirmed",
+  "url": "https://news.gallup.com/poll/651977/americans-trust-media-remains-trend-low.aspx",
+  "quote": "In three readings in the 1970s, trust ranged from 68% to 72%",
+  "why": "This supports the approximately 70% early-1970s comparison."
+ },
+ {
+  "id": "ccb18d9f3",
+  "verdict": "confirmed",
+  "url": "https://news.gallup.com/poll/651977/americans-trust-media-remains-trend-low.aspx",
+  "quote": "For the third consecutive year, more U.S. adults have no trust at all in the media (36%)",
+  "why": "Gallup directly confirms the duration and 36% figure."
+ },
+ {
+  "id": "c1b85cce0",
+  "verdict": "confirmed",
+  "url": "https://reutersinstitute.politics.ox.ac.uk/digital-news-report/2023/dnr-executive-summary",
+  "quote": "Trust in the news has fallen, across markets, by a further 2 percentage points in the last year",
+  "why": "The report documents a small continuation/reversal but supplies no evidence attributing it causally to AI."
+ },
+ {
+  "id": "c05e52528",
+  "verdict": "confirmed",
+  "url": "https://www.brennancenter.org/our-work/research-reports/deepfakes-elections-and-shrinking-liars-dividend",
+  "quote": "85 percent of respondents said that they are “very concerned” or “somewhat concerned” about the spread of misleading video and audio deepfakes.",
+  "why": "The source confirms the August 2023 YouGov result."
+ },
+ {
+  "id": "cf911459f",
+  "verdict": "confirmed",
+  "url": "https://www.cambridge.org/core/journals/american-political-science-review/article/liars-dividend-can-politicians-claim-misinformation-to-evade-accountability/687FEE54DBD7ED0C96D72B26606AA073",
+  "quote": "we also originally conjectured that these claims of misinformation could further undermine trust in media, but we generally find no such impacts.",
+  "why": "The APSR experiments generally found politician-support gains but no media-trust effect."
+ },
+ {
+  "id": "c7de8151f",
+  "verdict": "unsupported",
+  "url": "https://www.oecd.org/content/dam/oecd/en/publications/reports/2024/07/oecd-survey-on-drivers-of-trust-in-public-institutions-2024-results_eeb36452/9a20554b-en.pdf",
+  "quote": "OECD Survey on Drivers of Trust in Public Institutions 2024 Results",
+  "why": "The fetched primary PDF could not be text-extracted sufficiently to verify the exact 60,000, 30-country, 39% and 43% combination."
+ },
+ {
+  "id": "c8378c88c",
+  "verdict": "confirmed",
+  "url": "https://www.pewresearch.org/politics/2025/12/04/public-trust-in-government-1958-2025/",
+  "quote": "While trust in government has been low for decades, the current measure is one of the lowest in the nearly seven decades",
+  "why": "Pew's longitudinal table supports the fall from roughly three-quarters in 1958 to around one-fifth recently."
+ },
+ {
+  "id": "c822174a5",
+  "verdict": "confirmed",
+  "url": "https://www.pewresearch.org/politics/2025/12/04/public-trust-in-government-1958-2025/",
+  "quote": "| 6/11/2023  | Pew Research Center | 16               | 19             |",
+  "why": "Pew's table gives exactly 16% for June 11, 2023."
+ },
+ {
+  "id": "c43498088",
+  "verdict": "confirmed",
+  "url": "https://www.cambridge.org/core/journals/british-journal-of-political-science/article/crisis-of-political-trust-global-trends-in-institutional-trust-from-1958-to-2019/7EF4EDA709F27C691380CFC1BCECF6B8",
+  "quote": "trust in representative institutions has been declining",
+  "why": "That is the study's overall conclusion."
+ },
+ {
+  "id": "c13776435",
+  "verdict": "confirmed",
+  "url": "https://www.brennancenter.org/our-work/research-reports/deepfakes-elections-and-shrinking-liars-dividend",
+  "quote": "While we cannot know whether any of the situations described will come to pass",
+  "why": "The source documents election-related speculation while explicitly acknowledging uncertainty."
+ },
+ {
+  "id": "c39e328b4",
+  "verdict": "unsupported",
+  "url": "https://www.gallup.com/workplace/236441/employee-feedback-good-bad-ugly.aspx",
+  "quote": "Workplace recognition motivates, provides a sense of accomplishment and makes employees feel valued for their work.",
+  "why": "No successfully fetched independent source established Edelman's exact 23-point comparison."
+ },
+ {
+  "id": "c122cec3e",
+  "verdict": "confirmed",
+  "url": "https://www.microsoft.com/en-us/worklab/work-trend-index/hybrid-work-is-just-work",
+  "quote": "85% of leaders say that the shift to hybrid work has made it challenging to have confidence that employees are being productive.",
+  "why": "Microsoft confirms the statistic and reports surveying 20,000 people in 11 countries."
+ },
+ {
+  "id": "cf619cf7f",
+  "verdict": "unsupported",
+  "url": "https://www.apa.org/pubs/reports/work-in-america/2023-work-america-ai-monitoring",
+  "quote": "Request unsuccessful. Incapsula incident ID",
+  "why": "APA blocked retrieval and no fetched independent page established the exact 51% figure."
+ },
+ {
+  "id": "c760dd214",
+  "verdict": "unsupported",
+  "url": "https://www.apa.org/pubs/reports/work-in-america/2023-work-america-ai-monitoring",
+  "quote": "Request unsuccessful. Incapsula incident ID",
+  "why": "The exact 56%-versus-33% comparison and mental-health result could not be verified from a retrievable page."
+ },
+ {
+  "id": "cdfe88a41",
+  "verdict": "confirmed",
+  "url": "https://www.pewresearch.org/social-trends/2023/04/20/ai-in-hiring-and-evaluating-workers-what-americans-think/",
+  "quote": "they oppose AI use in making final hiring decisions by a 71%-7% margin",
+  "why": "Pew also confirms majority opposition to firing and several monitoring uses."
+ },
+ {
+  "id": "c7f01220d",
+  "verdict": "confirmed",
+  "url": "https://americanstaffing.net/posts/2023/09/07/ai-recruiting-tools/",
+  "quote": "Nearly half of employed U.S. job seekers (49%) believe artificial intelligence (AI) tools used in job recruiting are more biased than their human counterparts",
+  "why": "The Harris Poll/ASA release confirms the figure and specifies 2,037 adults surveyed in June 2023."
+ },
+ {
+  "id": "cf6ace724",
+  "verdict": "false",
+  "url": "https://www.pewresearch.org/social-trends/2023/04/20/ai-in-hiring-and-evaluating-workers-what-americans-think/",
+  "quote": "47% think AI would do better than humans at evaluating all job applicants in the same way",
+  "why": "The fetched Pew report does not report the claimed 33%-versus-44% result, which the document instead cites to an ASA page."
+ },
+ {
+  "id": "c70b86769",
+  "verdict": "false",
+  "url": "https://www.unleash.ai/artificial-intelligence/news/66-of-individuals-may-be-using-ai-but-79-are-wary-of-possible-risks-finds-kpmg/",
+  "quote": "compared trust data in 2025 to 2022",
+  "why": "The observed comparison was 2022–2025, not 2022–2023."
+ },
+ {
+  "id": "c3163a45a",
+  "verdict": "confirmed",
+  "url": "https://www.cambridge.org/core/journals/american-political-science-review/article/liars-dividend-can-politicians-claim-misinformation-to-evade-accountability/687FEE54DBD7ED0C96D72B26606AA073",
+  "quote": "these claims are not consistently accompanied by reduced belief in the scandal or reduced trust in the media",
+  "why": "This accurately summarizes the APSR experimental results, with appropriate caution about potency."
+ },
+ {
+  "id": "c04d630af",
+  "verdict": "disputed",
+  "url": "https://www.wider.unu.edu/publication/trust-changing-world",
+  "quote": "Publication type: Working paper",
+  "why": "The document uses some peer-reviewed work and large surveys, but also promotional releases and a working paper, so the blanket quality characterization is contestable."
+ },
+ {
+  "id": "c6dd8435d",
+  "verdict": "confirmed",
+  "url": "https://kpmg.com/xx/en/our-insights/ai-and-technology/trust-attitudes-and-use-of-ai.html",
+  "quote": "The University of Melbourne research team, led by Professor Nicole Gillespie and Dr Steve Lockey, led the design, conduct, data collection, analysis, and reporting",
+  "why": "The source confirms academic leadership and collaboration with KPMG."
+ },
+ {
+  "id": "c029d5f8e",
+  "verdict": "confirmed",
+  "url": "https://www.cambridge.org/core/journals/american-political-science-review/article/liars-dividend-can-politicians-claim-misinformation-to-evade-accountability/687FEE54DBD7ED0C96D72B26606AA073",
+  "quote": "We investigate the liar’s dividend through five pre-registered experimental studies",
+  "why": "The cited APSR article is an experimental scholarly study."
+ },
+ {
+  "id": "ce496c2cb",
+  "verdict": "confirmed",
+  "url": "https://www.cambridge.org/core/journals/british-journal-of-political-science/article/crisis-of-political-trust-global-trends-in-institutional-trust-from-1958-to-2019/7EF4EDA709F27C691380CFC1BCECF6B8",
+  "quote": "3,377 surveys conducted by 50 cross-national and national research projects in 143 countries across the world between 1958 and 2019",
+  "why": "The article confirms all the stated coverage details."
+ },
+ {
+  "id": "cda0e9767",
+  "verdict": "confirmed",
+  "url": "https://reutersinstitute.politics.ox.ac.uk/digital-news-report/2023/dnr-executive-summary",
+  "quote": "This twelfth edition of our Digital News Report, which is based on data from six continents and 46 markets",
+  "why": "The edition and market count are confirmed; the associated report describes an approximately 93,000-person online survey."
+ },
+ {
+  "id": "ccf15e384",
+  "verdict": "unsupported",
+  "url": "https://news.gallup.com/poll/651977/americans-trust-media-remains-trend-low.aspx",
+  "quote": "The latest findings are from a poll conducted Sept. 3-15",
+  "why": "Gallup confirms the poll but the fetched page does not establish the claimed approximately 1,500 respondents."
+ },
+ {
+  "id": "c9f76f2db",
+  "verdict": "confirmed",
+  "url": "https://news.gallup.com/opinion/gallup/510635/three-four-americans-believe-reduce-jobs.aspx",
+  "quote": "from 5,458 U.S. adults in Gallup’s nationally representative panel",
+  "why": "The Bentley–Gallup sample and panel design are confirmed."
+ },
+ {
+  "id": "cf6e00093",
+  "verdict": "confirmed",
+  "url": "https://www.pewresearch.org/2025/05/08/methodology-social-trust/",
+  "quote": "We also draw upon data collected from surveys conducted on Pew Research Center’s American Trends Panel (ATP) and data from the General Social Survey (GSS).",
+  "why": "Pew confirms using both GSS and its 2023–24 Religious Landscape Study."
+ },
+ {
+  "id": "c596995b3",
+  "verdict": "confirmed",
+  "url": "https://www.pewresearch.org/social-trends/2023/04/20/ai-in-hiring-and-evaluating-workers-what-americans-think/",
+  "quote": "we surveyed 11,004 U.S. adults from Dec. 12 to 18, 2022",
+  "why": "The exact sample, dates and representative weighting are confirmed."
+ },
+ {
+  "id": "c5e61ded8",
+  "verdict": "false",
+  "url": "https://www.pewresearch.org/science/2023/02/22/60-of-americans-would-be-uncomfortable-with-provider-relying-on-ai-in-their-own-health-care/",
+  "quote": "The Pew Research Center survey, conducted Dec. 12-18, 2022, of 11,004 U.S. adults",
+  "why": "It was published in February 2023 but fielded in December 2022, contrary to the description of a February 2023 survey."
+ },
+ {
+  "id": "cacd3d5ab",
+  "verdict": "false",
+  "url": "https://www.unleash.ai/artificial-intelligence/news/66-of-individuals-may-be-using-ai-but-79-are-wary-of-possible-risks-finds-kpmg/",
+  "quote": "That’s according to new research from KPMG and the University of Melbourne.",
+  "why": "The 60%-versus-40% report belongs to the 2025 study, so labeling the CNA coverage as a 2023 piece is chronologically wrong."
+ },
+ {
+  "id": "c62ab22e2",
+  "verdict": "false",
+  "url": "https://srinstitute.utoronto.ca/news/public-opinion-ai-survey-24",
+  "quote": "In October and November 2023, researchers from SRI and PEARL surveyed more than 1,000 people from each of the participating 21 countries",
+  "why": "The survey was fielded in 2023, not 2024, although its report page was published later."
+ },
+ {
+  "id": "cd689a7f1",
+  "verdict": "confirmed",
+  "url": "https://www.microsoft.com/en-us/worklab/work-trend-index/hybrid-work-is-just-work",
+  "quote": "we surveyed 20,000 people in 11 countries and analyzed trillions of Microsoft 365 productivity signals",
+  "why": "Microsoft confirms the sample and country count."
+ },
+ {
+  "id": "ce895e9eb",
+  "verdict": "false",
+  "url": "https://www.microsoft.com/en-us/worklab/work-trend-index/hybrid-work-is-just-work",
+  "quote": "made it challenging to have confidence that employees are being productive",
+  "why": "The question measured difficulty having confidence, not a reported decline in trust, so the document changes the meaning."
+ },
+ {
+  "id": "c79595195",
+  "verdict": "confirmed",
+  "url": "https://www.ipsos.com/en/interpersonal-trust-across-the-world",
+  "quote": "survey conducted February 18 – March 4, 2022, among 22,534 adults",
+  "why": "Ipsos confirms the field dates, sample and 30-country scope."
+ },
+ {
+  "id": "c0b9c97ba",
+  "verdict": "unsupported",
+  "url": "https://www.apa.org/pubs/reports/work-in-america/2023-work-america-ai-monitoring",
+  "quote": "Request unsuccessful. Incapsula incident ID",
+  "why": "The APA page could not be retrieved in a form permitting substantive verification."
+ },
+ {
+  "id": "cf07edb4e",
+  "verdict": "false",
+  "url": "https://www.wider.unu.edu/publication/trust-changing-world",
+  "quote": "WIDER Working Paper May 2025",
+  "why": "The analysis is a May 2025 working paper, not a 2026 World Values Survey analysis."
+ },
+ {
+  "id": "c52df7195",
+  "verdict": "unsupported",
+  "url": "https://thehill.com/homenews/5998236-americans-distrust-ai-jobs/",
+  "quote": "The Bentley University-Gallup poll was conducted May 4-11.",
+  "why": "The fetched text confirms the poll dates but does not establish that the article was published in July 2026."
+ },
+ {
+  "id": "c910ce418",
+  "verdict": "confirmed",
+  "url": "https://thehill.com/homenews/5998236-americans-distrust-ai-jobs/",
+  "quote": "39 percent of respondents said they believe AI does more harm than good, compared with 31 percent who said so in 2023",
+  "why": "The article provides the claimed concise 2026-versus-2023 comparison."
+ },
+ {
+  "id": "ccfd44d25",
+  "verdict": "confirmed",
+  "url": "https://kpmg.com/xx/en/our-insights/ai-and-technology/trust-attitudes-and-use-of-ai.html",
+  "quote": "Gillespie, N., Lockey, S., Ward, T., Macdade, A., & Hassed, G. (2025). Trust, Attitudes and Use of Artificial Intelligence: A Global Study 2025.",
+  "why": "The primary project page confirms the title, year and lead author."
+ },
+ {
+  "id": "ccc6466f9",
+  "verdict": "confirmed",
+  "url": "https://kpmg.com/xx/en/our-insights/ai-and-technology/trust-attitudes-and-use-of-ai.html",
+  "quote": "Trust, Attitudes and Use of Artificial Intelligence: A Global Study 2025.",
+  "why": "The report title is exact."
+ },
+ {
+  "id": "cc29bc665",
+  "verdict": "confirmed",
+  "url": "https://kpmg.com/xx/en/our-insights/ai-and-technology/trust-attitudes-and-use-of-ai.html",
+  "quote": "Panel members were invited to complete the survey online, with data collected between November 2024 and mid-January 2025.",
+  "why": "The field period and University of Melbourne–KPMG collaboration are confirmed."
+ },
+ {
+  "id": "c444f4f03",
+  "verdict": "false",
+  "url": "https://www.unleash.ai/artificial-intelligence/news/66-of-individuals-may-be-using-ai-but-79-are-wary-of-possible-risks-finds-kpmg/",
+  "quote": "compared trust data in 2025 to 2022 and found that it had declined from 63% to 56%",
+  "why": "The 66% and 46% figures are supported, but the claimed 2022–2023 trust decline is actually a 2022–2025 comparison."
+ },
+ {
+  "id": "c4c1090dd",
+  "verdict": "confirmed",
+  "url": "https://hai.stanford.edu/ai-index/2025-ai-index-report/public-opinion",
+  "quote": "the sharpest gains in countries that were previously the most skeptical",
+  "why": "Independent evidence supports a substantial advanced-versus-emerging-economy attitude gap, though exact measures differ."
+ },
+ {
+  "id": "c6fbf2a04",
+  "verdict": "confirmed",
+  "url": "https://www.pewresearch.org/2025/05/08/americans-trust-in-one-another/",
+  "quote": "Americans’ Trust in One Another",
+  "why": "The page confirms the cited 2025 Pew report."
+ },
+ {
+  "id": "cb5e39572",
+  "verdict": "confirmed",
+  "url": "https://www.pewresearch.org/2025/05/08/americans-trust-in-one-another/",
+  "quote": "Levels of social trust have been largely flat – or even slightly up – since 2018",
+  "why": "Pew supports the GSS decline followed by a roughly 34% recent plateau."
+ },
+ {
+  "id": "c396d915f",
+  "verdict": "confirmed",
+  "url": "https://www.ipsos.com/en/interpersonal-trust-across-the-world",
+  "quote": "These are the findings of a 30-country Ipsos survey conducted February 18 – March 4, 2022, among 22,534 adults",
+  "why": "The source confirms the complete survey description."
+ },
+ {
+  "id": "c2f3187b0",
+  "verdict": "confirmed",
+  "url": "https://www.ipsos.com/en/interpersonal-trust-across-the-world",
+  "quote": "highest in China and India, where 56% say most people can be trusted, and lowest in Brazil, Malaysia, and Turkey, where fewer than 15% say so",
+  "why": "Ipsos directly confirms all listed country figures."
+ },
+ {
+  "id": "c5282f51f",
+  "verdict": "confirmed",
+  "url": "https://reutersinstitute.politics.ox.ac.uk/digital-news-report/2023/dnr-executive-summary",
+  "quote": "This twelfth edition of our Digital News Report",
+  "why": "The fetched page verifies the report and edition."
+ }
+]

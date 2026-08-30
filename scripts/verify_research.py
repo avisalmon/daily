@@ -30,8 +30,10 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import os
 import re
 import sys
+import time
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -110,10 +112,31 @@ def load(doc_id: str) -> dict:
 
 
 def save(ledger: dict) -> None:
+    """Write the ledger atomically.
+
+    A direct write failed mid-import with OSError 22 on Windows, most likely a
+    scanner or another process holding the file. Writing in place means such a
+    failure can leave a truncated ledger, destroying verification work that
+    cost real money and hours to produce. So write a temporary file alongside
+    and replace, which is atomic on Windows and POSIX alike: the ledger is
+    either the old one or the new one, never a half-written one.
+    """
     CLAIMS_DIR.mkdir(parents=True, exist_ok=True)
     p = ledger_path(ledger["doc"])
-    p.write_text(json.dumps(ledger, ensure_ascii=False, indent=2) + "\n",
-                 encoding="utf-8", newline="\n")
+    body = json.dumps(ledger, ensure_ascii=False, indent=2) + "\n"
+
+    last: Exception | None = None
+    for attempt in range(5):
+        tmp = p.with_suffix(f".tmp{os.getpid()}-{attempt}")
+        try:
+            tmp.write_text(body, encoding="utf-8", newline="\n")
+            os.replace(tmp, p)
+            return
+        except OSError as exc:
+            last = exc
+            tmp.unlink(missing_ok=True)
+            time.sleep(0.3 * (attempt + 1))
+    raise SystemExit(f"Could not write {p}: {last}")
 
 
 # ---------------------------------------------------------------------------
