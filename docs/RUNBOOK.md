@@ -160,3 +160,49 @@ balance, dead CSS classes, missing local assets, and that the build runs clean.
 - **Never fabricate an ambient detail.** Weather is fetched; if the fetch fails,
   the printed value stands.
 - **Facts aren't copyrightable, prose is.** Write every brief fresh.
+
+## 7. Deep research, when you use it
+
+Optional and expensive. About 30 minutes and 130K tokens per question, so decide
+it is worth it before starting. Never run it to test connectivity.
+
+```powershell
+python scripts\deep_research.py "your question"     # ~30 min, files into the bank
+python scripts\deep_research.py --status resp_...   # cheap plumbing check
+```
+
+Auth is your own Azure AD identity. Just `az login`. There is no key to fetch,
+and `az cognitiveservices account keys list -g rg-modelon-westus` will fail
+because that resource is in a subscription we cannot see. That is expected.
+
+**What comes back is not printable.** It is a map of what to check. Run the
+three passes before any of it reaches the paper:
+
+```powershell
+python scripts\verify_research.py extract <doc-id>
+# pass A: check each claim yourself, fetching a source and quoting it
+python scripts\verify_research.py check <doc-id> <claim-id> --by <model> `
+    --verdict confirmed|false|disputed|unsupported --url <url> --quote "<verbatim>"
+# pass B: hand the claims to a DIFFERENT model, adversarially framed
+python scripts\verify_research.py show <doc-id>
+python scripts\verify_research.py seal <doc-id>
+```
+
+Pass B must be a different model family and must be told to *falsify*, not to
+review. Tell it the document's weaknesses up front: which domains dominate,
+which of them are trade groups or content farms, and that the subject area is
+prone to myths. A neutral "please check this" gets a neutral rubber stamp.
+
+Both passes must fetch and quote. A check without a verbatim quote is refused,
+because a model answering from memory reproduces exactly the myths you are
+trying to catch.
+
+Then decide what to do with what survived:
+
+- `confirmed` by both, print it
+- `disputed`, either drop it or print it openly as a disputed story
+- `false`, cut it, or print it as a legend and say so, which is often the
+  better piece anyway
+
+`validate.py` refuses to build an edition whose `research` points at an unsealed
+document, so this cannot be skipped by accident.

@@ -163,3 +163,78 @@ its Hebrew spelling.
 - [ ] **Opened in a browser** — index, archive, search (try a Hebrew *and* a
       Latin term), learn, and one archived edition
 - [ ] Checked at ≤700px for mobile
+
+## 9. Deep research is a map, not a source
+
+`o3-deep-research` writes beautifully and cites every sentence. That is exactly
+what makes it dangerous. A citation next to a sentence means the model found
+that sentence somewhere, not that it is true.
+
+Measured on the first real run (history of ice cream, 30 minutes, 86 web
+searches, 132K tokens): **91 citations across only 7 unique domains.** The two
+heaviest were `idfa.org`, the dairy industry trade association, and a content
+farm. No academic or primary sources. It searched broadly and cited narrowly.
+
+It printed two well-known legends as fact:
+
+- Catherine de Medici bringing sorbet to France in 1533. It cited the Wikipedia
+  article that debunks this **18 times** and reproduced the myth anyway.
+- Soft serve invented in 1939 by Dairy Queen. The real rival claims are Carvel
+  1936 and McCullough 1938, and there is no uncontested first.
+
+It also garbled a Chinese term and contradicted itself on a date: 550 BC in one
+paragraph, 400 BCE in another, about the same structures.
+
+### The three-pass rule
+
+```
+1. research   scripts/deep_research.py            -> raw document
+2. pass A     one model, source-anchored          -> a check per claim
+3. pass B     a DIFFERENT model, adversarial      -> a second check
+4. seal       scripts/verify_research.py seal     -> printable, or not
+```
+
+**Both passes must be source-anchored, not model-anchored.** This is the whole
+trick. A second model asked "is this true?" from memory will confirm the Medici
+myth, because that myth saturates training data. That is the same error twice,
+and it *feels* like corroboration. So a check only counts if it carries a URL
+**and a verbatim quote from that URL**. No quote, no check. `verify_research.py`
+enforces this and rejects a check whose quote is under 20 characters.
+
+The point of the second model is that it fails *differently*, and it only fails
+differently if it is forced to go and read something. When it was, it beat pass
+A twice: it fetched Chinese Wikipedia to show that su shan is a real Tang-era
+dish but had been conflated with a separate one, and it found Nancy Johnson's
+actual 1843 patent, a primary source neither the research nor pass A reached.
+
+Give pass B the adversarial framing explicitly. It was told the domain
+concentration, that idfa.org is a trade group, and that food history is full of
+charming myths. A neutral "please check this" prompt would not have produced
+the same scrutiny.
+
+### What agreement and disagreement mean
+
+Two checkers agreeing gives a verdict. Two checkers disagreeing gives
+`disputed`, which is not a failure of the process but the point of it: it marks
+where a human must decide. On the ice cream run the two passes agreed on both
+myths and split three ways, on Persia, Charles I, and the 1692 cookbook author.
+All three splits were real ambiguities in the historical record.
+
+A claim is printable only when two *different* checkers agree and both showed
+evidence. Everything else is cut, or printed openly as a legend, which is
+usually the better story anyway.
+
+### Do not use deep research to test connectivity
+
+A one-word "ping" probe ran to completion at 34 searches and 51,870 tokens. It
+cannot be made lazy, and a trivial question costs about as much as a real one.
+Test the plumbing with `--status` against an existing run instead.
+
+### Claim ids must be content-derived
+
+The first version of `verify_research.py` numbered claims by position. Changing
+the extractor shifted every sentence by one, and previously recorded checks
+**silently reattached to the wrong claims**: a check quoting Charles I ended up
+filed against the Catherine de Medici claim. Ids are now a hash of the claim
+text, so a claim keeps its identity and a reworded claim correctly becomes a
+new, unchecked one.

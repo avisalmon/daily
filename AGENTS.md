@@ -85,3 +85,21 @@ $env:PYTHONIOENCODING = "utf-8"
 and `output/` are scaffold from before the paper existed. Nothing in the real
 pipeline imports them. Do not extend them; do not treat them as the
 architecture.
+
+## Deep research is a map, not a source
+
+scripts/deep_research.py produces a document that *looks* authoritative: a
+citation on every sentence. It is not a source. The first real run cited only 7
+domains across 91 citations, leaned on a dairy trade association and a content
+farm, and printed the Catherine de Medici legend as fact while citing the
+article that debunks it 18 times.
+
+Nothing from deep research reaches the paper until it is sealed by two
+independent, source-anchored passes. See BKM section 9 and RUNBOOK section 7.
+alidate.py enforces it.
+
+- Pass B must be a *different model family*, told to falsify rather than review.
+- Every check needs a URL **and a verbatim quote**. No quote, no check.
+- Two checkers agreeing settles a claim. Disagreement means disputed, which is
+  a decision for you, not a thing to average away.
+- Never run deep research to test connectivity. Use --status on an old run.
