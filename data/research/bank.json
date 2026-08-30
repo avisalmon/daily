@@ -28,7 +28,7 @@
       "added_at": "2026-08-30T07:01:15+00:00",
       "used_in": null,
       "notes": "AUDITED 2026-08-30, do not print unverified. 91 citations but only 7 domains; heaviest are IDFA (dairy trade association) and a content farm. Repeats two debunked legends as fact: Catherine de Medici 1533, and soft serve invented 1939 by Dairy Queen. The Tang dynasty term is garbled. Usable as a starting map, not as a source.",
-      "missing": false,
+      "missing": true,
       "audit": {
         "date": "2026-08-30",
         "verdict": "needs-verification",

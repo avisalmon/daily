@@ -64,6 +64,30 @@ NON-ENGLISH TERMS. If you give a foreign word, give the original script as well
 as the transliteration, and check the translation against a source in that
 language. Do not guess at a meaning from the transliteration alone.
 
+NUMBERS AND THEIR LABELS. Getting a percentage right and its label wrong is
+the most dangerous error you can make, because a correct-looking number
+survives every smell test and reaches print unchallenged. When you cite a
+statistic, carry all four of these or do not cite it:
+
+- the figure itself
+- the year the data was COLLECTED, not the year it was published; these differ
+  by a year or more for most surveys, and the publication date is the one
+  search results show you
+- what was actually measured, in the source's own words. "Perceive AI as
+  trustworthy" and "willing to trust AI" are different questions with
+  different answers in the same report. Never paraphrase a survey item into
+  a plainer phrase; the plainer phrase is a different question.
+- who was asked, how many, and where
+
+EDITIONS. When a source publishes annually, name the edition and check you are
+reading the one you think you are. The 2024 and 2025 waves of the same tracker
+sit on near-identical pages and are the single easiest way to publish a wrong
+number with a real citation attached.
+
+DIRECTION. For any finding about whether something improves or worsens, state
+the direction explicitly and quote the sentence that establishes it. Inverting
+a finding is common and is worse than omitting it.
+
 STRUCTURE. End with two sections, both mandatory:
 
 ## Disputed or unresolved

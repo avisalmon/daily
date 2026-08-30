@@ -79,30 +79,49 @@ def test_two_checkers_disagreeing_becomes_disputed():
     assert vr._settle(checks) == "disputed"
 
 
-def test_the_ice_cream_myths_are_recorded_as_false():
-    """The two legends the first real deep research run printed as fact.
-    If either ever flips back to confirmed, something has gone wrong."""
-    ledger = ROOT / "data" / "research" / "claims" / "the-history-of-ice-cream.json"
-    if not ledger.exists():
-        pytest.skip("ice cream ledger not present")
-    claims = json.loads(ledger.read_text(encoding="utf-8"))["claims"]
-    by_text = {c["text"]: c for c in claims}
+def test_two_checkers_calling_it_false_keeps_it_false(sandbox):
+    """Guards the outcome that mattered on the first real run: deep research
+    printed the Catherine de Medici legend as fact, and the gate caught it.
+    Once two checkers agree a claim is false, nothing may quietly restore it.
 
-    medici = [c for t, c in by_text.items() if "Medici" in t]
-    assert medici, "the Medici claim should have been extracted"
-    assert medici[0]["verdict"] == "false"
+    This used to assert against the real ice cream ledger, so it silently
+    became a skip the moment that research was dropped. A guard that stops
+    running is worse than no guard, because the passing suite still implies it.
+    """
+    cid = sandbox["claims"][0]["id"]
+    for by in ("checker-a", "checker-b"):
+        vr.import_findings("demo", by, [
+            {"id": cid, "verdict": "false", "url": "https://example.com/debunk",
+             "quote": "There is no contemporary evidence for this story at all."}])
 
-    soft = [c for t, c in by_text.items() if "soft-serve" in t and "1939" in t]
-    assert soft, "the soft serve claim should have been extracted"
-    assert soft[0]["verdict"] == "false"
+    claim = {c["id"]: c for c in vr.load("demo")["claims"]}[cid]
+    assert claim["verdict"] == "false"
+
+    vr.auto_disposition("demo")
+    claim = {c["id"]: c for c in vr.load("demo")["claims"]}[cid]
+    assert claim["disposition"] == "cut", "a false claim must never default to print"
+    assert cid not in [c["id"] for c in vr.printable("demo")]
 
 
-def test_unsealed_research_cannot_be_printed():
-    """validate.py must refuse an edition leaning on unverified research."""
+def test_unsealed_research_cannot_be_printed(tmp_path, monkeypatch):
+    """validate.py must refuse an edition leaning on unverified research.
+
+    Writes its own ledger rather than pointing at a document in the bank: the
+    test used to name a real research file, so deleting that file turned a
+    passing guard into a failing test for reasons unrelated to the guard.
+    """
     validate = _load("validate")
+    monkeypatch.setattr(validate, "CLAIMS_DIR", tmp_path)
+    (tmp_path / "demo-doc.json").write_text(json.dumps({
+        "doc": "demo-doc",
+        "sealed": False,
+        "claims": [{"id": "c1", "text": "A claim.", "verdict": "unchecked",
+                    "checks": [], "disposition": None}],
+    }), encoding="utf-8")
+
     errors: list[str] = []
     validate.check_research_sealed(
-        {"research": {"id": "the-history-of-ice-cream"}},
+        {"research": {"id": "demo-doc"}},
         Path("fake-edition.json"), errors)
     assert errors, "unsealed research must block publication"
     assert "not sealed" in errors[0]
