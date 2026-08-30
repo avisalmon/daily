@@ -103,9 +103,16 @@
           "url": "https://www.ipsos.com/en/interpersonal-trust-across-the-world",
           "quote": "on average across 30 countries, 30% of adults say most people can be trusted",
           "at": "2026-08-30T12:14:54+00:00"
+        },
+        {
+          "by": "gemini-3.1-pro",
+          "verdict": "confirmed",
+          "url": "https://www.ipsos.com/en/interpersonal-trust-across-the-world",
+          "quote": "on average across 30 countries, 30% of adults say most people can be trusted. Among these countries, interpersonal trust is highest in China and India, where 56% say most people can be trusted, and lowest in Brazil, Malaysia, and Turkey, where fewer than 15% say so",
+          "at": "2026-08-30T12:26:12+00:00"
         }
       ],
-      "verdict": "single-check",
+      "verdict": "confirmed",
       "disposition": null
     },
     {
@@ -199,9 +206,16 @@
           "url": "https://news.gallup.com/opinion/gallup/510635/three-four-americans-believe-reduce-jobs.aspx",
           "quote": "web survey responses collected May 8-15, 2023, from 5,458 U.S. adults",
           "at": "2026-08-30T12:14:54+00:00"
+        },
+        {
+          "by": "gemini-3.1-pro",
+          "verdict": "confirmed",
+          "url": "https://news.gallup.com/opinion/gallup/510635/three-four-americans-believe-reduce-jobs.aspx",
+          "quote": "Results for the Bentley-Gallup Business in Society study are based on web survey responses collected May 8-15, 2023, from 5,458 U.S. adults",
+          "at": "2026-08-30T12:26:12+00:00"
         }
       ],
-      "verdict": "single-check",
+      "verdict": "confirmed",
       "disposition": null
     },
     {
@@ -214,9 +228,16 @@
           "url": "https://news.gallup.com/opinion/gallup/510635/three-four-americans-believe-reduce-jobs.aspx",
           "quote": "majorities believe AI performs as well as or better than humans at customizing the content users see online (68%)",
           "at": "2026-08-30T12:14:54+00:00"
+        },
+        {
+          "by": "gemini-3.1-pro",
+          "verdict": "confirmed",
+          "url": "https://news.gallup.com/opinion/gallup/510635/three-four-americans-believe-reduce-jobs.aspx",
+          "quote": "majorities believe AI performs as well as or better than humans at customizing the content users see online (68%)... About two-thirds of Americans believe AI performs worse than humans on each of these tasks",
+          "at": "2026-08-30T12:26:12+00:00"
         }
       ],
-      "verdict": "single-check",
+      "verdict": "confirmed",
       "disposition": null
     },
     {
@@ -296,9 +317,16 @@
           "url": "https://news.gallup.com/poll/651977/americans-trust-media-remains-trend-low.aspx",
           "quote": "31% expressing a “great deal” or “fair amount” of confidence in the media",
           "at": "2026-08-30T12:14:54+00:00"
+        },
+        {
+          "by": "gemini-3.1-pro",
+          "verdict": "confirmed",
+          "url": "https://news.gallup.com/poll/651977/americans-trust-media-remains-trend-low.aspx",
+          "quote": "31% expressing a \"great deal\" or \"fair amount\" of confidence in the media to report the news \"fully, accurately and fairly,\" similar to last year's 32%. Americans' trust in the media -- such as newspapers, television and radio -- first fell to 32% in 2016",
+          "at": "2026-08-30T12:26:12+00:00"
         }
       ],
-      "verdict": "single-check",
+      "verdict": "confirmed",
       "disposition": null
     },
     {
@@ -311,9 +339,16 @@
           "url": "https://news.gallup.com/poll/651977/americans-trust-media-remains-trend-low.aspx",
           "quote": "In three readings in the 1970s, trust ranged from 68% to 72%",
           "at": "2026-08-30T12:14:54+00:00"
+        },
+        {
+          "by": "gemini-3.1-pro",
+          "verdict": "confirmed",
+          "url": "https://news.gallup.com/poll/651977/americans-trust-media-remains-trend-low.aspx",
+          "quote": "In three readings in the 1970s, trust ranged from 68% to 72%",
+          "at": "2026-08-30T12:26:12+00:00"
         }
       ],
-      "verdict": "single-check",
+      "verdict": "confirmed",
       "disposition": null
     },
     {
@@ -326,9 +361,16 @@
           "url": "https://news.gallup.com/poll/651977/americans-trust-media-remains-trend-low.aspx",
           "quote": "For the third consecutive year, more U.S. adults have no trust at all in the media (36%)",
           "at": "2026-08-30T12:14:54+00:00"
+        },
+        {
+          "by": "gemini-3.1-pro",
+          "verdict": "confirmed",
+          "url": "https://news.gallup.com/poll/651977/americans-trust-media-remains-trend-low.aspx",
+          "quote": "For the third consecutive year, more U.S. adults have no trust at all in the media (36%) than trust it a great deal or fair amount.",
+          "at": "2026-08-30T12:26:12+00:00"
         }
       ],
-      "verdict": "single-check",
+      "verdict": "confirmed",
       "disposition": null
     },
     {
@@ -356,9 +398,16 @@
           "url": "https://www.brennancenter.org/our-work/research-reports/deepfakes-elections-and-shrinking-liars-dividend",
           "quote": "85 percent of respondents said that they are “very concerned” or “somewhat concerned” about the spread of misleading video and audio deepfakes.",
           "at": "2026-08-30T12:14:54+00:00"
+        },
+        {
+          "by": "gemini-3.1-pro",
+          "verdict": "confirmed",
+          "url": "https://www.brennancenter.org/our-work/research-reports/deepfakes-elections-and-shrinking-liars-dividend",
+          "quote": "85 percent of respondents said that they are \"very concerned\" or \"somewhat concerned\" about the spread of misleading video and audio deepfakes.",
+          "at": "2026-08-30T12:26:12+00:00"
         }
       ],
-      "verdict": "single-check",
+      "verdict": "confirmed",
       "disposition": null
     },
     {
@@ -371,9 +420,16 @@
           "url": "https://www.cambridge.org/core/journals/american-political-science-review/article/liars-dividend-can-politicians-claim-misinformation-to-evade-accountability/687FEE54DBD7ED0C96D72B26606AA073",
           "quote": "we also originally conjectured that these claims of misinformation could further undermine trust in media, but we generally find no such impacts.",
           "at": "2026-08-30T12:14:54+00:00"
+        },
+        {
+          "by": "gemini-3.1-pro",
+          "verdict": "confirmed",
+          "url": "https://www.cambridge.org/core/journals/american-political-science-review/article/liars-dividend-can-politicians-claim-misinformation-to-evade-accountability/687FEE54DBD7ED0C96D72B26606AA073",
+          "quote": "we also originally conjectured that these claims of misinformation could further undermine trust in media, but we generally find no such impacts.",
+          "at": "2026-08-30T12:26:12+00:00"
         }
       ],
-      "verdict": "single-check",
+      "verdict": "confirmed",
       "disposition": null
     },
     {
@@ -445,9 +501,16 @@
           "url": "https://www.cambridge.org/core/journals/british-journal-of-political-science/article/crisis-of-political-trust-global-trends-in-institutional-trust-from-1958-to-2019/7EF4EDA709F27C691380CFC1BCECF6B8",
           "quote": "trust in representative institutions has been declining",
           "at": "2026-08-30T12:14:54+00:00"
+        },
+        {
+          "by": "gemini-3.1-pro",
+          "verdict": "confirmed",
+          "url": "https://www.cambridge.org/core/journals/british-journal-of-political-science/article/crisis-of-political-trust-global-trends-in-institutional-trust-from-1958-to-2019/7EF4EDA709F27C691380CFC1BCECF6B8",
+          "quote": "our overall conclusion is that trust in implementing institutions appears to have been stable or increasing around the world in recent decades, whereas trust in representative institutions has been declining.",
+          "at": "2026-08-30T12:26:12+00:00"
         }
       ],
-      "verdict": "single-check",
+      "verdict": "confirmed",
       "disposition": null
     },
     {
@@ -495,8 +558,8 @@
           "by": "gemini-3.1-pro",
           "verdict": "confirmed",
           "url": "https://www.microsoft.com/en-us/worklab/work-trend-index/hybrid-work-is-just-work",
-          "quote": "At the same time, 85% of leaders say that the shift to hybrid work has made it challenging to have confidence that employees are being productive.",
-          "at": "2026-08-30T12:18:23+00:00"
+          "quote": "To help, we surveyed 20,000 people in 11 countries... 85% of leaders say that the shift to hybrid work has made it challenging to have confidence that employees are being productive",
+          "at": "2026-08-30T12:26:12+00:00"
         }
       ],
       "verdict": "confirmed",
@@ -564,9 +627,16 @@
           "url": "https://americanstaffing.net/posts/2023/09/07/ai-recruiting-tools/",
           "quote": "Nearly half of employed U.S. job seekers (49%) believe artificial intelligence (AI) tools used in job recruiting are more biased than their human counterparts",
           "at": "2026-08-30T12:14:54+00:00"
+        },
+        {
+          "by": "gemini-3.1-pro",
+          "verdict": "confirmed",
+          "url": "https://americanstaffing.net/posts/2023/09/07/ai-recruiting-tools/",
+          "quote": "Nearly half of employed U.S. job seekers (49%) believe artificial intelligence (AI) tools used in job recruiting are more biased than their human counterparts",
+          "at": "2026-08-30T12:26:12+00:00"
         }
       ],
-      "verdict": "single-check",
+      "verdict": "confirmed",
       "disposition": null
     },
     {
@@ -668,9 +738,16 @@
           "url": "https://www.cambridge.org/core/journals/american-political-science-review/article/liars-dividend-can-politicians-claim-misinformation-to-evade-accountability/687FEE54DBD7ED0C96D72B26606AA073",
           "quote": "We investigate the liar’s dividend through five pre-registered experimental studies",
           "at": "2026-08-30T12:14:54+00:00"
+        },
+        {
+          "by": "gemini-3.1-pro",
+          "verdict": "confirmed",
+          "url": "https://www.cambridge.org/core/journals/american-political-science-review/article/liars-dividend-can-politicians-claim-misinformation-to-evade-accountability/687FEE54DBD7ED0C96D72B26606AA073",
+          "quote": "This study devotes attention to these indirect effects and provides novel experimental evidence related to one such subtle and concerning consequence of misinformation: the liar's dividend.",
+          "at": "2026-08-30T12:26:12+00:00"
         }
       ],
-      "verdict": "single-check",
+      "verdict": "confirmed",
       "disposition": null
     },
     {
@@ -683,9 +760,16 @@
           "url": "https://www.cambridge.org/core/journals/british-journal-of-political-science/article/crisis-of-political-trust-global-trends-in-institutional-trust-from-1958-to-2019/7EF4EDA709F27C691380CFC1BCECF6B8",
           "quote": "3,377 surveys conducted by 50 cross-national and national research projects in 143 countries across the world between 1958 and 2019",
           "at": "2026-08-30T12:14:54+00:00"
+        },
+        {
+          "by": "gemini-3.1-pro",
+          "verdict": "confirmed",
+          "url": "https://www.cambridge.org/core/journals/british-journal-of-political-science/article/crisis-of-political-trust-global-trends-in-institutional-trust-from-1958-to-2019/7EF4EDA709F27C691380CFC1BCECF6B8",
+          "quote": "a global analysis that collates findings from 3,377 surveys conducted by 50 cross-national and national research projects in 143 countries across the world between 1958 and 2019",
+          "at": "2026-08-30T12:26:12+00:00"
         }
       ],
-      "verdict": "single-check",
+      "verdict": "confirmed",
       "disposition": null
     },
     {
@@ -728,9 +812,16 @@
           "url": "https://news.gallup.com/opinion/gallup/510635/three-four-americans-believe-reduce-jobs.aspx",
           "quote": "from 5,458 U.S. adults in Gallup’s nationally representative panel",
           "at": "2026-08-30T12:14:54+00:00"
+        },
+        {
+          "by": "gemini-3.1-pro",
+          "verdict": "confirmed",
+          "url": "https://news.gallup.com/opinion/gallup/510635/three-four-americans-believe-reduce-jobs.aspx",
+          "quote": "Results for the Bentley-Gallup Business in Society study are based on web survey responses collected May 8-15, 2023, from 5,458 U.S. adults",
+          "at": "2026-08-30T12:26:12+00:00"
         }
       ],
-      "verdict": "single-check",
+      "verdict": "confirmed",
       "disposition": null
     },
     {
@@ -758,9 +849,16 @@
           "url": "https://www.pewresearch.org/social-trends/2023/04/20/ai-in-hiring-and-evaluating-workers-what-americans-think/",
           "quote": "we surveyed 11,004 U.S. adults from Dec. 12 to 18, 2022",
           "at": "2026-08-30T12:14:54+00:00"
+        },
+        {
+          "by": "gemini-3.1-pro",
+          "verdict": "confirmed",
+          "url": "https://www.pewresearch.org/internet/2023/04/20/ai-in-hiring-and-evaluating-workers/",
+          "quote": "For this analysis, we surveyed 11,004 U.S. adults from Dec. 12 to 18, 2022.",
+          "at": "2026-08-30T12:26:12+00:00"
         }
       ],
-      "verdict": "single-check",
+      "verdict": "confirmed",
       "disposition": null
     },
     {
@@ -773,9 +871,16 @@
           "url": "https://www.pewresearch.org/science/2023/02/22/60-of-americans-would-be-uncomfortable-with-provider-relying-on-ai-in-their-own-health-care/",
           "quote": "The Pew Research Center survey, conducted Dec. 12-18, 2022, of 11,004 U.S. adults",
           "at": "2026-08-30T12:14:54+00:00"
+        },
+        {
+          "by": "gemini-3.1-pro",
+          "verdict": "confirmed",
+          "url": "https://www.pewresearch.org/science/2023/02/22/60-of-americans-would-be-uncomfortable-with-provider-relying-on-ai-in-their-own-health-care/",
+          "quote": "The Pew Research Center survey, conducted Dec. 12-18, 2022, of 11,004 U.S. adults",
+          "at": "2026-08-30T12:26:12+00:00"
         }
       ],
-      "verdict": "single-check",
+      "verdict": "disputed",
       "disposition": null
     },
     {
@@ -825,9 +930,16 @@
           "url": "https://www.microsoft.com/en-us/worklab/work-trend-index/hybrid-work-is-just-work",
           "quote": "we surveyed 20,000 people in 11 countries and analyzed trillions of Microsoft 365 productivity signals",
           "at": "2026-08-30T12:14:54+00:00"
+        },
+        {
+          "by": "gemini-3.1-pro",
+          "verdict": "confirmed",
+          "url": "https://www.microsoft.com/en-us/worklab/work-trend-index/hybrid-work-is-just-work",
+          "quote": "To help, we surveyed 20,000 people in 11 countries and analyzed trillions of Microsoft 365 productivity signals",
+          "at": "2026-08-30T12:26:12+00:00"
         }
       ],
-      "verdict": "single-check",
+      "verdict": "confirmed",
       "disposition": null
     },
     {
@@ -840,9 +952,16 @@
           "url": "https://www.microsoft.com/en-us/worklab/work-trend-index/hybrid-work-is-just-work",
           "quote": "made it challenging to have confidence that employees are being productive",
           "at": "2026-08-30T12:14:54+00:00"
+        },
+        {
+          "by": "gemini-3.1-pro",
+          "verdict": "confirmed",
+          "url": "https://www.microsoft.com/en-us/worklab/work-trend-index/hybrid-work-is-just-work",
+          "quote": "85% of leaders say that the shift to hybrid work has made it challenging to have confidence that employees are being productive... This has led to productivity paranoia",
+          "at": "2026-08-30T12:26:12+00:00"
         }
       ],
-      "verdict": "single-check",
+      "verdict": "disputed",
       "disposition": null
     },
     {
@@ -855,9 +974,16 @@
           "url": "https://www.ipsos.com/en/interpersonal-trust-across-the-world",
           "quote": "survey conducted February 18 – March 4, 2022, among 22,534 adults",
           "at": "2026-08-30T12:14:54+00:00"
+        },
+        {
+          "by": "gemini-3.1-pro",
+          "verdict": "confirmed",
+          "url": "https://www.ipsos.com/en/interpersonal-trust-across-the-world",
+          "quote": "The survey was conducted among 22,534 adults under the age of 75 conducted between February 18 and March 4 on Ipsos's Global Advisor online survey platform.",
+          "at": "2026-08-30T12:26:12+00:00"
         }
       ],
-      "verdict": "single-check",
+      "verdict": "confirmed",
       "disposition": null
     },
     {
@@ -1042,9 +1168,16 @@
           "url": "https://www.ipsos.com/en/interpersonal-trust-across-the-world",
           "quote": "These are the findings of a 30-country Ipsos survey conducted February 18 – March 4, 2022, among 22,534 adults",
           "at": "2026-08-30T12:14:54+00:00"
+        },
+        {
+          "by": "gemini-3.1-pro",
+          "verdict": "confirmed",
+          "url": "https://www.ipsos.com/en/interpersonal-trust-across-the-world",
+          "quote": "The survey was conducted among 22,534 adults under the age of 75 conducted between February 18 and March 4",
+          "at": "2026-08-30T12:26:12+00:00"
         }
       ],
-      "verdict": "single-check",
+      "verdict": "confirmed",
       "disposition": null
     },
     {
@@ -1057,9 +1190,16 @@
           "url": "https://www.ipsos.com/en/interpersonal-trust-across-the-world",
           "quote": "highest in China and India, where 56% say most people can be trusted, and lowest in Brazil, Malaysia, and Turkey, where fewer than 15% say so",
           "at": "2026-08-30T12:14:54+00:00"
+        },
+        {
+          "by": "gemini-3.1-pro",
+          "verdict": "confirmed",
+          "url": "https://www.ipsos.com/en/interpersonal-trust-across-the-world",
+          "quote": "average across 30 countries, 30% of adults say most people can be trusted. Among these countries, interpersonal trust is highest in China and India, where 56% say most people can be trusted, and lowest in Brazil, Malaysia, and Turkey, where fewer than 15% say so",
+          "at": "2026-08-30T12:26:12+00:00"
         }
       ],
-      "verdict": "single-check",
+      "verdict": "confirmed",
       "disposition": null
     },
     {

@@ -240,6 +240,46 @@ Note this interacts with the standing brief: demanding twelve domains, a
 disputed-claims section and a source assessment makes the model think harder,
 so a better prompt raises the token ceiling you need.
 
+### Most disputes are about precision, not facts
+
+The trust document produced four disputes, and in two of them **both checkers
+fetched the same page and quoted the same sentence, then disagreed about what
+it meant**. The document called a Pew survey a "Feb 2023 survey" when the
+fieldwork ran 12-18 December 2022 and February was merely the publication
+date. It reported that 85% of leaders "reported lower trust in employee
+productivity" when the source says they find it "challenging to have
+confidence that employees are being productive".
+
+Neither is a factual error in the arithmetic sense, and a lenient checker
+waves both through. Both are still wrong to print: one misdates a survey, the
+other rewrites the question that was actually asked. Attributing a survey to
+its publication date, or restating its question in livelier words, is an
+error and not a paraphrase.
+
+This is where the mandatory quote earns its keep a second time. Because the
+quote is stored in the ledger, a disagreement can be settled by reading the
+evidence already collected, without re-fetching anything and without asking a
+third model to guess.
+
+### The percentages were right and the labels were wrong
+
+The most dangerous errors in the trust document were not invented numbers.
+63 to 56 and 49 to 62 were both exactly correct. What was wrong was the year,
+2023 instead of 2024, and the metric: those figures track whether people
+*perceive AI as trustworthy*, not whether they are *willing to trust* it,
+which fell 52 to 43 instead. A number that survives a smell test while
+describing a different quantity is far more likely to reach print than an
+obvious fabrication. Check the year, the metric and the sample, not just the
+digits.
+
+### Write the ledger atomically
+
+An import failed mid-write with OSError 22 on Windows, most likely a scanner
+holding the file. Because `save()` wrote in place, that could have truncated a
+ledger representing hours of checking and a paid research run. It now writes a
+temporary file and replaces it, so the ledger is always either the old version
+or the new one.
+
 ### Do not use deep research to test connectivity
 
 A one-word "ping" probe ran to completion at 34 searches and 51,870 tokens. It
