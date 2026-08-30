@@ -271,7 +271,13 @@ def build(include_future: bool = False) -> None:
                + ". Preview with --include-future." if pending else "data/editions/ is empty.")
         )
 
-    research = publish_research(editions)
+    # The research PDF is published for *every* edition on disk, including one
+    # not yet due. Its source in data/research/ is gitignored as an input, so
+    # research/<date>.pdf is the only copy in the repository - withdrawing it
+    # would leave the cloud build with no file to publish when the day arrives.
+    # Nothing links to it until the edition runs, so it stays unlisted rather
+    # than secret, which is already true of the edition JSON next to it.
+    research = publish_research(load_editions(include_future=True))
     EDITIONS_DIR.mkdir(parents=True, exist_ok=True)
 
     archive = [
@@ -340,17 +346,14 @@ def build(include_future: bool = False) -> None:
 
     # A held-back edition must not survive as a stale file from an earlier build.
     # Without this, running --include-future once would publish it permanently.
+    # The research PDF is deliberately not pruned here - see publish_research
+    # above; it is unreachable without the page that links to it.
     if not include_future:
         due = {e["date"] for e in editions}
         for stale in sorted(EDITIONS_DIR.glob("*.html")):
             if stale.stem not in due:
                 stale.unlink()
                 print(f"Withdrew not-yet-due page: editions/{stale.name}")
-        if RESEARCH_OUT.exists():
-            for stale in sorted(RESEARCH_OUT.glob("*.pdf")):
-                if stale.stem not in due:
-                    stale.unlink()
-                    print(f"Withdrew not-yet-due research: research/{stale.name}")
 
     index_html = template.render(
         site=SITE,

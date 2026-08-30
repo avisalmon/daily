@@ -263,17 +263,35 @@ def test_an_edition_dated_ahead_is_not_published_anywhere(path: Path):
     ed = json.loads(path.read_text(encoding="utf-8"))
     date_str = ed["date"]
 
-    for leaked in (ROOT / "editions" / f"{date_str}.html", ROOT / "research" / f"{date_str}.pdf"):
-        assert not leaked.exists(), f"{leaked.name} is published before {date_str}"
+    page = ROOT / "editions" / f"{date_str}.html"
+    assert not page.exists(), f"{page.name} is published before {date_str}"
 
-    for page in ("index.html", "archive.html", "learn.html"):
-        html = (ROOT / page).read_text(encoding="utf-8")
-        assert ed["lead"]["headline"] not in html, f"{page} leaks the {date_str} lead"
-        assert f"editions/{date_str}.html" not in html, f"{page} links to the held-back {date_str}"
+    # research/<date>.pdf is intentionally present: it is the only copy of the
+    # PDF in the repository, and the cloud build needs it to publish the edition
+    # on its day. It must stay unreachable - no page may link to it.
+    for page_name in ("index.html", "archive.html", "learn.html"):
+        html = (ROOT / page_name).read_text(encoding="utf-8")
+        assert ed["lead"]["headline"] not in html, f"{page_name} leaks the {date_str} lead"
+        assert f"editions/{date_str}.html" not in html, f"{page_name} links to the held-back {date_str}"
+        assert f"research/{date_str}.pdf" not in html, f"{page_name} links to the held-back research"
 
     index = json.loads((ROOT / "assets" / "search-index.json").read_text(encoding="utf-8"))
     dates = {d.get("date") for d in (index if isinstance(index, list) else index.get("docs", []))}
     assert date_str not in dates, f"search index exposes the held-back {date_str}"
+
+
+@pytest.mark.parametrize("path", PENDING_EDITIONS, ids=lambda p: p.stem)
+def test_a_held_back_edition_keeps_its_research_pdf_in_the_repo(path: Path):
+    """The source PDF under data/research/ is gitignored, so research/<date>.pdf
+    is the only copy committed. Withdrawing it left the cloud build with nothing
+    to publish at midnight, and CI failed on exactly this."""
+    ed = json.loads(path.read_text(encoding="utf-8"))
+    url = (ed.get("lead") or {}).get("url", "")
+    if not url.startswith("research/"):
+        pytest.skip("lead does not link to a research PDF")
+    assert (ROOT / url).exists(), (
+        f"{url} is missing - the edition cannot be published on its day"
+    )
 
 
 def test_compound_interest_matches_the_numbers_in_the_article():
