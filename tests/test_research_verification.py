@@ -206,3 +206,35 @@ def test_auto_disposition_does_not_overwrite_a_human_decision(sandbox):
 
     vr.auto_disposition("demo")
     assert vr.load("demo")["claims"][0]["disposition"] == "print-as-myth"
+
+
+def test_a_checker_reversing_itself_is_recorded_not_hidden(sandbox):
+    """Pass B once fetched the wrong Ipsos survey and the previous year's
+    Gallup poll, then reversed its own correct verdicts. Overwriting quietly
+    would have destroyed good work while looking like progress."""
+    ids = [c["id"] for c in sandbox["claims"]]
+    vr.import_findings("demo", "checker-a", [
+        {"id": ids[0], "verdict": "confirmed", "url": "https://example.com/right-report",
+         "quote": "The survey ran in February and covered thirty countries."}])
+    vr.import_findings("demo", "checker-a", [
+        {"id": ids[0], "verdict": "false", "url": "https://example.com/wrong-report",
+         "quote": "A different survey entirely, run in May across 28 countries."}])
+
+    claim = vr.load("demo")["claims"][0]
+    assert len(claim["checks"]) == 1, "a checker still counts once"
+    check = claim["checks"][0]
+    assert check["reversed"] == "confirmed"
+    assert check["superseded"]["url"] == "https://example.com/right-report"
+    assert claim["reversals"][0]["from"] == "confirmed"
+    assert claim["reversals"][0]["to"] == "false"
+
+
+def test_an_unchanged_recheck_leaves_no_reversal_noise(sandbox):
+    ids = [c["id"] for c in sandbox["claims"]]
+    for _ in range(2):
+        vr.import_findings("demo", "checker-a", [
+            {"id": ids[0], "verdict": "confirmed", "url": "https://example.com/a",
+             "quote": "The same source says the same thing on both readings."}])
+    claim = vr.load("demo")["claims"][0]
+    assert "reversals" not in claim
+    assert "reversed" not in claim["checks"][0]

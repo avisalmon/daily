@@ -220,9 +220,31 @@ def add_check(doc_id: str, claim_id: str, by: str, verdict: str,
     ledger = load(doc_id)
     for c in ledger["claims"]:
         if c["id"] == claim_id:
+            prior = next((k for k in c["checks"] if k["by"] == by), None)
+            new = {"by": by, "verdict": verdict, "url": url,
+                   "quote": quote.strip()[:600], "at": _now()}
+
+            if prior and prior["verdict"] != verdict:
+                # A checker reversing itself is a red flag, not a correction to
+                # apply quietly. It usually means the second pass fetched the
+                # wrong document: a different survey by the same pollster, or
+                # the previous year's edition of the same annual report. That
+                # happened here, and silently overwriting the earlier, correct
+                # check would have destroyed good work while looking like
+                # progress. Keep the old check and make the reversal visible.
+                new["reversed"] = prior["verdict"]
+                new["superseded"] = {k: prior[k] for k in ("verdict", "url",
+                                                           "quote", "at")}
+                c.setdefault("reversals", []).append(
+                    {"by": by, "from": prior["verdict"], "to": verdict,
+                     "at": new["at"]})
+                print(f"  ! {by} reversed itself on {claim_id}: "
+                      f"{prior['verdict']} -> {verdict}. Old source "
+                      f"{prior['url']}, new source {url}. Check which "
+                      f"document is actually the right one.")
+
             c["checks"] = [k for k in c["checks"] if k["by"] != by]
-            c["checks"].append({"by": by, "verdict": verdict, "url": url,
-                                "quote": quote.strip()[:600], "at": _now()})
+            c["checks"].append(new)
             c["verdict"] = _settle(c["checks"])
             save(ledger)
             return

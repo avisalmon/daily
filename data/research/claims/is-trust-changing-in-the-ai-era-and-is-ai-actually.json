@@ -383,9 +383,16 @@
           "url": "https://reutersinstitute.politics.ox.ac.uk/digital-news-report/2023/dnr-executive-summary",
           "quote": "Trust in the news has fallen, across markets, by a further 2 percentage points in the last year",
           "at": "2026-08-30T12:14:54+00:00"
+        },
+        {
+          "by": "gemini-3.1-pro",
+          "verdict": "confirmed",
+          "url": "https://reutersinstitute.politics.ox.ac.uk/digital-news-report/2023/dnr-executive-summary",
+          "quote": "Trust in the news has fallen, across markets, by a further 2 percentage points in the last year",
+          "at": "2026-08-30T12:30:58+00:00"
         }
       ],
-      "verdict": "single-check",
+      "verdict": "confirmed",
       "disposition": null
     },
     {
@@ -782,9 +789,16 @@
           "url": "https://reutersinstitute.politics.ox.ac.uk/digital-news-report/2023/dnr-executive-summary",
           "quote": "This twelfth edition of our Digital News Report, which is based on data from six continents and 46 markets",
           "at": "2026-08-30T12:14:54+00:00"
+        },
+        {
+          "by": "gemini-3.1-pro",
+          "verdict": "confirmed",
+          "url": "https://reutersinstitute.politics.ox.ac.uk/digital-news-report/2023/dnr-executive-summary",
+          "quote": "This twelfth edition of our Digital News Report, which is based on data from six continents and 46 markets",
+          "at": "2026-08-30T12:30:58+00:00"
         }
       ],
-      "verdict": "single-check",
+      "verdict": "confirmed",
       "disposition": null
     },
     {
@@ -874,14 +888,29 @@
         },
         {
           "by": "gemini-3.1-pro",
-          "verdict": "confirmed",
-          "url": "https://www.pewresearch.org/science/2023/02/22/60-of-americans-would-be-uncomfortable-with-provider-relying-on-ai-in-their-own-health-care/",
-          "quote": "The Pew Research Center survey, conducted Dec. 12-18, 2022, of 11,004 U.S. adults",
-          "at": "2026-08-30T12:26:12+00:00"
+          "verdict": "false",
+          "url": "https://www.pewresearch.org/internet/2023/02/15/public-awareness-of-artificial-intelligence-in-everyday-activities/",
+          "quote": "surveyed 11,004 U.S. adults from Dec. 12-18, 2022",
+          "at": "2026-08-30T12:30:58+00:00",
+          "reversed": "confirmed",
+          "superseded": {
+            "verdict": "confirmed",
+            "url": "https://www.pewresearch.org/science/2023/02/22/60-of-americans-would-be-uncomfortable-with-provider-relying-on-ai-in-their-own-health-care/",
+            "quote": "The Pew Research Center survey, conducted Dec. 12-18, 2022, of 11,004 U.S. adults",
+            "at": "2026-08-30T12:26:12+00:00"
+          }
         }
       ],
-      "verdict": "disputed",
-      "disposition": null
+      "verdict": "false",
+      "disposition": null,
+      "reversals": [
+        {
+          "by": "gemini-3.1-pro",
+          "from": "confirmed",
+          "to": "false",
+          "at": "2026-08-30T12:30:58+00:00"
+        }
+      ]
     },
     {
       "id": "cacd3d5ab",

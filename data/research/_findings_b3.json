@@ -1,0 +1,5 @@
+[
+ {"id":"c5e61ded8","verdict":"false","url":"https://www.pewresearch.org/internet/2023/02/15/public-awareness-of-artificial-intelligence-in-everyday-activities/","quote":"surveyed 11,004 U.S. adults from Dec. 12-18, 2022","why":"The document calls this a 'Feb 2023 Pew survey'. The fieldwork was 12-18 December 2022; February 2023 is only the publication date."},
+ {"id":"cda0e9767","verdict":"confirmed","url":"https://reutersinstitute.politics.ox.ac.uk/digital-news-report/2023/dnr-executive-summary","quote":"This twelfth edition of our Digital News Report, which is based on data from six continents and 46 markets","why":"Confirms the 2023 report is the twelfth edition and covers 46 markets."},
+ {"id":"c1b85cce0","verdict":"confirmed","url":"https://reutersinstitute.politics.ox.ac.uk/digital-news-report/2023/dnr-executive-summary","quote":"Trust in the news has fallen, across markets, by a further 2 percentage points in the last year","why":"Confirms the 2 percentage point fall in news trust over the year."}
+]

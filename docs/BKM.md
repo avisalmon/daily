@@ -240,6 +240,39 @@ Note this interacts with the standing brief: demanding twelve domains, a
 disputed-claims section and a source assessment makes the model think harder,
 so a better prompt raises the token ceiling you need.
 
+### A real quote from the wrong document defeats the quote rule
+
+This is the most important limitation found so far, and it is a hole in the
+method rather than in the code.
+
+On its third batch, pass B reversed a series of its own earlier, correct
+verdicts. It called the Ipsos interpersonal-trust figures false by fetching
+the Ipsos *Global Trustworthiness Index*, a different survey by the same
+pollster. It called the 2024 Gallup media figures false by fetching the *2023*
+Gallup poll. It declared the KPMG 2025 AI study "actually from 2023" and its
+fieldwork dates "fabricated", while pasting a quote that reads "(2025) ... A
+global study 2025", contradicting its own verdict.
+
+Every one of those checks carried a real URL and a genuine verbatim quote, so
+every one passed the mechanical gate. The quote requirement stops a model
+answering from memory. It does **not** stop a model reading the wrong page
+with total confidence.
+
+Two defences follow from this:
+
+- **A checker reversing itself is a red flag, not a correction.** `add_check`
+  now keeps the superseded check, records the reversal, and prints a warning
+  naming both URLs. Importing that batch blindly would have overwritten good
+  checks with bad ones while looking like progress.
+- **Watch for right-source-wrong-edition.** Annual reports and repeat surveys
+  are the trap: the same pollster, the same title, the wrong year. When a
+  check contradicts an earlier one, compare the two URLs before believing
+  either.
+
+Coverage also decays. Pass B did 6 useful claims, then 21, then a batch that
+was mostly wrong. Push a checker for volume and quality falls off a cliff
+rather than degrading gently.
+
 ### Most disputes are about precision, not facts
 
 The trust document produced four disputes, and in two of them **both checkers
