@@ -124,18 +124,38 @@ def _config() -> tuple[str, dict, str]:
     )
 
 
-def _call(method: str, url: str, auth: dict, payload: dict | None = None) -> dict:
+def _call(method: str, url: str, auth: dict, payload: dict | None = None,
+          attempts: int = 4) -> dict:
+    """Retry transient network failures.
+
+    A run takes half an hour, and the poll loop must survive a blip: a momentary
+    DNS failure on a corporate VPN killed a submit with a raw traceback. The job
+    itself is safe server-side, so losing the *client* is a pure own goal.
+    HTTP errors are not retried, because a 401 or 400 will not fix itself.
+    """
     data = json.dumps(payload).encode() if payload is not None else None
     req = urllib.request.Request(
         url, data=data, method=method,
         headers={**auth, "Content-Type": "application/json"},
     )
-    try:
-        with urllib.request.urlopen(req, timeout=120) as resp:
-            return json.load(resp)
-    except urllib.error.HTTPError as exc:
-        detail = exc.read().decode(errors="replace")[:600]
-        raise SystemExit(f"HTTP {exc.code} from {url}\n{detail}")
+    for attempt in range(1, attempts + 1):
+        try:
+            with urllib.request.urlopen(req, timeout=120) as resp:
+                return json.load(resp)
+        except urllib.error.HTTPError as exc:
+            detail = exc.read().decode(errors="replace")[:600]
+            raise SystemExit(f"HTTP {exc.code} from {url}\n{detail}")
+        except (urllib.error.URLError, TimeoutError, OSError) as exc:
+            if attempt == attempts:
+                raise SystemExit(
+                    f"Network error after {attempts} attempts: {exc}\n"
+                    f"The job may still be running server-side. Check with:\n"
+                    f"  python scripts\\deep_research.py --status <id>")
+            backoff = 5 * 2 ** (attempt - 1)
+            print(f"  ! network error ({exc}); retrying in {backoff}s "
+                  f"[{attempt}/{attempts - 1}]", flush=True)
+            time.sleep(backoff)
+    raise SystemExit("unreachable")
 
 
 # ---------------------------------------------------------------------------
