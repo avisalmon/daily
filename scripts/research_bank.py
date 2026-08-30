@@ -53,10 +53,35 @@ def _read_pdf(path: Path) -> tuple[str, int]:
     return "\n".join(chunks), pages
 
 
+def _read_markdown(path: Path) -> tuple[str, int]:
+    """A research produced by scripts/deep_research.py. 'Pages' is an estimate
+    at 500 words a page, so the bank listing stays comparable with PDFs.
+
+    Read as utf-8-sig: a file written by PowerShell's `Set-Content -Encoding
+    UTF8` carries a BOM, which would otherwise end up inside the title.
+    """
+    text = path.read_text(encoding="utf-8-sig")
+    return text, max(1, round(len(text.split()) / 500))
+
+
+def _read(path: Path) -> tuple[str, int]:
+    if path.suffix.lower() == ".pdf":
+        return _read_pdf(path)
+    return _read_markdown(path)
+
+
+def _sources(path: Path) -> list[str]:
+    """Deep research documents list their sources; count them for the listing."""
+    if path.suffix.lower() != ".md":
+        return []
+    return re.findall(r"^\d+\.\s+\[.*?\]\((https?://[^)]+)\)",
+                      path.read_text(encoding="utf-8"), re.M)
+
+
 def _guess_title(text: str, fallback: str) -> str:
     """The first substantial line is almost always the title."""
     for raw in text.splitlines():
-        line = " ".join(raw.split())
+        line = " ".join(raw.split()).lstrip("#").strip()
         if len(line) < 8 or len(line) > 140:
             continue
         # Skip page furniture.
@@ -66,6 +91,14 @@ def _guess_title(text: str, fallback: str) -> str:
             continue
         return line
     return fallback
+
+
+def _language(text: str) -> str:
+    """Majority script, not mere presence. A deep-research document written in
+    English still carries a Hebrew 'מקורות' heading, which must not flip it."""
+    hebrew = len(HEBREW.findall(text))
+    latin = len(re.findall(r"[A-Za-z]", text))
+    return "he" if hebrew > latin else "en"
 
 
 def _slugify(title: str) -> str:
@@ -110,7 +143,9 @@ def scan(verbose: bool = True) -> dict:
     now = datetime.now(timezone.utc).isoformat(timespec="seconds")
 
     found = 0
-    for pdf in sorted(BANK_DIR.glob("*.pdf")):
+    for pdf in sorted(list(BANK_DIR.glob("*.pdf")) + list(BANK_DIR.glob("*.md"))):
+        if pdf.name.lower() == "readme.md":
+            continue
         found += 1
         name = pdf.name
         if name in by_file:
@@ -118,7 +153,7 @@ def scan(verbose: bool = True) -> dict:
             continue
 
         try:
-            text, pages = _read_pdf(pdf)
+            text, pages = _read(pdf)
         except Exception as exc:
             if verbose:
                 print(f"  ! {name}: unreadable ({exc})")
@@ -128,10 +163,12 @@ def scan(verbose: bool = True) -> dict:
         entry = {
             "id": _slugify(title if not HEBREW.search(title) else pdf.stem),
             "file": name,
-            "title": title,
-            "language": "he" if HEBREW.search(text) else "en",
+            "title": title.lstrip("# ").strip(),
+            "kind": "deep-research" if pdf.suffix.lower() == ".md" else "pdf",
+            "language": _language(text),
             "pages": pages,
             "words": len(text.split()),
+            "sources": len(_sources(pdf)),
             "extractable": bool(text.strip()),
             "preview": _summarize(text),
             "added_at": now,
@@ -193,7 +230,7 @@ def use(item_id: str, edition_date: str) -> Path:
     if not src.exists():
         raise SystemExit(f"{src} is missing - the PDF was moved or deleted")
 
-    dest = RESEARCH_DIR / f"{edition_date}-{item['id']}.pdf"
+    dest = RESEARCH_DIR / f"{edition_date}-{item['id']}{src.suffix}"
     shutil.copy2(src, dest)
 
     item["used_in"] = edition_date
@@ -221,9 +258,12 @@ def _print_bank() -> None:
     print(f"AVAILABLE ({len(avail)})")
     for i in avail:
         warn = "" if i["extractable"] else "   [NO TEXT LAYER]"
+        kind = "" if i.get("kind", "pdf") == "pdf" else "  · מחקר עומק"
+        srcs = f" · {i['sources']} מקורות" if i.get("sources") else ""
         print(f"  {i['id']}")
         print(f"      {i['title'][:74]}")
-        print(f"      {i['pages']}pp · {i['words']:,} words · {i['language']}{warn}")
+        print(f"      {i['pages']}pp · {i['words']:,} words · {i['language']}"
+              f"{kind}{srcs}{warn}")
         if i.get("notes"):
             print(f"      note: {i['notes']}")
 

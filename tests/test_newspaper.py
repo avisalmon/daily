@@ -237,8 +237,8 @@ def test_claimed_bank_research_is_on_disk_for_its_edition():
     for item in research_bank.load()["items"]:
         if not item.get("used_in"):
             continue
-        expected = ROOT / "data" / "research" / f"{item['used_in']}-{item['id']}.pdf"
-        assert expected.exists(), f"{item['id']} claims {item['used_in']} but {expected.name} is gone"
+        expected = list((ROOT / "data" / "research").glob(f"{item['used_in']}-{item['id']}.*"))
+        assert expected, f"{item['id']} claims {item['used_in']} but no research file is present"
 
 
 # --------------------------------------------------------------------------
