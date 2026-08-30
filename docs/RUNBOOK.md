@@ -94,8 +94,26 @@ Afterwards, close the editorial loop:
 .\.venv\Scripts\python.exe scripts\ledger.py
 ```
 
+## 3a. Publish
+
+Committing is now the whole of publishing, and it is safe: the edition is dated
+ahead, so pushing it does not put it in front of a reader. This is the last step
+of command 2 - there is no third command to remember.
+
+```powershell
+git add -A
+git commit -F <message-file>   # PowerShell has no heredoc; never use <<EOF
+git push origin main
+git ls-remote origin main      # the only trustworthy check - see BKM §5
+```
+
 At midnight Jerusalem, the hourly `publish` workflow rebuilds on GitHub's
-machines and promotes the edition. Nothing here needs to be running.
+machines and promotes the edition. Nothing on this machine needs to be running,
+awake, or even switched on.
+
+If the push itself was the last thing to change the repo, that same workflow
+runs immediately as a check. It is green when the paper is publishable and it
+refuses to commit anything if `validate.py`, the build or the tests fail.
 
 ## 4. Before calling it done
 

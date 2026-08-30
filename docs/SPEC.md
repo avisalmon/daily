@@ -27,11 +27,19 @@ may be hours, and may cross sessions.
                           ↓
   ┌─ 2. "בנה את העיתון"  ────────────────────────────────┐
   │    agent reads plan + PDF → writes edition JSON → builds │
+  │    → commits and pushes, dated ahead and held back        │
   └──────────────────────────────────────────────────────────┘
+                          ↓
+             midnight, Asia/Jerusalem: GitHub Actions
+             rebuilds and the edition becomes the front page
 ```
 
 Because step 2 may run in a fresh session, **step 1's output must be persisted
 to a file.** Nothing may live only in conversation.
+
+There is no third command for publishing. Committing is safe because the build
+holds a dated-ahead edition back (§8), so step 2 ends with a push and the paper
+appears on its own morning without anyone being awake.
 
 ## 3. Command 1 — Editorial meeting
 
