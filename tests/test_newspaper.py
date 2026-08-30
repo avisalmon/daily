@@ -176,17 +176,48 @@ def test_every_topic_has_a_rendered_page(path: Path):
 @pytest.mark.parametrize("path", EDITIONS, ids=lambda p: p.stem)
 def test_edition_links_to_its_topic_page_and_the_catalog(path: Path):
     """The learning block silently dropped its link once: the template asked for
-    `learning.url` while the data carried `learning.slug`."""
+    `learning.url` while the data carried `learning.slug`.
+
+    The guard here used to be `if ed["date"] not in html: continue`, which broke
+    as soon as a second edition existed: the front page's archive rail links to
+    every date, so an older edition matched index.html and the test demanded that
+    the front page link to *that* edition's topic page.
+    """
     ed = json.loads(path.read_text(encoding="utf-8"))
     slug = (ed.get("learning") or {}).get("slug")
     if not slug:
         pytest.skip("edition has no learning topic")
-    for page in (ROOT / "index.html", ROOT / "editions" / f"{ed['date']}.html"):
+
+    pages = [ROOT / "editions" / f"{ed['date']}.html"]
+    if path == EDITIONS[-1]:  # the newest edition is also the front page
+        pages.append(ROOT / "index.html")
+
+    for page in pages:
         html = page.read_text(encoding="utf-8")
-        if ed["date"] not in html:
-            continue
         assert f"{slug}.html" in html, f"{page.name} does not link to the topic page"
         assert "learn.html" in html, f"{page.name} does not link to the catalog"
+
+
+def test_the_front_page_is_the_newest_edition():
+    """index.html is the paper of the day. Building a new edition must promote it
+    to the front page and push the previous one into the archive; a stale front
+    page shipped once and nothing caught it."""
+    newest = json.loads(EDITIONS[-1].read_text(encoding="utf-8"))
+    index = (ROOT / "index.html").read_text(encoding="utf-8")
+
+    assert newest["date_long"] in index, (
+        f"index.html does not carry {newest['date']} - run build_site.py"
+    )
+    assert newest["lead"]["headline"] in index, "front page shows a different lead"
+
+    for older in EDITIONS[:-1]:
+        prev = json.loads(older.read_text(encoding="utf-8"))
+        assert prev["lead"]["headline"] not in index, (
+            f"index.html still shows the lead from {prev['date']}"
+        )
+        assert f"editions/{prev['date']}.html" in index, (
+            f"{prev['date']} is not reachable from the front page archive rail"
+        )
 
 
 def test_compound_interest_matches_the_numbers_in_the_article():
@@ -201,6 +232,76 @@ def test_compound_interest_matches_the_numbers_in_the_article():
 # --------------------------------------------------------------------------
 # Rendering. The CSS broke once from overlapping edits and shipped unnoticed.
 # --------------------------------------------------------------------------
+
+def _render_story(story: dict) -> str:
+    """Render one grid story through the real edition template."""
+    from jinja2 import Environment, FileSystemLoader, select_autoescape
+
+    import build_site
+
+    env = Environment(
+        loader=FileSystemLoader(build_site.TEMPLATE_DIR),
+        autoescape=select_autoescape(["html", "j2"]),
+        trim_blocks=True,
+        lstrip_blocks=True,
+    )
+    src = (build_site.TEMPLATE_DIR / "edition.html.j2").read_text(encoding="utf-8")
+    start = src.index("{% for story in section.stories %}")
+    end = src.index("{% endfor %}", start) + len("{% endfor %}")
+    fragment = src[start:end].replace("section.stories", "stories")
+    return env.from_string(fragment).render(stories=[story])
+
+
+BARE_STORY = {
+    "headline": "כותרת",
+    "summary": "תקציר",
+    "source": "מקור",
+    "time": "10:00",
+    "url": "https://example.com",
+}
+
+
+def test_a_story_without_video_renders_no_iframe():
+    html = _render_story(dict(BARE_STORY))
+    assert "<iframe" not in html
+    assert "story__video" not in html
+
+
+def test_a_video_story_embeds_through_the_nocookie_host():
+    """We never hand the reader's visit to youtube.com directly, and the frame
+    must be lazy so a video can't hold up the front page."""
+    html = _render_story({**BARE_STORY, "video": {
+        "youtube_id": "CHjdtTROPZg",
+        "caption": "כיתוב",
+        "credit": "Associated Press",
+    }})
+    assert "youtube-nocookie.com/embed/CHjdtTROPZg" in html
+    assert "www.youtube.com/embed" not in html
+    assert 'loading="lazy"' in html
+    assert "כיתוב" in html
+    assert "Associated Press" in html
+
+
+def test_a_video_without_an_id_is_ignored_rather_than_rendered_broken():
+    html = _render_story({**BARE_STORY, "video": {"caption": "אין מזהה"}})
+    assert "<iframe" not in html
+    assert "אין מזהה" not in html
+
+
+def test_every_video_in_every_edition_declares_a_credit():
+    """An embed is a quotation. It carries its publisher, like any other source."""
+    for path in EDITIONS:
+        edition = json.loads(path.read_text(encoding="utf-8"))
+        for section in edition.get("grid", []):
+            for story in section.get("stories", []):
+                video = story.get("video")
+                if not video:
+                    continue
+                assert video.get("youtube_id"), f"{path.name}: video with no id"
+                assert video.get("credit"), (
+                    f"{path.name}: video {video['youtube_id']} has no credit"
+                )
+
 
 # --------------------------------------------------------------------------
 # The research bank: a pool of undated deep researches.

@@ -47,6 +47,54 @@
       "source": "Geektime",
       "edition_date": "2026-08-30",
       "recorded_at": "2026-08-29T12:05:32+00:00"
+    },
+    {
+      "url": "https://www.ynet.co.il/digital/technews/article/hyif8lbdzx",
+      "title": "",
+      "title_he": "סקר: רבע מהישראלים שוקלים להיעזר ב-AI בהחלטה למי להצביע",
+      "source": "Ynet",
+      "edition_date": "2026-08-31",
+      "recorded_at": "2026-08-30T14:09:49+00:00"
+    },
+    {
+      "url": "https://www.abc.net.au/news/2026-08-29/fair-work-commission-condemns-ai-legal-advice/107089766",
+      "title": "",
+      "title_he": "בית הדין לעבודה באוסטרליה חייב עובד שהסתמך על ייעוץ AI שגוי בהוצאות",
+      "source": "ABC News",
+      "edition_date": "2026-08-31",
+      "recorded_at": "2026-08-30T14:09:49+00:00"
+    },
+    {
+      "url": "https://techcrunch.com/2026/08/29/nvidias-ai-advantage-is-moving-beyond-the-gpu/",
+      "title": "",
+      "title_he": "היתרון של אנבידיה כבר לא נמצא בשבב עצמו",
+      "source": "TechCrunch",
+      "edition_date": "2026-08-31",
+      "recorded_at": "2026-08-30T14:09:49+00:00"
+    },
+    {
+      "url": "https://www.theverge.com/entertainment/985866/h4rris-nihil-young-edm-suno-ai",
+      "title": "",
+      "title_he": "מוזיקאים הפכו לבלשים כדי לחשוף מוזיקה שנוצרה ב-AI",
+      "source": "The Verge",
+      "edition_date": "2026-08-31",
+      "recorded_at": "2026-08-30T14:09:49+00:00"
+    },
+    {
+      "url": "https://www.geektime.co.il/pixel-11-google-tv-and-nest-are-coming-to-israel/",
+      "title": "",
+      "title_he": "פיקסל 11, Google TV ומצלמות Nest מגיעים לישראל ביבוא מקביל",
+      "source": "Geektime",
+      "edition_date": "2026-08-31",
+      "recorded_at": "2026-08-30T14:09:49+00:00"
+    },
+    {
+      "url": "https://english.beijing.gov.cn/beijinginfo/sci/latesttrends/202608/t20260828_4840947.html",
+      "title": "",
+      "title_he": "אולימפיאדת הרובוטים בבייג'ין: שיאים, ואגן שהתפוצץ",
+      "source": "Beijing Municipal Government / The Guardian",
+      "edition_date": "2026-08-31",
+      "recorded_at": "2026-08-30T14:09:49+00:00"
     }
   ],
   "proposed": [
@@ -55,776 +103,776 @@
       "title": "חיכינו שהמדינה תציל את הילדים מהמסכים. זו הייתה טעות",
       "source": "Ynet — מחשבים",
       "first_proposed": "2026-08-29T12:05:32+00:00",
-      "last_proposed": "2026-08-29T12:05:32+00:00",
-      "times_proposed": 1
+      "last_proposed": "2026-08-30T14:09:49+00:00",
+      "times_proposed": 2
     },
     {
       "url": "https://www.geektime.co.il/volvo-evs-are-about-to-warn-each-other/",
       "title": "הרכבים של Volvo יזהירו אחד את השני מסכנות בכביש",
       "source": "Geektime",
       "first_proposed": "2026-08-29T12:05:32+00:00",
-      "last_proposed": "2026-08-29T12:05:32+00:00",
-      "times_proposed": 1
+      "last_proposed": "2026-08-30T14:09:49+00:00",
+      "times_proposed": 2
     },
     {
       "url": "https://chipsandcheese.com/p/hot-chips-2026-samsungs-processing",
       "title": "Samsung's Processing-in-Memory (PIM)",
       "source": "Hacker News Front Page",
       "first_proposed": "2026-08-29T12:05:32+00:00",
-      "last_proposed": "2026-08-29T12:05:32+00:00",
-      "times_proposed": 1
+      "last_proposed": "2026-08-30T14:09:49+00:00",
+      "times_proposed": 2
     },
     {
       "url": "https://github.com/kingroryg/turbokv",
       "title": "TurboKV: Insanely fast Rust key-value store",
       "source": "Hacker News Front Page",
       "first_proposed": "2026-08-29T12:05:32+00:00",
-      "last_proposed": "2026-08-29T12:05:32+00:00",
-      "times_proposed": 1
+      "last_proposed": "2026-08-30T14:09:49+00:00",
+      "times_proposed": 2
     },
     {
       "url": "https://www.kumander.org/",
       "title": "Kumander Linux – A Linux Distro with a Windows 7 Desktop",
       "source": "Hacker News Front Page",
       "first_proposed": "2026-08-29T12:05:32+00:00",
-      "last_proposed": "2026-08-29T12:05:32+00:00",
-      "times_proposed": 1
+      "last_proposed": "2026-08-30T14:09:49+00:00",
+      "times_proposed": 2
     },
     {
       "url": "https://github.com/stemdeckapp/stemdeck",
       "title": "StemDeck, a free, open-source and local AI stem separator",
       "source": "Hacker News Front Page",
       "first_proposed": "2026-08-29T12:05:32+00:00",
-      "last_proposed": "2026-08-29T12:05:32+00:00",
-      "times_proposed": 1
+      "last_proposed": "2026-08-30T14:09:49+00:00",
+      "times_proposed": 2
     },
     {
       "url": "https://www.vectorian.be/articles/2026-06-07/sumerian-king-list-paleoclimate-alignment-explorer/",
       "title": "Does the Sumerian King List Align with Paleoclimate Events?",
       "source": "Hacker News Front Page",
       "first_proposed": "2026-08-29T12:05:32+00:00",
-      "last_proposed": "2026-08-29T12:05:32+00:00",
-      "times_proposed": 1
+      "last_proposed": "2026-08-30T14:09:49+00:00",
+      "times_proposed": 2
     },
     {
       "url": "https://azmirror.com/2026/08/28/9th-circuit-sides-with-states-in-kalshi-gambling-fight-potentially-reviving-arizonas-prosecution/",
       "title": "9th Circuit sides with states in Kalshi gambling fight",
       "source": "Hacker News Front Page",
       "first_proposed": "2026-08-29T12:05:32+00:00",
-      "last_proposed": "2026-08-29T12:05:32+00:00",
-      "times_proposed": 1
+      "last_proposed": "2026-08-30T14:09:49+00:00",
+      "times_proposed": 2
     },
     {
       "url": "https://pwning.systems/posts/llm-memory-program-analysis/",
       "title": "I accidentally turned LLM memory into program analysis",
       "source": "Hacker News Front Page",
       "first_proposed": "2026-08-29T12:05:32+00:00",
-      "last_proposed": "2026-08-29T12:05:32+00:00",
-      "times_proposed": 1
+      "last_proposed": "2026-08-30T14:09:49+00:00",
+      "times_proposed": 2
     },
     {
       "url": "https://github.com/Lakr233/vphone-cli",
       "title": "Boot a Virtual iPhone via Apple's Virtualization.framework",
       "source": "Hacker News Front Page",
       "first_proposed": "2026-08-29T12:05:32+00:00",
-      "last_proposed": "2026-08-29T12:05:32+00:00",
-      "times_proposed": 1
+      "last_proposed": "2026-08-30T14:09:49+00:00",
+      "times_proposed": 2
     },
     {
       "url": "https://techcrunch.com/2026/08/28/neocloud-lambda-secures-1b-in-debt-to-buy-more-chips/",
       "title": "Neocloud Lambda secures $1B in debt to buy more chips",
       "source": "TechCrunch AI",
       "first_proposed": "2026-08-29T12:05:32+00:00",
-      "last_proposed": "2026-08-29T12:05:32+00:00",
-      "times_proposed": 1
+      "last_proposed": "2026-08-30T14:09:49+00:00",
+      "times_proposed": 2
     },
     {
       "url": "https://techcrunch.com/2026/08/28/an-anthropic-researcher-just-gave-us-a-peek-at-self-improving-ai/",
       "title": "An Anthropic researcher just gave us a peek at self-improving AI",
       "source": "TechCrunch AI",
       "first_proposed": "2026-08-29T12:05:32+00:00",
-      "last_proposed": "2026-08-29T12:05:32+00:00",
-      "times_proposed": 1
+      "last_proposed": "2026-08-30T14:09:49+00:00",
+      "times_proposed": 2
     },
     {
       "url": "https://techcrunch.com/2026/08/28/open-weight-ai-companies-are-the-valleys-hottest-acquisition-targets/",
       "title": "Open-weight AI companies are the Valley’s hottest acquisition targets",
       "source": "TechCrunch AI",
       "first_proposed": "2026-08-29T12:05:32+00:00",
-      "last_proposed": "2026-08-29T12:05:32+00:00",
-      "times_proposed": 1
+      "last_proposed": "2026-08-30T14:09:49+00:00",
+      "times_proposed": 2
     },
     {
       "url": "https://arstechnica.com/tech-policy/2026/08/trump-blacklisting-of-woke-anthropic-deemed-illegal-by-federal-judge/",
       "title": "Trump blacklisting of \"woke\" Anthropic deemed illegal by federal judge",
       "source": "Ars Technica AI",
       "first_proposed": "2026-08-29T12:05:32+00:00",
-      "last_proposed": "2026-08-29T12:05:32+00:00",
-      "times_proposed": 1
+      "last_proposed": "2026-08-30T14:09:49+00:00",
+      "times_proposed": 2
     },
     {
       "url": "https://arxiv.org/abs/2608.23691",
       "title": "Autonomous Mathematical Discovery in an Open-World Multi-Agent Environment",
       "source": "Hacker News Front Page",
       "first_proposed": "2026-08-29T12:05:32+00:00",
-      "last_proposed": "2026-08-29T12:05:32+00:00",
-      "times_proposed": 1
+      "last_proposed": "2026-08-30T14:09:49+00:00",
+      "times_proposed": 2
     },
     {
       "url": "https://www.theverge.com/ai-artificial-intelligence/986176/data-center-pollution-epa-rule-change-air-permit",
       "title": "Trump’s EPA wants to let data centers hide their air pollution",
       "source": "The Verge AI",
       "first_proposed": "2026-08-29T12:05:32+00:00",
-      "last_proposed": "2026-08-29T12:05:32+00:00",
-      "times_proposed": 1
+      "last_proposed": "2026-08-30T14:09:49+00:00",
+      "times_proposed": 2
     },
     {
       "url": "https://anil.recoil.org/notes/rumour-is-the-exploit",
       "title": "Just the rumour of a bug is enough to find an exploit these days",
       "source": "Hacker News Front Page",
       "first_proposed": "2026-08-29T12:05:32+00:00",
-      "last_proposed": "2026-08-29T12:05:32+00:00",
-      "times_proposed": 1
+      "last_proposed": "2026-08-30T14:09:49+00:00",
+      "times_proposed": 2
     },
     {
       "url": "https://arstechnica.com/tech-policy/2026/08/meta-tweaks-ai-glasses-to-block-some-creepy-recordings-but-privacy-risks-remain/",
       "title": "Meta makes AI glasses slightly less creepy with limit on nonconsensual recording",
       "source": "Ars Technica AI",
       "first_proposed": "2026-08-29T12:05:32+00:00",
-      "last_proposed": "2026-08-29T12:05:32+00:00",
-      "times_proposed": 1
+      "last_proposed": "2026-08-30T14:09:49+00:00",
+      "times_proposed": 2
     },
     {
       "url": "https://www.osnews.com/story/145883/easyeffects-should-be-part-of-every-linux-distribution-and-desktop-environment-to-massively-improve-laptop-speaker-sound-quality/",
       "title": "EasyEffects can improve laptop speaker sound quality",
       "source": "Hacker News Front Page",
       "first_proposed": "2026-08-29T12:05:32+00:00",
-      "last_proposed": "2026-08-29T12:05:32+00:00",
-      "times_proposed": 1
+      "last_proposed": "2026-08-30T14:09:49+00:00",
+      "times_proposed": 2
     },
     {
       "url": "https://huggingface.co/zai-org/GLM-5.3",
       "title": "GLM-5.3 is now open-weight",
       "source": "Hacker News Front Page",
       "first_proposed": "2026-08-29T12:05:32+00:00",
-      "last_proposed": "2026-08-29T12:05:32+00:00",
-      "times_proposed": 1
+      "last_proposed": "2026-08-30T14:09:49+00:00",
+      "times_proposed": 2
     },
     {
       "url": "https://ckardaris.com/blog/2026/08/28/keyboard-driven-guis.html",
       "title": "GUIs should be fully keyboard-driven",
       "source": "Hacker News Front Page",
       "first_proposed": "2026-08-29T12:05:32+00:00",
-      "last_proposed": "2026-08-29T12:05:32+00:00",
-      "times_proposed": 1
+      "last_proposed": "2026-08-30T14:09:49+00:00",
+      "times_proposed": 2
     },
     {
       "url": "https://geekyschmidt.com/post/2026-08-25-verschlimmbesserung/",
       "title": "Verschlimmbesserung: The Word Your Software Updates Need",
       "source": "Hacker News Front Page",
       "first_proposed": "2026-08-29T12:05:32+00:00",
-      "last_proposed": "2026-08-29T12:05:32+00:00",
-      "times_proposed": 1
+      "last_proposed": "2026-08-30T14:09:49+00:00",
+      "times_proposed": 2
     },
     {
       "url": "https://four.htmx.org/announcements/2026-08-28-htmx-4.0.0-is-released",
       "title": "Htmx 4.0",
       "source": "Hacker News Front Page",
       "first_proposed": "2026-08-29T12:05:32+00:00",
-      "last_proposed": "2026-08-29T12:05:32+00:00",
-      "times_proposed": 1
+      "last_proposed": "2026-08-30T14:09:49+00:00",
+      "times_proposed": 2
     },
     {
       "url": "https://www.inventati.org/",
       "title": "U.S. sanctions against the A/I Collective",
       "source": "Hacker News Front Page",
       "first_proposed": "2026-08-29T12:05:32+00:00",
-      "last_proposed": "2026-08-29T12:05:32+00:00",
-      "times_proposed": 1
+      "last_proposed": "2026-08-30T14:09:49+00:00",
+      "times_proposed": 2
     },
     {
       "url": "https://techcrunch.com/2026/08/28/anthropic-gets-its-first-court-win-over-the-pentagons-supply-chain-risk-label/",
       "title": "Anthropic gets its first court win over the Pentagon’s supply-chain risk label",
       "source": "TechCrunch AI",
       "first_proposed": "2026-08-29T12:05:32+00:00",
-      "last_proposed": "2026-08-29T12:05:32+00:00",
-      "times_proposed": 1
+      "last_proposed": "2026-08-30T14:09:49+00:00",
+      "times_proposed": 2
     },
     {
       "url": "https://www.technologyreview.com/2026/08/28/1143113/the-download-antiaging-drug-joining-virtual-power-plants/",
       "title": "The Download: a secretive antiaging drug and joining virtual power plants",
       "source": "MIT Technology Review",
       "first_proposed": "2026-08-29T12:05:32+00:00",
-      "last_proposed": "2026-08-29T12:05:32+00:00",
-      "times_proposed": 1
+      "last_proposed": "2026-08-30T14:09:49+00:00",
+      "times_proposed": 2
     },
     {
       "url": "https://www.orbify.eu/demo/",
       "title": "Inception-style curved map for turn-by-turn directions",
       "source": "Hacker News Front Page",
       "first_proposed": "2026-08-29T12:05:32+00:00",
-      "last_proposed": "2026-08-29T12:05:32+00:00",
-      "times_proposed": 1
+      "last_proposed": "2026-08-30T14:09:49+00:00",
+      "times_proposed": 2
     },
     {
       "url": "https://techcrunch.com/2026/08/28/meta-executive-leaves-for-openai-as-the-social-media-giant-faces-growing-scrutiny-in-india/",
       "title": "Meta executive leaves for OpenAI as the social media giant faces growing scrutiny in India",
       "source": "TechCrunch AI",
       "first_proposed": "2026-08-29T12:05:32+00:00",
-      "last_proposed": "2026-08-29T12:05:32+00:00",
-      "times_proposed": 1
+      "last_proposed": "2026-08-30T14:09:49+00:00",
+      "times_proposed": 2
     },
     {
       "url": "https://www.geektime.co.il/samsung-galaxy-z-fold-8-review/",
       "title": "ביקורת Galaxy Z Fold 8: אולי לא צריך לחכות לאייפון המתקפל?",
       "source": "Geektime",
       "first_proposed": "2026-08-29T12:05:32+00:00",
-      "last_proposed": "2026-08-29T12:05:32+00:00",
-      "times_proposed": 1
+      "last_proposed": "2026-08-30T14:09:49+00:00",
+      "times_proposed": 2
     },
     {
       "url": "https://github.com/openai/openai-python/blob/main/httpx2.md",
       "title": "Migrating to HTTPX2",
       "source": "Hacker News Front Page",
       "first_proposed": "2026-08-29T12:05:32+00:00",
-      "last_proposed": "2026-08-29T12:05:32+00:00",
-      "times_proposed": 1
+      "last_proposed": "2026-08-30T14:09:49+00:00",
+      "times_proposed": 2
     },
     {
       "url": "https://www.technologyreview.com/2026/08/28/1142956/how-to-sign-up-for-a-virtual-power-plant-and-decide-whether-you-should/",
       "title": "How to sign up for a virtual power plant—and decide whether you should",
       "source": "MIT Technology Review",
       "first_proposed": "2026-08-29T12:05:32+00:00",
-      "last_proposed": "2026-08-29T12:05:32+00:00",
-      "times_proposed": 1
+      "last_proposed": "2026-08-30T14:09:49+00:00",
+      "times_proposed": 2
     },
     {
       "url": "https://www.geektime.co.il/grand-theft-auto-vi-gta-6-extended-look/",
       "title": "צפו: 26 דקות מתוך GTA 6 שיפילו לכם את הלסת",
       "source": "Geektime",
       "first_proposed": "2026-08-29T12:05:32+00:00",
-      "last_proposed": "2026-08-29T12:05:32+00:00",
-      "times_proposed": 1
+      "last_proposed": "2026-08-30T14:09:49+00:00",
+      "times_proposed": 2
     },
     {
       "url": "https://openai.com/index/supporting-next-generation-ai-startups-thailand",
       "title": "Supporting Thailand’s next generation of AI startups",
       "source": "OpenAI News",
       "first_proposed": "2026-08-29T12:05:32+00:00",
-      "last_proposed": "2026-08-29T12:05:32+00:00",
-      "times_proposed": 1
+      "last_proposed": "2026-08-30T14:09:49+00:00",
+      "times_proposed": 2
     },
     {
       "url": "https://techcrunch.com/2026/08/27/anthropic-and-openai-are-joining-the-ai-stage-at-techcrunch-disrupt-2026/",
       "title": "Anthropic and OpenAI are joining the AI stage at TechCrunch Disrupt 2026",
       "source": "TechCrunch AI",
       "first_proposed": "2026-08-29T12:05:32+00:00",
-      "last_proposed": "2026-08-29T12:05:32+00:00",
-      "times_proposed": 1
+      "last_proposed": "2026-08-30T14:09:49+00:00",
+      "times_proposed": 2
     },
     {
       "url": "https://12factor.net/",
       "title": "The Twelve-Factor App (2025)",
       "source": "Hacker News Front Page",
       "first_proposed": "2026-08-29T12:05:32+00:00",
-      "last_proposed": "2026-08-29T12:05:32+00:00",
-      "times_proposed": 1
+      "last_proposed": "2026-08-30T14:09:49+00:00",
+      "times_proposed": 2
     },
     {
       "url": "https://arstechnica.com/tech-policy/2026/08/elon-musks-xai-used-child-porn-to-train-grok-models-lawsuit-says/",
       "title": "Elon Musk’s xAI used child porn to train Grok models, lawsuit says",
       "source": "Ars Technica AI",
       "first_proposed": "2026-08-29T12:05:32+00:00",
-      "last_proposed": "2026-08-29T12:05:32+00:00",
-      "times_proposed": 1
+      "last_proposed": "2026-08-30T14:09:49+00:00",
+      "times_proposed": 2
     },
     {
       "url": "https://techcrunch.com/2026/08/27/barret-zoph-the-thinking-machines-co-founder-who-defected-to-openai-is-now-at-google/",
       "title": "Barret Zoph, the Thinking Machines co-founder ousted before joining OpenAI, is now at Google",
       "source": "TechCrunch AI",
       "first_proposed": "2026-08-29T12:05:32+00:00",
-      "last_proposed": "2026-08-29T12:05:32+00:00",
-      "times_proposed": 1
+      "last_proposed": "2026-08-30T14:09:49+00:00",
+      "times_proposed": 2
     },
     {
       "url": "https://www.technologyreview.com/2026/08/27/1143037/startup-claims-its-found-a-drug-to-make-your-blood-young/",
       "title": "A startup claims it’s found a drug to make your blood young",
       "source": "MIT Technology Review",
       "first_proposed": "2026-08-29T12:05:32+00:00",
-      "last_proposed": "2026-08-29T12:05:32+00:00",
-      "times_proposed": 1
+      "last_proposed": "2026-08-30T14:09:49+00:00",
+      "times_proposed": 2
     },
     {
       "url": "https://www.theverge.com/tech/985567/google-gemini-notebook-expert-sources-books",
       "title": "Google’s AI note-taking app now allows you to interact with books",
       "source": "The Verge AI",
       "first_proposed": "2026-08-29T12:05:32+00:00",
-      "last_proposed": "2026-08-29T12:05:32+00:00",
-      "times_proposed": 1
+      "last_proposed": "2026-08-30T14:09:49+00:00",
+      "times_proposed": 2
     },
     {
       "url": "https://arstechnica.com/tech-policy/2026/08/ai-industry-says-trump-plans-to-tax-chips-in-the-single-dumbest-way-imaginable/",
       "title": "AI industry says Trump plans to tax chips in the “single dumbest way imaginable”",
       "source": "Ars Technica AI",
       "first_proposed": "2026-08-29T12:05:32+00:00",
-      "last_proposed": "2026-08-29T12:05:32+00:00",
-      "times_proposed": 1
+      "last_proposed": "2026-08-30T14:09:49+00:00",
+      "times_proposed": 2
     },
     {
       "url": "https://techcrunch.com/2026/08/27/openai-anthropic-google-and-100-other-companies-call-for-action-to-defend-against-rogue-ai/",
       "title": "OpenAI, Anthropic, Google, and 100 other companies call for action to defend against rogue AI",
       "source": "TechCrunch AI",
       "first_proposed": "2026-08-29T12:05:32+00:00",
-      "last_proposed": "2026-08-29T12:05:32+00:00",
-      "times_proposed": 1
+      "last_proposed": "2026-08-30T14:09:49+00:00",
+      "times_proposed": 2
     },
     {
       "url": "https://www.theverge.com/ai-artificial-intelligence/985597/jensen-huang-says-nvidia-achieved-senseless-agi",
       "title": "Jensen Huang says Nvidia achieved AGI, again — not that it matters",
       "source": "The Verge AI",
       "first_proposed": "2026-08-29T12:05:32+00:00",
-      "last_proposed": "2026-08-29T12:05:32+00:00",
-      "times_proposed": 1
+      "last_proposed": "2026-08-30T14:09:49+00:00",
+      "times_proposed": 2
     },
     {
       "url": "https://blog.google/products-and-platforms/products/search/book-travel-ai-mode/",
       "title": "3 new ways to plan and book travel in Search",
       "source": "Google AI Blog",
       "first_proposed": "2026-08-29T12:05:32+00:00",
-      "last_proposed": "2026-08-29T12:05:32+00:00",
-      "times_proposed": 1
+      "last_proposed": "2026-08-30T14:09:49+00:00",
+      "times_proposed": 2
     },
     {
       "url": "https://techcrunch.com/2026/08/27/googles-ai-mode-can-now-track-flight-prices-help-book-hotels-and-more/",
       "title": "Google’s AI Mode can now track flight prices, help book hotels, and more",
       "source": "TechCrunch AI",
       "first_proposed": "2026-08-29T12:05:32+00:00",
-      "last_proposed": "2026-08-29T12:05:32+00:00",
-      "times_proposed": 1
+      "last_proposed": "2026-08-30T14:09:49+00:00",
+      "times_proposed": 2
     },
     {
       "url": "https://techcrunch.com/2026/08/27/hugging-face-is-selling-a-cute-399-open-source-duck-robot-microduck/",
       "title": "Hugging Face is selling a cute $399 open source duck robot, Microduck",
       "source": "TechCrunch AI",
       "first_proposed": "2026-08-29T12:05:32+00:00",
-      "last_proposed": "2026-08-29T12:05:32+00:00",
-      "times_proposed": 1
+      "last_proposed": "2026-08-30T14:09:49+00:00",
+      "times_proposed": 2
     },
     {
       "url": "https://techcrunch.com/2026/08/27/ais-memory-crunch-is-coming-for-android-apps/",
       "title": "AI’s memory crunch is coming for Android apps",
       "source": "TechCrunch AI",
       "first_proposed": "2026-08-29T12:05:32+00:00",
-      "last_proposed": "2026-08-29T12:05:32+00:00",
-      "times_proposed": 1
+      "last_proposed": "2026-08-30T14:09:49+00:00",
+      "times_proposed": 2
     },
     {
       "url": "https://techcrunch.com/2026/08/27/heres-all-the-times-ai-has-gone-rogue-and-hacked-other-companies/",
       "title": "Here’s all the times AI has gone rogue and hacked other companies",
       "source": "TechCrunch AI",
       "first_proposed": "2026-08-29T12:05:32+00:00",
-      "last_proposed": "2026-08-29T12:05:32+00:00",
-      "times_proposed": 1
+      "last_proposed": "2026-08-30T14:09:49+00:00",
+      "times_proposed": 2
     },
     {
       "url": "https://venturebeat.com/ai/enterprise-ais-real-risk-isnt-autonomous-agents-its-the-complexity-between-them",
       "title": "Enterprise AI's real risk isn't autonomous agents. It's the complexity between them.",
       "source": "VentureBeat AI",
       "first_proposed": "2026-08-29T12:05:32+00:00",
-      "last_proposed": "2026-08-29T12:05:32+00:00",
-      "times_proposed": 1
+      "last_proposed": "2026-08-30T14:09:49+00:00",
+      "times_proposed": 2
     },
     {
       "url": "https://arstechnica.com/security/2026/08/claude-codex-and-hermes-installed-unowned-code-inside-corporate-networks/",
       "title": "Claude, Codex, and Hermes installed unowned code inside corporate networks",
       "source": "Ars Technica AI",
       "first_proposed": "2026-08-29T12:05:32+00:00",
-      "last_proposed": "2026-08-29T12:05:32+00:00",
-      "times_proposed": 1
+      "last_proposed": "2026-08-30T14:09:49+00:00",
+      "times_proposed": 2
     },
     {
       "url": "https://www.theverge.com/podcast/985332/openai-greg-brockman-sam-altman-leader-executive-exodus",
       "title": "OpenAI&#8217;s executive exodus has one big winner",
       "source": "The Verge AI",
       "first_proposed": "2026-08-29T12:05:32+00:00",
-      "last_proposed": "2026-08-29T12:05:32+00:00",
-      "times_proposed": 1
+      "last_proposed": "2026-08-30T14:09:49+00:00",
+      "times_proposed": 2
     },
     {
       "url": "https://www.geektime.co.il/samsung-galaxy-s26-fe-official-launch/",
       "title": "סמסונג הכריזה על ה-Galaxy S26 FE החדש",
       "source": "Geektime",
       "first_proposed": "2026-08-29T12:05:32+00:00",
-      "last_proposed": "2026-08-29T12:05:32+00:00",
-      "times_proposed": 1
+      "last_proposed": "2026-08-30T14:09:49+00:00",
+      "times_proposed": 2
     },
     {
       "url": "https://www.theverge.com/ai-artificial-intelligence/985500/plaud-one-earbuds-ai-recorder-price-availability",
       "title": "Plaud is launching AI earbuds",
       "source": "The Verge AI",
       "first_proposed": "2026-08-29T12:05:32+00:00",
-      "last_proposed": "2026-08-29T12:05:32+00:00",
-      "times_proposed": 1
+      "last_proposed": "2026-08-30T14:09:49+00:00",
+      "times_proposed": 2
     },
     {
       "url": "https://techcrunch.com/2026/08/27/plauds-new-earphones-come-with-an-esim-enabled-case-for-talking-to-ai-agents/",
       "title": "Plaud’s new earphones come with an eSIM-enabled case for talking to AI agents",
       "source": "TechCrunch AI",
       "first_proposed": "2026-08-29T12:05:32+00:00",
-      "last_proposed": "2026-08-29T12:05:32+00:00",
-      "times_proposed": 1
+      "last_proposed": "2026-08-30T14:09:49+00:00",
+      "times_proposed": 2
     },
     {
       "url": "https://www.theverge.com/tech/985491/adobe-photoshop-ai-assisted-editor-markup",
       "title": "Adobe is adding more AI to Photoshop",
       "source": "The Verge AI",
       "first_proposed": "2026-08-29T12:05:32+00:00",
-      "last_proposed": "2026-08-29T12:05:32+00:00",
-      "times_proposed": 1
+      "last_proposed": "2026-08-30T14:09:49+00:00",
+      "times_proposed": 2
     },
     {
       "url": "https://arstechnica.com/security/2026/08/how-openai-let-a-mob-of-llm-agents-game-a-test-and-ransack-hugging-face/",
       "title": "How OpenAI let a mob of LLM agents game a test and ransack Hugging Face",
       "source": "Ars Technica AI",
       "first_proposed": "2026-08-29T12:05:32+00:00",
-      "last_proposed": "2026-08-29T12:05:32+00:00",
-      "times_proposed": 1
+      "last_proposed": "2026-08-30T14:09:49+00:00",
+      "times_proposed": 2
     },
     {
       "url": "https://www.technologyreview.com/2026/08/27/1143033/the-download-openai-hugging-face-hack-slate-truck-ev/",
       "title": "The Download: inside OpenAI’s Hugging Face hack, and a new EV takes on the US",
       "source": "MIT Technology Review",
       "first_proposed": "2026-08-29T12:05:32+00:00",
-      "last_proposed": "2026-08-29T12:05:32+00:00",
-      "times_proposed": 1
+      "last_proposed": "2026-08-30T14:09:49+00:00",
+      "times_proposed": 2
     },
     {
       "url": "https://venturebeat.com/security/when-agents-act-on-their-own-governance-has-to-live-in-the-data-layer",
       "title": "When agents act on their own, governance has to live in the data layer",
       "source": "VentureBeat AI",
       "first_proposed": "2026-08-29T12:05:32+00:00",
-      "last_proposed": "2026-08-29T12:05:32+00:00",
-      "times_proposed": 1
+      "last_proposed": "2026-08-30T14:09:49+00:00",
+      "times_proposed": 2
     },
     {
       "url": "https://techcrunch.com/2026/08/27/openai-to-start-showing-ads-on-chatgpts-free-and-go-tiers-in-india/",
       "title": "OpenAI to start showing ads on ChatGPT’s free and Go tiers in India",
       "source": "TechCrunch AI",
       "first_proposed": "2026-08-29T12:05:32+00:00",
-      "last_proposed": "2026-08-29T12:05:32+00:00",
-      "times_proposed": 1
+      "last_proposed": "2026-08-30T14:09:49+00:00",
+      "times_proposed": 2
     },
     {
       "url": "https://www.geektime.co.il/intel-management-restructure-vp-cuts/",
       "title": "אינטל חושפת פרטים ראשונים על הקיצוץ הדרמטי בשכבות הניהול שלה",
       "source": "Geektime",
       "first_proposed": "2026-08-29T12:05:32+00:00",
-      "last_proposed": "2026-08-29T12:05:32+00:00",
-      "times_proposed": 1
+      "last_proposed": "2026-08-30T14:09:49+00:00",
+      "times_proposed": 2
     },
     {
       "url": "https://www.technologyreview.com/2026/08/27/1142953/electric-truck-slate-auto/",
       "title": "Is Slate Auto’s new electric truck the EV Americans need?",
       "source": "MIT Technology Review",
       "first_proposed": "2026-08-29T12:05:32+00:00",
-      "last_proposed": "2026-08-29T12:05:32+00:00",
-      "times_proposed": 1
+      "last_proposed": "2026-08-30T14:09:49+00:00",
+      "times_proposed": 2
     },
     {
       "url": "https://openai.com/index/what-students-gain-from-chatgpt-critical-thinking-training",
       "title": "Better answers, broader thinking: What students gain from ChatGPT and critical-thinking training",
       "source": "OpenAI News",
       "first_proposed": "2026-08-29T12:05:32+00:00",
-      "last_proposed": "2026-08-29T12:05:32+00:00",
-      "times_proposed": 1
+      "last_proposed": "2026-08-30T14:09:49+00:00",
+      "times_proposed": 2
     },
     {
       "url": "https://www.ynet.co.il/digital/technews/article/hjdtoptvmx",
       "title": "28 אלף דולר לעובד בחודש: חשבון ה-AI של מיקרוסופט יצא משליטה",
       "source": "Ynet — מחשבים",
       "first_proposed": "2026-08-29T12:05:32+00:00",
-      "last_proposed": "2026-08-29T12:05:32+00:00",
-      "times_proposed": 1
+      "last_proposed": "2026-08-30T14:09:49+00:00",
+      "times_proposed": 2
     },
     {
       "url": "https://www.geektime.co.il/google-gemini-3-5-transcribe/",
       "title": "גוגל משחררת בחינם את Rambler אחד הפיצ'רים הכי מגניבים של הפיקסל",
       "source": "Geektime",
       "first_proposed": "2026-08-29T12:05:32+00:00",
-      "last_proposed": "2026-08-29T12:05:32+00:00",
-      "times_proposed": 1
+      "last_proposed": "2026-08-30T14:09:49+00:00",
+      "times_proposed": 2
     },
     {
       "url": "https://www.ynet.co.il/digital/technews/article/hj3lzdtwze",
       "title": "הסדר היסטורי למטא: תשלם מיליארדי דולרים ותגביל שימוש לילדים ובני נוער",
       "source": "Ynet — מחשבים",
       "first_proposed": "2026-08-29T12:05:32+00:00",
-      "last_proposed": "2026-08-29T12:05:32+00:00",
-      "times_proposed": 1
+      "last_proposed": "2026-08-30T14:09:49+00:00",
+      "times_proposed": 2
     },
     {
       "url": "https://www.geektime.co.il/meta-17b-fine-settlement/",
       "title": "מטא תשלם מיליארדי דולרים. כמה? תלוי בטיקטוק ויוטיוב",
       "source": "Geektime",
       "first_proposed": "2026-08-29T12:05:32+00:00",
-      "last_proposed": "2026-08-29T12:05:32+00:00",
-      "times_proposed": 1
+      "last_proposed": "2026-08-30T14:09:49+00:00",
+      "times_proposed": 2
     },
     {
       "url": "https://openai.com/index/expanding-our-presence-in-brazil",
       "title": "Expanding OpenAI’s presence in Brazil",
       "source": "OpenAI News",
       "first_proposed": "2026-08-29T12:05:32+00:00",
-      "last_proposed": "2026-08-29T12:05:32+00:00",
-      "times_proposed": 1
+      "last_proposed": "2026-08-30T14:09:49+00:00",
+      "times_proposed": 2
     },
     {
       "url": "https://techcrunch.com/2026/08/26/amazon-just-tripled-its-order-of-nvidia-chips-over-surging-demand/",
       "title": "Amazon just tripled its order of Nvidia chips over ‘surging demand’",
       "source": "TechCrunch AI",
       "first_proposed": "2026-08-29T12:05:32+00:00",
-      "last_proposed": "2026-08-29T12:05:32+00:00",
-      "times_proposed": 1
+      "last_proposed": "2026-08-30T14:09:49+00:00",
+      "times_proposed": 2
     },
     {
       "url": "https://www.theverge.com/tech/985387/nvidia-hundred-billion-dollar-quarterly-revenue",
       "title": "Nvidia is about to be a hundred-billion-dollar-a-quarter company",
       "source": "The Verge AI",
       "first_proposed": "2026-08-29T12:05:32+00:00",
-      "last_proposed": "2026-08-29T12:05:32+00:00",
-      "times_proposed": 1
+      "last_proposed": "2026-08-30T14:09:49+00:00",
+      "times_proposed": 2
     },
     {
       "url": "https://techcrunch.com/2026/08/26/anthropic-continues-compute-gobbling-streak-in-45-billion-deal-with-nscale/",
       "title": "Anthropic continues compute-gobbling streak in $45B deal with Nscale",
       "source": "TechCrunch AI",
       "first_proposed": "2026-08-29T12:05:32+00:00",
-      "last_proposed": "2026-08-29T12:05:32+00:00",
-      "times_proposed": 1
+      "last_proposed": "2026-08-30T14:09:49+00:00",
+      "times_proposed": 2
     },
     {
       "url": "https://www.theverge.com/ai-artificial-intelligence/985385/openais-rogue-ai-model-hugging-face-cybersecurity-incident-reports-metr",
       "title": "OpenAI’s rogue AI model incident was worse than we thought",
       "source": "The Verge AI",
       "first_proposed": "2026-08-29T12:05:32+00:00",
-      "last_proposed": "2026-08-29T12:05:32+00:00",
-      "times_proposed": 1
+      "last_proposed": "2026-08-30T14:09:49+00:00",
+      "times_proposed": 2
     },
     {
       "url": "https://arstechnica.com/ai/2026/08/metas-scrapped-plans-to-go-ai-native-included-slashing-teams-by-60-percent/",
       "title": "AI agents meant to replace Meta workers made “large-scale, disruptive actions”",
       "source": "Ars Technica AI",
       "first_proposed": "2026-08-29T12:05:32+00:00",
-      "last_proposed": "2026-08-29T12:05:32+00:00",
-      "times_proposed": 1
+      "last_proposed": "2026-08-30T14:09:49+00:00",
+      "times_proposed": 2
     },
     {
       "url": "https://techcrunch.com/2026/08/26/googles-gemini-has-a-branding-problem-and-so-does-the-rest-of-ai/",
       "title": "Google’s Gemini has a branding problem, and so does the rest of AI",
       "source": "TechCrunch AI",
       "first_proposed": "2026-08-29T12:05:32+00:00",
-      "last_proposed": "2026-08-29T12:05:32+00:00",
-      "times_proposed": 1
+      "last_proposed": "2026-08-30T14:09:49+00:00",
+      "times_proposed": 2
     },
     {
       "url": "https://arstechnica.com/ai/2026/08/google-announces-gemini-3-5-transcribe-for-ai-powered-speech-to-text/",
       "title": "Google announces Gemini 3.5 Transcribe for AI-powered speech-to-text",
       "source": "Ars Technica AI",
       "first_proposed": "2026-08-29T12:05:32+00:00",
-      "last_proposed": "2026-08-29T12:05:32+00:00",
-      "times_proposed": 1
+      "last_proposed": "2026-08-30T14:09:49+00:00",
+      "times_proposed": 2
     },
     {
       "url": "https://www.technologyreview.com/2026/08/26/1143013/the-inside-story-on-why-openai-agents-hacked-hugging-face/",
       "title": "The inside story on why OpenAI agents hacked Hugging Face",
       "source": "MIT Technology Review",
       "first_proposed": "2026-08-29T12:05:32+00:00",
-      "last_proposed": "2026-08-29T12:05:32+00:00",
-      "times_proposed": 1
+      "last_proposed": "2026-08-30T14:09:49+00:00",
+      "times_proposed": 2
     },
     {
       "url": "https://www.ynet.co.il/digital/technews/article/rj9v2i3wmx",
       "title": "אייפון מתקפל ומנכ\"ל חדש: אפל הכריזה על תאריך לאירוע השקה היסטורי",
       "source": "Ynet — מחשבים",
       "first_proposed": "2026-08-29T12:05:32+00:00",
-      "last_proposed": "2026-08-29T12:05:32+00:00",
-      "times_proposed": 1
+      "last_proposed": "2026-08-30T14:09:49+00:00",
+      "times_proposed": 2
     },
     {
       "url": "https://www.geektime.co.il/apple-announces-its-next-event-for-2026/",
       "title": "רשמי: יש תאריך לאירוע ההכרזה של האייפון הבא",
       "source": "Geektime",
       "first_proposed": "2026-08-29T12:05:32+00:00",
-      "last_proposed": "2026-08-29T12:05:32+00:00",
-      "times_proposed": 1
+      "last_proposed": "2026-08-30T14:09:49+00:00",
+      "times_proposed": 2
     },
     {
       "url": "https://venturebeat.com/orchestration/orchestration-is-the-new-challenge-for-cx-in-the-age-of-ai-agents",
       "title": "Orchestration is the new challenge for CX in the age of AI agents",
       "source": "VentureBeat AI",
       "first_proposed": "2026-08-29T12:05:32+00:00",
-      "last_proposed": "2026-08-29T12:05:32+00:00",
-      "times_proposed": 1
+      "last_proposed": "2026-08-30T14:09:49+00:00",
+      "times_proposed": 2
     },
     {
       "url": "https://www.ynet.co.il/digital/reviews/article/syjxd11ipgg",
       "title": "לא משנה איפה החתול מתחבא: הרובוט הזה כנראה ימצא (ויצלם) אותו",
       "source": "Ynet — מחשבים",
       "first_proposed": "2026-08-29T12:05:32+00:00",
-      "last_proposed": "2026-08-29T12:05:32+00:00",
-      "times_proposed": 1
+      "last_proposed": "2026-08-30T14:09:49+00:00",
+      "times_proposed": 2
     },
     {
       "url": "https://www.geektime.co.il/meta-ai-replacement-project-imploded/",
       "title": "נחשפה התוכנית הדרמטית של מארק צוקרברג להחליף אלפי עובדים ב-AI",
       "source": "Geektime",
       "first_proposed": "2026-08-29T12:05:32+00:00",
-      "last_proposed": "2026-08-29T12:05:32+00:00",
-      "times_proposed": 1
+      "last_proposed": "2026-08-30T14:09:49+00:00",
+      "times_proposed": 2
     },
     {
       "url": "https://www.ynet.co.il/digital/technews/article/bjwy11d2wze",
       "title": "צוקרברג תכנן לפטר 60% מהעובדים בצוותי מטא - ונסוג ברגע האחרון",
       "source": "Ynet — מחשבים",
       "first_proposed": "2026-08-29T12:05:32+00:00",
-      "last_proposed": "2026-08-29T12:05:32+00:00",
-      "times_proposed": 1
+      "last_proposed": "2026-08-30T14:09:49+00:00",
+      "times_proposed": 2
     },
     {
       "url": "https://www.technologyreview.com/2026/08/26/1143000/the-download-kids-issue-launch-bill-gates-ai-fears/",
       "title": "The Download: the Kids issue arrives, and Bill Gates reveals his AI fears",
       "source": "MIT Technology Review",
       "first_proposed": "2026-08-29T12:05:32+00:00",
-      "last_proposed": "2026-08-29T12:05:32+00:00",
-      "times_proposed": 1
+      "last_proposed": "2026-08-30T14:09:49+00:00",
+      "times_proposed": 2
     },
     {
       "url": "https://arstechnica.com/ai/2026/08/ibms-new-granite-4-2-models-ride-the-wave-of-interest-in-local-llms/",
       "title": "IBM's new Granite 4.2 models ride the wave of interest in local LLMs",
       "source": "Ars Technica AI",
       "first_proposed": "2026-08-29T12:05:32+00:00",
-      "last_proposed": "2026-08-29T12:05:32+00:00",
-      "times_proposed": 1
+      "last_proposed": "2026-08-30T14:09:49+00:00",
+      "times_proposed": 2
     },
     {
       "url": "https://openai.com/index/learning-never-stops",
       "title": "Learning never stops: How AI makes learning continuous",
       "source": "OpenAI News",
       "first_proposed": "2026-08-29T12:05:32+00:00",
-      "last_proposed": "2026-08-29T12:05:32+00:00",
-      "times_proposed": 1
+      "last_proposed": "2026-08-30T14:09:49+00:00",
+      "times_proposed": 2
     },
     {
       "url": "https://openai.com/index/bringing-chatgpt-for-teachers-to-more-us-school-districts",
       "title": "Bringing ChatGPT for Teachers to more U.S. school districts",
       "source": "OpenAI News",
       "first_proposed": "2026-08-29T12:05:32+00:00",
-      "last_proposed": "2026-08-29T12:05:32+00:00",
-      "times_proposed": 1
+      "last_proposed": "2026-08-30T14:09:49+00:00",
+      "times_proposed": 2
     },
     {
       "url": "https://www.ynet.co.il/digital/technews/article/h1lvlqhpgx",
       "title": "גוף טיטניום ומסך ענק: גרמין השיקה בישראל את Fenix 9",
       "source": "Ynet — מחשבים",
       "first_proposed": "2026-08-29T12:05:32+00:00",
-      "last_proposed": "2026-08-29T12:05:32+00:00",
-      "times_proposed": 1
+      "last_proposed": "2026-08-30T14:09:49+00:00",
+      "times_proposed": 2
     },
     {
       "url": "https://www.technologyreview.com/2026/08/26/1141949/editors-letter-september-2026/",
       "title": "Raised on AI",
       "source": "MIT Technology Review",
       "first_proposed": "2026-08-29T12:05:32+00:00",
-      "last_proposed": "2026-08-29T12:05:32+00:00",
-      "times_proposed": 1
+      "last_proposed": "2026-08-30T14:09:49+00:00",
+      "times_proposed": 2
     },
     {
       "url": "https://www.technologyreview.com/2026/08/26/1141952/puzzles-ai-models-flub-these-tests/",
       "title": "AI models flub these intelligence tests. Can you fare any better?",
       "source": "MIT Technology Review",
       "first_proposed": "2026-08-29T12:05:32+00:00",
-      "last_proposed": "2026-08-29T12:05:32+00:00",
-      "times_proposed": 1
+      "last_proposed": "2026-08-30T14:09:49+00:00",
+      "times_proposed": 2
     },
     {
       "url": "https://www.geektime.co.il/gov-job-offers-aug-2026/",
       "title": "רוצים גם הייטק וגם יציבות? הנה 10 משרות חדשות שאתם צריכים להכיר",
       "source": "Geektime",
       "first_proposed": "2026-08-29T12:05:32+00:00",
-      "last_proposed": "2026-08-29T12:05:32+00:00",
-      "times_proposed": 1
+      "last_proposed": "2026-08-30T14:09:49+00:00",
+      "times_proposed": 2
     },
     {
       "url": "https://www.technologyreview.com/2026/08/26/1142946/bill-gates-ai-danger-threshold/",
       "title": "Bill Gates says we’ve passed AI’s danger thresholds. Now what?",
       "source": "MIT Technology Review",
       "first_proposed": "2026-08-29T12:05:32+00:00",
-      "last_proposed": "2026-08-29T12:05:32+00:00",
-      "times_proposed": 1
+      "last_proposed": "2026-08-30T14:09:49+00:00",
+      "times_proposed": 2
     },
     {
       "url": "https://www.geektime.co.il/whatsapp-security-passkeys-2fa-calls/",
       "title": "וואטסאפ מעדכנת את מנגנון האבטחה והסיסמאות שלכם",
       "source": "Geektime",
       "first_proposed": "2026-08-29T12:05:32+00:00",
-      "last_proposed": "2026-08-29T12:05:32+00:00",
-      "times_proposed": 1
+      "last_proposed": "2026-08-30T14:09:49+00:00",
+      "times_proposed": 2
     },
     {
       "url": "https://www.ynet.co.il/digital/technews/article/rjv8kl2pfg",
       "title": "חזק יותר, חכם יותר ויקר יותר: אפל חשפה את מחשבי המק החדשים",
       "source": "Ynet — מחשבים",
       "first_proposed": "2026-08-29T12:05:32+00:00",
-      "last_proposed": "2026-08-29T12:05:32+00:00",
-      "times_proposed": 1
+      "last_proposed": "2026-08-30T14:09:49+00:00",
+      "times_proposed": 2
     },
     {
       "url": "https://openai.com/index/hugging-face-incident-and-the-road-ahead",
       "title": "The Hugging Face incident and the road ahead",
       "source": "OpenAI News",
       "first_proposed": "2026-08-29T12:05:32+00:00",
-      "last_proposed": "2026-08-29T12:05:32+00:00",
-      "times_proposed": 1
+      "last_proposed": "2026-08-30T14:09:49+00:00",
+      "times_proposed": 2
     },
     {
       "url": "https://openai.com/index/loveholidays",
       "title": "How loveholidays is making everyone a builder with Codex",
       "source": "OpenAI News",
       "first_proposed": "2026-08-29T12:05:32+00:00",
-      "last_proposed": "2026-08-29T12:05:32+00:00",
-      "times_proposed": 1
+      "last_proposed": "2026-08-30T14:09:49+00:00",
+      "times_proposed": 2
     },
     {
       "url": "https://arstechnica.com/ai/2026/08/world-humanoid-robot-games-show-runners-breaking-records-bursting-into-flames/",
       "title": "World humanoid robot games show runners breaking records, bursting into flames",
       "source": "Ars Technica AI",
       "first_proposed": "2026-08-29T12:05:32+00:00",
-      "last_proposed": "2026-08-29T12:05:32+00:00",
-      "times_proposed": 1
+      "last_proposed": "2026-08-30T14:09:49+00:00",
+      "times_proposed": 2
     },
     {
       "url": "https://blog.google/products-and-platforms/products/search/home-decor-tips/",
       "title": "5 ways to upgrade your home decor with Google Search",
       "source": "Google AI Blog",
       "first_proposed": "2026-08-29T12:05:32+00:00",
-      "last_proposed": "2026-08-29T12:05:32+00:00",
-      "times_proposed": 1
+      "last_proposed": "2026-08-30T14:09:49+00:00",
+      "times_proposed": 2
     },
     {
       "url": "https://arstechnica.com/health/2026/08/ai-wont-replace-radiologists-but-it-will-dramatically-change-their-jobs/",
       "title": "AI won’t replace radiologists, but it will dramatically change their jobs",
       "source": "Ars Technica AI",
       "first_proposed": "2026-08-29T12:05:32+00:00",
-      "last_proposed": "2026-08-29T12:05:32+00:00",
-      "times_proposed": 1
+      "last_proposed": "2026-08-30T14:09:49+00:00",
+      "times_proposed": 2
     },
     {
       "url": "https://www.geektime.co.il/apple-mac-studio-mini-m5-m6/",
       "title": "אפל חושפת Mac mini ו-Mac Studio חדשים",
       "source": "Geektime",
       "first_proposed": "2026-08-29T12:05:32+00:00",
-      "last_proposed": "2026-08-29T12:05:32+00:00",
-      "times_proposed": 1
+      "last_proposed": "2026-08-30T14:09:49+00:00",
+      "times_proposed": 2
     }
   ]
 }

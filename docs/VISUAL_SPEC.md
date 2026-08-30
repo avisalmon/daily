@@ -105,6 +105,34 @@ hairline border. Aspect ratios are fixed: lead **3:2**, standard story **16:10**
 **21:9**, portrait **1:1** circular. Placeholder art is generated locally as SVG engravings by
 `scripts/build_site.py` — no external image requests.
 
+### Video
+
+A story may carry an optional `video` object. It renders as a 16:9 frame inside the
+article, between the headline and the summary, styled like a photograph: a hairline
+border, no rounded corners, no shadow, no invented play button. The caption sits under
+a thin rule in the sans face at 12.5px, with the credit in small caps.
+
+```json
+"video": {
+  "youtube_id": "CHjdtTROPZg",
+  "caption": "…",
+  "credit": "Associated Press"
+}
+```
+
+Rules, all of them binding:
+
+- **YouTube only, embedded via `youtube-nocookie.com`.** No Facebook, Instagram or
+  TikTok embeds — they require a tracking SDK and frequently fail to render.
+- **The ID must be verified before it is printed**, by calling the YouTube oEmbed
+  endpoint, which confirms the video exists, is embeddable, and returns the real
+  publisher name for the credit. Never write an ID from memory or inference.
+- **Prefer a news agency or newspaper** as publisher, for the same reason we prefer
+  primary sources in text.
+- `loading="lazy"` always, so a video never delays the front page.
+- **Video does not print.** The `@media print` block hides the frame and keeps the
+  caption.
+
 ---
 
 ## 4. Responsive behavior
@@ -168,8 +196,9 @@ Build:
 `lead`: `kicker`, `headline`, `standfirst`, `body` (string[] of paragraphs), `source`, `time`,
 `url`, `image`, `caption` — all required.
 
-`grid[].stories[]`: `headline`, `summary`, `source`, `time`, `url` required; `image` and
-`wide` (bool) optional.
+`grid[].stories[]`: `headline`, `summary`, `source`, `time`, `url` required; `image`,
+`wide` (bool) and `video` (`{ youtube_id, caption, credit }`) optional. See §3 *Video*
+for the verification rule that governs `youtube_id`.
 
 `story_count` is computed at build time — do not put it in the JSON.
 

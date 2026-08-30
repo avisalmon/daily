@@ -382,6 +382,42 @@ img { max-width: 100%; display: block; }
 .story--wide { grid-column: span 2; }
 .story--wide .story__headline { font-size: 32px; }
 
+/* ============ וידאו בתוך ידיעה ============ */
+/* עיתון שמראה וידאו הוא עדיין עיתון. המסגרת נשארת שקטה: בלי צל, בלי פינות
+   מעוגלות, בלי כפתור נגינה מומצא. קו דק כמו סביב תצלום עיתונאי. */
+.story__video {
+  margin: 12px 0 14px;
+}
+.story__video-frame {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%;          /* 16:9 */
+  background: var(--ink);
+  border: 1px solid var(--rule);
+}
+.story__video-frame iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+.story__video-caption {
+  font-family: var(--sans);
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--ink-faint);
+  padding-top: 6px;
+  border-top: 1px solid var(--rule-faint, var(--rule));
+  margin-top: 6px;
+}
+.story__video-credit {
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: 11px;
+}
+
 /* ============ פרשנות ============ */
 
 .opinion {
@@ -1472,4 +1508,7 @@ img { max-width: 100%; display: block; }
 @media print {
   .rail, .banner, .editions-bar { display: none; }
   body { background: #fff; }
+  /* וידאו לא מודפס. במקומו נשארת הכותרת בלבד. */
+  .story__video-frame { display: none; }
+  .story__video-caption { border-top: 0; padding-top: 0; }
 }

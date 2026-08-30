@@ -109,6 +109,23 @@
         {% for story in section.stories %}
         <article class="story {% if story.wide %}story--wide{% endif %}">
           <h3 class="story__headline"><a href="{{ story.url }}">{{ story.headline }}</a></h3>
+          {% if story.video and story.video.youtube_id %}
+          <figure class="story__video">
+            <div class="story__video-frame">
+              <iframe
+                src="https://www.youtube-nocookie.com/embed/{{ story.video.youtube_id }}"
+                title="{{ story.video.caption | default(story.headline) }}"
+                loading="lazy" referrerpolicy="strict-origin-when-cross-origin"
+                allow="accelerometer; encrypted-media; picture-in-picture"
+                allowfullscreen></iframe>
+            </div>
+            {% if story.video.caption %}
+            <figcaption class="story__video-caption">
+              {{ story.video.caption }}{% if story.video.credit %} <span class="story__video-credit">{{ story.video.credit }}</span>{% endif %}
+            </figcaption>
+            {% endif %}
+          </figure>
+          {% endif %}
           <p class="story__summary">{{ story.summary }}</p>
           <p class="story__meta">{{ story.source }} · <span class="ltr">{{ story.time }}</span></p>
         </article>
