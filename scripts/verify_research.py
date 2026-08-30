@@ -234,6 +234,93 @@ def set_disposition(doc_id: str, claim_id: str, disposition: str) -> None:
 # seal
 # ---------------------------------------------------------------------------
 
+def brief(doc_id: str, checker: str | None = None) -> str:
+    """Generate the adversarial prompt for a checking pass.
+
+    Typing checks by hand does not survive a daily paper, and a neutral
+    "please review this" prompt gets a neutral rubber stamp. This bakes in the
+    framing that actually worked: name the document's weaknesses up front, ban
+    answering from memory, and demand a quote per claim.
+    """
+    ledger = load(doc_id)
+    path = doc_path(doc_id)
+    text = path.read_text(encoding="utf-8-sig")
+    domains = sorted({m for m in re.findall(r"https?://(?:www\.)?([^/)#\s]+)", text)})
+
+    todo = [c for c in ledger["claims"]
+            if checker is None or checker not in {k["by"] for k in c["checks"]}]
+
+    lines = [
+        "You are an ADVERSARIAL fact-checker. Your job is not to agree with this "
+        "document. Your job is to try to FALSIFY each claim.",
+        "",
+        f"The document was produced by an AI deep-research model. It made many web "
+        f"searches but cited only {len(domains)} unique domains: "
+        f"{', '.join(domains)}.",
+        "Treat trade associations, industry bodies, and content farms as "
+        "promotional sources, not scholarship. Assume this document repeats "
+        "widely-circulated myths, because that is what such sources recycle.",
+        "",
+        "ABSOLUTE REQUIREMENT: for every claim you MUST actually fetch a web page "
+        "and paste a VERBATIM QUOTE from it. Do not answer from memory. A "
+        "confident answer from memory is worthless here: common myths saturate "
+        "training data, so you would simply repeat them. If you cannot fetch a "
+        "source, answer 'unsupported' rather than guessing.",
+        "Prefer sources independent of the ones listed above. Primary sources, "
+        "academic and museum pages are best.",
+        "",
+        "Also flag any place where the document contradicts ITSELF.",
+        "",
+        f"Return one JSON array. Each element: "
+        f'{{"id": "<claim id>", "verdict": "confirmed|false|disputed|unsupported", '
+        f'"url": "<url you fetched>", "quote": "<verbatim quote>", '
+        f'"why": "<one sentence>"}}',
+        "",
+        f"CLAIMS ({len(todo)}):",
+    ]
+    for c in todo:
+        lines.append(f'  {c["id"]}: {c["text"]}')
+    return "\n".join(lines)
+
+
+def import_findings(doc_id: str, by: str, findings: list[dict]) -> tuple[int, list[str]]:
+    """Record a whole pass at once. Rejects the bad ones individually rather
+    than failing the batch, so one sloppy entry does not lose the good work."""
+    ok, rejected = 0, []
+    for f in findings:
+        try:
+            add_check(doc_id, f["id"], by, f["verdict"], f["url"], f["quote"])
+            ok += 1
+        except SystemExit as exc:
+            rejected.append(f"{f.get('id', '?')}: {exc}")
+        except KeyError as exc:
+            rejected.append(f"{f.get('id', '?')}: missing field {exc}")
+    return ok, rejected
+
+
+def auto_disposition(doc_id: str) -> dict[str, int]:
+    """Apply the obvious dispositions so a human only decides the real ones.
+
+    confirmed -> print. false and unsupported -> cut, because printing a myth
+    as a myth is a deliberate editorial choice, never a default. disputed is
+    left alone: that is exactly the call a person must make.
+    """
+    ledger = load(doc_id)
+    counts: dict[str, int] = {}
+    for c in ledger["claims"]:
+        if c["disposition"] is not None:
+            continue
+        if c["verdict"] == "confirmed":
+            c["disposition"] = "print"
+        elif c["verdict"] in ("false", "unsupported"):
+            c["disposition"] = "cut"
+        else:
+            continue
+        counts[c["disposition"]] = counts.get(c["disposition"], 0) + 1
+    save(ledger)
+    return counts
+
+
 def status(doc_id: str) -> dict:
     ledger = load(doc_id)
     claims = ledger["claims"]
@@ -324,6 +411,20 @@ def main(argv=None) -> int:
     p.add_argument("doc")
     p.add_argument("--only")
 
+    p = sub.add_parser("brief", help="generate the adversarial prompt for a pass")
+    p.add_argument("doc")
+    p.add_argument("--for", dest="checker",
+                   help="only claims this checker has not seen yet")
+
+    p = sub.add_parser("import", help="record a whole pass from a JSON file")
+    p.add_argument("doc")
+    p.add_argument("--by", required=True)
+    p.add_argument("--file", required=True)
+
+    p = sub.add_parser("auto-disposition",
+                       help="print the confirmed, cut the false; leave disputed to a human")
+    p.add_argument("doc")
+
     p = sub.add_parser("seal", help="can this be printed?")
     p.add_argument("doc")
 
@@ -339,6 +440,17 @@ def main(argv=None) -> int:
         print(f"{a.claim} -> {a.disposition}")
     elif a.cmd == "show":
         show(a.doc, a.only)
+    elif a.cmd == "brief":
+        print(brief(a.doc, a.checker))
+    elif a.cmd == "import":
+        data = json.loads(Path(a.file).read_text(encoding="utf-8-sig"))
+        ok, rejected = import_findings(a.doc, a.by, data)
+        print(f"{ok} checks recorded from {a.by}")
+        for r in rejected:
+            print(f"  REJECTED {r}")
+    elif a.cmd == "auto-disposition":
+        counts = auto_disposition(a.doc)
+        print(counts or "nothing to auto-dispose; disputed claims need you")
     elif a.cmd == "seal":
         return 0 if seal(a.doc) else 1
     return 0

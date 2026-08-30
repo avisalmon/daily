@@ -142,6 +142,25 @@ def _call(method: str, url: str, auth: dict, payload: dict | None = None) -> dic
 # the job
 # ---------------------------------------------------------------------------
 
+def _brief() -> str:
+    """The standing brief lives in prompts/, not in this file. Prompts are
+    content and get edited far more often than code."""
+    p = ROOT / "prompts" / "deep_research.md"
+    if not p.exists():
+        raise SystemExit(f"Missing {p}. The standing research brief is required: "
+                         "an unbriefed question is what produced 7 domains and a "
+                         "printed myth on the first run.")
+    text = p.read_text(encoding="utf-8-sig")
+    if "---BRIEF---" not in text or "---END BRIEF---" not in text:
+        raise SystemExit(f"{p} must contain ---BRIEF--- and ---END BRIEF--- markers.")
+    body = text.split("---BRIEF---", 1)[1].split("---END BRIEF---", 1)[0]
+    return body.strip()
+
+
+def build_input(question: str) -> str:
+    return f"{_brief()}\n\nRESEARCH QUESTION:\n{question.strip()}\n"
+
+
 def submit(question: str, max_tokens: int = MIN_OUTPUT_TOKENS) -> dict:
     endpoint, auth, deployment = _config()
     if max_tokens < MIN_OUTPUT_TOKENS:
@@ -151,7 +170,7 @@ def submit(question: str, max_tokens: int = MIN_OUTPUT_TOKENS) -> dict:
 
     body = {
         "model": deployment,
-        "input": question,
+        "input": build_input(question),
         "background": True,          # required: long-running job
         "max_output_tokens": max_tokens,
         "tools": [{"type": "web_search_preview"}],   # required: at least one
@@ -306,7 +325,16 @@ def main() -> int:
     ap.add_argument("--resume", metavar="ID", help="poll an existing run and file it")
     ap.add_argument("--status", metavar="ID", help="print the state of a run and exit")
     ap.add_argument("--max-tokens", type=int, default=MIN_OUTPUT_TOKENS)
+    ap.add_argument("--show-prompt", action="store_true",
+                    help="print exactly what would be sent, and exit. "
+                         "A run costs 30 minutes, so read it first.")
     args = ap.parse_args()
+
+    if args.show_prompt:
+        if not args.question:
+            raise SystemExit("--show-prompt needs a question")
+        print(build_input(args.question))
+        return 0
 
     if args.status:
         res = status(args.status)
