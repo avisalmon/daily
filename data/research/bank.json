@@ -13,6 +13,22 @@
       "used_in": null,
       "notes": "",
       "missing": false
+    },
+    {
+      "id": "the-history-of-ice-cream",
+      "file": "the-history-of-ice-cream-origins-how-it-spread-acr.md",
+      "title": "The history of ice cream",
+      "kind": "deep-research",
+      "language": "en",
+      "pages": 5,
+      "words": 2545,
+      "sources": 41,
+      "extractable": true,
+      "preview": "# The history of ice cream **Question asked:** The history of ice cream: origins, how it spread across cultures, the technology that made it mass-market, and how it became what it is today. Deep research, o3-deep-research, 2026-08-30T06:59:41+00:00. 86 web searches, 132203 tokens. # The History of Ice Cream **Introduct…",
+      "added_at": "2026-08-30T07:01:15+00:00",
+      "used_in": null,
+      "notes": "",
+      "missing": false
     }
   ]
 }

@@ -320,3 +320,34 @@ def test_build_is_reproducible():
         capture_output=True, text=True, encoding="utf-8", cwd=ROOT,
     )
     assert proc.returncode == 0, proc.stdout + proc.stderr
+
+
+def _load_bank():
+    import importlib.util
+    spec = importlib.util.spec_from_file_location(
+        'research_bank', ROOT / 'scripts' / 'research_bank.py')
+    rb = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(rb)
+    return rb
+
+
+def test_bank_title_prefers_the_h1_not_the_provenance_line():
+    """A deep-research document titles itself with the whole question, which can
+    run past the length guard. When it did, the guard silently skipped it and the
+    title became 'Deep research, o3-deep-research, <date>.'"""
+    rb = _load_bank()
+    long_h1 = '# The history of ice cream: ' + 'x' * 200
+    doc = long_h1 + '\n\nDeep research, o3-deep-research, 2026-08-30T06:59:41+00:00.\n'
+    title = rb._guess_title(doc, 'fallback')
+    assert not title.lower().startswith('deep research,'), \
+        'title fell through to the provenance line: ' + repr(title)
+    assert title.startswith('The history of ice cream')
+    assert len(title) <= 140
+
+
+def test_bank_language_is_majority_script_not_mere_presence():
+    """Deep-research documents are written in English but carry a Hebrew
+    sources heading, which must not flip the whole document to Hebrew."""
+    rb = _load_bank()
+    assert rb._language('The history of ice cream is long.\n\n## מקורות\n') == 'en'
+    assert rb._language('ההיסטוריה של הגלידה ארוכה.\n\n## Sources\n') == 'he'

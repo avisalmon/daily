@@ -33,6 +33,7 @@ RESEARCH_DIR = ROOT / "data" / "research"
 INDEX = RESEARCH_DIR / "bank.json"
 
 HEBREW = re.compile(r"[\u0590-\u05FF]")
+PROVENANCE = re.compile(r"^Deep research,\s", re.I)
 
 
 # ---------------------------------------------------------------------------
@@ -79,7 +80,19 @@ def _sources(path: Path) -> list[str]:
 
 
 def _guess_title(text: str, fallback: str) -> str:
-    """The first substantial line is almost always the title."""
+    """The first substantial line is almost always the title.
+
+    A markdown H1 wins outright, truncated rather than skipped: a deep-research
+    document titles itself with the whole question, which can run past any
+    sane length limit, and skipping it silently picked up the provenance line
+    underneath instead.
+    """
+    for raw in text.splitlines():
+        if raw.lstrip().startswith("# "):
+            h1 = " ".join(raw.split()).lstrip("#").strip()
+            if len(h1) >= 8:
+                return h1 if len(h1) <= 140 else h1[:137].rstrip(" ,;:") + "..."
+
     for raw in text.splitlines():
         line = " ".join(raw.split()).lstrip("#").strip()
         if len(line) < 8 or len(line) > 140:
@@ -88,6 +101,8 @@ def _guess_title(text: str, fallback: str) -> str:
         if re.fullmatch(r"[\d\s\.\-–—|]+", line):
             continue
         if line.lower().startswith(("page ", "http", "www.", "doi:")):
+            continue
+        if PROVENANCE.match(line):
             continue
         return line
     return fallback

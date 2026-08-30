@@ -9,12 +9,14 @@ meeting will find it.
     python scripts\\deep_research.py --resume resp_abc123
     python scripts\\deep_research.py --status resp_abc123
 
-Credentials come from the environment or ~/.copilot/.env:
+Auth: your own Azure AD identity is the working path. Just `az login` — this asks
+for a `https://cognitiveservices.azure.com` token. The resource sits in a
+subscription we cannot see, so `az cognitiveservices account keys list` fails
+with ResourceGroupNotFound, but data-plane RBAC is granted separately from
+control-plane read, so the token authenticates anyway. A `DEEP_RESEARCH_KEY` in
+the environment or ~/.copilot/.env is honoured if present, but is not needed.
 
     DEEP_RESEARCH_ENDPOINT   https://oai-modelon-westus.cognitiveservices.azure.com/
-    DEEP_RESEARCH_KEY        az cognitiveservices account keys list \\
-                               -g rg-modelon-westus -n oai-modelon-westus \\
-                               --query key1 -o tsv
     DEEP_RESEARCH_DEPLOYMENT o3-deep-research
 
 Three things that will bite you, all handled here:
@@ -36,6 +38,8 @@ import argparse
 import json
 import os
 import re
+import shutil
+import subprocess
 import sys
 import time
 import urllib.error
@@ -77,26 +81,54 @@ def _load_env() -> dict[str, str]:
     return env
 
 
-def _config() -> tuple[str, str, str]:
-    env = _load_env()
-    key = env.get("DEEP_RESEARCH_KEY") or env.get("AZURE_DEEP_RESEARCH_KEY")
-    if not key:
-        raise SystemExit(
-            "No DEEP_RESEARCH_KEY.\n"
-            "  az cognitiveservices account keys list -g rg-modelon-westus "
-            "-n oai-modelon-westus --query key1 -o tsv\n"
-            "then put it in ~/.copilot/.env as DEEP_RESEARCH_KEY=..."
+def _aad_token() -> str | None:
+    """The resource lives in a subscription we cannot see, so `az cognitiveservices
+    account keys list` fails with ResourceGroupNotFound. Data-plane RBAC is granted
+    separately from control-plane read, though, so an Azure AD token works even
+    when the resource is invisible. This is the path that actually authenticates."""
+    az = shutil.which("az") or shutil.which("az.cmd")
+    if not az:
+        return None
+    try:
+        out = subprocess.run(
+            [az, "account", "get-access-token",
+             "--resource", "https://cognitiveservices.azure.com",
+             "--query", "accessToken", "-o", "tsv"],
+            capture_output=True, text=True, timeout=90,
         )
+    except (subprocess.TimeoutExpired, OSError):
+        return None
+    token = out.stdout.strip()
+    return token or None
+
+
+def _config() -> tuple[str, dict, str]:
+    """Returns the auth header rather than a bare key, because the two supported
+    modes need different headers."""
+    env = _load_env()
     endpoint = (env.get("DEEP_RESEARCH_ENDPOINT") or DEFAULT_ENDPOINT).rstrip("/")
     deployment = env.get("DEEP_RESEARCH_DEPLOYMENT") or DEFAULT_DEPLOYMENT
-    return endpoint, key, deployment
+
+    key = env.get("DEEP_RESEARCH_KEY") or env.get("AZURE_DEEP_RESEARCH_KEY")
+    if key:
+        return endpoint, {"api-key": key}, deployment
+
+    token = _aad_token()
+    if token:
+        return endpoint, {"Authorization": f"Bearer {token}"}, deployment
+
+    raise SystemExit(
+        "No way to authenticate to deep research.\n"
+        "  az login            (preferred: your own identity has data-plane access)\n"
+        "or put a key in ~/.copilot/.env as DEEP_RESEARCH_KEY=..."
+    )
 
 
-def _call(method: str, url: str, key: str, payload: dict | None = None) -> dict:
+def _call(method: str, url: str, auth: dict, payload: dict | None = None) -> dict:
     data = json.dumps(payload).encode() if payload is not None else None
     req = urllib.request.Request(
         url, data=data, method=method,
-        headers={"api-key": key, "Content-Type": "application/json"},
+        headers={**auth, "Content-Type": "application/json"},
     )
     try:
         with urllib.request.urlopen(req, timeout=120) as resp:
@@ -111,7 +143,7 @@ def _call(method: str, url: str, key: str, payload: dict | None = None) -> dict:
 # ---------------------------------------------------------------------------
 
 def submit(question: str, max_tokens: int = MIN_OUTPUT_TOKENS) -> dict:
-    endpoint, key, deployment = _config()
+    endpoint, auth, deployment = _config()
     if max_tokens < MIN_OUTPUT_TOKENS:
         print(f"! raising max_output_tokens {max_tokens} -> {MIN_OUTPUT_TOKENS} "
               "(reasoning tokens count against it)")
@@ -124,7 +156,7 @@ def submit(question: str, max_tokens: int = MIN_OUTPUT_TOKENS) -> dict:
         "max_output_tokens": max_tokens,
         "tools": [{"type": "web_search_preview"}],   # required: at least one
     }
-    res = _call("POST", f"{endpoint}/openai/v1/responses", key, body)
+    res = _call("POST", f"{endpoint}/openai/v1/responses", auth, body)
     RUNS.mkdir(parents=True, exist_ok=True)
     (RUNS / f"{res['id']}.request.json").write_text(
         json.dumps({"question": question, "submitted_at": _now(), **body},
@@ -134,8 +166,8 @@ def submit(question: str, max_tokens: int = MIN_OUTPUT_TOKENS) -> dict:
 
 
 def status(response_id: str) -> dict:
-    endpoint, key, _ = _config()
-    return _call("GET", f"{endpoint}/openai/v1/responses/{response_id}", key)
+    endpoint, auth, _ = _config()
+    return _call("GET", f"{endpoint}/openai/v1/responses/{response_id}", auth)
 
 
 def wait(response_id: str, quiet: bool = False) -> dict:
@@ -202,6 +234,20 @@ def _slug(question: str) -> str:
     return "research-" + datetime.now().strftime("%Y%m%d-%H%M")
 
 
+def _headline(question: str) -> str:
+    """A question is usually a long sentence with the real subject up front. Keep
+    that first clause as the H1, so the bank listing reads like a title rather
+    than a paragraph."""
+    head = question.strip().split("\n")[0]
+    for sep in (":", "?", "—", " - "):
+        if sep in head:
+            head = head.split(sep)[0].strip() + ("?" if sep == "?" else "")
+            break
+    if len(head) > 110:
+        head = head[:107].rstrip(" ,;:") + "..."
+    return head
+
+
 def file_result(question: str, res: dict) -> Path:
     """Write the finished research into the bank as a markdown document."""
     text, sources = extract(res)
@@ -214,11 +260,13 @@ def file_result(question: str, res: dict) -> Path:
 
     usage = res.get("usage") or {}
     lines = [
-        f"# {question}",
+        f"# {_headline(question)}",
         "",
         f"Deep research, {res.get('model', '?')}, {_now()}.",
         f"{searches_made(res)} web searches, "
         f"{usage.get('total_tokens', '?')} tokens.",
+        "",
+        f"**Question asked:** {question}",
         "",
         text,
     ]
