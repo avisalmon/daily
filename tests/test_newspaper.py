@@ -383,6 +383,20 @@ def test_every_video_in_every_edition_declares_a_credit():
 # The research bank: a pool of undated deep researches.
 # --------------------------------------------------------------------------
 
+# The bank PDFs and the dated source PDFs are gitignored inputs: they exist only
+# on the machine where the paper is written. The tests below guard that
+# workspace's bookkeeping, not the published site, so a checkout that never had
+# the inputs - the cloud publish job - skips them instead of failing on files it
+# was never given.
+BANK_DIR = ROOT / "data" / "research" / "bank"
+HAS_RESEARCH_INPUTS = any(BANK_DIR.glob("*.pdf")) or any((ROOT / "data" / "research").glob("*.pdf"))
+needs_research_inputs = pytest.mark.skipif(
+    not HAS_RESEARCH_INPUTS,
+    reason="no research inputs in this checkout - they are gitignored editorial inputs",
+)
+
+
+@needs_research_inputs
 def test_bank_index_matches_the_files_on_disk():
     import research_bank
 
@@ -408,6 +422,7 @@ def test_a_bank_research_is_never_used_twice():
     assert len(used) == len(set(used)), "two bank items claim the same edition"
 
 
+@needs_research_inputs
 def test_claimed_bank_research_is_on_disk_for_its_edition():
     import research_bank
 
