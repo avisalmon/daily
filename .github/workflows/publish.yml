@@ -1,0 +1,68 @@
+# Promotes the paper at midnight, Asia/Jerusalem, with the PC switched off.
+#
+# An edition is usually written the evening before and committed dated ahead.
+# build_site.py refuses to publish an edition before its date, so the commit is
+# safe: the site keeps showing yesterday's paper even though tomorrow's is
+# already in the repository. This job runs on GitHub's machines, rebuilds, and
+# the rebuild promotes the edition the moment its date arrives.
+#
+# Why hourly rather than one cron at midnight:
+#   - Jerusalem is UTC+3 in summer and UTC+2 in winter. A fixed UTC cron would
+#     be an hour wrong for half the year; running hourly and letting
+#     paper_today() decide sidesteps DST entirely.
+#   - GitHub's scheduler is routinely 5-30 minutes late and sometimes skips a
+#     run under load. An hourly job self-heals: the next run picks it up.
+# The job is a no-op on the 23 hours where nothing changed, so this is cheap.
+
+name: publish
+
+on:
+  schedule:
+    - cron: "0 * * * *"
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: publish
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - run: pip install -r requirements.txt
+
+      - name: Validate
+        run: python scripts/validate.py
+
+      - name: Build
+        run: python scripts/build_site.py
+
+      # Runs after the build so it checks what is about to be committed, not
+      # what was committed last night. A failure here stops the push, which is
+      # the point: a broken or leaking site must not reach the reader.
+      - name: Test
+        run: python -m pytest -q
+
+      - name: Commit the rebuilt site
+        run: |
+          if [ -z "$(git status --porcelain)" ]; then
+            echo "Nothing changed. The paper of the day is already published."
+            exit 0
+          fi
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Publish the paper for $(TZ=Asia/Jerusalem date +%Y-%m-%d)"
+          git push

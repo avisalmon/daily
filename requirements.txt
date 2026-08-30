@@ -20,6 +20,10 @@ rapidfuzz>=3.9
 Jinja2>=3.1
 markdown-it-py>=3.0
 
+# Timezones. The paper's day is Asia/Jerusalem, and Windows ships no tz
+# database, so zoneinfo needs this to resolve the zone off-Linux.
+tzdata>=2024.1
+
 # LLM (adjust once provider is chosen)
 openai>=1.40
 

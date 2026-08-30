@@ -13,10 +13,6 @@
 </head>
 <body>
 
-<div class="banner">
-  זוהי מהדורת ארכיון מתאריך יום ראשון, 30 באוגוסט 2026 ·
-  <a href="../index.html">למהדורה של היום &larr;</a>
-</div>
 
 <div class="wrap">
 
@@ -49,8 +45,6 @@
   <nav class="editions-bar" aria-label="מהדורות קודמות">
     <div class="editions-bar__track">
       <span class="editions-bar__label">מהדורות:</span>
-      <a class="chip "
-         href="../editions/2026-08-31.html">31 באוגוסט</a>
       <a class="chip is-current"
          href="../editions/2026-08-30.html">30 באוגוסט</a>
     </div>
@@ -178,12 +172,6 @@
       <section class="module module--archive">
         <h4 class="module__head">מהדורות קודמות</h4>
         <ul class="archive">
-          <li class="">
-            <a href="../editions/2026-08-31.html">
-              <span>31 באוגוסט</span>
-              <span class="n">מס׳ 5</span>
-            </a>
-          </li>
           <li class="is-current">
             <a href="../editions/2026-08-30.html">
               <span>30 באוגוסט</span>
@@ -196,13 +184,17 @@
       <section class="module">
         <h4 class="module__head">מזג האוויר</h4>
         <div class="almanac"
+             data-live-weather
+             data-lat="32.81303"
+             data-lon="34.99928"
+             data-tz="Asia/Jerusalem"
 >
           <p class="almanac__note" data-w="place">חיפה</p>
-          <p class="almanac__temp" data-w="temp">29°</p>
-          <p class="almanac__note" data-w="conditions">מעונן חלקית</p>
+          <p class="almanac__temp" data-w="temp">28°</p>
+          <p class="almanac__note" data-w="conditions">בהיר בעיקר</p>
           <p class="almanac__range">
             <span data-w="range" class="ltr">30° / 25°</span>
-            <span data-w="humidity">לחות 59%</span>
+            <span data-w="humidity">לחות 73%</span>
           </p>
         </div>
       </section>
@@ -227,6 +219,53 @@
 
 </div>
 
+<script>
+/* מזג אוויר חי — מרענן את המודול בעת פתיחת העיתון.
+   Open-Meteo: ללא מפתח, ללא הרשמה. אם הבקשה נכשלת, נשאר הערך שהודפס. */
+(function () {
+  var box = document.querySelector('[data-live-weather]');
+  if (!box || !window.fetch) return;
+
+  var WMO = {
+    0: 'בהיר', 1: 'בהיר בעיקר', 2: 'מעונן חלקית', 3: 'מעונן',
+    45: 'ערפל', 48: 'ערפל מקפיא',
+    51: 'טפטוף קל', 53: 'טפטוף', 55: 'טפטוף חזק',
+    56: 'טפטוף קפוא קל', 57: 'טפטוף קפוא',
+    61: 'גשם קל', 63: 'גשם', 65: 'גשם חזק',
+    66: 'גשם קפוא קל', 67: 'גשם קפוא',
+    71: 'שלג קל', 73: 'שלג', 75: 'שלג כבד', 77: 'גרגרי שלג',
+    80: 'ממטרים קלים', 81: 'ממטרים', 82: 'ממטרים עזים',
+    85: 'ממטרי שלג קלים', 86: 'ממטרי שלג',
+    95: 'סופת רעמים', 96: 'סופת רעמים עם ברד קל', 99: 'סופת רעמים עם ברד'
+  };
+
+  function set(key, text) {
+    var el = box.querySelector('[data-w="' + key + '"]');
+    if (el && text) el.textContent = text;
+  }
+
+  var url = 'https://api.open-meteo.com/v1/forecast'
+    + '?latitude=' + encodeURIComponent(box.dataset.lat)
+    + '&longitude=' + encodeURIComponent(box.dataset.lon)
+    + '&current=temperature_2m,relative_humidity_2m,weather_code'
+    + '&daily=temperature_2m_max,temperature_2m_min'
+    + '&timezone=' + encodeURIComponent(box.dataset.tz)
+    + '&forecast_days=1';
+
+  fetch(url, { mode: 'cors' })
+    .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+    .then(function (d) {
+      var c = d.current, day = d.daily;
+      set('temp', Math.round(c.temperature_2m) + '°');
+      set('conditions', WMO[c.weather_code] || 'לא ידוע');
+      set('humidity', 'לחות ' + Math.round(c.relative_humidity_2m) + '%');
+      set('range', Math.round(day.temperature_2m_max[0]) + '° / '
+                 + Math.round(day.temperature_2m_min[0]) + '°');
+      box.setAttribute('data-live', 'ok');
+    })
+    .catch(function () { /* keep the printed reading */ });
+})();
+</script>
 
 </body>
 </html>

@@ -3,15 +3,23 @@
 Reads every edition JSON in data/editions/, renders one HTML page per edition
 into editions/, and copies the newest edition to index.html.
 
+An edition dated in the future is written but not published: it stays out of the
+front page, the archive, search and the learning catalog until its date arrives
+in Asia/Jerusalem. That is what lets an edition be prepared the evening before
+and appear on its own morning without anyone at the keyboard.
+
     python scripts/build_site.py
+    python scripts/build_site.py --include-future   # local preview only
 """
 
 from __future__ import annotations
 
+import argparse
 import json
 import shutil
-from datetime import datetime
+from datetime import date, datetime
 from pathlib import Path
+from zoneinfo import ZoneInfo
 
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 
@@ -66,13 +74,45 @@ PALETTES = [
 
 
 
-def load_editions() -> list[dict]:
+def paper_today() -> date:
+    """The date the paper considers 'today', in Asia/Jerusalem.
+
+    Never use the server clock. GitHub Actions runs in UTC, where midnight in
+    Israel falls at 21:00 the previous day in summer and 22:00 in winter, so a
+    naive local date would flip the front page two or three hours early and the
+    error would change with daylight saving.
+    """
+    return datetime.now(ZoneInfo("Asia/Jerusalem")).date()
+
+
+def load_editions(include_future: bool = False) -> list[dict]:
+    """Editions newest first, excluding any dated after today.
+
+    An edition may be written and committed the day before it runs. Until its
+    date arrives it is not the front page, not in the archive, not in search and
+    not in the learning catalog: the whole site is built from this one list, so
+    gating here gates everything.
+    """
     editions = [json.loads(p.read_text(encoding="utf-8")) for p in sorted(DATA_DIR.glob("*.json"))]
     for e in editions:
         e["story_count"] = 1 + sum(len(s["stories"]) for s in e.get("grid", []))
         e.setdefault("date_long", he_date_long(datetime.fromisoformat(e["date"])))
+    if not include_future:
+        today = paper_today()
+        editions = [e for e in editions if date.fromisoformat(e["date"]) <= today]
     editions.sort(key=lambda e: e["date"], reverse=True)
     return editions
+
+
+def pending_editions() -> list[dict]:
+    """Editions written but not yet due. Reported so a build never looks silent."""
+    today = paper_today()
+    out = []
+    for p in sorted(DATA_DIR.glob("*.json")):
+        e = json.loads(p.read_text(encoding="utf-8"))
+        if date.fromisoformat(e["date"]) > today:
+            out.append(e)
+    return out
 
 
 def publish_research(editions: list[dict]) -> list[str]:
@@ -169,19 +209,29 @@ def learning_topics(editions: list[dict]) -> list[dict]:
     return topics
 
 
-def render_topics(env, editions: list[dict]) -> list[str]:
+def render_topics(env, editions: list[dict], held_back: set[str] | None = None) -> list[str]:
     """Render one standalone page per learning topic.
 
-    The catalog grows day by day; each topic keeps its own page forever.
+    The catalog grows day by day; each topic keeps its own page forever. A topic
+    belonging to an edition that is not yet due is skipped, and any page left
+    from an earlier build is removed: the learning page would otherwise reveal
+    tomorrow's topic while the edition itself is still held back.
     """
     if not TOPIC_DIR.exists():
         return []
+    held_back = held_back or set()
     by_date = {e["date"]: e for e in editions}
     template = env.get_template("topic.html.j2")
     LEARN_OUT.mkdir(parents=True, exist_ok=True)
     written = []
     for path in sorted(TOPIC_DIR.glob("*.json")):
         topic = json.loads(path.read_text(encoding="utf-8"))
+        if topic.get("edition") in held_back:
+            stale = LEARN_OUT / f"{topic['slug']}.html"
+            if stale.exists():
+                stale.unlink()
+                print(f"Withdrew not-yet-due topic: learn/{stale.name}")
+            continue
         edition = by_date.get(topic.get("edition", ""))
         if edition:
             topic.setdefault("date_long", edition["date_long"])
@@ -203,7 +253,7 @@ def group_by_month(archive: list[dict]) -> list[dict]:
     return groups
 
 
-def build() -> None:
+def build(include_future: bool = False) -> None:
     problems = validate.validate()
     if problems:
         print(f"VALIDATION FAILED - {len(problems)} problem(s):")
@@ -211,9 +261,15 @@ def build() -> None:
             print(f"  - {p}")
         raise SystemExit("Refusing to publish. Fix the data or the rule in scripts/validate.py.")
 
-    editions = load_editions()
+    editions = load_editions(include_future=include_future)
+    pending = [] if include_future else pending_editions()
     if not editions:
-        raise SystemExit("No editions found in data/editions/")
+        raise SystemExit(
+            "No editions are due yet. "
+            + (f"{len(pending)} edition(s) dated in the future: "
+               + ", ".join(e["date"] for e in pending)
+               + ". Preview with --include-future." if pending else "data/editions/ is empty.")
+        )
 
     research = publish_research(editions)
     EDITIONS_DIR.mkdir(parents=True, exist_ok=True)
@@ -243,22 +299,33 @@ def build() -> None:
 
     latest = editions[0]
 
-    # The newest edition carries a live reading; archived editions keep the
-    # weather they were printed with. A failed fetch changes nothing.
-    try:
-        reading = weather.fetch()
-        latest["almanac"] = reading
-        path = DATA_DIR / f"{latest['date']}.json"
-        if path.exists():
-            stored = json.loads(path.read_text(encoding="utf-8"))
-            stored["almanac"] = reading
-            path.write_text(
-                json.dumps(stored, ensure_ascii=False, indent=2) + "\n",
-                encoding="utf-8",
-            )
-        print(f"Weather: {reading['place']} {reading['temp']} {reading['conditions']}")
-    except Exception as exc:
-        print(f"Weather: fetch failed ({exc}) - keeping stored reading")
+    # The newest edition carries a reading taken at press time; archived editions
+    # keep the weather they were printed with. A failed fetch changes nothing.
+    #
+    # Press time is once per paper-day. This used to refetch on every build, which
+    # was harmless by hand but not in CI: the hourly publish job would rewrite the
+    # temperature and commit it 24 times a day. A newspaper prints one reading and
+    # does not amend it at noon, so the stored `observed` timestamp decides - if
+    # it already falls on the paper's own day, it stands.
+    stored_reading = latest.get("almanac") or {}
+    observed = str(stored_reading.get("observed", ""))[:10]
+    if observed == latest["date"]:
+        print(f"Weather: keeping the reading taken at press time ({stored_reading.get('temp')})")
+    else:
+        try:
+            reading = weather.fetch()
+            latest["almanac"] = reading
+            path = DATA_DIR / f"{latest['date']}.json"
+            if path.exists():
+                stored = json.loads(path.read_text(encoding="utf-8"))
+                stored["almanac"] = reading
+                path.write_text(
+                    json.dumps(stored, ensure_ascii=False, indent=2) + "\n",
+                    encoding="utf-8",
+                )
+            print(f"Weather: {reading['place']} {reading['temp']} {reading['conditions']}")
+        except Exception as exc:
+            print(f"Weather: fetch failed ({exc}) - keeping stored reading")
 
     for edition in editions:
         # Pages inside editions/ need to climb one level for shared assets.
@@ -270,6 +337,20 @@ def build() -> None:
             is_latest=edition["date"] == latest["date"],
         )
         (EDITIONS_DIR / f"{edition['date']}.html").write_text(html, encoding="utf-8")
+
+    # A held-back edition must not survive as a stale file from an earlier build.
+    # Without this, running --include-future once would publish it permanently.
+    if not include_future:
+        due = {e["date"] for e in editions}
+        for stale in sorted(EDITIONS_DIR.glob("*.html")):
+            if stale.stem not in due:
+                stale.unlink()
+                print(f"Withdrew not-yet-due page: editions/{stale.name}")
+        if RESEARCH_OUT.exists():
+            for stale in sorted(RESEARCH_OUT.glob("*.pdf")):
+                if stale.stem not in due:
+                    stale.unlink()
+                    print(f"Withdrew not-yet-due research: research/{stale.name}")
 
     index_html = template.render(
         site=SITE,
@@ -300,12 +381,18 @@ def build() -> None:
             encoding="utf-8",
         )
 
-    topic_pages = render_topics(env, editions)
+    topic_pages = render_topics(env, editions, held_back={e["date"] for e in pending})
 
     print(f"Built {len(editions)} edition(s).")
     print(f"  index.html -> {latest['date']} (No. {latest['number']})")
     for a in archive:
         print(f"  {a['href']}")
+    if pending:
+        print(f"Held back {len(pending)} edition(s) not yet due (Asia/Jerusalem {paper_today()}):")
+        for e in pending:
+            print(f"  {e['date']} (No. {e['number']}) - {e['lead']['headline']}")
+    if include_future:
+        print("PREVIEW BUILD: future editions are included. Do not commit this output.")
     if research:
         print(f"Published {len(research)} research PDF(s): {', '.join(research)}")
     print(f"Search index: {len(docs)} documents -> assets/search-index.json")
@@ -316,4 +403,11 @@ def build() -> None:
 
 
 if __name__ == "__main__":
-    build()
+    parser = argparse.ArgumentParser(description="Build the newspaper site.")
+    parser.add_argument(
+        "--include-future",
+        action="store_true",
+        help="Also build editions dated after today. Local preview only; the "
+             "output must not be committed, because it publishes an edition early.",
+    )
+    build(include_future=parser.parse_args().include_future)

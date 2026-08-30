@@ -197,8 +197,52 @@ python scripts\ledger.py          # summary of what has been printed
 The edition produced is **tomorrow's** — the paper is read in the morning.
 
 A meeting held on 2026-08-29 produces edition `2026-08-30`. Plan file, edition
-JSON, research PDF and published page all use that same date. `index.html`
-always shows the newest edition.
+JSON, research PDF and published page all use that same date.
+
+### 8.1 An edition is written the evening before and published on its own day
+
+The site is public the moment it is committed, so writing tomorrow's paper
+tonight must not put tomorrow's paper in front of a reader tonight.
+
+`build_site.py` therefore **refuses to publish an edition dated ahead of the
+current day in Asia/Jerusalem**. An edition that is not yet due:
+
+- gets no page under `editions/`,
+- does not become `index.html`,
+- is absent from the archive rail, the search index and the learning catalog,
+- keeps its research PDF and its learning page unpublished.
+
+If any of those were published by an earlier run, the next build **withdraws
+them**. Committing a not-yet-due edition is safe and is the normal workflow.
+
+`index.html` always shows the newest edition **that is due** — not the newest
+edition on disk.
+
+### 8.2 Who promotes it at midnight
+
+`.github/workflows/publish.yml` runs on GitHub's machines every hour, rebuilds,
+and commits only if the rebuild changed something. On the 23 quiet hours it is a
+no-op; on the hour the date rolls over it promotes the edition. This needs no
+machine of yours to be switched on.
+
+It is hourly rather than a single midnight cron because Jerusalem shifts between
+UTC+2 and UTC+3, and because GitHub's scheduler is often late and sometimes
+skips a run. Letting the build decide what is due removes both problems.
+
+**The build must be byte-stable across runs**, or the job commits every hour.
+`test_build_is_reproducible` enforces this. The live weather fetch broke the
+rule once and is now pinned to press time: one reading per paper-day.
+
+### 8.3 Previewing an edition before its day
+
+```powershell
+.\.venv\Scripts\python.exe scripts\build_site.py --include-future
+```
+
+This renders held-back editions so you can read them locally. **Its output must
+never be committed** — it publishes tomorrow's paper today. Rebuild without the
+flag to withdraw it again. Three tests fail if a preview build is committed, so
+CI will refuse to push one.
 
 ## 9. Known risks
 

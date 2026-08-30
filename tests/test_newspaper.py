@@ -8,11 +8,14 @@ last step of fixing an editorial or rendering bug — see docs/RUNBOOK.md §5.
 
 from __future__ import annotations
 
+import hashlib
 import json
 import re
 import subprocess
 import sys
+from datetime import date, datetime
 from pathlib import Path
+from zoneinfo import ZoneInfo
 
 import pytest
 
@@ -24,8 +27,23 @@ import validate  # noqa: E402
 import weather  # noqa: E402
 
 CSS = ROOT / "assets" / "css" / "newspaper.css"
-EDITIONS = sorted((ROOT / "data" / "editions").glob("*.json"))
+
+ALL_EDITIONS = sorted((ROOT / "data" / "editions").glob("*.json"))
 TOPICS = sorted((ROOT / "data" / "topics").glob("*.json"))
+
+
+def paper_today() -> date:
+    """The paper's day, in Asia/Jerusalem. Must match build_site.paper_today()."""
+    return datetime.now(ZoneInfo("Asia/Jerusalem")).date()
+
+
+# An edition may be written the evening before it runs. Until its date arrives it
+# has no rendered page and is absent from the front page, archive, search and
+# catalog. So checks about *rendered output* use EDITIONS, while checks about
+# *content quality* use ALL_EDITIONS: tomorrow's paper is held to the same
+# standard tonight, which is the only time left to fix it.
+EDITIONS = [p for p in ALL_EDITIONS if date.fromisoformat(p.stem) <= paper_today()]
+PENDING_EDITIONS = [p for p in ALL_EDITIONS if date.fromisoformat(p.stem) > paper_today()]
 
 
 # --------------------------------------------------------------------------
@@ -37,7 +55,7 @@ def test_all_published_data_validates():
 
 
 def test_there_is_at_least_one_edition():
-    assert EDITIONS, "no editions on disk"
+    assert EDITIONS, "no published editions - every edition on disk is dated ahead"
 
 
 # --------------------------------------------------------------------------
@@ -46,7 +64,7 @@ def test_there_is_at_least_one_edition():
 # --------------------------------------------------------------------------
 
 TEXT_FILES = [
-    *EDITIONS,
+    *ALL_EDITIONS,
     *TOPICS,
     *(ROOT / "templates").glob("*.j2"),
     *(ROOT / "docs").glob("*.md"),
@@ -125,7 +143,7 @@ def test_url_normalization_keeps_different_stories_apart():
 
 def test_no_url_is_printed_in_two_editions():
     seen: dict[str, str] = {}
-    for path in EDITIONS:
+    for path in ALL_EDITIONS:
         ed = json.loads(path.read_text(encoding="utf-8"))
         for section in ed.get("grid", []):
             for story in section.get("stories", []):
@@ -148,7 +166,7 @@ def test_unknown_weather_code_is_not_guessed():
 
 
 def test_stored_weather_declares_its_source():
-    for path in EDITIONS:
+    for path in ALL_EDITIONS:
         alm = json.loads(path.read_text(encoding="utf-8")).get("almanac")
         if alm:
             assert alm.get("source"), f"{path.name} almanac has no source"
@@ -166,10 +184,24 @@ def test_quiz_answers_are_in_range(path: Path):
         assert q.get("why"), f"Q{i} has no explanation"
 
 
+PENDING_DATES = {p.stem for p in PENDING_EDITIONS}
+
+
 @pytest.mark.parametrize("path", TOPICS, ids=lambda p: p.stem)
 def test_every_topic_has_a_rendered_page(path: Path):
+    """Every topic gets a page, except one belonging to an edition that has not
+    run yet: publishing it early would reveal tomorrow's learning topic while the
+    edition itself is still held back."""
     topic = json.loads(path.read_text(encoding="utf-8"))
     page = ROOT / "learn" / f"{topic['slug']}.html"
+
+    if topic.get("edition") in PENDING_DATES:
+        assert not page.exists(), (
+            f"{topic['slug']} belongs to the unpublished edition {topic['edition']} "
+            f"but its page is live - run build_site.py"
+        )
+        return
+
     assert page.exists(), f"{topic['slug']} has no rendered page - run build_site.py"
 
 
@@ -201,7 +233,10 @@ def test_edition_links_to_its_topic_page_and_the_catalog(path: Path):
 def test_the_front_page_is_the_newest_edition():
     """index.html is the paper of the day. Building a new edition must promote it
     to the front page and push the previous one into the archive; a stale front
-    page shipped once and nothing caught it."""
+    page shipped once and nothing caught it.
+
+    "Newest" means newest *due*, not newest on disk: an edition dated ahead is
+    written the evening before and must not reach the front page until its day."""
     newest = json.loads(EDITIONS[-1].read_text(encoding="utf-8"))
     index = (ROOT / "index.html").read_text(encoding="utf-8")
 
@@ -218,6 +253,27 @@ def test_the_front_page_is_the_newest_edition():
         assert f"editions/{prev['date']}.html" in index, (
             f"{prev['date']} is not reachable from the front page archive rail"
         )
+
+
+@pytest.mark.parametrize("path", PENDING_EDITIONS, ids=lambda p: p.stem)
+def test_an_edition_dated_ahead_is_not_published_anywhere(path: Path):
+    """The site is world-readable the moment it is committed, so an edition written
+    tonight for tomorrow must leave no trace: no page, no headline on the front,
+    no archive link, no search hit, no research PDF."""
+    ed = json.loads(path.read_text(encoding="utf-8"))
+    date_str = ed["date"]
+
+    for leaked in (ROOT / "editions" / f"{date_str}.html", ROOT / "research" / f"{date_str}.pdf"):
+        assert not leaked.exists(), f"{leaked.name} is published before {date_str}"
+
+    for page in ("index.html", "archive.html", "learn.html"):
+        html = (ROOT / page).read_text(encoding="utf-8")
+        assert ed["lead"]["headline"] not in html, f"{page} leaks the {date_str} lead"
+        assert f"editions/{date_str}.html" not in html, f"{page} links to the held-back {date_str}"
+
+    index = json.loads((ROOT / "assets" / "search-index.json").read_text(encoding="utf-8"))
+    dates = {d.get("date") for d in (index if isinstance(index, list) else index.get("docs", []))}
+    assert date_str not in dates, f"search index exposes the held-back {date_str}"
 
 
 def test_compound_interest_matches_the_numbers_in_the_article():
@@ -289,8 +345,10 @@ def test_a_video_without_an_id_is_ignored_rather_than_rendered_broken():
 
 
 def test_every_video_in_every_edition_declares_a_credit():
-    """An embed is a quotation. It carries its publisher, like any other source."""
-    for path in EDITIONS:
+    """An embed is a quotation. It carries its publisher, like any other source.
+    Checked across every edition on disk, including ones not yet due: tonight is
+    the last chance to catch it."""
+    for path in ALL_EDITIONS:
         edition = json.loads(path.read_text(encoding="utf-8"))
         for section in edition.get("grid", []):
             for story in section.get("stories", []):
@@ -414,13 +472,37 @@ def test_no_page_references_a_missing_local_asset():
             assert (base / ref).resolve().exists(), f"{page.name} -> missing {ref}"
 
 
+def _site_fingerprint() -> dict[str, str]:
+    files = [
+        ROOT / "index.html", ROOT / "archive.html", ROOT / "learn.html",
+        ROOT / "assets" / "search-index.json",
+        *(ROOT / "editions").glob("*.html"),
+        *(ROOT / "learn").glob("*.html"),
+        *(ROOT / "data" / "editions").glob("*.json"),
+    ]
+    return {
+        str(f.relative_to(ROOT)): hashlib.sha256(f.read_bytes()).hexdigest()
+        for f in files if f.exists()
+    }
+
+
 def test_build_is_reproducible():
-    """Building twice in a row must succeed - it is run every single day."""
+    """Building twice must succeed and produce byte-identical output.
+
+    The exit code alone is not enough. The hourly publish job commits whatever
+    the build changed, so anything that varies run to run becomes a commit every
+    hour: the live weather fetch did exactly that until the reading was pinned to
+    press time. If this fails, find what moved before letting CI near it."""
+    before = _site_fingerprint()
     proc = subprocess.run(
         [sys.executable, str(ROOT / "scripts" / "build_site.py")],
         capture_output=True, text=True, encoding="utf-8", cwd=ROOT,
     )
     assert proc.returncode == 0, proc.stdout + proc.stderr
+
+    after = _site_fingerprint()
+    moved = sorted(k for k in before.keys() | after.keys() if before.get(k) != after.get(k))
+    assert not moved, f"rebuilding changed {moved} - CI would commit this every hour"
 
 
 def _load_bank():

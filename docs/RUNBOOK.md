@@ -72,7 +72,20 @@ $env:PYTHONIOENCODING="utf-8"
 
 The build **validates first and refuses to publish** if anything fails. Then it
 renders every edition, the archive, search, the learning catalog and every
-topic page, publishes the research PDF, and fetches live weather for Haifa.
+topic page, publishes the research PDF, and fetches weather for Haifa once per
+paper-day.
+
+**An edition dated ahead is held back.** You are writing tomorrow's paper, so
+the normal result is that the build reports the new edition as held back and
+leaves the front page showing today's. That is correct — commit it anyway. See
+SPEC §8. To read it before its day:
+
+```powershell
+.\.venv\Scripts\python.exe scripts\build_site.py --include-future   # preview only
+.\.venv\Scripts\python.exe scripts\build_site.py                    # withdraw again
+```
+
+Never commit the output of `--include-future`. Rebuild without the flag first.
 
 Afterwards, close the editorial loop:
 
@@ -80,6 +93,9 @@ Afterwards, close the editorial loop:
 .\.venv\Scripts\python.exe scripts\record_edition.py YYYY-MM-DD --proposed data\_news_cache.json
 .\.venv\Scripts\python.exe scripts\ledger.py
 ```
+
+At midnight Jerusalem, the hourly `publish` workflow rebuilds on GitHub's
+machines and promotes the edition. Nothing here needs to be running.
 
 ## 4. Before calling it done
 
@@ -90,9 +106,11 @@ Afterwards, close the editorial loop:
 - [ ] Lead figure built from **real numbers**, with its source cited
 - [ ] `python scripts\validate.py` passes
 - [ ] `pytest -q` green
+- [ ] Built **without** `--include-future` as the last build before committing
 - [ ] Opened in a browser: index, archive, search (Hebrew **and** Latin term),
       learn, the topic page, and one archived edition
 - [ ] Checked at ≤700px
+- [ ] After pushing, the run of `publish` on GitHub is green
 
 ---
 

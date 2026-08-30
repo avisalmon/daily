@@ -84,9 +84,19 @@ def check_edition(ed: dict, path: Path, seen_urls: dict[str, str], errors: list[
 
     url = lead.get("url", "")
     if url and not HTTP.match(url) and not url.startswith("#"):
-        # A relative lead URL means a published research PDF; it must exist.
-        if not (ROOT / url).exists():
-            _fail(errors, where, f"lead links to {url!r} which does not exist on disk")
+        # A relative lead URL means a published research PDF. Accept either the
+        # published copy or the source in data/research/ that the build copies
+        # into place. An edition held back until its date has no published copy
+        # yet, and that is correct rather than a fault; requiring the published
+        # file made a dated-ahead edition unbuildable.
+        source = sorted((ROOT / "data" / "research").glob(f"{ed['date']}-*.pdf"))
+        if not (ROOT / url).exists() and not source:
+            _fail(
+                errors,
+                where,
+                f"lead links to {url!r} but no research PDF exists for {ed['date']}, "
+                f"neither published nor in data/research/",
+            )
 
     fig = lead.get("figure")
     if fig:
