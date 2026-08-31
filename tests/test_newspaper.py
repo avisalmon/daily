@@ -567,3 +567,53 @@ def test_bank_language_is_majority_script_not_mere_presence():
     rb = _load_bank()
     assert rb._language('The history of ice cream is long.\n\n## מקורות\n') == 'en'
     assert rb._language('ההיסטוריה של הגלידה ארוכה.\n\n## Sources\n') == 'he'
+
+
+# --- מקורות והבאת חדשות -------------------------------------------------
+
+def test_fetch_news_writes_the_cache_it_documents():
+    """RUNBOOK §4 tells you to pass data/_news_cache.json to record_edition.py,
+    but nothing ever wrote that file. An editorial meeting was run off a stale
+    snapshot from a previous day, and five items had already been printed."""
+    src = (ROOT / "scripts" / "fetch_news.py").read_text(encoding="utf-8")
+    assert re.search(r'CACHE\s*=.*"_news_cache\.json"', src), \
+        "fetch_news.py must define the cache path it documents"
+    # the write must happen before the --json early return, or piping the
+    # output silently skips persisting the meeting's candidate list
+    body = src[src.index("def main("):]
+    assert body.index("CACHE.write_text") < body.index("if args.json:"), \
+        "the cache is written after the --json return: piping skips it"
+
+
+def test_fetch_news_retries_a_failing_feed():
+    """A single transient failure used to drop a whole source from the meeting,
+    which quietly narrows the paper without anyone noticing."""
+    src = (ROOT / "scripts" / "fetch_news.py").read_text(encoding="utf-8")
+    fn = src[src.index("def fetch_one("):]
+    fn = fn[:fn.index("\ndef ")]
+    assert "range(" in fn and "time.sleep" in fn, \
+        "fetch_one must retry with a pause between attempts"
+
+
+def test_sources_are_not_only_ai():
+    """The catalog once held ten AI feeds and nothing else, so no Israeli or
+    scientific story could ever be proposed at a meeting. The user had to ask
+    for it twice before the cause was found."""
+    import yaml
+    cfg = yaml.safe_load((ROOT / "config" / "sources.yaml").read_text(encoding="utf-8"))
+    feeds = cfg["sources"] if isinstance(cfg, dict) else cfg
+    topics = {t for s in feeds for t in (s.get("topics") or [])}
+    assert len(feeds) >= 20, f"only {len(feeds)} feeds - the paper will be thin"
+    for needed in ("israel", "science"):
+        assert any(needed in t for t in topics), \
+            f"no '{needed}' source in the catalog: {sorted(topics)}"
+
+
+def test_no_published_item_is_proposed_again():
+    """Dedup lives on the ledger's `published` key. Reading `printed` instead
+    returns nothing and silently disables duplicate detection."""
+    ledger = json.loads((ROOT / "data" / "ledger.json").read_text(encoding="utf-8-sig"))
+    assert "published" in ledger and "proposed" in ledger, \
+        f"ledger keys changed: {sorted(ledger)}"
+    urls = [i.get("url") for i in ledger["published"] if i.get("url")]
+    assert len(urls) == len(set(urls)), "the same URL was published twice"

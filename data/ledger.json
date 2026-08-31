@@ -95,6 +95,86 @@
       "source": "Beijing Municipal Government / The Guardian",
       "edition_date": "2026-08-31",
       "recorded_at": "2026-08-30T14:09:49+00:00"
+    },
+    {
+      "url": "https://www.ynet.co.il/digital/technews/article/bypue9fufe",
+      "title": "",
+      "title_he": "מחקר עוקב עשור: לא נמצא קשר עקבי בין זמן מסך לקשיים רגשיים",
+      "source": "Ynet",
+      "edition_date": "2026-09-01",
+      "recorded_at": "2026-08-31T10:59:26+00:00"
+    },
+    {
+      "url": "https://www.geektime.co.il/nvidia-ceo-jensen-huang-hot-mic-trump/",
+      "title": "",
+      "title_he": "המיקרופון נשאר פתוח: כך גילו עובדי אנבידיה מי מתקשר לג'נסן הואנג",
+      "source": "Geektime",
+      "edition_date": "2026-09-01",
+      "recorded_at": "2026-08-31T10:59:26+00:00"
+    },
+    {
+      "url": "https://www.geektime.co.il/physical-ai-real-world-challenges/",
+      "title": "",
+      "title_he": "טעות בצ'אט מוחקים. טעות בעולם האמיתי היא כבר לא הפיכה",
+      "source": "Geektime",
+      "edition_date": "2026-09-01",
+      "recorded_at": "2026-08-31T10:59:26+00:00"
+    },
+    {
+      "url": "https://techcrunch.com/2026/08/30/musks-faster-path-to-more-gas-turbines-comes-with-pollution-problem/",
+      "title": "",
+      "title_he": "מאסק נכנס ליציקת להבי טורבינות, כי החשמל הפך למחסום של ה-AI",
+      "source": "TechCrunch",
+      "edition_date": "2026-09-01",
+      "recorded_at": "2026-08-31T10:59:26+00:00"
+    },
+    {
+      "url": "https://www.globes.co.il/news/article.aspx?did=1001553840",
+      "title": "",
+      "title_he": "בנק ישראל בין אינפלציה נמוכה לפד ניצי: החלטת הריבית של יום שלישי",
+      "source": "גלובס",
+      "edition_date": "2026-09-01",
+      "recorded_at": "2026-08-31T10:59:26+00:00"
+    },
+    {
+      "url": "https://www.globes.co.il/news/article.aspx?did=1001553858",
+      "title": "",
+      "title_he": "האוצר מציע לבטל את הלימודים בימי שישי כדי לטפל במחסור במורים",
+      "source": "גלובס",
+      "edition_date": "2026-09-01",
+      "recorded_at": "2026-08-31T10:59:26+00:00"
+    },
+    {
+      "url": "https://www.sciencedaily.com/releases/2026/08/260829035219.htm",
+      "title": "",
+      "title_he": "מחשב קוונטי של IBM השלים ב-15 דקות חישוב שמחשבים רגילים לא מגיעים אליו",
+      "source": "ScienceDaily",
+      "edition_date": "2026-09-01",
+      "recorded_at": "2026-08-31T10:59:26+00:00"
+    },
+    {
+      "url": "https://www.sciencedaily.com/releases/2026/08/260829035221.htm",
+      "title": "",
+      "title_he": "שמונה טביעות רגל בנות 1.4 מיליון שנה משנות את מה שידענו על קרוב משפחה אנושי",
+      "source": "ScienceDaily",
+      "edition_date": "2026-09-01",
+      "recorded_at": "2026-08-31T10:59:26+00:00"
+    },
+    {
+      "url": "https://www.sciencedaily.com/releases/2026/08/260828082330.htm",
+      "title": "",
+      "title_he": "טיפול CAR-T הכניס דלקת מפרקים שיגרונית קשה להפוגה מלאה",
+      "source": "ScienceDaily",
+      "edition_date": "2026-09-01",
+      "recorded_at": "2026-08-31T10:59:26+00:00"
+    },
+    {
+      "url": "https://phys.org/news/2026-08-people-sacrifice-life-satisfaction-exchange.html",
+      "title": "",
+      "title_he": "87% מוכנים לוותר על חלק מהאושר שלהם תמורת חברה שוויונית יותר",
+      "source": "Phys.org / The Conversation",
+      "edition_date": "2026-09-01",
+      "recorded_at": "2026-08-31T10:59:26+00:00"
     }
   ],
   "proposed": [
@@ -103,8 +183,8 @@
       "title": "חיכינו שהמדינה תציל את הילדים מהמסכים. זו הייתה טעות",
       "source": "Ynet — מחשבים",
       "first_proposed": "2026-08-29T12:05:32+00:00",
-      "last_proposed": "2026-08-30T14:09:49+00:00",
-      "times_proposed": 2
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 3
     },
     {
       "url": "https://www.geektime.co.il/volvo-evs-are-about-to-warn-each-other/",
@@ -873,6 +953,3342 @@
       "first_proposed": "2026-08-29T12:05:32+00:00",
       "last_proposed": "2026-08-30T14:09:49+00:00",
       "times_proposed": 2
+    },
+    {
+      "url": "https://www.haaretz.co.il/opinions/2026-09-03/ty-article-opinion/.premium/000001a0-4df2-d649-a7be-ddf2c7d80000",
+      "title": "נגמרו ימי הדרלינג של המערב שמותר לו הכל. ישראל והעולם הולכים ונפרדים",
+      "source": "הארץ",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.geektime.co.il/anthropic-claude-code-limits/",
+      "title": "אנת'רופיק טוענת שצ'יפרה את המשתמשים בקלוד קוד, הם טוענים לפגיעה, ואיכשהו כולם צודקים",
+      "source": "Geektime",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.maariv.co.il/breaking-news/article-1361422",
+      "title": "פדרו סנצ'ז מנקה את מרוקו מאשמה - ותוקף את ישראל: \"מפיצים מידע כוזב\"",
+      "source": "מעריב",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.maariv.co.il/breaking-news/article-1361421",
+      "title": "נטעלי שם טוב במסר לנתניהו: \"מה שהיה הוא לא שיהיה\"",
+      "source": "מעריב",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.maariv.co.il/breaking-news/article-1361420",
+      "title": "האולפן רעד - נטעלי שם טוב היממה את גדעון אוקו: \"אני לא עובדת אצלו\"",
+      "source": "מעריב",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.maariv.co.il/breaking-news/article-1361419",
+      "title": "באירופה נפל האסימון, ישראל לא מעכלת: \"זה נשמע כמעט נס\"",
+      "source": "מעריב",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.ynet.co.il/news/article/skvd4ifugl",
+      "title": "אחרי האיום בשביתה: הנאשמים בפרשת רצח ימנו זלקה לא יחזרו לבתי הספר",
+      "source": "Ynet — חדשות",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.haaretz.co.il/news/world/europe/2026-08-31/ty-article/.premium/000001a0-56b4-d3eb-abf5-57ff863c0000",
+      "title": "ראש ממשלת ספרד: מחקר של האיחוד האירופי מצא שישראל ורוסיה הפיצו מידע כוזב בנוגע למשבר בסאוטה",
+      "source": "הארץ",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.israelhayom.co.il/forreal/localy/article/21317608",
+      "title": "חודש אחרי שהכריזה על היריון: מעיין מ\"ווארט\" עוברת ניסיון",
+      "source": "ישראל היום",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.israelhayom.co.il/news/crime/article/21317456",
+      "title": "לקראת פתיחת שנת הלימודים: 16 שב\"חים נעצרו סמוך למוסדות חינוך במרכז",
+      "source": "ישראל היום",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.ynet.co.il/news/article/byqzfjmogg",
+      "title": "המלחמה באיראן רחוקה מהכרעה",
+      "source": "Ynet — חדשות",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.haaretz.co.il/gallery/fashion/2026-08-31/ty-article-magazine/.premium/000001a0-4c33-d94d-aba2-effb01030000",
+      "title": "עם סניקרס וחליפות כמורה מעוצבות, לאו הוא האפיפיור האופנתי ביותר",
+      "source": "הארץ",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.israelhayom.co.il/news/education/article/21317320",
+      "title": "מופרך, פוגעני ומסוכן: נתניהו, חרם על ילד הוא לא קמפיין בחירות",
+      "source": "ישראל היום",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.maariv.co.il/breaking-news/article-1361416",
+      "title": "גבן כבן 70 נפצע באורח קשה בתאונת דרכים בדרום הארץ",
+      "source": "מעריב",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.maariv.co.il/breaking-news/article-1361415",
+      "title": "נתניהו רצה לפרגן - אבל הגולשים שמו לב לפרט אחד",
+      "source": "מעריב",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.israelhayom.co.il/news/geopolitics/article/21312941",
+      "title": "הצעיר של בנט על הממשלה: \"ליצני טיקטוק ששמים תנינים מחוץ לבתי כלא\"",
+      "source": "ישראל היום",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.israelhayom.co.il/lifestyle/diets-and-nutrition/article/21317610",
+      "title": "בר כהן על רגעי הדרמה באוויר: \"הגוף משתתק\"",
+      "source": "ישראל היום",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.haaretz.co.il/news/politi/2026-08-31/ty-article/.premium/000001a0-5691-d4eb-affc-5fb96e6d0000",
+      "title": "ביום השני ברציפות, חרדים מפגינים מול לשכת הגיוס בתל השומר וחוסמים כבישים",
+      "source": "הארץ",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.israelhayom.co.il/culture/internet-culture/article/21317534",
+      "title": "מסר לעומר אדם? הברכה של אור לוזון ליום ההולדת של יעל שלביה",
+      "source": "ישראל היום",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.ynet.co.il/news/article/ryfgdygufg",
+      "title": "רוב החקירות נסגרו, שני כתבי אישום בלבד: כך טיפל צה\"ל בתופעה הביזה",
+      "source": "Ynet — חדשות",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.geektime.co.il/google-is-changing-links-in-search/",
+      "title": "למה גוגל משנה את הלינקים שאתם לוחצים עליהם בחיפוש?",
+      "source": "Geektime",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.israelhayom.co.il/sport/israeli-soccer/article/21317640",
+      "title": "בגיל 34: אייל גולסה הכריז על פרישה מכדורגל",
+      "source": "ישראל היום",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.israelhayom.co.il/travel/aviation/article/21317548",
+      "title": "יעד חדש באיטליה: הקו הישיר שייפתח השבוע מישראל",
+      "source": "ישראל היום",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.israelhayom.co.il/you-may-find-interesting/article/21284708",
+      "title": "מרימים כוסית לחג: המבצעים והיינות הבלעדיים שלא תרצו לפספס",
+      "source": "ישראל היום",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.haaretz.co.il/blogs/taliherutisover/2026-08-31/ty-article/000001a0-432d-d02f-a9ed-5f6f9d530000",
+      "title": "הסיפור המוזר על סוג'יי שמש, עמותת אלמא וסאגת קיום פסק הדין",
+      "source": "הארץ",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.israelhayom.co.il/forreal/localy/article/21317243",
+      "title": "קרן פלס: לא חשבתי שאגלה את הסוד",
+      "source": "ישראל היום",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.israelhayom.co.il/culture/books/article/21317214",
+      "title": "\"העברתי אותם תהליך לשבירת החרם\"",
+      "source": "ישראל היום",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.israelhayom.co.il/sport/israeli-basketball/article/21317413",
+      "title": "דני אבדיה חושף את הסיבה שלא הגיע לנבחרת ישראל",
+      "source": "ישראל היום",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.maariv.co.il/breaking-news/article-1361409",
+      "title": "ירק ותקף: בן 15 נעצר בחשד לתקיפת נהג אוטובוס בבית שמש",
+      "source": "מעריב",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.israelhayom.co.il/news/crime/article/21317299",
+      "title": "קטין היכה נהג אוטובוס בבית שמש: \"קיבלתי אגרוף, התעוררתי באמבולנס\"",
+      "source": "ישראל היום",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.maariv.co.il/breaking-news/article-1361408",
+      "title": "למרות דברי טראמפ: איראן דוחה את הטענות לתקיפה באי חארג'",
+      "source": "מעריב",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.israelhayom.co.il/culture/internet-culture/article/21317354",
+      "title": "מיכל הקטנה אחרי הפרידה: ''לא החיים שדמיינתי לעצמי''",
+      "source": "ישראל היום",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.ynet.co.il/news/elections2026/article/yokra14883306",
+      "title": "בוחרות, ולא נבחרות: תמונת המצב המחפירה של ייצוג הנשים במערכת הפוליטית",
+      "source": "Ynet — חדשות",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.israelhayom.co.il/sport/offside/article/21317129",
+      "title": "נועה קירל ודניאל פרץ כמעט נפרדו: \"עברתי דברים קשים\"",
+      "source": "ישראל היום",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.israelhayom.co.il/news/world-news/europe/article/21316824",
+      "title": "\"יש לו מספיק בעיות משלו\": זעם בבריטניה על דברי יאיר נתניהו",
+      "source": "ישראל היום",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.israelhayom.co.il/sport/israeli-soccer/article/21317164",
+      "title": "הגדולות כבר התעניינו: הכישרון שמטריף את ליגת העל",
+      "source": "ישראל היום",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.israelhayom.co.il/business/real-estate/article/21317290",
+      "title": "בזמן ששוק הדירות מדשדש: יהודה ושומרון מזנקת במכירות ובבנייה",
+      "source": "ישראל היום",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.maariv.co.il/breaking-news/article-1361401",
+      "title": "גם סטטיק מודה: משהו בפורמט של דה וויס לא עובד | דור סגל אלבוקרק",
+      "source": "מעריב",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.israelhayom.co.il/health/article/21317211",
+      "title": "בני 3 ו-5 אושפזו בטיפול נמרץ לאחר שאכלו סוכריות עם קנאביס",
+      "source": "ישראל היום",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.maariv.co.il/breaking-news/article-1361398",
+      "title": "טראמפ בריאיון הלילה: נשק גרעיני בידי איראן היה מוביל לחורבן ישראל",
+      "source": "מעריב",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.timesofisrael.com/jerusalem-dance-event-struggles-with-boycott-pressures-but-moves-ahead/",
+      "title": "Jerusalem dance event struggles with boycott pressures, but moves ahead",
+      "source": "Times of Israel",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.timesofisrael.com/arab-bus-driver-beaten-unconscious-in-beit-shemesh-after-refusing-to-stop-between-stations/",
+      "title": "Arab bus driver beaten unconscious in Beit Shemesh after refusing to stop between stations",
+      "source": "Times of Israel",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.davar1.co.il/695330/",
+      "title": "לראש ממשלת המחרימים אין זכות להטיף נגד חרם",
+      "source": "דבר",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.davar1.co.il/695334/",
+      "title": "יולי מישינר זכתה בארד בגרנד סלאם לוזאן והעניקה לישראל מדליה שנייה בתחרות",
+      "source": "דבר",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.israelhayom.co.il/news/crime/article/21317135",
+      "title": "יותר מ-2,000 דולר נתפסו בביתה והוחזרו רק אחרי 16 שנה: המדינה תשלם בריבית",
+      "source": "ישראל היום",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.israelhayom.co.il/culture/music/article/21317078",
+      "title": "שימי תבורי יצא למתקפה: ''אין בך לב ואין בך נשמה''",
+      "source": "ישראל היום",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.ynet.co.il/economy/article/sky0acmdgg",
+      "title": "100 מיליון שקל לדימונה וערד: כ-760 דירות ייבנו במתחמים שנפגעו מטילים",
+      "source": "Ynet — כלכלה",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.haaretz.co.il/news/world/america/2026-08-31/ty-article/.premium/000001a0-5675-de9b-a3f3-d7752a310000",
+      "title": "אדם אחד נהרג ו־15 נעדרים בשיטפון בזק בפארק הלאומי גרנד קניון שבאריזונה",
+      "source": "הארץ",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.israelhayom.co.il/sport/opinions-sport/article/21316743",
+      "title": "נבחרת ישראל בשפל היסטורי - ורק אדם אחד יכול להציל אותה",
+      "source": "ישראל היום",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.israelhayom.co.il/news/local/article/21317149",
+      "title": "בן גביר החריג את \"נטורי קרתא\" מזכאות לנשק: \"מי שמצטלם עם מחבלים – אויב\"",
+      "source": "ישראל היום",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.israelhayom.co.il/lifestyle/fashion/article/21317033",
+      "title": "מקים קרדשיאן ועד לאנס סטרול: 25 השנים המטורפות של יעל שלביה",
+      "source": "ישראל היום",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.israelhayom.co.il/culture/films/article/21316933",
+      "title": "כוכב \"יריבות לוהטת\" בדרך לעבוד עם הבמאית הישראלית",
+      "source": "ישראל היום",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.israelhayom.co.il/sport/offside/article/21317009",
+      "title": "יעל שלביה חוגגת בתיעוד מחופשת יום ההולדת עם לאנס סטרול",
+      "source": "ישראל היום",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.davar1.co.il/695336/",
+      "title": "נער נעצר בחשד שתקף נהג אוטובוס, הנהג: \"הוא קרא לי ערבי מסריח ונתן אגרוף\"",
+      "source": "דבר",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.israelhayom.co.il/news/defense/article/21317052",
+      "title": "מבצע לילי בשכם: הימ\"מ עצר מחבל שהשתייך ל\"גוב האריות\"",
+      "source": "ישראל היום",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.maariv.co.il/breaking-news/article-1361391",
+      "title": "אחרי חילופי האש הלילה: עד כמה ישראל קרובה למלחמה באיראן? \"בתוך 5 דקות\"",
+      "source": "מעריב",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.maariv.co.il/breaking-news/article-1361389",
+      "title": "חיל האוויר בכוננות: \"ערוכים גם למתקפה איראנית שתחל בתוך חמש הדקות הבאות\"",
+      "source": "מעריב",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.ynet.co.il/news/article/r14dwtzufx",
+      "title": "\"הילדה הפסיקה לדבר\": הורי הפעוטות מ\"מעון הזוועות\" נותרו לבד עם ההשלכות",
+      "source": "Ynet — חדשות",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.ynet.co.il/economy/article/h1li9ygdzg",
+      "title": "\"נהפוך את הטורניר לדיסנילנד של הטניס\": סערת מחירי הכרטיסים לאליפות ארה\"ב",
+      "source": "Ynet — כלכלה",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://arstechnica.com/gaming/2026/08/a-12tb-steam-teraleak-spills-more-than-a-decade-of-lost-pc-gaming-history/",
+      "title": "A 12TB Steam \"teraleak\" spills more than a decade of lost PC gaming history",
+      "source": "Hacker News Front Page",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.israelhayom.co.il/news/welfare/article/21316882",
+      "title": "\"הייתי רוצה שיהיה לה תיק חדש ובגדים - אבל זה או זה או לקנות אוכל בסופר\"",
+      "source": "ישראל היום",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.haaretz.co.il/sport/other/2026-08-31/ty-article/000001a0-5665-d085-a3fd-7ee731e50000",
+      "title": "נובאק ג'וקוביץ' הודח בסיבוב הראשון של אליפות ארה\"ב לראשונה בקריירה, לאחר הפסד בחמש מערכות למריאנו נאבונה",
+      "source": "הארץ",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.israelhayom.co.il/news/local/article/21316921",
+      "title": "סבתא מראשל\"צ מואשמת בתקיפת בן 9 - כי סירב לאחל מזל טוב לנכדה",
+      "source": "ישראל היום",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.israelhayom.co.il/news/crime/article/21316926",
+      "title": "המשטרה חשפה אמצעי לחימה צה\"ליים שהוסתרו בשטח פתוח בגליל",
+      "source": "ישראל היום",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.timesofisrael.com/netanyahu-warns-winters-party-could-bring-down-his-coalition-urges-meeting/",
+      "title": "Netanyahu warns Winter’s party could ‘bring down’ his coalition, urges meeting",
+      "source": "Times of Israel",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.maariv.co.il/breaking-news/article-1361383",
+      "title": "בוקר רטוב: שיא משקעים בתל אביב בחודש אוגוסט מאז 1974",
+      "source": "מעריב",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.davar1.co.il/695326/",
+      "title": "שוטרים פינו בכוח מוחים חרדים מצירי תנועה ליד תל השומר",
+      "source": "דבר",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.israelhayom.co.il/culture/tv/article/21316709",
+      "title": "\"רצחת אותה\": הריאליטי שהפך את הרוע האנושי לספורט לאומי",
+      "source": "ישראל היום",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.israelhayom.co.il/news/politics/article/21316777",
+      "title": "\"לא הולכת בדרכו\": בנות הרב עובדיה בביקורת חריפה על ש\"ס - ומגבות את היועמ\"שית",
+      "source": "ישראל היום",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.ynet.co.il/news/article/h1bvttgdml",
+      "title": "ראש מועצה נעצר עם בני משפחתו, החשד: שוחד, הטיית מכרזים והעסקה פיקטיבית",
+      "source": "Ynet — חדשות",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.israelhayom.co.il/news/crime/article/21316807",
+      "title": "אכיפה לקראת שנת הלימודים במרכז: 3 שוהים בלתי חוקיים ומעסיקיהם נעצרו",
+      "source": "ישראל היום",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.israelhayom.co.il/news/defense/article/21316783",
+      "title": "סמוטריץ' תמך בלוחמים שסירבו להיכנס לנגמ\"ש עם פרמדיקית, והותקף: \"מנסה לפרק את צה\"ל\"",
+      "source": "ישראל היום",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.israelhayom.co.il/news/geopolitics/article/21316780",
+      "title": "משפחות שכולות בקריאה נגד הכנסת כוח זר לעזה: \"אל תתקע סכין בגב ילדינו\"",
+      "source": "ישראל היום",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.ynet.co.il/news/elections2026/article/sk7eycgozx",
+      "title": "‏סמוטריץ' מגבה את החיילים שסירבו לצאת לסיור עם פרמדיקית בעזה: \"אדרוש תשובות\"",
+      "source": "Ynet — חדשות",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.maariv.co.il/breaking-news/article-1361376",
+      "title": "צירי תנועה נחסמו בגלל הפגנת חרדים ליד לשכת הגיוס - הנחיות משטרה לנהגים",
+      "source": "מעריב",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.israelhayom.co.il/weather/article/21316727",
+      "title": "אוגוסט המשוגע: תל אביב שברה שיא גשם של יותר מחמישה עשורים",
+      "source": "ישראל היום",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.ynet.co.il/economy/article/h1qi0kz00me",
+      "title": "ביהמ\"ש דחה את העתירה: אור ירוק ל-750 דירות במקום מוסך דן בצפון ת\"א",
+      "source": "Ynet — כלכלה",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.israelhayom.co.il/business/article/21316707",
+      "title": "לפחות 25 ק\"מ מתל אביב: מדד הפריפריה החדש בבורסה",
+      "source": "ישראל היום",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.israelhayom.co.il/news/defense/article/21316612",
+      "title": "רעיית הרמטכ\"ל בדירקטוריון חברת המזון - משרד הביטחון הלקוח העיקרי",
+      "source": "ישראל היום",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.israelhayom.co.il/sport/other-sports/article/21316440",
+      "title": "נובאק ג'וקוביץ' הקיא ורעד מחום: \"קורה לי כל הזמן, הגוף קורס\"",
+      "source": "ישראל היום",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.ynet.co.il/news/elections2026/article/sklkctm00zx",
+      "title": "הערכות: רע\"מ תודיע היום על צירוף סגלוביץ', הוא יוצב במקום השני ברשימה",
+      "source": "Ynet — חדשות",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.maariv.co.il/breaking-news/article-1361370",
+      "title": "הרקע פלילי: רימון רסס הושלך לעבר בית במעלה אדומים",
+      "source": "מעריב",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.haaretz.co.il/sport/other/2026-08-31/ty-article-magazine/.premium/000001a0-4e77-d276-a7a1-eef781eb0000",
+      "title": "אחרי פציעה קשה, קרלוס אלקראס חוזר לאליפות ארה\"ב. גם הוא לא יודע למה לצפות",
+      "source": "הארץ",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.israelhayom.co.il/culture/tv/article/21312220",
+      "title": "סדרת מתח בריטית חדשה והזיוף של סאם אלטמן: מה לראות היום בטלוויזיה",
+      "source": "ישראל היום",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.haaretz.co.il/family/modernlove/2026-08-31/ty-article-magazine/.premium/000001a0-1436-dd2f-a1b6-7dfeef620000",
+      "title": "בגיל 72 חשבתי שסגרתי את הבסטה, אבל אז הכרתי את צ'רלס",
+      "source": "הארץ",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.haaretz.co.il/family/2026-08-31/ty-article-magazine/00000182-b0c3-d1f9-a59e-f4ebf9440000",
+      "title": "כל הדרכים לתמוך בילדכם עם פתיחת שנת הלימודים",
+      "source": "הארץ",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.davar1.co.il/695323/",
+      "title": "המשטרה עצרה ראש מועצה מכהן בדרום בחשד לשחיתות: \"פועלים נגד הפשיעה במגזר הבדואי\"",
+      "source": "דבר",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.israelhayom.co.il/news/crime/article/21316576",
+      "title": "חשד לשוחד, הטיית מכרזים והעסקה פיקטיבית: ראש מועצה בדרום נעצר",
+      "source": "ישראל היום",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.maariv.co.il/breaking-news/article-1361364",
+      "title": "מול המשך גיוס החרדים לצה\"ל: עשרות חרדים אחרים מנסים לחסום את כבישי הגישה למחנה תל השומר",
+      "source": "מעריב",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.ynet.co.il/health/article/skaiqomuml",
+      "title": "החולים מטופלים בהקזות דם: אושרה תרופה ראשונה מסוגה למחלה הזו",
+      "source": "Ynet — בריאות",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.ynet.co.il/news/article/b1ogekzofg",
+      "title": "הגשם הגיע גם למרכז, אחרי סוף השבוע ה\"מאכזב\": כל הנתונים - והתיעודים",
+      "source": "Ynet — חדשות",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.maariv.co.il/breaking-news/article-1361361",
+      "title": "ההסלמה נמשכת: משמרות המהפכה תקפו ספינה בהורמוז - והעלו את הדרישה החדשה",
+      "source": "מעריב",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.maariv.co.il/breaking-news/article-1361360",
+      "title": "\"בעידן שלפני הרשתות החברתיות, ערוצי הטלוויזיה החזיקו במונופול מוחלט על האמת\"",
+      "source": "מעריב",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.haaretz.co.il/news/law/2026-08-31/ty-article/.premium/000001a0-55f7-d4eb-affc-5dff17150000",
+      "title": "ראש מועצה מהדרום ובני משפחתו נעצרו בחשד לשוחד ולהטיית מכרזים",
+      "source": "הארץ",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.ynet.co.il/economy/article/yokra14878285",
+      "title": "למלחמת המועדונים בענף התעופה יש רק מנצח אחד: הלקוח הישראלי",
+      "source": "Ynet — כלכלה",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.ynet.co.il/economy/article/s15aobwogg",
+      "title": "שיא של כל הזמנים: מחיר הדלק החל מחצות - 8.25 שקלים",
+      "source": "Ynet — כלכלה",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.globes.co.il/news/article.aspx?did=1001553882#utm_source=RSS",
+      "title": "לראשונה אחרי חודש: ארה\"ב תקפה משגרים איראניים",
+      "source": "גלובס",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.maariv.co.il/breaking-news/article-1361357",
+      "title": "צבא איראן מאשר: \"תקפנו את איחוד האמירויות באמצעות כטב\"מים\"",
+      "source": "מעריב",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.israelhayom.co.il/sport/article/21316442",
+      "title": "בגיל 46: הקאמבק של ונוס וויליאמס הסתיים בהפסד",
+      "source": "ישראל היום",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.ynet.co.il/health/article/ry9qq4zogx",
+      "title": "דמנציה לא תמיד מתחילה בשכחה: הסימנים המוקדמים שאסור לפספס",
+      "source": "Ynet — בריאות",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.maariv.co.il/breaking-news/article-1361356",
+      "title": "מזג האוויר השתגע: גשם פתאומי החל לרדת בגוש דן",
+      "source": "מעריב",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.israelhayom.co.il/news/defense/article/21316436",
+      "title": "מאות חרדים מתגייסים - עימותים בין חרדים לכוחות הביטחון סמוך לבקו\"ם",
+      "source": "ישראל היום",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.israelhayom.co.il/forreal/global/article/21316434",
+      "title": "טיילור סוויפט תרמה 50 א' דולר כדי להציל גיבורה",
+      "source": "ישראל היום",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.israelhayom.co.il/food/recipes/article/21312367",
+      "title": "20 דקות והביס הזה שלכם: תפוח בדבש, אבל לא כמו שחשבתם",
+      "source": "ישראל היום",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.ynet.co.il/economy/article/hkiildzdfx",
+      "title": "הצעירות שעזבו הכל כדי למכור צנצנות מלפפונים חמוצים שוות היום מיליונים",
+      "source": "Ynet — כלכלה",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.ynet.co.il/economy/article/bybncpbofg",
+      "title": "מבחן השבת: איזו עיר היא הכי חופשית בישראל?",
+      "source": "Ynet — כלכלה",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.globes.co.il/news/article.aspx?did=1001553881#utm_source=RSS",
+      "title": "מצב השווקים: פתיחת שבוע אדומה באסיה ובחוזים בוול סטריט. שתי סיבות מדאיגות במיוחד את המשקיעים",
+      "source": "גלובס",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.israelhayom.co.il/food/food-news/article/21312527",
+      "title": "הקרב על השרון מתחמם: שבעת הכוכבים נותן פייט לביג גלילות",
+      "source": "ישראל היום",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.haaretz.co.il/blogs/itamarzohar/2026-08-31/ty-article/000001a0-1aba-df5c-afeb-bbbe44ba0000",
+      "title": "אישה אלמונית קופצת אל מותה מרכבת נוסעת באחד השירים המצליחים של 1981",
+      "source": "הארץ",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://phys.org/news/2026-08-ska-dialogue-historical-astronomical-archives.html",
+      "title": "The SKA project: A model for dialogue between historical astronomical archives, local memory and modern science",
+      "source": "Phys.org",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.davar1.co.il/695316/",
+      "title": "מזג האוויר: גשם קל הבוקר במישור החוף, עלייה קלה בטמפרטורות",
+      "source": "דבר",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.timesofisrael.com/met-gala-may-move-date-from-yom-hashoah-as-it-honors-galliano-who-once-praised-hitler/",
+      "title": "Met Gala may move date from Yom HaShoah as it honors Galliano, who once praised Hitler",
+      "source": "Times of Israel",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.ynet.co.il/news/elections2026/article/yokra14883662",
+      "title": "ההנחיה של בן גביר לאנשי הקמפיין: הצניעו את תוכנית התנינים",
+      "source": "Ynet — חדשות",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.haaretz.co.il/news/politics/2026-08-31/ty-article/.premium/000001a0-55d9-d3eb-abf5-57df0d150000",
+      "title": "איראן תקפה בסיסים אמריקאיים בירדן ובאיחוד האמירויות בתגובה לתקיפה באי לארכ",
+      "source": "הארץ",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.davar1.co.il/695310/",
+      "title": "ארה\"ב תקפה משגרים בהורמוז; האיראנים ירו לעבר בסיסים בירדן והאמירויות",
+      "source": "דבר",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://openclaw.ai/blog/openclaw-2-accidentally",
+      "title": "OpenClaw 2.0, Accidentally",
+      "source": "Hacker News Front Page",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.israelhayom.co.il/culture/stage/article/21312345",
+      "title": "\"פיטר פן\" לא היה סיפור ילדים תמים: האמת האפלה מאחורי האגדה",
+      "source": "ישראל היום",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://ruurtjan.com/articles/p99-0ms-autocomplete-for-240-million-domain-names",
+      "title": "P99 0 ms* autocomplete for 240M domain names",
+      "source": "Hacker News Front Page",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://maurycyz.com/misc/etherfiles/",
+      "title": "Transfer files over an Ethernet patch cable",
+      "source": "Hacker News Front Page",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.israelhayom.co.il/travel/travel-abroad/article/21310162",
+      "title": "הטירות הכי יפות בסקוטלנד: 4 שאסור לפספס ואחת שאפשר לוותר עליה",
+      "source": "ישראל היום",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.haaretz.co.il/opinions/2026-08-31/ty-article-opinion/.premium/000001a0-53a6-d3eb-abf5-57ff68b20000",
+      "title": "דברו ברור: האזרחים הערבים הם שותפים ראויים",
+      "source": "הארץ",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.haaretz.co.il/gallery/television/guide/2026-08-31/ty-article/.premium/000001a0-522c-d003-a7e1-7f3faf390000",
+      "title": "\"הבן והים\" הוא סרט קטן וצובט לב שחבל לפספס בשצף הסטרימינג",
+      "source": "הארץ",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.haaretz.co.il/health/2026-08-31/ty-article-magazine/.premium/000001a0-37ee-d268-a1fe-3ffebc8c0000",
+      "title": "נשימה במקום סיגריה: האם אפשר לעבור את הדחף לעשן בלי להיכנע לו?",
+      "source": "הארץ",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.haaretz.co.il/gallery/music/2026-08-31/ty-article-magazine/.premium/000001a0-38ab-d341-aff6-b9ff42f90000",
+      "title": "הזמרת אליסה זרקה כאפייה לקהל. היא לא ציפתה לסערה שתתחולל",
+      "source": "הארץ",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.haaretz.co.il/food/street-food-review/2026-08-31/ty-article-review/.highlight/000001a0-5496-de9b-a3f3-d5f657540000",
+      "title": "Wabito: אוכל רחוב מזמין אתכם לבוא מתי שתרצו. לא המקום הזה",
+      "source": "הארץ",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.haaretz.co.il/opinions/2026-08-31/ty-article-opinion/.premium/000001a0-538d-de9b-a3f3-d3edc0a80000",
+      "title": "הקו שמחבר בין דיר יאסין לקוסרה",
+      "source": "הארץ",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.haaretz.co.il/opinions/2026-08-31/ty-article-opinion/.premium/000001a0-52c2-d3eb-abf5-57dfb0450000",
+      "title": "המלחמה תפרוץ ב–27 באוקטובר",
+      "source": "הארץ",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.haaretz.co.il/opinions/2026-08-31/ty-article-opinion/.highlight/000001a0-52ce-d3eb-abf5-57df656f0000",
+      "title": "וינטר מיהר לתמוך בנתניהו, אך הצעה מפתה מאיזנקוט (שר ביטחון?) תטה הכף",
+      "source": "הארץ",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.globes.co.il/news/article.aspx?did=1001553829#utm_source=RSS",
+      "title": "המהפך של טרמינל איקס: במקום למכור מותגים של אחרים, קונים אותם",
+      "source": "גלובס",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.globes.co.il/news/article.aspx?did=1001553819#utm_source=RSS",
+      "title": "המנגנון הסודי של אנבידיה: רשת העסקאות שמאחורי הרבעון המוצלח",
+      "source": "גלובס",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.haaretz.co.il/gallery/television/tv-review/2026-08-31/ty-article/000001a0-5443-d692-a5e3-f65f15340000",
+      "title": "איך רוצח הופך לגיבור תרבות, ומה זה אומר על העם היהודי שאלו גיבוריו",
+      "source": "הארץ",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.haaretz.co.il/nature/2026-08-31/ty-article-magazine/.premium/000001a0-5205-dacf-ade0-7f07ffa90000",
+      "title": "קיפאון בהפשרה: האם השיטפון הקטלני בנפאל הוא אסון חריג או עדות חותכת להתחממות?",
+      "source": "הארץ",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.haaretz.co.il/news/magazine/2026-08-31/ty-article-magazine/.premium/000001a0-4263-d274-a7f4-f6e370520000",
+      "title": "ההומופוביה של פרץ, ההדתה של המר: הסקנדלים הגדולים של שרי החינוך",
+      "source": "הארץ",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.haaretz.co.il/news/education/2026-08-31/ty-article/.premium/000001a0-544b-d3eb-abf5-575f0c340000",
+      "title": "הישראליזציה של הלימודים במזרח ירושלים מצמצמת את הפערים",
+      "source": "הארץ",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.haaretz.co.il/news/elections/2026-08-31/ty-article/.premium/000001a0-5435-d4eb-affc-5d3dc7760000",
+      "title": "\"רוצים למסמס את הסיפור\": ההחלטה שלא להדיח את ג'עפר פרח מעוררת מחלוקת בחד\"ש",
+      "source": "הארץ",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.haaretz.co.il/news/law/2026-08-31/ty-article/.premium/000001a0-5422-d3eb-abf5-577ff8640000",
+      "title": "מספר המעצרים של קטינים ממוצא אתיופי זינק בחדות בזמן כהונת בן גביר",
+      "source": "הארץ",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.globes.co.il/news/article.aspx?did=1001553834#utm_source=RSS",
+      "title": "הראל ויזל וגד פרופר שותפים: המרוויחים המפתיעים ממיזוג הנדל\"ן של דן",
+      "source": "גלובס",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://github.com/27-GROUP/kveritas-go/",
+      "title": "Show HN: Prove your code produced your claims without making reviewers rerun it",
+      "source": "Hacker News Front Page",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.israelhayom.co.il/news/education/article/21315499",
+      "title": "פער דיגיטלי: תוכניות הבינה המלאכותית של משרד החינוך פוסחות על הפריפריה",
+      "source": "ישראל היום",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://techcrunch.com/2026/08/30/the-u-s-is-building-barriers-around-drones-and-robots-china-still-has-scale/",
+      "title": "The U.S. is building barriers around drones and robots, but China has scale to get around them",
+      "source": "TechCrunch AI",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://dreamstation.systems/personal/ntppost.html",
+      "title": "Internet centralization and the original sin of NAT",
+      "source": "Hacker News Front Page",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.ynet.co.il/news/article/rjq0irbuzx",
+      "title": "התחזית: עלייה בטמפרטורות | זו הסיבה שהתחזית ל\"גשם חריג\" נגמרה בטפטוף",
+      "source": "Ynet — חדשות",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.ynet.co.il/news/theheadline/article/rdldsx7gz",
+      "title": "הקרב על הימין: למה נתניהו מפחד מעופר וינטר?",
+      "source": "Ynet — חדשות",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.timesofisrael.com/professional-committee-recommends-shin-bet-provide-eisenkot-with-armed-security/",
+      "title": "Professional committee recommends Shin Bet provide Eisenkot with armed security",
+      "source": "Times of Israel",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://simonwillison.net/2026/Aug/30/understanding-chatgpt-work/",
+      "title": "Understanding ChatGPT Work",
+      "source": "Hacker News Front Page",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.israelhayom.co.il/news/world-news/europe/article/21316367",
+      "title": "על סף הסלמה: רוסיה מאיימת במתקפה נרחבת על תשתיות האנרגיה באוקראינה",
+      "source": "ישראל היום",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.timesofisrael.com/16-givati-soldiers-sent-to-prison-for-refusing-to-enter-apc-with-female-paramedic/",
+      "title": "16 Givati soldiers sent to prison for refusing to enter APC with female paramedic",
+      "source": "Times of Israel",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://phys.org/news/2026-08-wheat-growers-unpredictable-weather.html",
+      "title": "Using data to help wheat growers adapt to unpredictable weather",
+      "source": "Phys.org",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.israelhayom.co.il/news/world-news/other/article/21316350",
+      "title": "שעות לפני השיטפון: התיעוד האחרון של שתי התיירות שנעדרות בנפאל",
+      "source": "ישראל היום",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.timesofisrael.com/liveblog-august-31-2026/",
+      "title": "Smotrich lambastes IDF over jailing of soldiers who refused to serve alongside female paramedic",
+      "source": "Times of Israel",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.israelhayom.co.il/news/world-news/usa/article/21316338",
+      "title": "זנות, גניבה ועבירות קלות: השינוי שמעורר סערה ב-FBI",
+      "source": "ישראל היום",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.israelhayom.co.il/news/world-news/usa/article/21316326",
+      "title": "לאב הבית לא היה כסף לדירה - הפתרון שמצא עלה לו בעבודה",
+      "source": "ישראל היום",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.timesofisrael.com/us-forces-hit-iranian-launchers-preparing-to-fire-in-hormuz-irgc-targets-jordan-in-response/",
+      "title": "US hits Iranian launchers preparing to fire in Hormuz; IRGC targets Jordan, UAE in response",
+      "source": "Times of Israel",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.israelhayom.co.il/news/world-news/other/article/21316314",
+      "title": "סוף לעקיצות? המערכת הסינית שמבטיחה לחסל 30 יתושים בשנייה",
+      "source": "ישראל היום",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.israelhayom.co.il/news/world-news/europe/article/21316303",
+      "title": "אלפי סרטונים אינטימיים שהופצו ומצלמות נסתרות: שערוריית הענק במכון היופי",
+      "source": "ישראל היום",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://kuleshov-group.github.io/blog/blog/2026/how-to-build-a-diffusion-language-model/",
+      "title": "How to build a diffusion language model",
+      "source": "Hacker News Front Page",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.abortretry.fail/p/matrox",
+      "title": "Matrox: Graphics for Professionals",
+      "source": "Hacker News Front Page",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.israelhayom.co.il/news/world-news/other/article/21316296",
+      "title": "הוא עלה לטיסה כדי לחגוג יום הולדת - ואז ראה מי מחכה לו במטוס",
+      "source": "ישראל היום",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.israelhayom.co.il/news/world-news/usa/article/21316284",
+      "title": "התעוררה באמצע הלילה - וגילתה עטלף חי בתוך פיה",
+      "source": "ישראל היום",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.israelhayom.co.il/news/world-news/other/article/21316277",
+      "title": "המורה סטרה לילד בן ה-6 - זמן קצר לאחר מכן הוא התמוטט ומת",
+      "source": "ישראל היום",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.israelhayom.co.il/news/education/article/21316270",
+      "title": "אושרת קוטלר: ״זאת תכלית חיינו?״",
+      "source": "ישראל היום",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.israelhayom.co.il/news/world-news/usa/article/21316262",
+      "title": "\"חפצים גדולים נסחפו במים\": יותר מ-20 נעדרים בשיטפונות בגרנד קניון",
+      "source": "ישראל היום",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://unsung.aresluna.org/i-just-chose-words-carefully/",
+      "title": "“I just chose words carefully”",
+      "source": "Hacker News Front Page",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.ynet.co.il/news/article/bkpz8bzoze",
+      "title": "ארה\"ב הפציצה משגרים באיראן, ירדן יירטה טילים: \"הותקפו בסיסים אמריקנים\"",
+      "source": "Ynet — חדשות",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.timesofisrael.com/british-activist-who-was-detained-by-settlers-to-be-deported-after-uk-intervenes/",
+      "title": "British activist who was detained by settlers to be deported after UK intervenes",
+      "source": "Times of Israel",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.haaretz.co.il/news/politics/2026-08-31/ty-article/000001a0-54a0-d4eb-affc-5db8dfc10000",
+      "title": "דיווחים: חיילים אבטחו מתקפת מתנחלים באל־מוע'ייר וירו בארבעה פלסטינים",
+      "source": "הארץ",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.israelhayom.co.il/news/local/article/21316190",
+      "title": "לאחר חיפושים ליליים: יהלי בן ה-10 אותר בבני ברק",
+      "source": "ישראל היום",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.israelhayom.co.il/news/world-news/europe/article/21316179",
+      "title": "הסוד של משפט אייכמן נחשף: גרמניה החדירה סוכן לצוות ההגנה של הצורר",
+      "source": "ישראל היום",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.haaretz.co.il/news/dailynews/2026-08-31/ty-article-live/000001a0-549d-d822-a3b8-56df9a940000",
+      "title": "חדשות היום, 31 באוגוסט",
+      "source": "הארץ",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.haaretz.co.il/news/elections/2026-08-31/ty-article/.premium/000001a0-548b-de9b-a3f3-d5ebe6e50000",
+      "title": "מקורבים לסגלוביץ: רע\"מ אישרה את שיבוצו במקום השני ברשימתה לכנסת",
+      "source": "הארץ",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.israelhayom.co.il/weather/article/21316162",
+      "title": "חוזרים לשגרה: הטמפרטורות שוב עולות - מתי תגיע ההקלה? | התחזית",
+      "source": "ישראל היום",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.israelhayom.co.il/news/education/article/21316154",
+      "title": "מחשש לתעמולת בחירות: חברי הכנסת יורחקו מבתי הספר?",
+      "source": "ישראל היום",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.israelhayom.co.il/news/world-news/europe/article/21316143",
+      "title": "ועל העוקץ: הצצה למפעל הדבש בלב זירת המתקפות באוקראינה",
+      "source": "ישראל היום",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.ynet.co.il/news/article/yokra14883017",
+      "title": "מה קרה במיאמי?",
+      "source": "Ynet — חדשות",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.ynet.co.il/news/article/sk5nfjguze",
+      "title": "16 הלוחמים שסירבו לצאת לסיור עם פרמדיקית בעזה נשלחו לכלא",
+      "source": "Ynet — חדשות",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.ynet.co.il/news/article/yokra14883450",
+      "title": "קח אותי, איתמר",
+      "source": "Ynet — חדשות",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.ynet.co.il/news/article/yokra14883084",
+      "title": "מערכת הבריאות בישראל דועכת לאיטה, בשקט ובעקביות",
+      "source": "Ynet — חדשות",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.ynet.co.il/news/article/yokra14883525",
+      "title": "משיח לא בא",
+      "source": "Ynet — חדשות",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.ynet.co.il/news/article/yokra14883251",
+      "title": "תעודת עניות: איפה הנשים ברשימות?",
+      "source": "Ynet — חדשות",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.haaretz.co.il/opinions/caricatures/2026-08-31/ty-article-opinion/000001a0-52d7-d4eb-affc-5bff8f020000",
+      "title": "קריקטורה יומית | 31 באוגוסט 2026",
+      "source": "הארץ",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.haaretz.co.il/opinions/editorial-articles/2026-08-31/ty-article/000001a0-53a5-d822-a3b8-53ff027e0000",
+      "title": "מזל טוב, אמילי ודניאל! רק לא בישראל בבקשה",
+      "source": "הארץ",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.israelhayom.co.il/news/local/article/21316119",
+      "title": "שלוש שנים אחרי 7 באוקטובר: החובש שחזר לרגע שבו בחר להישאר",
+      "source": "ישראל היום",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://phys.org/news/2026-08-fuse-strategy-route-molecular-skeletal.html",
+      "title": "'Cut-to-fuse' strategy: A new route for molecular skeletal editing",
+      "source": "Phys.org",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.ynet.co.il/news/article/yokra14881669",
+      "title": "ביבי נגרר ימינה",
+      "source": "Ynet — חדשות",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.ynet.co.il/news/elections2026/article/yokra14883243",
+      "title": "התחבורה הציבורית בשבת בקדמת הבמה: עמדות המפלגות - והסקר בקרב המצביעים",
+      "source": "Ynet — חדשות",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.ynet.co.il/news/article/yokra14881525",
+      "title": "בחברה הערבית שבים לכיתות בצל הפשיעה: \"קשה לצפות שילמדו כאילו לא קורה כלום\"",
+      "source": "Ynet — חדשות",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.haaretz.co.il/news/politics/2026-08-30/ty-article/.premium/000001a0-546e-de9b-a3f3-d56eab600000",
+      "title": "צה\"ל: 16 חיילים נשפטו למאסר לאחר שסירבו לצאת לפעילות מבצעית בעזה בשל נוכחות חיילת",
+      "source": "הארץ",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.ynet.co.il/news/article/h1zzbmgdzl",
+      "title": "נהג אוטובוס סירב להוריד נוסע בצומת והוכה קשות: \"התעוררתי באמבולנס\" | תיעוד מחריד",
+      "source": "Ynet — חדשות",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.ynet.co.il/news/article/bjowrffume",
+      "title": "שיטפונות בזק בגרנד קניון, לפחות 15 מטיילים נעדרים",
+      "source": "Ynet — חדשות",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://sander.ai/2026/08/24/continuous-dlms.html",
+      "title": "Continuous Diffusion Language Models (CDLM's)",
+      "source": "Hacker News Front Page",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.israelhayom.co.il/horoscopes/aries/article/21292031",
+      "title": "מזל טלה - הורוסקופ יומי: אל תחפשו בלגאן | תחזית אסטרולוגית",
+      "source": "ישראל היום",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.israelhayom.co.il/horoscopes/taurus/article/21292032",
+      "title": "מזל שור - הורוסקופ יומי: תעברו יום נפלא | תחזית אסטרולוגית",
+      "source": "ישראל היום",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.israelhayom.co.il/horoscopes/gemini/article/21292033",
+      "title": "מזל תאומים - הורוסקופ יומי: מישהו קרוב לכם זקוק להכוונה ולייעוץ | תחזית אסטרולוגית",
+      "source": "ישראל היום",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.israelhayom.co.il/horoscopes/cancer/article/21298638",
+      "title": "מזל סרטן - הורוסקופ יומי: מסר אופטימי מגיע | תחזית אסטרולוגית",
+      "source": "ישראל היום",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.israelhayom.co.il/horoscopes/leo/article/21298639",
+      "title": "מזל אריה - הורוסקופ יומי: היום תתעוררו בתחושה של קיפוח | תחזית אסטרולוגית",
+      "source": "ישראל היום",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.israelhayom.co.il/horoscopes/virgo/article/21298640",
+      "title": "מזל בתולה - הורוסקופ יומי: מידע שמגיע אליכם גורם לכם להרגיש מרומים | תחזית אסטרולוגית",
+      "source": "ישראל היום",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.israelhayom.co.il/horoscopes/libra/article/21298652",
+      "title": "מזל מאזניים - הורוסקופ יומי: הגיע הזמן ללמוד מהי נתינה אמיתית | תחזית אסטרולוגית",
+      "source": "ישראל היום",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.israelhayom.co.il/horoscopes/scorpio/article/21298654",
+      "title": "מזל עקרב - הורוסקופ יומי: הערב יתפתח בצורה חיובית | תחזית אסטרולוגית",
+      "source": "ישראל היום",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.israelhayom.co.il/horoscopes/sagittarius/article/21298655",
+      "title": "מזל קשת - הורוסקופ יומי: צפוי לכם יום נהדר | תחזית אסטרולוגית",
+      "source": "ישראל היום",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.israelhayom.co.il/horoscopes/capricorn/article/21298665",
+      "title": "מזל גדי - הורוסקופ יומי: ביטוי עצמי היא הסיסמה ליום הזה | תחזית אסטרולוגית",
+      "source": "ישראל היום",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.israelhayom.co.il/horoscopes/aquarius/article/21298666",
+      "title": "מזל דלי - הורוסקופ יומי: בערב צפוי לכם בילוי מרתק עם חברים | תחזית אסטרולוגית",
+      "source": "ישראל היום",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.israelhayom.co.il/horoscopes/pisces/article/21298668",
+      "title": "מזל דגים - הורוסקופ יומי: קחו את עצמכם בידיים | תחזית אסטרולוגית",
+      "source": "ישראל היום",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.ynet.co.il/news/article/h1x6o1fdzg",
+      "title": "מעצרים, פינויים ו\"פגיעה בכיס\": כך נערכים במערכת הביטחון לבלום את הפרעות ביו\"ש",
+      "source": "Ynet — חדשות",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.ynet.co.il/news/article/skpwuawofg",
+      "title": "באוצר הודפים את טענות מערכת הביטחון: \"משקף ניהול רשלני בכל הקשור לתקציב\"",
+      "source": "Ynet — חדשות",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.davar1.co.il/695304/",
+      "title": "ארה\"ב תקפה באי לאראק שבאיראן; משמרות המהפכה מאיימים בתגובה",
+      "source": "דבר",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.israelhayom.co.il/news/local/article/21316007",
+      "title": "“יכולנו להיות בחדשות - 60 חיילים נהרגו”: נהג שאטל נסע בפראות ושוחח בנייד",
+      "source": "ישראל היום",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.timesofisrael.com/high-court-suggests-shin-bet-chief-reconsider-demand-to-reveal-petitioners-names/",
+      "title": "High Court suggests Shin Bet chief ‘reconsider’ demand to reveal petitioners’ names",
+      "source": "Times of Israel",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.israelhayom.co.il/opinions/article/21313606",
+      "title": "לא כל תקיפה היא \"מלחמת בחירות\": הגיע הזמן לתת אמון בהחלטות הביטחוניות",
+      "source": "ישראל היום",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.righto.com/2026/08/spacelab-core-memory.html",
+      "title": "Cores in space: The core memory module from a 1980 Spacelab computer",
+      "source": "Hacker News Front Page",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.israelhayom.co.il/opinions/article/21313373",
+      "title": "אין מי שיטפל, אין מי שילמד: המשבר שמאיים על החינוך בישראל",
+      "source": "ישראל היום",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.israelhayom.co.il/news/defense/article/21315959",
+      "title": "איומים על המועמד: אלו השרים שיכריעו בעניין אבטחת השב\"כ לאיזנקוט",
+      "source": "ישראל היום",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.haaretz.co.il/news/politics/2026-08-30/ty-article/.premium/000001a0-532a-d3eb-abf5-577f6a940000",
+      "title": "פעיל בריטי יגורש מישראל לאחר שעוכב בידי מתנחלים שטענו כי הטריד קטין",
+      "source": "הארץ",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.israelhayom.co.il/news/world-news/middle-east/article/21315935",
+      "title": "ארה\"ב תקפה באיראן; משמרות המהפכה שיגרו בתגובה מטח טילים לעבר ירדן",
+      "source": "ישראל היום",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.haaretz.co.il/news/elections/2026-08-30/ty-article/.premium/000001a0-5415-d3eb-abf5-575f039e0000",
+      "title": "הוועדה המייעצת תמליץ להצמיד אבטחת שב\"כ לאיזנקוט, טרם התקבלה החלטה על יאיר גולן",
+      "source": "הארץ",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.haaretz.co.il/sport/israel-soccer/2026-08-30/ty-article/000001a0-5418-d3eb-abf5-575f980d0000",
+      "title": "הפועל תל אביב סיימה ב-0:0 עם הפועל חיפה, סתיו טוריאל החמיץ פנדל",
+      "source": "הארץ",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.israelhayom.co.il/sport/israeli-soccer/article/21315882",
+      "title": "אחרי איבוד הנקודות: אליניב ברדה שלח מסר חד וברור לשחקניו",
+      "source": "ישראל היום",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.timesofisrael.com/protest-in-thailands-phuket-targets-misbehaving-israelis/",
+      "title": "Protest in Thailand’s Phuket targets misbehaving Israelis",
+      "source": "Times of Israel",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.ynet.co.il/news/article/bjjnfwz00gg",
+      "title": "הוועדה הציבורית המייעצת תמליץ לשרים: אשרו אבטחת שב\"כ לאיזנקוט עד הבחירות",
+      "source": "Ynet — חדשות",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.haaretz.co.il/news/2026-08-30/ty-article/000001a0-5428-d3eb-abf5-577f160e0000",
+      "title": "לאחר כחודש, ארה\"ב תקפה משגרים איראניים במצר הורמוז; איראן מאיימת בתגובה",
+      "source": "הארץ",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.israelhayom.co.il/news/local/article/21315887",
+      "title": "השריפה שפרצה בחניון בראשל\"צ - נקבע מותו של אדם שהיה ברכבו",
+      "source": "ישראל היום",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.davar1.co.il/695302/",
+      "title": "הרוג בשריפת כלי רכב בחניון תת-קרקעי בראשון לציון; אין חשד לפלילים",
+      "source": "דבר",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.haaretz.co.il/news/elections/2026-08-30/ty-article/.premium/000001a0-53cf-d3eb-abf5-57df0ec60000",
+      "title": "סקר כאן 11: וינטר וסמוטריץ' עוברים את אחוז החסימה, גוש איזנקוט נחלש",
+      "source": "הארץ",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.timesofisrael.com/one-killed-five-injured-in-suspected-terror-shooting-at-rave-in-switzerland/",
+      "title": "One killed, five injured in suspected terror shooting at rave in Switzerland",
+      "source": "Times of Israel",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.ynet.co.il/news/article/hyjwj11gdme",
+      "title": "רכב חשמלי התלקח בחניון תת-קרקעי בראשון לציון, כבן 80 שאותר בתוכו נספה",
+      "source": "Ynet — חדשות",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.haaretz.co.il/news/politics/2026-08-30/ty-article/.premium/000001a0-539b-d4eb-affc-5bbb67740000",
+      "title": "לאחר עתירה לבג\"ץ, במשטרה פועלים להוצאת צווי מעצר נגד מתנחלים שתקפו פלסטינים בקוסרה",
+      "source": "הארץ",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.israelhayom.co.il/sport/israeli-basketball/article/21315363",
+      "title": "\"לכדורסל הישראלי אין את האפשרות לזרוק משחקים\"",
+      "source": "ישראל היום",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.israelhayom.co.il/sport/world-basketball/article/21315432",
+      "title": "הזוי: נבחרת פלסטין שברה את שיא הנקודות - מול יריבה מצחיקה",
+      "source": "ישראל היום",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.israelhayom.co.il/news/law/article/21315677",
+      "title": "\"תוותרו לו\": ירין פנה למדינה כדי ללמוד להקים עסק - והיא העמידה אותו לדין",
+      "source": "ישראל היום",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://phys.org/news/2026-08-tides-locally-method-based-satellite.html",
+      "title": "Tides can be mapped much more locally using a new method based on satellite images",
+      "source": "Phys.org",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.haaretz.co.il/news/politics/2026-08-30/ty-article/.premium/000001a0-53fa-d3eb-abf5-57ff1a910000",
+      "title": "בכירים בצה\"ל: גובר הסיכון שפלסטינים חמושים יתארגנו כדי להשיב אש נגד מתנחלים אלימים",
+      "source": "הארץ",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.israelhayom.co.il/culture/tv/article/21315693",
+      "title": "רביב דרוקר נפגש עם מנכ״ל קשת 12: ״רציתי להציע חבילה שתנחית אותי״",
+      "source": "ישראל היום",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.israelhayom.co.il/news/politics/article/21315679",
+      "title": "הוועדה החליטה: איזנקוט יקבל אבטחת שב\"כ; על גולן ידונו בהמשך",
+      "source": "ישראל היום",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://github.com/KodeMunkie/sm750hdmifb",
+      "title": "Why open source rocks – a new SM750 (Silicon Motion GPU) HDMI Driver",
+      "source": "Hacker News Front Page",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.israelhayom.co.il/culture/internet-culture/article/21315589",
+      "title": "משי קלינשטיין מבקשת עזרה: ''מה עושים?''",
+      "source": "ישראל היום",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.israelhayom.co.il/news/defense/article/21315576",
+      "title": "לוחמי גבעתי שסירבו למשימה בגלל פרמדיקית בנמ\"ר - יישלחו לכלא",
+      "source": "ישראל היום",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.israelhayom.co.il/news/defense/article/21315574",
+      "title": "צו השעה: להרחיב את הסיכולים ולשמר את תחושת הנרדפות בחמאס",
+      "source": "ישראל היום",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.ynet.co.il/news/article/h100w71mume",
+      "title": "\"מה תיתני לי כדי שאוותר?\": עלילות שוטר התנועה שחשוד בהטרדה מינית של נהגות",
+      "source": "Ynet — חדשות",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.israelhayom.co.il/opinions/article/21315512",
+      "title": "העפיפונים שבו לעוטף - ותחושת הביטחון של התושבים בסכנה",
+      "source": "ישראל היום",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.haaretz.co.il/sport/basketball/2026-08-30/ty-article/000001a0-53ea-de9b-a3f3-d3ea887c0000",
+      "title": "נבחרת ישראל הובסה 85:70 בידי לטביה ואיבדה סיכוי להעפיל לאליפות העולם",
+      "source": "הארץ",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.israelhayom.co.il/forreal/localy/article/21315375",
+      "title": "עדיקה סגרה את הקופה, המהלך השיווקי נשאר פתוח",
+      "source": "ישראל היום",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.davar1.co.il/695294/",
+      "title": "בית הדין הארצי לעבודה: יציאה מהארון של מנהל מול עובד איננה הטרדה מינית",
+      "source": "דבר",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.haaretz.co.il/news/education/2026-08-30/ty-article/.premium/000001a0-5390-d692-a5e3-f3dcada30000",
+      "title": "הורים ישביתו את הלימודים בתיכון בדרום תל אביב במחאה על קבלת תלמידים זרים",
+      "source": "הארץ",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.israelhayom.co.il/opinions/article/21315391",
+      "title": "חומר חובה: שנת בלימת האלימות הדיגיטלית",
+      "source": "ישראל היום",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.timesofisrael.com/nepal-warns-of-possible-fresh-flooding-as-communities-grapple-with-devastation/",
+      "title": "Nepal warns of possible fresh flooding as communities grapple with devastation",
+      "source": "Times of Israel",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.globes.co.il/news/article.aspx?did=1001553852#utm_source=RSS",
+      "title": "המחיר של המכוניות הללו מושך, אבל הרוכשים מיד שנייה יחטפו את המכה",
+      "source": "גלובס",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.ynet.co.il/news/article/sjmbfjzdfx",
+      "title": "בכיר רבני ש\"ס נגד נתניהו: \"לא מאמינים לו, נצטרף לממשלה הבאה רק אחרי חוק פטור\"",
+      "source": "Ynet — חדשות",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.israelhayom.co.il/news/local/article/21315350",
+      "title": "\"הם היו שם זה עבור זה בכל רגע\": שנתיים לרצח ששת החטופים במנהרה",
+      "source": "ישראל היום",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.israelhayom.co.il/sport/world-soccer/article/21315266",
+      "title": "שחקן נבחרת ישראל היה עד לתקרית מפחידה: \"דם רב ניתז\"",
+      "source": "ישראל היום",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.davar1.co.il/695292/",
+      "title": "אחרי הספירה החוזרת בליכוד: גמליאל נדחקה למקום ה-35 ברשימה",
+      "source": "דבר",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.globes.co.il/news/article.aspx?did=1001553848#utm_source=RSS",
+      "title": "\"זיהינו חריקות בתוך הבית\": באקרשטיין מצאו את האחראי לתוצאות החלשות",
+      "source": "גלובס",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.haaretz.co.il/news/world/europe/2026-08-30/ty-article-magazine/000001a0-5362-dbca-a7ea-f36ac9150000",
+      "title": "הבעיות של פוטין ממשיכות להיערם, אך הוא דבק בהימור שלו שאוקראינה תישבר ראשונה",
+      "source": "הארץ",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://phys.org/news/2026-08-super-el-nino-climate-ninos.html",
+      "title": "As super El Nino strengthens, study suggests that climate change is intensifying El Ninos",
+      "source": "Phys.org",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.haaretz.co.il/sport/world-soccer/2026-08-30/ty-article/000001a0-53c3-d822-a3b8-53dfbe020000",
+      "title": "מנצ'סטר יונייטד הביסה את איפסוויץ' 2:5, שלושער ובישול לברונו פרננדש",
+      "source": "הארץ",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.davar1.co.il/695287/",
+      "title": "האם הריבית תרד או תישאר? המומחים חלוקים ובנק ישראל חושש מאי וודאות",
+      "source": "דבר",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.haaretz.co.il/news/education/2026-08-30/ty-article/.premium/000001a0-534a-d692-a5e3-f35e10080000",
+      "title": "לראשונה מ־1967, כל הכיתות החדשות בחינוך הממלכתי במזרח ירושלים ילמדו תוכנית ישראלית",
+      "source": "הארץ",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.timesofisrael.com/icelanders-vote-no-to-restarting-negotiations-to-join-the-european-union/",
+      "title": "Icelanders vote no to restarting negotiations to join the European Union",
+      "source": "Times of Israel",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.timesofisrael.com/smotrich-aims-to-cut-israels-record-gas-prices-but-his-plan-may-be-deemed-illegal/",
+      "title": "Smotrich aims to cut Israel’s record gas prices, but his plan may be deemed illegal",
+      "source": "Times of Israel",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.globes.co.il/news/article.aspx?did=1001553821#utm_source=RSS",
+      "title": "העסקה הביטחונית הגדולה בתולדות המדינה נסגרת - והעיתוי לא מקרי",
+      "source": "גלובס",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.haaretz.co.il/sport/world-soccer/2026-08-30/ty-article/000001a0-538e-d822-a3b8-53dff29f0000",
+      "title": "ריאל מדריד ניצחה את מלאגה 0:4 ורשמה ניצחון שלישי ברציפות",
+      "source": "הארץ",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://phys.org/news/2026-08-infection-gut-cells-diet-reshapes.html",
+      "title": "Infection kills gut cells, while diet reshapes existing ones, fruit fly study finds",
+      "source": "Phys.org",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.haaretz.co.il/opinions/2026-08-30/ty-article-opinion/.premium/000001a0-533d-d692-a5e3-f37da8140000",
+      "title": "עונש מוות למחבלים ייצר מרטירים, לא הרתעה. צבי סוכות לא יעמוד בקצב",
+      "source": "הארץ",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.haaretz.co.il/opinions/2026-08-30/ty-article-opinion/.premium/000001a0-5362-d3eb-abf5-577faae90000",
+      "title": "7 באוקטובר צריך להיות פרק מרכזי בתוכנית הלימודים",
+      "source": "הארץ",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.haaretz.co.il/opinions/2026-08-30/ty-article-opinion/.premium/000001a0-5334-d3eb-abf5-577f5b440000",
+      "title": "נוביק, אכן אין סיבה לשלול את הסקרים של פילבר. אם הם רק היו סקרים",
+      "source": "הארץ",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.haaretz.co.il/opinions/letters/2026-08-30/ty-article-opinion/.premium/000001a0-522b-dc79-a3e1-5fffb5bb0000",
+      "title": "אייל זמיר, אל תפחד מנתניהו או מהדחה: פעל נגד המתנחלים ביד קשה",
+      "source": "הארץ",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.haaretz.co.il/blogs/shabahit/2026-08-30/ty-article-opinion/.premium/000001a0-5380-d692-a5e3-f3dcbc6c0000",
+      "title": "גירוש ולא מדינה פלסטינית הוא על הפרק",
+      "source": "הארץ",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.globes.co.il/news/article.aspx?did=1001553876#utm_source=RSS",
+      "title": "עם כאלה ביצועים חלשים אין פלא שהחברה של קיבוץ יזרעאל מחפשת חבל הצלה",
+      "source": "גלובס",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.globes.co.il/news/article.aspx?did=1001553854#utm_source=RSS",
+      "title": "הבעלים לקחו 2 מיליון שקל מכספי החברה, וכעת רשות ניירות ערך צפויה להתערב",
+      "source": "גלובס",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.davar1.co.il/695272/",
+      "title": "חודשיים לפני הבחירות: סמוטריץ' הורה על קידום הוזלת המס על הדלק",
+      "source": "דבר",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://komoroske.com/slime-mold/",
+      "title": "Coordination Headwind: How Organizations Are Like Slime Molds",
+      "source": "Hacker News Front Page",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.ynet.co.il/health/article/s1ui8t11ugx",
+      "title": "חיידק ליסטריה בקממבר של גד: מה חשוב לדעת - ולמי הוא מסוכן?",
+      "source": "Ynet — בריאות",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.haiku-os.org/news/2026-08-26_haiku_r1_beta6",
+      "title": "Haiku R1/beta6 has been released",
+      "source": "Hacker News Front Page",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.globes.co.il/news/article.aspx?did=1001553862#utm_source=RSS",
+      "title": "המשקיעים מענישים את מניית שופרסל. אלה הנתונים שמדאיגים אותם",
+      "source": "גלובס",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.davar1.co.il/695249/",
+      "title": "180 אלף יעלו לכיתה א': ירושלים, בני ברק ובית שמש מובילות במספר התלמידים",
+      "source": "דבר",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.globes.co.il/news/article.aspx?did=1001553827#utm_source=RSS",
+      "title": "וורן באפט חוגג היום 96 ועדיין מגיע כל יום למשרד. כך הוא מושך בחוטים",
+      "source": "גלובס",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.haaretz.co.il/news/elections/2026-08-30/ty-article/.premium/000001a0-52a5-d4eb-affc-5bbd35520000",
+      "title": "סולברג אסר לדווח על זהות מצביעים ביישומון, אך במפלגות החרדיות לא מתכוונים לוותר",
+      "source": "הארץ",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.haaretz.co.il/news/education/2026-08-30/ty-article/.premium/000001a0-52d8-d692-a5e3-f2dc9f6e0000",
+      "title": "המדינה תקצה רבע מיליון שקל כדי להחליט אם לנסוע ל־Petah Tiqwa או ל־Petah Tikva",
+      "source": "הארץ",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://phys.org/news/2026-08-tropical-storm-karina-hurricane-pacific.html",
+      "title": "Tropical Storm Karina strengthens into a hurricane in the Pacific, could be a major storm this week",
+      "source": "Phys.org",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.theverge.com/ai-artificial-intelligence/986541/texas-governor-abbott-flock-cameras",
+      "title": "Texas Governor Abbott blocks funding for more Flock cameras",
+      "source": "The Verge AI",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://phys.org/news/2026-08-nasa-roman-space-telescope-quest.html",
+      "title": "NASA's newest Roman space telescope launches on a quest to explore the hidden universe",
+      "source": "Phys.org",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.ynet.co.il/economy/article/bjmb9pwoge",
+      "title": "התגרשה ותבעה: הדירות והקרקעות הן שלי בלבד",
+      "source": "Ynet — כלכלה",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.ynet.co.il/economy/article/skaetawuzg",
+      "title": "ההחלטה הזו עלולה לייקר פרויקטים של פינוי-בינוי",
+      "source": "Ynet — כלכלה",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://phys.org/news/2026-08-method-magnet-powered-safer-reusable.html",
+      "title": "New method tests magnet-powered braking for safer, more reusable spacecraft reentry",
+      "source": "Phys.org",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.haaretz.co.il/digital/daily/2026-08-30/ty-article/.premium/000001a0-52f8-d3eb-abf5-57fff9120002",
+      "title": "אולי אין הצדקה להדיח את ג'עפר פרח. חד\"ש לא מאפשרת לנו לדעת",
+      "source": "הארץ",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.geektime.co.il/google-announces-android-ram-policy/",
+      "title": "לגוגל נמאס מאפליקציות שתוקעות לכם את המכשיר, אז היא עוברת לשלב האיומים",
+      "source": "Geektime",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.haaretz.co.il/sport/world-soccer/2026-08-30/ty-article/000001a0-5317-d3eb-abf5-575f36c80000",
+      "title": "צ'לסי ניצחה את ברייטון 3:4, לידס וברנטפורד נפרדו ב-1:1",
+      "source": "הארץ",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.haaretz.co.il/news/weather/2026-08-30/ty-article/.premium/000001a0-52ff-d692-a5e3-f2ffa6d30000",
+      "title": "תחזית מזג האוויר: יש לי מסר חשוב יותר מ\"אמרתי לכם\"",
+      "source": "הארץ",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.sciencedaily.com/releases/2026/08/260829035225.htm",
+      "title": "This strange “spacetime crystal” can suddenly become a black hole",
+      "source": "ScienceDaily",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://phys.org/news/2026-08-length-online-scammers-friends.html",
+      "title": "The length of your online reviews may help scammers map your friends and target them",
+      "source": "Phys.org",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://techcrunch.com/2026/08/30/caterpillar-is-bringing-to-ai-deployment-what-it-learned-from-automating-mining/",
+      "title": "Caterpillar is bringing to AI deployment what it learned from automating mining",
+      "source": "TechCrunch AI",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://science.nasa.gov/photojournal/ribbon-cutting-event-for-nasa-deep-space-networks-deep-space-station-23/",
+      "title": "Ribbon-Cutting Event for NASA Deep Space Network’s Deep Space Station 23",
+      "source": "NASA",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://science.nasa.gov/photojournal/nasa-deep-space-networks-new-goldstone-antenna-goes-online/",
+      "title": "NASA Deep Space Network’s New Goldstone Antenna Goes Online",
+      "source": "NASA",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://science.nasa.gov/photojournal/panorama-showcasing-the-34-meter-antennas-of-the-dsns-goldstone-complex/",
+      "title": "Panorama Showcasing the 34-Meter Antennas of the DSN’s Goldstone Complex",
+      "source": "NASA",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://ziglang.org/devlog/2026/#2026-08-27",
+      "title": "Zig: Pointer Stability for ArrayLists",
+      "source": "Hacker News Front Page",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.ynet.co.il/economy/article/bkvdkt11dfl",
+      "title": "משרד הבריאות: אותר חיידק ליסטריה בקממבר של מחלבות גד",
+      "source": "Ynet — כלכלה",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.sciencedaily.com/releases/2026/08/260829035216.htm",
+      "title": "Common supplements rival antibiotics for severe gum disease",
+      "source": "ScienceDaily",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://phys.org/news/2026-08-pest-pressure-foundation-lucerne-seed.html",
+      "title": "Know your pest pressure: Monitoring is the foundation for managing lucerne seed wasp",
+      "source": "Phys.org",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.geektime.co.il/google-maps-lake-america/",
+      "title": "גוגל מתיישרת לפי טראמפ: מחליפה את השם של ימת אונטריו",
+      "source": "Geektime",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.ynet.co.il/health/medicalplus/article/skur7jwdge",
+      "title": "סרטן נדיר, טיפולים פורצי דרך: התקווה החדשה לחולי לימפומה מסוג מנטל",
+      "source": "Ynet — בריאות",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.ynet.co.il/economy/article/rkerqn11dge",
+      "title": "מנכ\"ל רפאל על עיכוב התשלומים: \"מקבלים מהאוצר אמפתיה, לא פתרונות\"",
+      "source": "Ynet — כלכלה",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.ynet.co.il/economy/article/sy11xphz00gg",
+      "title": "כלכלת בחירות? סמוטריץ' הורה למנוע את התייקרות הדלק - אך לא בטוח שמותר לו",
+      "source": "Ynet — כלכלה",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://phys.org/news/2026-08-aboriginal-artists-giant-ancestral-colonization.html",
+      "title": "Aboriginal artists painted giant ancestral beings as colonization arrived, study finds",
+      "source": "Phys.org",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.ynet.co.il/economy/article/h1afpuwugx",
+      "title": "מתי הפכה המתנה הגדולה של היהדות לאויב? סערת עדיקה והשבת / טור",
+      "source": "Ynet — כלכלה",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.ynet.co.il/digital/technews/article/skcgviwume",
+      "title": "הרובוטים של בוסטון דיינמיקס בדרך למבצעי ההגירה של טראמפ",
+      "source": "Ynet — מחשבים",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.sciencedaily.com/releases/2026/08/260830000016.htm",
+      "title": "HEPA air purifiers may boost brain function after just one month",
+      "source": "ScienceDaily",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.ynet.co.il/economy/article/hkzualwofg",
+      "title": "כמה עולה קנייה בסופר? שאלנו ילדים על כסף - והתשובות הפתיעו אותנו",
+      "source": "Ynet — כלכלה",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.globes.co.il/news/article.aspx?did=1001553811#utm_source=RSS",
+      "title": "120 אלף שקל בחודש: כל הפרטים על התרופה החדשה לסרטן שהיכתה את השוק בהלם",
+      "source": "גלובס",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.haaretz.co.il/news/world/middle-east/2026-08-30/ty-article/.premium/000001a0-52b9-de9b-a3f3-d3f9b44e0000",
+      "title": "דיווח: בכירים בצבא ארה\"ב הזהירו את הגסת מפני תוצאות הארכת המבצע באיראן",
+      "source": "הארץ",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.sciencedaily.com/releases/2026/08/260829035328.htm",
+      "title": "Hundreds of hidden earthquakes found at Antarctica’s Doomsday Glacier",
+      "source": "ScienceDaily",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.haaretz.co.il/gallery/2026-08-30/ty-article-magazine/.premium/000001a0-2d7f-dc55-afba-3f7f704b0000",
+      "title": "התערוכה \"שש אחרי המלחמה\" מזכירה עד כמה דומים הנבוט והכטב\"ם",
+      "source": "הארץ",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://phys.org/news/2026-08-hollow-core-fiber-platform-quantum.html",
+      "title": "Hollow-core fiber platform could help different quantum technologies connect",
+      "source": "Phys.org",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.ynet.co.il/economy/article/bkgk8911ozl",
+      "title": "דוחות כספיים:החברה שמכרה 128 דירות ברבעון השני",
+      "source": "Ynet — כלכלה",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.haaretz.co.il/news/world/europe/2026-08-30/ty-article-magazine/.premium/000001a0-5249-dee1-a9ad-da4d39440000",
+      "title": "מעריצים רוצחי המונים ומעודדים אלימות בבתי ספר. קהילות הרשת הקיצוניות שמדאיגות את שוודיה",
+      "source": "הארץ",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.haaretz.co.il/digital/podcast/2026-08-30/ty-article-podcast/000001a0-5285-d4eb-affc-5bbdac490000",
+      "title": "\"ביום שבת אפשר לצאת לעשות פוגרום, אבל לא להיכנס לקנות באינטרנט\"",
+      "source": "הארץ",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.haaretz.co.il/news/world/europe/2026-08-30/ty-article/000001a0-5296-d692-a5e3-f2de2df10000",
+      "title": "מעבורת עם 267 נוסעים התהפכה בצפון קפריסין, לפחות שמונה נהרגו",
+      "source": "הארץ",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.haaretz.co.il/gallery/art/2026-08-30/ty-article-magazine/.premium/000001a0-522c-dfc5-a9ab-d2ed0aab0000",
+      "title": "עליזה אורבך מציגה תמונה של ירושלים שכבר לא קיימת",
+      "source": "הארץ",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.ynet.co.il/digital/technews/article/rjiaaq11ugx",
+      "title": "ענקיות הטכנולוגיה באזהרה משותפת: \"גל מתקפות AI על תשתיות קריטיות בפתח\"",
+      "source": "Ynet — מחשבים",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.sciencedaily.com/releases/2026/08/260828082336.htm",
+      "title": "Scientists discover a massive heat anomaly deep inside Mars",
+      "source": "ScienceDaily",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.ynet.co.il/economy/article/bj21lswdze",
+      "title": "שחקן כדורמים טבע למוות. משפחתו תקבל מיליוני שקלים",
+      "source": "Ynet — כלכלה",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.geektime.co.il/microsoft-365-copilot-free-students-israel/",
+      "title": "לפני שנת הלימודים: מיקרוסופט מזכירה שאתם יכולים לקבל אופיס בחינם",
+      "source": "Geektime",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.ynet.co.il/economy/article/b1btj5zuml",
+      "title": "במשכורת הקרובה תקבלו יותר כסף - זו הסיבה",
+      "source": "Ynet — כלכלה",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.haaretz.co.il/opinions/2026-08-30/ty-article-opinion/.premium/000001a0-5256-d4eb-affc-5b7efbf00000",
+      "title": "דברי אולמרט על הפצצת הכור בסוריה מספרים על ההפך המוחלט מהכישלון באיראן",
+      "source": "הארץ",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.ynet.co.il/economy/article/sygt4ywdml",
+      "title": "אחרי תרופות ההרזיה: וול סטריט מצאה את הלהיט הבא - והוא נמצא על הראש",
+      "source": "Ynet — כלכלה",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.haaretz.co.il/news/elections/2026-08-30/ty-article/.premium/000001a0-5271-d4eb-affc-5b7936a20000",
+      "title": "ראשת מועצת ירוחם לשעבר טל אוחנה ואל\"מ ניר חג'בי הצטרפו למפלגת ישר",
+      "source": "הארץ",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.ynet.co.il/economy/article/rjxns51100mx",
+      "title": "בגלל זיהום הקרקע בשדה דב: ביהמ\"ש עצר את הגרלת הזכויות בגוש הגדול בת\"א",
+      "source": "Ynet — כלכלה",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.sciencedaily.com/releases/2026/08/260827010510.htm",
+      "title": "A new recipe unlocks “impossible” nanocrystals for LEDs, implants, and superconductors",
+      "source": "ScienceDaily",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://greenlightning.eu/diy/hacking-ikea-furniture/",
+      "title": "Hacking IKEA Furniture",
+      "source": "Hacker News Front Page",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.haaretz.co.il/sport/world-soccer/2026-08-30/ty-article/000001a0-525b-d3eb-abf5-575f11b20000",
+      "title": "אמיליאנו מרטינס חתם בצ'לסי לשלוש שנים: \"אני רוצה לזכות בכל התארים, זה שידוך טוב\"",
+      "source": "הארץ",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.haaretz.co.il/gallery/music/2026-08-30/ty-article-magazine/.premium/000001a0-0f62-dcf7-a5b6-df670eb00000",
+      "title": "הריקוד לא רק הציל את מדונה, הוא הפך לכוח העל שלה",
+      "source": "הארץ",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.ynet.co.il/health/article/h1xdqtz00fg",
+      "title": "\"לכי תעשי ספורט\": כשהמשקל לא יורד – והמערכת לא מבינה מה הבעיה",
+      "source": "Ynet — בריאות",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://arstechnica.com/ai/2026/08/inside-metas-push-to-put-robots-to-work-in-data-centers/",
+      "title": "Inside Meta’s push to put robots to work in data centers",
+      "source": "Ars Technica AI",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.haaretz.co.il/news/politics/2026-08-30/ty-article/.premium/000001a0-5220-d649-a7be-df623ab00000",
+      "title": "שורד השבי אלי שרעבי והשחקנית שני כהן ינחו את טקס הזיכרון האזרחי לטבח 7 באוקטובר",
+      "source": "הארץ",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.haaretz.co.il/news/law/2026-08-30/ty-article/.premium/000001a0-5123-dc79-a3e1-5ff70d370000",
+      "title": "בניגוד לעמדת בן גביר, נוהל של המשטרה קורא לפעול באיפוק נגד חסימות כבישים בהפגנות",
+      "source": "הארץ",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.haaretz.co.il/news/law/2026-08-30/ty-article/.premium/000001a0-521c-d826-a5e4-5e7da34e0000",
+      "title": "נשיא העליון עמית: מצפה מזיני לסגת מדרישתו לחשוף את העותרים נגד מינויו",
+      "source": "הארץ",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.haaretz.co.il/travel/travel-in-israel/2026-08-30/ty-article-magazine/000001a0-3d15-d20e-abf1-3d37d4910000",
+      "title": "לא קלה דרכנו: טיול בין קהילות בדואיות בהר הנגב",
+      "source": "הארץ",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.sciencedaily.com/releases/2026/08/260828082347.htm",
+      "title": "Seven new frog species were hiding beneath Madagascar’s forest floor",
+      "source": "ScienceDaily",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.haaretz.co.il/news/law/2026-08-30/ty-article/.premium/000001a0-51f8-dc79-a3e1-5ffdc9b80000",
+      "title": "שני נערים הואשמו כי צילמו קניונים וריססו גרפיטי למען סוכן מטעם איראן",
+      "source": "הארץ",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://phys.org/news/2026-08-nasa-roman-telescope-cosmic-mission.html",
+      "title": "NASA's Roman telescope set to launch on cosmic mapping mission",
+      "source": "Phys.org",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.scientificamerican.com/article/why-obsessing-over-self-improvement-could-be-sabotaging-your-brain/",
+      "title": "Why obsessing over self-improvement could be sabotaging your brain",
+      "source": "Scientific American",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.ynet.co.il/health/article/sysjmozome",
+      "title": "מכאב הבטן לקלונקס: כך גילתה שלי יחימוביץ את סרטן הלבלב בשלב מוקדם",
+      "source": "Ynet — בריאות",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.haaretz.co.il/digital/podcast/2026-08-30/ty-article-podcast/000001a0-51b7-d649-a7be-ddf7c3810000",
+      "title": "הטעות האחרונה של בני גנץ הייתה קטלנית. האם הוא יבין ויסכים לשחרר מאיתנו?",
+      "source": "הארץ",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.sciencedaily.com/releases/2026/08/260828082348.htm",
+      "title": "Ancient Egyptian princesses were buried with weapons. Their bones reveal why",
+      "source": "ScienceDaily",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.haaretz.co.il/nature/2026-08-30/ty-article/.premium/000001a0-5191-dfdc-afa6-f1f3d5bd0000",
+      "title": "היובש במערב ארה\"ב פגע במקורות המזון, והדובים נאלצים לפשוט על בתים וחנויות",
+      "source": "הארץ",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.ynet.co.il/health/article/skvz1vb00fg",
+      "title": "הממתיק שבמסטיקים נקשר לעלייה בסיכון להתקף לב ולשבץ",
+      "source": "Ynet — בריאות",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.qubes-os.org/news/2026/08/29/qsb-118/",
+      "title": "Arbitrary code execution in QubesOS via copy-to-VM error reporting backchannel",
+      "source": "Hacker News Front Page",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.geektime.co.il/openai-will-end-deal-with-cursor-because-of-elon-musk/",
+      "title": "בעקבות הרכישה של מאסק: OpenAI חוסמת את Cursor",
+      "source": "Geektime",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.ynet.co.il/health/article/h1a6avbufx",
+      "title": "לא להסיח את הדעת: המחקר שהופך את מה שחשבנו על כאב",
+      "source": "Ynet — בריאות",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.haaretz.co.il/sport/other/2026-08-30/ty-article-magazine/.premium/000001a0-517b-d826-a5e4-5d7bf5af0000",
+      "title": "הטוען לכתר סיים את הלילה כשיכור בתעלה. התוכנית של האלוף החדש עבדה",
+      "source": "הארץ",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.haaretz.co.il/news/world/europe/2026-08-30/ty-article/.premium/000001a0-51bf-dc79-a3e1-5fff167b0000",
+      "title": "אזרחי איסלנד הצביעו במשאל עם נגד חידוש המשא ומתן על הצטרפות לאיחוד האירופי",
+      "source": "הארץ",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.ynet.co.il/economy/article/sj11v2bzdml",
+      "title": "ריב בוואטסאפ של הגן הפך לוויראלי - והמנצחת הגדולה בכלל לא הייתה שם",
+      "source": "Ynet — כלכלה",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.haaretz.co.il/news/politi/2026-08-30/ty-article/000001a0-519b-db96-a7fb-f1db0fd20000",
+      "title": "עשרות הפגינו מול לשכת הגיוס תל השומר לקראת גיוס מאות חרדים",
+      "source": "הארץ",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.haaretz.co.il/food/oracoren/2026-08-30/ty-article-recipe/000001a0-3d02-d20e-abf1-3d2277a60000",
+      "title": "עוגת דבש עסיסית ושונה מכל השאר: קאפקייק עקיצת הדבורה עם בהרט",
+      "source": "הארץ",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.geektime.co.il/hackeriot-2026/",
+      "title": "הרצאות מעולות, סדנאות ומנטורינג לג'וניוריות בסייבר: כנס Hackeriot חוזר",
+      "source": "Geektime",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.ynet.co.il/economy/article/rkaszwwufl",
+      "title": "התחדשות עירונית: זה לא המ\"ר ולא המרפסת, זה האמון",
+      "source": "Ynet — כלכלה",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.haaretz.co.il/food/recipes/2026-08-30/ty-article-recipe/000001a0-4da5-db96-a7fb-fdf59c520000",
+      "title": "הילדים חוזרים ללימודים. הריזוטו הזה הוא בשביל ההורים שלהם",
+      "source": "הארץ",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.haaretz.co.il/gallery/cinema/2026-08-30/ty-article/.premium/000001a0-5197-d0c3-afae-f1979d7b0000",
+      "title": "השחקנית לבנה פינקלשטיין תקבל פרס מפעל חיים",
+      "source": "הארץ",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.haaretz.co.il/sport/other/2026-08-30/ty-article/000001a0-519b-d003-a7e1-7f9b13450000",
+      "title": "רוג'ר פדרר נכנס להיכל התהילה הבינלאומי של הטניס בנאום נרגש: \"זה מדהים לראות את עצמך במקום כזה\"",
+      "source": "הארץ",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.haaretz.co.il/food/2026-08-30/ty-article-magazine/.premium/000001a0-425b-d02f-a9ed-5e7b3c710000",
+      "title": "שותים תה? כדאי לדעת מה משתחרר מהשקיק למים",
+      "source": "הארץ",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.haaretz.co.il/gallery/gaming/2026-08-30/ty-article-magazine/.premium/000001a0-4d8e-d505-a1b0-5f8eba3e0000",
+      "title": "ההייפ למשחק החדש בסדרת GTA מייצג את כל מה שבעייתי בעולם הגיימינג",
+      "source": "הארץ",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.ynet.co.il/economy/article/rkcrcexpfl",
+      "title": "המצפן הפנימי שלך: גלי איזה טיפוס את לפי הפילוסופיה הסינית",
+      "source": "Ynet — כלכלה",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.haaretz.co.il/news/world/asia/2026-08-30/ty-article-magazine/.premium/000001a0-5165-db96-a7fb-f1f5dfa60000",
+      "title": "תינוק בן שנה, תלמידת בית ספר, חתן טרי: משפחות הנעדרים בנפאל נאחזות בכל שביב תקווה",
+      "source": "הארץ",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.ynet.co.il/economy/article/hyfcvibogx",
+      "title": "התלונות על עדיקה: המחירים עלו, השבת זה גימיק",
+      "source": "Ynet — כלכלה",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.geektime.co.il/google-ai-mode-flights-hotels-miles/",
+      "title": "בלי 30 טאבים פתוחים: ה-AI של גוגל יזמין לכם עכשיו מלונות וטיסות (גם בנקודות)",
+      "source": "Geektime",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.haaretz.co.il/food/10-recipes/2026-08-30/ty-article-magazine/000001a0-5132-d276-a7a1-fff34aa90001",
+      "title": "גם בכריך, אבל לא רק: 28 דרכים להכין סלט טונה",
+      "source": "הארץ",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.haaretz.co.il/food/salads/2026-08-30/ty-article-recipe/000001a0-5119-dc79-a3e1-5ffd93220000",
+      "title": "סלט כרובית וטונה",
+      "source": "הארץ",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.haaretz.co.il/sport/other/2026-08-30/ty-article-magazine/.premium/000001a0-4dda-d826-a5e4-4dfbc12a0000",
+      "title": "לפני חמש שנים לבו של אליסון דוס סנטוס נשבר. עם שיא עולם בלתי נשכח, הוא השיג את התיקון",
+      "source": "הארץ",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.haaretz.co.il/blogs/yoav-mathov/2026-08-30/ty-article-magazine/000001a0-4317-da8b-a9fb-f3bf15bc0000",
+      "title": "מרימים, מקמטים ומעמעמים: הכוחות של מי הבריכה",
+      "source": "הארץ",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.ynet.co.il/health/article/r1jaki3wml",
+      "title": "״אני שם את הקביים בצד – ופשוט הולך. לרופא נופלת הלסת לרצפה״",
+      "source": "Ynet — בריאות",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.haaretz.co.il/sport/world-soccer/2026-08-30/ty-article/000001a0-5132-d276-a7a1-fff3c7650000",
+      "title": "עידן טוקלומטי וליאל עבדה כבשו בניצחון שארלוט 0:2; מסי הבקיע שלושער בניצחון אינטר מיאמי 1:7",
+      "source": "הארץ",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.ynet.co.il/health/article/sjxtpl3wgg",
+      "title": "למה אנחנו נרגעים מציוץ ציפורים - ומה הורס את ההשפעה?",
+      "source": "Ynet — בריאות",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.haaretz.co.il/gallery/television/tv-review/2026-08-30/ty-article-review/.highlight/000001a0-5056-dfdc-afa6-f077a84e0000",
+      "title": "העונה הרביעית של \"ריצ'ר\" מספקת תעלומת קונספירציה ואקשן טהור בנוסח שנות ה-80",
+      "source": "הארץ",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.sciencedaily.com/releases/2026/08/260829035227.htm",
+      "title": "Researchers unveil sustainable spirulina solution to vitamin B12 deficiency",
+      "source": "ScienceDaily",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.ynet.co.il/health/article/yokra14877543",
+      "title": "הרופאה במיון אמרה \"היא עובדת עלייך\" - ופספסה את האבחון של אורי",
+      "source": "Ynet — בריאות",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.haaretz.co.il/sport/world-soccer/2026-08-30/ty-article-magazine/000001a0-4f0c-d649-a7be-df6e90c70000",
+      "title": "ליברפול מאכזבת, אבל זה כלום ביחס לאסון שקורה בטוטנהאם",
+      "source": "הארץ",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.sciencedaily.com/releases/2026/08/260828082350.htm",
+      "title": "The next Cascadia megaquake could hit Oregon harder than expected",
+      "source": "ScienceDaily",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.ynet.co.il/economy/article/6839kvkof",
+      "title": "איפה נמכרה דירת 2.5 חדרים ב-3.4 מיליון שקל?",
+      "source": "Ynet — כלכלה",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.ynet.co.il/economy/article/byntvcluze",
+      "title": "מה הסיכוי שבנק ישראל יוריד שוב את הריבית ביום שלישי?",
+      "source": "Ynet — כלכלה",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.haaretz.co.il/blogs/photoblog/2026-08-30/ty-article-magazine/000001a0-39ce-d02f-a9ed-7deffab10000",
+      "title": "המצלמה חיפשה להתקרב. לאנשים. לטקסטורות. למהות של היופי",
+      "source": "הארץ",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.haaretz.co.il/news/numofweek/2026-08-30/ty-article/.premium/000001a0-325a-dc1a-abac-f2fa00d20000",
+      "title": "מיעוט הנרשמים בבית הספר במטולה לא מרתיע את הקהילה: \"הזדמנות ולא אתגר\"",
+      "source": "הארץ",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.haaretz.co.il/news/politics/2026-08-30/ty-article/.premium/000001a0-4c8d-d5a0-a1f7-feaff3250000",
+      "title": "חודש עבר מאז שמתנחלים גירשו משפחה מג'אלוד, בבג\"ץ תהו: על מי הצבא מגן?",
+      "source": "הארץ",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.haaretz.co.il/gallery/television/tv-review/2026-08-30/ty-article/.highlight/000001a0-4e16-db96-a7fb-fed60dec0000",
+      "title": "\"איש של אמת\" לא היה מוכן להצהיר כי יתמוך בשרלטן נתניהו",
+      "source": "הארץ",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.haaretz.co.il/news/world/middle-east/2026-08-30/ty-article/.premium/000001a0-4ee4-db96-a7fb-fef40bb20000",
+      "title": "פירוק הכוחות הכורדיים מחייב את ישראל לבחון את מדיניותה כלפי משטר א־שרע",
+      "source": "הארץ",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.haaretz.co.il/news/politics/2026-08-30/ty-article/.highlight/000001a0-4ef0-d276-a7a1-eef369480000",
+      "title": "נתניהו וזמיר מנהלים ריקוד פוליטי מורכב לקראת הבחירות, ובמוקד נמצאת הגדה",
+      "source": "הארץ",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.haaretz.co.il/health/brain/2026-08-30/ty-article-magazine/.premium/000001a0-3317-d7ba-aff3-b3971f430000",
+      "title": "השיר שבראש: מדענים הצליחו לשחזר מבנה של מנגינה מתוך פעילות מוחית",
+      "source": "הארץ",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.haaretz.co.il/gallery/television/guide/2026-08-30/ty-article/.premium/000001a0-4dcb-d09a-abab-4fdbdbba0000",
+      "title": "\"איש הלחישות\" בנטפליקס הוא סרט בסגנון ניינטיז על בלש שמתמודד מול רוצח",
+      "source": "הארץ",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.haaretz.co.il/gallery/cinema/2026-08-30/ty-article-magazine/.premium/000001a0-4339-daa8-a9e8-f37df62d0000",
+      "title": "עם מחוך וביריות, טים קרי הוביל מהפכה בקולנוע",
+      "source": "הארץ",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.sciencedaily.com/releases/2026/08/260828005226.htm",
+      "title": "Some signs of quantum gravity may be an illusion",
+      "source": "ScienceDaily",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://phys.org/news/2026-08-scientists-diamond-secret-ice-giants.html",
+      "title": "Scientists melted a diamond and cracked a secret of ice giants",
+      "source": "Phys.org",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.nature.com/articles/d41586-026-02684-1",
+      "title": "AI models are being used to track zoonotic diseases. Will they prevent the next pandemic?",
+      "source": "Nature",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.nature.com/articles/d41586-026-02727-7",
+      "title": "Lift-off! NASA launches Roman Space Telescope to tackle dark-energy mysteries",
+      "source": "Nature",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://phys.org/news/2026-08-strategic-irrigation-stress-lucerne-seed.html",
+      "title": "Strategic irrigation stress can lift lucerne seed yield and returns",
+      "source": "Phys.org",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.ynet.co.il/economy/article/yokra14881532",
+      "title": "‏\"לא יכולתי להמשיך\": המחיר התעסוקתי הנסתר של 7 באוקטובר",
+      "source": "Ynet — כלכלה",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://phys.org/news/2026-08-airborne-tuberculosis-bacteria-mutate-dry.html",
+      "title": "Airborne tuberculosis bacteria may mutate as they dry, revealing a target to curb drug resistance",
+      "source": "Phys.org",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://techcrunch.com/2026/08/29/sony-music-warner-sue-anthropic-alleging-a-brazen-campaign-of-intellectual-property-theft/",
+      "title": "Sony Music, Warner sue Anthropic, alleging a “brazen campaign” of intellectual property theft",
+      "source": "TechCrunch AI",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.theverge.com/ai-artificial-intelligence/986438/sony-music-warner-chappell-anthropic-lawsuit-copyright",
+      "title": "Sony Music Publishing and Warner Chappell are suing Anthropic",
+      "source": "The Verge AI",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://phys.org/news/2026-08-everyday-household-tasks-impact-relationships.html",
+      "title": "How everyday household tasks impact relationships",
+      "source": "Phys.org",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://people.kernel.org/monsieuricon/creepy-crawlies",
+      "title": "Creepy Crawlies",
+      "source": "Hacker News Front Page",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://techcrunch.com/2026/08/29/were-not-doing-30-bets-a-year-vijay-pande-on-betting-small-after-running-4-billion-at-a16z/",
+      "title": "“We’re not doing 30 bets a year”: Vijay Pande on betting small after running $4 billion at a16z",
+      "source": "TechCrunch AI",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://phys.org/news/2026-08-plastic-welds-retain-molecular-memory.html",
+      "title": "How plastic welds retain a molecular 'memory' of their former surfaces to strengthen pipe joints",
+      "source": "Phys.org",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://phys.org/news/2026-08-picture-eagle-migrations.html",
+      "title": "A never-before-seen picture of eagle migrations",
+      "source": "Phys.org",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://phys.org/news/2026-08-takeaway-cups-microplastics-coffee.html",
+      "title": "Takeaway cups may be releasing microplastics into your coffee",
+      "source": "Phys.org",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.geektime.co.il/geek-events-3082026/",
+      "title": "3 אירועי טכנולוגיה שיהפכו את הסוכנים שלכם ליותר חכמים",
+      "source": "Geektime",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.ynet.co.il/health/article/r1da4deofl",
+      "title": "כדור אקסטזי בדמות טראמפ קיבל \"אזהרה אדומה\" קטלנית בהולנד",
+      "source": "Ynet — בריאות",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.ynet.co.il/economy/article/rymwhdedmg",
+      "title": "אודיה ביקשה ואתר עדיקה המחודש - סגור בשבת",
+      "source": "Ynet — כלכלה",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.ynet.co.il/health/article/bjokzugogg",
+      "title": "אישור רשמי: זריקת הרזיה מגינה על הלב של חולי סוכרת",
+      "source": "Ynet — בריאות",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://phys.org/news/2026-08-centuries-child-labor-left-spinal.html",
+      "title": "Centuries of child labor left lasting spinal damage in Dutch children, study finds",
+      "source": "Phys.org",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.sciencedaily.com/releases/2026/08/260828082327.htm",
+      "title": "Keto diet cut liver fat by 67% in a clinical trial",
+      "source": "ScienceDaily",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.geektime.co.il/this-is-macs-power-toys-alternative/",
+      "title": "אחרי יותר מ-30 שנה, גם למק יש \"PowerToys\"",
+      "source": "Geektime",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.scientificamerican.com/article/nasas-roman-space-telescope-could-find-alien-earths-but-not-like-you-think/",
+      "title": "NASA’s Roman Space Telescope could find alien Earths—but not like you think",
+      "source": "Scientific American",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.sciencedaily.com/releases/2026/08/260828082341.htm",
+      "title": "Dogs may hold surprising clues to human longevity",
+      "source": "ScienceDaily",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.sciencedaily.com/releases/2026/08/260828005220.htm",
+      "title": "Scientists turn one of the hardest plastics to recycle into high-performance engine lubricant",
+      "source": "ScienceDaily",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://phys.org/news/2026-08-children-consent-sexual-violence-hard.html",
+      "title": "Talking to your children about consent and sexual violence can be hard. Here's how to start the conversation",
+      "source": "Phys.org",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://phys.org/news/2026-08-nano-sandwich-photocathode-solar-conversion.html",
+      "title": "Nano-sandwich photocathode improves solar conversion of CO₂ into ethanol",
+      "source": "Phys.org",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.sciencedaily.com/releases/2026/08/260828082325.htm",
+      "title": "The universe is still speeding up, but nobody knows why",
+      "source": "ScienceDaily",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.sciencedaily.com/releases/2026/08/260829035228.htm",
+      "title": "Long-term melatonin use linked to 90% higher heart failure risk",
+      "source": "ScienceDaily",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.ynet.co.il/economy/article/rkv0hxl00ml",
+      "title": "למדו מהישראלים? הקומבינה שתעקוף את קטאר כדי לייצר רכיבי כיפת ברזל בגרמניה",
+      "source": "Ynet — כלכלה",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.sciencedaily.com/releases/2026/08/260829035214.htm",
+      "title": "Australia’s red soil may be hiding a massive clean energy source",
+      "source": "ScienceDaily",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
+    },
+    {
+      "url": "https://www.scientificamerican.com/article/why-your-ability-to-cope-with-stress-changes-with-time/",
+      "title": "Why your ability to cope with stress changes with time",
+      "source": "Scientific American",
+      "first_proposed": "2026-08-31T10:59:26+00:00",
+      "last_proposed": "2026-08-31T10:59:26+00:00",
+      "times_proposed": 1
     }
   ]
 }

@@ -60,6 +60,9 @@
       <p class="formula__legend">P הקרן · r שיעור הריבית השנתי · t מספר השנים · A הסכום בסוף</p>
     </div>
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">ההבדל בין קו לעקומה</h2>
@@ -81,11 +84,17 @@
       </svg>
       <figcaption>אותה קרן, אותה ריבית, שני סוגי גדילה.</figcaption>
     </figure>
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">הזמן הוא המשתנה החזק ביותר</h2>
     <p>בנוסחה של ריבית דריבית, הקרן והריבית מוכפלות, אבל הזמן נמצא במעריך. משתנה במעריך משפיע הרבה יותר חזק ממשתנה בבסיס.</p>
     <p>נסו את זה במדמה שלמטה: הכפילו את הקרן, והתוצאה הסופית תוכפל בדיוק פי שניים. הכפילו את מספר השנים, והתוצאה תגדל הרבה יותר מפי שניים. אחרי 10 שנים תגיעו ל-2,594 שקל במקום 2,000. אחרי 30 שנה תגיעו ל-17,449 שקל במקום 4,000.</p>
+
+
+
 
 
   </section>
@@ -95,6 +104,9 @@
     <p>בריבית של 8% הכסף מכפיל את עצמו בערך כל 9 שנים (72 ÷ 8). בריבית של 6%, כל 12 שנים. זו אינה נוסחה מדויקת אלא קירוב טוב לשיעורי ריבית נמוכים ובינוניים, והוא שימושי מאוד לחישוב בראש.</p>
 
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">אותה עקומה, בכיוון ההפוך</h2>
@@ -102,7 +114,11 @@
     <p>כאן ההבדל דרמטי במיוחד, כי הריבית על אשראי צרכני גבוהה בהרבה מתשואה שגרתית על חיסכון. חוב שנשאר פתוח מספיק זמן יכול לגדול לסכום גדול בהרבה מהסכום שנלקח במקור.</p>
 
 
+
+
+
   </section>
+
 
   <section class="sim" id="sim">
     <h2 class="topic__heading">מדמה: ריבית פשוטה מול ריבית דריבית</h2>
@@ -434,6 +450,94 @@
     });
     scoreEl.textContent = '';
   });
+})();
+
+/* ===== מדמה רזולוציה ליתוגרפית: CD = k1 · λ / NA ===== */
+(function () {
+  var svg = document.getElementById('euv-svg');
+  if (!svg) return;
+
+  var naIn = document.getElementById('in-na');
+  var k1In = document.getElementById('in-k1');
+  var naOut = document.getElementById('out-na');
+  var k1Out = document.getElementById('out-k1');
+  var linesG = document.getElementById('euv-lines');
+  var blurNode = document.getElementById('euv-blur-node');
+  var btns = Array.prototype.slice.call(document.querySelectorAll('.euv-source-btn'));
+  if (!naIn || !btns.length) return;
+
+  var W = 640, H = 190;
+  var lambda = +btns[0].dataset.lambda;
+  var naMax = +btns[0].dataset.namax;
+
+  function cd(lam, na, k1) { return k1 * lam / na; }
+
+  function draw() {
+    var na = Math.min(+naIn.value, naMax);
+    var k1 = +k1In.value;
+    var res = cd(lambda, na, k1);
+
+    naOut.textContent = na.toFixed(2);
+    k1Out.textContent = k1.toFixed(2);
+
+    // רוחב הקו על המסך פרופורציוני לרוחב האמיתי, בסקאלה קבועה
+    var nmPerPx = 0.9;                       // 640 פיקסלים = 576 ננומטר
+    var wpx = Math.max(1.2, res / nmPerPx);
+    var pitch = wpx * 2;
+    var n = Math.ceil(W / pitch) + 1;
+
+    var out = '';
+    for (var i = 0; i < n; i++) {
+      out += '<rect x="' + (i * pitch).toFixed(2) + '" y="18" width="' +
+             wpx.toFixed(2) + '" height="' + (H - 36) + '" class="euv-line"/>';
+    }
+    linesG.innerHTML = out;
+
+    // ככל שהקו מתקרב לגבול הפיזיקלי הוא נמרח. k1 נמוך = תהליך אגרסיבי = פחות חד.
+    // הטשטוש נחסם, אחרת קווים רחבים נראים מרוחים הרבה מעבר למה שהכוונה להמחיש
+    var sharp = Math.max(0, Math.min(1, (k1 - 0.25) / 0.20));
+    blurNode.setAttribute('stdDeviation',
+      Math.min(wpx * (1 - sharp) * 0.28, 4.5).toFixed(2));
+
+    document.getElementById('euv-out-cd').textContent = res.toFixed(1) + ' nm';
+    document.getElementById('euv-out-lambda').textContent = lambda + ' nm';
+    document.getElementById('euv-scale').textContent =
+      'רוחב התמונה כאן הוא כ-' + Math.round(W * nmPerPx) + ' ננומטר';
+
+    // ההשוואה ל-DUV נעשית בתנאים הטובים ביותר שיש לו: טבילה במים, NA 1.35
+    var duv = cd(193, 1.35, k1);
+    document.getElementById('euv-out-duv').textContent = duv.toFixed(1) + ' nm';
+
+    // כל מעבר הדפסה נוסף חוצה בקירוב את הצפיפות
+    var passes = duv <= res ? 1 : Math.pow(2, Math.ceil(Math.log(duv / res) / Math.log(2)));
+    document.getElementById('euv-out-passes').textContent =
+      lambda === 193 ? '—' : '×' + passes;
+
+    var note = document.getElementById('euv-note');
+    if (lambda === 193) {
+      note.textContent = 'ב-193 ננומטר צריך צמצם גדול מ-1, וזה אפשרי רק כשממלאים ' +
+        'את המרווח שבין העדשה לפרוסה במים. זה מה שנקרא ליתוגרפיית טבילה.';
+    } else {
+      note.textContent = 'קיצור אורך הגל פי כ-14 קונה את אותה רזולוציה בלי צמצם ענק ' +
+        'ובלי לחזור על ההדפסה. זו כל התכלית של EUV.';
+    }
+  }
+
+  btns.forEach(function (b) {
+    b.addEventListener('click', function () {
+      btns.forEach(function (o) { o.classList.remove('is-active'); });
+      b.classList.add('is-active');
+      lambda = +b.dataset.lambda;
+      naMax = +b.dataset.namax;
+      naIn.max = naMax;
+      // כל מקור אור מגיע עם הצמצם האופייני לו, אחרת ההשוואה חסרת משמעות
+      naIn.value = b.dataset.natypical;
+      draw();
+    });
+  });
+  [naIn, k1In].forEach(function (el) { el.addEventListener('input', draw); });
+  naIn.max = naMax;
+  draw();
 })();
 </script>
   </main>

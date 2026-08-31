@@ -79,7 +79,174 @@ sources:
     weight: 0.9
     verified: 2026-08-29
 
+  # --- Israeli general news (Hebrew) ---
+  # The paper is not an AI newsletter. Without these the meeting could only ever
+  # propose AI stories, because that was the whole catalog.
+  - name: "Ynet — חדשות"
+    type: rss
+    url: "https://www.ynet.co.il/Integration/StoryRss2.xml"
+    topics: [israel, news]
+    weight: 1.0
+    verified: 2026-08-31
+
+  - name: "Ynet — כלכלה"
+    type: rss
+    url: "https://www.ynet.co.il/Integration/StoryRss6.xml"
+    topics: [israel, economy]
+    weight: 0.9
+    verified: 2026-08-31
+
+  - name: "Ynet — בריאות"
+    type: rss
+    url: "https://www.ynet.co.il/Integration/StoryRss1208.xml"
+    topics: [israel, health, science]
+    weight: 0.9
+    verified: 2026-08-31
+
+  - name: "הארץ"
+    type: rss
+    url: "https://www.haaretz.co.il/srv/htz---all-articles"
+    topics: [israel, news, analysis]
+    weight: 1.0
+    verified: 2026-08-31
+    notes: >
+      Publishes weekend and opinion pieces dated up to three days ahead. An item
+      newer than today is normal here and is not a clock bug; judge it on
+      content, not on its timestamp.
+
+  - name: "גלובס"
+    type: rss
+    # iID=2 is the Hebrew news feed. iID=1725 is the English edition - it works,
+    # but the paper is Hebrew and we want the Hebrew original.
+    url: "https://www.globes.co.il/webservice/rss/rssfeeder.asmx/FeederNode?iID=2"
+    topics: [israel, economy, business]
+    weight: 1.0
+    verified: 2026-08-31
+
+  - name: "ישראל היום"
+    type: rss
+    url: "https://www.israelhayom.co.il/rss.xml"
+    topics: [israel, news]
+    weight: 0.8
+    verified: 2026-08-31
+
+  - name: "מעריב"
+    type: rss
+    url: "https://www.maariv.co.il/Rss/RssFeedsMivzakiChadashot"
+    topics: [israel, news]
+    weight: 0.8
+    verified: 2026-08-31
+
+  - name: "דבר"
+    type: rss
+    url: "https://www.davar1.co.il/feed/"
+    topics: [israel, labor, economy]
+    weight: 0.8
+    verified: 2026-08-31
+
+  - name: "Times of Israel"
+    type: rss
+    url: "https://www.timesofisrael.com/feed/"
+    topics: [israel, news]
+    weight: 0.9
+    verified: 2026-08-31
+
+  # --- Science and academic research (general, not AI) ---
+  - name: "Nature"
+    type: rss
+    url: "https://www.nature.com/nature.rss"
+    topics: [science, academic, primary-source]
+    weight: 1.3
+    verified: 2026-08-31
+
+  - name: "Science (AAAS)"
+    type: rss
+    url: "https://www.science.org/rss/news_current.xml"
+    topics: [science, academic]
+    weight: 1.3
+    verified: 2026-08-31
+
+  - name: "Quanta Magazine"
+    type: rss
+    url: "https://api.quantamagazine.org/feed/"
+    topics: [science, mathematics, physics]
+    weight: 1.3
+    verified: 2026-08-31
+    notes: "Deep and well explained. A good well for learning topics."
+
+  - name: "Scientific American"
+    type: rss
+    url: "https://www.scientificamerican.com/platform/syndication/rss/"
+    topics: [science, general]
+    weight: 1.0
+    verified: 2026-08-31
+
+  - name: "New Scientist"
+    type: rss
+    url: "https://www.newscientist.com/feed/home/"
+    topics: [science, general]
+    weight: 1.0
+    verified: 2026-08-31
+
+  - name: "Science News"
+    type: rss
+    url: "https://www.sciencenews.org/feed"
+    topics: [science, general]
+    weight: 1.0
+    verified: 2026-08-31
+
+  - name: "ScienceDaily"
+    type: rss
+    url: "https://www.sciencedaily.com/rss/all.xml"
+    topics: [science, academic]
+    weight: 0.8
+    verified: 2026-08-31
+    notes: >
+      Republished university press releases. Useful as a signal of what was
+      published, but a press release overstates its own study. Always read the
+      paper it points to before printing a number.
+
+  - name: "Phys.org"
+    type: rss
+    url: "https://phys.org/rss-feed/"
+    topics: [science, physics, academic]
+    weight: 0.8
+    verified: 2026-08-31
+
+  - name: "The Conversation"
+    type: rss
+    url: "https://theconversation.com/global/articles.atom"
+    topics: [science, academic, analysis]
+    weight: 1.0
+    verified: 2026-08-31
+    notes: "Written by academics about their own field. Author credentials are stated."
+
+  - name: "NASA"
+    type: rss
+    url: "https://www.nasa.gov/news-release/feed/"
+    topics: [science, space, primary-source]
+    weight: 1.0
+    verified: 2026-08-31
+
 # --- Rejected ---
-# Calcalist tech (https://www.calcalist.co.il/GeneralRSS/0,16335,L-3704,00.xml)
-#   Returns 403 Forbidden, including with a browser User-Agent. Blocked server-side.
-#   Do not re-add without finding a working endpoint.
+# All of these were tested on the date noted. Do not re-add without evidence
+# that the endpoint changed.
+#
+# Calcalist (https://www.calcalist.co.il/GeneralRSS/0,16335,L-3704,00.xml)
+#   403 Forbidden, including with a browser User-Agent. Blocked server-side.
+#   Tested again 2026-08-31 on the general feed: still 403.
+# Jerusalem Post (https://www.jpost.com/rss/rssfeedsheadlines.aspx)
+#   Returns 200 and parses, but the newest item is from 2025-06-16. The feed is
+#   abandoned. It would have quietly fed us year-old news as if it were today's.
+# Hebrew University (https://en.huji.ac.il/rss.xml)
+#   One item, dated 2020-12-27, titled "About". Not a news feed.
+# Technion (https://www.technion.ac.il/feed/)  301 then a parse error.
+# Kan news (https://www.kan.org.il/rss/news.xml)  403.
+# EurekAlert (https://www.eurekalert.org/rss/all.xml)  404 on that path.
+# Weizmann (https://www.weizmann.ac.il/pages/rss.xml)
+#   Alive, but it publishes staff pages rather than research news.
+# Nature Briefing (https://www.nature.com/nature/articles.rss)
+#   Byte-identical to the Nature feed above. One of the two is enough.
+# arXiv (https://rss.arxiv.org/rss/*)
+#   Deliberately excluded. Preprints are not peer reviewed, and this paper's
+#   rule is that nothing is printed unverified. Reachable if that ever changes.

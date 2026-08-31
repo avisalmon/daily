@@ -28,6 +28,7 @@ import ledger  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 SOURCES = ROOT / "config" / "sources.yaml"
+CACHE = ROOT / "data" / "_news_cache.json"
 
 UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) DailyDigest/0.1"
 
@@ -70,16 +71,30 @@ def entry_time(entry) -> datetime | None:
     return None
 
 
-def fetch_one(source: dict, cutoff: datetime) -> tuple[str, list[Item], str | None]:
-    """Return (source_name, items, error)."""
+def fetch_one(source: dict, cutoff: datetime, attempts: int = 3) -> tuple[str, list[Item], str | None]:
+    """Return (source_name, items, error).
+
+    Retries an empty result. TechCrunch and Ars Technica both returned a
+    truncated body once, at the same byte offset, and feedparser reported a
+    mismatched tag; both parsed perfectly a second later. Without a retry a
+    transient blip silently drops two of the best sources from an editorial
+    meeting, and the meeting looks thin for no visible reason.
+    """
     name = source.get("name", source["url"])
-    try:
-        parsed = feedparser.parse(source["url"], agent=UA)
-        bozo = getattr(parsed, "bozo_exception", None)
-        if not parsed.entries:
-            return name, [], f"no entries ({bozo})" if bozo else "no entries"
-    except Exception as exc:  # pragma: no cover - network
-        return name, [], str(exc)
+    last_error = None
+    for attempt in range(attempts):
+        try:
+            parsed = feedparser.parse(source["url"], agent=UA)
+            bozo = getattr(parsed, "bozo_exception", None)
+            if parsed.entries:
+                break
+            last_error = f"no entries ({bozo})" if bozo else "no entries"
+        except Exception as exc:  # pragma: no cover - network
+            last_error = str(exc)
+        if attempt < attempts - 1:
+            time.sleep(1.5 * (attempt + 1))
+    else:
+        return name, [], last_error
 
     items: list[Item] = []
     for entry in parsed.entries:
@@ -183,14 +198,23 @@ def main() -> int:
 
     deduped.sort(key=lambda i: (i.published or ""), reverse=True)
 
+    # Always write the cache. record_edition.py --proposed reads this file and
+    # docs/RUNBOOK.md tells you to pass it, but nothing ever wrote it, so it sat
+    # stale from an earlier day and quietly described the wrong meeting.
+    # Written without a BOM: json.loads rejects one.
+    payload = json.dumps([asdict(i) for i in deduped], ensure_ascii=False, indent=2)
+    CACHE.parent.mkdir(parents=True, exist_ok=True)
+    CACHE.write_text(payload, encoding="utf-8")
+
     if args.json:
-        print(json.dumps([asdict(i) for i in deduped], ensure_ascii=False, indent=2))
+        print(payload)
         return 0
 
     print(
         f"window: last {args.hours}h   raw: {len(all_items)}   "
         f"after dedup: {len(deduped)}   already printed (skipped): {skipped}"
     )
+    print(f"cache: {len(deduped)} candidates -> {CACHE.relative_to(ROOT)}")
     if errors:
         print("\nFEED ERRORS")
         for name, err in errors:

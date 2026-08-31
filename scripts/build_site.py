@@ -254,6 +254,12 @@ def group_by_month(archive: list[dict]) -> list[dict]:
 
 
 def build(include_future: bool = False) -> None:
+    # Publishing the research PDF comes first, because validate.py requires the
+    # published copy to exist and this step is what creates it. It reads only
+    # inputs (data/editions, data/research) and is idempotent, so running it
+    # ahead of validation cannot publish anything validation would have caught.
+    research = publish_research(load_editions(include_future=True))
+
     problems = validate.validate()
     if problems:
         print(f"VALIDATION FAILED - {len(problems)} problem(s):")
@@ -277,7 +283,6 @@ def build(include_future: bool = False) -> None:
     # would leave the cloud build with no file to publish when the day arrives.
     # Nothing links to it until the edition runs, so it stays unlisted rather
     # than secret, which is already true of the edition JSON next to it.
-    research = publish_research(load_editions(include_future=True))
     EDITIONS_DIR.mkdir(parents=True, exist_ok=True)
 
     archive = [

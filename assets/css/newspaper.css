@@ -1027,7 +1027,11 @@ img { max-width: 100%; display: block; }
   font-family: var(--sans);
   font-size: 12px;
   fill: var(--ink-faint);
-  text-anchor: end;
+  /* The page is RTL, so the inline "start" edge is the right one. Using
+     text-anchor:end here anchors the *left* edge and pushes Hebrew labels off
+     the right side of the viewBox, which silently clipped "ריבית דריבית" down
+     to "ריבית" on the published page. */
+  text-anchor: start;
 }
 .diagram__label--strong { fill: var(--rule-dark); font-weight: 700; }
 .diagram__axis-label {
@@ -1129,6 +1133,64 @@ img { max-width: 100%; display: block; }
   padding-top: 12px;
   border-top: 1px solid var(--rule);
 }
+
+/* אינפוגרפיקות ליתוגרפיה */
+.euv-bar { fill: var(--rule-dark); }
+.euv-bar--faint { fill: var(--ink-faint); opacity: 0.35; }
+.euv-bar--strong { fill: var(--rule-dark); }
+.euv-bar--feature { fill: none; stroke: var(--rule-dark); stroke-width: 1.5; stroke-dasharray: 3 2; }
+.euv-drop { fill: var(--ink-faint); stroke: var(--rule-dark); stroke-width: 1.2; }
+.euv-arrow { stroke: var(--ink-faint); stroke-width: 1.4; stroke-dasharray: 3 3; }
+.euv-laser { stroke: var(--rule-dark); stroke-width: 2; stroke-dasharray: 7 4; }
+.euv-laser--strong { stroke-width: 3.2; stroke-dasharray: none; }
+.euv-plasma { fill: var(--ink-faint); opacity: 0.22; }
+.euv-plasma--outer { opacity: 0.1; }
+.euv-plasma-core { fill: var(--rule-dark); }
+.euv-beam { stroke: var(--rule-dark); stroke-width: 2; }
+.euv-beam--faint { stroke: var(--ink-faint); stroke-width: 1.4; }
+.euv-layer { stroke: none; }
+.euv-layer--mo { fill: var(--rule-dark); opacity: 0.72; }
+.euv-layer--si { fill: var(--ink-faint); opacity: 0.2; }
+
+.euv-sources {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 0 18px;
+}
+
+.euv-source-btn {
+  font-family: var(--sans);
+  font-size: 13px;
+  padding: 7px 14px;
+  background: transparent;
+  color: var(--ink-soft);
+  border: 1px solid var(--rule);
+  cursor: pointer;
+}
+
+.euv-source-btn:hover { border-color: var(--rule-dark); color: var(--ink); }
+
+.euv-source-btn.is-active {
+  background: var(--rule-dark);
+  border-color: var(--rule-dark);
+  color: var(--paper);
+  font-weight: 700;
+}
+
+.euv-stage { margin-bottom: 4px; }
+
+.euv-stage svg {
+  width: 100%;
+  height: 190px;
+  display: block;
+  border: 1px solid var(--rule);
+  background: var(--paper);
+}
+
+.euv-wafer { fill: var(--paper); }
+.euv-line { fill: var(--rule-dark); }
+.euv-caveat { border-top: 0; padding-top: 0; margin-top: 8px; font-size: 12px; }
 
 /* בוחן */
 .quiz { margin: 34px 0; }
@@ -1479,6 +1541,9 @@ img { max-width: 100%; display: block; }
 
   /* אצבע צריכה שטח נגיעה אמיתי */
   .sim__control input[type="range"] { height: 32px; }
+  .euv-stage svg { height: 150px; }
+  .euv-source-btn { flex: 1 1 auto; padding: 10px 12px; }
+
   .quiz__opt { padding: 11px 12px; font-size: 15px; }
   .quiz__opt input { width: 20px; height: 20px; }
   .quiz__btn { padding: 12px 22px; flex: 1 1 auto; }
