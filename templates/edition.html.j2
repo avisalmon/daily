@@ -94,6 +94,21 @@
             <p>{{ para }}</p>
             {% endfor %}
           </div>
+          {% if edition.podcast and edition.podcast.src %}
+          <div class="listen" data-listen data-duration="{{ edition.podcast.duration }}">
+            <p class="listen__label">להאזנה<span class="listen__meta"> · שיחה על מחקר העומק של המהדורה</span></p>
+            {% set pod_src = edition.podcast.src if '://' in edition.podcast.src else base ~ edition.podcast.src %}
+            <audio class="listen__audio" controls preload="none" src="{{ pod_src }}"></audio>
+            <div class="listen__bar" hidden>
+              <button type="button" class="listen__play">נגן</button>
+              <div class="listen__track" role="presentation"><span class="listen__fill"></span></div>
+              <span class="listen__time ltr">0:00</span>
+            </div>
+            {% if edition.podcast.archive_url %}
+            <p class="listen__fallback"><a href="{{ edition.podcast.archive_url }}">הורדת הקובץ</a></p>
+            {% endif %}
+          </div>
+          {% endif %}
           <p class="byline">
             {% set lead_href = edition.lead.url if ('://' in edition.lead.url or edition.lead.url.startswith('#')) else base ~ edition.lead.url %}
             {{ edition.lead.source }} · <span class="ltr">{{ edition.lead.time }}</span> ·
@@ -288,6 +303,72 @@
       box.setAttribute('data-live', 'ok');
     })
     .catch(function () { /* keep the printed reading */ });
+})();
+</script>
+{% endif %}
+{% if edition.podcast and edition.podcast.src %}
+<script>
+/* נגן ההאזנה.
+   פקדי הדפדפן המובנים הם ווידג'ט מעוגל של אפליקציה, וזה עיתון. לכן הפקדים
+   נבנים כאן: כפתור מילולי, קו התקדמות דק, ומונה זמן. הפקד המקורי נשאר
+   ב-HTML עם controls, ומוסתר רק אחרי שהג'אווהסקריפט הצליח, כך שבלי
+   ג'אווהסקריפט הקורא עדיין מקבל נגן עובד ולא כלום. */
+(function () {
+  var box = document.querySelector('[data-listen]');
+  if (!box) return;
+  var audio = box.querySelector('.listen__audio');
+  var bar = box.querySelector('.listen__bar');
+  var play = box.querySelector('.listen__play');
+  var track = box.querySelector('.listen__track');
+  var fill = box.querySelector('.listen__fill');
+  var time = box.querySelector('.listen__time');
+  if (!audio || !bar || !audio.canPlayType || !audio.canPlayType('audio/mpeg')) return;
+
+  audio.removeAttribute('controls');
+  bar.hidden = false;
+  box.classList.add('listen--custom');
+
+  function clock(s) {
+    if (!isFinite(s)) s = 0;
+    var m = Math.floor(s / 60), r = Math.floor(s % 60);
+    return m + ':' + (r < 10 ? '0' : '') + r;
+  }
+
+  function paint() {
+    var d = audio.duration;
+    fill.style.width = (isFinite(d) && d > 0 ? (audio.currentTime / d) * 100 : 0) + '%';
+    /* preload="none" means the real duration is unknown until the reader
+       presses play, so until then the printed one stands in. An empty right
+       hand side of the readout looks broken. */
+    var total = (isFinite(d) && d > 0) ? clock(d) : (box.getAttribute('data-duration') || '');
+    time.textContent = clock(audio.currentTime) + (total ? ' / ' + total : '');
+  }
+
+  play.addEventListener('click', function () {
+    if (audio.paused) { audio.play(); } else { audio.pause(); }
+  });
+  audio.addEventListener('play', function () { play.textContent = 'עצור'; });
+  audio.addEventListener('pause', function () { play.textContent = 'נגן'; });
+  audio.addEventListener('ended', function () { play.textContent = 'נגן'; });
+  audio.addEventListener('timeupdate', paint);
+  audio.addEventListener('loadedmetadata', paint);
+
+  /* הקו הוא בכיוון קריאה של שמאל לימין, כמו כל ציר זמן, גם בעמוד ימין לשמאל. */
+  track.addEventListener('click', function (e) {
+    var d = audio.duration;
+    if (!isFinite(d) || d <= 0) return;
+    var box2 = track.getBoundingClientRect();
+    var at = (e.clientX - box2.left) / box2.width;
+    audio.currentTime = Math.min(Math.max(at, 0), 1) * d;
+  });
+
+  /* אם הקובץ נעלם, אין טעם להציג פקד שלא ינגן דבר. */
+  audio.addEventListener('error', function () {
+    bar.hidden = true;
+    box.classList.remove('listen--custom');
+  });
+
+  paint();
 })();
 </script>
 {% endif %}

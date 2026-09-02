@@ -22,6 +22,7 @@
         {{ ed.story_count }} ידיעות
         {% if ed.learning %}· נושא לימוד: {{ ed.learning }}{% endif %}
         {% if ed.has_research %}· <a href="{{ base }}research/{{ ed.date }}.pdf">מחקר העומק (PDF)</a>{% endif %}
+        {% if ed.podcast_href %}· <a href="{% if '://' not in ed.podcast_href %}{{ base }}{% endif %}{{ ed.podcast_href }}">פודקאסט<span class="ltr"> {{ ed.podcast_duration }}</span></a>{% endif %}
       </p>
     </li>
     {% endfor %}

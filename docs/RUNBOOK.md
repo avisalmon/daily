@@ -94,7 +94,36 @@ Afterwards, close the editorial loop:
 .\.venv\Scripts\python.exe scripts\ledger.py
 ```
 
-## 3a. Publish
+## 3a. Podcast
+
+Optional, and only worth it when the research is good. Two steps with a read in
+between, exactly like the meeting and the build.
+
+```powershell
+# draft the script from the research, then stop
+.\.venv\Scripts\python.exe scripts\podcast.py --date YYYY-MM-DD --source data\research\bank\slug.md
+
+# read data/podcasts/YYYY-MM-DD.script.md, edit it, then check it for free
+.\.venv\Scripts\python.exe scripts\podcast.py --date YYYY-MM-DD --dry-run
+
+# record it, archive it, and drop old local episodes
+.\.venv\Scripts\python.exe scripts\podcast.py --date YYYY-MM-DD --speak --upload --prune
+```
+
+`--speak` writes `audio/YYYY-MM-DD.mp3`, adds the `podcast` block to the edition
+JSON, and the build renders the player. Rebuild after recording.
+
+`--prune` keeps the newest 30 episodes in the repository and drops the rest. It
+never deletes a file the release archive does not already hold, and it records
+the archive URL in the edition JSON first, so an old episode keeps playing from
+the release. If you see `! keeping <file>: not in the release yet`, run
+`--upload` for that date before pruning again.
+
+Read the script before spending money on it. The style rules are enforced and
+will refuse a script with a voice tell, but they cannot catch a claim the
+research does not support, and that is the failure that matters.
+
+## 3b. Publish
 
 Committing is now the whole of publishing, and it is safe: the edition is dated
 ahead, so pushing it does not put it in front of a reader. This is the last step
@@ -176,12 +205,16 @@ because this is a newspaper and not an app.
 - the almanac has no `source` (weather must be measured, never written by hand)
 - a learning topic has no `title`/`summary`, or its slug has no topic file
 - a quiz has fewer than 3 questions, an out-of-range answer, or an unexplained one
+- an edition declares a podcast under the wrong filename, or one that is neither
+  on disk nor in the release archive
 - anything contains placeholder text or mojibake
 
 `pytest` additionally covers: Hebrew word-start search (plurals must not
 false-match), ledger URL normalization, no story printed twice, weather code
 coverage, the compound-interest numbers quoted in the article, CSS brace
-balance, dead CSS classes, missing local assets, and that the build runs clean.
+balance, dead CSS classes, missing local assets, podcast script parsing and
+chunking, that a pruned episode still validates and still renders, the local
+audio retention window, and that the build runs clean.
 
 ---
 

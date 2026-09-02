@@ -51,12 +51,14 @@
 
 
 
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">אוסמוזה: מה המים עושים מעצמם</h2>
     <p>כדי להבין את השיטה שמשמשת היום צריך קודם להכיר תופעה שקורית בטבע בלי שנתערב. נניח שיש לנו מיכל שמחולק לשניים בממברנה, כלומר קרום דק במיוחד שמעביר מולקולות מים אבל חוסם מולקולות מלח. בצד אחד נשים מים מתוקים ובצד השני מים מלוחים.</p>
     <p>מה שיקרה הוא שהמים יתחילו לזרום מעצמם מהצד המתוק אל הצד המלוח. אף אחד לא דחף אותם. הסיבה היא שהמערכת שואפת להשוות את הריכוזים בין שני הצדדים, ומכיוון שהמלח חסום ואינו יכול לעבור לצד המתוק, הדרך היחידה לצמצם את הפער היא שהמים יעברו לצד המלוח וידללו אותו. התופעה הזאת נקראת אוסמוזה.</p>
     <p>הזרימה אינה נמשכת לנצח. ככל שיותר מים עוברים, מפלס הנוזל בצד המלוח עולה ולוחץ בחזרה. בשלב מסוים הלחץ הזה מאזן בדיוק את הדחף לזרום, והזרימה נעצרת. הלחץ שבו זה קורה נקרא הלחץ האוסמוטי, והוא תלוי בעיקר בכמה מלוחים המים. עבור מי ים רגילים הוא עומד על בערך 27 אטמוספרות.</p>
+
 
 
 
@@ -73,12 +75,14 @@
 
 
 
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">הסיפור האמיתי הוא חשמל</h2>
     <p>הלחץ הזה לא מגיע מעצמו. הוא נוצר במשאבות שצורכות חשמל, ולכן העלות של מתקן התפלה נמדדת בראש ובראשונה בקילוואט שעה לכל קוב מים מותפלים. כל שיפור בממברנה, שמאפשר אותה תפוקה בלחץ נמוך יותר, מתורגם ישירות לחשבון החשמל.</p>
     <p>השיפור הגדול ביותר הגיע ממקום אחר, ושווה להבין אותו. הזרם שיוצא מהצד המלוח של הממברנה עדיין נמצא תחת לחץ גבוה מאוד, ובעבר פשוט שחררו אותו. זה כמו לשלם על העלאת משקל לגובה ואז לזרוק אותו. מתקנים מודרניים מעבירים את הזרם היוצא דרך מכשיר שמעביר את הלחץ שלו ישירות אל מי הים הנכנסים. כך רוב האנרגיה חוזרת למערכת במקום להתבזבז.</p>
     <p>התוצאה המצטברת דרמטית. צריכת האנרגיה להתפלת קוב מי ים ירדה לאורך העשורים האחרונים בסדר גודל, וזו הסיבה שהתפלה הפסיקה להיות פתרון יקר של מדינות עשירות והפכה לתשתית שגרתית. בישראל, מתקני ההתפלה לאורך חוף הים התיכון מספקים היום חלק ניכר ממי השתייה.</p>
+
 
 
 
@@ -95,7 +99,9 @@
 
 
 
+
   </section>
+
 
 
 
@@ -242,6 +248,104 @@
   </section>
 
 </article>
+
+<script>
+/* ===== מדמה חיפוש מטרה של CRISPR ===== */
+(function () {
+  var host = document.getElementById('crispr-genome');
+  if (!host) return;
+
+  var genome = host.getAttribute('data-genome') || '';
+  var guide = host.getAttribute('data-guide') || '';
+  var G = guide.length;
+  var slider = document.getElementById('in-mm');
+  var out = document.getElementById('out-mm');
+  var rows = document.getElementById('crispr-hits');
+  var note = document.getElementById('crispr-note');
+
+  // A site is worth showing if the protein could plausibly reach it: either a
+  // near match with a PAM, or a perfect match without one. The second case is
+  // the whole point of the exercise, so it is never filtered out.
+  var sites = [];
+  for (var i = 0; i + G + 3 <= genome.length; i++) {
+    var seq = genome.substr(i, G);
+    var pam = genome.substr(i + G, 3);
+    var hasPam = pam.charAt(1) === 'G' && pam.charAt(2) === 'G';
+    var mm = 0, near = null;
+    for (var j = 0; j < G; j++) {
+      if (seq.charAt(j) !== guide.charAt(j)) {
+        mm++;
+        near = G - j;
+      }
+    }
+    if ((hasPam && mm <= 4) || mm === 0) {
+      sites.push({ at: i, seq: seq, pam: pam, hasPam: hasPam, mm: mm, near: near });
+    }
+  }
+  sites.sort(function (a, b) { return a.mm - b.mm || a.at - b.at; });
+
+  function esc(s) { return s.replace(/&/g, '&amp;').replace(/</g, '&lt;'); }
+
+  // The count of mismatches is not the whole rule. The stretch of about ten
+  // letters next to the PAM is checked first, and a mismatch there usually stops
+  // the protein, while the same mismatch at the far end is often tolerated. A
+  // simulator that only counted mismatches would contradict the section above it.
+  var SEED = 10;
+  function cuts(s, tol) {
+    return s.hasPam && s.mm <= tol && (s.mm === 0 || s.near > SEED);
+  }
+
+  function draw() {
+    var tol = parseInt(slider.value, 10);
+    var cut = sites.filter(function (s) { return cuts(s, tol); });
+    var cutAt = {};
+    cut.forEach(function (s) { cutAt[s.at] = true; });
+
+    var html = '', pos = 0;
+    sites.slice().sort(function (a, b) { return a.at - b.at; }).forEach(function (s) {
+      if (s.at < pos) return;
+      html += esc(genome.slice(pos, s.at));
+      var cls = cutAt[s.at] ? 'crispr-site crispr-site--cut'
+              : (s.hasPam ? 'crispr-site' : 'crispr-site crispr-site--nopam');
+      html += '<span class="' + cls + '">' + esc(s.seq) + '</span>';
+      html += '<span class="crispr-pam-mark' + (s.hasPam ? '' : ' crispr-pam-mark--absent') + '">'
+           + esc(s.pam) + '</span>';
+      pos = s.at + G + 3;
+    });
+    html += esc(genome.slice(pos));
+    host.innerHTML = html;
+
+    out.textContent = tol;
+    rows.innerHTML = sites.map(function (s) {
+      var willCut = cuts(s, tol);
+      var verdict = !s.hasPam ? 'אין PAM, אין חיתוך'
+                  : (willCut ? (s.mm === 0 ? 'האתר המבוקש' : 'חיתוך לא מכוון')
+                    : (s.mm <= tol ? 'אי־ההתאמה צמודה ל-PAM. נעצר' : 'יותר מדי אי־התאמות'));
+      return '<tr class="' + (willCut ? 'is-cut' : '') + '">'
+        + '<td class="ltr">' + s.at + '</td>'
+        + '<td class="ltr">' + s.mm + '</td>'
+        + '<td class="ltr">' + (s.near === null ? '' : s.near) + '</td>'
+        + '<td class="ltr">' + esc(s.pam) + '</td>'
+        + '<td>' + verdict + '</td>'
+        + '</tr>';
+    }).join('');
+
+    var extra = cut.length - 1;
+    if (tol === 0) {
+      note.textContent = 'בסובלנות אפס נחתך אתר אחד בלבד. שימו לב לאתר השני ברשימה: '
+        + 'הוא מתאים למדריך בכל עשרים האותיות, ובכל זאת אינו נחתך, כי אחריו אין PAM.';
+    } else if (extra <= 0) {
+      note.textContent = 'עדיין אתר אחד. באתר הדומה השני אי־ההתאמות צמודות ל-PAM, ושם החלבון עוצר.';
+    } else {
+      note.textContent = 'בסובלנות של ' + tol + ' אי־התאמות נחתך אתר נוסף שלא התכוונו אליו. '
+        + 'ברצף של 196 אותיות זה נראה מעט. בגנום של שלושה מיליארד אותיות, זה מה שנקרא off-target.';
+    }
+  }
+
+  slider.addEventListener('input', draw);
+  draw();
+})();
+</script>
 
 <script>
 /* ===== מדמה ריבית דריבית ===== */

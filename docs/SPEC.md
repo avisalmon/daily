@@ -146,6 +146,61 @@ the user's own work product.
 - The build copies it to `research/YYYY-MM-DD.pdf` in the published site.
 - The lead story links there.
 
+### 5.1 The podcast
+
+**Decision:** each deep research also becomes a two-host Hebrew podcast episode,
+roughly ten minutes, offered as a player inside the lead story.
+
+It is a conversation about the research, not a reading of the paper. The briefs
+are not in it.
+
+**Two commands, and a human between them.** This is the same shape as the
+editorial meeting and the build, and for the same reason:
+
+```powershell
+# 1. draft the script from a research document, then stop
+python scripts\podcast.py --date YYYY-MM-DD --source data\research\bank\slug.md
+
+# 2. after reading and editing data/podcasts/YYYY-MM-DD.script.md
+python scripts\podcast.py --date YYYY-MM-DD --speak --upload
+```
+
+The script is the editorial artifact and is committed. The audio is a rendering
+of an approved script. **The agent never records an unreviewed script**, because
+a machine voice on the masthead saying something nobody checked is worse than
+the same sentence in print. `--dry-run` parses and style-checks a script without
+spending anything.
+
+A hand-written script is fully supported. `data/podcasts/*.script.md` is
+alternating `דנה: …` and `יונתן: …` lines; where it came from is not recorded in
+the output.
+
+**Voice rules apply.** `scripts/podcast.py` runs `style.py` over every turn and
+refuses to record on a failure. Re-rendering costs money, and a tell is louder
+spoken than written.
+
+**Storage is hybrid**, because audio is the only thing here that grows without
+bound:
+
+| Where | What | Why |
+|---|---|---|
+| `audio/YYYY-MM-DD.mp3` | newest 30 editions | served by Pages, correct MIME type |
+| `podcasts` GitHub Release | every episode, forever | release assets sit outside git history |
+
+`--prune` deletes a local file only after confirming the release holds a copy,
+and it writes that copy's URL into the edition JSON as `podcast.archive_url`
+before deleting anything. Every page resolves the player source at build time —
+local file if it is there, archive URL otherwise — so a pruned episode stays
+playable. Validation accepts an episode with no local file **only** when it has
+an `archive_url`; an episode with neither is an error, because that is a player
+that loads nothing. Roughly 5MB per episode means the repository holds about
+150MB of audio in steady state and stops growing there.
+
+**Cost.** One `GEMINI_API_KEY` does both jobs. Text-to-speech bills audio output
+at 25 tokens per second, so ten minutes is about $0.30. This is the paper's
+first paid API and it is **not** in the editorial meeting, which stays free
+(§3).
+
 ## 6. Site structure — history, search, catalog
 
 The site is static. Nothing below requires a server.
@@ -154,10 +209,11 @@ The site is static. Nothing below requires a server.
 |---|---|
 | `index.html` | Always the newest edition |
 | `editions/YYYY-MM-DD.html` | Every edition, kept forever |
-| `archive.html` | Full history, grouped by month, with headline and research link |
+| `archive.html` | Full history, grouped by month, with headline, research and podcast links |
 | `search.html` | Client-side search over every article ever published |
 | `learn.html` | Growing catalog of learning topics |
 | `research/YYYY-MM-DD.pdf` | Published research behind each lead |
+| `audio/YYYY-MM-DD.mp3` | Podcast episode, most recent 30 |
 
 **Nothing is ever deleted.** Every edition is re-rendered on every build, so a
 design change propagates to the whole archive.

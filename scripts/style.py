@@ -140,7 +140,8 @@ def walk(obj, path: str = ""):
 
 # Fields that are identifiers or machine data, not prose.
 SKIP_KEYS = ("url", "slug", "id", "file", "date", "compiled_at", "added_at",
-             "claimed_at", "kind", "image", "href", "class", "source_url")
+             "claimed_at", "kind", "image", "href", "class", "source_url",
+             "archive_url", "recorded_at", "duration")
 
 
 def check_file(path: Path) -> list[str]:

@@ -22,6 +22,7 @@ import pytest
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "scripts"))
 
+import build_site  # noqa: E402
 import ledger  # noqa: E402
 import validate  # noqa: E402
 import weather  # noqa: E402
@@ -292,6 +293,75 @@ def test_a_held_back_edition_keeps_its_research_pdf_in_the_repo(path: Path):
     assert (ROOT / url).exists(), (
         f"{url} is missing - the edition cannot be published on its day"
     )
+
+
+def test_two_research_pdfs_for_one_date_is_refused(tmp_path, monkeypatch):
+    """An edition has one lead. When a supporting document was dropped next to
+    the lead under the same date prefix, publish_research picked whichever name
+    sorted first and the paper linked to a document nobody chose. Silent."""
+    src = tmp_path / "src"
+    src.mkdir()
+    monkeypatch.setattr(build_site, "RESEARCH_SRC", src)
+    monkeypatch.setattr(build_site, "RESEARCH_OUT", tmp_path / "out")
+
+    (src / "2026-01-01-lead.pdf").write_bytes(b"%PDF-1.4 lead")
+    assert build_site.publish_research([{"date": "2026-01-01"}]) == ["2026-01-01.pdf"]
+
+    (src / "2026-01-01-companion.pdf").write_bytes(b"%PDF-1.4 companion")
+    with pytest.raises(SystemExit) as exc:
+        build_site.publish_research([{"date": "2026-01-01"}])
+    assert "more than one research PDF" in str(exc.value)
+
+
+def test_a_source_that_blocks_fetching_cannot_be_cited():
+    """BKM §6 - a source we cannot fetch is a source we cannot fact-check.
+    nature.com returns 406 for the article, the PDF and the Wayback copy, so a
+    Nature link in a brief is a claim nobody in this pipeline can check. It was
+    picked for an edition once and had to be swapped at build time."""
+    edition = {
+        "date": "2026-01-01",
+        "number": 1,
+        "compiled_at": "07:00",
+        "lead": {"headline": "כותרת", "source": "מקור", "url": "https://example.com/a"},
+        "grid": [{"name": "מדע", "stories": [{
+            "headline": "כותרת הידיעה",
+            "summary": "טקסט בעברית שארוך מספיק כדי לעבור את סף התקציר שנקבע בוולידטור, ולכן הבדיקה תיפול על המקור ולא על האורך.",
+            "source": "Nature",
+            "url": "https://www.nature.com/articles/d41586-026-02746-4",
+        }]}],
+    }
+    errors: list[str] = []
+    validate.check_edition(edition, Path("2026-01-01.json"), {}, errors)
+    assert any("nature.com" in e for e in errors), errors
+
+
+def test_crispr_simulator_teaches_all_three_rules():
+    """The page claims three things: a PAM is required, mismatch count matters,
+    and a mismatch next to the PAM stops the cut. The planted sequence has to
+    contain one example of each, or the simulator quietly argues the opposite."""
+    topic = json.loads((ROOT / "data" / "topics" / "crispr.json").read_text(encoding="utf-8"))
+    sim = topic["sim"]
+    guide, genome = sim["guide"], sim["genome"]
+    G, SEED = len(guide), 10
+
+    sites = []
+    for i in range(len(genome) - G - 2):
+        seq, pam = genome[i:i + G], genome[i + G:i + G + 3]
+        has_pam = pam[1] == "G" and pam[2] == "G"
+        bad = [G - j for j, (a, b) in enumerate(zip(seq, guide)) if a != b]
+        if (has_pam and len(bad) <= 4) or not bad:
+            sites.append({"at": i, "pam": has_pam, "mm": len(bad),
+                          "near": min(bad) if bad else None})
+
+    on_target = [s for s in sites if s["mm"] == 0 and s["pam"]]
+    no_pam = [s for s in sites if s["mm"] == 0 and not s["pam"]]
+    far = [s for s in sites if s["mm"] and s["pam"] and s["near"] > SEED]
+    near = [s for s in sites if s["mm"] and s["pam"] and s["near"] <= SEED]
+
+    assert len(on_target) == 1, "there must be exactly one intended site"
+    assert no_pam, "a perfect match with no PAM is the whole point of the first slide"
+    assert far, "an off-target that does get cut is what makes the risk concrete"
+    assert near, "a near-PAM mismatch that is refused is what the seed rule teaches"
 
 
 def test_compound_interest_matches_the_numbers_in_the_article():
@@ -617,3 +687,141 @@ def test_no_published_item_is_proposed_again():
         f"ledger keys changed: {sorted(ledger)}"
     urls = [i.get("url") for i in ledger["published"] if i.get("url")]
     assert len(urls) == len(set(urls)), "the same URL was published twice"
+
+
+# --------------------------------------------------------------------------
+# פודקאסט
+# --------------------------------------------------------------------------
+
+import podcast  # noqa: E402
+
+
+def _script(*lines: str) -> list[tuple[str, str]]:
+    return [(s, t) for s, t in (ln.split(": ", 1) for ln in lines)]
+
+
+def test_podcast_script_parses_both_hosts(tmp_path):
+    """A turn is 'NAME: text'. Anything else is a stage direction the model was
+    told not to write, and speaking it aloud would be absurd."""
+    p = tmp_path / "2026-01-01.script.md"
+    p.write_text(
+        "<!-- draft header -->\n\n"
+        f"{podcast.HOST_A}: שאלה ראשונה.\n\n"
+        f"{podcast.HOST_B}: תשובה ראשונה.\n",
+        encoding="utf-8")
+    turns = podcast.parse_script(p)
+    assert [s for s, _ in turns] == [podcast.HOST_A, podcast.HOST_B]
+    assert turns[0][1] == "שאלה ראשונה."
+
+
+def test_podcast_wrapped_line_joins_the_turn_above(tmp_path):
+    """An editor rewrapping the script by hand must not silently drop half a
+    sentence. A line with no speaker belongs to the turn before it."""
+    p = tmp_path / "2026-01-01.script.md"
+    p.write_text(f"{podcast.HOST_A}: התחלה\nוההמשך.\n\n{podcast.HOST_B}: כן.\n",
+                 encoding="utf-8")
+    turns = podcast.parse_script(p)
+    assert turns[0][1] == "התחלה וההמשך."
+    assert len(turns) == 2
+
+
+def test_podcast_rejects_a_single_speaker(tmp_path):
+    p = tmp_path / "2026-01-01.script.md"
+    p.write_text(f"{podcast.HOST_A}: לבד.\n", encoding="utf-8")
+    with pytest.raises(SystemExit):
+        podcast.parse_script(p)
+
+
+def test_podcast_chunks_never_split_a_turn():
+    """Chunks are separate TTS calls joined end to end. Splitting mid-turn would
+    put an audio seam inside a sentence."""
+    turns = _script(*[f"{podcast.HOST_A if i % 2 else podcast.HOST_B}: "
+                      + "מילה " * 40 for i in range(12)])
+    blocks = podcast.chunk(turns, limit=600)
+    assert len(blocks) > 1, "the fixture is too small to exercise chunking"
+    rejoined = "\n".join(blocks)
+    for speaker, text in turns:
+        assert f"{speaker}: {text}" in rejoined, "a turn was cut in half"
+
+
+def test_podcast_oversized_turn_is_passed_through_whole():
+    """A single turn longer than the limit must still be spoken, not dropped."""
+    long_turn = _script(f"{podcast.HOST_A}: " + "מילה " * 500)
+    blocks = podcast.chunk(long_turn, limit=100)
+    assert len(blocks) == 1 and blocks[0].startswith(podcast.HOST_A)
+
+
+def test_podcast_script_obeys_the_paper_voice(tmp_path):
+    """The style rules are enforced before recording, not after. A voice tell is
+    worse spoken than written, and re-rendering audio costs money."""
+    p = tmp_path / "2026-01-01.script.md"
+    p.write_text(f"{podcast.HOST_A}: חשוב לציין שזה נכון.\n\n"
+                 f"{podcast.HOST_B}: כן.\n", encoding="utf-8")
+    turns = podcast.parse_script(p)
+    with pytest.raises(SystemExit):
+        podcast.check_voice(turns, p)
+
+
+def test_podcast_audio_reader_survives_a_reshaped_response():
+    """The REST response shape is not contractual, so the audio is found by
+    walking the document. Both known shapes must work."""
+    blob = "QUJDRA==" * 100
+    flat = {"output_audio": {"data": blob}}
+    nested = {"steps": [{"content": [{"type": "audio", "data": blob}]}]}
+    assert podcast._collect_audio(flat) == [blob]
+    assert podcast._collect_audio(nested) == [blob]
+    assert podcast._collect_audio({"id": "resp_1", "status": "completed"}) == []
+
+
+def test_podcast_brief_has_its_markers():
+    """podcast.py reads only what sits between the markers, and a brief without
+    them would silently send an empty instruction."""
+    text = (ROOT / "prompts" / "podcast.md").read_text(encoding="utf-8-sig")
+    assert "---BRIEF---" in text and "---END BRIEF---" in text
+    body = text.split("---BRIEF---", 1)[1].split("---END BRIEF---", 1)[0]
+    assert podcast.HOST_A in body and podcast.HOST_B in body, \
+        "the brief must name the same two hosts podcast.py parses"
+
+
+@pytest.mark.parametrize("path", ALL_EDITIONS, ids=lambda p: p.stem)
+def test_declared_podcast_is_reachable(path):
+    """A podcast block renders a player. It must point at something that plays:
+    the local file while the episode is recent, the release archive once it has
+    been pruned. Requiring the local file unconditionally would have broken
+    every old edition thirty days after the first episode."""
+    ed = json.loads(path.read_text(encoding="utf-8-sig"))
+    pod = ed.get("podcast")
+    if not pod:
+        pytest.skip("no podcast for this edition")
+    assert pod["file"] == f"audio/{ed['date']}.mp3"
+    assert (ROOT / pod["file"]).exists() or pod.get("archive_url"), \
+        f"{pod['file']} is gone and there is no archive_url to fall back to"
+
+
+def test_pruned_episode_still_validates(tmp_path, monkeypatch):
+    """The retention window deletes local audio on purpose. validate.py must
+    accept that, or the first prune takes the whole site down."""
+    ed = {
+        "date": "2020-01-01", "number": 1, "compiled_at": "2020-01-01T00:00:00",
+        "podcast": {"file": "audio/2020-01-01.mp3", "duration": "9:12",
+                    "archive_url": "https://github.com/o/r/releases/download/podcasts/2020-01-01.mp3"},
+    }
+    errors: list[str] = []
+    validate.check_edition(ed, tmp_path / "2020-01-01.json", {}, errors)
+    assert not [e for e in errors if "podcast" in e], \
+        f"an archived episode was rejected: {errors}"
+
+    ed["podcast"].pop("archive_url")
+    errors = []
+    validate.check_edition(ed, tmp_path / "2020-01-01.json", {}, errors)
+    assert [e for e in errors if "podcast" in e], \
+        "an episode with no local file and no archive URL must be rejected"
+
+
+def test_local_audio_is_pruned_to_the_retention_window():
+    """Audio is the only thing in this repository that grows without bound.
+    Recent episodes live here; the rest live in the release archive."""
+    files = list((ROOT / "audio").glob("*.mp3")) if (ROOT / "audio").exists() else []
+    assert len(files) <= podcast.KEEP_LOCAL, (
+        f"{len(files)} episodes in audio/, over the {podcast.KEEP_LOCAL} kept. "
+        "Run: python scripts\\podcast.py --prune")

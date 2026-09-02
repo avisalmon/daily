@@ -43,6 +43,7 @@ HEBREW = re.compile(r"[\u0590-\u05FF]")
 BLOCKED_DOMAINS = {
     "calcalist.co.il": "returns 403 even with a browser UA - cannot be fact-checked",
     "calcalistech.com": "returns 403 even with a browser UA - cannot be fact-checked",
+    "nature.com": "returns 406 for the article, the PDF and Wayback - cannot be fact-checked",
 }
 
 # BKM §2: hedge words required when a story is a report rather than a fact.
@@ -160,6 +161,31 @@ def check_edition(ed: dict, path: Path, seen_urls: dict[str, str], errors: list[
     alm = ed.get("almanac")
     if alm and not alm.get("source"):
         _fail(errors, where, "almanac has no 'source' - weather must be fetched, never written by hand")
+
+    # ---- podcast ----------------------------------------------------------
+    # The player is rendered from this block alone, so a block pointing at a
+    # file that is not there produces a control that loads nothing and reports
+    # no error to the reader. Better to refuse to publish.
+    pod = ed.get("podcast")
+    if pod:
+        for field in ("file", "duration"):
+            if not pod.get(field):
+                _fail(errors, where, f"podcast is missing '{field}'")
+        rel = pod.get("file")
+        if rel:
+            if rel != f"audio/{ed['date']}.mp3":
+                _fail(errors, where,
+                      f"podcast file is '{rel}', expected 'audio/{ed['date']}.mp3'")
+            # An episode past the retention window is pruned from the repository
+            # and served from the release archive instead, so a missing file is
+            # only an error when there is no archived copy to fall back to. This
+            # is the rule that stops --prune from breaking every old edition
+            # thirty days after the first episode.
+            if not (ROOT / rel).exists() and not pod.get("archive_url"):
+                _fail(errors, where,
+                      f"podcast points at {rel}, which is not on disk, and has "
+                      f"no 'archive_url' to fall back to. Record it, or upload "
+                      f"it:  python scripts\\podcast.py --date {ed['date']} --upload")
 
     # ---- learning topic ---------------------------------------------------
     learn = ed.get("learning")

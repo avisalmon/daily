@@ -127,6 +127,66 @@
       <figcaption>{{ sec.diagram.caption }}</figcaption>
     </figure>
     {% endif %}
+    {% if sec.diagram and sec.diagram.type == 'crispr-parts' %}
+    <figure class="diagram">
+      <svg viewBox="0 0 560 250" role="img" aria-label="מדריך RNA נצמד לרצף המטרה על גדיל ה-DNA, החלבון אוחז בו, ורצף PAM צמוד מאפשר את החיתוך" preserveAspectRatio="xMidYMid meet">
+        <path class="crispr-protein" d="M150,104 L300,88 L450,104 L462,168 L440,214 L300,226 L160,214 L138,168 Z"/>
+        <text x="330" y="112" class="diagram__axis-label">Cas9</text>
+
+        <line x1="30" y1="158" x2="530" y2="158" class="crispr-strand"/>
+        <line x1="30" y1="190" x2="530" y2="190" class="crispr-strand"/>
+        <rect x="180" y="152" width="210" height="12" class="crispr-target"/>
+        <rect x="390" y="152" width="31" height="12" class="crispr-pam"/>
+
+        <line x1="180" y1="132" x2="390" y2="132" class="crispr-guide"/>
+        {% for i in range(20) %}
+        <line x1="{{ 185.25 + i * 10.5 }}" y1="136" x2="{{ 185.25 + i * 10.5 }}" y2="152" class="crispr-pair"/>
+        {% endfor %}
+        <text x="176" y="128" class="diagram__label diagram__label--strong">מדריך RNA · 20 אותיות</text>
+
+        <line x1="358.5" y1="144" x2="358.5" y2="204" class="crispr-cut"/>
+        <text x="352" y="216" class="diagram__label">חיתוך בשני הגדילים</text>
+
+        <text x="405" y="146" class="diagram__axis-label">PAM</text>
+        <text x="285" y="180" class="diagram__axis-label">רצף המטרה</text>
+        <text x="280" y="243" class="diagram__axis-label">בלי PAM צמוד אין חיתוך</text>
+      </svg>
+      <figcaption>{{ sec.diagram.caption }}</figcaption>
+    </figure>
+    {% endif %}
+
+    {% if sec.diagram and sec.diagram.type == 'crispr-repair' %}
+    <figure class="diagram">
+      <svg viewBox="0 0 560 260" role="img" aria-label="שבר בשני גדילי הדנא ושני מסלולי התיקון: חיבור מהיר שמשאיר שגיאה, והעתקה מתבנית שכותבת את הרצף הרצוי" preserveAspectRatio="xMidYMid meet">
+        <text x="332" y="24" class="diagram__label diagram__label--strong">שבר בשני הגדילים</text>
+        <line x1="180" y1="44" x2="268" y2="44" class="crispr-strand"/>
+        <line x1="180" y1="58" x2="268" y2="58" class="crispr-strand"/>
+        <line x1="292" y1="44" x2="380" y2="44" class="crispr-strand"/>
+        <line x1="292" y1="58" x2="380" y2="58" class="crispr-strand"/>
+
+        <line x1="252" y1="76" x2="150" y2="112" class="crispr-arrow"/>
+        <line x1="308" y1="76" x2="410" y2="112" class="crispr-arrow"/>
+
+        <text x="268" y="106" class="diagram__label diagram__label--strong">חיבור מהיר</text>
+        <line x1="40" y1="150" x2="268" y2="150" class="crispr-strand"/>
+        <line x1="40" y1="164" x2="268" y2="164" class="crispr-strand"/>
+        <rect x="148" y="144" width="9" height="26" class="crispr-indel"/>
+        <text x="268" y="192" class="diagram__label">אות נוספת או חסרה</text>
+        <text x="268" y="212" class="diagram__label diagram__label--strong">מסגרת הקריאה זזה. הגן מכובה</text>
+
+        <text x="520" y="106" class="diagram__label diagram__label--strong">העתקה מתבנית</text>
+        <line x1="330" y1="126" x2="500" y2="126" class="crispr-template"/>
+        <text x="520" y="140" class="diagram__label">תבנית עם הרצף הרצוי</text>
+        <line x1="292" y1="164" x2="520" y2="164" class="crispr-strand"/>
+        <line x1="292" y1="178" x2="520" y2="178" class="crispr-strand"/>
+        <rect x="398" y="158" width="26" height="26" class="crispr-written"/>
+        <text x="520" y="212" class="diagram__label diagram__label--strong">הרצף נכתב בדיוק כפי שתוכנן</text>
+
+        <text x="280" y="248" class="diagram__axis-label">המהיר זמין תמיד. המדויק דורש תבנית</text>
+      </svg>
+      <figcaption>{{ sec.diagram.caption }}</figcaption>
+    </figure>
+    {% endif %}
   </section>
   {% endfor %}
 
@@ -246,6 +306,47 @@
   </section>
   {% endif %}
 
+  {% if topic.sim and topic.sim.type == 'crispr-target' %}
+  <section class="sim" id="sim">
+    <h2 class="topic__heading">{{ topic.sim.title }}</h2>
+    <p class="sim__intro">{{ topic.sim.intro }}</p>
+
+    <p class="crispr-guide-line">
+      <span class="crispr-guide-line__label">המדריך</span>
+      <span class="ltr crispr-mono" id="crispr-guide">{{ topic.sim.guide }}</span>
+    </p>
+
+    <div class="sim__controls">
+      <label class="sim__control">
+        <span class="sim__control-head">
+          <span>כמה אי־התאמות החלבון סובל</span>
+          <output id="out-mm" class="ltr"></output>
+        </span>
+        <input type="range" id="in-mm" min="0" max="4" step="1" value="0">
+      </label>
+    </div>
+
+    <div class="crispr-genome crispr-mono" id="crispr-genome"
+         data-genome="{{ topic.sim.genome }}" data-guide="{{ topic.sim.guide }}"></div>
+
+    <table class="crispr-hits">
+      <thead>
+        <tr>
+          <th>מיקום</th>
+          <th>אי־התאמות</th>
+          <th>הקרובה ביותר ל-PAM</th>
+          <th>PAM</th>
+          <th>תוצאה</th>
+        </tr>
+      </thead>
+      <tbody id="crispr-hits"></tbody>
+    </table>
+
+    <p class="sim__note" id="crispr-note"></p>
+    <p class="sim__note euv-caveat">{{ topic.sim.caveat }}</p>
+  </section>
+  {% endif %}
+
   {% if topic.quiz %}
   <section class="quiz" id="quiz">
     <h2 class="topic__heading">בדקו את עצמכם</h2>
@@ -284,6 +385,104 @@
   {% endif %}
 
 </article>
+
+<script>
+/* ===== מדמה חיפוש מטרה של CRISPR ===== */
+(function () {
+  var host = document.getElementById('crispr-genome');
+  if (!host) return;
+
+  var genome = host.getAttribute('data-genome') || '';
+  var guide = host.getAttribute('data-guide') || '';
+  var G = guide.length;
+  var slider = document.getElementById('in-mm');
+  var out = document.getElementById('out-mm');
+  var rows = document.getElementById('crispr-hits');
+  var note = document.getElementById('crispr-note');
+
+  // A site is worth showing if the protein could plausibly reach it: either a
+  // near match with a PAM, or a perfect match without one. The second case is
+  // the whole point of the exercise, so it is never filtered out.
+  var sites = [];
+  for (var i = 0; i + G + 3 <= genome.length; i++) {
+    var seq = genome.substr(i, G);
+    var pam = genome.substr(i + G, 3);
+    var hasPam = pam.charAt(1) === 'G' && pam.charAt(2) === 'G';
+    var mm = 0, near = null;
+    for (var j = 0; j < G; j++) {
+      if (seq.charAt(j) !== guide.charAt(j)) {
+        mm++;
+        near = G - j;
+      }
+    }
+    if ((hasPam && mm <= 4) || mm === 0) {
+      sites.push({ at: i, seq: seq, pam: pam, hasPam: hasPam, mm: mm, near: near });
+    }
+  }
+  sites.sort(function (a, b) { return a.mm - b.mm || a.at - b.at; });
+
+  function esc(s) { return s.replace(/&/g, '&amp;').replace(/</g, '&lt;'); }
+
+  // The count of mismatches is not the whole rule. The stretch of about ten
+  // letters next to the PAM is checked first, and a mismatch there usually stops
+  // the protein, while the same mismatch at the far end is often tolerated. A
+  // simulator that only counted mismatches would contradict the section above it.
+  var SEED = 10;
+  function cuts(s, tol) {
+    return s.hasPam && s.mm <= tol && (s.mm === 0 || s.near > SEED);
+  }
+
+  function draw() {
+    var tol = parseInt(slider.value, 10);
+    var cut = sites.filter(function (s) { return cuts(s, tol); });
+    var cutAt = {};
+    cut.forEach(function (s) { cutAt[s.at] = true; });
+
+    var html = '', pos = 0;
+    sites.slice().sort(function (a, b) { return a.at - b.at; }).forEach(function (s) {
+      if (s.at < pos) return;
+      html += esc(genome.slice(pos, s.at));
+      var cls = cutAt[s.at] ? 'crispr-site crispr-site--cut'
+              : (s.hasPam ? 'crispr-site' : 'crispr-site crispr-site--nopam');
+      html += '<span class="' + cls + '">' + esc(s.seq) + '</span>';
+      html += '<span class="crispr-pam-mark' + (s.hasPam ? '' : ' crispr-pam-mark--absent') + '">'
+           + esc(s.pam) + '</span>';
+      pos = s.at + G + 3;
+    });
+    html += esc(genome.slice(pos));
+    host.innerHTML = html;
+
+    out.textContent = tol;
+    rows.innerHTML = sites.map(function (s) {
+      var willCut = cuts(s, tol);
+      var verdict = !s.hasPam ? 'אין PAM, אין חיתוך'
+                  : (willCut ? (s.mm === 0 ? 'האתר המבוקש' : 'חיתוך לא מכוון')
+                    : (s.mm <= tol ? 'אי־ההתאמה צמודה ל-PAM. נעצר' : 'יותר מדי אי־התאמות'));
+      return '<tr class="' + (willCut ? 'is-cut' : '') + '">'
+        + '<td class="ltr">' + s.at + '</td>'
+        + '<td class="ltr">' + s.mm + '</td>'
+        + '<td class="ltr">' + (s.near === null ? '' : s.near) + '</td>'
+        + '<td class="ltr">' + esc(s.pam) + '</td>'
+        + '<td>' + verdict + '</td>'
+        + '</tr>';
+    }).join('');
+
+    var extra = cut.length - 1;
+    if (tol === 0) {
+      note.textContent = 'בסובלנות אפס נחתך אתר אחד בלבד. שימו לב לאתר השני ברשימה: '
+        + 'הוא מתאים למדריך בכל עשרים האותיות, ובכל זאת אינו נחתך, כי אחריו אין PAM.';
+    } else if (extra <= 0) {
+      note.textContent = 'עדיין אתר אחד. באתר הדומה השני אי־ההתאמות צמודות ל-PAM, ושם החלבון עוצר.';
+    } else {
+      note.textContent = 'בסובלנות של ' + tol + ' אי־התאמות נחתך אתר נוסף שלא התכוונו אליו. '
+        + 'ברצף של 196 אותיות זה נראה מעט. בגנום של שלושה מיליארד אותיות, זה מה שנקרא off-target.';
+    }
+  }
+
+  slider.addEventListener('input', draw);
+  draw();
+})();
+</script>
 
 <script>
 /* ===== מדמה ריבית דריבית ===== */

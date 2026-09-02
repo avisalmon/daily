@@ -316,6 +316,104 @@ img { max-width: 100%; display: block; }
 
 .byline a { color: var(--accent-2); text-underline-offset: 3px; }
 
+/* ============ להאזנה ============ */
+/* A newspaper does not have a play button, so this is set as a boxed notice in
+   the column rather than as a media card: hairline rules, no rounded corners,
+   no fill beyond the faint tint the data figures already use. The player itself
+   is the browser's native control, which cannot be restyled and should not be
+   faked with a custom one. */
+.listen {
+  margin: 22px 0 4px;
+  padding: 12px 0 0;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 14px;
+}
+
+.listen__label {
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .06em;
+  color: var(--ink);
+  margin: 0 0 9px;
+}
+
+.listen__meta {
+  font-weight: 400;
+  letter-spacing: 0;
+  color: var(--ink-faint);
+}
+
+.listen__audio {
+  display: block;
+  width: 100%;
+  height: 34px;
+}
+
+/* Once the custom controls are up the native element is only a decoder. It
+   stays in the markup with `controls` so that a reader with no JavaScript gets
+   a working player rather than nothing. */
+.listen--custom .listen__audio { display: none; }
+
+.listen__bar {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.listen__play {
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .04em;
+  color: var(--ink);
+  background: none;
+  border: 1px solid var(--ink);
+  border-radius: 0;
+  padding: 6px 0;
+  cursor: pointer;
+  width: 76px;
+}
+
+.listen__play:hover { background: var(--ink); color: var(--paper); }
+
+.listen__track {
+  flex: 1;
+  height: 3px;
+  background: var(--rule);
+  cursor: pointer;
+  position: relative;
+}
+
+/* The timeline reads left to right even on a right-to-left page: elapsed time
+   grows rightward everywhere, and mirroring it reads as a countdown. */
+.listen__fill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 0;
+  background: var(--ink);
+}
+
+.listen__time {
+  font-family: var(--sans);
+  font-size: 12px;
+  color: var(--ink-faint);
+  min-width: 84px;
+  text-align: left;
+}
+
+.listen__fallback {
+  font-family: var(--sans);
+  font-size: 12px;
+  color: var(--ink-faint);
+  margin: 8px 0 0;
+}
+
+.listen__fallback a { color: var(--accent-2); text-underline-offset: 3px; }
+
 /* ============ כותרות מדור ============ */
 
 .section-head {
@@ -1191,6 +1289,63 @@ img { max-width: 100%; display: block; }
 .euv-wafer { fill: var(--paper); }
 .euv-line { fill: var(--rule-dark); }
 .euv-caveat { border-top: 0; padding-top: 0; margin-top: 8px; font-size: 12px; }
+
+/* CRISPR: דיאגרמות והדמיית חיפוש המטרה */
+.crispr-strand { stroke: var(--rule-dark); stroke-width: 2; }
+.crispr-target { fill: var(--ink-faint); opacity: 0.28; }
+.crispr-pam { fill: var(--rule-dark); opacity: 0.55; }
+.crispr-guide { stroke: var(--rule-dark); stroke-width: 3; }
+.crispr-pair { stroke: var(--ink-faint); stroke-width: 1; }
+.crispr-protein { fill: var(--ink-faint); opacity: 0.09; stroke: var(--ink-faint); stroke-width: 1; stroke-dasharray: 4 3; }
+.crispr-cut { stroke: var(--rule-dark); stroke-width: 1.6; stroke-dasharray: 4 3; }
+.crispr-arrow { stroke: var(--ink-faint); stroke-width: 1.4; stroke-dasharray: 5 4; }
+.crispr-indel { fill: var(--rule-dark); }
+.crispr-written { fill: var(--ink-faint); opacity: 0.35; }
+.crispr-template { stroke: var(--ink-faint); stroke-width: 2; stroke-dasharray: 6 4; }
+
+.crispr-guide-line { font-family: var(--sans); font-size: 13px; margin: 0 0 14px; }
+.crispr-guide-line__label { color: var(--ink-faint); margin-inline-end: 8px; }
+.crispr-mono {
+  font-family: "SFMono-Regular", "Consolas", "Liberation Mono", monospace;
+  letter-spacing: 0.06em;
+}
+
+.crispr-genome {
+  direction: ltr;
+  unicode-bidi: isolate;
+  display: block;
+  font-size: 13px;
+  line-height: 2.1;
+  word-break: break-all;
+  overflow-wrap: anywhere;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  padding: 14px 2px;
+  margin: 4px 0 18px;
+}
+.crispr-site { border-bottom: 1px solid var(--ink-faint); }
+.crispr-site--cut { border-bottom: 2px solid var(--rule-dark); font-weight: 700; }
+.crispr-site--nopam { border-bottom: 1px dotted var(--ink-faint); }
+.crispr-pam-mark { background: var(--ink-faint); color: var(--paper); }
+.crispr-pam-mark--absent { background: none; color: var(--ink-faint); text-decoration: line-through; }
+
+.crispr-hits {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--sans);
+  font-size: 13px;
+  margin: 0 0 6px;
+}
+.crispr-hits th {
+  text-align: start;
+  font-weight: 600;
+  color: var(--ink-faint);
+  border-bottom: 1px solid var(--rule-dark);
+  padding: 6px 8px;
+  white-space: nowrap;
+}
+.crispr-hits td { border-bottom: 1px solid var(--rule); padding: 7px 8px; }
+.crispr-hits tr.is-cut td { font-weight: 700; }
 
 /* בוחן */
 .quiz { margin: 34px 0; }

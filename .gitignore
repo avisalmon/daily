@@ -36,3 +36,6 @@ data/research/bank/*.pdf
 
 # Transient news cache from the editorial meeting
 data/_news_cache.json
+
+# Intermediate WAV pieces while an episode is being stitched together
+data/podcasts/_work/

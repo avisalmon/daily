@@ -131,12 +131,22 @@ even on success. Confirm with a separate import check.
 |---|---|
 | VentureBeat | `/category/ai/feed` works; **a trailing slash returns 308** |
 | Calcalist | **403 even with a browser UA** — blocked, rejected as a source |
+| nature.com | **406 for the article, the PDF and the Wayback copy** — blocked, rejected as a source |
+| Times of Israel, Davar, Haaretz | **403 to fetching** — verify the story elsewhere and link the source you actually read |
 | openai.com | **403 to fetching** — fall back to their RSS `summary`, it's authoritative |
 | Hacker News | high noise, weight 0.7 |
 
 **Stories age out of the recency window between fetches.** A story proposed
 fifteen minutes earlier fell out of the 48h window before the build; the window
 was widened to 96h to recover it. If a chosen story vanishes, widen, don't drop.
+
+**A blocked source is not a source.** `validate.py::BLOCKED_DOMAINS` refuses a
+brief that cites one, because the paper's whole claim is that every fact was
+checked against the article. When the chosen item sits behind a block, find an
+outlet you can actually read, verify there, and link that. Record the original
+in the plan's `companion_url` so the substitution is visible later. This is how
+the Nature piece on the Nepal collapse was replaced with New Scientist, which
+turned out to carry a materially better-sourced version of the story.
 
 ---
 

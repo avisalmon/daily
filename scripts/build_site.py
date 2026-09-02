@@ -97,6 +97,12 @@ def load_editions(include_future: bool = False) -> list[dict]:
     for e in editions:
         e["story_count"] = 1 + sum(len(s["stories"]) for s in e.get("grid", []))
         e.setdefault("date_long", he_date_long(datetime.fromisoformat(e["date"])))
+        # Resolved at build time, never stored: an episode moves out of the
+        # repository into the release archive once it ages past the retention
+        # window, and the page has to follow it. Storing the answer would go
+        # stale the day it was pruned.
+        if e.get("podcast"):
+            e["podcast"]["src"] = _podcast_href(e)
     if not include_future:
         today = paper_today()
         editions = [e for e in editions if date.fromisoformat(e["date"]) <= today]
@@ -126,6 +132,16 @@ def publish_research(editions: list[dict]) -> list[str]:
         matches = sorted(RESEARCH_SRC.glob(f"{e['date']}-*.pdf"))
         if not matches:
             continue
+        # Picking matches[0] silently would publish whichever filename sorts
+        # first, and the edition would link to a document nobody chose. An
+        # edition has exactly one lead, so this is always an operator mistake.
+        if len(matches) > 1:
+            names = ", ".join(m.name for m in matches)
+            raise SystemExit(
+                f"{e['date']}: more than one research PDF matches "
+                f"data/research/{e['date']}-*.pdf ({names}). "
+                f"An edition has one lead. Rename or move the others - a "
+                f"supporting document belongs outside that pattern.")
         RESEARCH_OUT.mkdir(parents=True, exist_ok=True)
         dest = RESEARCH_OUT / f"{e['date']}.pdf"
         shutil.copyfile(matches[0], dest)
@@ -242,6 +258,24 @@ def render_topics(env, editions: list[dict], held_back: set[str] | None = None) 
     return written
 
 
+def _podcast_href(edition: dict) -> str:
+    """Where the episode can actually be played from, or '' if there is none.
+
+    Recent episodes are served from the repository; older ones are pruned from
+    it once the release archive holds them, so a stored path is not proof the
+    file is still here. Returns a root-relative path for a local file and an
+    absolute URL for an archived one; the template distinguishes them the same
+    way it does for the lead link.
+    """
+    pod = edition.get("podcast") or {}
+    rel = pod.get("file")
+    if not rel:
+        return ""
+    if (ROOT / rel).exists():
+        return rel
+    return pod.get("archive_url") or ""
+
+
 def group_by_month(archive: list[dict]) -> list[dict]:
     groups: list[dict] = []
     for entry in archive:
@@ -296,6 +330,11 @@ def build(include_future: bool = False) -> None:
             "story_count": e["story_count"],
             "learning": (e.get("learning") or {}).get("title", ""),
             "has_research": (RESEARCH_OUT / f"{e['date']}.pdf").exists(),
+            # Episodes older than the local retention window are pruned from the
+            # repository but stay in the release archive forever, so the archive
+            # link follows the file rather than assuming it is still here.
+            "podcast_href": (e.get("podcast") or {}).get("src", ""),
+            "podcast_duration": (e.get("podcast") or {}).get("duration", ""),
         }
         for e in editions
     ]
