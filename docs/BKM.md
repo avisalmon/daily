@@ -174,7 +174,7 @@ its Hebrew spelling.
       Latin term), learn, and one archived edition
 - [ ] Checked at ≤700px for mobile
 
-## 9. Deep research is a map, not a source
+## 9. Deep research is a shaky source, not a forbidden one
 
 `o3-deep-research` writes beautifully and cites every sentence. That is exactly
 what makes it dangerous. A citation next to a sentence means the model found
@@ -400,3 +400,126 @@ the extractor shifted every sentence by one, and previously recorded checks
 filed against the Catherine de Medici claim. Ids are now a hash of the claim
 text, so a claim keeps its identity and a reworded claim correctly becomes a
 new, unchecked one.
+---
+
+## 10. A rule that cannot fire is worse than no rule
+
+The lesson of `check_research_sealed` (§9) generalises, and it is the most
+expensive kind of mistake this project can make, because it is invisible.
+
+The function was correct. Its logic was right, it was tested, and the tests
+passed. It was gated on `ed.get("research")`, a field no edition ever set, so it
+returned on its first line every single time. For eight editions the docs said
+deep research was gated and it was not.
+
+**A passing test proves the function works, not that it runs.** Those two tests
+called the function directly with a hand-built fixture. Nothing checked that the
+production path ever reached it.
+
+So, when you add a validator rule:
+
+1. **Run it against the real data and confirm it FAILS first.** If a new rule
+   passes immediately on eight editions of real content, be suspicious. It has
+   probably found nothing because it is looking nowhere. The `lead.verified`
+   rule that replaced the seal caught two real plans the minute it was written,
+   including the edition that had shipped the night before. That failure was the
+   evidence the rule was wired up.
+2. **Test the real data as well as a fixture.** Every fixture test wants a
+   sibling that walks `data/editions/*.json` and asserts the same thing. See
+   `test_every_lead_citing_research_records_what_was_checked`.
+3. **Delete a guard you decide not to enforce.** Leaving it in place is not a
+   neutral act. It makes the next reader, including you in three weeks, believe
+   in a protection that is not there. `test_the_dead_seal_gate_is_gone` exists
+   so the corpse cannot walk back in.
+
+## 11. Templates drift away from data, silently
+
+Everything the reader sees goes through Jinja, and Jinja does not raise on a
+missing key. `{{ edition.podcast.src }}` where the key is actually `file`
+renders an empty string and the page ships looking fine.
+
+Two live examples, both found in one session:
+
+**The podcast player never worked.** `podcast.py` wrote `podcast.file`,
+`validate.py` checked `podcast.file`, and the template read `podcast.src`. Three
+places, two spellings. Any recorded episode would have rendered no player at all
+and reported nothing. It went unnoticed only because every episode so far has
+been a link.
+
+**A topic can name a simulator the template has never heard of.** `topic.html.j2`
+dispatches on literal strings: `{% if topic.sim.type == 'compound-interest' %}`.
+A typo, or a new type with no branch, renders the section heading and its intro
+with nothing underneath. Valid JSON, valid HTML, empty page.
+
+The guards, both now in `test_newspaper.py`:
+
+- `test_podcast_key_matches_what_the_recorder_writes` reads all three files and
+  fails if they stop agreeing on the key.
+- `test_e_topic_simulator_and_diagrams_are_rendered` walks every topic and every
+  section, and fails if any `sim.type` or `diagram.type` has no branch in the
+  template.
+
+**The general rule: when data names something the template must dispatch on, a
+test walks the data and asserts the template can handle every value.** Grep for
+the literal, do not trust that it is there.
+
+## 12. Rehearse a time-gated publish, do not reason about it
+
+The paper publishes itself at midnight by rebuilding hourly and comparing the
+edition date against `paper_today()`. Reading that code and concluding it will
+work is not the same as knowing.
+
+Monkeypatch the clock and run the real build:
+
+```python
+import build_site, datetime
+build_site.paper_today = lambda: datetime.date(2026, 9, 6)
+build_site.build(include_future=False)
+```
+
+Then assert on the output: the front page is the new edition, its headline is
+there, the learning topic entered the catalog, yesterday moved to the archive
+rail. This is not the same as `--include-future`, which only proves the edition
+*can* render. It proves the promotion happens.
+
+**Rebuild plainly afterwards.** The rehearsal leaves a future edition sitting in
+`index.html`, and committing that publishes the paper a day early. `pytest` will
+catch it, but do not rely on that.
+
+## 13. Compute a number before you print it
+
+The `e` learning page states what the limit gives at n=12 and n=365, what ten
+terms of the series give, and where 63.2% and 36.8% come from. Every one of
+those was calculated in Python first, and several first guesses were wrong: the
+draft claimed seven terms gave six digits of accuracy. It gives four. Ten terms
+gives six.
+
+A reader cannot catch this. There is no source to check it against, because the
+paper is the source. So the numbers are pinned in
+`test_e_topic_matches_the_numbers_it_prints`, which recomputes each one and
+asserts the string still appears on the page. Change the page, the test tells
+you which number you broke.
+
+The same applies to any figure the paper derives rather than quotes.
+
+## 14. A borrowed image needs a credit more than a caption
+
+The paper draws its own diagrams as SVG, so for eight editions there was no way
+to print a raster image and no rules about it. The first one, a NotebookLM
+infographic, needed rules written from scratch.
+
+What `validate.py` now enforces on `lead.image`:
+
+- **Local only.** The `src` must exist in the repository. Hotlinking sends your
+  readers to another host and breaks when that host reorganises.
+- **`alt`, `caption`, `credit`, `width`, `height` all required.** The credit is
+  the load-bearing one: a raster image in this paper is by definition somebody
+  else's work.
+- **Say what the image asserts that the research does not.** That infographic
+  has an 80% gauge that corresponds to no measurement in the source. The credit
+  says so. An image can make a claim the article never makes, and a reader will
+  believe the picture.
+
+Aspect ratio is the documented exception: an infographic keeps its native shape,
+because cropping one to the standard 3:2 destroys information.
+

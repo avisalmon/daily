@@ -150,6 +150,13 @@ refuses to commit anything if `validate.py`, the build or the tests fail.
 - [ ] Numbers match the article, not the headline
 - [ ] Each brief in our own words, with a working source link
 - [ ] `verified` note recorded per item in the plan
+- [ ] **Lead read at its own sources**, with `lead.verified` recorded in the
+      plan saying which claims were checked and which traps were rejected
+      (BKM §9). A research document is a source, not a licence to skip this
+- [ ] Any borrowed image credited, and the credit says what the image asserts
+      that the research does not (BKM §14)
+- [ ] Any number the paper **derives** rather than quotes was computed, not
+      estimated, and pinned in a test (BKM §13)
 - [ ] Lead figure built from **real numbers**, with its source cited
 - [ ] `python scripts\validate.py` passes
 - [ ] `pytest -q` green
@@ -175,6 +182,12 @@ When something goes wrong, ask which layer should have caught it:
 | Wrong behaviour in code | `tests/test_newspaper.py` |
 | A judgement call a human must make | the checklist in §4 |
 | Background on why | `docs/BKM.md` |
+
+And one rule about the rules themselves: **a new validator rule that passes
+immediately on real data has probably found nothing because it is looking
+nowhere.** Confirm it fails on something real before you make it pass, and give
+every fixture test a sibling that walks the actual editions. BKM §10 is the
+eight-edition guard that never once ran.
 
 Then write the rule down in `docs/SPEC.md` if it is part of the contract.
 

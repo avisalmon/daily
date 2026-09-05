@@ -68,6 +68,28 @@ paragraph.** A lesson that lives only in prose will regress.
 | Wrong behaviour in code | `tests/test_newspaper.py` |
 | A judgement a human must make | the checklist in `docs/RUNBOOK.md` §4 |
 
+And the rule about the rules: **a new validator rule that passes immediately on
+real data has probably found nothing, because it is looking nowhere.** Confirm
+it fails on something real before making it pass, and give every fixture test a
+sibling that walks the actual editions. A guard you decide not to enforce gets
+deleted, not left in place implying a protection that is not there. BKM §10.
+
+## Traps that have already cost a day
+
+- **Jinja does not raise on a missing key.** `{{ edition.podcast.src }}` where
+  the key is `file` renders nothing and the page ships looking fine. When data
+  names something the template dispatches on, a test walks the data and asserts
+  the template handles every value. BKM §11.
+- **Numbers the paper derives rather than quotes get computed, then pinned in a
+  test.** No reader can catch a wrong one, because the paper is the source.
+  BKM §13.
+- **A borrowed image needs a credit, and the credit must say what the image
+  asserts that the research does not.** A picture makes claims the article
+  never made, and readers believe pictures. BKM §14.
+- **A time-gated publish is rehearsed, not reasoned about**: monkeypatch
+  `build_site.paper_today`, run the real build, assert on the front page, then
+  rebuild plainly so the preview is not committed. BKM §12.
+
 ## Commands
 
 ```powershell

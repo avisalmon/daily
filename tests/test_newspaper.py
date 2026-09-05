@@ -968,6 +968,32 @@ def test_the_dead_seal_gate_is_gone():
         "the seal gate is back. Wire it to a key editions actually set, or drop it"
 
 
+def test_bkm_cross_references_point_at_sections_that_exist():
+    """The docs lean on each other by number: "BKM §10", "RUNBOOK section 7".
+    Numbered references rot the first time a section is inserted or renumbered,
+    and a reader chasing a wrong pointer trusts the docs a little less every
+    time. Cheap to check, so it is checked."""
+    bkm = (ROOT / "docs" / "BKM.md").read_text(encoding="utf-8")
+    runbook = (ROOT / "docs" / "RUNBOOK.md").read_text(encoding="utf-8")
+    sections = {
+        "BKM": {int(n) for n in re.findall(r"^## (\d+)\.", bkm, re.M)},
+        "RUNBOOK": {int(n) for n in re.findall(r"^## (\d+)\.", runbook, re.M)},
+    }
+    assert sections["BKM"] and sections["RUNBOOK"], "no numbered sections found"
+
+    pattern = re.compile(r"\b(BKM|RUNBOOK)[^.\n]{0,20}?(?:§|section )\s*(\d+)", re.I)
+    docs = [ROOT / "AGENTS.md", ROOT / "docs" / "BKM.md",
+            ROOT / "docs" / "RUNBOOK.md", ROOT / "docs" / "SPEC.md",
+            ROOT / "docs" / "VISUAL_SPEC.md"]
+    for path in docs:
+        if not path.exists():
+            continue
+        for doc, num in pattern.findall(path.read_text(encoding="utf-8")):
+            key = doc.upper()
+            assert int(num) in sections[key], \
+                f"{path.name} points at {key} §{num}, which does not exist"
+
+
 def test_pruned_episode_still_validates(tmp_path, monkeypatch):
     """The retention window deletes local audio on purpose. validate.py must
     accept that, or the first prune takes the whole site down."""
