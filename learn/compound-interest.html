@@ -64,6 +64,8 @@
 
 
 
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">ההבדל בין קו לעקומה</h2>
@@ -89,11 +91,15 @@
 
 
 
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">הזמן הוא המשתנה החזק ביותר</h2>
     <p>בנוסחה של ריבית דריבית, הקרן והריבית מוכפלות, אבל הזמן נמצא במעריך. משתנה במעריך משפיע הרבה יותר חזק ממשתנה בבסיס.</p>
     <p>נסו את זה במדמה שלמטה: הכפילו את הקרן, והתוצאה הסופית תוכפל בדיוק פי שניים. הכפילו את מספר השנים, והתוצאה תגדל הרבה יותר מפי שניים. אחרי 10 שנים תגיעו ל-2,594 שקל במקום 2,000. אחרי 30 שנה תגיעו ל-17,449 שקל במקום 4,000.</p>
+
+
 
 
 
@@ -111,11 +117,15 @@
 
 
 
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">אותה עקומה, בכיוון ההפוך</h2>
     <p>בדיוק מאותה סיבה, ריבית דריבית עובדת גם לרעתכם. חוב בכרטיס אשראי או הלוואה שלא נפרעת צוברים ריבית על הריבית באותה עקומה בדיוק, רק שהפעם אתם בצד שמשלם.</p>
     <p>כאן ההבדל דרמטי במיוחד, כי הריבית על אשראי צרכני גבוהה בהרבה מתשואה שגרתית על חיסכון. חוב שנשאר פתוח מספיק זמן יכול לגדול לסכום גדול בהרבה מהסכום שנלקח במקור.</p>
+
+
 
 
 
@@ -197,6 +207,7 @@
     </div>
     <p class="sim__note" id="sim-note"></p>
   </section>
+
 
 
   <section class="quiz" id="quiz">
@@ -518,6 +529,75 @@
   }
 
   keys.forEach(function (k) { inputs[k].addEventListener('input', render); });
+  render();
+})();
+
+/* ===== מדמה ההתכנסות אל e ===== */
+(function () {
+  var svg = document.getElementById('e-svg');
+  if (!svg) return;
+
+  var W = 640, H = 300, PAD = 8;
+  var E = Math.E, STEPS = 13;
+  var inN = document.getElementById('in-nexp');
+  var inT = document.getElementById('in-terms');
+  if (!inN || !inT) return;
+
+  function limitAt(n) { return Math.pow(1 + 1 / n, n); }
+
+  function seriesAt(terms) {
+    var s = 0, f = 1;
+    for (var k = 0; k < terms; k++) {
+      if (k > 0) f *= k;
+      s += 1 / f;
+    }
+    return s;
+  }
+
+  /* שתי העקומות מצוירות על אותו ציר צעדים כדי שההשוואה תהיה הוגנת: צעד אחד
+     בגבול הוא חלוקה נוספת, צעד אחד בטור הוא מחובר נוסף. תחתית הגרף היא 1.8
+     ולא אפס, אחרת כל ההבדל המעניין נדחס לפס דק. */
+  function points(fn) {
+    var lo = 1.8, hi = E + (E - lo) * 0.08;
+    var out = [];
+    for (var i = 1; i <= STEPS; i++) {
+      var v = Math.min(fn(i), hi);
+      var x = PAD + ((i - 1) / (STEPS - 1)) * (W - PAD * 2);
+      var y = H - PAD - ((v - lo) / (hi - lo)) * (H - PAD * 2);
+      out.push(x.toFixed(1) + ',' + Math.min(Math.max(y, PAD), H - PAD).toFixed(1));
+    }
+    return out.join(' ');
+  }
+
+  document.getElementById('e-limit').setAttribute('points', points(limitAt));
+  document.getElementById('e-series').setAttribute('points', points(seriesAt));
+
+  var fmtInt = new Intl.NumberFormat('he-IL', { maximumFractionDigits: 0 });
+
+  function render() {
+    var n = Math.pow(10, +inN.value);
+    var terms = +inT.value;
+    var lim = limitAt(n), ser = seriesAt(terms);
+
+    document.getElementById('out-nexp').textContent = 'n = ' + fmtInt.format(n);
+    document.getElementById('out-terms').textContent = terms;
+    document.getElementById('e-out-limit').textContent = lim.toFixed(10);
+    document.getElementById('e-out-series').textContent = ser.toFixed(10);
+    document.getElementById('e-out-cost').textContent =
+      fmtInt.format(n) + ' מול ' + terms;
+
+    /* ספרות נכונות אחרי הנקודה, לפי גודל השגיאה */
+    function digits(v) {
+      var err = Math.abs(v - E);
+      return err === 0 ? 12 : Math.max(0, Math.floor(-Math.log10(err)));
+    }
+    document.getElementById('e-note').textContent =
+      'ספרות נכונות אחרי הנקודה: הגבול עם ' + fmtInt.format(n) + ' חלוקות, '
+      + digits(lim) + '. הטור עם ' + terms + ' מחוברים, ' + digits(ser) + '.';
+  }
+
+  inN.addEventListener('input', render);
+  inT.addEventListener('input', render);
   render();
 })();
 

@@ -105,6 +105,38 @@ hairline border. Aspect ratios are fixed: lead **3:2**, standard story **16:10**
 **21:9**, portrait **1:1** circular. Placeholder art is generated locally as SVG engravings by
 `scripts/build_site.py` — no external image requests.
 
+#### Raster lead art (`lead.image`)
+
+The lead may carry one real image, served from `assets/img/` in this repository.
+It renders as `.leadart`: the image inside a hairline border and linked to the
+full-size file, then a caption under a thin rule with the credit beneath it.
+
+Three rules, all enforced by `scripts/validate.py`:
+
+- **Never hotlinked.** The `src` must be a repo-relative path that exists on
+  disk. A remote URL leaks readers to another host and rots when that host
+  moves.
+- **Always credited.** `alt`, `caption`, `credit`, `width` and `height` are all
+  required. The paper draws its own diagrams as SVG, so a raster image is by
+  definition somebody else's work, and the credit is what keeps that honest. If
+  the image asserts a number the research does not support, say so in the
+  credit.
+- **Documented exception on aspect ratio.** The fixed ratios above do not apply.
+  An infographic carries information in its layout, and cropping it to 3:2
+  destroys some of that information, so it keeps its native ratio and the
+  `width`/`height` attributes reserve the right space while it loads.
+
+Desaturation still applies, at the light end (`grayscale(.35)`), so the image
+sits in the paper rather than shouting over it.
+
+```json
+"image": {
+  "src": "assets/img/2026-09-06-metacognition.webp",
+  "width": 2000, "height": 1116,
+  "alt": "...", "caption": "...", "credit": "..."
+}
+```
+
 ### Video
 
 A story may carry an optional `video` object. It renders as a 16:9 frame inside the

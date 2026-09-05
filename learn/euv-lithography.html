@@ -53,6 +53,8 @@
 
 
 
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">החוק שקובע כמה קטן אפשר ללכת</h2>
@@ -68,6 +70,8 @@
       </p>
       <p class="formula__legend">λ הוא אורך הגל, NA הצמצם הנומרי, ו-k1 מקדם התהליך. שלושתם מוכפלים ומחולקים, ולכן קיצור אורך הגל פועל בדיוק כמו הגדלת הצמצם.</p>
     </div>
+
+
 
 
     <figure class="diagram">
@@ -100,12 +104,16 @@
 
 
 
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">13.5 ננומטר, ואיתו כל הבעיות</h2>
     <p>EUV, אולטרה סגול קיצוני, עובד באורך גל של 13.5 ננומטר. זה כבר לא ממש אור במובן היומיומי אלא קרינה על גבול הרנטגן הרך, וזה משנה כל דבר במכונה.</p>
     <p>הבעיה הראשונה: כמעט כל חומר בולע את הקרינה הזאת. אין עדשות. אוויר עצמו בולע, ולכן כל מסלול האור חייב להיות בוואקום. גם המסכה לא יכולה להיות שקופה כמו סליל צילום, ולכן היא מחזירה במקום להעביר.</p>
     <p>הבעיה השנייה נובעת מהראשונה: אם אין עדשות, האופטיקה כולה בנויה ממראות. אבל מראה רגילה גם היא לא מחזירה EUV. הפתרון הוא מראה שבנויה מעשרות זוגות של שכבות מוליבדן וסיליקון בעובי של ננומטרים בודדים, שכל אחת מחזירה שבריר זעיר מהאור, וכולן מכוילות כך שההחזרות מתחברות בפאזה. מראה כזאת מחזירה בערך שבעים אחוז. אחרי עשר מראות נשאר פחות משלושה אחוזים מהאור שנכנס.</p>
+
+
 
 
 
@@ -159,6 +167,8 @@
 
 
 
+
+
     <figure class="diagram">
       <svg viewBox="0 0 560 260" role="img" aria-label="שלושת שלבי יצירת האור: טיפת בדיל, פולס משטח, ופולס שני שמאייד אותה לפלזמה קורנת" preserveAspectRatio="xMidYMid meet">
         <text x="548" y="40" class="diagram__label diagram__label--strong">1 · טיפת בדיל נופלת</text>
@@ -195,6 +205,8 @@
     <p>אחרי שאורך הגל קוצר, חוזרים לגורם השני בנוסחה. הדור הבא של המכונות מעלה את הצמצם הנומרי מכ-0.33 לכ-0.55, וזה מה שנקרא High-NA. התמורה אינה חינם: שדה ההדפסה נחצה, ולכן שבב גדול צריך להיות מודפס בשני חצאים שנתפרים יחד.</p>
     <p>מעבר לכך, שני הגורמים הנותרים מתקרבים לקיר. k1 לא יורד מתחת ל-0.25 מסיבות פיזיקליות, והגדלת הצמצם מתחילה לפגוע בעומק המיקוד: ככל שהקונוס רחב יותר, הטווח שבו התמונה חדה מצטמצם, והפרוסה חייבת להיות שטוחה ומיוצבת ברמה של ננומטרים.</p>
     <p>לכן השיפור בשנים הקרובות מגיע פחות מהדפסה קטנה יותר ויותר, ויותר מארגון מחדש של הטרנזיסטור והשכבות. אבל כל אחד מהכיוונים האלה עדיין מודפס. הליתוגרפיה נשארת השער שכל דבר אחר צריך לעבור דרכו.</p>
+
+
 
 
 
@@ -267,6 +279,7 @@
     <p class="sim__note" id="euv-note"></p>
     <p class="sim__note euv-caveat">ההדמיה ממחישה את קריטריון ריילי בלבד. הטשטוש הוא איור של איכות התהליך, לא חישוב אופטי, וספירת המעברים היא הערכה גסה של ריבוי הדפסות.</p>
   </section>
+
 
 
 
@@ -569,6 +582,75 @@
   }
 
   keys.forEach(function (k) { inputs[k].addEventListener('input', render); });
+  render();
+})();
+
+/* ===== מדמה ההתכנסות אל e ===== */
+(function () {
+  var svg = document.getElementById('e-svg');
+  if (!svg) return;
+
+  var W = 640, H = 300, PAD = 8;
+  var E = Math.E, STEPS = 13;
+  var inN = document.getElementById('in-nexp');
+  var inT = document.getElementById('in-terms');
+  if (!inN || !inT) return;
+
+  function limitAt(n) { return Math.pow(1 + 1 / n, n); }
+
+  function seriesAt(terms) {
+    var s = 0, f = 1;
+    for (var k = 0; k < terms; k++) {
+      if (k > 0) f *= k;
+      s += 1 / f;
+    }
+    return s;
+  }
+
+  /* שתי העקומות מצוירות על אותו ציר צעדים כדי שההשוואה תהיה הוגנת: צעד אחד
+     בגבול הוא חלוקה נוספת, צעד אחד בטור הוא מחובר נוסף. תחתית הגרף היא 1.8
+     ולא אפס, אחרת כל ההבדל המעניין נדחס לפס דק. */
+  function points(fn) {
+    var lo = 1.8, hi = E + (E - lo) * 0.08;
+    var out = [];
+    for (var i = 1; i <= STEPS; i++) {
+      var v = Math.min(fn(i), hi);
+      var x = PAD + ((i - 1) / (STEPS - 1)) * (W - PAD * 2);
+      var y = H - PAD - ((v - lo) / (hi - lo)) * (H - PAD * 2);
+      out.push(x.toFixed(1) + ',' + Math.min(Math.max(y, PAD), H - PAD).toFixed(1));
+    }
+    return out.join(' ');
+  }
+
+  document.getElementById('e-limit').setAttribute('points', points(limitAt));
+  document.getElementById('e-series').setAttribute('points', points(seriesAt));
+
+  var fmtInt = new Intl.NumberFormat('he-IL', { maximumFractionDigits: 0 });
+
+  function render() {
+    var n = Math.pow(10, +inN.value);
+    var terms = +inT.value;
+    var lim = limitAt(n), ser = seriesAt(terms);
+
+    document.getElementById('out-nexp').textContent = 'n = ' + fmtInt.format(n);
+    document.getElementById('out-terms').textContent = terms;
+    document.getElementById('e-out-limit').textContent = lim.toFixed(10);
+    document.getElementById('e-out-series').textContent = ser.toFixed(10);
+    document.getElementById('e-out-cost').textContent =
+      fmtInt.format(n) + ' מול ' + terms;
+
+    /* ספרות נכונות אחרי הנקודה, לפי גודל השגיאה */
+    function digits(v) {
+      var err = Math.abs(v - E);
+      return err === 0 ? 12 : Math.max(0, Math.floor(-Math.log10(err)));
+    }
+    document.getElementById('e-note').textContent =
+      'ספרות נכונות אחרי הנקודה: הגבול עם ' + fmtInt.format(n) + ' חלוקות, '
+      + digits(lim) + '. הטור עם ' + terms + ' מחוברים, ' + digits(ser) + '.';
+  }
+
+  inN.addEventListener('input', render);
+  inT.addEventListener('input', render);
   render();
 })();
 

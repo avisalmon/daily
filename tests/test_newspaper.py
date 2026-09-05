@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import math
 import re
 import subprocess
 import sys
@@ -788,14 +789,124 @@ def test_declared_podcast_is_reachable(path):
     """A podcast block renders a player. It must point at something that plays:
     the local file while the episode is recent, the release archive once it has
     been pruned. Requiring the local file unconditionally would have broken
-    every old edition thirty days after the first episode."""
+    every old edition thirty days after the first episode.
+
+    An episode hosted on someone else's site is a link instead, because an
+    <audio> element cannot play a web page."""
     ed = json.loads(path.read_text(encoding="utf-8-sig"))
     pod = ed.get("podcast")
     if not pod:
         pytest.skip("no podcast for this edition")
+    assert bool(pod.get("file")) != bool(pod.get("link")), \
+        "a podcast is either hosted here or elsewhere, never both and never neither"
+    if pod.get("link"):
+        assert pod["link"].startswith("https://")
+        assert pod.get("duration"), "a linked episode still states its length"
+        return
     assert pod["file"] == f"audio/{ed['date']}.mp3"
     assert (ROOT / pod["file"]).exists() or pod.get("archive_url"), \
         f"{pod['file']} is gone and there is no archive_url to fall back to"
+
+
+def test_podcast_key_matches_what_the_recorder_writes():
+    """The player read `podcast.src` for two editions while podcast.py wrote
+    `podcast.file`, so a recorded episode would have rendered no player at all
+    and said nothing about it. The three places that touch this block have to
+    agree on the key, and only a test keeps them agreeing."""
+    template = (ROOT / "templates" / "edition.html.j2").read_text(encoding="utf-8")
+    recorder = (ROOT / "scripts" / "podcast.py").read_text(encoding="utf-8")
+    assert '"file"' in recorder, "podcast.py no longer writes a 'file' key"
+    assert "pod.src" not in template and "podcast.src" not in template, \
+        "the template reads a podcast key that nothing writes"
+    assert "pod.file" in template, "the template no longer renders the hosted episode"
+    assert "pod.link" in template, "the template no longer renders a linked episode"
+
+
+def test_linked_episode_validates_and_exclusivity_is_enforced(tmp_path):
+    """An episode hosted elsewhere is legal. Both forms at once is not."""
+    base = {"date": "2020-01-01", "number": 1, "compiled_at": "2020-01-01T00:00:00"}
+
+    ed = dict(base, podcast={"link": "https://notebook.google.com/x", "duration": "44:25"})
+    errors: list[str] = []
+    validate.check_edition(ed, tmp_path / "2020-01-01.json", {}, errors)
+    assert not [e for e in errors if "podcast" in e], f"a linked episode was rejected: {errors}"
+
+    ed = dict(base, podcast={"link": "https://notebook.google.com/x",
+                             "file": "audio/2020-01-01.mp3", "duration": "44:25"})
+    errors = []
+    validate.check_edition(ed, tmp_path / "2020-01-01.json", {}, errors)
+    assert [e for e in errors if "podcast" in e], "file and link together must be rejected"
+
+    ed = dict(base, podcast={"link": "notebook.google.com/x", "duration": "44:25"})
+    errors = []
+    validate.check_edition(ed, tmp_path / "2020-01-01.json", {}, errors)
+    assert [e for e in errors if "podcast" in e], "a relative podcast link must be rejected"
+
+
+def test_lead_art_is_credited_and_local(tmp_path):
+    """The paper draws its own diagrams, so a raster image is always somebody
+    else's work. Printing one without a credit, or hotlinking it from another
+    site, are both failures the validator has to catch rather than the reader."""
+    base = {"date": "2020-01-01", "number": 1, "compiled_at": "2020-01-01T00:00:00"}
+    good = {"src": "assets/img/2026-09-06-metacognition.webp", "alt": "a",
+            "caption": "b", "credit": "c", "width": 2000, "height": 1116}
+
+    errors: list[str] = []
+    validate.check_edition(dict(base, lead=dict(good, image=dict(good))),
+                           tmp_path / "x.json", {}, errors)
+    assert not [e for e in errors if "lead.image" in e], errors
+
+    for missing in ("alt", "caption", "credit", "width", "height"):
+        art = {k: v for k, v in good.items() if k != missing}
+        errors = []
+        validate.check_edition(dict(base, lead={"image": art}), tmp_path / "x.json", {}, errors)
+        assert [e for e in errors if missing in e], f"a lead image with no {missing} was accepted"
+
+    errors = []
+    validate.check_edition(
+        dict(base, lead={"image": dict(good, src="https://example.com/a.png")}),
+        tmp_path / "x.json", {}, errors)
+    assert [e for e in errors if "remote" in e], "a hotlinked lead image was accepted"
+
+
+def test_e_topic_matches_the_numbers_it_prints():
+    """The `e` page states values for the limit and the series. They are easy to
+    mistype and impossible for a reader to catch, so they are checked here
+    against the arithmetic rather than trusted."""
+    topic = json.loads((ROOT / "data" / "topics" / "e.json").read_text(encoding="utf-8"))
+    text = json.dumps(topic, ensure_ascii=False)
+
+    assert f"{math.e:.7f}" == "2.7182818"
+    for n, shown in ((2, "2.25"), (12, "2.6130"), (365, "2.7146")):
+        assert f"{(1 + 1 / n) ** n:.4f}".startswith(shown[:6]), n
+        assert shown in text, f"the page no longer prints {shown} for n={n}"
+
+    series = sum(1 / math.factorial(k) for k in range(10))
+    assert f"{series:.7f}" == "2.7182815"
+    assert "2.7182815" in text, "the ten-term series value is printed"
+    assert f"{(1 + 1 / 10 ** 6) ** 10 ** 6:.7f}" == "2.7182805"
+    assert "2.7182805" in text, "the million-division limit value is printed"
+
+    assert f"{1 / math.e * 100:.1f}" == "36.8" and "36.8%" in text
+    assert f"{(1 - 1 / math.e) * 100:.1f}" == "63.2" and "63.2%" in text
+    assert f"{math.log(2):.3f}" == "0.693" and "0.693" in text
+
+
+def test_e_topic_simulator_and_diagrams_are_rendered():
+    """A topic can name a sim or diagram type the template has never heard of,
+    and the page then renders a heading with nothing under it. Every type a
+    topic asks for must have a branch in the template."""
+    template = (ROOT / "templates" / "topic.html.j2").read_text(encoding="utf-8")
+    for path in sorted((ROOT / "data" / "topics").glob("*.json")):
+        topic = json.loads(path.read_text(encoding="utf-8"))
+        sim = (topic.get("sim") or {}).get("type")
+        if sim:
+            assert f"'{sim}'" in template, f"{path.stem}: no template branch for sim '{sim}'"
+        for sec in topic.get("sections") or []:
+            dia = (sec.get("diagram") or {}).get("type")
+            if dia:
+                assert f"'{dia}'" in template, \
+                    f"{path.stem}: no template branch for diagram '{dia}'"
 
 
 def test_pruned_episode_still_validates(tmp_path, monkeypatch):

@@ -53,6 +53,8 @@
 
 
 
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">שני חלקים: אחד מחפש, אחד חותך</h2>
@@ -72,6 +74,8 @@
       </p>
       <p class="formula__legend">יש בערך פי 350 יותר רצפים אפשריים באורך עשרים מאשר אותיות בגנום כולו, ולכן רצף מסוים באורך כזה צפוי להופיע פחות מפעם אחת. ההתאמה המושלמת אכן נדירה. הבעיה, כפי שנראה בהמשך, היא שהמערכת מסתפקת לפעמים בהתאמה שאינה מושלמת.</p>
     </div>
+
+
 
 
 
@@ -131,12 +135,16 @@
 
 
 
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">הדרמה מתחילה אחרי החיתוך</h2>
     <p>החיתוך עצמו אינו עריכה. הוא נזק. שבר בשני גדילי ה-DNA הוא אחד הדברים המסוכנים שיכולים לקרות לתא, ולכן יש לתא מנגנוני תיקון שנכנסים לפעולה מיד. העריכה היא תוצאה של התיקון, לא של המספריים.</p>
     <p>מסלול התיקון הראשון פשוט מחבר את שני הקצוות בחזרה. הוא מהיר, זמין תמיד, ולא מדויק: לעיתים קרובות נוספות או נעלמות אות או שתיים בנקודת החיבור. בגן שמקודד חלבון, שינוי כזה מזיז את מסגרת הקריאה והופך את שאר הגן לג&#39;יבריש. התוצאה היא גן מושתק. כשרוצים לכבות גן, זה בדיוק מה שרוצים.</p>
     <p>מסלול התיקון השני מעתיק מתבנית. בתא רגיל התבנית היא העותק השני של הכרומוזום, ובמעבדה אפשר להכניס תבנית מלאכותית עם הרצף שרוצים לכתוב. כך אפשר לתקן אות בודדת במקום למחוק גן. המחיר הוא שהמסלול הזה פעיל בעיקר בתאים שמתחלקים, והוא הרבה פחות שכיח מהראשון, ולכן כתיבה מדויקת קשה בהרבה מכיבוי.</p>
+
+
 
 
 
@@ -185,6 +193,8 @@
 
 
 
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">מה כבר מאושר לשימוש בבני אדם</h2>
@@ -197,7 +207,10 @@
 
 
 
+
+
   </section>
+
 
 
 
@@ -560,6 +573,75 @@
   }
 
   keys.forEach(function (k) { inputs[k].addEventListener('input', render); });
+  render();
+})();
+
+/* ===== מדמה ההתכנסות אל e ===== */
+(function () {
+  var svg = document.getElementById('e-svg');
+  if (!svg) return;
+
+  var W = 640, H = 300, PAD = 8;
+  var E = Math.E, STEPS = 13;
+  var inN = document.getElementById('in-nexp');
+  var inT = document.getElementById('in-terms');
+  if (!inN || !inT) return;
+
+  function limitAt(n) { return Math.pow(1 + 1 / n, n); }
+
+  function seriesAt(terms) {
+    var s = 0, f = 1;
+    for (var k = 0; k < terms; k++) {
+      if (k > 0) f *= k;
+      s += 1 / f;
+    }
+    return s;
+  }
+
+  /* שתי העקומות מצוירות על אותו ציר צעדים כדי שההשוואה תהיה הוגנת: צעד אחד
+     בגבול הוא חלוקה נוספת, צעד אחד בטור הוא מחובר נוסף. תחתית הגרף היא 1.8
+     ולא אפס, אחרת כל ההבדל המעניין נדחס לפס דק. */
+  function points(fn) {
+    var lo = 1.8, hi = E + (E - lo) * 0.08;
+    var out = [];
+    for (var i = 1; i <= STEPS; i++) {
+      var v = Math.min(fn(i), hi);
+      var x = PAD + ((i - 1) / (STEPS - 1)) * (W - PAD * 2);
+      var y = H - PAD - ((v - lo) / (hi - lo)) * (H - PAD * 2);
+      out.push(x.toFixed(1) + ',' + Math.min(Math.max(y, PAD), H - PAD).toFixed(1));
+    }
+    return out.join(' ');
+  }
+
+  document.getElementById('e-limit').setAttribute('points', points(limitAt));
+  document.getElementById('e-series').setAttribute('points', points(seriesAt));
+
+  var fmtInt = new Intl.NumberFormat('he-IL', { maximumFractionDigits: 0 });
+
+  function render() {
+    var n = Math.pow(10, +inN.value);
+    var terms = +inT.value;
+    var lim = limitAt(n), ser = seriesAt(terms);
+
+    document.getElementById('out-nexp').textContent = 'n = ' + fmtInt.format(n);
+    document.getElementById('out-terms').textContent = terms;
+    document.getElementById('e-out-limit').textContent = lim.toFixed(10);
+    document.getElementById('e-out-series').textContent = ser.toFixed(10);
+    document.getElementById('e-out-cost').textContent =
+      fmtInt.format(n) + ' מול ' + terms;
+
+    /* ספרות נכונות אחרי הנקודה, לפי גודל השגיאה */
+    function digits(v) {
+      var err = Math.abs(v - E);
+      return err === 0 ? 12 : Math.max(0, Math.floor(-Math.log10(err)));
+    }
+    document.getElementById('e-note').textContent =
+      'ספרות נכונות אחרי הנקודה: הגבול עם ' + fmtInt.format(n) + ' חלוקות, '
+      + digits(lim) + '. הטור עם ' + terms + ' מחוברים, ' + digits(ser) + '.';
+  }
+
+  inN.addEventListener('input', render);
+  inT.addEventListener('input', render);
   render();
 })();
 

@@ -201,6 +201,33 @@ at 25 tokens per second, so ten minutes is about $0.30. This is the paper's
 first paid API and it is **not** in the editorial meeting, which stays free
 (§3).
 
+### 5.2 An episode hosted somewhere else
+
+When the deep research was done in NotebookLM, its generated conversation
+already exists and there is nothing to record or pay for. That episode is not a
+file, it is a page, and an `<audio>` element cannot play a page. So the block
+carries `link` instead of `file`:
+
+```json
+"podcast": {
+  "link": "https://notebook.google.com/notebook/.../artifact/...",
+  "duration": "44:25",
+  "title": "Why your brain mistakes fluency for truth",
+  "note": "שיחה באנגלית על המחקר, שנוצרה ב-NotebookLM ומתנגנת שם"
+}
+```
+
+It renders as underlined text with the duration beside it, never a button, and
+the `note` says where it plays and in what language so nobody clicks expecting
+Hebrew. **Exactly one of `file` and `link` may be set.** Both is a contradiction
+and neither renders nothing at all; `validate.py` rejects each case.
+
+This block was the source of a real bug: the template read `podcast.src` while
+`podcast.py` and `validate.py` both used `podcast.file`, so a recorded episode
+would have rendered no player and reported no error.
+`test_podcast_key_matches_what_the_recorder_writes` now holds the three in
+agreement.
+
 ## 6. Site structure — history, search, catalog
 
 The site is static. Nothing below requires a server.

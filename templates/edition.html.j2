@@ -68,6 +68,19 @@
           <p class="kicker">{{ edition.lead.kicker }}</p>
           <h2 class="lead__headline">{{ edition.lead.headline }}</h2>
           <p class="lead__standfirst">{{ edition.lead.standfirst }}</p>
+          {% if edition.lead.image %}
+          {% set art = edition.lead.image %}
+          <figure class="leadart">
+            <a href="{{ base }}{{ art.src }}">
+              <img src="{{ base }}{{ art.src }}" alt="{{ art.alt }}"
+                   width="{{ art.width }}" height="{{ art.height }}" loading="lazy">
+            </a>
+            <figcaption class="leadart__caption">
+              {{ art.caption }}
+              <span class="leadart__credit">{{ art.credit }}</span>
+            </figcaption>
+          </figure>
+          {% endif %}
           <div class="lead__body">
             {% set fig = edition.lead.figure %}
             {% set fig_after = fig.after | default(1) if fig else 0 %}
@@ -94,18 +107,30 @@
             <p>{{ para }}</p>
             {% endfor %}
           </div>
-          {% if edition.podcast and edition.podcast.src %}
-          <div class="listen" data-listen data-duration="{{ edition.podcast.duration }}">
-            <p class="listen__label">להאזנה<span class="listen__meta"> · שיחה על מחקר העומק של המהדורה</span></p>
-            {% set pod_src = edition.podcast.src if '://' in edition.podcast.src else base ~ edition.podcast.src %}
+          {# `file` is the key podcast.py writes and validate.py checks. An
+             episode we host renders a player; one that lives on someone else's
+             site renders a link, because an <audio> element cannot play a web
+             page. Exactly one of the two is set. #}
+          {% set pod = edition.podcast %}
+          {% if pod and (pod.file or pod.link) %}
+          <div class="listen"{% if pod.file %} data-listen data-duration="{{ pod.duration }}"{% endif %}>
+            <p class="listen__label">להאזנה<span class="listen__meta"> · {{ pod.note | default('שיחה על מחקר העומק של המהדורה') }}</span></p>
+            {% if pod.file %}
+            {% set pod_src = pod.file if '://' in pod.file else base ~ pod.file %}
             <audio class="listen__audio" controls preload="none" src="{{ pod_src }}"></audio>
             <div class="listen__bar" hidden>
               <button type="button" class="listen__play">נגן</button>
               <div class="listen__track" role="presentation"><span class="listen__fill"></span></div>
               <span class="listen__time ltr">0:00</span>
             </div>
-            {% if edition.podcast.archive_url %}
-            <p class="listen__fallback"><a href="{{ edition.podcast.archive_url }}">הורדת הקובץ</a></p>
+            {% if pod.archive_url %}
+            <p class="listen__fallback"><a href="{{ pod.archive_url }}">הורדת הקובץ</a></p>
+            {% endif %}
+            {% else %}
+            <p class="listen__link">
+              <a href="{{ pod.link }}" rel="noopener">{{ pod.title | default('לפרק המלא') }}</a>
+              <span class="listen__meta ltr">{{ pod.duration }}</span>
+            </p>
             {% endif %}
           </div>
           {% endif %}
@@ -306,7 +331,7 @@
 })();
 </script>
 {% endif %}
-{% if edition.podcast and edition.podcast.src %}
+{% if edition.podcast and edition.podcast.file %}
 <script>
 /* נגן ההאזנה.
    פקדי הדפדפן המובנים הם ווידג'ט מעוגל של אפליקציה, וזה עיתון. לכן הפקדים

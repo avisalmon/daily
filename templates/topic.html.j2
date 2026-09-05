@@ -55,6 +55,50 @@
     </figure>
     {% endif %}
 
+    {% if sec.diagram and sec.diagram.type == 'e-limit-steps' %}
+    <figure class="diagram">
+      <svg viewBox="0 0 520 260" role="img" aria-label="ערך הסכום כשמחלקים את השנה למספר גדל של תקופות ריבית, מתקרב ל-e ולא עובר אותו" preserveAspectRatio="xMidYMid meet">
+        <line x1="52" y1="220" x2="500" y2="220" class="diagram__axis"/>
+        <line x1="52" y1="220" x2="52" y2="20" class="diagram__axis"/>
+        <line x1="52" y1="44" x2="500" y2="44" class="diagram__linear"/>
+        <text x="496" y="36" class="diagram__label diagram__label--strong">e = 2.71828</text>
+        <rect x="74"  y="164" width="40" height="56"  class="diagram__dot"/>
+        <rect x="150" y="128" width="40" height="92"  class="diagram__dot"/>
+        <rect x="226" y="72"  width="40" height="148" class="diagram__dot"/>
+        <rect x="302" y="49"  width="40" height="171" class="diagram__dot"/>
+        <rect x="378" y="45"  width="40" height="175" class="diagram__dot diagram__dot--strong"/>
+        <text x="94"  y="238" class="diagram__axis-label">1</text>
+        <text x="170" y="238" class="diagram__axis-label">2</text>
+        <text x="246" y="238" class="diagram__axis-label">12</text>
+        <text x="322" y="238" class="diagram__axis-label">365</text>
+        <text x="398" y="238" class="diagram__axis-label">8760</text>
+        <text x="94"  y="156" class="diagram__label">2.00</text>
+        <text x="170" y="120" class="diagram__label">2.25</text>
+        <text x="246" y="64"  class="diagram__label">2.613</text>
+        <text x="322" y="41"  class="diagram__label">2.7146</text>
+        <text x="276" y="256" class="diagram__axis-label">מספר חלוקות בשנה</text>
+      </svg>
+      <figcaption>{{ sec.diagram.caption }}</figcaption>
+    </figure>
+    {% endif %}
+
+    {% if sec.diagram and sec.diagram.type == 'e-derivative' %}
+    <figure class="diagram">
+      <svg viewBox="0 0 520 260" role="img" aria-label="הפונקציה e בחזקת x, ומשיק שהשיפוע שלו שווה לגובה הפונקציה באותה נקודה" preserveAspectRatio="xMidYMid meet">
+        <line x1="52" y1="220" x2="500" y2="220" class="diagram__axis"/>
+        <line x1="52" y1="220" x2="52" y2="20" class="diagram__axis"/>
+        <path class="diagram__exp" d="M52,214 C160,210 250,196 330,164 S440,74 480,26"/>
+        <line x1="286" y1="220" x2="286" y2="182" class="diagram__linear"/>
+        <line x1="212" y1="220" x2="360" y2="144" class="diagram__linear"/>
+        <circle cx="286" cy="182" r="4" class="diagram__dot diagram__dot--strong"/>
+        <text x="300" y="176" class="diagram__label diagram__label--strong">גובה = שיפוע</text>
+        <text x="470" y="20"  class="diagram__label">y = e^x</text>
+        <text x="276" y="248" class="diagram__axis-label">x ←</text>
+      </svg>
+      <figcaption>{{ sec.diagram.caption }}</figcaption>
+    </figure>
+    {% endif %}
+
     {% if sec.diagram and sec.diagram.type == 'euv-wavelength' %}
     <figure class="diagram">
       <svg viewBox="0 0 560 250" role="img" aria-label="השוואה בסקאלה בין אורכי גל של אור נראה, DUV ו-EUV, ובין גודל הפרט שמדפיסים" preserveAspectRatio="xMidYMid meet">
@@ -303,6 +347,55 @@
       </div>
     </div>
     <p class="sim__note" id="sim-note"></p>
+  </section>
+  {% endif %}
+
+  {% if topic.sim and topic.sim.type == 'e-convergence' %}
+  <section class="sim" id="sim">
+    <h2 class="topic__heading">{{ topic.sim.title }}</h2>
+    <p class="sim__intro">{{ topic.sim.intro }}</p>
+
+    <div class="sim__controls">
+      {% for c in topic.sim.controls %}
+      <label class="sim__control">
+        <span class="sim__control-head">
+          <span>{{ c.label }}</span>
+          <output id="out-{{ c.key }}" class="ltr"></output>
+        </span>
+        <input type="range" id="in-{{ c.key }}"
+               min="{{ c.min }}" max="{{ c.max }}" step="{{ c.step }}" value="{{ c.value }}">
+      </label>
+      {% endfor %}
+    </div>
+
+    <div class="sim__chart">
+      <svg id="e-svg" viewBox="0 0 640 300" role="img" aria-label="שתי עקומות התכנסות אל e: הגבול מטפס לאט, הטור מגיע כמעט מיד" preserveAspectRatio="none">
+        <line x1="0" y1="20" x2="640" y2="20" class="sim__line--simple" stroke-dasharray="4 4"/>
+        <polyline id="e-limit" class="sim__line sim__line--simple" fill="none"/>
+        <polyline id="e-series" class="sim__line sim__line--compound" fill="none"/>
+      </svg>
+      <p class="sim__axis">מספר הצעדים <span class="ltr">1 → 13</span>. הקו המקווקו העליון הוא e.</p>
+    </div>
+
+    <div class="sim__readout">
+      <div class="sim__stat">
+        <span class="sim__stat-label">הגבול, n חלוקות</span>
+        <span class="sim__stat-value ltr" id="e-out-limit"></span>
+      </div>
+      <div class="sim__stat sim__stat--strong">
+        <span class="sim__stat-label">הטור, מחוברים</span>
+        <span class="sim__stat-value ltr" id="e-out-series"></span>
+      </div>
+      <div class="sim__stat">
+        <span class="sim__stat-label">e</span>
+        <span class="sim__stat-value ltr">2.7182818285</span>
+      </div>
+      <div class="sim__stat">
+        <span class="sim__stat-label">פעולות שנדרשו</span>
+        <span class="sim__stat-value ltr" id="e-out-cost"></span>
+      </div>
+    </div>
+    <p class="sim__note" id="e-note"></p>
   </section>
   {% endif %}
 
@@ -561,6 +654,75 @@
   }
 
   keys.forEach(function (k) { inputs[k].addEventListener('input', render); });
+  render();
+})();
+
+/* ===== מדמה ההתכנסות אל e ===== */
+(function () {
+  var svg = document.getElementById('e-svg');
+  if (!svg) return;
+
+  var W = 640, H = 300, PAD = 8;
+  var E = Math.E, STEPS = 13;
+  var inN = document.getElementById('in-nexp');
+  var inT = document.getElementById('in-terms');
+  if (!inN || !inT) return;
+
+  function limitAt(n) { return Math.pow(1 + 1 / n, n); }
+
+  function seriesAt(terms) {
+    var s = 0, f = 1;
+    for (var k = 0; k < terms; k++) {
+      if (k > 0) f *= k;
+      s += 1 / f;
+    }
+    return s;
+  }
+
+  /* שתי העקומות מצוירות על אותו ציר צעדים כדי שההשוואה תהיה הוגנת: צעד אחד
+     בגבול הוא חלוקה נוספת, צעד אחד בטור הוא מחובר נוסף. תחתית הגרף היא 1.8
+     ולא אפס, אחרת כל ההבדל המעניין נדחס לפס דק. */
+  function points(fn) {
+    var lo = 1.8, hi = E + (E - lo) * 0.08;
+    var out = [];
+    for (var i = 1; i <= STEPS; i++) {
+      var v = Math.min(fn(i), hi);
+      var x = PAD + ((i - 1) / (STEPS - 1)) * (W - PAD * 2);
+      var y = H - PAD - ((v - lo) / (hi - lo)) * (H - PAD * 2);
+      out.push(x.toFixed(1) + ',' + Math.min(Math.max(y, PAD), H - PAD).toFixed(1));
+    }
+    return out.join(' ');
+  }
+
+  document.getElementById('e-limit').setAttribute('points', points(limitAt));
+  document.getElementById('e-series').setAttribute('points', points(seriesAt));
+
+  var fmtInt = new Intl.NumberFormat('he-IL', { maximumFractionDigits: 0 });
+
+  function render() {
+    var n = Math.pow(10, +inN.value);
+    var terms = +inT.value;
+    var lim = limitAt(n), ser = seriesAt(terms);
+
+    document.getElementById('out-nexp').textContent = 'n = ' + fmtInt.format(n);
+    document.getElementById('out-terms').textContent = terms;
+    document.getElementById('e-out-limit').textContent = lim.toFixed(10);
+    document.getElementById('e-out-series').textContent = ser.toFixed(10);
+    document.getElementById('e-out-cost').textContent =
+      fmtInt.format(n) + ' מול ' + terms;
+
+    /* ספרות נכונות אחרי הנקודה, לפי גודל השגיאה */
+    function digits(v) {
+      var err = Math.abs(v - E);
+      return err === 0 ? 12 : Math.max(0, Math.floor(-Math.log10(err)));
+    }
+    document.getElementById('e-note').textContent =
+      'ספרות נכונות אחרי הנקודה: הגבול עם ' + fmtInt.format(n) + ' חלוקות, '
+      + digits(lim) + '. הטור עם ' + terms + ' מחוברים, ' + digits(ser) + '.';
+  }
+
+  inN.addEventListener('input', render);
+  inT.addEventListener('input', render);
   render();
 })();
 

@@ -108,6 +108,28 @@ def check_edition(ed: dict, path: Path, seen_urls: dict[str, str], errors: list[
         if not fig.get("bars"):
             _fail(errors, where, "lead.figure has no bars")
 
+    # ---- lead art --------------------------------------------------------
+    # The paper draws its own diagrams. A raster image is always somebody
+    # else's work, so it may not be printed without saying whose it is, and it
+    # must be served from this repository: VISUAL_SPEC forbids fetching art
+    # from another site, which would leak readers and rot when the host moves.
+    art = lead.get("image")
+    if art:
+        for field in ("src", "alt", "caption", "credit", "width", "height"):
+            if not art.get(field):
+                _fail(errors, where, f"lead.image is missing '{field}'")
+        src = art.get("src") or ""
+        if src:
+            if HTTP.match(src) or src.startswith("//"):
+                _fail(errors, where,
+                      f"lead.image src {src!r} is remote - art is served from this "
+                      f"repository, never hotlinked (docs/VISUAL_SPEC.md §3)")
+            elif not (ROOT / src).exists():
+                _fail(errors, where, f"lead.image src {src!r} is not on disk")
+        for field in ("width", "height"):
+            if art.get(field) is not None and not isinstance(art[field], int):
+                _fail(errors, where, f"lead.image {field} must be an integer")
+
     # ---- briefs -----------------------------------------------------------
     briefs = [s for section in ed.get("grid", []) for s in section.get("stories", [])]
     for s in briefs:
@@ -166,12 +188,23 @@ def check_edition(ed: dict, path: Path, seen_urls: dict[str, str], errors: list[
     # The player is rendered from this block alone, so a block pointing at a
     # file that is not there produces a control that loads nothing and reports
     # no error to the reader. Better to refuse to publish.
+    #
+    # An episode is either hosted here (`file`, written by podcast.py) or on
+    # someone else's site (`link`). They render differently and cannot both be
+    # set: an <audio> element cannot play a web page.
     pod = ed.get("podcast")
     if pod:
-        for field in ("file", "duration"):
-            if not pod.get(field):
-                _fail(errors, where, f"podcast is missing '{field}'")
-        rel = pod.get("file")
+        if not pod.get("duration"):
+            _fail(errors, where, "podcast is missing 'duration'")
+        rel, link = pod.get("file"), pod.get("link")
+        if rel and link:
+            _fail(errors, where,
+                  "podcast has both 'file' and 'link'. An episode is either hosted "
+                  "here or elsewhere, and the two render as different things")
+        elif not rel and not link:
+            _fail(errors, where, "podcast has neither 'file' nor 'link' - nothing would render")
+        if link and not HTTP.match(link):
+            _fail(errors, where, f"podcast link {link!r} is not an absolute http(s) URL")
         if rel:
             if rel != f"audio/{ed['date']}.mp3":
                 _fail(errors, where,
