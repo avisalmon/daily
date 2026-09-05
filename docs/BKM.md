@@ -447,7 +447,7 @@ and reported nothing. It went unnoticed only because every episode so far has
 been a link.
 
 **A topic can name a simulator the template has never heard of.** `topic.html.j2`
-dispatches on literal strings: `{% if topic.sim.type == 'compound-interest' %}`.
+dispatches on the literal string `compound-interest` inside a Jinja `if`.
 A typo, or a new type with no branch, renders the section heading and its intro
 with nothing underneath. Valid JSON, valid HTML, empty page.
 
@@ -522,4 +522,32 @@ What `validate.py` now enforces on `lead.image`:
 
 Aspect ratio is the documented exception: an infographic keeps its native shape,
 because cropping one to the standard 3:2 destroys information.
+
+## 15. The repository is published, not just the site
+
+The commit that added sections 10 to 14 turned the Pages deployment red. Nothing
+was wrong with the paper. `publish` was green, `validate`, `style` and 118 tests
+all passed, and the built HTML was correct.
+
+GitHub Pages was running Jekyll over the whole repository, and Jekyll renders
+Liquid before markdown. Section 11 quotes a Jinja tag:
+
+    { % if topic.sim.type == 'compound-interest' % }
+
+Jinja and Liquid share that syntax. Liquid read it as a real tag, found no
+matching `endif`, and refused to build. Backticks do not help, because Liquid
+runs before the fence is understood. The error pointed at the last line of the
+file, not the offending one.
+
+The fix is `.nojekyll` at the repository root. This site is pre-built static
+HTML; Jekyll had no business touching it and was only ever a chance to corrupt
+something. `test_nojekyll_exists` keeps the file there.
+
+Two things generalise:
+
+- **Everything in the repository is published, including the documentation.** A
+  file you think of as a note to yourself is an input to a build.
+- **A green workflow is not a green deploy.** `publish` and `pages-build-deployment`
+  are separate runs. Check both, `gh run list --limit 3` shows them side by side.
+
 

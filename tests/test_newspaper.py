@@ -994,6 +994,27 @@ def test_bkm_cross_references_point_at_sections_that_exist():
                 f"{path.name} points at {key} §{num}, which does not exist"
 
 
+def test_jekyll_is_disabled_and_markdown_cannot_break_the_deploy():
+    """GitHub Pages ran Jekyll over this repository, and Jekyll expands Liquid
+    in every markdown file it finds. BKM section 11 quoted a Jinja tag, Liquid
+    read it as its own, and the deploy went red while every other check stayed
+    green. The site is pre-built HTML, so Jekyll should never run at all."""
+    assert (ROOT / ".nojekyll").exists(), \
+        ".nojekyll is missing: Pages will run Jekyll over the repo again"
+
+    stray = []
+    for path in ROOT.rglob("*.md"):
+        if any(p in {".git", ".venv", "node_modules"} for p in path.parts):
+            continue
+        for n, line in enumerate(path.read_text(encoding="utf-8").splitlines(), 1):
+            if re.search(r"\{%.*?%\}", line):
+                stray.append(f"{path.relative_to(ROOT)}:{n}")
+    assert not stray, (
+        "markdown contains Liquid/Jinja tags that Jekyll would try to execute: "
+        + ", ".join(stray)
+    )
+
+
 def test_pruned_episode_still_validates(tmp_path, monkeypatch):
     """The retention window deletes local audio on purpose. validate.py must
     accept that, or the first prune takes the whole site down."""

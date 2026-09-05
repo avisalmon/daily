@@ -164,7 +164,10 @@ refuses to commit anything if `validate.py`, the build or the tests fail.
 - [ ] Opened in a browser: index, archive, search (Hebrew **and** Latin term),
       learn, the topic page, and one archived edition
 - [ ] Checked at ≤700px
-- [ ] After pushing, the run of `publish` on GitHub is green
+- [ ] After pushing, **both** GitHub runs are green: `publish` **and**
+      `pages-build-deployment`. They are separate, and a red deploy leaves the
+      site on its old version while every check reads green (BKM §15).
+      `gh run list --limit 3` shows them together
 
 ---
 
