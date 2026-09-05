@@ -26,7 +26,7 @@ ROOT = Path(__file__).resolve().parent.parent
 DATA_DIR = ROOT / "data" / "editions"
 TOPIC_DIR = ROOT / "data" / "topics"
 PLAN_DIR = ROOT / "data" / "plans"
-CLAIMS_DIR = ROOT / "data" / "research" / "claims"
+CLAIMS_DIR = ROOT / "data" / "research" / "claims"  # verify_research.py, kept but no longer gating
 RESEARCH_OUT = ROOT / "research"
 
 # UTF-8 Hebrew bytes decoded as cp1252 always start with these. If this shows
@@ -280,6 +280,16 @@ def check_plan(ed: dict, path: Path, errors: list[str]) -> None:
                 _fail(errors, where,
                       f"brief {(s.get('headline') or '?')[:40]!r} has no 'verified' note in the plan (BKM §2)")
 
+    # The lead gets the same treatment as a brief. It is the longest piece in
+    # the paper and the one built on a research document rather than on an
+    # article that can be re-read in a minute, so it is the easiest place for
+    # an unchecked claim to hide, and the most damaging.
+    if (ed.get("lead") or {}).get("url") and not (plan.get("lead") or {}).get("verified"):
+        _fail(errors, plan_path.name,
+              "the lead cites research but the plan has no 'lead.verified' note. "
+              "Say which claims were read at their own source before printing "
+              "(BKM §2 and §9)")
+
 
 def check_ledger_closed(ed: dict, path: Path, errors: list[str]) -> None:
     """BKM §4 - the ledger is what stops a story printing twice.
@@ -344,42 +354,6 @@ def check_topic(topic: dict, path: Path, errors: list[str]) -> None:
         _fail(errors, where, "contains mojibake (docs/BKM.md §5)")
 
 
-def check_research_sealed(ed: dict, path: Path, errors: list[str]) -> None:
-    """An edition may only lean on deep research that survived two checkers.
-
-    BKM §9. Deep research writes with a citation on every sentence and is wrong
-    anyway: the first real run reproduced the Catherine de Medici legend while
-    citing, 18 times, the article that debunks it. So a research document is
-    printable only once `verify_research.py seal` has passed on it.
-    """
-    research = ed.get("research")
-    if not research:
-        return
-    if isinstance(research, str):
-        research = {"id": research}
-    doc_id = research.get("id") or research.get("doc")
-    if not doc_id:
-        return
-
-    ledger = CLAIMS_DIR / f"{doc_id}.json"
-    if not ledger.exists():
-        _fail(errors, path.name,
-              f"research '{doc_id}' has no claim ledger. "
-              f"Run: python scripts\\verify_research.py extract {doc_id}")
-        return
-    try:
-        data = json.loads(ledger.read_text(encoding="utf-8"))
-    except Exception as exc:
-        _fail(errors, path.name, f"claim ledger for '{doc_id}' unreadable: {exc}")
-        return
-    if not data.get("sealed_at"):
-        unchecked = sum(1 for c in data.get("claims", [])
-                        if c.get("verdict") in ("unchecked", "single-check"))
-        _fail(errors, path.name,
-              f"research '{doc_id}' is not sealed ({unchecked} claims not checked "
-              f"twice). Deep research is a map, not a source: see BKM §9.")
-
-
 def validate(only: str | None = None) -> list[str]:
     errors: list[str] = []
     seen_urls: dict[str, str] = {}
@@ -400,7 +374,6 @@ def validate(only: str | None = None) -> list[str]:
         check_edition(ed, path, seen_urls, errors)
         check_plan(ed, path, errors)
         check_ledger_closed(ed, path, errors)
-        check_research_sealed(ed, path, errors)
 
     for path in sorted(TOPIC_DIR.glob("*.json")):
         check_encoding(path, errors)

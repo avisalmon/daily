@@ -244,8 +244,23 @@ Auth is your own Azure AD identity. Just `az login`. There is no key to fetch,
 and `az cognitiveservices account keys list -g rg-modelon-westus` will fail
 because that resource is in a subscription we cannot see. That is expected.
 
-**What comes back is not printable.** It is a map of what to check. Run the
-three passes before any of it reaches the paper:
+**What comes back is a source you may build on, and a map of what to check.**
+Since 2026-09-05 the seal is **not** mandatory (BKM §9). Deep research is
+trusted as good enough to carry a lead. What is not optional is checking the
+claims that actually reach the page:
+
+- Read the research document itself, not just its summary.
+- For every fact, number, study or quote the article will print, go to where
+  the document got it and confirm it there.
+- Look specifically for what the document tells you *not* to say. A good
+  research brief often carries its own warning, and the obvious version of the
+  story is usually the one it is warning about.
+- Write what you checked into the plan's `lead.verified`. This is enforced:
+  `validate.py` fails an edition whose lead cites research with no such note.
+
+Run the full three-pass seal when you have a specific reason to distrust the
+document: it leans on trade associations or content farms, it makes a neat
+historical claim, or it is the sole source for something consequential.
 
 ```powershell
 python scripts\verify_research.py extract <doc-id>

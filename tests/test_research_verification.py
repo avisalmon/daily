@@ -103,38 +103,17 @@ def test_two_checkers_calling_it_false_keeps_it_false(sandbox):
     assert cid not in [c["id"] for c in vr.printable("demo")]
 
 
-def test_unsealed_research_cannot_be_printed(tmp_path, monkeypatch):
-    """validate.py must refuse an edition leaning on unverified research.
-
-    Writes its own ledger rather than pointing at a document in the bank: the
-    test used to name a real research file, so deleting that file turned a
-    passing guard into a failing test for reasons unrelated to the guard.
-    """
-    validate = _load("validate")
-    monkeypatch.setattr(validate, "CLAIMS_DIR", tmp_path)
-    (tmp_path / "demo-doc.json").write_text(json.dumps({
-        "doc": "demo-doc",
-        "sealed": False,
-        "claims": [{"id": "c1", "text": "A claim.", "verdict": "unchecked",
-                    "checks": [], "disposition": None}],
-    }), encoding="utf-8")
-
-    errors: list[str] = []
-    validate.check_research_sealed(
-        {"research": {"id": "demo-doc"}},
-        Path("fake-edition.json"), errors)
-    assert errors, "unsealed research must block publication"
-    assert "not sealed" in errors[0]
-
-
-def test_missing_claim_ledger_blocks_publication():
-    validate = _load("validate")
-    errors: list[str] = []
-    validate.check_research_sealed(
-        {"research": {"id": "no-such-research-doc"}},
-        Path("fake-edition.json"), errors)
-    assert errors
-    assert "no claim ledger" in errors[0]
+# The two tests that stood here guarded `validate.check_research_sealed`, which
+# refused to publish an edition leaning on unsealed research. That gate was
+# removed on 2026-09-05: it was keyed on an edition field no edition ever set,
+# so in eight editions it never ran once, and a rule that cannot fire is worse
+# than no rule because it reads as enforcement. Deep research is now trusted as
+# a source, with the lead's specific claims spot-checked at their own sources
+# and that check recorded in the plan's `lead.verified`. The replacement lives
+# in test_newspaper.py as test_a_lead_that_cites_research_needs_a_verification_note.
+#
+# verify_research.py itself is kept and still tested below. It is now an
+# optional tool for a lead you have reason to distrust, not a gate on every one.
 
 
 # ---------------------------------------------------------------------------

@@ -909,6 +909,65 @@ def test_e_topic_simulator_and_diagrams_are_rendered():
                     f"{path.stem}: no template branch for diagram '{dia}'"
 
 
+def test_a_lead_that_cites_research_needs_a_verification_note(tmp_path, monkeypatch):
+    """Deep research is trusted as a source, but not blindly: whatever the lead
+    prints from it must have been read at its own source first, and that reading
+    has to be written down.
+
+    This replaced `check_research_sealed`, a two-model adversarial seal that was
+    gated on an edition key no edition ever set, so it never once ran. A rule
+    that cannot fire is worse than no rule, because it reads as enforcement. The
+    day this one was added it caught two real plans, including the edition that
+    had shipped the night before."""
+    monkeypatch.setattr(validate, "PLAN_DIR", tmp_path)
+    ed = {"date": "2020-01-01", "number": 1, "compiled_at": "2020-01-01T00:00:00",
+          "lead": {"url": "research/2020-01-01.pdf"}, "grid": []}
+    plan = {"edition_date": "2020-01-01", "briefs": [],
+            "lead": {"topic": "t", "question": "q"}}
+
+    def run():
+        (tmp_path / "2020-01-01.plan.json").write_text(
+            json.dumps(plan, ensure_ascii=False), encoding="utf-8")
+        errors: list[str] = []
+        validate.check_plan(ed, tmp_path / "2020-01-01.json", errors)
+        return [e for e in errors if "lead.verified" in e]
+
+    assert run(), "a lead citing research with no verification note was accepted"
+
+    plan["lead"]["verified"] = ""
+    assert run(), "an empty verification note must not count as a check"
+
+    plan["lead"]["verified"] = "read the three claims at their own sources"
+    assert not run(), "a verified lead was rejected"
+
+    # A lead with no research PDF is an ordinary piece and needs no note.
+    ed["lead"] = {"headline": "x"}
+    plan["lead"].pop("verified")
+    assert not run(), "a lead that cites no research must not require a note"
+
+
+def test_every_lead_citing_research_records_what_was_checked():
+    """The rule above, applied to the real plans rather than a fixture."""
+    for path in sorted((ROOT / "data" / "editions").glob("*.json")):
+        ed = json.loads(path.read_text(encoding="utf-8-sig"))
+        if not (ed.get("lead") or {}).get("url"):
+            continue
+        plan = json.loads(
+            (ROOT / "data" / "plans" / f"{ed['date']}.plan.json").read_text(encoding="utf-8"))
+        note = (plan.get("lead") or {}).get("verified") or ""
+        assert len(note.strip()) > 80, \
+            f"{ed['date']}: lead.verified is missing or too thin to be a real record"
+
+
+def test_the_dead_seal_gate_is_gone():
+    """`check_research_sealed` never ran, because nothing ever set the edition
+    key it was gated on. It was removed rather than left in place looking like a
+    guarantee. If it comes back it must come back wired up."""
+    src = (ROOT / "scripts" / "validate.py").read_text(encoding="utf-8")
+    assert "def check_research_sealed" not in src, \
+        "the seal gate is back. Wire it to a key editions actually set, or drop it"
+
+
 def test_pruned_episode_still_validates(tmp_path, monkeypatch):
     """The retention window deletes local audio on purpose. validate.py must
     accept that, or the first prune takes the whole site down."""

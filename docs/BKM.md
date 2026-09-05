@@ -263,6 +263,44 @@ that never got a second check, and `printable` lists what an article may
 actually rest on. The seal now reports both numbers, and the trust document
 sealed at 25 claims cleared and 41 cut.
 
+### 2026-09-05: the seal stopped being mandatory
+
+Everything above still describes what deep research does wrong. What changed is
+what the paper does about it.
+
+`validate.check_research_sealed` was supposed to enforce the three-pass rule. It
+was keyed on an edition field, `research`, that no edition ever set, so across
+eight editions **it never ran once**. Every deep-research lead this paper has
+printed went out unsealed. The gate was not protecting anything, it was
+describing a protection that did not exist, which is worse than having none: it
+let the rule read as enforced in the docs while the actual defence was one
+person reading carefully.
+
+The section above already predicted this. "A gate that is too costly to use is
+not a gate." Two adversarial passes over 60 to 90 claims is roughly a full extra
+session per lead, for a paper with one reader.
+
+So the standing rule is now:
+
+- **Deep research is trusted as a source.** Not as gospel, but as good enough to
+  build a lead on without sealing it first.
+- **What the lead actually prints is still spot-checked at its own source.** Not
+  every claim in the document. The claims that reach the page.
+- **That check is recorded** in the plan's `lead.verified`, exactly as briefs
+  record theirs. `check_plan` fails an edition whose lead cites research with no
+  such note. The day the rule was added it caught two plans, one of them the
+  edition that had shipped the night before.
+
+`verify_research.py` is kept, and is still worth running on a document you have
+a specific reason to distrust: one leaning on trade associations, or one making
+a historical claim that sounds too tidy. It is a tool now, not a toll gate.
+
+**Do not read this as permission to print from a research document unread.**
+The spot-check is what caught the trap in the metacognition lead, where the
+document itself says "אין לייחס לה טענות כגון אקרמן הראתה ש-ChatGPT יוצר אשליית
+הבנה", the exact sentence the obvious version of that story wanted to write. The
+seal would not have caught it. Reading the source did.
+
 This is not a loophole. Cutting does not launder an unchecked claim into
 print, it removes it from what may be used, and there is a test that says so.
 Write only from the cleared claims.
