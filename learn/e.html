@@ -1,0 +1,774 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#f7f4ec">
+<title>היום בקיצור, מה זה e, ואיך מחשבים אותו</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@300..900&family=Noto+Serif+Hebrew:wght@300..700&family=Heebo:wght@400..800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/newspaper.css">
+</head>
+<body>
+
+<div class="wrap">
+
+  <header class="masthead masthead--compact">
+    <h1 class="masthead__title">
+      <a href="../index.html">היום <span class="thin">בקיצור</span></a>
+    </h1>
+    <p class="masthead__tagline">דברים שקרו היום ומעניינים אותי</p>
+    <hr class="masthead__rule">
+  </header>
+
+  <nav class="sitenav" aria-label="ניווט ראשי">
+    <a href="../index.html" >המהדורה</a>
+    <a href="../archive.html" >ארכיון</a>
+    <a href="../search.html" >חיפוש</a>
+    <a href="../learn.html" class="is-current">נושאי לימוד</a>
+  </nav>
+
+  <main class="page">
+    <div class="section-head"><span class="section-head__label">לומדים היום</span></div>
+<article class="topic">
+
+  <header class="topic__head">
+    <p class="topic__level">חטיבה עליונה · קריאה של 9 דקות</p>
+    <h1 class="topic__title">מה זה e, ואיך מחשבים אותו</h1>
+<p class="topic__subtitle">המספר 2.718 לא נבחר ולא הומצא. הוא נפל מתוך שאלה על ריבית, והתברר כמספר היחיד שהופך גדילה לדבר פשוט</p>    <p class="topic__summary">e הוא 2.7182818. אפשר להגיע אליו משתי דרכים שנראות זרות זו לזו: חלוקת שנה למספר גדל של תקופות ריבית, וסכום של שברים עם עצרת. שתיהן מגיעות לאותו מספר, וזו לא במקרה. המספר הזה מופיע בדעיכה רדיואקטיבית, בהתקררות של כוס קפה, בטעינת קבל ובשאלה מתי להפסיק לחפש. הסיבה היא תכונה אחת: e הוא הבסיס היחיד שבו קצב הגדילה שווה לגודל עצמו.</p>
+    <p class="topic__origin">
+      פורסם לראשונה במהדורת <a href="../editions/2026-09-06.html">יום ראשון, 6 בספטמבר 2026</a>
+    </p>
+  </header>
+
+  <section class="topic__section">
+    <h2 class="topic__heading">השאלה שממנה זה התחיל</h2>
+    <p>יעקב ברנולי שאל בשנת 1683 שאלה על ריבית. נניח שיש לכם שקל אחד, והבנק מבטיח ריבית של 100% לשנה. בסוף השנה יהיו לכם שני שקלים.</p>
+    <p>עכשיו נניח שהבנק מחשב את הריבית פעמיים בשנה, 50% בכל פעם. אחרי חצי שנה יש 1.5 שקל, ובסוף השנה 1.5 כפול 1.5, כלומר 2.25. יותר משני שקלים, מאותה ריבית שנתית, רק מפני שהחצי הראשון הספיק להתחיל לצבור ריבית בעצמו.</p>
+    <p>אם מחשבים שתים עשרה פעמים בשנה מקבלים 2.6130. אם מחשבים כל יום, 365 פעמים, מקבלים 2.7146. ברנולי שאל את השאלה המתבקשת: אם מחלקים את השנה לאינסוף רגעים, האם הכסף גדל לאינסוף?</p>
+    <p>התשובה היא לא. הסכום נעצר. הוא מתקרב למספר 2.7182818 ולא עובר אותו. המספר הזה הוא e.</p>
+
+    <div class="formula">
+      <p class="formula__label"></p>
+      <p class="formula__legend"></p>
+    </div>
+
+
+
+
+
+
+
+  </section>
+  <section class="topic__section">
+    <h2 class="topic__heading">למה זה נעצר</h2>
+    <p>כשמכפילים את מספר החלוקות, כל חלוקה תורמת פחות. חלוקה לשניים הוסיפה רבע שקל. חלוקה לשתים עשרה הוסיפה עוד 0.36. חלוקה ל-365 הוסיפה עוד 0.10 בלבד. התוספות קטנות מהר יותר משמספר החלוקות גדל, ולכן הסכום חסום.</p>
+    <p>הכניסה למספר לא מלמעלה אלא מלמטה: כל ערך בסדרה קטן מ-e, והם מטפסים אליו לאט. n של מיליון נותן 2.7182805. שישה ספרות נכונות תמורת מיליון פעולות.</p>
+
+
+
+    <figure class="diagram">
+      <svg viewBox="0 0 520 260" role="img" aria-label="ערך הסכום כשמחלקים את השנה למספר גדל של תקופות ריבית, מתקרב ל-e ולא עובר אותו" preserveAspectRatio="xMidYMid meet">
+        <line x1="52" y1="220" x2="500" y2="220" class="diagram__axis"/>
+        <line x1="52" y1="220" x2="52" y2="20" class="diagram__axis"/>
+        <line x1="52" y1="44" x2="500" y2="44" class="diagram__linear"/>
+        <text x="496" y="36" class="diagram__label diagram__label--strong">e = 2.71828</text>
+        <rect x="74"  y="164" width="40" height="56"  class="diagram__dot"/>
+        <rect x="150" y="128" width="40" height="92"  class="diagram__dot"/>
+        <rect x="226" y="72"  width="40" height="148" class="diagram__dot"/>
+        <rect x="302" y="49"  width="40" height="171" class="diagram__dot"/>
+        <rect x="378" y="45"  width="40" height="175" class="diagram__dot diagram__dot--strong"/>
+        <text x="94"  y="238" class="diagram__axis-label">1</text>
+        <text x="170" y="238" class="diagram__axis-label">2</text>
+        <text x="246" y="238" class="diagram__axis-label">12</text>
+        <text x="322" y="238" class="diagram__axis-label">365</text>
+        <text x="398" y="238" class="diagram__axis-label">8760</text>
+        <text x="94"  y="156" class="diagram__label">2.00</text>
+        <text x="170" y="120" class="diagram__label">2.25</text>
+        <text x="246" y="64"  class="diagram__label">2.613</text>
+        <text x="322" y="41"  class="diagram__label">2.7146</text>
+        <text x="276" y="256" class="diagram__axis-label">מספר חלוקות בשנה</text>
+      </svg>
+      <figcaption>אותה ריבית שנתית, מספר חלוקות גדל. התוספת מכל חלוקה נוספת מתכווצת.</figcaption>
+    </figure>
+
+
+
+
+
+  </section>
+  <section class="topic__section">
+    <h2 class="topic__heading">הדרך השנייה: סכום של עצרות</h2>
+    <p>יש נוסחה שנייה ל-e, שנראית בלי שום קשר לראשונה. סוכמים אחד חלקי עצרת, לכל מספר שלם: 1 ועוד 1 ועוד חצי ועוד שישית ועוד אחד חלקי 24, וכך הלאה.</p>
+    <p>הסכום הזה מתכנס מהר בצורה קיצונית. אחרי עשרה מחוברים הוא נותן 2.7182815, כשהערך האמיתי הוא 2.7182818. עשר פעולות חיבור השיגו מה שדרש מהגבול מיליון הכפלות.</p>
+    <p>ההבדל הזה הוא הסיבה שאף אחד לא מחשב את e מהנוסחה של ברנולי. הגבול מסביר מאיפה המספר בא, הטור מחשב אותו.</p>
+
+    <div class="formula">
+      <p class="formula__label"></p>
+      <p class="formula__legend"></p>
+    </div>
+
+
+
+
+
+
+
+  </section>
+  <section class="topic__section">
+    <h2 class="topic__heading">למה שתי הדרכים מגיעות לאותו מקום</h2>
+    <p>אפשר לפתוח את הביטוי (1+1/n)^n לפי בינום ניוטון. מקבלים סכום של n+1 מחוברים, שהמחובר ה-k שבהם הוא אחד חלקי עצרת k, מוכפל בגורם תיקון של שברים כמו (1-1/n) ו-(1-2/n).</p>
+    <p>כשn גדל, כל גורמי התיקון האלה מתקרבים לאחד, ומספר המחוברים גדל. מה שנשאר בגבול הוא בדיוק הטור. שתי הנוסחאות אינן שתי הגדרות מקבילות שהתמזל מזלן להיפגש. הן אותו ביטוי, כתוב פעמיים.</p>
+
+
+
+
+
+
+
+
+  </section>
+  <section class="topic__section">
+    <h2 class="topic__heading">התכונה שבגללה e בכל מקום</h2>
+    <p>הפונקציה 2 בחזקת x גדלה, ולה יש קצב שינוי. הפונקציה 3 בחזקת x גדלה מהר יותר. לכל בסיס, קצב השינוי פרופורציוני לגובה הפונקציה, אבל עם מקדם כלשהו שאינו אחד.</p>
+    <p>יש בסיס אחד ויחיד שבו המקדם הזה הוא בדיוק אחד: הבסיס e. הנגזרת של e בחזקת x היא e בחזקת x. הגובה של הפונקציה בכל נקודה שווה לשיפוע שלה באותה נקודה.</p>
+    <p>זו כל התשובה לשאלה למה המספר הזה צץ בכל מקום שיש בו גדילה או דעיכה. אם קצב ההשתנות של גודל תלוי בגודל עצמו, וזה המצב בהתפרקות רדיואקטיבית, בהתקררות, בטעינת קבל ובריבית, אז e הוא הבסיס שבו התיאור נעשה פשוט. כל בסיס אחר עובד, רק שגורר אחריו מקדם מיותר.</p>
+
+
+
+
+    <figure class="diagram">
+      <svg viewBox="0 0 520 260" role="img" aria-label="הפונקציה e בחזקת x, ומשיק שהשיפוע שלו שווה לגובה הפונקציה באותה נקודה" preserveAspectRatio="xMidYMid meet">
+        <line x1="52" y1="220" x2="500" y2="220" class="diagram__axis"/>
+        <line x1="52" y1="220" x2="52" y2="20" class="diagram__axis"/>
+        <path class="diagram__exp" d="M52,214 C160,210 250,196 330,164 S440,74 480,26"/>
+        <line x1="286" y1="220" x2="286" y2="182" class="diagram__linear"/>
+        <line x1="212" y1="220" x2="360" y2="144" class="diagram__linear"/>
+        <circle cx="286" cy="182" r="4" class="diagram__dot diagram__dot--strong"/>
+        <text x="300" y="176" class="diagram__label diagram__label--strong">גובה = שיפוע</text>
+        <text x="470" y="20"  class="diagram__label">y = e^x</text>
+        <text x="276" y="248" class="diagram__axis-label">x ←</text>
+      </svg>
+      <figcaption>הפונקציה e בחזקת x. בכל נקודה, השיפוע של המשיק שווה לגובה מעל הציר.</figcaption>
+    </figure>
+
+
+
+
+  </section>
+  <section class="topic__section">
+    <h2 class="topic__heading">איפה פוגשים את זה בחיים</h2>
+    <p>בפיזיקה: כמות חומר רדיואקטיבי דועכת לפי e בחזקת מינוס למדא כפול הזמן. זמן מחצית החיים הוא לוגריתם טבעי של 2 חלקי למדא, כלומר 0.693 חלקי למדא. זו הסיבה שזמן מחצית חיים הוא קבוע ולא תלוי בכמה חומר יש.</p>
+    <p>בחשמל: קבל שנטען דרך נגד מגיע ל-63.2% מהמתח הסופי אחרי זמן של R כפול C. המספר 63.2 אינו מקרי, הוא אחד פחות אחד חלקי e.</p>
+    <p>בכוס קפה: חוק הקירור של ניוטון אומר שהפרש הטמפרטורה בין הקפה לחדר דועך לפי e. הקפה מתקרר מהר בהתחלה ולאט בסוף, מפני שקצב הקירור תלוי בהפרש שנותר.</p>
+    <p>בהחלטות: בבעיית המזכירה, כשצריך לבחור מועמד אחד מתוך רצף ואי אפשר לחזור אחורה, האסטרטגיה הטובה ביותר היא לדחות את ה-36.8% הראשונים ואז לקחת את הראשון שעולה על כולם. 36.8% הם אחד חלקי e, וגם סיכוי ההצלחה הוא 36.8%.</p>
+    <p>בפיננסים: ריבית שמחושבת ברציפות נותנת סכום של קרן כפול e בחזקת ריבית כפול זמן. זו התקרה שאליה מתכנסת ריבית דריבית כשמגדילים את תדירות החישוב.</p>
+
+    <div class="formula">
+      <p class="formula__label"></p>
+      <p class="formula__legend"></p>
+    </div>
+
+
+
+
+
+
+
+  </section>
+  <section class="topic__section">
+    <h2 class="topic__heading">מה e איננו</h2>
+    <p>e אינו שבר. הוא מספר אי רציונלי, כפי שאוילר הוכיח, ומעבר לזה הוא טרנסצנדנטי: הרמיט הוכיח ב-1873 שאין שום משוואה פולינומית עם מקדמים שלמים שהוא פותר. 2.718 הוא קירוב, לא ערך.</p>
+    <p>e אינו קשור לפאי מעבר לזהות של אוילר, ואינו הבסיס ה&#34;טבעי&#34; במובן של נפוץ בטבע יותר מאחרים. הוא טבעי במובן טכני בלבד: הבסיס שבו הנגזרת יוצאת נקייה.</p>
+    <p>e אינו מספר הזהב ואינו קשור לסדרת פיבונאצ&#39;י, בלבול נפוץ. ובניגוד לשמועה, האות e לא נבחרה על שם אוילר. הוא השתמש בה ב-1731 כנראה פשוט מפני ש-a עד d כבר היו תפוסות.</p>
+
+
+
+
+
+
+
+
+  </section>
+
+
+
+  <section class="sim" id="sim">
+    <h2 class="topic__heading">מדמה: שתי הדרכים אל e</h2>
+    <p class="sim__intro">מימין, שני הסכומים לפי מספר הצעדים שנתתם לכל שיטה. הטור מגיע ל-e תוך שישה צעדים, הגבול עוד מטפס. הזיזו את המחוונים כדי לראות לאן כל שיטה מגיעה כשדוחפים אותה עד הסוף.</p>
+
+    <div class="sim__controls">
+      <label class="sim__control">
+        <span class="sim__control-head">
+          <span>מספר החלוקות בגבול, בחזקות של 10</span>
+          <output id="out-nexp" class="ltr"></output>
+        </span>
+        <input type="range" id="in-nexp"
+               min="0" max="8" step="1" value="2">
+      </label>
+      <label class="sim__control">
+        <span class="sim__control-head">
+          <span>מספר המחוברים בטור</span>
+          <output id="out-terms" class="ltr"></output>
+        </span>
+        <input type="range" id="in-terms"
+               min="1" max="13" step="1" value="5">
+      </label>
+    </div>
+
+    <div class="sim__chart">
+      <svg id="e-svg" viewBox="0 0 640 300" role="img" aria-label="שתי עקומות התכנסות אל e: הגבול מטפס לאט, הטור מגיע כמעט מיד" preserveAspectRatio="none">
+        <line x1="0" y1="20" x2="640" y2="20" class="sim__line--simple" stroke-dasharray="4 4"/>
+        <polyline id="e-limit" class="sim__line sim__line--simple" fill="none"/>
+        <polyline id="e-series" class="sim__line sim__line--compound" fill="none"/>
+      </svg>
+      <p class="sim__axis">מספר הצעדים <span class="ltr">1 → 13</span>. הקו המקווקו העליון הוא e.</p>
+    </div>
+
+    <div class="sim__readout">
+      <div class="sim__stat">
+        <span class="sim__stat-label">הגבול, n חלוקות</span>
+        <span class="sim__stat-value ltr" id="e-out-limit"></span>
+      </div>
+      <div class="sim__stat sim__stat--strong">
+        <span class="sim__stat-label">הטור, מחוברים</span>
+        <span class="sim__stat-value ltr" id="e-out-series"></span>
+      </div>
+      <div class="sim__stat">
+        <span class="sim__stat-label">e</span>
+        <span class="sim__stat-value ltr">2.7182818285</span>
+      </div>
+      <div class="sim__stat">
+        <span class="sim__stat-label">פעולות שנדרשו</span>
+        <span class="sim__stat-value ltr" id="e-out-cost"></span>
+      </div>
+    </div>
+    <p class="sim__note" id="e-note"></p>
+  </section>
+
+
+  <section class="quiz" id="quiz">
+    <h2 class="topic__heading">בדקו את עצמכם</h2>
+    <form id="quiz-form">
+      <fieldset class="quiz__q" data-answer="1">
+        <legend class="quiz__legend"><span class="quiz__num">1</span>שקל אחד, ריבית 100% לשנה, מחושבת פעמיים בשנה. כמה יהיה בסוף השנה?</legend>
+        <label class="quiz__opt">
+          <input type="radio" name="q0" value="0">
+          <span>2 שקלים</span>
+        </label>
+        <label class="quiz__opt">
+          <input type="radio" name="q0" value="1">
+          <span>2.25 שקלים</span>
+        </label>
+        <label class="quiz__opt">
+          <input type="radio" name="q0" value="2">
+          <span>2.5 שקלים</span>
+        </label>
+        <label class="quiz__opt">
+          <input type="radio" name="q0" value="3">
+          <span>2.72 שקלים</span>
+        </label>
+        <p class="quiz__why">אחרי חצי שנה מתווספים 50%, כלומר 1.5 שקל. בחצי השני מתווספים 50% על 1.5, ולכן 1.5 כפול 1.5 שווה 2.25. הרבע הנוסף הוא הריבית שהחצי הראשון הספיק לצבור.</p>
+      </fieldset>
+      <fieldset class="quiz__q" data-answer="1">
+        <legend class="quiz__legend"><span class="quiz__num">2</span>מה קורה לסכום כשמחלקים את השנה למספר גדול יותר ויותר של תקופות ריבית?</legend>
+        <label class="quiz__opt">
+          <input type="radio" name="q1" value="0">
+          <span>הוא גדל בלי גבול</span>
+        </label>
+        <label class="quiz__opt">
+          <input type="radio" name="q1" value="1">
+          <span>הוא מתקרב ל-2.7182818 ולא עובר אותו</span>
+        </label>
+        <label class="quiz__opt">
+          <input type="radio" name="q1" value="2">
+          <span>הוא מפסיק לגדול אחרי 365 חלוקות</span>
+        </label>
+        <label class="quiz__opt">
+          <input type="radio" name="q1" value="3">
+          <span>הוא מתקרב ל-3</span>
+        </label>
+        <p class="quiz__why">כל חלוקה נוספת תורמת פחות מקודמתה, והתוספות קטנות מהר מספיק כדי שהסכום יהיה חסום. הגבול הוא e, כלומר 2.7182818.</p>
+      </fieldset>
+      <fieldset class="quiz__q" data-answer="1">
+        <legend class="quiz__legend"><span class="quiz__num">3</span>איזו שיטה מחשבת את e ביעילות גבוהה יותר?</legend>
+        <label class="quiz__opt">
+          <input type="radio" name="q2" value="0">
+          <span>הגבול (1+1/n)^n, כי הוא הגדרת המספר</span>
+        </label>
+        <label class="quiz__opt">
+          <input type="radio" name="q2" value="1">
+          <span>הטור של העצרות, כי הוא מתכנס הרבה מהר יותר</span>
+        </label>
+        <label class="quiz__opt">
+          <input type="radio" name="q2" value="2">
+          <span>שתיהן באותו קצב</span>
+        </label>
+        <label class="quiz__opt">
+          <input type="radio" name="q2" value="3">
+          <span>אף אחת, e מחושב בשיטה אחרת לגמרי</span>
+        </label>
+        <p class="quiz__why">עשרה מחוברים בטור נותנים 2.7182815. כדי להתקרב לדיוק הזה בגבול צריך n של מיליון. הגבול מסביר מאיפה המספר בא, הטור מחשב אותו.</p>
+      </fieldset>
+      <fieldset class="quiz__q" data-answer="1">
+        <legend class="quiz__legend"><span class="quiz__num">4</span>מה מיוחד בפונקציה e בחזקת x?</legend>
+        <label class="quiz__opt">
+          <input type="radio" name="q3" value="0">
+          <span>היא הפונקציה הגדלה המהירה ביותר</span>
+        </label>
+        <label class="quiz__opt">
+          <input type="radio" name="q3" value="1">
+          <span>הנגזרת שלה שווה לה עצמה</span>
+        </label>
+        <label class="quiz__opt">
+          <input type="radio" name="q3" value="2">
+          <span>היא תמיד מספר שלם</span>
+        </label>
+        <label class="quiz__opt">
+          <input type="radio" name="q3" value="3">
+          <span>היא היחידה שאין לה נגזרת</span>
+        </label>
+        <p class="quiz__why">לכל בסיס, קצב השינוי פרופורציוני לגובה הפונקציה. e הוא הבסיס היחיד שבו מקדם הפרופורציה הוא בדיוק אחד, ולכן הגובה והשיפוע שווים בכל נקודה. מכאן e מגיע לכל תיאור של גדילה או דעיכה.</p>
+      </fieldset>
+      <fieldset class="quiz__q" data-answer="1">
+        <legend class="quiz__legend"><span class="quiz__num">5</span>קבל נטען דרך נגד. אחרי זמן של R כפול C, לאיזה חלק מהמתח הסופי הוא מגיע?</legend>
+        <label class="quiz__opt">
+          <input type="radio" name="q4" value="0">
+          <span>50%</span>
+        </label>
+        <label class="quiz__opt">
+          <input type="radio" name="q4" value="1">
+          <span>63.2%</span>
+        </label>
+        <label class="quiz__opt">
+          <input type="radio" name="q4" value="2">
+          <span>36.8%</span>
+        </label>
+        <label class="quiz__opt">
+          <input type="radio" name="q4" value="3">
+          <span>100%</span>
+        </label>
+        <p class="quiz__why">המתח עולה לפי אחד פחות e בחזקת מינוס t חלקי RC. כשt שווה RC מקבלים אחד פחות אחד חלקי e, שהם 63.2%. המספר הזה הוא e בתחפושת.</p>
+      </fieldset>
+      <fieldset class="quiz__q" data-answer="1">
+        <legend class="quiz__legend"><span class="quiz__num">6</span>מה נכון לגבי המספר e?</legend>
+        <label class="quiz__opt">
+          <input type="radio" name="q5" value="0">
+          <span>הוא שבר של שני מספרים שלמים</span>
+        </label>
+        <label class="quiz__opt">
+          <input type="radio" name="q5" value="1">
+          <span>הוא אי רציונלי וגם טרנסצנדנטי</span>
+        </label>
+        <label class="quiz__opt">
+          <input type="radio" name="q5" value="2">
+          <span>הוא שווה בדיוק ל-2.718</span>
+        </label>
+        <label class="quiz__opt">
+          <input type="radio" name="q5" value="3">
+          <span>הוא נקרא e על שם אוילר</span>
+        </label>
+        <p class="quiz__why">אוילר הוכיח שe אי רציונלי, והרמיט הוכיח ב-1873 שהוא טרנסצנדנטי, כלומר אינו פתרון של שום משוואה פולינומית עם מקדמים שלמים. 2.718 הוא קירוב. את האות e בחר אוילר עצמו, כנראה מפני שa עד d היו תפוסות.</p>
+      </fieldset>
+      <div class="quiz__actions">
+        <button type="button" id="quiz-check" class="quiz__btn">בדקו את התשובות</button>
+        <button type="button" id="quiz-reset" class="quiz__btn quiz__btn--ghost">נקו</button>
+        <p class="quiz__score" id="quiz-score" role="status"></p>
+      </div>
+    </form>
+  </section>
+
+  <section class="takeaways">
+    <h2 class="topic__heading">מה חשוב לזכור</h2>
+    <ul class="takeaways__list">
+      <li>e הוא 2.7182818, הגבול של (1+1/n)^n. הוא נפל מתוך שאלה על ריבית, לא נבחר.</li>
+      <li>הטור 1 + 1 + 1/2 + 1/6 + 1/24 ומעלה מגיע לאותו מספר, ומהר בהרבה: עשרה מחוברים שקולים למיליון חלוקות.</li>
+      <li>הנגזרת של e בחזקת x היא e בחזקת x. זו התכונה היחידה שממנה נובע כל השאר.</li>
+      <li>בכל מקום שקצב ההשתנות תלוי בגודל עצמו, דעיכה רדיואקטיבית, קירור, טעינת קבל, ריבית, e הוא הבסיס שבו התיאור פשוט.</li>
+      <li>63.2% בטעינת קבל ו-36.8% בבעיית המזכירה הם אותו מספר: אחד חלקי e.</li>
+    </ul>
+  </section>
+
+</article>
+
+<script>
+/* ===== מדמה חיפוש מטרה של CRISPR ===== */
+(function () {
+  var host = document.getElementById('crispr-genome');
+  if (!host) return;
+
+  var genome = host.getAttribute('data-genome') || '';
+  var guide = host.getAttribute('data-guide') || '';
+  var G = guide.length;
+  var slider = document.getElementById('in-mm');
+  var out = document.getElementById('out-mm');
+  var rows = document.getElementById('crispr-hits');
+  var note = document.getElementById('crispr-note');
+
+  // A site is worth showing if the protein could plausibly reach it: either a
+  // near match with a PAM, or a perfect match without one. The second case is
+  // the whole point of the exercise, so it is never filtered out.
+  var sites = [];
+  for (var i = 0; i + G + 3 <= genome.length; i++) {
+    var seq = genome.substr(i, G);
+    var pam = genome.substr(i + G, 3);
+    var hasPam = pam.charAt(1) === 'G' && pam.charAt(2) === 'G';
+    var mm = 0, near = null;
+    for (var j = 0; j < G; j++) {
+      if (seq.charAt(j) !== guide.charAt(j)) {
+        mm++;
+        near = G - j;
+      }
+    }
+    if ((hasPam && mm <= 4) || mm === 0) {
+      sites.push({ at: i, seq: seq, pam: pam, hasPam: hasPam, mm: mm, near: near });
+    }
+  }
+  sites.sort(function (a, b) { return a.mm - b.mm || a.at - b.at; });
+
+  function esc(s) { return s.replace(/&/g, '&amp;').replace(/</g, '&lt;'); }
+
+  // The count of mismatches is not the whole rule. The stretch of about ten
+  // letters next to the PAM is checked first, and a mismatch there usually stops
+  // the protein, while the same mismatch at the far end is often tolerated. A
+  // simulator that only counted mismatches would contradict the section above it.
+  var SEED = 10;
+  function cuts(s, tol) {
+    return s.hasPam && s.mm <= tol && (s.mm === 0 || s.near > SEED);
+  }
+
+  function draw() {
+    var tol = parseInt(slider.value, 10);
+    var cut = sites.filter(function (s) { return cuts(s, tol); });
+    var cutAt = {};
+    cut.forEach(function (s) { cutAt[s.at] = true; });
+
+    var html = '', pos = 0;
+    sites.slice().sort(function (a, b) { return a.at - b.at; }).forEach(function (s) {
+      if (s.at < pos) return;
+      html += esc(genome.slice(pos, s.at));
+      var cls = cutAt[s.at] ? 'crispr-site crispr-site--cut'
+              : (s.hasPam ? 'crispr-site' : 'crispr-site crispr-site--nopam');
+      html += '<span class="' + cls + '">' + esc(s.seq) + '</span>';
+      html += '<span class="crispr-pam-mark' + (s.hasPam ? '' : ' crispr-pam-mark--absent') + '">'
+           + esc(s.pam) + '</span>';
+      pos = s.at + G + 3;
+    });
+    html += esc(genome.slice(pos));
+    host.innerHTML = html;
+
+    out.textContent = tol;
+    rows.innerHTML = sites.map(function (s) {
+      var willCut = cuts(s, tol);
+      var verdict = !s.hasPam ? 'אין PAM, אין חיתוך'
+                  : (willCut ? (s.mm === 0 ? 'האתר המבוקש' : 'חיתוך לא מכוון')
+                    : (s.mm <= tol ? 'אי־ההתאמה צמודה ל-PAM. נעצר' : 'יותר מדי אי־התאמות'));
+      return '<tr class="' + (willCut ? 'is-cut' : '') + '">'
+        + '<td class="ltr">' + s.at + '</td>'
+        + '<td class="ltr">' + s.mm + '</td>'
+        + '<td class="ltr">' + (s.near === null ? '' : s.near) + '</td>'
+        + '<td class="ltr">' + esc(s.pam) + '</td>'
+        + '<td>' + verdict + '</td>'
+        + '</tr>';
+    }).join('');
+
+    var extra = cut.length - 1;
+    if (tol === 0) {
+      note.textContent = 'בסובלנות אפס נחתך אתר אחד בלבד. שימו לב לאתר השני ברשימה: '
+        + 'הוא מתאים למדריך בכל עשרים האותיות, ובכל זאת אינו נחתך, כי אחריו אין PAM.';
+    } else if (extra <= 0) {
+      note.textContent = 'עדיין אתר אחד. באתר הדומה השני אי־ההתאמות צמודות ל-PAM, ושם החלבון עוצר.';
+    } else {
+      note.textContent = 'בסובלנות של ' + tol + ' אי־התאמות נחתך אתר נוסף שלא התכוונו אליו. '
+        + 'ברצף של 196 אותיות זה נראה מעט. בגנום של שלושה מיליארד אותיות, זה מה שנקרא off-target.';
+    }
+  }
+
+  slider.addEventListener('input', draw);
+  draw();
+})();
+</script>
+
+<script>
+/* ===== מדמה ריבית דריבית ===== */
+(function () {
+  var svg = document.getElementById('sim-svg');
+  if (!svg) return;
+
+  var W = 640, H = 300, PAD = 8;
+  var keys = ['principal', 'rate', 'years', 'monthly'];
+  var inputs = {}, outs = {};
+  keys.forEach(function (k) {
+    inputs[k] = document.getElementById('in-' + k);
+    outs[k] = document.getElementById('out-' + k);
+  });
+  if (!inputs.principal) return;
+
+  var fmt = new Intl.NumberFormat('he-IL', { maximumFractionDigits: 0 });
+
+  function series(P, r, years, monthly) {
+    var simple = [], compound = [], paid = [];
+    var comp = P, totalPaid = P;
+    for (var t = 0; t <= years; t++) {
+      if (t > 0) {
+        comp = comp * (1 + r);
+        // הפקדות חודשיות נצברות במהלך השנה וגם הן צוברות ריבית
+        for (var m = 0; m < 12; m++) comp += monthly * Math.pow(1 + r, (12 - m - 1) / 12);
+        totalPaid += monthly * 12;
+      }
+      simple.push(P * (1 + r * t) + monthly * 12 * t);
+      compound.push(comp);
+      paid.push(totalPaid);
+    }
+    return { simple: simple, compound: compound, paid: paid };
+  }
+
+  function points(arr, max, years) {
+    var n = arr.length - 1;
+    return arr.map(function (v, i) {
+      var x = PAD + (i / Math.max(n, 1)) * (W - PAD * 2);
+      var y = H - PAD - (v / max) * (H - PAD * 2);
+      return x.toFixed(1) + ',' + y.toFixed(1);
+    }).join(' ');
+  }
+
+  function render() {
+    var P = +inputs.principal.value;
+    var rPct = +inputs.rate.value;
+    var years = +inputs.years.value;
+    var monthly = +inputs.monthly.value;
+    var r = rPct / 100;
+
+    outs.principal.textContent = fmt.format(P) + ' ₪';
+    outs.rate.textContent = rPct + '%';
+    outs.years.textContent = years + ' שנים';
+    outs.monthly.textContent = monthly ? fmt.format(monthly) + ' ₪' : 'ללא';
+
+    var s = series(P, r, years, monthly);
+    var max = Math.max(s.compound[years], s.simple[years]) * 1.05 || 1;
+
+    document.getElementById('sim-simple').setAttribute('points', points(s.simple, max, years));
+    document.getElementById('sim-compound').setAttribute('points', points(s.compound, max, years));
+
+    var fin = s.compound[years], sim = s.simple[years];
+    document.getElementById('sim-out-simple').textContent = fmt.format(Math.round(sim)) + ' ₪';
+    document.getElementById('sim-out-compound').textContent = fmt.format(Math.round(fin)) + ' ₪';
+    document.getElementById('sim-out-gap').textContent = fmt.format(Math.round(fin - sim)) + ' ₪';
+    document.getElementById('sim-out-paid').textContent = fmt.format(Math.round(s.paid[years])) + ' ₪';
+    document.getElementById('sim-years-axis').textContent = '0 – ' + years;
+
+    var note = document.getElementById('sim-note');
+    var times = s.paid[years] ? fin / s.paid[years] : 0;
+    var rule72 = rPct > 0 ? (72 / rPct) : 0;
+    note.textContent = 'בריבית של ' + rPct + '% הכסף מכפיל את עצמו בערך כל '
+      + rule72.toFixed(1) + ' שנים (כלל 72). אחרי ' + years + ' שנים היתרה גדולה פי '
+      + times.toFixed(1) + ' מסך מה שהפקדתם.';
+  }
+
+  keys.forEach(function (k) { inputs[k].addEventListener('input', render); });
+  render();
+})();
+
+/* ===== מדמה ההתכנסות אל e ===== */
+(function () {
+  var svg = document.getElementById('e-svg');
+  if (!svg) return;
+
+  var W = 640, H = 300, PAD = 8;
+  var E = Math.E, STEPS = 13;
+  var inN = document.getElementById('in-nexp');
+  var inT = document.getElementById('in-terms');
+  if (!inN || !inT) return;
+
+  function limitAt(n) { return Math.pow(1 + 1 / n, n); }
+
+  function seriesAt(terms) {
+    var s = 0, f = 1;
+    for (var k = 0; k < terms; k++) {
+      if (k > 0) f *= k;
+      s += 1 / f;
+    }
+    return s;
+  }
+
+  /* שתי העקומות מצוירות על אותו ציר צעדים כדי שההשוואה תהיה הוגנת: צעד אחד
+     בגבול הוא חלוקה נוספת, צעד אחד בטור הוא מחובר נוסף. תחתית הגרף היא 1.8
+     ולא אפס, אחרת כל ההבדל המעניין נדחס לפס דק. */
+  function points(fn) {
+    var lo = 1.8, hi = E + (E - lo) * 0.08;
+    var out = [];
+    for (var i = 1; i <= STEPS; i++) {
+      var v = Math.min(fn(i), hi);
+      var x = PAD + ((i - 1) / (STEPS - 1)) * (W - PAD * 2);
+      var y = H - PAD - ((v - lo) / (hi - lo)) * (H - PAD * 2);
+      out.push(x.toFixed(1) + ',' + Math.min(Math.max(y, PAD), H - PAD).toFixed(1));
+    }
+    return out.join(' ');
+  }
+
+  document.getElementById('e-limit').setAttribute('points', points(limitAt));
+  document.getElementById('e-series').setAttribute('points', points(seriesAt));
+
+  var fmtInt = new Intl.NumberFormat('he-IL', { maximumFractionDigits: 0 });
+
+  function render() {
+    var n = Math.pow(10, +inN.value);
+    var terms = +inT.value;
+    var lim = limitAt(n), ser = seriesAt(terms);
+
+    document.getElementById('out-nexp').textContent = 'n = ' + fmtInt.format(n);
+    document.getElementById('out-terms').textContent = terms;
+    document.getElementById('e-out-limit').textContent = lim.toFixed(10);
+    document.getElementById('e-out-series').textContent = ser.toFixed(10);
+    document.getElementById('e-out-cost').textContent =
+      fmtInt.format(n) + ' מול ' + terms;
+
+    /* ספרות נכונות אחרי הנקודה, לפי גודל השגיאה */
+    function digits(v) {
+      var err = Math.abs(v - E);
+      return err === 0 ? 12 : Math.max(0, Math.floor(-Math.log10(err)));
+    }
+    document.getElementById('e-note').textContent =
+      'ספרות נכונות אחרי הנקודה: הגבול עם ' + fmtInt.format(n) + ' חלוקות, '
+      + digits(lim) + '. הטור עם ' + terms + ' מחוברים, ' + digits(ser) + '.';
+  }
+
+  inN.addEventListener('input', render);
+  inT.addEventListener('input', render);
+  render();
+})();
+
+/* ===== בוחן ===== */
+(function () {
+  var form = document.getElementById('quiz-form');
+  if (!form) return;
+  var qs = Array.prototype.slice.call(form.querySelectorAll('.quiz__q'));
+  var scoreEl = document.getElementById('quiz-score');
+
+  document.getElementById('quiz-check').addEventListener('click', function () {
+    var right = 0, answered = 0;
+    qs.forEach(function (q) {
+      var correct = +q.dataset.answer;
+      var picked = q.querySelector('input:checked');
+      q.classList.remove('is-right', 'is-wrong');
+      if (!picked) return;
+      answered++;
+      if (+picked.value === correct) { q.classList.add('is-right'); right++; }
+      else { q.classList.add('is-wrong'); }
+      q.querySelectorAll('.quiz__opt').forEach(function (opt, i) {
+        opt.classList.toggle('is-answer', i === correct);
+      });
+    });
+    if (!answered) { scoreEl.textContent = 'בחרו תשובה לפחות בשאלה אחת.'; return; }
+    scoreEl.textContent = 'ענית נכון על ' + right + ' מתוך ' + qs.length + '.';
+  });
+
+  document.getElementById('quiz-reset').addEventListener('click', function () {
+    form.reset();
+    qs.forEach(function (q) {
+      q.classList.remove('is-right', 'is-wrong');
+      q.querySelectorAll('.quiz__opt').forEach(function (o) { o.classList.remove('is-answer'); });
+    });
+    scoreEl.textContent = '';
+  });
+})();
+
+/* ===== מדמה רזולוציה ליתוגרפית: CD = k1 · λ / NA ===== */
+(function () {
+  var svg = document.getElementById('euv-svg');
+  if (!svg) return;
+
+  var naIn = document.getElementById('in-na');
+  var k1In = document.getElementById('in-k1');
+  var naOut = document.getElementById('out-na');
+  var k1Out = document.getElementById('out-k1');
+  var linesG = document.getElementById('euv-lines');
+  var blurNode = document.getElementById('euv-blur-node');
+  var btns = Array.prototype.slice.call(document.querySelectorAll('.euv-source-btn'));
+  if (!naIn || !btns.length) return;
+
+  var W = 640, H = 190;
+  var lambda = +btns[0].dataset.lambda;
+  var naMax = +btns[0].dataset.namax;
+
+  function cd(lam, na, k1) { return k1 * lam / na; }
+
+  function draw() {
+    var na = Math.min(+naIn.value, naMax);
+    var k1 = +k1In.value;
+    var res = cd(lambda, na, k1);
+
+    naOut.textContent = na.toFixed(2);
+    k1Out.textContent = k1.toFixed(2);
+
+    // רוחב הקו על המסך פרופורציוני לרוחב האמיתי, בסקאלה קבועה
+    var nmPerPx = 0.9;                       // 640 פיקסלים = 576 ננומטר
+    var wpx = Math.max(1.2, res / nmPerPx);
+    var pitch = wpx * 2;
+    var n = Math.ceil(W / pitch) + 1;
+
+    var out = '';
+    for (var i = 0; i < n; i++) {
+      out += '<rect x="' + (i * pitch).toFixed(2) + '" y="18" width="' +
+             wpx.toFixed(2) + '" height="' + (H - 36) + '" class="euv-line"/>';
+    }
+    linesG.innerHTML = out;
+
+    // ככל שהקו מתקרב לגבול הפיזיקלי הוא נמרח. k1 נמוך = תהליך אגרסיבי = פחות חד.
+    // הטשטוש נחסם, אחרת קווים רחבים נראים מרוחים הרבה מעבר למה שהכוונה להמחיש
+    var sharp = Math.max(0, Math.min(1, (k1 - 0.25) / 0.20));
+    blurNode.setAttribute('stdDeviation',
+      Math.min(wpx * (1 - sharp) * 0.28, 4.5).toFixed(2));
+
+    document.getElementById('euv-out-cd').textContent = res.toFixed(1) + ' nm';
+    document.getElementById('euv-out-lambda').textContent = lambda + ' nm';
+    document.getElementById('euv-scale').textContent =
+      'רוחב התמונה כאן הוא כ-' + Math.round(W * nmPerPx) + ' ננומטר';
+
+    // ההשוואה ל-DUV נעשית בתנאים הטובים ביותר שיש לו: טבילה במים, NA 1.35
+    var duv = cd(193, 1.35, k1);
+    document.getElementById('euv-out-duv').textContent = duv.toFixed(1) + ' nm';
+
+    // כל מעבר הדפסה נוסף חוצה בקירוב את הצפיפות
+    var passes = duv <= res ? 1 : Math.pow(2, Math.ceil(Math.log(duv / res) / Math.log(2)));
+    document.getElementById('euv-out-passes').textContent =
+      lambda === 193 ? '—' : '×' + passes;
+
+    var note = document.getElementById('euv-note');
+    if (lambda === 193) {
+      note.textContent = 'ב-193 ננומטר צריך צמצם גדול מ-1, וזה אפשרי רק כשממלאים ' +
+        'את המרווח שבין העדשה לפרוסה במים. זה מה שנקרא ליתוגרפיית טבילה.';
+    } else {
+      note.textContent = 'קיצור אורך הגל פי כ-14 קונה את אותה רזולוציה בלי צמצם ענק ' +
+        'ובלי לחזור על ההדפסה. זו כל התכלית של EUV.';
+    }
+  }
+
+  btns.forEach(function (b) {
+    b.addEventListener('click', function () {
+      btns.forEach(function (o) { o.classList.remove('is-active'); });
+      b.classList.add('is-active');
+      lambda = +b.dataset.lambda;
+      naMax = +b.dataset.namax;
+      naIn.max = naMax;
+      // כל מקור אור מגיע עם הצמצם האופייני לו, אחרת ההשוואה חסרת משמעות
+      naIn.value = b.dataset.natypical;
+      draw();
+    });
+  });
+  [naIn, k1In].forEach(function (el) { el.addEventListener('input', draw); });
+  naIn.max = naMax;
+  draw();
+})();
+</script>
+  </main>
+
+  <footer class="colophon">
+    <span>היום בקיצור</span>
+    <span>יוצר במלואו על ידי בינה מלאכותית</span>
+  </footer>
+
+</div>
+</body>
+</html>
