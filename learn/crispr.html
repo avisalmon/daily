@@ -55,6 +55,9 @@
 
 
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">שני חלקים: אחד מחפש, אחד חותך</h2>
@@ -123,12 +126,18 @@
       <figcaption>המדריך נצמד לגדיל אחד לפי כלל הזיווג, והחלבון חותך את שני הגדילים כשלוש אותיות לפני ה-PAM. בלי ה-PAM הצמוד החלבון אינו טורח לפתוח את הסליל, ואין חיתוך.</figcaption>
     </figure>
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">PAM: בלי הסיסמה הזאת אין חיתוך</h2>
     <p>התאמה של המדריך אינה מספיקה. Cas9 חותך רק אם צמוד למטרה, בצד אחד, מופיע רצף קצר שנקרא PAM. אצל Cas9 הנפוץ מדובר בשלוש אותיות שבהן השנייה והשלישית הן G, כלומר כל אות ואחריה GG.</p>
     <p>החלבון למעשה מחפש קודם את ה-PAM, ורק כשהוא מוצא אותו הוא טורח לפתוח את הסליל ולבדוק התאמה. זה קיצור דרך יעיל: במקום לבדוק שלושה מיליארד מיקומים לעומק, בודקים לעומק רק את אלה שנושאים את הסימן.</p>
     <p>יש לכך שתי השלכות. הראשונה מעשית: אי אפשר לחתוך בכל נקודה שרוצים, אלא רק ליד PAM, ולכן תכנון עריכה מתחיל תמיד בחיפוש PAM מתאים באזור. השנייה יפה יותר. בחיידק עצמו, הזיכרון הווירלי השמור אינו מלווה ב-PAM, ולכן המערכת אינה חותכת את הזיכרון של עצמה. אותו הבדל קטן הוא שמפריד בין הגנה ובין התאבדות.</p>
+
+
+
 
 
 
@@ -181,12 +190,18 @@
       </svg>
       <figcaption>אותו חיתוך, שתי תוצאות. משמאל חיבור מהיר של הקצוות, שמשאיר אות נוספת או חסרה ומכבה את הגן. מימין העתקה מתבנית, שכותבת את הרצף הרצוי. המסלול המהיר זמין תמיד ולכן שכיח יותר, והמדויק דורש תבנית ותא שמתחלק.</figcaption>
     </figure>
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">הבעיה האמיתית היא לא לחתוך, אלא לא לחתוך במקום הלא נכון</h2>
     <p>חישוב האותיות למעלה הראה שהתאמה מושלמת נדירה. אלא ש-Cas9 אינו דורש שלמות. הוא סובל לעיתים אי־התאמה של אות או שתיים, ובעיקר כשהן רחוקות מה-PAM. אות שאינה מתאימה בקצה המרוחק עשויה לעבור בשקט, ואילו אי־התאמה צמודה ל-PAM בדרך כלל עוצרת את החיתוך.</p>
     <p>מכאן שהמדריך יוצר לא מטרה אחת אלא דירוג של מטרות: אתר אחד מושלם, וכמה אתרים דומים בגנום שעלולים להיחתך גם הם. חיתוך כזה נקרא off-target, והוא הסיכון המרכזי של השיטה, כי אם הוא נופל בתוך גן חשוב התוצאה היא נזק שלא התכוונו אליו.</p>
     <p>לכן העבודה האמיתית בעריכה גנטית אינה החיתוך אלא הבחירה. בוחרים מדריך שהאתרים הדומים לו בגנום מעטים ורחוקים ממקומות רגישים, משתמשים בגרסאות חלבון שתוכננו להיות פחות סלחניות לאי־התאמה, ומודדים אחר כך בפועל היכן נחתך הגנום. הסימולטור למטה ממחיש את הדירוג הזה על רצף קצר.</p>
+
+
+
 
 
 
@@ -209,7 +224,11 @@
 
 
 
+
+
+
   </section>
+
 
 
 
@@ -397,6 +416,112 @@
   </section>
 
 </article>
+
+<script>
+/* ===== מדמה כפל מרוכב: הגדלים מוכפלים והזוויות מתחברות ===== */
+(function () {
+  var svg = document.getElementById('cx-svg');
+  if (!svg) return;
+
+  var CX = 320, CY = 170, SCALE = 26;   // 26 pixels to one unit on both axes
+  var AX = 3, AY = 2;                   // the fixed operand, 3 + 2i
+
+  var inMag = document.getElementById('in-mag');
+  var inAng = document.getElementById('in-ang');
+
+  var grid = document.getElementById('cx-grid');
+  var g = '';
+  for (var u = -11; u <= 11; u++) {
+    if (u === 0) continue;
+    g += '<line x1="' + (CX + u * SCALE) + '" y1="165" x2="' + (CX + u * SCALE) + '" y2="175" class="diagram__axis"/>';
+    if (Math.abs(u * SCALE) < 150) {
+      g += '<line x1="315" y1="' + (CY - u * SCALE) + '" x2="325" y2="' + (CY - u * SCALE) + '" class="diagram__axis"/>';
+    }
+  }
+  grid.innerHTML = g;
+
+  // One decimal is the honest precision here: the sliders move in steps of
+  // 0.05 and 5 degrees, so more digits would be inventing accuracy.
+  function fmt(n) {
+    var v = Math.round(n * 100) / 100;
+    return (v < 0 ? '−' : '') + Math.abs(v).toFixed(2);
+  }
+  function pair(re, im) {
+    return fmt(re) + (im < 0 ? ' − ' : ' + ') + fmt(Math.abs(im)) + 'i';
+  }
+
+  function place(el, x, y) { el.setAttribute('x', x); el.setAttribute('y', y); }
+
+  function draw() {
+    var m = parseFloat(inMag.value);
+    var degs = parseFloat(inAng.value);
+    var rad = degs * Math.PI / 180;
+
+    var mre = m * Math.cos(rad), mim = m * Math.sin(rad);
+    var pre = AX * mre - AY * mim;
+    var pim = AX * mim + AY * mre;
+
+    var aMag = Math.sqrt(AX * AX + AY * AY);
+    var aAng = Math.atan2(AY, AX) * 180 / Math.PI;
+    var pMag = aMag * m;
+    var pAng = aAng + degs;
+
+    document.getElementById('out-mag').textContent = fmt(m);
+    document.getElementById('out-ang').textContent = degs + '°';
+    document.getElementById('cx-out-mult').textContent = pair(mre, mim);
+    document.getElementById('cx-out-prod').textContent = pair(pre, pim);
+    document.getElementById('cx-out-mag').textContent = fmt(m) + ' = ' + fmt(pMag);
+    document.getElementById('cx-out-ang').textContent = fmt(degs) + '° = ' + fmt(pAng) + '°';
+
+    var ax = CX + AX * SCALE, ay = CY - AY * SCALE;
+    var bx = CX + pre * SCALE, by = CY - pim * SCALE;
+
+    document.getElementById('cx-ray-a').setAttribute('x2', ax);
+    document.getElementById('cx-ray-a').setAttribute('y2', ay);
+    document.getElementById('cx-ray-b').setAttribute('x2', bx);
+    document.getElementById('cx-ray-b').setAttribute('y2', by);
+    document.getElementById('cx-dot-a').setAttribute('cx', ax);
+    document.getElementById('cx-dot-a').setAttribute('cy', ay);
+    document.getElementById('cx-dot-b').setAttribute('cx', bx);
+    document.getElementById('cx-dot-b').setAttribute('cy', by);
+
+    var la = document.getElementById('cx-lbl-a');
+    la.textContent = pair(AX, AY);
+    place(la, ax + 26, ay - 8);
+    var lb = document.getElementById('cx-lbl-b');
+    lb.textContent = pair(pre, pim);
+    place(lb, bx + 26, by - 8);
+
+    // The arc runs from the original angle to the product angle at a fixed
+    // radius, so it reads as "this much was added", not as a distance.
+    var r = 62;
+    var a0 = aAng * Math.PI / 180, a1 = pAng * Math.PI / 180;
+    var sweep = degs < 0 ? 1 : 0;
+    var large = Math.abs(degs) > 180 ? 1 : 0;
+    var arc = 'M' + (CX + r * Math.cos(a0)) + ',' + (CY - r * Math.sin(a0)) +
+              ' A' + r + ',' + r + ' 0 ' + large + ',' + sweep + ' ' +
+              (CX + r * Math.cos(a1)) + ',' + (CY - r * Math.sin(a1));
+    document.getElementById('cx-arc').setAttribute('d', Math.abs(degs) < 0.5 ? '' : arc);
+
+    var note = document.getElementById('cx-note');
+    if (Math.abs(m - 1) < 0.001 && degs === 90) {
+      note.textContent = 'זהו בדיוק כפל ב-i: גודל 1, זווית 90 מעלות. הנקודה הסתובבה רבע סיבוב והמרחק מהראשית לא זז.';
+    } else if (Math.abs(m - 1) < 0.001 && Math.abs(degs) === 180) {
+      note.textContent = 'גודל 1 וזווית 180 מעלות הם כפל במינוס אחד. שני כפלים ב-i נותנים בדיוק את זה, ומכאן i²=−1.';
+    } else if (degs === 0) {
+      note.textContent = 'זווית אפס: המכפיל הוא מספר ממשי רגיל, והוא רק מותח או מכווץ לאורך אותו ישר.';
+    } else if (Math.abs(m - 1) < 0.001) {
+      note.textContent = 'גודל 1 פירושו סיבוב טהור. המרחק מהראשית נשמר, רק הזווית זזה.';
+    } else {
+      note.textContent = 'שתי הפעולות קורות יחד: הגודל מוכפל ב-' + fmt(m) + ' והזווית זזה ב-' + degs + ' מעלות.';
+    }
+  }
+
+  inMag.addEventListener('input', draw);
+  inAng.addEventListener('input', draw);
+  draw();
+}());
+</script>
 
 <script>
 /* ===== מדמה חיפוש מטרה של CRISPR ===== */

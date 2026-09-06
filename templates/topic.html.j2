@@ -231,6 +231,90 @@
       <figcaption>{{ sec.diagram.caption }}</figcaption>
     </figure>
     {% endif %}
+
+    {% if sec.diagram and sec.diagram.type == 'complex-plane-point' %}
+    <figure class="diagram">
+      <svg viewBox="0 0 520 280" role="img" aria-label="המישור המרוכב עם הנקודה שלוש ועוד שתי i, ושתי הקריאות שלה: קואורדינטות שלוש ושתיים, או גודל 3.606 בזווית 33.69 מעלות" preserveAspectRatio="xMidYMid meet">
+        <line x1="40" y1="220" x2="480" y2="220" class="diagram__axis"/>
+        <line x1="120" y1="40" x2="120" y2="264" class="diagram__axis"/>
+        <text x="450" y="242" class="diagram__axis-label">ציר ממשי</text>
+        <text x="160" y="50" class="diagram__axis-label">ציר מדומה</text>
+
+        <line x1="120" y1="220" x2="300" y2="220" class="diagram__linear"/>
+        <line x1="300" y1="220" x2="300" y2="100" class="diagram__linear"/>
+        <line x1="120" y1="220" x2="300" y2="100" class="diagram__exp"/>
+        <path d="M170,220 A50,50 0 0,0 161.6,192.3" class="cplx-arc"/>
+
+        <circle cx="300" cy="100" r="5" class="diagram__dot diagram__dot--strong"/>
+        <text x="352" y="94" class="diagram__label diagram__label--strong ltr">3 + 2i</text>
+
+        <text x="210" y="238" class="diagram__label ltr">3</text>
+        <text x="314" y="166" class="diagram__label ltr">2</text>
+        <text x="196" y="152" class="diagram__label ltr">3.606</text>
+        <text x="192" y="210" class="diagram__label ltr">33.69°</text>
+
+        <text x="440" y="272" class="diagram__axis-label">שתי קריאות, נקודה אחת</text>
+      </svg>
+      <figcaption>{{ sec.diagram.caption }}</figcaption>
+    </figure>
+    {% endif %}
+
+    {% if sec.diagram and sec.diagram.type == 'complex-rotation' %}
+    <figure class="diagram">
+      <svg viewBox="0 0 520 300" role="img" aria-label="כפל חוזר ב-i מסובב את הנקודה שלוש ועוד שתי i ברבע סיבוב בכל פעם, בלי לשנות את מרחקה מהראשית" preserveAspectRatio="xMidYMid meet">
+        <line x1="40" y1="150" x2="480" y2="150" class="diagram__axis"/>
+        <line x1="260" y1="20" x2="260" y2="280" class="diagram__axis"/>
+        <circle cx="260" cy="150" r="90" class="cplx-circle"/>
+
+        <line x1="260" y1="150" x2="335" y2="100" class="diagram__exp"/>
+        <circle cx="335" cy="100" r="5" class="diagram__dot diagram__dot--strong"/>
+        <text x="392" y="94" class="diagram__label diagram__label--strong ltr">3 + 2i</text>
+
+        <line x1="260" y1="150" x2="210" y2="75" class="cplx-ray"/>
+        <circle cx="210" cy="75" r="4.5" class="cplx-dot-2"/>
+        <text x="204" y="64" class="diagram__label ltr">−2 + 3i</text>
+
+        <line x1="260" y1="150" x2="185" y2="200" class="cplx-ray"/>
+        <circle cx="185" cy="200" r="4.5" class="cplx-dot-2"/>
+        <text x="178" y="220" class="diagram__label ltr">−3 − 2i</text>
+
+        <line x1="260" y1="150" x2="310" y2="225" class="cplx-ray"/>
+        <circle cx="310" cy="225" r="4.5" class="cplx-dot-2"/>
+        <text x="368" y="240" class="diagram__label ltr">2 − 3i</text>
+
+        <path d="M310,113 A62,62 0 0,0 265,88" class="cplx-arc"/>
+        <text x="300" y="82" class="diagram__label">כפל ב-i</text>
+
+        <text x="480" y="292" class="diagram__axis-label">המרחק מהראשית נשאר 3.606 בכל ארבע הנקודות</text>
+      </svg>
+      <figcaption>{{ sec.diagram.caption }}</figcaption>
+    </figure>
+    {% endif %}
+
+    {% if sec.diagram and sec.diagram.type == 'rc-nyquist' %}
+    <figure class="diagram">
+      <svg viewBox="0 0 520 260" role="img" aria-label="תרשים נייקוויסט של נגד וקבל במקביל: חצי מעגל שמתחיל בתדר גבוה קרוב לראשית ומסתיים בתדר נמוך במאה אוהם" preserveAspectRatio="xMidYMid meet">
+        <line x1="60" y1="210" x2="480" y2="210" class="diagram__axis"/>
+        <line x1="60" y1="210" x2="60" y2="30" class="diagram__axis"/>
+        <path d="M80,210 A170,170 0 0,1 420,210" class="diagram__exp"/>
+
+        <line x1="250" y1="210" x2="250" y2="40" class="diagram__linear"/>
+        <circle cx="250" cy="40" r="5" class="diagram__dot diagram__dot--strong"/>
+        <text x="330" y="34" class="diagram__label diagram__label--strong ltr">50 − 50i</text>
+        <text x="336" y="56" class="diagram__label">‏159.15 הרץ</text>
+
+        <circle cx="80" cy="210" r="4" class="diagram__dot"/>
+        <text x="132" y="200" class="diagram__label">תדר גבוה</text>
+        <circle cx="420" cy="210" r="4" class="diagram__dot"/>
+        <text x="474" y="200" class="diagram__label">תדר נמוך</text>
+        <text x="424" y="232" class="diagram__axis-label ltr">100Ω</text>
+
+        <text x="52" y="26" class="diagram__axis-label">−Im(Z)</text>
+        <text x="478" y="252" class="diagram__axis-label">Re(Z)</text>
+      </svg>
+      <figcaption>{{ sec.diagram.caption }}</figcaption>
+    </figure>
+    {% endif %}
   </section>
   {% endfor %}
 
@@ -399,6 +483,64 @@
   </section>
   {% endif %}
 
+  {% if topic.sim and topic.sim.type == 'complex-multiply' %}
+  <section class="sim" id="sim">
+    <h2 class="topic__heading">{{ topic.sim.title }}</h2>
+    <p class="sim__intro">{{ topic.sim.intro }}</p>
+
+    <div class="sim__controls">
+      {% for c in topic.sim.controls %}
+      <label class="sim__control">
+        <span class="sim__control-head">
+          <span>{{ c.label }}</span>
+          <output id="out-{{ c.key }}" class="ltr"></output>
+        </span>
+        <input type="range" id="in-{{ c.key }}"
+               min="{{ c.min }}" max="{{ c.max }}" step="{{ c.step }}" value="{{ c.value }}">
+      </label>
+      {% endfor %}
+    </div>
+
+    <div class="sim__chart">
+      <svg id="cx-svg" viewBox="0 0 640 340" role="img"
+           aria-label="המישור המרוכב. הנקודה השחורה היא המספר המקורי, הנקודה האדומה היא המכפלה, והקשת מראה את הזווית שנוספה"
+           preserveAspectRatio="xMidYMid meet">
+        <line x1="20" y1="170" x2="620" y2="170" class="diagram__axis"/>
+        <line x1="320" y1="14" x2="320" y2="326" class="diagram__axis"/>
+        <g id="cx-grid"></g>
+        <line id="cx-ray-a" x1="320" y1="170" x2="320" y2="170" class="diagram__exp"/>
+        <line id="cx-ray-b" x1="320" y1="170" x2="320" y2="170" class="cplx-ray cplx-ray--result"/>
+        <path id="cx-arc" class="cplx-arc" fill="none"/>
+        <circle id="cx-dot-a" cx="320" cy="170" r="5" class="diagram__dot diagram__dot--strong"/>
+        <circle id="cx-dot-b" cx="320" cy="170" r="5" class="cplx-dot-result"/>
+        <text id="cx-lbl-a" x="0" y="0" class="diagram__label diagram__label--strong ltr"></text>
+        <text id="cx-lbl-b" x="0" y="0" class="diagram__label ltr"></text>
+      </svg>
+      <p class="sim__axis">‏המספר המקורי קבוע: <span class="ltr">3 + 2i</span>, גודל <span class="ltr">3.606</span>, זווית <span class="ltr">33.69°</span></p>
+    </div>
+
+    <div class="sim__readout">
+      <div class="sim__stat">
+        <span class="sim__stat-label">המכפיל</span>
+        <span class="sim__stat-value ltr" id="cx-out-mult"></span>
+      </div>
+      <div class="sim__stat sim__stat--strong">
+        <span class="sim__stat-label">המכפלה</span>
+        <span class="sim__stat-value ltr" id="cx-out-prod"></span>
+      </div>
+      <div class="sim__stat">
+        <span class="sim__stat-label">גודל: 3.606 כפול</span>
+        <span class="sim__stat-value ltr" id="cx-out-mag"></span>
+      </div>
+      <div class="sim__stat">
+        <span class="sim__stat-label">זווית: ‎33.69° ועוד</span>
+        <span class="sim__stat-value ltr" id="cx-out-ang"></span>
+      </div>
+    </div>
+    <p class="sim__note" id="cx-note"></p>
+  </section>
+  {% endif %}
+
   {% if topic.sim and topic.sim.type == 'crispr-target' %}
   <section class="sim" id="sim">
     <h2 class="topic__heading">{{ topic.sim.title }}</h2>
@@ -478,6 +620,112 @@
   {% endif %}
 
 </article>
+
+<script>
+/* ===== מדמה כפל מרוכב: הגדלים מוכפלים והזוויות מתחברות ===== */
+(function () {
+  var svg = document.getElementById('cx-svg');
+  if (!svg) return;
+
+  var CX = 320, CY = 170, SCALE = 26;   // 26 pixels to one unit on both axes
+  var AX = 3, AY = 2;                   // the fixed operand, 3 + 2i
+
+  var inMag = document.getElementById('in-mag');
+  var inAng = document.getElementById('in-ang');
+
+  var grid = document.getElementById('cx-grid');
+  var g = '';
+  for (var u = -11; u <= 11; u++) {
+    if (u === 0) continue;
+    g += '<line x1="' + (CX + u * SCALE) + '" y1="165" x2="' + (CX + u * SCALE) + '" y2="175" class="diagram__axis"/>';
+    if (Math.abs(u * SCALE) < 150) {
+      g += '<line x1="315" y1="' + (CY - u * SCALE) + '" x2="325" y2="' + (CY - u * SCALE) + '" class="diagram__axis"/>';
+    }
+  }
+  grid.innerHTML = g;
+
+  // One decimal is the honest precision here: the sliders move in steps of
+  // 0.05 and 5 degrees, so more digits would be inventing accuracy.
+  function fmt(n) {
+    var v = Math.round(n * 100) / 100;
+    return (v < 0 ? '−' : '') + Math.abs(v).toFixed(2);
+  }
+  function pair(re, im) {
+    return fmt(re) + (im < 0 ? ' − ' : ' + ') + fmt(Math.abs(im)) + 'i';
+  }
+
+  function place(el, x, y) { el.setAttribute('x', x); el.setAttribute('y', y); }
+
+  function draw() {
+    var m = parseFloat(inMag.value);
+    var degs = parseFloat(inAng.value);
+    var rad = degs * Math.PI / 180;
+
+    var mre = m * Math.cos(rad), mim = m * Math.sin(rad);
+    var pre = AX * mre - AY * mim;
+    var pim = AX * mim + AY * mre;
+
+    var aMag = Math.sqrt(AX * AX + AY * AY);
+    var aAng = Math.atan2(AY, AX) * 180 / Math.PI;
+    var pMag = aMag * m;
+    var pAng = aAng + degs;
+
+    document.getElementById('out-mag').textContent = fmt(m);
+    document.getElementById('out-ang').textContent = degs + '°';
+    document.getElementById('cx-out-mult').textContent = pair(mre, mim);
+    document.getElementById('cx-out-prod').textContent = pair(pre, pim);
+    document.getElementById('cx-out-mag').textContent = fmt(m) + ' = ' + fmt(pMag);
+    document.getElementById('cx-out-ang').textContent = fmt(degs) + '° = ' + fmt(pAng) + '°';
+
+    var ax = CX + AX * SCALE, ay = CY - AY * SCALE;
+    var bx = CX + pre * SCALE, by = CY - pim * SCALE;
+
+    document.getElementById('cx-ray-a').setAttribute('x2', ax);
+    document.getElementById('cx-ray-a').setAttribute('y2', ay);
+    document.getElementById('cx-ray-b').setAttribute('x2', bx);
+    document.getElementById('cx-ray-b').setAttribute('y2', by);
+    document.getElementById('cx-dot-a').setAttribute('cx', ax);
+    document.getElementById('cx-dot-a').setAttribute('cy', ay);
+    document.getElementById('cx-dot-b').setAttribute('cx', bx);
+    document.getElementById('cx-dot-b').setAttribute('cy', by);
+
+    var la = document.getElementById('cx-lbl-a');
+    la.textContent = pair(AX, AY);
+    place(la, ax + 26, ay - 8);
+    var lb = document.getElementById('cx-lbl-b');
+    lb.textContent = pair(pre, pim);
+    place(lb, bx + 26, by - 8);
+
+    // The arc runs from the original angle to the product angle at a fixed
+    // radius, so it reads as "this much was added", not as a distance.
+    var r = 62;
+    var a0 = aAng * Math.PI / 180, a1 = pAng * Math.PI / 180;
+    var sweep = degs < 0 ? 1 : 0;
+    var large = Math.abs(degs) > 180 ? 1 : 0;
+    var arc = 'M' + (CX + r * Math.cos(a0)) + ',' + (CY - r * Math.sin(a0)) +
+              ' A' + r + ',' + r + ' 0 ' + large + ',' + sweep + ' ' +
+              (CX + r * Math.cos(a1)) + ',' + (CY - r * Math.sin(a1));
+    document.getElementById('cx-arc').setAttribute('d', Math.abs(degs) < 0.5 ? '' : arc);
+
+    var note = document.getElementById('cx-note');
+    if (Math.abs(m - 1) < 0.001 && degs === 90) {
+      note.textContent = 'זהו בדיוק כפל ב-i: גודל 1, זווית 90 מעלות. הנקודה הסתובבה רבע סיבוב והמרחק מהראשית לא זז.';
+    } else if (Math.abs(m - 1) < 0.001 && Math.abs(degs) === 180) {
+      note.textContent = 'גודל 1 וזווית 180 מעלות הם כפל במינוס אחד. שני כפלים ב-i נותנים בדיוק את זה, ומכאן i²=−1.';
+    } else if (degs === 0) {
+      note.textContent = 'זווית אפס: המכפיל הוא מספר ממשי רגיל, והוא רק מותח או מכווץ לאורך אותו ישר.';
+    } else if (Math.abs(m - 1) < 0.001) {
+      note.textContent = 'גודל 1 פירושו סיבוב טהור. המרחק מהראשית נשמר, רק הזווית זזה.';
+    } else {
+      note.textContent = 'שתי הפעולות קורות יחד: הגודל מוכפל ב-' + fmt(m) + ' והזווית זזה ב-' + degs + ' מעלות.';
+    }
+  }
+
+  inMag.addEventListener('input', draw);
+  inAng.addEventListener('input', draw);
+  draw();
+}());
+</script>
 
 <script>
 /* ===== מדמה חיפוש מטרה של CRISPR ===== */

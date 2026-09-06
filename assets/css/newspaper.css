@@ -1184,6 +1184,14 @@ img { max-width: 100%; display: block; }
   text-anchor: start;
 }
 .diagram__label--strong { fill: var(--rule-dark); font-weight: 700; }
+
+/* המישור המרוכב: קשתות זווית, מעגל היחידה ונקודת המכפלה */
+.cplx-arc { fill: none; stroke: var(--ink-faint); stroke-width: 1.5; }
+.cplx-circle { fill: none; stroke: var(--ink-faint); stroke-width: 1; stroke-dasharray: 3 4; }
+.cplx-ray { stroke: var(--ink-faint); stroke-width: 1.5; }
+.cplx-ray--result { stroke: var(--accent); stroke-width: 2.5; }
+.cplx-dot-2 { fill: var(--ink-faint); }
+.cplx-dot-result { fill: var(--accent); }
 .diagram__axis-label {
   font-family: var(--sans);
   font-size: 11.5px;

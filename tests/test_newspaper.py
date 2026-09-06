@@ -8,6 +8,7 @@ last step of fixing an editorial or rendering bug — see docs/RUNBOOK.md §5.
 
 from __future__ import annotations
 
+import cmath
 import hashlib
 import json
 import math
@@ -907,6 +908,79 @@ def test_e_topic_simulator_and_diagrams_are_rendered():
             if dia:
                 assert f"'{dia}'" in template, \
                     f"{path.stem}: no template branch for diagram '{dia}'"
+
+
+def test_complex_numbers_topic_matches_the_numbers_it_prints():
+    """Every value on the complex-numbers page is recomputed here rather than
+    trusted, per BKM 13. The page argues that multiplication adds angles and
+    multiplies magnitudes, so a mistyped angle would not just be a typo, it
+    would refute the paragraph around it."""
+    topic = json.loads(
+        (ROOT / "data" / "topics" / "complex-numbers.json").read_text(encoding="utf-8"))
+    text = json.dumps(topic, ensure_ascii=False)
+
+    a, b = complex(3, 2), complex(1, 1)
+    assert f"{abs(a):.3f}" == "3.606" and "3.606" in text
+    assert f"{math.degrees(cmath.phase(a)):.2f}" == "33.69" and "33.69" in text
+    assert f"{abs(b):.3f}" == "1.414" and "1.414" in text
+    assert a * b == complex(1, 5) and "1+5i" in text
+    assert f"{abs(a * b):.3f}" == "5.099" and "5.099" in text
+    assert f"{math.degrees(cmath.phase(a * b)):.2f}" == "78.69" and "78.69" in text
+
+    # The angles really do add and the magnitudes really do multiply. If this
+    # ever fails the page is not wrong, arithmetic is.
+    assert math.isclose(math.degrees(cmath.phase(a)) + 45.0,
+                        math.degrees(cmath.phase(a * b)))
+    assert math.isclose(abs(a) * abs(b), abs(a * b))
+
+    rotated = complex(0, 1) * a
+    assert rotated == complex(-2, 3), "multiplying 3+2i by i gives -2+3i"
+    assert f"{math.degrees(cmath.phase(rotated)):.2f}" == "123.69" and "123.69" in text
+    assert math.isclose(abs(rotated), abs(a)), "a pure rotation must not change size"
+
+    # x³ = 15x + 4 is the example that forced the issue in 1572. Both halves of
+    # the claim are checked: that 4 solves it, and that (2+i)³ is 2+11i.
+    assert 4 ** 3 == 15 * 4 + 4
+    assert complex(2, 1) ** 3 == complex(2, 11)
+    assert complex(2, 1) + complex(2, -1) == 4
+
+    # The impedance worked example, shared with the lead article.
+    w = 2 * math.pi * 100
+    z = 100 + 1 / (1j * w * 10e-6)
+    assert f"{z.imag:.1f}" == "-159.2" and "159.2" in text
+    assert f"{abs(z):.1f}" == "188.0" and "188.0" in text
+    assert f"{math.degrees(cmath.phase(z)):.1f}" == "-57.9" and "57.9" in text
+    assert f"{w:.1f}" == "628.3" and "628.3" in text
+
+    # The Nyquist peak of a parallel RC sits at R/2 - jR/2, at f = 1/(2 pi RC).
+    peak = 1 / (2 * math.pi * 100 * 10e-6)
+    assert f"{peak:.2f}" == "159.15" and "159.15" in text
+    zp = 100 / (1 + 1j * 2 * math.pi * peak * 100 * 10e-6)
+    assert (round(zp.real), round(zp.imag)) == (50, -50) and "50 מינוס 50i" in text
+
+    assert 1000 / 50 / 4 == 5, "a quarter cycle at 50 Hz is 5 ms"
+
+
+def test_complex_plane_diagram_uses_one_scale_on_both_axes():
+    """A diagram that labels an angle has to be drawn to scale, or it prints a
+    number the picture contradicts. The first draft of this figure used 70
+    pixels per unit across and 45 down, which drew 33.69 degrees as 27, and
+    nothing in the build noticed. Geometry that carries a claim gets pinned."""
+    template = (ROOT / "templates" / "topic.html.j2").read_text(encoding="utf-8")
+    block = template.split("'complex-plane-point'")[1].split("{% endif %}")[0]
+
+    ox, oy = 120.0, 220.0
+    m = re.search(r'<circle cx="([\d.]+)" cy="([\d.]+)" r="5"', block)
+    assert m, "the point marking 3+2i is gone from the diagram"
+    px, py = float(m.group(1)), float(m.group(2))
+
+    across, down = (px - ox) / 3.0, (oy - py) / 2.0
+    assert math.isclose(across, down), \
+        f"the axes are drawn at different scales ({across} vs {down} px per unit)"
+
+    drawn = math.degrees(math.atan2(oy - py, px - ox))
+    assert abs(drawn - 33.69) < 0.05, \
+        f"the figure draws {drawn:.2f} degrees but labels it 33.69"
 
 
 def test_a_lead_that_cites_research_needs_a_verification_note(tmp_path, monkeypatch):
