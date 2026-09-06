@@ -13,6 +13,11 @@ trafilatura>=1.9
 # Research input
 pypdf>=6.0
 
+# Raster images. The paper prints borrowed infographics (BKM section 14), which
+# arrive as large PNGs and have to be resized and converted to webp before they
+# go in the repository.
+Pillow>=10.3
+
 # Processing
 rapidfuzz>=3.9
 
