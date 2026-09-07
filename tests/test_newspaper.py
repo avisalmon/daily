@@ -1162,3 +1162,76 @@ def test_the_lowest_frequency_costs_the_time_the_article_claims():
     assert "שבע עשרה דקות" in body, (
         "the article prints a different figure than 1000 s rounds to"
     )
+
+
+import research_doc  # noqa: E402
+
+
+def _own_documents() -> list[Path]:
+    return sorted((ROOT / "data" / "research").glob("*.doc.json"))
+
+
+@pytest.mark.parametrize("path", _own_documents(), ids=lambda p: p.stem)
+def test_the_papers_own_document_is_what_gets_published(path: Path):
+    """BKM 16: the received deep-research PDF is an input, not the reference.
+    build_site.publish_research copies data/research/<date>-*.pdf into research/,
+    and before this guard existed it would have silently overwritten the paper's
+    own document on the very next build. The received file is still on disk, so
+    this walks the real state rather than a fixture."""
+    edition_date = path.stem.replace(".doc", "")
+    published = ROOT / "research" / f"{edition_date}.pdf"
+    assert published.exists(), (
+        f"{edition_date} has its own reference document but nothing is published. "
+        f"Run: python scripts/research_doc.py {edition_date}"
+    )
+
+    received = sorted((ROOT / "data" / "research").glob(f"{edition_date}-*.pdf"))
+    if not received:
+        return
+    assert published.read_bytes() != received[0].read_bytes(), (
+        f"research/{edition_date}.pdf is byte-identical to the received "
+        f"{received[0].name}. The received PDF has overwritten the paper's own "
+        f"reference document - see build_site.publish_research"
+    )
+
+
+@pytest.mark.parametrize("path", _own_documents(), ids=lambda p: p.stem)
+def test_the_byline_counts_match_the_document_it_describes(path: Path):
+    """BKM 13: pages and words are derived, printed, and unfalsifiable by a
+    reader. They were hand-typed once and went stale the moment the document was
+    rewritten. Recompute both from the artifacts themselves."""
+    edition_date = path.stem.replace(".doc", "")
+    edition_file = ROOT / "data" / "editions" / f"{edition_date}.json"
+    if not edition_file.exists():
+        return
+
+    doc = json.loads(path.read_text(encoding="utf-8"))
+    words = research_doc.count_words(doc)
+    pages = research_doc.page_count(ROOT / "research" / f"{edition_date}.pdf")
+
+    source = json.loads(edition_file.read_text(encoding="utf-8"))["lead"]["source"]
+    assert f"{pages} עמודים" in source, (
+        f"byline claims something other than the {pages} pages actually in "
+        f"research/{edition_date}.pdf: {source!r}"
+    )
+    assert f"{words:,} מילים" in source, (
+        f"byline claims something other than the {words:,} words actually in "
+        f"{path.name}: {source!r}"
+    )
+
+
+def test_the_reference_document_says_what_it_rejected():
+    """A document that corrects its source has to show its working, or the
+    correction is just an assertion. Every own-document carries a provenance
+    block and a section listing what was dropped."""
+    for path in _own_documents():
+        doc = json.loads(path.read_text(encoding="utf-8"))
+        assert doc.get("provenance", {}).get("body"), (
+            f"{path.name} has no provenance block - a reader cannot tell what "
+            f"this document is or how it relates to what was handed in"
+        )
+        headings = " ".join(s["heading"] for s in doc["sections"])
+        assert "נדחה" in headings or "גבולות" in headings, (
+            f"{path.name} never says what it rejected or what it could not "
+            f"verify. Both belong in the document, not only in the plan."
+        )

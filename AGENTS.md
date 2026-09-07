@@ -131,3 +131,12 @@ the claims that actually reach the page.
   it when you have a specific reason to distrust a document. See BKM section 9
   and RUNBOOK section 7.
 - Never run deep research to test connectivity. Use --status on an old run.
+
+**The received PDF is an input. It is never published.** The paper writes its own
+reference document instead: `data/research/<date>.doc.json`, rendered by
+`scripts/research_doc.py`. It must carry a provenance block, a section naming
+what was rejected from the source, and a section naming what could not be
+verified. Put the reported page and word counts in the edition's `lead.source`;
+a test recomputes both and fails when they drift. The received file stays on disk
+and in git history so the rejections remain checkable. RUNBOOK section 2a, BKM
+section 17.

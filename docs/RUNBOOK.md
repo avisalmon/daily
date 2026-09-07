@@ -58,8 +58,45 @@ the PDF in:
 data\research\YYYY-MM-DD-slug.pdf
 ```
 
-The date must match the edition date. The PDF is published with the paper and
-the lead links to it.
+The date must match the edition date. **This file is an input, not the paper's
+reference.** It is never published as-is: see §2a.
+
+## 2a. The paper writes its own reference document
+
+A received deep-research PDF arrives branded, laid out left-to-right, and
+carrying claims that have not been checked. Two of them have now printed things
+that were wrong. Publishing it would mean citing, as the article's reference, a
+document the article disagrees with.
+
+So the desk reads it, re-researches it, and writes its own. Source is structured
+data, never prose typed straight into a PDF:
+
+```
+data\research\YYYY-MM-DD.doc.json
+```
+
+Render it:
+
+```powershell
+.\.venv\Scripts\python.exe scripts\research_doc.py YYYY-MM-DD
+```
+
+That prints `research/YYYY-MM-DD.pdf` through headless Chrome, which is the only
+thing on the machine that lays out Hebrew properly, and reports the page and
+word counts. **Put those counts in the edition's `lead.source`** — a test
+recomputes both from the artifacts and fails if the byline drifts.
+
+The document must carry two things a summary would not:
+
+- a **provenance block** saying what it is, what it was built from, and that the
+  received document is not published;
+- a section naming **what was rejected and why**, and a section naming **what
+  could not be verified**. A correction a reader cannot check is just an
+  assertion.
+
+Once `<date>.doc.json` exists, `build_site.py` stops copying the received PDF
+for that date. The received file stays on disk and in git history, so the
+rejections remain checkable, but it is not published.
 
 ## 3. Build
 

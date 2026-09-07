@@ -29,6 +29,7 @@ import validate
 ROOT = Path(__file__).resolve().parent.parent
 DATA_DIR = ROOT / "data" / "editions"
 RESEARCH_SRC = ROOT / "data" / "research"
+RESEARCH_DOCS = ROOT / "data" / "research"   # <date>.doc.json, the paper's own
 RESEARCH_OUT = ROOT / "research"
 TOPIC_DIR = ROOT / "data" / "topics"
 LEARN_OUT = ROOT / "learn"
@@ -122,13 +123,35 @@ def pending_editions() -> list[dict]:
 
 
 def publish_research(editions: list[dict]) -> list[str]:
-    """Copy each edition's source research PDF into the published site.
+    """Make each edition's reference document reachable from the site.
 
-    The lead story links to it (docs/SPEC.md §5), so the file must be
-    reachable from the site, not just sitting in the gitignored input folder.
+    The lead story links to it (docs/SPEC.md §5), so the file must be in the
+    published tree, not just sitting in the gitignored input folder.
+
+    Two kinds of document can end up at research/<date>.pdf, and which one wins
+    is not a detail. A received deep-research PDF is an *input*: branded,
+    left-to-right, and carrying claims this desk has checked and rejected.
+    Publishing it means citing, as the article's reference, a document the
+    article disagrees with. So when the paper has written its own reference
+    document, that one is authoritative and the received PDF is not copied at
+    all. Without this check the received file would silently overwrite the
+    paper's own version on the next build, which is exactly the kind of quiet
+    regression that ships.
     """
     published = []
     for e in editions:
+        own = RESEARCH_DOCS / f"{e['date']}.doc.json"
+        if own.exists():
+            dest = RESEARCH_OUT / f"{e['date']}.pdf"
+            if not dest.exists():
+                raise SystemExit(
+                    f"{e['date']}: the paper has its own reference document "
+                    f"({own.relative_to(ROOT)}) but {dest.relative_to(ROOT)} is "
+                    f"missing. Run: python scripts/research_doc.py {e['date']}"
+                )
+            published.append(dest.name)
+            continue
+
         matches = sorted(RESEARCH_SRC.glob(f"{e['date']}-*.pdf"))
         if not matches:
             continue

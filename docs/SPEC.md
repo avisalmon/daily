@@ -23,10 +23,13 @@ may be hours, and may cross sessions.
   └─────────────────────────────────────────────────────────┘
                           ↓
              user runs deep research externally
-             (NotebookLM / Gemini) → exports PDF
+             (NotebookLM / Gemini / ChatGPT) → exports PDF
+             this is an INPUT, it is never published as-is
                           ↓
   ┌─ 2. "בנה את העיתון"  ────────────────────────────────┐
-  │    agent reads plan + PDF → writes edition JSON → builds │
+  │    agent reads plan + PDF, re-verifies, then writes its  │
+  │    own reference document (data/research/<date>.doc.json)│
+  │    → writes edition JSON → builds                        │
   │    → commits and pushes, dated ahead and held back        │
   └──────────────────────────────────────────────────────────┘
                           ↓

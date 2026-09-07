@@ -1,0 +1,266 @@
+{#- The paper's own reference document. Printed through headless Chrome, so
+    this is print CSS: no navigation, no hover states, nothing interactive.
+    Same rules-and-whitespace discipline as the site. No cards. -#}
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<title>{{ doc.title }}</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@300..900&family=Noto+Serif+Hebrew:wght@300..700&family=Heebo:wght@400..800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink:       #16130f;
+    --ink-soft:  #4a443c;
+    --ink-faint: #857d72;
+    --rule:      #d8d1c4;
+    --accent:    #8c1c13;
+    --display: "Frank Ruhl Libre", "David Libre", "Times New Roman", serif;
+    --body:    "Noto Serif Hebrew", "David Libre", Georgia, serif;
+    --sans:    "Heebo", "Assistant", "Segoe UI", system-ui, sans-serif;
+  }
+
+  @page {
+    size: A4;
+    margin: 20mm 18mm 18mm;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    color: var(--ink);
+    background: #fff;
+    font-family: var(--body);
+    font-size: 10.5pt;
+    line-height: 1.65;
+    text-align: right;
+    direction: rtl;
+  }
+
+  .masthead {
+    border-bottom: 3px solid var(--ink);
+    padding-bottom: 6px;
+    margin-bottom: 4px;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+  .masthead__name {
+    font-family: var(--display);
+    font-size: 15pt;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+  }
+  .masthead__kind {
+    font-family: var(--sans);
+    font-size: 8pt;
+    letter-spacing: 0.09em;
+    color: var(--ink-faint);
+  }
+  .masthead__thin {
+    border-bottom: 1px solid var(--ink);
+    margin-bottom: 22px;
+    height: 2px;
+  }
+
+  h1 {
+    font-family: var(--display);
+    font-size: 25pt;
+    font-weight: 800;
+    line-height: 1.14;
+    margin: 0 0 10px;
+    letter-spacing: -0.015em;
+  }
+  .standfirst {
+    font-size: 12pt;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    margin: 0 0 16px;
+  }
+
+  .meta {
+    font-family: var(--sans);
+    font-size: 8.5pt;
+    color: var(--ink-faint);
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    padding: 7px 0;
+    margin: 0 0 22px;
+  }
+  .meta span + span::before { content: " · "; }
+
+  .provenance {
+    border-top: 3px solid var(--accent);
+    border-bottom: 1px solid var(--rule);
+    padding: 12px 0 14px;
+    margin: 0 0 26px;
+  }
+  .provenance__label {
+    font-family: var(--sans);
+    font-size: 8pt;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    margin: 0 0 6px;
+  }
+  .provenance p {
+    margin: 0 0 7px;
+    font-size: 9.5pt;
+    line-height: 1.6;
+    color: var(--ink-soft);
+  }
+  .provenance p:last-child { margin-bottom: 0; }
+
+  .toc {
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 18px;
+    margin-bottom: 26px;
+    column-count: 2;
+    column-gap: 26px;
+  }
+  .toc__label {
+    font-family: var(--sans);
+    font-size: 8pt;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--ink-faint);
+    margin: 0 0 8px;
+    column-span: all;
+  }
+  .toc ol { margin: 0; padding-right: 18px; font-size: 9.5pt; line-height: 1.75; }
+
+  section { break-inside: auto; }
+
+  h2 {
+    font-family: var(--display);
+    font-size: 14pt;
+    font-weight: 700;
+    margin: 26px 0 9px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid var(--rule);
+    break-after: avoid;
+  }
+  section:first-of-type h2 { margin-top: 0; }
+
+  p { margin: 0 0 10px; }
+  p.lead-in::first-letter {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: 1.9em;
+    line-height: 1;
+  }
+
+  .note {
+    border-right: 3px solid var(--rule);
+    padding: 2px 12px 2px 0;
+    margin: 0 0 12px;
+    color: var(--ink-soft);
+    font-size: 9.5pt;
+  }
+  .note__label {
+    font-family: var(--sans);
+    font-size: 7.5pt;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--ink-faint);
+    display: block;
+    margin-bottom: 2px;
+  }
+
+  blockquote {
+    margin: 0 0 12px;
+    padding: 0 14px 0 0;
+    border-right: 3px solid var(--accent);
+    font-size: 10pt;
+    color: var(--ink-soft);
+  }
+  blockquote cite {
+    display: block;
+    font-family: var(--sans);
+    font-size: 8pt;
+    font-style: normal;
+    color: var(--ink-faint);
+    margin-top: 4px;
+  }
+
+  ul, ol { margin: 0 0 12px; padding-right: 20px; }
+  li { margin-bottom: 5px; }
+
+  .ltr { direction: ltr; unicode-bidi: isolate; }
+
+  .sources { break-before: page; }
+  .sources ol { font-size: 9pt; line-height: 1.6; padding-right: 20px; }
+  .sources li { margin-bottom: 7px; }
+  .sources .ltr { color: var(--ink-soft); }
+
+  .colophon {
+    border-top: 1px solid var(--ink);
+    margin-top: 26px;
+    padding-top: 10px;
+    font-family: var(--sans);
+    font-size: 8pt;
+    color: var(--ink-faint);
+    line-height: 1.6;
+  }
+</style>
+</head>
+<body>
+
+<div class="masthead">
+  <div class="masthead__name">היום בקיצור</div>
+  <div class="masthead__kind">מסמך רקע</div>
+</div>
+<div class="masthead__thin"></div>
+
+<h1>{{ doc.title }}</h1>
+<p class="standfirst">{{ doc.standfirst }}</p>
+
+<p class="meta">
+  <span>{{ doc.date_he }}</span><span>מהדורה מס' {{ doc.edition_number }}</span><span>{{ word_count }} מילים</span>
+</p>
+
+<div class="provenance">
+  <p class="provenance__label">{{ doc.provenance.label }}</p>
+  {% for para in doc.provenance.body %}<p>{{ para }}</p>{% endfor %}
+</div>
+
+<nav class="toc">
+  <p class="toc__label">תוכן</p>
+  <ol>
+    {% for section in doc.sections %}<li>{{ section.heading }}</li>{% endfor %}
+  </ol>
+</nav>
+
+{% for section in doc.sections %}
+<section>
+  <h2>{{ section.heading }}</h2>
+  {% for block in section.blocks %}
+    {%- if block.kind == 'p' %}
+  <p{% if block.get('lead_in') %} class="lead-in"{% endif %}>{{ block.text }}</p>
+    {%- elif block.kind == 'note' %}
+  <div class="note"><span class="note__label">{{ block.label }}</span>{{ block.text }}</div>
+    {%- elif block.kind == 'quote' %}
+  <blockquote>{{ block.text }}<cite>{{ block.cite }}</cite></blockquote>
+    {%- elif block.kind == 'list' %}
+  {#- block['items'] not block.items: Jinja resolves the dict method first. -#}
+  <ul>{% for item in block['items'] %}<li>{{ item }}</li>{% endfor %}</ul>
+    {%- endif %}
+  {% endfor %}
+</section>
+{% endfor %}
+
+<section class="sources">
+  <h2>מקורות</h2>
+  <ol>
+    {% for s in doc.sources %}
+    <li>{{ s.text }}{% if s.get('ref') %} <span class="ltr">{{ s.ref }}</span>{% endif %}</li>
+    {% endfor %}
+  </ol>
+</section>
+
+<p class="colophon">{{ doc.colophon }}</p>
+
+</body>
+</html>

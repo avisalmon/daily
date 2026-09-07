@@ -594,4 +594,46 @@ a disclaimer should not run.** The infographic was machine-made, its own credit
 already conceded two exaggerations, and the review found more. It was removed
 rather than annotated.
 
+## 17. The received research is an input, not the reference
+
+The follow-on from section 16. Edition 9 was published linking to the deep
+research PDF exactly as it arrived, under the byline "מחקר עומק, 22 עמודים".
+Meanwhile the plan recorded five things that same document got wrong, and the
+article had quietly declined to repeat them.
+
+That is an incoherent position. The paper cited as its reference a document it
+disagreed with, and gave the reader no way to know. Worse, the byline numbers
+were hand-typed and lent the thing an authority nobody had checked.
+
+So the paper writes its own reference document now. `data/research/<date>.doc.json`
+is structured data, `scripts/research_doc.py` renders it through headless Chrome
+(the only thing on this machine that lays out Hebrew properly), and the result
+replaces the received PDF at `research/<date>.pdf`. RUNBOOK §2a is the procedure.
+
+Three things had to be true for this not to become a way to launder our own
+opinions into a citation.
+
+**The document has to show its working.** It carries a provenance block saying
+what it was built from, a section naming every claim rejected from the source
+and why, and a section naming what could not be verified at all. A correction a
+reader cannot check is just an assertion. `test_the_reference_document_says_what_it_rejected`
+enforces both sections.
+
+**The received file is not destroyed, only unpublished.** It stays in
+`data/research/` on disk and in git history at `f7fd91b`. The rejections stay
+checkable by anyone who wants to look.
+
+**The build had to stop fighting it.** `publish_research` copied
+`data/research/<date>-*.pdf` over `research/<date>.pdf` on *every* build, so the
+received PDF would have silently overwritten the paper's own document the next
+time anything triggered a build, including the hourly cron. It now short-circuits
+when a `.doc.json` exists. Disabling that branch was rehearsed: two tests fail,
+one because the published file goes byte-identical to the received one, and one
+because the byline snaps back to 22 pages.
+
+That second failure is the useful one. The byline test was written for BKM §13,
+to stop derived numbers going stale, and it caught a completely different bug for
+free. **Numbers pinned to their artifact detect any change to the artifact,
+whatever caused it.**
+
 
