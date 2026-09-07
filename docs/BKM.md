@@ -550,4 +550,48 @@ Two things generalise:
 - **A green workflow is not a green deploy.** `publish` and `pages-build-deployment`
   are separate runs. Check both, `gh run list --limit 3` shows them side by side.
 
+## 16. Print the correction, do not quietly fix the page
+
+Edition 9's lead was reviewed by the Technion researcher it named. Four
+criticisms, and one of them was a real factual error: the opening said that
+reducing noise does not narrow the set of possible interpretations. That is true
+only for exactly-degenerate circuits. Worse, paragraph 4 of the same article got
+it right, so the piece contradicted itself and the wrong version was the one in
+the opening, where most readers stop.
+
+Three things came out of it.
+
+**The article had under-used its own source.** Re-reading the 22-page research
+document found ill-posed inverse problems, Tikhonov regularization, structural
+versus practical identifiability, and a full list of complementary experiments
+already in it. The article had flattened all of them. The criticism that the
+piece "did not decide what it is" was, underneath, a criticism that it summarized
+its source instead of using it. Read the whole document before writing, not the
+parts that answer the question you already had.
+
+**A silent edit is not a correction.** The page is a newspaper. Rewriting it in
+place and saying nothing means a reader who saw the first version has no way to
+learn they were misinformed. `lead.correction` holds a date and a list of
+paragraphs, rendered above the body so the reader meets it before the prose,
+never at the foot. `validate.py` checks its shape; a test walks every edition
+carrying one and asserts the text reached the built HTML, because Jinja renders
+nothing for a key the template does not read (section 11). A sibling test asserts
+the template block exists, so the walking test cannot fall silent when the last
+correction ages out of the data.
+
+**Rewriting adds claims, so it needs its own verification pass.** The second pass
+on this article caught three plausible-looking statements that were wrong: charge
+transfer resistance does not itself obey Arrhenius (the exchange current density
+does, so Rct carries an extra temperature factor); double layer capacitance
+*is* potential dependent, so the bias test separates kinetics from geometry, not
+capacitance from resistance; and ohmic resistance for a disk electrode goes as
+one over the radius, not one over the area. Append what the second pass checked
+to the plan's `lead.verified`. The first pass's note does not cover text that did
+not exist when it ran.
+
+And the smallest lesson, which is the one that will recur: **a figure that needs
+a disclaimer should not run.** The infographic was machine-made, its own credit
+already conceded two exaggerations, and the review found more. It was removed
+rather than annotated.
+
 

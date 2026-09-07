@@ -359,6 +359,40 @@ img { max-width: 100%; display: block; }
    no fill beyond the faint tint the data figures already use. The player itself
    is the browser's native control, which cannot be restyled and should not be
    faked with a custom one. */
+/* A correction is set off by rules, not a tinted box. It should read as the
+   paper speaking in its own voice about its own mistake, which is why the
+   label carries the accent and the text stays in the body face. */
+.correction {
+  margin: 0 0 22px;
+  padding: 12px 0 13px;
+  border-top: 3px solid var(--accent);
+  border-bottom: 1px solid var(--rule);
+}
+
+.correction__label {
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .06em;
+  color: var(--accent);
+  margin: 0 0 9px;
+}
+
+.correction__date {
+  font-weight: 400;
+  letter-spacing: 0;
+  color: var(--ink-faint);
+}
+
+.correction__text {
+  font-size: 15px;
+  line-height: 1.72;
+  color: var(--ink-soft);
+  margin: 0 0 10px;
+}
+
+.correction__text:last-child { margin-bottom: 0; }
+
 .listen {
   margin: 22px 0 4px;
   padding: 12px 0 0;

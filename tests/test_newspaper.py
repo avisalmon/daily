@@ -1116,3 +1116,49 @@ def test_local_audio_is_pruned_to_the_retention_window():
     assert len(files) <= podcast.KEEP_LOCAL, (
         f"{len(files)} episodes in audio/, over the {podcast.KEEP_LOCAL} kept. "
         "Run: python scripts\\podcast.py --prune")
+
+
+@pytest.mark.parametrize("path", EDITIONS, ids=lambda p: p.stem)
+def test_a_published_correction_reaches_the_page(path: Path):
+    """BKM 11: Jinja renders nothing for a key the template does not read, so a
+    correction could sit in the data and never appear in print. This walks the
+    real editions rather than a fixture, because a fixture would still pass if
+    the template block were deleted tomorrow."""
+    edition = json.loads(path.read_text(encoding="utf-8"))
+    correction = edition.get("lead", {}).get("correction")
+    if not correction:
+        return
+
+    page = (ROOT / "editions" / f"{path.stem}.html").read_text(encoding="utf-8")
+    for para in correction["body"]:
+        assert para[:40] in page, (
+            f"{path.stem} carries a correction whose text never reached the page - "
+            "the template is not rendering lead.correction"
+        )
+    assert correction["date"] in page, "the correction is printed without its date"
+
+
+def test_the_correction_template_block_still_exists():
+    """The sibling of the walking test above: it would fall silent the day the
+    last correction is removed from the data, so the block is asserted directly."""
+    template = (ROOT / "templates" / "edition.html.j2").read_text(encoding="utf-8")
+    assert "lead.correction" in template, "the template no longer renders a correction"
+    assert "correction__text" in template, "the correction body is no longer printed"
+
+
+def test_the_lowest_frequency_costs_the_time_the_article_claims():
+    """BKM 13: the paper derives this one rather than quoting it, so no reader
+    can catch it. One cycle at the bottom of the window is 1/f seconds."""
+    seconds = 1 / 1e-3
+    assert seconds == 1000
+    minutes = seconds / 60
+    assert 16.6 < minutes < 16.7, minutes
+
+    edition = json.loads(
+        (ROOT / "data" / "editions" / "2026-09-07.json").read_text(encoding="utf-8")
+    )
+    body = " ".join(edition["lead"]["body"])
+    assert "אלף שניות" in body, "the article no longer prints the period it derives"
+    assert "שבע עשרה דקות" in body, (
+        "the article prints a different figure than 1000 s rounds to"
+    )

@@ -130,6 +130,28 @@ def check_edition(ed: dict, path: Path, seen_urls: dict[str, str], errors: list[
             if art.get(field) is not None and not isinstance(art[field], int):
                 _fail(errors, where, f"lead.image {field} must be an integer")
 
+    # ---- correction ------------------------------------------------------
+    # A published correction is the one piece of the paper a reader must be
+    # able to trust unconditionally, so it may not ship as a vague gesture.
+    # It states the date it was issued and says what was wrong in prose. An
+    # empty body renders an accent rule over nothing, which reads as the paper
+    # admitting a mistake it declines to name.
+    corr = lead.get("correction")
+    if corr is not None:
+        if not isinstance(corr, dict):
+            _fail(errors, where, "lead.correction must be an object with 'date' and 'body'")
+        else:
+            try:
+                date.fromisoformat(corr.get("date") or "")
+            except (ValueError, TypeError):
+                _fail(errors, where,
+                      f"lead.correction.date {corr.get('date')!r} is not an ISO date")
+            body = corr.get("body")
+            if not isinstance(body, list) or not body:
+                _fail(errors, where, "lead.correction.body must be a non-empty list of paragraphs")
+            elif any(not isinstance(p, str) or not p.strip() for p in body):
+                _fail(errors, where, "lead.correction.body has an empty paragraph")
+
     # ---- briefs -----------------------------------------------------------
     briefs = [s for section in ed.get("grid", []) for s in section.get("stories", [])]
     for s in briefs:

@@ -81,6 +81,18 @@
             </figcaption>
           </figure>
           {% endif %}
+          {# A correction is printed where the reader meets it before the prose,
+             not buried at the foot of the page. It names what was wrong and who
+             caught it, because a correction that hides its source is publicity. #}
+          {% if edition.lead.correction %}
+          {% set corr = edition.lead.correction %}
+          <aside class="correction" role="note">
+            <p class="correction__label">תיקון והרחבה<span class="correction__date"> · <span class="ltr">{{ corr.date }}</span></span></p>
+            {% for para in corr.body %}
+            <p class="correction__text">{{ para }}</p>
+            {% endfor %}
+          </aside>
+          {% endif %}
           <div class="lead__body">
             {% set fig = edition.lead.figure %}
             {% set fig_after = fig.after | default(1) if fig else 0 %}
