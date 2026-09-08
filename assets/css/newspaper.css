@@ -1316,6 +1316,32 @@ img { max-width: 100%; display: block; }
 
 .sim__stat--strong .sim__stat-value { font-size: 19px; }
 
+/* מתג גנטי: אותו רצף, תאים שונים */
+.gene-switch__cond { border-top: 1px solid var(--rule); padding-top: 8px; }
+
+.gene-switch__cond .sim__control-head { align-items: center; gap: 12px; }
+
+.gene-switch__box {
+  accent-color: var(--rule-dark);
+  width: 17px;
+  height: 17px;
+  flex: 0 0 auto;
+}
+
+.sim__control-hint {
+  display: block;
+  font-family: var(--sans);
+  font-size: 12px;
+  line-height: 1.55;
+  color: var(--ink-faint);
+}
+
+.gene-switch__stage { margin: 4px 0 18px; }
+
+.gene-switch__stage svg { width: 100%; height: auto; }
+
+.sim__readout--three { grid-template-columns: repeat(3, 1fr); }
+
 .sim__note {
   font-family: var(--sans);
   font-size: 13px;

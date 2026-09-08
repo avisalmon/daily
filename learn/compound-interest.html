@@ -69,11 +69,15 @@
 
 
 
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">ההבדל בין קו לעקומה</h2>
     <p>ריבית פשוטה מוסיפה בכל שנה את אותו סכום בדיוק. אם נסמן את זה על גרף נקבל קו ישר. ריבית דריבית מוסיפה בכל שנה קצת יותר מבשנה הקודמת, כי הבסיס גדל, ולכן נקבל עקומה שנעשית תלולה יותר ויותר.</p>
     <p>זו אינה גדילה מהירה יותר, אלא גדילה מסוג אחר: לינארית מול מעריכית. בחמש השנים הראשונות ההפרש כמעט לא מורגש. אחרי עשרים שנה כבר קשה לפספס אותו.</p>
+
+
 
 
     <figure class="diagram">
@@ -115,6 +119,8 @@
 
 
 
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">כלל 72</h2>
@@ -131,11 +137,15 @@
 
 
 
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">אותה עקומה, בכיוון ההפוך</h2>
     <p>בדיוק מאותה סיבה, ריבית דריבית עובדת גם לרעתכם. חוב בכרטיס אשראי או הלוואה שלא נפרעת צוברים ריבית על הריבית באותה עקומה בדיוק, רק שהפעם אתם בצד שמשלם.</p>
     <p>כאן ההבדל דרמטי במיוחד, כי הריבית על אשראי צרכני גבוהה בהרבה מתשואה שגרתית על חיסכון. חוב שנשאר פתוח מספיק זמן יכול לגדול לסכום גדול בהרבה מהסכום שנלקח במקור.</p>
+
+
 
 
 
@@ -222,6 +232,7 @@
     </div>
     <p class="sim__note" id="sim-note"></p>
   </section>
+
 
 
 
@@ -369,6 +380,75 @@
   </section>
 
 </article>
+
+<script>
+/* ===== מדמה המתג הגנטי: אותו רצף, תאים שונים, תוצאה הפוכה ===== */
+(function () {
+  var stage = document.getElementById('gene-switch-stage');
+  if (!stage) return;
+
+  var boxes = Array.prototype.slice.call(document.querySelectorAll('.gene-switch__box'));
+  var state = document.getElementById('gs-state');
+  var siteState = document.getElementById('gs-site-state');
+  var note = document.getElementById('gs-note');
+  var site = document.getElementById('gs-site');
+  var gene = document.getElementById('gs-gene');
+  var myb = document.getElementById('gs-myb');
+  var cbp = document.getElementById('gs-cbp');
+  var mybLabel = document.getElementById('gs-myb-label');
+  var cbpLabel = document.getElementById('gs-cbp-label');
+
+  var ON = 'diagram__dot diagram__dot--strong';
+  var OFF = 'diagram__dot';
+
+  function on(key) {
+    for (var i = 0; i < boxes.length; i++) {
+      if (boxes[i].getAttribute('data-key') === key) return boxes[i].checked;
+    }
+    return false;
+  }
+
+  function render() {
+    var mutation = on('mutation'), hasMyb = on('myb'), hasCbp = on('cbp');
+    var bound = mutation && hasMyb;
+    var enhancer = bound && hasCbp;
+
+    site.setAttribute('class', mutation ? ON : OFF);
+    gene.setAttribute('class', enhancer ? ON : OFF);
+    myb.style.opacity = hasMyb ? '1' : '0.18';
+    mybLabel.style.opacity = hasMyb ? '1' : '0.18';
+    cbp.style.opacity = hasCbp ? '1' : '0.18';
+    cbpLabel.style.opacity = hasCbp ? '1' : '0.18';
+    myb.setAttribute('class', bound ? ON : OFF);
+    cbp.setAttribute('class', enhancer ? ON : OFF);
+
+    if (enhancer) {
+      state.textContent = 'דלוק ללא הפסקה';
+      siteState.textContent = 'אנהנסר חזק';
+      note.textContent = 'שלושת התנאים התקיימו. MYB נקשר לאתר שהמוטציה יצרה, CBP סימן את האזור כפעיל, והגן נדלק בלי בקרה. אף חלבון לא השתנה, רק ההוראה מתי לייצר אותו.';
+    } else if (bound) {
+      state.textContent = 'כבוי';
+      siteState.textContent = 'אתר קשירה תפוס, בלי הגברה';
+      note.textContent = 'MYB נקשר, אבל בלי CBP האזור אינו מסומן כפעיל ואינו הופך לאנהנסר. אתר קשירה בודד אינו מתג.';
+    } else if (mutation && !hasMyb) {
+      state.textContent = 'כבוי';
+      siteState.textContent = 'אתר קשירה קיים וריק';
+      note.textContent = 'זה בדיוק המצב בתא שאינו מייצר MYB. המוטציה נמצאת ברצף, זהה אות באות, ואין מפתח שנכנס למנעול. אותו DNA בדיוק, תוצאה אחרת.';
+    } else if (!mutation && hasMyb) {
+      state.textContent = 'כבוי';
+      siteState.textContent = 'אין אתר קשירה';
+      note.textContent = 'MYB נמצא בתא, אבל ברצף התקין אין לו למה להיקשר כאן. גורם שעתוק אינו יכול להפעיל אתר שאינו קיים.';
+    } else {
+      state.textContent = 'כבוי';
+      siteState.textContent = 'רצף תקין, שקט';
+      note.textContent = 'זה המצב התקין. האזור הזה לפני הגן אינו מקודד דבר, ובלי המוטציה הוא גם אינו מפעיל דבר.';
+    }
+  }
+
+  boxes.forEach(function (b) { b.addEventListener('change', render); });
+  render();
+})();
+</script>
 
 <script>
 /* ===== מדמה כפל מרוכב: הגדלים מוכפלים והזוויות מתחברות ===== */

@@ -63,11 +63,15 @@
 
 
 
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">למה זה נעצר</h2>
     <p>כשמכפילים את מספר החלוקות, כל חלוקה תורמת פחות. חלוקה לשניים הוסיפה רבע שקל. חלוקה לשתים עשרה הוסיפה עוד 0.36. חלוקה ל-365 הוסיפה עוד 0.10 בלבד. התוספות קטנות מהר יותר משמספר החלוקות גדל, ולכן הסכום חסום.</p>
     <p>הכניסה למספר לא מלמעלה אלא מלמטה: כל ערך בסדרה קטן מ-e, והם מטפסים אליו לאט. n של מיליון נותן 2.7182805. שישה ספרות נכונות תמורת מיליון פעולות.</p>
+
+
 
 
 
@@ -124,11 +128,15 @@
 
 
 
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">למה שתי הדרכים מגיעות לאותו מקום</h2>
     <p>אפשר לפתוח את הביטוי (1+1/n)^n לפי בינום ניוטון. מקבלים סכום של n+1 מחוברים, שהמחובר ה-k שבהם הוא אחד חלקי עצרת k, מוכפל בגורם תיקון של שברים כמו (1-1/n) ו-(1-2/n).</p>
     <p>כשn גדל, כל גורמי התיקון האלה מתקרבים לאחד, ומספר המחוברים גדל. מה שנשאר בגבול הוא בדיוק הטור. שתי הנוסחאות אינן שתי הגדרות מקבילות שהתמזל מזלן להיפגש. הן אותו ביטוי, כתוב פעמיים.</p>
+
+
 
 
 
@@ -146,6 +154,8 @@
     <p>הפונקציה 2 בחזקת x גדלה, ולה יש קצב שינוי. הפונקציה 3 בחזקת x גדלה מהר יותר. לכל בסיס, קצב השינוי פרופורציוני לגובה הפונקציה, אבל עם מקדם כלשהו שאינו אחד.</p>
     <p>יש בסיס אחד ויחיד שבו המקדם הזה הוא בדיוק אחד: הבסיס e. הנגזרת של e בחזקת x היא e בחזקת x. הגובה של הפונקציה בכל נקודה שווה לשיפוע שלה באותה נקודה.</p>
     <p>זו כל התשובה לשאלה למה המספר הזה צץ בכל מקום שיש בו גדילה או דעיכה. אם קצב ההשתנות של גודל תלוי בגודל עצמו, וזה המצב בהתפרקות רדיואקטיבית, בהתקררות, בטעינת קבל ובריבית, אז e הוא הבסיס שבו התיאור נעשה פשוט. כל בסיס אחר עובד, רק שגורר אחריו מקדם מיותר.</p>
+
+
 
 
 
@@ -194,12 +204,16 @@
 
 
 
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">מה e איננו</h2>
     <p>e אינו שבר. הוא מספר אי רציונלי, כפי שאוילר הוכיח, ומעבר לזה הוא טרנסצנדנטי: הרמיט הוכיח ב-1873 שאין שום משוואה פולינומית עם מקדמים שלמים שהוא פותר. 2.718 הוא קירוב, לא ערך.</p>
     <p>e אינו קשור לפאי מעבר לזהות של אוילר, ואינו הבסיס ה&#34;טבעי&#34; במובן של נפוץ בטבע יותר מאחרים. הוא טבעי במובן טכני בלבד: הבסיס שבו הנגזרת יוצאת נקייה.</p>
     <p>e אינו מספר הזהב ואינו קשור לסדרת פיבונאצ&#39;י, בלבול נפוץ. ובניגוד לשמועה, האות e לא נבחרה על שם אוילר. הוא השתמש בה ב-1731 כנראה פשוט מפני ש-a עד d כבר היו תפוסות.</p>
+
+
 
 
 
@@ -267,6 +281,7 @@
     </div>
     <p class="sim__note" id="e-note"></p>
   </section>
+
 
 
 
@@ -413,6 +428,75 @@
   </section>
 
 </article>
+
+<script>
+/* ===== מדמה המתג הגנטי: אותו רצף, תאים שונים, תוצאה הפוכה ===== */
+(function () {
+  var stage = document.getElementById('gene-switch-stage');
+  if (!stage) return;
+
+  var boxes = Array.prototype.slice.call(document.querySelectorAll('.gene-switch__box'));
+  var state = document.getElementById('gs-state');
+  var siteState = document.getElementById('gs-site-state');
+  var note = document.getElementById('gs-note');
+  var site = document.getElementById('gs-site');
+  var gene = document.getElementById('gs-gene');
+  var myb = document.getElementById('gs-myb');
+  var cbp = document.getElementById('gs-cbp');
+  var mybLabel = document.getElementById('gs-myb-label');
+  var cbpLabel = document.getElementById('gs-cbp-label');
+
+  var ON = 'diagram__dot diagram__dot--strong';
+  var OFF = 'diagram__dot';
+
+  function on(key) {
+    for (var i = 0; i < boxes.length; i++) {
+      if (boxes[i].getAttribute('data-key') === key) return boxes[i].checked;
+    }
+    return false;
+  }
+
+  function render() {
+    var mutation = on('mutation'), hasMyb = on('myb'), hasCbp = on('cbp');
+    var bound = mutation && hasMyb;
+    var enhancer = bound && hasCbp;
+
+    site.setAttribute('class', mutation ? ON : OFF);
+    gene.setAttribute('class', enhancer ? ON : OFF);
+    myb.style.opacity = hasMyb ? '1' : '0.18';
+    mybLabel.style.opacity = hasMyb ? '1' : '0.18';
+    cbp.style.opacity = hasCbp ? '1' : '0.18';
+    cbpLabel.style.opacity = hasCbp ? '1' : '0.18';
+    myb.setAttribute('class', bound ? ON : OFF);
+    cbp.setAttribute('class', enhancer ? ON : OFF);
+
+    if (enhancer) {
+      state.textContent = 'דלוק ללא הפסקה';
+      siteState.textContent = 'אנהנסר חזק';
+      note.textContent = 'שלושת התנאים התקיימו. MYB נקשר לאתר שהמוטציה יצרה, CBP סימן את האזור כפעיל, והגן נדלק בלי בקרה. אף חלבון לא השתנה, רק ההוראה מתי לייצר אותו.';
+    } else if (bound) {
+      state.textContent = 'כבוי';
+      siteState.textContent = 'אתר קשירה תפוס, בלי הגברה';
+      note.textContent = 'MYB נקשר, אבל בלי CBP האזור אינו מסומן כפעיל ואינו הופך לאנהנסר. אתר קשירה בודד אינו מתג.';
+    } else if (mutation && !hasMyb) {
+      state.textContent = 'כבוי';
+      siteState.textContent = 'אתר קשירה קיים וריק';
+      note.textContent = 'זה בדיוק המצב בתא שאינו מייצר MYB. המוטציה נמצאת ברצף, זהה אות באות, ואין מפתח שנכנס למנעול. אותו DNA בדיוק, תוצאה אחרת.';
+    } else if (!mutation && hasMyb) {
+      state.textContent = 'כבוי';
+      siteState.textContent = 'אין אתר קשירה';
+      note.textContent = 'MYB נמצא בתא, אבל ברצף התקין אין לו למה להיקשר כאן. גורם שעתוק אינו יכול להפעיל אתר שאינו קיים.';
+    } else {
+      state.textContent = 'כבוי';
+      siteState.textContent = 'רצף תקין, שקט';
+      note.textContent = 'זה המצב התקין. האזור הזה לפני הגן אינו מקודד דבר, ובלי המוטציה הוא גם אינו מפעיל דבר.';
+    }
+  }
+
+  boxes.forEach(function (b) { b.addEventListener('change', render); });
+  render();
+})();
+</script>
 
 <script>
 /* ===== מדמה כפל מרוכב: הגדלים מוכפלים והזוויות מתחברות ===== */

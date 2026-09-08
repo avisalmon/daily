@@ -58,6 +58,8 @@
 
 
 
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">שני חלקים: אחד מחפש, אחד חותך</h2>
@@ -77,6 +79,8 @@
       </p>
       <p class="formula__legend">יש בערך פי 350 יותר רצפים אפשריים באורך עשרים מאשר אותיות בגנום כולו, ולכן רצף מסוים באורך כזה צפוי להופיע פחות מפעם אחת. ההתאמה המושלמת אכן נדירה. הבעיה, כפי שנראה בהמשך, היא שהמערכת מסתפקת לפעמים בהתאמה שאינה מושלמת.</p>
     </div>
+
+
 
 
 
@@ -146,12 +150,16 @@
 
 
 
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">הדרמה מתחילה אחרי החיתוך</h2>
     <p>החיתוך עצמו אינו עריכה. הוא נזק. שבר בשני גדילי ה-DNA הוא אחד הדברים המסוכנים שיכולים לקרות לתא, ולכן יש לתא מנגנוני תיקון שנכנסים לפעולה מיד. העריכה היא תוצאה של התיקון, לא של המספריים.</p>
     <p>מסלול התיקון הראשון פשוט מחבר את שני הקצוות בחזרה. הוא מהיר, זמין תמיד, ולא מדויק: לעיתים קרובות נוספות או נעלמות אות או שתיים בנקודת החיבור. בגן שמקודד חלבון, שינוי כזה מזיז את מסגרת הקריאה והופך את שאר הגן לג&#39;יבריש. התוצאה היא גן מושתק. כשרוצים לכבות גן, זה בדיוק מה שרוצים.</p>
     <p>מסלול התיקון השני מעתיק מתבנית. בתא רגיל התבנית היא העותק השני של הכרומוזום, ובמעבדה אפשר להכניס תבנית מלאכותית עם הרצף שרוצים לכתוב. כך אפשר לתקן אות בודדת במקום למחוק גן. המחיר הוא שהמסלול הזה פעיל בעיקר בתאים שמתחלקים, והוא הרבה פחות שכיח מהראשון, ולכן כתיבה מדויקת קשה בהרבה מכיבוי.</p>
+
+
 
 
 
@@ -210,12 +218,16 @@
 
 
 
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">מה כבר מאושר לשימוש בבני אדם</h2>
     <p>ב-8 בדצמבר 2023 אישר מינהל המזון והתרופות האמריקאי את קסג&#39;בי, התרופה הראשונה שאושרה שם ומבוססת על עריכת גנום בשיטת CRISPR/Cas9. האישור ניתן לטיפול באנמיה חרמשית בחולים מגיל 12 ומעלה שסובלים מהתקפי כאב חוזרים.</p>
     <p>השיטה עוקפת את הבעיה במקום לתקן אותה. במקום לתקן את המוטציה בהמוגלובין, מוציאים מהחולה תאי גזע של מח העצם, עורכים אותם מחוץ לגוף כך שיחזרו לייצר המוגלובין עוברי, סוג שקיים בעובר ונכבה אחרי הלידה, ומחזירים אותם. המוגלובין עוברי מונע מכדוריות הדם האדומות להתעוות לצורת המגל.</p>
     <p>המספרים שפרסם ה-FDA: 44 מטופלים קיבלו את התכשיר בניסוי, ומתוך 31 שהיה להם מעקב ארוך מספיק כדי להיבדק, 29 שהם 93.5 אחוזים עברו שנה רצופה לפחות בלי התקף כאב חמור. חשוב לא פחות מה שהאישור אינו מסתיר: לפני החזרת התאים החולה עובר כימותרפיה במינון גבוה שמפנה את מח העצם, ותופעות הלוואי השכיחות כוללות ירידה בטסיות ובתאי דם לבנים, פצעים בפה, בחילות וכאבים. זו אינה זריקה במרפאה.</p>
+
+
 
 
 
@@ -271,6 +283,7 @@
     <p class="sim__note" id="crispr-note"></p>
     <p class="sim__note euv-caveat">הכלל שמופעל כאן פשוט בכוונה: אתר נחתך אם יש אחריו PAM, אם מספר אי־ההתאמות אינו עולה על הסובלנות שבחרתם, ואם אף אי־התאמה אינה נופלת בעשר האותיות הצמודות ל-PAM. חיתוך אמיתי תלוי גם במבנה הכרומטין, בריכוזים ובגרסת החלבון, וכלי תכנון מדרגים אתרים במודלים מורכבים בהרבה מספירת אותיות.</p>
   </section>
+
 
   <section class="quiz" id="quiz">
     <h2 class="topic__heading">בדקו את עצמכם</h2>
@@ -416,6 +429,75 @@
   </section>
 
 </article>
+
+<script>
+/* ===== מדמה המתג הגנטי: אותו רצף, תאים שונים, תוצאה הפוכה ===== */
+(function () {
+  var stage = document.getElementById('gene-switch-stage');
+  if (!stage) return;
+
+  var boxes = Array.prototype.slice.call(document.querySelectorAll('.gene-switch__box'));
+  var state = document.getElementById('gs-state');
+  var siteState = document.getElementById('gs-site-state');
+  var note = document.getElementById('gs-note');
+  var site = document.getElementById('gs-site');
+  var gene = document.getElementById('gs-gene');
+  var myb = document.getElementById('gs-myb');
+  var cbp = document.getElementById('gs-cbp');
+  var mybLabel = document.getElementById('gs-myb-label');
+  var cbpLabel = document.getElementById('gs-cbp-label');
+
+  var ON = 'diagram__dot diagram__dot--strong';
+  var OFF = 'diagram__dot';
+
+  function on(key) {
+    for (var i = 0; i < boxes.length; i++) {
+      if (boxes[i].getAttribute('data-key') === key) return boxes[i].checked;
+    }
+    return false;
+  }
+
+  function render() {
+    var mutation = on('mutation'), hasMyb = on('myb'), hasCbp = on('cbp');
+    var bound = mutation && hasMyb;
+    var enhancer = bound && hasCbp;
+
+    site.setAttribute('class', mutation ? ON : OFF);
+    gene.setAttribute('class', enhancer ? ON : OFF);
+    myb.style.opacity = hasMyb ? '1' : '0.18';
+    mybLabel.style.opacity = hasMyb ? '1' : '0.18';
+    cbp.style.opacity = hasCbp ? '1' : '0.18';
+    cbpLabel.style.opacity = hasCbp ? '1' : '0.18';
+    myb.setAttribute('class', bound ? ON : OFF);
+    cbp.setAttribute('class', enhancer ? ON : OFF);
+
+    if (enhancer) {
+      state.textContent = 'דלוק ללא הפסקה';
+      siteState.textContent = 'אנהנסר חזק';
+      note.textContent = 'שלושת התנאים התקיימו. MYB נקשר לאתר שהמוטציה יצרה, CBP סימן את האזור כפעיל, והגן נדלק בלי בקרה. אף חלבון לא השתנה, רק ההוראה מתי לייצר אותו.';
+    } else if (bound) {
+      state.textContent = 'כבוי';
+      siteState.textContent = 'אתר קשירה תפוס, בלי הגברה';
+      note.textContent = 'MYB נקשר, אבל בלי CBP האזור אינו מסומן כפעיל ואינו הופך לאנהנסר. אתר קשירה בודד אינו מתג.';
+    } else if (mutation && !hasMyb) {
+      state.textContent = 'כבוי';
+      siteState.textContent = 'אתר קשירה קיים וריק';
+      note.textContent = 'זה בדיוק המצב בתא שאינו מייצר MYB. המוטציה נמצאת ברצף, זהה אות באות, ואין מפתח שנכנס למנעול. אותו DNA בדיוק, תוצאה אחרת.';
+    } else if (!mutation && hasMyb) {
+      state.textContent = 'כבוי';
+      siteState.textContent = 'אין אתר קשירה';
+      note.textContent = 'MYB נמצא בתא, אבל ברצף התקין אין לו למה להיקשר כאן. גורם שעתוק אינו יכול להפעיל אתר שאינו קיים.';
+    } else {
+      state.textContent = 'כבוי';
+      siteState.textContent = 'רצף תקין, שקט';
+      note.textContent = 'זה המצב התקין. האזור הזה לפני הגן אינו מקודד דבר, ובלי המוטציה הוא גם אינו מפעיל דבר.';
+    }
+  }
+
+  boxes.forEach(function (b) { b.addEventListener('change', render); });
+  render();
+})();
+</script>
 
 <script>
 /* ===== מדמה כפל מרוכב: הגדלים מוכפלים והזוויות מתחברות ===== */

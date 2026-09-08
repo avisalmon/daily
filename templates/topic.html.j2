@@ -38,6 +38,51 @@
     </div>
     {% endif %}
 
+    {% if sec.diagram and sec.diagram.type == 'gene-anatomy' %}
+    <figure class="diagram">
+      <svg viewBox="0 0 520 300" role="img" aria-label="למעלה, קטע DNA ישר שבו האנהנסר רחוק מהפרומוטור ומהגן. למטה, אותו קטע מקופל ללולאה שמצמידה את האנהנסר לפרומוטור" preserveAspectRatio="xMidYMid meet">
+        <text x="500" y="24" class="diagram__label diagram__label--strong">על הרצף</text>
+        <line x1="40" y1="70" x2="480" y2="70" class="diagram__axis"/>
+        <rect x="62" y="58" width="74" height="24" class="diagram__dot"/>
+        <text x="99" y="102" class="diagram__axis-label" text-anchor="middle">אנהנסר</text>
+        <rect x="330" y="58" width="34" height="24" class="diagram__dot"/>
+        <text x="347" y="102" class="diagram__axis-label" text-anchor="middle">פרומוטור</text>
+        <rect x="364" y="58" width="104" height="24" class="diagram__dot diagram__dot--strong"/>
+        <text x="416" y="102" class="diagram__axis-label" text-anchor="middle">הגן</text>
+        <text x="233" y="50" class="diagram__label" text-anchor="middle">עשרות אלפי אותיות</text>
+
+        <text x="500" y="164" class="diagram__label diagram__label--strong">במרחב, בתוך הגרעין</text>
+        <path class="diagram__exp" d="M120,210 C120,140 340,140 340,210"/>
+        <line x1="40" y1="210" x2="480" y2="210" class="diagram__axis"/>
+        <rect x="96" y="198" width="48" height="24" class="diagram__dot"/>
+        <rect x="316" y="198" width="34" height="24" class="diagram__dot"/>
+        <rect x="350" y="198" width="104" height="24" class="diagram__dot diagram__dot--strong"/>
+        <text x="120" y="248" class="diagram__axis-label" text-anchor="middle">אנהנסר</text>
+        <text x="333" y="248" class="diagram__axis-label" text-anchor="middle">פרומוטור</text>
+        <text x="402" y="248" class="diagram__axis-label" text-anchor="middle">הגן</text>
+        <text x="230" y="132" class="diagram__label" text-anchor="middle">הלולאה מקרבת ביניהם</text>
+        <text x="260" y="284" class="diagram__axis-label" text-anchor="middle">אותו רצף. מרחק אחר.</text>
+      </svg>
+      <figcaption>{{ sec.diagram.caption }}</figcaption>
+    </figure>
+    {% endif %}
+
+    {% if sec.diagram and sec.diagram.type == 'genome-ruler' %}
+    <figure class="diagram">
+      <svg viewBox="0 0 520 200" role="img" aria-label="סרגל שמייצג את הגנום האנושי. פס דק בקצה מסמן את שני האחוזים שמקודדים חלבון, ושאר הסרגל הוא הרצף הלא מקודד" preserveAspectRatio="xMidYMid meet">
+        <rect x="40" y="70" width="440" height="46" class="diagram__dot"/>
+        <rect x="40" y="70" width="9" height="46" class="diagram__dot diagram__dot--strong"/>
+        <line x1="44" y1="70" x2="44" y2="40" class="diagram__axis"/>
+        <text x="52" y="34" class="diagram__label diagram__label--strong">כ-2% מקודדים חלבון</text>
+        <text x="270" y="100" class="diagram__label" text-anchor="middle">כ-98% אינם מקודדים חלבון</text>
+        <text x="40" y="146" class="diagram__axis-label">3,300,000,000 אותיות</text>
+        <text x="480" y="146" class="diagram__axis-label" text-anchor="end">המקור: מכון המחקר הלאומי לגנום האנושי</text>
+        <text x="270" y="178" class="diagram__axis-label" text-anchor="middle">לא מקודד אינו שם נרדף למתפקד, וגם לא לזבל</text>
+      </svg>
+      <figcaption>{{ sec.diagram.caption }}</figcaption>
+    </figure>
+    {% endif %}
+
     {% if sec.diagram and sec.diagram.type == 'linear-vs-exponential' %}
     <figure class="diagram">
       <svg viewBox="0 0 520 260" role="img" aria-label="השוואה בין גדילה לינארית לגדילה מעריכית" preserveAspectRatio="xMidYMid meet">
@@ -582,6 +627,58 @@
   </section>
   {% endif %}
 
+  {% if topic.sim and topic.sim.type == 'gene-switch' %}
+  <section class="sim" id="sim">
+    <h2 class="topic__heading">{{ topic.sim.title }}</h2>
+    <p class="sim__intro">{{ topic.sim.intro }}</p>
+
+    <div class="sim__controls">
+      {% for c in topic.sim.conditions %}
+      <label class="sim__control gene-switch__cond">
+        <span class="sim__control-head">
+          <span>{{ c.label }}</span>
+          <input type="checkbox" class="gene-switch__box" data-key="{{ c.key }}">
+        </span>
+        <span class="sim__control-hint">{{ c.hint }}</span>
+      </label>
+      {% endfor %}
+    </div>
+
+    <div class="gene-switch__stage" id="gene-switch-stage">
+      <svg viewBox="0 0 520 190" role="img" aria-label="הלוקוס של הגן TAL1 עם האתר הרגולטורי שלפניו, ומצב ההפעלה של הגן" preserveAspectRatio="xMidYMid meet">
+        <line x1="40" y1="120" x2="480" y2="120" class="diagram__axis"/>
+        <rect x="86" y="108" width="60" height="24" class="diagram__dot" id="gs-site"/>
+        <text x="116" y="152" class="diagram__axis-label" text-anchor="middle">האתר הרגולטורי</text>
+        <rect x="340" y="108" width="120" height="24" class="diagram__dot" id="gs-gene"/>
+        <text x="400" y="152" class="diagram__axis-label" text-anchor="middle">TAL1</text>
+        <text x="240" y="100" class="diagram__axis-label" text-anchor="middle">כ-8,000 אותיות</text>
+        <circle cx="116" cy="72" r="13" class="diagram__dot" id="gs-myb"/>
+        <text x="116" y="48" class="diagram__label" text-anchor="middle" id="gs-myb-label">MYB</text>
+        <circle cx="148" cy="72" r="13" class="diagram__dot" id="gs-cbp"/>
+        <text x="176" y="48" class="diagram__label" text-anchor="middle" id="gs-cbp-label">CBP</text>
+      </svg>
+    </div>
+
+    <div class="sim__readout sim__readout--three">
+      <div class="sim__stat sim__stat--strong">
+        <span class="sim__stat-label">הגן TAL1</span>
+        <span class="sim__stat-value" id="gs-state"></span>
+      </div>
+      <div class="sim__stat">
+        <span class="sim__stat-label">האתר הרגולטורי</span>
+        <span class="sim__stat-value" id="gs-site-state"></span>
+      </div>
+      <div class="sim__stat">
+        <span class="sim__stat-label">החלבון TAL1 עצמו</span>
+        <span class="sim__stat-value">תקין בכל המצבים</span>
+      </div>
+    </div>
+
+    <p class="sim__note" id="gs-note"></p>
+    <p class="sim__note euv-caveat">{{ topic.sim.caveat }}</p>
+  </section>
+  {% endif %}
+
   {% if topic.quiz %}
   <section class="quiz" id="quiz">
     <h2 class="topic__heading">בדקו את עצמכם</h2>
@@ -620,6 +717,75 @@
   {% endif %}
 
 </article>
+
+<script>
+/* ===== מדמה המתג הגנטי: אותו רצף, תאים שונים, תוצאה הפוכה ===== */
+(function () {
+  var stage = document.getElementById('gene-switch-stage');
+  if (!stage) return;
+
+  var boxes = Array.prototype.slice.call(document.querySelectorAll('.gene-switch__box'));
+  var state = document.getElementById('gs-state');
+  var siteState = document.getElementById('gs-site-state');
+  var note = document.getElementById('gs-note');
+  var site = document.getElementById('gs-site');
+  var gene = document.getElementById('gs-gene');
+  var myb = document.getElementById('gs-myb');
+  var cbp = document.getElementById('gs-cbp');
+  var mybLabel = document.getElementById('gs-myb-label');
+  var cbpLabel = document.getElementById('gs-cbp-label');
+
+  var ON = 'diagram__dot diagram__dot--strong';
+  var OFF = 'diagram__dot';
+
+  function on(key) {
+    for (var i = 0; i < boxes.length; i++) {
+      if (boxes[i].getAttribute('data-key') === key) return boxes[i].checked;
+    }
+    return false;
+  }
+
+  function render() {
+    var mutation = on('mutation'), hasMyb = on('myb'), hasCbp = on('cbp');
+    var bound = mutation && hasMyb;
+    var enhancer = bound && hasCbp;
+
+    site.setAttribute('class', mutation ? ON : OFF);
+    gene.setAttribute('class', enhancer ? ON : OFF);
+    myb.style.opacity = hasMyb ? '1' : '0.18';
+    mybLabel.style.opacity = hasMyb ? '1' : '0.18';
+    cbp.style.opacity = hasCbp ? '1' : '0.18';
+    cbpLabel.style.opacity = hasCbp ? '1' : '0.18';
+    myb.setAttribute('class', bound ? ON : OFF);
+    cbp.setAttribute('class', enhancer ? ON : OFF);
+
+    if (enhancer) {
+      state.textContent = 'דלוק ללא הפסקה';
+      siteState.textContent = 'אנהנסר חזק';
+      note.textContent = 'שלושת התנאים התקיימו. MYB נקשר לאתר שהמוטציה יצרה, CBP סימן את האזור כפעיל, והגן נדלק בלי בקרה. אף חלבון לא השתנה, רק ההוראה מתי לייצר אותו.';
+    } else if (bound) {
+      state.textContent = 'כבוי';
+      siteState.textContent = 'אתר קשירה תפוס, בלי הגברה';
+      note.textContent = 'MYB נקשר, אבל בלי CBP האזור אינו מסומן כפעיל ואינו הופך לאנהנסר. אתר קשירה בודד אינו מתג.';
+    } else if (mutation && !hasMyb) {
+      state.textContent = 'כבוי';
+      siteState.textContent = 'אתר קשירה קיים וריק';
+      note.textContent = 'זה בדיוק המצב בתא שאינו מייצר MYB. המוטציה נמצאת ברצף, זהה אות באות, ואין מפתח שנכנס למנעול. אותו DNA בדיוק, תוצאה אחרת.';
+    } else if (!mutation && hasMyb) {
+      state.textContent = 'כבוי';
+      siteState.textContent = 'אין אתר קשירה';
+      note.textContent = 'MYB נמצא בתא, אבל ברצף התקין אין לו למה להיקשר כאן. גורם שעתוק אינו יכול להפעיל אתר שאינו קיים.';
+    } else {
+      state.textContent = 'כבוי';
+      siteState.textContent = 'רצף תקין, שקט';
+      note.textContent = 'זה המצב התקין. האזור הזה לפני הגן אינו מקודד דבר, ובלי המוטציה הוא גם אינו מפעיל דבר.';
+    }
+  }
+
+  boxes.forEach(function (b) { b.addEventListener('change', render); });
+  render();
+})();
+</script>
 
 <script>
 /* ===== מדמה כפל מרוכב: הגדלים מוכפלים והזוויות מתחברות ===== */

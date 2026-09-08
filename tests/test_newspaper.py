@@ -1235,3 +1235,32 @@ def test_the_reference_document_says_what_it_rejected():
             f"{path.name} never says what it rejected or what it could not "
             f"verify. Both belong in the document, not only in the plan."
         )
+
+
+def test_every_diagram_and_sim_type_has_a_template_branch():
+    """Jinja does not raise on a value it has no branch for. A topic naming a
+    diagram or a simulator the template never dispatches on renders an empty
+    space, and the page ships looking fine. BKM section 11."""
+    tpl = (ROOT / "templates" / "topic.html.j2").read_text(encoding="utf-8")
+    diagram_branches = set(re.findall(r"sec\.diagram\.type == '([a-z0-9-]+)'", tpl))
+    sim_branches = set(re.findall(r"topic\.sim\.type == '([a-z0-9-]+)'", tpl))
+
+    assert diagram_branches, "the diagram dispatch is gone; this guard looks nowhere"
+    assert sim_branches, "the simulator dispatch is gone; this guard looks nowhere"
+
+    for path in TOPICS:
+        topic = json.loads(path.read_text(encoding="utf-8"))
+        sim = topic.get("sim")
+        if sim:
+            assert sim["type"] in sim_branches, (
+                f"{path.name} asks for simulator {sim['type']!r}, which the template "
+                f"has no branch for, so it would render nothing. "
+                f"Known: {sorted(sim_branches)}"
+            )
+        for sec in topic["sections"]:
+            diagram = sec.get("diagram")
+            if diagram:
+                assert diagram["type"] in diagram_branches, (
+                    f"{path.name} asks for diagram {diagram['type']!r}, which the "
+                    f"template has no branch for. Known: {sorted(diagram_branches)}"
+                )
