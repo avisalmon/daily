@@ -61,6 +61,9 @@
 
 
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">i, ומאיפה הוא באמת בא</h2>
@@ -75,6 +78,9 @@
       <p class="formula__label"></p>
       <p class="formula__legend"></p>
     </div>
+
+
+
 
 
 
@@ -131,6 +137,9 @@
     </figure>
 
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">כפל הוא סיבוב</h2>
@@ -181,6 +190,9 @@
       <figcaption>כפל ב-i אינו מותח ואינו מכווץ. הוא מסובב ברבע סיבוב. שני כפלים כאלה מחזירים את הנקודה על אותו ישר בכיוון ההפוך, וזה בדיוק כפל במינוס אחד.</figcaption>
     </figure>
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">נוסחת אוילר, ולמה מהנדס משתמש בה</h2>
@@ -194,6 +206,9 @@
       <p class="formula__label"></p>
       <p class="formula__legend"></p>
     </div>
+
+
+
 
 
 
@@ -249,6 +264,9 @@
       </svg>
       <figcaption>עכבה של נגד וקבל במקביל, מצוירת במישור המרוכב לאורך סריקת תדרים. כל נקודה על העקומה היא מספר מרוכב אחד, כלומר מדידה אחת.</figcaption>
     </figure>
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">מה מספר מרוכב איננו</h2>
@@ -256,6 +274,9 @@
     <p>הוא אינו וקטור, אף שאפשר לצייר אותו כמו וקטור. לוקטורים במישור אין פעולת כפל שמחזירה וקטור ומקיימת את חוקי החשבון הרגילים. למספרים מרוכבים יש, וזה כל ההבדל.</p>
     <p>הוא אינו סוף הסיפור. יש הרחבות נוספות, קווטרניונים בארבעה ממדים ואוקטוניונים בשמונה, ובכל הרחבה כזאת מוותרים על משהו. בקווטרניונים כפל כבר אינו חילופי, כלומר a כפול b אינו b כפול a. המספרים המרוכבים הם ההרחבה האחרונה שאינה גובה מחיר.</p>
     <p>והוא אינו כלי שנוח לוותר עליו. כל מה שנעשה כאן ניתן לביצוע בזוגות של מספרים ממשיים ובנוסחאות טריגונומטריות. פשוט אף אחד לא עושה את זה, מפני שהניסוח המרוכב הופך שלושה שלבי חישוב לכפל אחד.</p>
+
+
+
 
 
 
@@ -335,6 +356,7 @@
     </div>
     <p class="sim__note" id="cx-note"></p>
   </section>
+
 
 
 
@@ -1026,6 +1048,78 @@
   [naIn, k1In].forEach(function (el) { el.addEventListener('input', draw); });
   naIn.max = naMax;
   draw();
+})();
+
+/* ===== מדמה האופטוגנטיקה: גן, אור, ואורך הגל הנכון ===== */
+(function () {
+  var stage = document.getElementById('opto-switch-stage');
+  if (!stage) return;
+
+  var boxes = Array.prototype.slice.call(document.querySelectorAll('.opto-switch__box'));
+  var state = document.getElementById('op-state');
+  var chanState = document.getElementById('op-channel-state');
+  var note = document.getElementById('op-note');
+  var channel = document.getElementById('op-channel');
+  var beam = document.getElementById('op-beam');
+  var lamp = document.getElementById('op-lamp');
+  var ions = ['op-ion1', 'op-ion2', 'op-ion3'].map(function (id) {
+    return document.getElementById(id);
+  });
+
+  var ON = 'diagram__dot diagram__dot--strong';
+  var OFF = 'diagram__dot';
+
+  function on(key) {
+    for (var i = 0; i < boxes.length; i++) {
+      if (boxes[i].getAttribute('data-key') === key) return boxes[i].checked;
+    }
+    return false;
+  }
+
+  function render() {
+    var gene = on('gene'), light = on('light'), blue = on('blue');
+    var lit = light && blue;
+    var open = gene && lit;
+
+    lamp.setAttribute('class', light ? ON : OFF);
+    beam.style.opacity = light ? '1' : '0.15';
+    channel.style.opacity = gene ? '1' : '0.15';
+    channel.setAttribute('class', open ? ON : OFF);
+    ions.forEach(function (c) {
+      c.setAttribute('class', open ? ON : OFF);
+      c.style.opacity = open ? '1' : '0.3';
+    });
+
+    if (open) {
+      state.textContent = 'יורה';
+      chanState.textContent = 'פתוחה';
+      note.textContent = 'שלושת התנאים התקיימו. האור הכחול פתח את התעלה, יונים טעונים ' +
+        'נכנסו, והנוירון ירה. שימו לב שהתא השכן מואר באותו אור בדיוק ואינו מגיב, ' +
+        'כי אין לו את החלבון. ההפרדה הזו היא כל העניין.';
+    } else if (gene && light && !blue) {
+      state.textContent = 'שקט';
+      chanState.textContent = 'סגורה';
+      note.textContent = 'החלבון נמצא בתא והאור דולק, אבל אורך הגל לא מתאים. ' +
+        'כלמידומונס מגיב לאור כחול, ואור אדום פשוט עובר דרך התעלה בלי לפתוח אותה.';
+    } else if (gene && !light) {
+      state.textContent = 'שקט';
+      chanState.textContent = 'סגורה';
+      note.textContent = 'הגן הוחדר והחלבון יושב בקרום, אבל בלי אור הוא אינו עושה דבר. ' +
+        'תא שנושא את החלבון בחושך מתנהג כמו כל תא אחר.';
+    } else if (!gene && lit) {
+      state.textContent = 'שקט';
+      chanState.textContent = 'אין תעלה בקרום';
+      note.textContent = 'זו הביקורת החשובה בניסוי. אור כחול על תא רגיל אינו מדליק אותו. ' +
+        'אם התא היה יורה כאן, הממצא כולו היה מתפרק.';
+    } else {
+      state.textContent = 'שקט';
+      chanState.textContent = 'אין תעלה בקרום';
+      note.textContent = 'מצב ההתחלה. הדליקו תנאים ובדקו מה נדרש כדי שהנוירון יירה.';
+    }
+  }
+
+  boxes.forEach(function (b) { b.addEventListener('change', render); });
+  render();
 })();
 </script>
   </main>

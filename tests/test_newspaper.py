@@ -434,21 +434,73 @@ def test_a_video_without_an_id_is_ignored_rather_than_rendered_broken():
     assert "אין מזהה" not in html
 
 
+def _render_lead_video(lead: dict) -> str:
+    """Render the lead's video block through the real edition template."""
+    from jinja2 import Environment, FileSystemLoader, select_autoescape
+
+    import build_site
+
+    env = Environment(
+        loader=FileSystemLoader(build_site.TEMPLATE_DIR),
+        autoescape=select_autoescape(["html", "j2"]),
+        trim_blocks=True,
+        lstrip_blocks=True,
+    )
+    src = (build_site.TEMPLATE_DIR / "edition.html.j2").read_text(encoding="utf-8")
+    start = src.index("{% if edition.lead.video")
+    end = src.index("</figure>", start)
+    end = src.index("{% endif %}", end) + len("{% endif %}")
+    return env.from_string(src[start:end]).render(edition={"lead": lead})
+
+
+def test_a_lead_without_video_renders_no_iframe():
+    html = _render_lead_video({"headline": "כותרת"})
+    assert "<iframe" not in html
+
+
+def test_a_lead_video_embeds_through_the_nocookie_host():
+    """The lead got its own video block after the grid had one for months. It
+    must obey the same two rules, or the privacy and performance guarantees hold
+    only on the half of the page nobody looks at first."""
+    html = _render_lead_video({
+        "headline": "כותרת",
+        "video": {
+            "youtube_id": "CHjdtTROPZg",
+            "caption": "כיתוב",
+            "credit": "NotebookLM",
+        },
+    })
+    assert "youtube-nocookie.com/embed/CHjdtTROPZg" in html
+    assert "www.youtube.com/embed" not in html
+    assert 'loading="lazy"' in html
+    assert "כיתוב" in html and "NotebookLM" in html
+
+
+def test_a_lead_video_without_an_id_is_ignored_rather_than_rendered_broken():
+    html = _render_lead_video({"headline": "כותרת",
+                               "video": {"caption": "אין מזהה"}})
+    assert "<iframe" not in html
+    assert "אין מזהה" not in html
+
+
 def test_every_video_in_every_edition_declares_a_credit():
     """An embed is a quotation. It carries its publisher, like any other source.
     Checked across every edition on disk, including ones not yet due: tonight is
-    the last chance to catch it."""
+    the last chance to catch it. The lead is walked too, because a video there is
+    the most prominent thing on the page and the easiest place to forget."""
     for path in ALL_EDITIONS:
         edition = json.loads(path.read_text(encoding="utf-8"))
+        carriers = [edition.get("lead") or {}]
         for section in edition.get("grid", []):
-            for story in section.get("stories", []):
-                video = story.get("video")
-                if not video:
-                    continue
-                assert video.get("youtube_id"), f"{path.name}: video with no id"
-                assert video.get("credit"), (
-                    f"{path.name}: video {video['youtube_id']} has no credit"
-                )
+            carriers.extend(section.get("stories", []))
+        for carrier in carriers:
+            video = carrier.get("video")
+            if not video:
+                continue
+            assert video.get("youtube_id"), f"{path.name}: video with no id"
+            assert video.get("credit"), (
+                f"{path.name}: video {video['youtube_id']} has no credit"
+            )
 
 
 # --------------------------------------------------------------------------

@@ -360,6 +360,87 @@
       <figcaption>{{ sec.diagram.caption }}</figcaption>
     </figure>
     {% endif %}
+
+    {% if sec.diagram and sec.diagram.type == 'opsin-channel' %}
+    <figure class="diagram">
+      <svg viewBox="0 0 520 280" role="img" aria-label="קרום תא עם חלבון תעלה. משמאל בחושך התעלה סגורה והיונים נשארים בחוץ, מימין באור כחול התעלה פתוחה והיונים זורמים פנימה" preserveAspectRatio="xMidYMid meet">
+        <text x="500" y="26" class="diagram__label diagram__label--strong">בחושך</text>
+        <line x1="290" y1="54" x2="500" y2="54" class="diagram__axis"/>
+        <line x1="290" y1="92" x2="500" y2="92" class="diagram__axis"/>
+        <rect x="372" y="48" width="38" height="50" class="diagram__dot"/>
+        <circle cx="352" cy="34" r="5" class="diagram__dot"/>
+        <circle cx="430" cy="30" r="5" class="diagram__dot"/>
+        <circle cx="398" cy="24" r="5" class="diagram__dot"/>
+        <text x="500" y="124" class="diagram__axis-label" text-anchor="end">התעלה סגורה, היונים נשארים בחוץ</text>
+        <text x="500" y="146" class="diagram__axis-label" text-anchor="end">התא במנוחה</text>
+
+        <text x="240" y="26" class="diagram__label diagram__label--strong">באור כחול</text>
+        <line x1="30" y1="54" x2="240" y2="54" class="diagram__axis"/>
+        <line x1="30" y1="92" x2="240" y2="92" class="diagram__axis"/>
+        <rect x="112" y="48" width="16" height="50" class="diagram__dot diagram__dot--strong"/>
+        <rect x="152" y="48" width="16" height="50" class="diagram__dot diagram__dot--strong"/>
+        <circle cx="140" cy="26" r="5" class="diagram__dot diagram__dot--strong"/>
+        <circle cx="140" cy="68" r="5" class="diagram__dot diagram__dot--strong"/>
+        <circle cx="140" cy="118" r="5" class="diagram__dot diagram__dot--strong"/>
+        <path class="diagram__linear" d="M196,16 L150,46"/>
+        <path class="diagram__linear" d="M214,34 L156,52"/>
+        <text x="240" y="124" class="diagram__axis-label" text-anchor="end">התעלה פתוחה, יונים טעונים זורמים פנימה</text>
+        <text x="240" y="146" class="diagram__axis-label" text-anchor="end">נוצר מתח חשמלי</text>
+
+        <text x="270" y="196" class="diagram__axis-label" text-anchor="middle">החלבון עצמו הוא החיישן. אין צורך בשום רכיב נוסף בתא.</text>
+        <text x="270" y="222" class="diagram__axis-label" text-anchor="middle">זה מה שהגיע מאצה חד תאית בשם כלמידומונס.</text>
+      </svg>
+      <figcaption>{{ sec.diagram.caption }}</figcaption>
+    </figure>
+    {% endif %}
+
+    {% if sec.diagram and sec.diagram.type == 'opto-timing' %}
+    <figure class="diagram">
+      <svg viewBox="0 0 520 260" role="img" aria-label="שני צירי זמן זה מתחת לזה. למעלה פולסי אור קצרים, למטה פוטנציאלי פעולה של הנוירון שמופיעים מיד אחרי כל פולס, בקנה מידה של אלפיות שנייה" preserveAspectRatio="xMidYMid meet">
+        <text x="500" y="24" class="diagram__label diagram__label--strong">פולס אור</text>
+        <line x1="40" y1="80" x2="480" y2="80" class="diagram__axis"/>
+        <rect x="96" y="56" width="18" height="24" class="diagram__dot diagram__dot--strong"/>
+        <rect x="216" y="56" width="18" height="24" class="diagram__dot diagram__dot--strong"/>
+        <rect x="336" y="56" width="18" height="24" class="diagram__dot diagram__dot--strong"/>
+
+        <text x="500" y="128" class="diagram__label diagram__label--strong">תגובת הנוירון</text>
+        <line x1="40" y1="200" x2="480" y2="200" class="diagram__axis"/>
+        <path class="diagram__exp" d="M40,200 L104,200 L110,150 L116,200 L224,200 L230,150 L236,200 L344,200 L350,150 L356,200 L480,200"/>
+
+        <line x1="96" y1="88" x2="110" y2="142" class="diagram__linear"/>
+        <text x="270" y="232" class="diagram__axis-label" text-anchor="middle">כל משבצת על הציר היא אלפית שנייה אחת</text>
+        <text x="40" y="252" class="diagram__axis-label">זמן</text>
+      </svg>
+      <figcaption>{{ sec.diagram.caption }}</figcaption>
+    </figure>
+    {% endif %}
+
+    {% if sec.diagram and sec.diagram.type == 'opto-targeting' %}
+    <figure class="diagram">
+      <svg viewBox="0 0 520 260" role="img" aria-label="סיב אופטי שמאיר אזור אחד במוח. בתוך האזור חלק מהתאים נושאים את החלבון ומגיבים לאור, והתאים השכנים שאינם נושאים אותו נשארים ללא שינוי" preserveAspectRatio="xMidYMid meet">
+        <rect x="40" y="60" width="440" height="150" class="diagram__axis" fill="none"/>
+        <line x1="260" y1="10" x2="260" y2="96" class="diagram__linear"/>
+        <text x="272" y="24" class="diagram__label">סיב אופטי</text>
+        <circle cx="260" cy="130" r="56" class="diagram__exp" fill="none"/>
+
+        <circle cx="236" cy="118" r="8" class="diagram__dot diagram__dot--strong"/>
+        <circle cx="282" cy="140" r="8" class="diagram__dot diagram__dot--strong"/>
+        <circle cx="252" cy="160" r="8" class="diagram__dot diagram__dot--strong"/>
+        <circle cx="290" cy="106" r="8" class="diagram__dot"/>
+        <circle cx="224" cy="152" r="8" class="diagram__dot"/>
+
+        <circle cx="110" cy="110" r="8" class="diagram__dot"/>
+        <circle cx="140" cy="168" r="8" class="diagram__dot"/>
+        <circle cx="396" cy="118" r="8" class="diagram__dot"/>
+        <circle cx="422" cy="172" r="8" class="diagram__dot"/>
+
+        <text x="126" y="200" class="diagram__axis-label" text-anchor="middle">מחוץ לאור: ללא שינוי</text>
+        <text x="260" y="206" class="diagram__axis-label" text-anchor="middle">בתוך האור</text>
+        <text x="480" y="236" class="diagram__axis-label" text-anchor="end">עיגול מלא: תא שנושא את החלבון ומגיב. עיגול ריק: תא שכן, מואר ולא מושפע.</text>
+      </svg>
+      <figcaption>{{ sec.diagram.caption }}</figcaption>
+    </figure>
+    {% endif %}
   </section>
   {% endfor %}
 
@@ -675,6 +756,64 @@
     </div>
 
     <p class="sim__note" id="gs-note"></p>
+    <p class="sim__note euv-caveat">{{ topic.sim.caveat }}</p>
+  </section>
+  {% endif %}
+
+  {% if topic.sim and topic.sim.type == 'opto-switch' %}
+  <section class="sim" id="sim">
+    <h2 class="topic__heading">{{ topic.sim.title }}</h2>
+    <p class="sim__intro">{{ topic.sim.intro }}</p>
+
+    <div class="sim__controls">
+      {% for c in topic.sim.conditions %}
+      <label class="sim__control gene-switch__cond">
+        <span class="sim__control-head">
+          <span>{{ c.label }}</span>
+          <input type="checkbox" class="opto-switch__box" data-key="{{ c.key }}">
+        </span>
+        <span class="sim__control-hint">{{ c.hint }}</span>
+      </label>
+      {% endfor %}
+    </div>
+
+    <div class="gene-switch__stage" id="opto-switch-stage">
+      <svg viewBox="0 0 520 210" role="img" aria-label="נוירון עם חלבון תעלה בקרום, מקור אור מעליו, ולצידו תא שכן שאינו נושא את החלבון" preserveAspectRatio="xMidYMid meet">
+        <line x1="40" y1="130" x2="300" y2="130" class="diagram__axis"/>
+        <line x1="40" y1="168" x2="300" y2="168" class="diagram__axis"/>
+        <text x="170" y="192" class="diagram__axis-label" text-anchor="middle">הנוירון שנבחר</text>
+
+        <rect x="150" y="124" width="40" height="50" class="diagram__dot" id="op-channel"/>
+        <circle cx="170" cy="100" r="6" class="diagram__dot" id="op-ion1"/>
+        <circle cx="140" cy="88" r="6" class="diagram__dot" id="op-ion2"/>
+        <circle cx="200" cy="92" r="6" class="diagram__dot" id="op-ion3"/>
+
+        <line x1="170" y1="18" x2="170" y2="72" class="diagram__linear" id="op-beam"/>
+        <circle cx="170" cy="14" r="9" class="diagram__dot" id="op-lamp"/>
+        <text x="196" y="18" class="diagram__label" id="op-lamp-label">מקור האור</text>
+
+        <line x1="360" y1="130" x2="480" y2="130" class="diagram__axis"/>
+        <line x1="360" y1="168" x2="480" y2="168" class="diagram__axis"/>
+        <text x="420" y="192" class="diagram__axis-label" text-anchor="middle">תא שכן, בלי הגן</text>
+      </svg>
+    </div>
+
+    <div class="sim__readout sim__readout--three">
+      <div class="sim__stat sim__stat--strong">
+        <span class="sim__stat-label">הנוירון שנבחר</span>
+        <span class="sim__stat-value" id="op-state"></span>
+      </div>
+      <div class="sim__stat">
+        <span class="sim__stat-label">התעלה בקרום</span>
+        <span class="sim__stat-value" id="op-channel-state"></span>
+      </div>
+      <div class="sim__stat">
+        <span class="sim__stat-label">התא השכן</span>
+        <span class="sim__stat-value">ללא שינוי בכל המצבים</span>
+      </div>
+    </div>
+
+    <p class="sim__note" id="op-note"></p>
     <p class="sim__note euv-caveat">{{ topic.sim.caveat }}</p>
   </section>
   {% endif %}
@@ -1261,6 +1400,78 @@
   [naIn, k1In].forEach(function (el) { el.addEventListener('input', draw); });
   naIn.max = naMax;
   draw();
+})();
+
+/* ===== מדמה האופטוגנטיקה: גן, אור, ואורך הגל הנכון ===== */
+(function () {
+  var stage = document.getElementById('opto-switch-stage');
+  if (!stage) return;
+
+  var boxes = Array.prototype.slice.call(document.querySelectorAll('.opto-switch__box'));
+  var state = document.getElementById('op-state');
+  var chanState = document.getElementById('op-channel-state');
+  var note = document.getElementById('op-note');
+  var channel = document.getElementById('op-channel');
+  var beam = document.getElementById('op-beam');
+  var lamp = document.getElementById('op-lamp');
+  var ions = ['op-ion1', 'op-ion2', 'op-ion3'].map(function (id) {
+    return document.getElementById(id);
+  });
+
+  var ON = 'diagram__dot diagram__dot--strong';
+  var OFF = 'diagram__dot';
+
+  function on(key) {
+    for (var i = 0; i < boxes.length; i++) {
+      if (boxes[i].getAttribute('data-key') === key) return boxes[i].checked;
+    }
+    return false;
+  }
+
+  function render() {
+    var gene = on('gene'), light = on('light'), blue = on('blue');
+    var lit = light && blue;
+    var open = gene && lit;
+
+    lamp.setAttribute('class', light ? ON : OFF);
+    beam.style.opacity = light ? '1' : '0.15';
+    channel.style.opacity = gene ? '1' : '0.15';
+    channel.setAttribute('class', open ? ON : OFF);
+    ions.forEach(function (c) {
+      c.setAttribute('class', open ? ON : OFF);
+      c.style.opacity = open ? '1' : '0.3';
+    });
+
+    if (open) {
+      state.textContent = 'יורה';
+      chanState.textContent = 'פתוחה';
+      note.textContent = 'שלושת התנאים התקיימו. האור הכחול פתח את התעלה, יונים טעונים ' +
+        'נכנסו, והנוירון ירה. שימו לב שהתא השכן מואר באותו אור בדיוק ואינו מגיב, ' +
+        'כי אין לו את החלבון. ההפרדה הזו היא כל העניין.';
+    } else if (gene && light && !blue) {
+      state.textContent = 'שקט';
+      chanState.textContent = 'סגורה';
+      note.textContent = 'החלבון נמצא בתא והאור דולק, אבל אורך הגל לא מתאים. ' +
+        'כלמידומונס מגיב לאור כחול, ואור אדום פשוט עובר דרך התעלה בלי לפתוח אותה.';
+    } else if (gene && !light) {
+      state.textContent = 'שקט';
+      chanState.textContent = 'סגורה';
+      note.textContent = 'הגן הוחדר והחלבון יושב בקרום, אבל בלי אור הוא אינו עושה דבר. ' +
+        'תא שנושא את החלבון בחושך מתנהג כמו כל תא אחר.';
+    } else if (!gene && lit) {
+      state.textContent = 'שקט';
+      chanState.textContent = 'אין תעלה בקרום';
+      note.textContent = 'זו הביקורת החשובה בניסוי. אור כחול על תא רגיל אינו מדליק אותו. ' +
+        'אם התא היה יורה כאן, הממצא כולו היה מתפרק.';
+    } else {
+      state.textContent = 'שקט';
+      chanState.textContent = 'אין תעלה בקרום';
+      note.textContent = 'מצב ההתחלה. הדליקו תנאים ובדקו מה נדרש כדי שהנוירון יירה.';
+    }
+  }
+
+  boxes.forEach(function (b) { b.addEventListener('change', render); });
+  render();
 })();
 </script>
 {% endblock %}

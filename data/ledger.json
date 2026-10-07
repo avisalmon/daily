@@ -423,6 +423,86 @@
       "source": "Scientific American",
       "edition_date": "2026-09-09",
       "recorded_at": "2026-09-08T18:47:34+00:00"
+    },
+    {
+      "url": "https://www.nature.com/articles/d41586-026-03093-0",
+      "title": "",
+      "title_he": "",
+      "source": "Nature",
+      "edition_date": "2026-10-08",
+      "recorded_at": "2026-10-07T19:15:28+00:00"
+    },
+    {
+      "url": "https://www.nature.com/articles/d41586-026-03092-1",
+      "title": "",
+      "title_he": "",
+      "source": "Nature",
+      "edition_date": "2026-10-08",
+      "recorded_at": "2026-10-07T19:15:28+00:00"
+    },
+    {
+      "url": "https://www.newscientist.com/article/2592421-openai-announces-722-mathematical-discoveries-in-one-go/",
+      "title": "",
+      "title_he": "",
+      "source": "New Scientist",
+      "edition_date": "2026-10-08",
+      "recorded_at": "2026-10-07T19:15:28+00:00"
+    },
+    {
+      "url": "https://openai.com/index/eu-text-provenance",
+      "title": "",
+      "title_he": "",
+      "source": "OpenAI",
+      "edition_date": "2026-10-08",
+      "recorded_at": "2026-10-07T19:15:28+00:00"
+    },
+    {
+      "url": "https://www.ynet.co.il/digital/technews/article/ryzwoqmifl",
+      "title": "",
+      "title_he": "",
+      "source": "Ynet מחשבים",
+      "edition_date": "2026-10-08",
+      "recorded_at": "2026-10-07T19:15:28+00:00"
+    },
+    {
+      "url": "https://www.ynet.co.il/digital/internet/article/bk313q7jze",
+      "title": "",
+      "title_he": "",
+      "source": "Ynet מחשבים",
+      "edition_date": "2026-10-08",
+      "recorded_at": "2026-10-07T19:15:28+00:00"
+    },
+    {
+      "url": "https://www.scientificamerican.com/article/what-is-ai-model-distillation-and-why-is-it-so-hard-to-stop/",
+      "title": "",
+      "title_he": "",
+      "source": "Scientific American",
+      "edition_date": "2026-10-08",
+      "recorded_at": "2026-10-07T19:15:28+00:00"
+    },
+    {
+      "url": "https://www.nobelprize.org/prizes/chemistry/2026/press-release/",
+      "title": "",
+      "title_he": "",
+      "source": "nobelprize.org",
+      "edition_date": "2026-10-08",
+      "recorded_at": "2026-10-07T19:18:31+00:00"
+    },
+    {
+      "url": "https://www.nobelprize.org/prizes/physics/2026/press-release/",
+      "title": "",
+      "title_he": "",
+      "source": "nobelprize.org",
+      "edition_date": "2026-10-08",
+      "recorded_at": "2026-10-07T19:18:31+00:00"
+    },
+    {
+      "url": "https://techcrunch.com/2026/10/05/openai-will-start-watermarking-chatgpts-text-in-the-eu/",
+      "title": "",
+      "title_he": "",
+      "source": "TechCrunch",
+      "edition_date": "2026-10-08",
+      "recorded_at": "2026-10-07T19:18:31+00:00"
     }
   ],
   "proposed": [

@@ -60,6 +60,9 @@
 
 
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">שני חלקים: אחד מחפש, אחד חותך</h2>
@@ -133,12 +136,18 @@
 
 
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">PAM: בלי הסיסמה הזאת אין חיתוך</h2>
     <p>התאמה של המדריך אינה מספיקה. Cas9 חותך רק אם צמוד למטרה, בצד אחד, מופיע רצף קצר שנקרא PAM. אצל Cas9 הנפוץ מדובר בשלוש אותיות שבהן השנייה והשלישית הן G, כלומר כל אות ואחריה GG.</p>
     <p>החלבון למעשה מחפש קודם את ה-PAM, ורק כשהוא מוצא אותו הוא טורח לפתוח את הסליל ולבדוק התאמה. זה קיצור דרך יעיל: במקום לבדוק שלושה מיליארד מיקומים לעומק, בודקים לעומק רק את אלה שנושאים את הסימן.</p>
     <p>יש לכך שתי השלכות. הראשונה מעשית: אי אפשר לחתוך בכל נקודה שרוצים, אלא רק ליד PAM, ולכן תכנון עריכה מתחיל תמיד בחיפוש PAM מתאים באזור. השנייה יפה יותר. בחיידק עצמו, הזיכרון הווירלי השמור אינו מלווה ב-PAM, ולכן המערכת אינה חותכת את הזיכרון של עצמה. אותו הבדל קטן הוא שמפריד בין הגנה ובין התאבדות.</p>
+
+
+
 
 
 
@@ -201,6 +210,9 @@
 
 
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">הבעיה האמיתית היא לא לחתוך, אלא לא לחתוך במקום הלא נכון</h2>
@@ -220,12 +232,18 @@
 
 
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">מה כבר מאושר לשימוש בבני אדם</h2>
     <p>ב-8 בדצמבר 2023 אישר מינהל המזון והתרופות האמריקאי את קסג&#39;בי, התרופה הראשונה שאושרה שם ומבוססת על עריכת גנום בשיטת CRISPR/Cas9. האישור ניתן לטיפול באנמיה חרמשית בחולים מגיל 12 ומעלה שסובלים מהתקפי כאב חוזרים.</p>
     <p>השיטה עוקפת את הבעיה במקום לתקן אותה. במקום לתקן את המוטציה בהמוגלובין, מוציאים מהחולה תאי גזע של מח העצם, עורכים אותם מחוץ לגוף כך שיחזרו לייצר המוגלובין עוברי, סוג שקיים בעובר ונכבה אחרי הלידה, ומחזירים אותם. המוגלובין עוברי מונע מכדוריות הדם האדומות להתעוות לצורת המגל.</p>
     <p>המספרים שפרסם ה-FDA: 44 מטופלים קיבלו את התכשיר בניסוי, ומתוך 31 שהיה להם מעקב ארוך מספיק כדי להיבדק, 29 שהם 93.5 אחוזים עברו שנה רצופה לפחות בלי התקף כאב חמור. חשוב לא פחות מה שהאישור אינו מסתיר: לפני החזרת התאים החולה עובר כימותרפיה במינון גבוה שמפנה את מח העצם, ותופעות הלוואי השכיחות כוללות ירידה בטסיות ובתאי דם לבנים, פצעים בפה, בחילות וכאבים. זו אינה זריקה במרפאה.</p>
+
+
+
 
 
 
@@ -283,6 +301,7 @@
     <p class="sim__note" id="crispr-note"></p>
     <p class="sim__note euv-caveat">הכלל שמופעל כאן פשוט בכוונה: אתר נחתך אם יש אחריו PAM, אם מספר אי־ההתאמות אינו עולה על הסובלנות שבחרתם, ואם אף אי־התאמה אינה נופלת בעשר האותיות הצמודות ל-PAM. חיתוך אמיתי תלוי גם במבנה הכרומטין, בריכוזים ובגרסת החלבון, וכלי תכנון מדרגים אתרים במודלים מורכבים בהרבה מספירת אותיות.</p>
   </section>
+
 
 
   <section class="quiz" id="quiz">
@@ -973,6 +992,78 @@
   [naIn, k1In].forEach(function (el) { el.addEventListener('input', draw); });
   naIn.max = naMax;
   draw();
+})();
+
+/* ===== מדמה האופטוגנטיקה: גן, אור, ואורך הגל הנכון ===== */
+(function () {
+  var stage = document.getElementById('opto-switch-stage');
+  if (!stage) return;
+
+  var boxes = Array.prototype.slice.call(document.querySelectorAll('.opto-switch__box'));
+  var state = document.getElementById('op-state');
+  var chanState = document.getElementById('op-channel-state');
+  var note = document.getElementById('op-note');
+  var channel = document.getElementById('op-channel');
+  var beam = document.getElementById('op-beam');
+  var lamp = document.getElementById('op-lamp');
+  var ions = ['op-ion1', 'op-ion2', 'op-ion3'].map(function (id) {
+    return document.getElementById(id);
+  });
+
+  var ON = 'diagram__dot diagram__dot--strong';
+  var OFF = 'diagram__dot';
+
+  function on(key) {
+    for (var i = 0; i < boxes.length; i++) {
+      if (boxes[i].getAttribute('data-key') === key) return boxes[i].checked;
+    }
+    return false;
+  }
+
+  function render() {
+    var gene = on('gene'), light = on('light'), blue = on('blue');
+    var lit = light && blue;
+    var open = gene && lit;
+
+    lamp.setAttribute('class', light ? ON : OFF);
+    beam.style.opacity = light ? '1' : '0.15';
+    channel.style.opacity = gene ? '1' : '0.15';
+    channel.setAttribute('class', open ? ON : OFF);
+    ions.forEach(function (c) {
+      c.setAttribute('class', open ? ON : OFF);
+      c.style.opacity = open ? '1' : '0.3';
+    });
+
+    if (open) {
+      state.textContent = 'יורה';
+      chanState.textContent = 'פתוחה';
+      note.textContent = 'שלושת התנאים התקיימו. האור הכחול פתח את התעלה, יונים טעונים ' +
+        'נכנסו, והנוירון ירה. שימו לב שהתא השכן מואר באותו אור בדיוק ואינו מגיב, ' +
+        'כי אין לו את החלבון. ההפרדה הזו היא כל העניין.';
+    } else if (gene && light && !blue) {
+      state.textContent = 'שקט';
+      chanState.textContent = 'סגורה';
+      note.textContent = 'החלבון נמצא בתא והאור דולק, אבל אורך הגל לא מתאים. ' +
+        'כלמידומונס מגיב לאור כחול, ואור אדום פשוט עובר דרך התעלה בלי לפתוח אותה.';
+    } else if (gene && !light) {
+      state.textContent = 'שקט';
+      chanState.textContent = 'סגורה';
+      note.textContent = 'הגן הוחדר והחלבון יושב בקרום, אבל בלי אור הוא אינו עושה דבר. ' +
+        'תא שנושא את החלבון בחושך מתנהג כמו כל תא אחר.';
+    } else if (!gene && lit) {
+      state.textContent = 'שקט';
+      chanState.textContent = 'אין תעלה בקרום';
+      note.textContent = 'זו הביקורת החשובה בניסוי. אור כחול על תא רגיל אינו מדליק אותו. ' +
+        'אם התא היה יורה כאן, הממצא כולו היה מתפרק.';
+    } else {
+      state.textContent = 'שקט';
+      chanState.textContent = 'אין תעלה בקרום';
+      note.textContent = 'מצב ההתחלה. הדליקו תנאים ובדקו מה נדרש כדי שהנוירון יירה.';
+    }
+  }
+
+  boxes.forEach(function (b) { b.addEventListener('change', render); });
+  render();
 })();
 </script>
   </main>

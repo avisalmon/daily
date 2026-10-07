@@ -119,6 +119,26 @@
             <p>{{ para }}</p>
             {% endfor %}
           </div>
+          {# A video in the lead rides the same frame as a story's, and the same
+             rules: the nocookie host, lazy, and a credit that the edition test
+             enforces for the lead exactly as it does for the grid. #}
+          {% if edition.lead.video and edition.lead.video.youtube_id %}
+          <figure class="story__video">
+            <div class="story__video-frame">
+              <iframe
+                src="https://www.youtube-nocookie.com/embed/{{ edition.lead.video.youtube_id }}"
+                title="{{ edition.lead.video.caption | default(edition.lead.headline) }}"
+                loading="lazy" referrerpolicy="strict-origin-when-cross-origin"
+                allow="accelerometer; encrypted-media; picture-in-picture"
+                allowfullscreen></iframe>
+            </div>
+            {% if edition.lead.video.caption %}
+            <figcaption class="story__video-caption">
+              {{ edition.lead.video.caption }}{% if edition.lead.video.credit %} <span class="story__video-credit">{{ edition.lead.video.credit }}</span>{% endif %}
+            </figcaption>
+            {% endif %}
+          </figure>
+          {% endif %}
           {# `file` is the key podcast.py writes and validate.py checks. An
              episode we host renders a player; one that lives on someone else's
              site renders a link, because an <audio> element cannot play a web
