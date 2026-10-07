@@ -14,6 +14,7 @@ deliberately not policed.
 
 from __future__ import annotations
 
+import html
 import json
 import re
 import sys
@@ -90,21 +91,22 @@ NOT_ONLY_EN = re.compile(r"not only .{1,60}? but also", re.I)
 TRIPLE = re.compile(r"\b\w+, \w+,? (?:ו|and )\w+\b")
 
 
-def check_string(s: str, where: str) -> list[str]:
+def check_string(s: str, where: str, skip: tuple[str, ...] = ()) -> list[str]:
     problems = []
 
     if EM_DASH.search(s):
         problems.append(f"{where}: em dash in prose ({_excerpt(s, '—')})")
 
-    for m in EN_DASH_IN_PROSE.finditer(s):
-        problems.append(f"{where}: en dash outside a number range ({_excerpt(s, '–')})")
-        break
+    if "en_dash" not in skip:
+        for m in EN_DASH_IN_PROSE.finditer(s):
+            problems.append(f"{where}: en dash outside a number range ({_excerpt(s, '–')})")
+            break
 
     if EMOJI.search(s):
         found = EMOJI.search(s).group(0)
         problems.append(f"{where}: emoji or decorative symbol {found!r}")
 
-    if ARROW.search(s) and "diagram" not in where and "caption" not in where:
+    if "arrow" not in skip and ARROW.search(s) and "diagram" not in where and "caption" not in where:
         problems.append(f"{where}: arrow glyph {ARROW.search(s).group(0)!r} in content")
 
     low = s.lower()
@@ -164,8 +166,66 @@ def check_content() -> list[str]:
     return problems
 
 
+# The data check above protects what an editor writes. It cannot see text that a
+# template hard-codes or that a script writes into the page at runtime, and that
+# text reaches the reader exactly the same way. An em dash sitting in a simulator
+# output cell is as much of a tell as one in a paragraph. So the rendered pages
+# get read back too.
+#
+# Two of the data rules are deliberately not applied to rendered output, because
+# here they would fire on correct typography rather than on a tell:
+#   - arrows: in a right-to-left page "למהדורה של היום ←" is navigation, and an
+#     axis label reads "1 → 13". Neither is prose.
+#   - en dash: a chart builds its range as '0 – ' + years, so the literal that
+#     carries the dash has had its second number concatenated away and no rule
+#     reading that literal alone can tell a range from prose.
+# Comments are not checked either: an em dash in a CSS or Jinja comment is
+# invisible, and failing on it would train everyone to ignore this check.
+RENDERED_SKIP = ("arrow", "en_dash")
+HTML_COMMENT = re.compile(r"<!--.*?-->", re.S)
+SCRIPT_BLOCK = re.compile(r"<script\b[^>]*>(.*?)</script>", re.S | re.I)
+STYLE_BLOCK = re.compile(r"<style\b[^>]*>.*?</style>", re.S | re.I)
+TAG = re.compile(r"<[^>]+>", re.S)
+JS_BLOCK_COMMENT = re.compile(r"/\*.*?\*/", re.S)
+JS_LINE_COMMENT = re.compile(r"(?<![:'\"])//[^\n]*")
+JS_STRING = re.compile(r"'([^'\\\n]*(?:\\.[^'\\\n]*)*)'|\"([^\"\\\n]*(?:\\.[^\"\\\n]*)*)\"")
+
+
+def check_rendered(path: Path) -> list[str]:
+    """Read a built page back and check the text a reader actually sees."""
+    raw = path.read_text(encoding="utf-8")
+    raw = HTML_COMMENT.sub(" ", raw)
+
+    problems = []
+    for script in SCRIPT_BLOCK.findall(raw):
+        script = JS_BLOCK_COMMENT.sub(" ", script)
+        script = JS_LINE_COMMENT.sub(" ", script)
+        for single, double in JS_STRING.findall(script):
+            literal = single or double
+            if literal.strip():
+                problems += check_string(literal, f"{path.name} script literal", RENDERED_SKIP)
+
+    body = SCRIPT_BLOCK.sub(" ", raw)
+    body = STYLE_BLOCK.sub(" ", body)
+    body = TAG.sub(" ", body)
+    body = html.unescape(body)
+    for line in body.splitlines():
+        if line.strip():
+            problems += check_string(line, f"{path.name} page text", RENDERED_SKIP)
+    return problems
+
+
+def rendered_pages() -> list[Path]:
+    pages = sorted(ROOT.glob("*.html"))
+    for folder in ("editions", "learn"):
+        pages += sorted((ROOT / folder).glob("*.html"))
+    return pages
+
+
 def main() -> int:
     problems = check_content()
+    for page in rendered_pages():
+        problems += check_rendered(page)
     if problems:
         print(f"STYLE CHECK FAILED - {len(problems)} problem(s):")
         for p in problems:

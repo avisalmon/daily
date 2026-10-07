@@ -967,7 +967,7 @@
     // כל מעבר הדפסה נוסף חוצה בקירוב את הצפיפות
     var passes = duv <= res ? 1 : Math.pow(2, Math.ceil(Math.log(duv / res) / Math.log(2)));
     document.getElementById('euv-out-passes').textContent =
-      lambda === 193 ? '—' : '×' + passes;
+      lambda === 193 ? 'לא חל' : '×' + passes;
 
     var note = document.getElementById('euv-note');
     if (lambda === 193) {

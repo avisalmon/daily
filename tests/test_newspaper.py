@@ -589,16 +589,150 @@ def test_style_checker_catches_emoji_and_filler():
 
 
 def test_rendered_pages_have_no_em_dashes_or_emoji():
+    """The reader sees the built page, not the data file.
+
+    This used to strip <script> blocks before looking, which is precisely where
+    the one real offender was hiding: a simulator wrote an em dash straight into
+    an output cell on every topic page, and both the data check and this test
+    reported clean. style.check_rendered reads script string literals too,
+    because a literal that lands in textContent is prose."""
     import style
 
-    pages = [ROOT / "index.html", ROOT / "learn.html", ROOT / "archive.html",
-             *(ROOT / "editions").glob("*.html"), *(ROOT / "learn").glob("*.html")]
-    for page in pages:
-        html = page.read_text(encoding="utf-8")
-        text = re.sub(r"<script.*?</script>|<style.*?</style>|<!--.*?-->", "", html, flags=re.S)
-        text = re.sub(r"<[^>]+>", " ", text)
-        assert "—" not in text, f"{page.name} renders an em dash"
-        assert not style.EMOJI.search(text), f"{page.name} renders an emoji"
+    problems = []
+    for page in style.rendered_pages():
+        problems += style.check_rendered(page)
+    assert problems == [], problems
+
+
+def test_rendered_check_reads_inside_script_literals(tmp_path):
+    """The guard above is only worth having if it looks where the bug was."""
+    import style
+
+    page = tmp_path / "sim.html"
+    page.write_text(
+        "<p>טקסט תקין</p><script>\n"
+        "  // הערה עם — שאיש אינו רואה\n"
+        "  el.textContent = lambda === 193 ? '\u2014' : '\u00d7' + passes;\n"
+        "</script>",
+        encoding="utf-8",
+    )
+    problems = style.check_rendered(page)
+    assert any("em dash" in p for p in problems), problems
+    assert all("הערה" not in p for p in problems), "a comment is not prose"
+
+
+def test_rendered_check_allows_rtl_navigation_and_chart_ranges():
+    """Arrows and en dashes are correct typography here, not tells."""
+    import style
+
+    assert style.check_string("למהדורה של היום \u2190", "nav", style.RENDERED_SKIP) == []
+    assert style.check_string("0 \u2013 ", "axis", style.RENDERED_SKIP) == []
+
+
+# ---------------------------------------------------------------------------
+# Simulator wiring
+#
+# The simulators are hand-written JavaScript that reaches into the page by id.
+# document.getElementById returns null for a name that does not exist, and the
+# usual next line is el.textContent = ..., which throws and kills the rest of
+# that simulator. Nothing in the build notices: validate.py reads data, style.py
+# reads prose, and the page still renders with a dead control panel on it.
+#
+# This is the BKM section 11 trap wearing different clothes. The check runs
+# against the template rather than the built pages on purpose, so a simulator
+# belonging to an edition that has not been published yet is covered too.
+_SCRIPT_RE = re.compile(r"<script\b[^>]*>(.*?)</script>", re.S | re.I)
+_IIFE_OPEN = re.compile(r"\(function\s*\(\s*\)\s*\{")
+_GET_BY_ID = re.compile(r"getElementById\(\s*'([^']+)'\s*\)")
+_QUERY_CLASS = re.compile(r"querySelectorAll?\(\s*'\.([A-Za-z0-9_-]+)'")
+_ID_ATTR = re.compile(r'\bid="([^"]+)"')
+_CLASS_ATTR = re.compile(r'\bclass="([^"]+)"')
+_JINJA = re.compile(r"\{\{.*?\}\}|\{%.*?%\}", re.S)
+_JS_LINE_COMMENT = re.compile(r"(?<![:'\"])//[^\n]*")
+_JS_BLOCK_COMMENT = re.compile(r"/\*.*?\*/", re.S)
+_JS_STRING = re.compile(r"'(?:[^'\\\n]|\\.)*'|\"(?:[^\"\\\n]|\\.)*\"")
+
+
+def _iife_bodies(js):
+    """Yield each (function () { ... }) body by matching braces.
+
+    Comments and string literals are blanked first, so a brace inside Hebrew
+    prose cannot throw the depth count off."""
+    clean = _JS_BLOCK_COMMENT.sub(lambda m: " " * len(m.group(0)), js)
+    clean = _JS_LINE_COMMENT.sub(lambda m: " " * len(m.group(0)), clean)
+    clean = _JS_STRING.sub(lambda m: "'" + " " * (len(m.group(0)) - 2) + "'", clean)
+    for m in _IIFE_OPEN.finditer(clean):
+        depth = 0
+        for i in range(m.end() - 1, len(clean)):
+            if clean[i] == "{":
+                depth += 1
+            elif clean[i] == "}":
+                depth -= 1
+                if depth == 0:
+                    yield js[m.end():i]
+                    break
+
+
+def _declared_targets(template_text):
+    """Ids and classes the markup declares, with Jinja holes as wildcards.
+
+    An id written id="in-{{ c.key }}" really does exist at run time under every
+    key the data supplies, so it becomes the pattern in-.+ rather than a literal."""
+    markup = _SCRIPT_RE.sub(" ", template_text)
+    ids, patterns, classes = set(), [], set()
+    for value in _ID_ATTR.findall(markup):
+        if _JINJA.search(value):
+            patterns.append(re.compile("^" + ".+".join(
+                re.escape(part) for part in _JINJA.split(value)) + "$"))
+        else:
+            ids.add(value)
+    for value in _CLASS_ATTR.findall(markup):
+        classes.update(_JINJA.sub(" ", value).split())
+    return ids, patterns, classes
+
+
+def _unresolved_references(template_text):
+    ids, patterns, classes = _declared_targets(template_text)
+    problems, checked = [], 0
+    for block in _SCRIPT_RE.findall(template_text):
+        for body in _iife_bodies(block):
+            for ref in sorted(set(_GET_BY_ID.findall(body))):
+                checked += 1
+                if ref not in ids and not any(p.match(ref) for p in patterns):
+                    problems.append(f"getElementById('{ref}') matches no id in the markup")
+            for cls in sorted(set(_QUERY_CLASS.findall(body))):
+                checked += 1
+                if cls not in classes:
+                    problems.append(f"querySelector('.{cls}') matches no class in the markup")
+    return checked, problems
+
+
+def test_every_simulator_element_reference_resolves():
+    """A simulator that reaches for an element that is not there dies silently."""
+    text = (ROOT / "templates" / "topic.html.j2").read_text(encoding="utf-8")
+    checked, problems = _unresolved_references(text)
+    assert checked > 50, f"only {checked} references found; this guard looks nowhere"
+    assert problems == [], problems
+
+
+def test_simulator_reference_check_catches_a_renamed_element():
+    """The guard above passes on real data, so prove it can fail."""
+    text = (ROOT / "templates" / "topic.html.j2").read_text(encoding="utf-8")
+    broken = text.replace("getElementById('op-channel-state')",
+                          "getElementById('op-channel-stat')")
+    assert broken != text, "the element this fixture renames is gone; repoint it"
+    _, problems = _unresolved_references(broken)
+    assert any("op-channel-stat'" in p for p in problems), problems
+
+
+def test_simulator_reference_check_accepts_jinja_built_ids():
+    """id="in-{{ c.key }}" is a real element, not a missing one."""
+    markup = '<input id="in-{{ c.key }}"><b class="euv-source-btn{% if x %} is-active{% endif %}">'
+    script = ("<script>(function () { var a = document.getElementById('in-mag');"
+              " var b = document.querySelectorAll('.euv-source-btn'); }());</script>")
+    checked, problems = _unresolved_references(markup + script)
+    assert checked == 2
+    assert problems == [], problems
 
 
 def test_no_card_styling_in_css():
@@ -1196,6 +1330,30 @@ def test_the_correction_template_block_still_exists():
     template = (ROOT / "templates" / "edition.html.j2").read_text(encoding="utf-8")
     assert "lead.correction" in template, "the template no longer renders a correction"
     assert "correction__text" in template, "the correction body is no longer printed"
+
+
+def test_the_alga_really_is_twenty_times_faster_than_the_eye():
+    """BKM 13: 'פי עשרים' is the paper's own arithmetic, not a quoted figure.
+
+    The Nobel background gives two measurements and never multiplies them: the
+    impulse in Chlamydomonas appeared 0.5 ms after the light, and the chemical
+    chain in the human eye takes at least 10 ms. The ratio is ours, it is printed
+    three times across the topic page and the edition, and no reader can check
+    it. If either source number is ever corrected, this fails rather than the
+    paper quietly keeping a wrong multiple."""
+    alga_ms, eye_ms = 0.5, 10.0
+    assert eye_ms / alga_ms == 20
+
+    topic = (ROOT / "data" / "topics" / "optogenetics.json").read_text(encoding="utf-8")
+    edition = (ROOT / "data" / "editions" / "2026-10-08.json").read_text(encoding="utf-8")
+
+    assert "חצי אלפית שנייה" in topic, "the 0.5 ms measurement is no longer printed"
+    assert "עשר אלפיות שנייה" in topic, "the 10 ms comparison is no longer printed"
+    for name, text in (("topic", topic), ("edition", edition)):
+        assert "פי עשרים" in text, f"the {name} no longer prints the derived multiple"
+        assert "פי עשר" not in text.replace("פי עשרים", ""), (
+            f"the {name} prints a different multiple than 10 / 0.5"
+        )
 
 
 def test_the_lowest_frequency_costs_the_time_the_article_claims():
