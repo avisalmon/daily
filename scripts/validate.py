@@ -35,6 +35,14 @@ MOJIBAKE = re.compile(r"×[\u0080-\u00BF\u2018-\u201D\u0090\u009D]")
 
 PLACEHOLDERS = ("PLACEHOLDER", "TODO", "FIXME", "Lorem ipsum", "לורם איפסום")
 
+# Whole word only. A substring match flags "Mathstodon" as a TODO marker, which
+# is how a real brief about Terence Tao's Mastodon thread failed the gate.
+PLACEHOLDER_RE = re.compile(
+    r"(?<![A-Za-z\u0590-\u05FF])(?:%s)(?![A-Za-z\u0590-\u05FF])"
+    % "|".join(re.escape(m) for m in PLACEHOLDERS),
+    re.I,
+)
+
 HTTP = re.compile(r"^https?://", re.I)
 
 HEBREW = re.compile(r"[\u0590-\u05FF]")
@@ -258,9 +266,8 @@ def check_edition(ed: dict, path: Path, seen_urls: dict[str, str], errors: list[
 
     # ---- nothing half-written, nothing mangled ----------------------------
     blob = json.dumps(ed, ensure_ascii=False)
-    for marker in PLACEHOLDERS:
-        if marker.lower() in blob.lower():
-            _fail(errors, where, f"contains placeholder text {marker!r}")
+    for marker in PLACEHOLDER_RE.findall(blob):
+        _fail(errors, where, f"contains placeholder text {marker!r}")
     if MOJIBAKE.search(blob):
         _fail(errors, where, "contains mojibake - a tool wrote UTF-8 as cp1252 (docs/BKM.md §5)")
 

@@ -441,6 +441,130 @@
       <figcaption>{{ sec.diagram.caption }}</figcaption>
     </figure>
     {% endif %}
+
+    {% if sec.diagram and sec.diagram.type == 'watermark-visible-vs-hidden' %}
+    <figure class="diagram">
+      <svg viewBox="0 0 520 230" role="img" aria-label="משמאל תמונה עם לוגו שקוף בפינה אחת, ולצידה אותה תמונה אחרי חיתוך הפינה, בלי הלוגו. מימין תמונה שהסימן בה פזור על פני כל השטח, ואותה תמונה אחרי חיתוך, שבה הסימן עדיין נמצא" preserveAspectRatio="xMidYMid meet">
+        <text x="500" y="20" class="diagram__label diagram__label--strong">גלוי: אזור אחד</text>
+        <text x="250" y="20" class="diagram__label diagram__label--strong">סמוי: פזור על הכול</text>
+
+        <rect x="402" y="34" width="110" height="86" class="wm-frame"/>
+        <rect x="412" y="90" width="58" height="20" class="diagram__dot--strong"/>
+        <text x="457" y="136" class="diagram__axis-label">המקור</text>
+
+        <rect x="276" y="34" width="110" height="64" class="wm-frame"/>
+        <text x="331" y="136" class="diagram__axis-label">אחרי חיתוך</text>
+        <text x="331" y="154" class="diagram__axis-label">הסימן נעלם</text>
+
+        <rect x="148" y="34" width="110" height="86" class="wm-frame"/>
+        <g class="wm-speck">
+          <circle cx="166" cy="48" r="2.4"/><circle cx="198" cy="44" r="2.4"/><circle cx="230" cy="52" r="2.4"/>
+          <circle cx="180" cy="68" r="2.4"/><circle cx="216" cy="72" r="2.4"/><circle cx="246" cy="64" r="2.4"/>
+          <circle cx="160" cy="92" r="2.4"/><circle cx="192" cy="100" r="2.4"/><circle cx="226" cy="94" r="2.4"/>
+          <circle cx="172" cy="112" r="2.4"/><circle cx="208" cy="114" r="2.4"/><circle cx="244" cy="108" r="2.4"/>
+        </g>
+        <text x="203" y="136" class="diagram__axis-label">המקור</text>
+
+        <rect x="22" y="34" width="110" height="64" class="wm-frame"/>
+        <g class="wm-speck">
+          <circle cx="40" cy="48" r="2.4"/><circle cx="72" cy="44" r="2.4"/><circle cx="104" cy="52" r="2.4"/>
+          <circle cx="54" cy="68" r="2.4"/><circle cx="90" cy="72" r="2.4"/><circle cx="120" cy="64" r="2.4"/>
+          <circle cx="34" cy="88" r="2.4"/><circle cx="66" cy="92" r="2.4"/><circle cx="100" cy="86" r="2.4"/>
+        </g>
+        <text x="77" y="136" class="diagram__axis-label">אחרי חיתוך</text>
+        <text x="77" y="154" class="diagram__axis-label diagram__label--strong">הסימן עדיין כאן</text>
+
+        <line x1="20" y1="180" x2="500" y2="180" class="diagram__axis"/>
+        <text x="260" y="202" class="diagram__axis-label">אין פינה שאפשר לחתוך כדי להיפטר מסימן סמוי</text>
+      </svg>
+      <figcaption>{{ sec.diagram.caption }}</figcaption>
+    </figure>
+    {% endif %}
+
+    {% if sec.diagram and sec.diagram.type == 'watermark-amplified' %}
+    <figure class="diagram">
+      <svg viewBox="0 0 520 230" role="img" aria-label="שלושה ריבועים. הראשון התמונה המקורית, השני התמונה המסומנת, ושניהם נראים זהים. השלישי הוא ההפרש בין השניים מוגבר פי מאה, ובו נראית תבנית סדירה" preserveAspectRatio="xMidYMid meet">
+        <defs>
+          <pattern id="wm-grain" width="10" height="10" patternUnits="userSpaceOnUse">
+            <rect width="10" height="10" class="wm-grain-bg"/>
+            <circle cx="3" cy="3" r="1.6" class="wm-grain-dot"/>
+            <circle cx="8" cy="7" r="1.1" class="wm-grain-dot"/>
+          </pattern>
+        </defs>
+
+        <rect x="378" y="40" width="124" height="104" class="wm-frame wm-frame--filled"/>
+        <text x="440" y="30" class="diagram__axis-label diagram__label--strong">המקור</text>
+        <text x="440" y="164" class="diagram__axis-label" text-anchor="middle">ללא סימן</text>
+
+        <rect x="198" y="40" width="124" height="104" class="wm-frame wm-frame--filled"/>
+        <text x="260" y="30" class="diagram__axis-label diagram__label--strong">אחרי הטמעה</text>
+        <text x="260" y="164" class="diagram__axis-label" text-anchor="middle">זהה לעין</text>
+
+        <rect x="18" y="40" width="124" height="104" class="wm-frame" fill="url(#wm-grain)"/>
+        <text x="80" y="30" class="diagram__axis-label diagram__label--strong">ההפרש, מוגבר ×100</text>
+        <text x="80" y="164" class="diagram__axis-label" text-anchor="middle">התבנית החבויה</text>
+
+        <line x1="340" y1="92" x2="362" y2="92" class="diagram__axis"/>
+        <line x1="160" y1="92" x2="182" y2="92" class="diagram__axis"/>
+
+        <line x1="20" y1="186" x2="500" y2="186" class="diagram__axis"/>
+        <text x="260" y="208" class="diagram__axis-label">השינוי האמיתי: רמה אחת מתוך 256 לכל ערוץ</text>
+      </svg>
+      <figcaption>{{ sec.diagram.caption }}</figcaption>
+    </figure>
+    {% endif %}
+
+    {% if sec.diagram and sec.diagram.type == 'watermark-token-split' %}
+    <figure class="diagram">
+      <svg viewBox="0 0 520 250" role="img" aria-label="משפט שנכתב מילה אחר מילה. מתחת למילה הבאה מופיעה רשימת מועמדים, מחציתה מסומנת כקבוצה א ומחציתה כקבוצה ב, והמודל נוטה לבחור מקבוצה א" preserveAspectRatio="xMidYMid meet">
+        <text x="500" y="26" class="diagram__label diagram__label--strong">הטקסט שנכתב עד כה</text>        <text x="500" y="52" class="diagram__label">החוקרים בדקו את השיטה והיא</text>
+        <rect x="300" y="38" width="26" height="20" class="wm-slot"/>
+
+        <line x1="20" y1="72" x2="500" y2="72" class="diagram__axis"/>
+        <text x="500" y="94" class="diagram__label diagram__label--strong">המועמדים לבחירה הבאה</text>
+
+        <circle cx="492" cy="122" r="5" class="diagram__dot--strong"/>
+        <text x="478" y="127" class="diagram__label">הצליחה</text>
+        <circle cx="492" cy="150" r="5" class="diagram__dot"/>
+        <text x="478" y="155" class="diagram__label">עבדה</text>
+        <circle cx="492" cy="178" r="5" class="diagram__dot--strong"/>
+        <text x="478" y="183" class="diagram__label">פעלה</text>
+        <circle cx="492" cy="206" r="5" class="diagram__dot"/>
+        <text x="478" y="211" class="diagram__label">השתלמה</text>
+
+        <text x="396" y="127" class="diagram__label">קבוצה א</text>
+        <text x="396" y="155" class="diagram__label">קבוצה ב</text>
+        <text x="396" y="183" class="diagram__label">קבוצה א</text>
+        <text x="396" y="211" class="diagram__label">קבוצה ב</text>
+
+        <rect x="180" y="112" width="130" height="20" class="wm-bar wm-bar--strong"/>
+        <rect x="230" y="140" width="80" height="20" class="wm-bar"/>
+        <rect x="200" y="168" width="110" height="20" class="wm-bar wm-bar--strong"/>
+        <rect x="250" y="196" width="60" height="20" class="wm-bar"/>
+        <text x="170" y="127" class="diagram__label">הסתברות אחרי ההטיה</text>
+
+        <text x="260" y="238" class="diagram__axis-label">החלוקה נקבעת מחדש לפני כל מילה, לפי מפתח סודי</text>
+      </svg>
+      <figcaption>{{ sec.diagram.caption }}</figcaption>
+    </figure>
+    {% endif %}
+
+    {% if sec.table %}
+    <figure class="datatable">
+      <table>
+        <caption>{{ sec.table.caption }}</caption>
+        <thead>
+          <tr>{% for h in sec.table.head %}<th scope="col">{{ h }}</th>{% endfor %}</tr>
+        </thead>
+        <tbody>
+          {% for row in sec.table.rows %}
+          <tr>{% for cell in row %}{% if loop.first %}<th scope="row">{{ cell }}</th>{% else %}<td>{{ cell }}</td>{% endif %}{% endfor %}</tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      {% if sec.table.note %}<figcaption>{{ sec.table.note }}</figcaption>{% endif %}
+    </figure>
+    {% endif %}
   </section>
   {% endfor %}
 
@@ -818,6 +942,62 @@
   </section>
   {% endif %}
 
+  {% if topic.sim and topic.sim.type == 'watermark-strength' %}
+  <section class="sim" id="sim">
+    <h2 class="topic__heading">{{ topic.sim.title }}</h2>
+    <p class="sim__intro">{{ topic.sim.intro }}</p>
+
+    <div class="sim__controls">
+      <label class="sim__control">
+        <span class="sim__control-head">
+          <span>עוצמת ההטמעה</span>
+          <output id="wm-out-strength" class="ltr"></output>
+        </span>
+        <input type="range" id="wm-in-strength" min="1" max="12" step="1" value="4">
+        <span class="sim__control-hint">בכמה רמות, מתוך 256, משנים את הערכים בממוצע</span>
+      </label>
+      <label class="sim__control">
+        <span class="sim__control-head">
+          <span>חומרת העיבוד מחדש</span>
+          <output id="wm-out-attack" class="ltr"></output>
+        </span>
+        <input type="range" id="wm-in-attack" min="0" max="10" step="1" value="3">
+        <span class="sim__control-hint">מקובץ שלא נגעו בו ועד צילום מסך, הקטנה ודחיסה חוזרת</span>
+      </label>
+    </div>
+
+    <div class="gene-switch__stage" id="wm-stage">
+      <svg viewBox="0 0 520 150" role="img" aria-label="שני ריבועים. משמאל התמונה כפי שהקורא רואה אותה, שמתלכלכת ככל שעוצמת ההטמעה עולה. מימין עוצמת הסימן ששרד אחרי העיבוד">
+        <rect x="286" y="20" width="110" height="96" class="wm-frame"/>
+        <g id="wm-noise" class="wm-speck"></g>
+        <text x="341" y="136" class="diagram__axis-label" text-anchor="middle">מה שהקורא רואה</text>
+
+        <rect x="120" y="20" width="110" height="96" class="wm-frame"/>
+        <rect x="120" y="116" width="110" height="0" id="wm-level" class="wm-level"/>
+        <text x="175" y="136" class="diagram__axis-label" text-anchor="middle">עוצמת הסימן ששרד</text>
+      </svg>
+    </div>
+
+    <div class="sim__readout sim__readout--three">
+      <div class="sim__stat sim__stat--strong">
+        <span class="sim__stat-label">סיכוי לקרוא את הסימן</span>
+        <span class="sim__stat-value ltr" id="wm-out-detect"></span>
+      </div>
+      <div class="sim__stat">
+        <span class="sim__stat-label">האם ההפרש מורגש</span>
+        <span class="sim__stat-value" id="wm-out-visible"></span>
+      </div>
+      <div class="sim__stat">
+        <span class="sim__stat-label">מה נעשה בקובץ</span>
+        <span class="sim__stat-value" id="wm-out-attack-name"></span>
+      </div>
+    </div>
+
+    <p class="sim__note" id="wm-note"></p>
+    <p class="sim__note euv-caveat">{{ topic.sim.caveat }}</p>
+  </section>
+  {% endif %}
+
   {% if topic.quiz %}
   <section class="quiz" id="quiz">
     <h2 class="topic__heading">בדקו את עצמכם</h2>
@@ -856,6 +1036,95 @@
   {% endif %}
 
 </article>
+
+<script>
+/* ===== סימן מים: ההתנגשות בין איכות לשרידות ===== */
+(function () {
+  var stage = document.getElementById('wm-stage');
+  if (!stage) return;
+
+  var inStrength = document.getElementById('wm-in-strength');
+  var inAttack = document.getElementById('wm-in-attack');
+  var outStrength = document.getElementById('wm-out-strength');
+  var outAttack = document.getElementById('wm-out-attack');
+  var outDetect = document.getElementById('wm-out-detect');
+  var outVisible = document.getElementById('wm-out-visible');
+  var outAttackName = document.getElementById('wm-out-attack-name');
+  var level = document.getElementById('wm-level');
+  var noise = document.getElementById('wm-noise');
+  var note = document.getElementById('wm-note');
+
+  var ATTACKS = [
+    'הקובץ כפי שנוצר',
+    'שמירה מחדש באיכות גבוהה',
+    'שליחה ברשת חברתית',
+    'הקטנה לרוחב חצי',
+    'הקטנה ודחיסה חוזרת',
+    'חיתוך של שליש מהתמונה',
+    'צילום מסך',
+    'צילום מסך והעלאה מחדש',
+    'צילום מסך, הקטנה ודחיסה',
+    'צילום של המסך בטלפון',
+    'ציור מחדש של חלק מהתמונה'
+  ];
+
+  /* תבנית קבועה, כדי שהרעש לא יקפוץ בכל הזזה של המחוון */
+  var SPECKS = [];
+  var seed = 7;
+  for (var i = 0; i < 90; i++) {
+    seed = (seed * 1103515245 + 12345) % 2147483648;
+    var x = 288 + (seed % 106);
+    seed = (seed * 1103515245 + 12345) % 2147483648;
+    var y = 22 + (seed % 92);
+    SPECKS.push([x, y]);
+  }
+  for (var j = 0; j < SPECKS.length; j++) {
+    var c = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    c.setAttribute('cx', SPECKS[j][0]);
+    c.setAttribute('cy', SPECKS[j][1]);
+    c.setAttribute('r', '1.5');
+    noise.appendChild(c);
+  }
+
+  function render() {
+    var s = parseInt(inStrength.value, 10);
+    var a = parseInt(inAttack.value, 10);
+
+    /* מודל ממחיש: הסימן נקרא כשהוא גדול ביחס למה שהעיבוד מחק */
+    var ratio = s / (1 + 1.45 * a);
+    var detect = 100 * (ratio * ratio) / (ratio * ratio + 1);
+    detect = Math.max(2, Math.min(99, detect));
+
+    outStrength.textContent = '±' + s + ' רמות';
+    outAttack.textContent = ATTACKS[a];
+    outDetect.textContent = detect.toFixed(0) + '%';
+    outAttackName.textContent = ATTACKS[a];
+
+    outVisible.textContent = s <= 3 ? 'לא' : (s <= 7 ? 'בקושי' : 'כן, הקובץ מתלכלך');
+
+    var h = 96 * detect / 100;
+    level.setAttribute('y', 116 - h);
+    level.setAttribute('height', h);
+    noise.style.opacity = Math.min(0.85, s / 14).toFixed(2);
+
+    if (s <= 3 && detect < 40) {
+      note.textContent = 'הטמעה עדינה שורדת קובץ שכמעט לא נגעו בו, ונעלמת ברגע שמישהו שלח אותו הלאה. זה המצב שבו המערכת נראית מצוינת במעבדה וחסרת ערך ברשת.';
+    } else if (s >= 9 && detect > 75) {
+      note.textContent = 'הסימן עמיד, אבל שימו לב לריבוע הימני. כדי להגיע לכאן שילמתם באיכות, וזה בדיוק מה שמי שמוכר מודל ליצירת תמונות אינו מוכן לשלם.';
+    } else if (detect > 75) {
+      note.textContent = 'זה אזור העבודה שמערכות אמיתיות מכוונות אליו: סימן שאינו מורגש ושורד את העיבוד השכיח. הוא לא שורד את כל העיבודים.';
+    } else if (a >= 9) {
+      note.textContent = 'בקצה הזה אין מה לשפר בהטמעה. ציור מחדש של אזור מייצר פיקסלים חדשים שמעולם לא נשאו סימן, וצילום של מסך בטלפון מעביר את התמונה דרך עדשה.';
+    } else {
+      note.textContent = 'כאן נמצא הגבול. העלאת העוצמה תעזור לזיהוי ותפגע באיכות, והורדתה תעשה את ההפך. אין הגדרה שמנצחת בשני הצירים.';
+    }
+  }
+
+  inStrength.addEventListener('input', render);
+  inAttack.addEventListener('input', render);
+  render();
+})();
+</script>
 
 <script>
 /* ===== מדמה המתג הגנטי: אותו רצף, תאים שונים, תוצאה הפוכה ===== */

@@ -1352,6 +1352,70 @@ img { max-width: 100%; display: block; }
   border-top: 1px solid var(--rule);
 }
 
+/* סימן מים דיגיטלי */
+.wm-frame { fill: none; stroke: var(--rule-dark); stroke-width: 1.2; }
+.wm-frame--filled { fill: var(--ink-faint); fill-opacity: 0.14; }
+.wm-speck circle { fill: var(--rule-dark); }
+.wm-grain-bg { fill: none; }
+.wm-grain-dot { fill: var(--rule-dark); opacity: 0.55; }
+.wm-slot { fill: none; stroke: var(--rule-dark); stroke-width: 1.2; stroke-dasharray: 3 3; }
+.wm-bar { fill: var(--ink-faint); opacity: 0.4; }
+.wm-bar--strong { fill: var(--rule-dark); opacity: 1; }
+.wm-level { fill: var(--rule-dark); opacity: 0.8; }
+
+/* טבלה בעמוד לימוד: שורות וקווים, בלי מסגרת מסביב */
+.datatable { margin: 22px 0; }
+
+.datatable table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--sans);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.datatable caption {
+  font-family: var(--sans);
+  font-size: 12px;
+  letter-spacing: .06em;
+  color: var(--ink-faint);
+  text-align: right;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--rule-dark);
+}
+
+.datatable th,
+.datatable td {
+  text-align: right;
+  vertical-align: top;
+  padding: 9px 0 9px 16px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.datatable thead th {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--ink-faint);
+  border-bottom: 1px solid var(--rule-dark);
+}
+
+.datatable tbody th { font-weight: 700; }
+
+.datatable td:last-child { padding-left: 0; color: var(--ink-soft); }
+
+.datatable figcaption {
+  font-family: var(--sans);
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--ink-faint);
+  margin-top: 10px;
+}
+
+@media (max-width: 560px) {
+  .datatable table { font-size: 13px; }
+  .datatable th, .datatable td { padding-left: 10px; }
+}
+
 /* אינפוגרפיקות ליתוגרפיה */
 .euv-bar { fill: var(--rule-dark); }
 .euv-bar--faint { fill: var(--ink-faint); opacity: 0.35; }

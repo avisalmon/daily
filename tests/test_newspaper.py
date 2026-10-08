@@ -1030,6 +1030,29 @@ def test_linked_episode_validates_and_exclusivity_is_enforced(tmp_path):
     assert [e for e in errors if "podcast" in e], "a relative podcast link must be rejected"
 
 
+def test_placeholder_check_matches_whole_words_only(tmp_path):
+    """A substring scan for 'TODO' rejects 'Mathstodon', which is the real
+    name of the server a brief about Terence Tao had to cite. The guard has to
+    catch a half-written edition without censoring an ordinary proper noun."""
+    base = {"date": "2020-01-01", "number": 1, "compiled_at": "2020-01-01T00:00:00"}
+
+    ed = dict(base, grid=[{"name": "n", "stories": [{
+        "headline": "h", "summary": "s", "source": "טרנס טאו, Mathstodon",
+        "time": "10:00", "url": "https://mathstodon.xyz/@tao/1"}]}])
+    errors: list[str] = []
+    validate.check_edition(ed, tmp_path / "2020-01-01.json", {}, errors)
+    assert not [e for e in errors if "placeholder" in e], \
+        f"'Mathstodon' was read as a TODO marker: {errors}"
+
+    ed = dict(base, grid=[{"name": "n", "stories": [{
+        "headline": "TODO: write this", "summary": "s", "source": "x",
+        "time": "10:00", "url": "https://example.com/"}]}])
+    errors = []
+    validate.check_edition(ed, tmp_path / "2020-01-01.json", {}, errors)
+    assert [e for e in errors if "placeholder" in e], \
+        "a real TODO marker slipped through the relaxed check"
+
+
 def test_lead_art_is_credited_and_local(tmp_path):
     """The paper draws its own diagrams, so a raster image is always somebody
     else's work. Printing one without a credit, or hotlinking it from another
@@ -1145,6 +1168,50 @@ def test_complex_numbers_topic_matches_the_numbers_it_prints():
     assert (round(zp.real), round(zp.imag)) == (50, -50) and "50 מינוס 50i" in text
 
     assert 1000 / 50 / 4 == 5, "a quarter cycle at 50 Hz is 5 ms"
+
+
+def test_agent_cost_lead_matches_the_numbers_it_derives():
+    """BKM 13. The 2026-10-09 lead quotes figures from arXiv:2604.22750v3, but
+    several numbers on the page are the paper's own arithmetic rather than
+    anything the paper prints. No reader can catch a wrong one, because the
+    page is the only place they appear. They are recomputed here.
+
+    The 50x correction is the point of the article's seventh paragraph: the
+    paper says output tokens are priced about 80x cache reads, and Anthropic's
+    list price for the model the paper says it used gives 50x."""
+    ed = json.loads(
+        (ROOT / "data" / "editions" / "2026-10-09.json").read_text(encoding="utf-8"))
+    text = json.dumps(ed, ensure_ascii=False)
+
+    # Tokens per task, figure 1: reasoning query, chat turn, agent task.
+    reasoning, chat, agent = 1190, 3390, 4_170_000
+    assert round(agent / reasoning) == 3504 and "3,504" in text
+    assert round(agent / chat) == 1230 and "1,230" in text
+
+    # The paper's abstract rounds both of those to "1000x". The page says so,
+    # and the claim is only honest if the two ratios really do straddle it.
+    assert agent / chat < 1000 * 2 < agent / reasoning
+
+    # Output price vs cache-read price, Claude Sonnet 4.5 list price.
+    assert 15.0 / 0.30 == 50 and "הוא 50" in text
+
+    # Phase shares, figure 8. They are a partition, so they must sum to 100,
+    # and the figure rounds each one.
+    phases = [9.98, 30.37, 33.53, 16.59, 9.53]
+    assert round(sum(phases), 2) == 100.00
+    assert round(phases[1] + phases[2], 2) == 63.90 and "63.9" in text
+
+    bars = [b["value"] for b in ed["lead"]["figure"]["bars"]]
+    assert bars == [round(p) for p in phases], \
+        "the figure must round the paper's phase shares, not restate them"
+    assert ed["lead"]["figure"]["max"] >= max(bars)
+
+    # "About 150 read for every one written" paraphrases the 153.85 ratio.
+    assert round(153.85 / 10) * 10 == 150 and "כ-150" in text
+
+    # Prediction overhead, figure 11b: both Sonnet 3.7 and Sonnet 4 charge more
+    # than the task itself merely to guess what the task will cost.
+    assert 2.29 > 1 and 2.09 > 1 and "2.29" in text and "2.09" in text
 
 
 def test_complex_plane_diagram_uses_one_scale_on_both_axes():
