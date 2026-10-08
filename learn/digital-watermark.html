@@ -1,0 +1,1272 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#f7f4ec">
+<title>היום בקיצור, מה זה סימן מים דיגיטלי</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@300..900&family=Noto+Serif+Hebrew:wght@300..700&family=Heebo:wght@400..800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/newspaper.css">
+</head>
+<body>
+
+<div class="wrap">
+
+  <header class="masthead masthead--compact">
+    <h1 class="masthead__title">
+      <a href="../index.html">היום <span class="thin">בקיצור</span></a>
+    </h1>
+    <p class="masthead__tagline">דברים שקרו היום ומעניינים אותי</p>
+    <hr class="masthead__rule">
+  </header>
+
+  <nav class="sitenav" aria-label="ניווט ראשי">
+    <a href="../index.html" >המהדורה</a>
+    <a href="../archive.html" >ארכיון</a>
+    <a href="../search.html" >חיפוש</a>
+    <a href="../learn.html" class="is-current">נושאי לימוד</a>
+  </nav>
+
+  <main class="page">
+    <div class="section-head"><span class="section-head__label">לומדים היום</span></div>
+<article class="topic">
+
+  <header class="topic__head">
+    <p class="topic__level">חטיבה עליונה · קריאה של 11 דקות</p>
+    <h1 class="topic__title">מה זה סימן מים דיגיטלי</h1>
+<p class="topic__subtitle">מחביאים בתוך קובץ אות שהעין לא רואה והאוזן לא שומעת, אבל תוכנה כן. זה עובד טוב יותר ממה שנדמה בתמונות, גרוע יותר ממה שנדמה בטקסט, ולא פותר את השאלה שבגללה המציאו אותו</p>    <p class="topic__summary">בשבוע שעבר פתחה גוגל לכלל העולם כלי שבודק אם קובץ נושא סימן מים מסוג SynthID, ויומיים קודם הודיעה OpenAI שתתחיל לסמן טקסט באיחוד האירופי. שתי ההודעות נשענות על אותו רעיון בן שלושים שנה. העמוד מסביר איך מחביאים ביט בתוך תמונה בלי שהעין תראה, למה בטקסט זו בעיה אחרת לגמרי, מה שובר את הסימן, ולמה הכלי שנפתח אינו גלאי AI למרות שכולם קוראים לו כך.</p>
+    <p class="topic__origin">
+      פורסם לראשונה במהדורת <a href="../editions/2026-10-09.html">יום שישי, 9 באוקטובר 2026</a>
+    </p>
+  </header>
+
+  <section class="topic__section">
+    <h2 class="topic__heading">הבעיה: אין מה לבדוק בקובץ</h2>
+    <p>נניח שהגיעה אליכם תמונה, והשאלה היא אם מצלמה צילמה אותה או שמודל ייצר אותה. הבעיה אינה שקשה לענות. הבעיה היא שאין בקובץ מה לבדוק. קובץ JPEG שיצא ממודל וקובץ JPEG שיצא ממצלמה הם אותו דבר בדיוק: רשת של פיקסלים, וכל פיקסל שלושה מספרים בין 0 ל-255. אין שדה שאומר מי יצר אותי.</p>
+    <p>אפשר לנסות לזהות בדיעבד. מערכות כאלה קיימות, והן מחפשות חתימות סטטיסטיות שמודלים נוטים להשאיר. החיסרון שלהן ידוע: הן מתאמנות על דור מסוים של מודלים, ודור הבא כבר לא נראה כך. גרוע מכך, הן טועות לשני הכיוונים, והטעות שמסמנת תוכן אנושי כמלאכותי יקרה הרבה יותר מהטעות ההפוכה.</p>
+    <p>סימן מים הופך את כיוון השאלה. במקום לנסות לזהות תוצר של מכונה אחרי שנוצר, מי שייצר אותו מחביא בו סימן בזמן היצירה. אם הסימן נמצא, יש לכם תשובה חיובית ודאית כמעט. אם הוא לא נמצא, אין לכם שום דבר. זו ההבחנה החשובה בעמוד הזה, ונחזור אליה בסוף.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </section>
+  <section class="topic__section">
+    <h2 class="topic__heading">גלוי וסמוי, ולמה הגלוי כמעט חסר ערך</h2>
+    <p>סימן מים גלוי הוא הלוגו השקוף למחצה שסוכנויות תמונות מטביעות על גבי צילום. מטרתו מסחרית: להרתיע משימוש בלי תשלום, ולפרסם את הבעלים. כולם רואים אותו, וזה כל העניין.</p>
+    <p>לסימון תוצרי מכונה הוא כמעט חסר תועלת, מכיוון שאפשר לחתוך אותו בשניה, או למלא את האזור בעזרת אותו סוג מודל שייצר את התמונה. מי שרוצה להסיר אותו, מסיר. ומכיוון שהוא תופס שטח בתמונה, מי שמסמן בכנות משלם על כך באיכות.</p>
+    <p>סימן מים סמוי מתפרס על פני כל הקובץ במקום להתרכז בפינה, ומשנה כל אזור קצת. אי אפשר לחתוך אותו, מכיוון שכל חלק מספיק גדול בתמונה נושא עותק שלו. כדי להסיר אותו צריך לפגוע בקובץ עצמו, ושם מתחיל המשחק האמיתי.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <figure class="diagram">
+      <svg viewBox="0 0 520 230" role="img" aria-label="משמאל תמונה עם לוגו שקוף בפינה אחת, ולצידה אותה תמונה אחרי חיתוך הפינה, בלי הלוגו. מימין תמונה שהסימן בה פזור על פני כל השטח, ואותה תמונה אחרי חיתוך, שבה הסימן עדיין נמצא" preserveAspectRatio="xMidYMid meet">
+        <text x="500" y="20" class="diagram__label diagram__label--strong">גלוי: אזור אחד</text>
+        <text x="250" y="20" class="diagram__label diagram__label--strong">סמוי: פזור על הכול</text>
+
+        <rect x="402" y="34" width="110" height="86" class="wm-frame"/>
+        <rect x="412" y="90" width="58" height="20" class="diagram__dot--strong"/>
+        <text x="457" y="136" class="diagram__axis-label">המקור</text>
+
+        <rect x="276" y="34" width="110" height="64" class="wm-frame"/>
+        <text x="331" y="136" class="diagram__axis-label">אחרי חיתוך</text>
+        <text x="331" y="154" class="diagram__axis-label">הסימן נעלם</text>
+
+        <rect x="148" y="34" width="110" height="86" class="wm-frame"/>
+        <g class="wm-speck">
+          <circle cx="166" cy="48" r="2.4"/><circle cx="198" cy="44" r="2.4"/><circle cx="230" cy="52" r="2.4"/>
+          <circle cx="180" cy="68" r="2.4"/><circle cx="216" cy="72" r="2.4"/><circle cx="246" cy="64" r="2.4"/>
+          <circle cx="160" cy="92" r="2.4"/><circle cx="192" cy="100" r="2.4"/><circle cx="226" cy="94" r="2.4"/>
+          <circle cx="172" cy="112" r="2.4"/><circle cx="208" cy="114" r="2.4"/><circle cx="244" cy="108" r="2.4"/>
+        </g>
+        <text x="203" y="136" class="diagram__axis-label">המקור</text>
+
+        <rect x="22" y="34" width="110" height="64" class="wm-frame"/>
+        <g class="wm-speck">
+          <circle cx="40" cy="48" r="2.4"/><circle cx="72" cy="44" r="2.4"/><circle cx="104" cy="52" r="2.4"/>
+          <circle cx="54" cy="68" r="2.4"/><circle cx="90" cy="72" r="2.4"/><circle cx="120" cy="64" r="2.4"/>
+          <circle cx="34" cy="88" r="2.4"/><circle cx="66" cy="92" r="2.4"/><circle cx="100" cy="86" r="2.4"/>
+        </g>
+        <text x="77" y="136" class="diagram__axis-label">אחרי חיתוך</text>
+        <text x="77" y="154" class="diagram__axis-label diagram__label--strong">הסימן עדיין כאן</text>
+
+        <line x1="20" y1="180" x2="500" y2="180" class="diagram__axis"/>
+        <text x="260" y="202" class="diagram__axis-label">אין פינה שאפשר לחתוך כדי להיפטר מסימן סמוי</text>
+      </svg>
+      <figcaption>משמאל, סימן גלוי שתופס אזור אחד ונחתך בשניה. מימין, סימן סמוי שפזור על פני כל הקובץ, וכל חלק ממנו נושא עותק.</figcaption>
+    </figure>
+
+
+
+  </section>
+  <section class="topic__section">
+    <h2 class="topic__heading">איך מחביאים ביט בתוך תמונה</h2>
+    <p>הרעיון הבסיסי פשוט עד כדי אכזבה. פיקסל אדום בעוצמה 142 ופיקסל אדום בעוצמה 143 אינם נבדלים לעין. אפשר אם כך להחליט שערך זוגי מקודד 0 וערך אי-זוגי מקודד 1, ולהעביר על פני כל התמונה מסר שלם. זה נקרא הביט הפחות משמעותי, וזו הדוגמה שמלמדים ראשונה.</p>
+    <p>היא גם חסרת תועלת בפועל. כל דחיסת JPEG, כל שינוי גודל, כל צילום מסך מחשבים מחדש את ערכי הפיקסלים, והביט התחתון הוא בדיוק מה שנמחק ראשון. מערכת שמסתמכת עליו שורדת עד הפעם הראשונה שמישהו שולח את התמונה בוואטסאפ.</p>
+    <p>לכן המערכות הרציניות אינן עובדות על הפיקסלים אלא על התדרים. במקום לשאול כמה אדום יש בנקודה הזאת, מפרקים את התמונה לדפוסים: שטחים גדולים ואחידים הם תדר נמוך, שינויים חדים וקצוות הם תדר גבוה. כל תמונה היא סכום של דפוסים כאלה, בדיוק כמו שצליל הוא סכום של תדרים.</p>
+    <p>ההטמעה משנה את עוצמתם של תדרים בינוניים בכמות זעירה. בחירה זו אינה מקרית. התדרים הנמוכים הם מה שהעין רגישה אליו ביותר, ולכן שינוי שם ייראה. התדרים הגבוהים הם בדיוק מה שדחיסה זורקת כדי לחסוך מקום, ולכן שינוי שם ימחק. האמצע שורד את שניהם.</p>
+    <p>זה גם מה שמכתיב את המגבלה המרכזית. ככל שמשנים את התדרים יותר חזק כך הסימן שורד יותר התקפות, וככל שמשנים חזק יותר כך הוא מתחיל להיות נראה. אי אפשר למקסם את שניהם. זה בדיוק מה שהסימולטור בהמשך העמוד מראה.</p>
+    <p>בשמע ובווידאו העיקרון זהה, רק שהמודל של מה שלא מורגש שונה. בשמע מסתמכים על כך שצליל חזק מסתיר צליל חלש בתדר סמוך לו, ומחביאים את הסימן בצל הזה.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <figure class="diagram">
+      <svg viewBox="0 0 520 230" role="img" aria-label="שלושה ריבועים. הראשון התמונה המקורית, השני התמונה המסומנת, ושניהם נראים זהים. השלישי הוא ההפרש בין השניים מוגבר פי מאה, ובו נראית תבנית סדירה" preserveAspectRatio="xMidYMid meet">
+        <defs>
+          <pattern id="wm-grain" width="10" height="10" patternUnits="userSpaceOnUse">
+            <rect width="10" height="10" class="wm-grain-bg"/>
+            <circle cx="3" cy="3" r="1.6" class="wm-grain-dot"/>
+            <circle cx="8" cy="7" r="1.1" class="wm-grain-dot"/>
+          </pattern>
+        </defs>
+
+        <rect x="378" y="40" width="124" height="104" class="wm-frame wm-frame--filled"/>
+        <text x="440" y="30" class="diagram__axis-label diagram__label--strong">המקור</text>
+        <text x="440" y="164" class="diagram__axis-label" text-anchor="middle">ללא סימן</text>
+
+        <rect x="198" y="40" width="124" height="104" class="wm-frame wm-frame--filled"/>
+        <text x="260" y="30" class="diagram__axis-label diagram__label--strong">אחרי הטמעה</text>
+        <text x="260" y="164" class="diagram__axis-label" text-anchor="middle">זהה לעין</text>
+
+        <rect x="18" y="40" width="124" height="104" class="wm-frame" fill="url(#wm-grain)"/>
+        <text x="80" y="30" class="diagram__axis-label diagram__label--strong">ההפרש, מוגבר ×100</text>
+        <text x="80" y="164" class="diagram__axis-label" text-anchor="middle">התבנית החבויה</text>
+
+        <line x1="340" y1="92" x2="362" y2="92" class="diagram__axis"/>
+        <line x1="160" y1="92" x2="182" y2="92" class="diagram__axis"/>
+
+        <line x1="20" y1="186" x2="500" y2="186" class="diagram__axis"/>
+        <text x="260" y="208" class="diagram__axis-label">השינוי האמיתי: רמה אחת מתוך 256 לכל ערוץ</text>
+      </svg>
+      <figcaption>אותה תמונה פעמיים. משמאל שתי הגרסאות, זהות לעין. מימין הפרש הערכים ביניהן, מוגבר פי מאה: התבנית החבויה נראית.</figcaption>
+    </figure>
+
+
+  </section>
+  <section class="topic__section">
+    <h2 class="topic__heading">בטקסט אין איפה להתחבא</h2>
+    <p>בתמונה יש מיליוני ערכים שאפשר להזיז כל אחד בשבריר. בטקסט אין כלום. אם משנים אות, המילה שגויה. אם מוסיפים רווח כפול או תו בלתי נראה, כל העתקה לעורך טקסט פשוט מוחקת אותו. נדרשת שיטה אחרת.</p>
+    <p>השיטה מנצלת את אופן הפעולה של המודל. מודל שפה אינו כותב משפט בבת אחת, אלא בוחר אסימון אחד בכל פעם מתוך רשימת מועמדים עם הסתברויות. במקומות רבים יש כמה בחירות סבירות באותה מידה: התחיל, החל, פתח.</p>
+    <p>לפני כל בחירה מחלקים את כל אוצר המילים לשתי קבוצות בצורה שנראית אקראית, אבל נקבעת על ידי מפתח סודי ועל ידי המילים שכבר נכתבו. אחר כך מטים את הבחירה קצת לטובת אחת הקבוצות. כל בחירה בודדת נראית טבעית לגמרי, אבל אחרי כמה מאות מילים השכיחות של אותה קבוצה גבוהה מהמצופה בצורה שאפשר למדוד. מי שמחזיק במפתח יודע לשחזר את החלוקה ולבדוק. מי שלא, רואה טקסט רגיל.</p>
+    <p>המחיר נגזר ישירות מהמנגנון: השיטה צריכה מקומות שבהם למודל יש באמת בחירה. בטקסט שאין בו חופש ניסוח, כמו פתרון תרגיל במתמטיקה או קוד, אין לאן להטות, והסימן חלש בהרבה. OpenAI כותבת זאת במפורש בהודעה שלה מ-5 באוקטובר.</p>
+    <p>המחיר השני הוא שהסימן תלוי באורך. ההודעה של OpenAI מפרטת שברמת התרעת שווא של אחוז אחד, הזיהוי עומד על כ-80 אחוזים בקטע של 200 אסימונים ועל כ-95 אחוזים בקטע של 400. בציטוט קצר אין מספיק בחירות כדי שהסטייה תהיה מובהקת.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <figure class="diagram">
+      <svg viewBox="0 0 520 250" role="img" aria-label="משפט שנכתב מילה אחר מילה. מתחת למילה הבאה מופיעה רשימת מועמדים, מחציתה מסומנת כקבוצה א ומחציתה כקבוצה ב, והמודל נוטה לבחור מקבוצה א" preserveAspectRatio="xMidYMid meet">
+        <text x="500" y="26" class="diagram__label diagram__label--strong">הטקסט שנכתב עד כה</text>        <text x="500" y="52" class="diagram__label">החוקרים בדקו את השיטה והיא</text>
+        <rect x="300" y="38" width="26" height="20" class="wm-slot"/>
+
+        <line x1="20" y1="72" x2="500" y2="72" class="diagram__axis"/>
+        <text x="500" y="94" class="diagram__label diagram__label--strong">המועמדים לבחירה הבאה</text>
+
+        <circle cx="492" cy="122" r="5" class="diagram__dot--strong"/>
+        <text x="478" y="127" class="diagram__label">הצליחה</text>
+        <circle cx="492" cy="150" r="5" class="diagram__dot"/>
+        <text x="478" y="155" class="diagram__label">עבדה</text>
+        <circle cx="492" cy="178" r="5" class="diagram__dot--strong"/>
+        <text x="478" y="183" class="diagram__label">פעלה</text>
+        <circle cx="492" cy="206" r="5" class="diagram__dot"/>
+        <text x="478" y="211" class="diagram__label">השתלמה</text>
+
+        <text x="396" y="127" class="diagram__label">קבוצה א</text>
+        <text x="396" y="155" class="diagram__label">קבוצה ב</text>
+        <text x="396" y="183" class="diagram__label">קבוצה א</text>
+        <text x="396" y="211" class="diagram__label">קבוצה ב</text>
+
+        <rect x="180" y="112" width="130" height="20" class="wm-bar wm-bar--strong"/>
+        <rect x="230" y="140" width="80" height="20" class="wm-bar"/>
+        <rect x="200" y="168" width="110" height="20" class="wm-bar wm-bar--strong"/>
+        <rect x="250" y="196" width="60" height="20" class="wm-bar"/>
+        <text x="170" y="127" class="diagram__label">הסתברות אחרי ההטיה</text>
+
+        <text x="260" y="238" class="diagram__axis-label">החלוקה נקבעת מחדש לפני כל מילה, לפי מפתח סודי</text>
+      </svg>
+      <figcaption>לפני כל מילה, אוצר המילים מחולק לשתי קבוצות לפי מפתח סודי, והמודל מוטה קלות לטובת אחת מהן. כל בחירה נראית טבעית, הסטייה מצטברת לאורך הטקסט.</figcaption>
+    </figure>
+
+  </section>
+  <section class="topic__section">
+    <h2 class="topic__heading">מה שורד ומה שובר</h2>
+    <p>חוסן הוא השאלה המעשית היחידה. סימן מים ששורד רק קובץ שלא נגעו בו אינו שווה דבר, מכיוון שאף קובץ ברשת אינו נשאר כפי שנוצר. הוא נדחס, משתנה בגודל, נחתך, מצולם ממסך ומועלה מחדש.</p>
+    <p>הטבלה מפרידה בין שני דברים ששווה להפריד ביניהם: מה הטכנולוגיה אמורה לעשות, ומה פורסם בפועל במספרים. ההפרדה הזאת היא עיקר הלקוח מהשבוע שעבר.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <figure class="datatable">
+      <table>
+        <caption>חוסן הסימן מול התקפות נפוצות</caption>
+        <thead>
+          <tr><th scope="col">מה עושים לקובץ</th><th scope="col">מה אמור לקרות לסימן</th><th scope="col">מה פורסם במספרים</th></tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">דחיסת JPEG</th><td>שורד. זו ההתקפה שהשיטה תוכננה מולה</td><td>גוגל לא פרסמה נתון</td></tr>
+          <tr><th scope="row">שינוי גודל</th><td>שורד בדרך כלל</td><td>גוגל לא פרסמה נתון</td></tr>
+          <tr><th scope="row">חיתוך חלק מהתמונה</th><td>שורד כל עוד נשאר אזור מספיק גדול</td><td>גוגל לא פרסמה נתון</td></tr>
+          <tr><th scope="row">צילום מסך והעלאה מחדש</th><td>מוחלש, לא בהכרח נמחק</td><td>גוגל לא פרסמה נתון</td></tr>
+          <tr><th scope="row">ציור מחדש של אזור בעזרת מודל</th><td>האזור שצויר מחדש נקי מסימן</td><td>לא נדון בהודעה</td></tr>
+          <tr><th scope="row">החלפת עשירית מהמילים בטקסט</th><td>נחלש</td><td>הזיהוי יורד מ-92 ל-66 אחוזים</td></tr>
+          <tr><th scope="row">החלפת רבע מהמילים בטקסט</th><td>נשבר כמעט לגמרי</td><td>הזיהוי יורד ל-17 אחוזים</td></tr>
+          <tr><th scope="row">תרגום הטקסט לשפה אחרת</th><td>נשבר. האסימונים אחרים</td><td>לא פורסם נתון</td></tr>
+          <tr><th scope="row">הקלדת הטקסט מחדש במילים שלכם</th><td>לא קיים. זה טקסט חדש</td><td>לא רלוונטי</td></tr>
+        </tbody>
+      </table>
+<figcaption>נתוני הטקסט הם מההודעה של OpenAI מ-5 באוקטובר 2026, שמפרסמת את חולשות השיטה שלה בעצמה. שורות התמונה מתארות את מה שהשיטה מתוכננת לעשות, מכיוון שההודעה של גוגל מ-7 באוקטובר אינה כוללת ולו נתון אחד של דיוק או עמידות.</figcaption>    </figure>
+  </section>
+  <section class="topic__section">
+    <h2 class="topic__heading">למה זה לא הוכחה</h2>
+    <p>סימן מים נותן תשובה חיובית חזקה ותשובה שלילית חסרת ערך. אם נמצא סימן, כמעט בוודאי מדובר בתוצר של מי שמסמן. אם לא נמצא סימן, זה יכול להיות תוצר אנושי, או תוצר של מודל שאינו מסמן, או תוצר מסומן שההעברה ברשת שחקה את הסימן, או תוצר שמישהו ניקה בכוונה. ארבע האפשרויות נראות זהות לחלוטין.</p>
+    <p>זה מה שהופך את הכלי שגוגל פתחה ב-7 באוקטובר לכלי אחר ממה שהכותרות אמרו עליו. הוא קורא סימני מים מסוג SynthID, ולכן הוא מכסה את המודלים של גוגל ורשימת שותפים סגורה. מודל שאינו ברשימה אינו מסומן כלל, והכלי לא יראה דבר. הוא קורא, לא מזהה.</p>
+    <p>קיימת גם הבעיה ההפוכה, שמדברים עליה פחות: הטבעה של סימן בתוכן שאדם יצר. מי שמחזיק במפתח יכול לסמן מה שירצה. זו הסיבה שהגלאי של OpenAI לטקסט אינו ציבורי אלא מוגבל לחוקרים ולגופים מאושרים, ומשמעות ההגבלה היא שמורה שרוצה לבדוק עבודה אינו יכול.</p>
+    <p>והמגבלה הגדולה מכולן היא פשוט מי משתתף. סימון עובד כשמי שמייצר בוחר לסמן. מודל פתוח שרץ על מחשב פרטי אינו מסמן, ואין מי שיאכוף זאת עליו. סימן מים הוא כלי שמשפר את הסיכוי לדעת מאין הגיע תוכן ממקור ידוע ומשתף פעולה. הוא אינו כלי שמגלה זיוף.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </section>
+  <section class="topic__section">
+    <h2 class="topic__heading">מי מסמן היום, ובמה</h2>
+    <p>SynthID של גוגל עובד בתמונה, בווידאו ובשמע, ולא בטקסט. גוגל מדווחת שסימנה עד כה יותר מ-180 מיליארד תמונות וסרטונים ומעל 240 אלף שנות שמע. רשימת השותפים שהכלי יודע לקרוא כוללת את OpenAI, אנבידיה וקקאו, ואפל מופיעה כמי שתצטרף. הזמינות שתוארה כעולמית מנוסחת בהודעה עצמה כעולמית באנגלית.</p>
+    <p>OpenAI הודיעה על סימון טקסט בטכנולוגיה בשם textGrain, שהיא מתכוונת לשחרר בקוד פתוח. ההפעלה היא באיחוד האירופי, בכל התוכניות שם, ולא הייתה פעילה ביום ההודעה אלא תוכננה לשבועות הקרובים. בממשק המתכנתים ההסדר הפוך: הסימון כבוי כברירת מחדל והמפתח צריך לבקש אותו, ושם זה חל בכל העולם.</p>
+    <p>המשותף לשתי ההודעות הוא שהן אמצעי, לא פתרון. הן מקלות על מי שרוצה לתת ייחוס הוגן לתוכן שלו. הן אינן עונות על השאלה שהתחלנו ממנה, מכיוון שהיא שאלה שאי אפשר לענות עליה מתוך הקובץ.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </section>
+
+
+
+
+
+
+
+
+  <section class="sim" id="sim">
+    <h2 class="topic__heading">מדמה: ההתנגשות בין איכות לשרידות</h2>
+    <p class="sim__intro">הזיזו את עוצמת ההטמעה ואת חומרת ההתקפה. שימו לב שאין מצב שבו גם ההפרש אינו מורגש וגם הסימן שורד הכול. זו המגבלה המרכזית של השיטה, והיא נובעת מהשיטה עצמה ולא ממימוש גרוע.</p>
+
+    <div class="sim__controls">
+      <label class="sim__control">
+        <span class="sim__control-head">
+          <span>עוצמת ההטמעה</span>
+          <output id="wm-out-strength" class="ltr"></output>
+        </span>
+        <input type="range" id="wm-in-strength" min="1" max="12" step="1" value="4">
+        <span class="sim__control-hint">בכמה רמות, מתוך 256, משנים את הערכים בממוצע</span>
+      </label>
+      <label class="sim__control">
+        <span class="sim__control-head">
+          <span>חומרת העיבוד מחדש</span>
+          <output id="wm-out-attack" class="ltr"></output>
+        </span>
+        <input type="range" id="wm-in-attack" min="0" max="10" step="1" value="3">
+        <span class="sim__control-hint">מקובץ שלא נגעו בו ועד צילום מסך, הקטנה ודחיסה חוזרת</span>
+      </label>
+    </div>
+
+    <div class="gene-switch__stage" id="wm-stage">
+      <svg viewBox="0 0 520 150" role="img" aria-label="שני ריבועים. משמאל התמונה כפי שהקורא רואה אותה, שמתלכלכת ככל שעוצמת ההטמעה עולה. מימין עוצמת הסימן ששרד אחרי העיבוד">
+        <rect x="286" y="20" width="110" height="96" class="wm-frame"/>
+        <g id="wm-noise" class="wm-speck"></g>
+        <text x="341" y="136" class="diagram__axis-label" text-anchor="middle">מה שהקורא רואה</text>
+
+        <rect x="120" y="20" width="110" height="96" class="wm-frame"/>
+        <rect x="120" y="116" width="110" height="0" id="wm-level" class="wm-level"/>
+        <text x="175" y="136" class="diagram__axis-label" text-anchor="middle">עוצמת הסימן ששרד</text>
+      </svg>
+    </div>
+
+    <div class="sim__readout sim__readout--three">
+      <div class="sim__stat sim__stat--strong">
+        <span class="sim__stat-label">סיכוי לקרוא את הסימן</span>
+        <span class="sim__stat-value ltr" id="wm-out-detect"></span>
+      </div>
+      <div class="sim__stat">
+        <span class="sim__stat-label">האם ההפרש מורגש</span>
+        <span class="sim__stat-value" id="wm-out-visible"></span>
+      </div>
+      <div class="sim__stat">
+        <span class="sim__stat-label">מה נעשה בקובץ</span>
+        <span class="sim__stat-value" id="wm-out-attack-name"></span>
+      </div>
+    </div>
+
+    <p class="sim__note" id="wm-note"></p>
+    <p class="sim__note euv-caveat">המדמה ממחיש התנגשות, הוא אינו מודד מערכת אמיתית. העקומה שבו היא מודל חשבוני פשוט, והמספרים אינם לקוחים ממוצר מסחרי. המספרים המדודים היחידים שפורסמו בשבוע שעבר הם של OpenAI, על סימון טקסט, והם מופיעים בטבלת החוסן שלמעלה.</p>
+  </section>
+
+  <section class="quiz" id="quiz">
+    <h2 class="topic__heading">בדקו את עצמכם</h2>
+    <form id="quiz-form">
+      <fieldset class="quiz__q" data-answer="1">
+        <legend class="quiz__legend"><span class="quiz__num">1</span>למה סימן מים גלוי כמעט חסר ערך לסימון תוצרי מכונה?</legend>
+        <label class="quiz__opt">
+          <input type="radio" name="q0" value="0">
+          <span>הוא פוגע יותר מדי באיכות התמונה</span>
+        </label>
+        <label class="quiz__opt">
+          <input type="radio" name="q0" value="1">
+          <span>הוא מרוכז באזור אחד, ולכן אפשר לחתוך אותו או למלא את מקומו</span>
+        </label>
+        <label class="quiz__opt">
+          <input type="radio" name="q0" value="2">
+          <span>מחשבים אינם יודעים לקרוא אותו אוטומטית</span>
+        </label>
+        <label class="quiz__opt">
+          <input type="radio" name="q0" value="3">
+          <span>הוא עובד רק בתמונות ולא בווידאו</span>
+        </label>
+        <p class="quiz__why">סימן סמוי פזור על פני כל הקובץ וכל חלק מספיק גדול נושא עותק שלו, ולכן חיתוך אינו מסיר אותו. סימן גלוי תופס אזור אחד, וזה בדיוק מה שהופך אותו לקל להסרה.</p>
+      </fieldset>
+      <fieldset class="quiz__q" data-answer="1">
+        <legend class="quiz__legend"><span class="quiz__num">2</span>למה מטמיעים את הסימן בתדרים בינוניים ולא נמוכים או גבוהים?</legend>
+        <label class="quiz__opt">
+          <input type="radio" name="q1" value="0">
+          <span>תדרים בינוניים תופסים את רוב נפח הקובץ</span>
+        </label>
+        <label class="quiz__opt">
+          <input type="radio" name="q1" value="1">
+          <span>העין רגישה לנמוכים, והדחיסה זורקת את הגבוהים</span>
+        </label>
+        <label class="quiz__opt">
+          <input type="radio" name="q1" value="2">
+          <span>רק בתדרים בינוניים אפשר לקודד יותר מביט אחד</span>
+        </label>
+        <label class="quiz__opt">
+          <input type="radio" name="q1" value="3">
+          <span>זו מוסכמה שנקבעה בתקן בינלאומי</span>
+        </label>
+        <p class="quiz__why">שינוי בתדר נמוך ייראה לעין, ושינוי בתדר גבוה יימחק בדחיסה הראשונה. האמצע הוא המקום היחיד ששורד את שתי המגבלות.</p>
+      </fieldset>
+      <fieldset class="quiz__q" data-answer="1">
+        <legend class="quiz__legend"><span class="quiz__num">3</span>למה הביט הפחות משמעותי אינו שיטה מעשית?</legend>
+        <label class="quiz__opt">
+          <input type="radio" name="q2" value="0">
+          <span>הוא משנה את התמונה יותר מדי והעין רואה</span>
+        </label>
+        <label class="quiz__opt">
+          <input type="radio" name="q2" value="1">
+          <span>הוא נמחק בכל דחיסה, שינוי גודל או צילום מסך</span>
+        </label>
+        <label class="quiz__opt">
+          <input type="radio" name="q2" value="2">
+          <span>הוא מאפשר לקודד רק מסרים קצרים מאוד</span>
+        </label>
+        <label class="quiz__opt">
+          <input type="radio" name="q2" value="3">
+          <span>הוא דורש מפתח סודי שקשה לשמור</span>
+        </label>
+        <p class="quiz__why">העין בהחלט אינה רואה את ההבדל בין 142 ל-143. הבעיה היא ההפך: הביט התחתון הוא בדיוק מה שכל עיבוד מחדש של הקובץ זורק ראשון.</p>
+      </fieldset>
+      <fieldset class="quiz__q" data-answer="1">
+        <legend class="quiz__legend"><span class="quiz__num">4</span>איך מסמנים טקסט, בהיעדר פיקסלים להסתתר בהם?</legend>
+        <label class="quiz__opt">
+          <input type="radio" name="q3" value="0">
+          <span>מוסיפים תווים בלתי נראים בין מילים</span>
+        </label>
+        <label class="quiz__opt">
+          <input type="radio" name="q3" value="1">
+          <span>מטים את בחירת המילה בין חלופות שקולות, לפי חלוקה שנקבעת במפתח סודי</span>
+        </label>
+        <label class="quiz__opt">
+          <input type="radio" name="q3" value="2">
+          <span>משנים מעט את סימני הפיסוק</span>
+        </label>
+        <label class="quiz__opt">
+          <input type="radio" name="q3" value="3">
+          <span>מצרפים לקובץ שדה נתונים שמציין את מקורו</span>
+        </label>
+        <p class="quiz__why">תו בלתי נראה נמחק בהעתקה לעורך טקסט, ושדה נתונים נמחק בהדבקה. השיטה היחידה ששורדת היא הטיה של הבחירה עצמה, שמצטברת לסטייה מדידה לאורך הטקסט.</p>
+      </fieldset>
+      <fieldset class="quiz__q" data-answer="2">
+        <legend class="quiz__legend"><span class="quiz__num">5</span>מה המסקנה הנכונה כשכלי בדיקה אינו מוצא סימן מים בתמונה?</legend>
+        <label class="quiz__opt">
+          <input type="radio" name="q4" value="0">
+          <span>התמונה צולמה במצלמה</span>
+        </label>
+        <label class="quiz__opt">
+          <input type="radio" name="q4" value="1">
+          <span>התמונה נוצרה במודל שלא נבדק</span>
+        </label>
+        <label class="quiz__opt">
+          <input type="radio" name="q4" value="2">
+          <span>לא ניתן להסיק דבר</span>
+        </label>
+        <label class="quiz__opt">
+          <input type="radio" name="q4" value="3">
+          <span>הסימן הוסר בכוונה</span>
+        </label>
+        <p class="quiz__why">ארבע אפשרויות שונות לגמרי נראות זהות: תוכן אנושי, מודל שאינו מסמן, סימן ששחק בהעברה, וסימן שנוקה בכוונה. תשובה חיובית חזקה, תשובה שלילית חסרת ערך.</p>
+      </fieldset>
+      <fieldset class="quiz__q" data-answer="1">
+        <legend class="quiz__legend"><span class="quiz__num">6</span>מה למדנו מכך שהחלפת רבע מהמילים מורידה את הזיהוי ל-17 אחוזים?</legend>
+        <label class="quiz__opt">
+          <input type="radio" name="q5" value="0">
+          <span>שסימון טקסט אינו עובד כלל</span>
+        </label>
+        <label class="quiz__opt">
+          <input type="radio" name="q5" value="1">
+          <span>שהסימן תלוי בבחירות שהמודל עשה, וכתיבה מחדש מוחקת אותן</span>
+        </label>
+        <label class="quiz__opt">
+          <input type="radio" name="q5" value="2">
+          <span>שהגלאי של OpenAI פגום</span>
+        </label>
+        <label class="quiz__opt">
+          <input type="radio" name="q5" value="3">
+          <span>שצריך קטעים ארוכים יותר מ-400 אסימונים</span>
+        </label>
+        <p class="quiz__why">הסימן מקודד בבחירות בין מילים שקולות. ככל שמחליפים יותר מהמילים האלה, כך נמחקות יותר מהבחירות שנשאו אותו. ראוי לשים לב שהמספרים האלה פורסמו על ידי OpenAI עצמה.</p>
+      </fieldset>
+      <div class="quiz__actions">
+        <button type="button" id="quiz-check" class="quiz__btn">בדקו את התשובות</button>
+        <button type="button" id="quiz-reset" class="quiz__btn quiz__btn--ghost">נקו</button>
+        <p class="quiz__score" id="quiz-score" role="status"></p>
+      </div>
+    </form>
+  </section>
+
+  <section class="takeaways">
+    <h2 class="topic__heading">מה חשוב לזכור</h2>
+    <ul class="takeaways__list">
+      <li>סימן מים אינו מזהה תוצר של מכונה. הוא מסמן אותו מראש, ולכן הוא עובד רק על מי שבוחר לסמן.</li>
+      <li>סימן סמוי פזור על פני כל הקובץ, ולכן חיתוך אינו מסיר אותו. סימן גלוי מרוכז באזור אחד, ולכן הוא כמעט חסר ערך כאן.</li>
+      <li>ההטמעה נעשית בתדרים בינוניים: העין רגישה לנמוכים, הדחיסה מוחקת את הגבוהים.</li>
+      <li>יש התנגשות בלתי נמנעת בין עוצמת הסימן לבין איכות הקובץ. אי אפשר למקסם את שניהם.</li>
+      <li>בטקסט מטים את בחירת המילה בין חלופות שקולות. לכן קטע קצר, טקסט מתמטי וכתיבה מחדש מחלישים את הסימן או מוחקים אותו.</li>
+      <li>היעדר סימן אינו מעיד על דבר, ומי שמחזיק במפתח יכול גם לסמן תוכן שאדם כתב.</li>
+      <li>הכלי שגוגל פתחה ב-7 באוקטובר קורא סימני SynthID בתמונה, בווידאו ובשמע. הוא אינו קורא טקסט ואינו רואה מודלים שאינם ברשימת השותפים.</li>
+    </ul>
+  </section>
+
+</article>
+
+<script>
+/* ===== סימן מים: ההתנגשות בין איכות לשרידות ===== */
+(function () {
+  var stage = document.getElementById('wm-stage');
+  if (!stage) return;
+
+  var inStrength = document.getElementById('wm-in-strength');
+  var inAttack = document.getElementById('wm-in-attack');
+  var outStrength = document.getElementById('wm-out-strength');
+  var outAttack = document.getElementById('wm-out-attack');
+  var outDetect = document.getElementById('wm-out-detect');
+  var outVisible = document.getElementById('wm-out-visible');
+  var outAttackName = document.getElementById('wm-out-attack-name');
+  var level = document.getElementById('wm-level');
+  var noise = document.getElementById('wm-noise');
+  var note = document.getElementById('wm-note');
+
+  var ATTACKS = [
+    'הקובץ כפי שנוצר',
+    'שמירה מחדש באיכות גבוהה',
+    'שליחה ברשת חברתית',
+    'הקטנה לרוחב חצי',
+    'הקטנה ודחיסה חוזרת',
+    'חיתוך של שליש מהתמונה',
+    'צילום מסך',
+    'צילום מסך והעלאה מחדש',
+    'צילום מסך, הקטנה ודחיסה',
+    'צילום של המסך בטלפון',
+    'ציור מחדש של חלק מהתמונה'
+  ];
+
+  /* תבנית קבועה, כדי שהרעש לא יקפוץ בכל הזזה של המחוון */
+  var SPECKS = [];
+  var seed = 7;
+  for (var i = 0; i < 90; i++) {
+    seed = (seed * 1103515245 + 12345) % 2147483648;
+    var x = 288 + (seed % 106);
+    seed = (seed * 1103515245 + 12345) % 2147483648;
+    var y = 22 + (seed % 92);
+    SPECKS.push([x, y]);
+  }
+  for (var j = 0; j < SPECKS.length; j++) {
+    var c = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    c.setAttribute('cx', SPECKS[j][0]);
+    c.setAttribute('cy', SPECKS[j][1]);
+    c.setAttribute('r', '1.5');
+    noise.appendChild(c);
+  }
+
+  function render() {
+    var s = parseInt(inStrength.value, 10);
+    var a = parseInt(inAttack.value, 10);
+
+    /* מודל ממחיש: הסימן נקרא כשהוא גדול ביחס למה שהעיבוד מחק */
+    var ratio = s / (1 + 1.45 * a);
+    var detect = 100 * (ratio * ratio) / (ratio * ratio + 1);
+    detect = Math.max(2, Math.min(99, detect));
+
+    outStrength.textContent = '±' + s + ' רמות';
+    outAttack.textContent = ATTACKS[a];
+    outDetect.textContent = detect.toFixed(0) + '%';
+    outAttackName.textContent = ATTACKS[a];
+
+    outVisible.textContent = s <= 3 ? 'לא' : (s <= 7 ? 'בקושי' : 'כן, הקובץ מתלכלך');
+
+    var h = 96 * detect / 100;
+    level.setAttribute('y', 116 - h);
+    level.setAttribute('height', h);
+    noise.style.opacity = Math.min(0.85, s / 14).toFixed(2);
+
+    if (s <= 3 && detect < 40) {
+      note.textContent = 'הטמעה עדינה שורדת קובץ שכמעט לא נגעו בו, ונעלמת ברגע שמישהו שלח אותו הלאה. זה המצב שבו המערכת נראית מצוינת במעבדה וחסרת ערך ברשת.';
+    } else if (s >= 9 && detect > 75) {
+      note.textContent = 'הסימן עמיד, אבל שימו לב לריבוע הימני. כדי להגיע לכאן שילמתם באיכות, וזה בדיוק מה שמי שמוכר מודל ליצירת תמונות אינו מוכן לשלם.';
+    } else if (detect > 75) {
+      note.textContent = 'זה אזור העבודה שמערכות אמיתיות מכוונות אליו: סימן שאינו מורגש ושורד את העיבוד השכיח. הוא לא שורד את כל העיבודים.';
+    } else if (a >= 9) {
+      note.textContent = 'בקצה הזה אין מה לשפר בהטמעה. ציור מחדש של אזור מייצר פיקסלים חדשים שמעולם לא נשאו סימן, וצילום של מסך בטלפון מעביר את התמונה דרך עדשה.';
+    } else {
+      note.textContent = 'כאן נמצא הגבול. העלאת העוצמה תעזור לזיהוי ותפגע באיכות, והורדתה תעשה את ההפך. אין הגדרה שמנצחת בשני הצירים.';
+    }
+  }
+
+  inStrength.addEventListener('input', render);
+  inAttack.addEventListener('input', render);
+  render();
+})();
+</script>
+
+<script>
+/* ===== מדמה המתג הגנטי: אותו רצף, תאים שונים, תוצאה הפוכה ===== */
+(function () {
+  var stage = document.getElementById('gene-switch-stage');
+  if (!stage) return;
+
+  var boxes = Array.prototype.slice.call(document.querySelectorAll('.gene-switch__box'));
+  var state = document.getElementById('gs-state');
+  var siteState = document.getElementById('gs-site-state');
+  var note = document.getElementById('gs-note');
+  var site = document.getElementById('gs-site');
+  var gene = document.getElementById('gs-gene');
+  var myb = document.getElementById('gs-myb');
+  var cbp = document.getElementById('gs-cbp');
+  var mybLabel = document.getElementById('gs-myb-label');
+  var cbpLabel = document.getElementById('gs-cbp-label');
+
+  var ON = 'diagram__dot diagram__dot--strong';
+  var OFF = 'diagram__dot';
+
+  function on(key) {
+    for (var i = 0; i < boxes.length; i++) {
+      if (boxes[i].getAttribute('data-key') === key) return boxes[i].checked;
+    }
+    return false;
+  }
+
+  function render() {
+    var mutation = on('mutation'), hasMyb = on('myb'), hasCbp = on('cbp');
+    var bound = mutation && hasMyb;
+    var enhancer = bound && hasCbp;
+
+    site.setAttribute('class', mutation ? ON : OFF);
+    gene.setAttribute('class', enhancer ? ON : OFF);
+    myb.style.opacity = hasMyb ? '1' : '0.18';
+    mybLabel.style.opacity = hasMyb ? '1' : '0.18';
+    cbp.style.opacity = hasCbp ? '1' : '0.18';
+    cbpLabel.style.opacity = hasCbp ? '1' : '0.18';
+    myb.setAttribute('class', bound ? ON : OFF);
+    cbp.setAttribute('class', enhancer ? ON : OFF);
+
+    if (enhancer) {
+      state.textContent = 'דלוק ללא הפסקה';
+      siteState.textContent = 'אנהנסר חזק';
+      note.textContent = 'שלושת התנאים התקיימו. MYB נקשר לאתר שהמוטציה יצרה, CBP סימן את האזור כפעיל, והגן נדלק בלי בקרה. אף חלבון לא השתנה, רק ההוראה מתי לייצר אותו.';
+    } else if (bound) {
+      state.textContent = 'כבוי';
+      siteState.textContent = 'אתר קשירה תפוס, בלי הגברה';
+      note.textContent = 'MYB נקשר, אבל בלי CBP האזור אינו מסומן כפעיל ואינו הופך לאנהנסר. אתר קשירה בודד אינו מתג.';
+    } else if (mutation && !hasMyb) {
+      state.textContent = 'כבוי';
+      siteState.textContent = 'אתר קשירה קיים וריק';
+      note.textContent = 'זה בדיוק המצב בתא שאינו מייצר MYB. המוטציה נמצאת ברצף, זהה אות באות, ואין מפתח שנכנס למנעול. אותו DNA בדיוק, תוצאה אחרת.';
+    } else if (!mutation && hasMyb) {
+      state.textContent = 'כבוי';
+      siteState.textContent = 'אין אתר קשירה';
+      note.textContent = 'MYB נמצא בתא, אבל ברצף התקין אין לו למה להיקשר כאן. גורם שעתוק אינו יכול להפעיל אתר שאינו קיים.';
+    } else {
+      state.textContent = 'כבוי';
+      siteState.textContent = 'רצף תקין, שקט';
+      note.textContent = 'זה המצב התקין. האזור הזה לפני הגן אינו מקודד דבר, ובלי המוטציה הוא גם אינו מפעיל דבר.';
+    }
+  }
+
+  boxes.forEach(function (b) { b.addEventListener('change', render); });
+  render();
+})();
+</script>
+
+<script>
+/* ===== מדמה כפל מרוכב: הגדלים מוכפלים והזוויות מתחברות ===== */
+(function () {
+  var svg = document.getElementById('cx-svg');
+  if (!svg) return;
+
+  var CX = 320, CY = 170, SCALE = 26;   // 26 pixels to one unit on both axes
+  var AX = 3, AY = 2;                   // the fixed operand, 3 + 2i
+
+  var inMag = document.getElementById('in-mag');
+  var inAng = document.getElementById('in-ang');
+
+  var grid = document.getElementById('cx-grid');
+  var g = '';
+  for (var u = -11; u <= 11; u++) {
+    if (u === 0) continue;
+    g += '<line x1="' + (CX + u * SCALE) + '" y1="165" x2="' + (CX + u * SCALE) + '" y2="175" class="diagram__axis"/>';
+    if (Math.abs(u * SCALE) < 150) {
+      g += '<line x1="315" y1="' + (CY - u * SCALE) + '" x2="325" y2="' + (CY - u * SCALE) + '" class="diagram__axis"/>';
+    }
+  }
+  grid.innerHTML = g;
+
+  // One decimal is the honest precision here: the sliders move in steps of
+  // 0.05 and 5 degrees, so more digits would be inventing accuracy.
+  function fmt(n) {
+    var v = Math.round(n * 100) / 100;
+    return (v < 0 ? '−' : '') + Math.abs(v).toFixed(2);
+  }
+  function pair(re, im) {
+    return fmt(re) + (im < 0 ? ' − ' : ' + ') + fmt(Math.abs(im)) + 'i';
+  }
+
+  function place(el, x, y) { el.setAttribute('x', x); el.setAttribute('y', y); }
+
+  function draw() {
+    var m = parseFloat(inMag.value);
+    var degs = parseFloat(inAng.value);
+    var rad = degs * Math.PI / 180;
+
+    var mre = m * Math.cos(rad), mim = m * Math.sin(rad);
+    var pre = AX * mre - AY * mim;
+    var pim = AX * mim + AY * mre;
+
+    var aMag = Math.sqrt(AX * AX + AY * AY);
+    var aAng = Math.atan2(AY, AX) * 180 / Math.PI;
+    var pMag = aMag * m;
+    var pAng = aAng + degs;
+
+    document.getElementById('out-mag').textContent = fmt(m);
+    document.getElementById('out-ang').textContent = degs + '°';
+    document.getElementById('cx-out-mult').textContent = pair(mre, mim);
+    document.getElementById('cx-out-prod').textContent = pair(pre, pim);
+    document.getElementById('cx-out-mag').textContent = fmt(m) + ' = ' + fmt(pMag);
+    document.getElementById('cx-out-ang').textContent = fmt(degs) + '° = ' + fmt(pAng) + '°';
+
+    var ax = CX + AX * SCALE, ay = CY - AY * SCALE;
+    var bx = CX + pre * SCALE, by = CY - pim * SCALE;
+
+    document.getElementById('cx-ray-a').setAttribute('x2', ax);
+    document.getElementById('cx-ray-a').setAttribute('y2', ay);
+    document.getElementById('cx-ray-b').setAttribute('x2', bx);
+    document.getElementById('cx-ray-b').setAttribute('y2', by);
+    document.getElementById('cx-dot-a').setAttribute('cx', ax);
+    document.getElementById('cx-dot-a').setAttribute('cy', ay);
+    document.getElementById('cx-dot-b').setAttribute('cx', bx);
+    document.getElementById('cx-dot-b').setAttribute('cy', by);
+
+    var la = document.getElementById('cx-lbl-a');
+    la.textContent = pair(AX, AY);
+    place(la, ax + 26, ay - 8);
+    var lb = document.getElementById('cx-lbl-b');
+    lb.textContent = pair(pre, pim);
+    place(lb, bx + 26, by - 8);
+
+    // The arc runs from the original angle to the product angle at a fixed
+    // radius, so it reads as "this much was added", not as a distance.
+    var r = 62;
+    var a0 = aAng * Math.PI / 180, a1 = pAng * Math.PI / 180;
+    var sweep = degs < 0 ? 1 : 0;
+    var large = Math.abs(degs) > 180 ? 1 : 0;
+    var arc = 'M' + (CX + r * Math.cos(a0)) + ',' + (CY - r * Math.sin(a0)) +
+              ' A' + r + ',' + r + ' 0 ' + large + ',' + sweep + ' ' +
+              (CX + r * Math.cos(a1)) + ',' + (CY - r * Math.sin(a1));
+    document.getElementById('cx-arc').setAttribute('d', Math.abs(degs) < 0.5 ? '' : arc);
+
+    var note = document.getElementById('cx-note');
+    if (Math.abs(m - 1) < 0.001 && degs === 90) {
+      note.textContent = 'זהו בדיוק כפל ב-i: גודל 1, זווית 90 מעלות. הנקודה הסתובבה רבע סיבוב והמרחק מהראשית לא זז.';
+    } else if (Math.abs(m - 1) < 0.001 && Math.abs(degs) === 180) {
+      note.textContent = 'גודל 1 וזווית 180 מעלות הם כפל במינוס אחד. שני כפלים ב-i נותנים בדיוק את זה, ומכאן i²=−1.';
+    } else if (degs === 0) {
+      note.textContent = 'זווית אפס: המכפיל הוא מספר ממשי רגיל, והוא רק מותח או מכווץ לאורך אותו ישר.';
+    } else if (Math.abs(m - 1) < 0.001) {
+      note.textContent = 'גודל 1 פירושו סיבוב טהור. המרחק מהראשית נשמר, רק הזווית זזה.';
+    } else {
+      note.textContent = 'שתי הפעולות קורות יחד: הגודל מוכפל ב-' + fmt(m) + ' והזווית זזה ב-' + degs + ' מעלות.';
+    }
+  }
+
+  inMag.addEventListener('input', draw);
+  inAng.addEventListener('input', draw);
+  draw();
+}());
+</script>
+
+<script>
+/* ===== מדמה חיפוש מטרה של CRISPR ===== */
+(function () {
+  var host = document.getElementById('crispr-genome');
+  if (!host) return;
+
+  var genome = host.getAttribute('data-genome') || '';
+  var guide = host.getAttribute('data-guide') || '';
+  var G = guide.length;
+  var slider = document.getElementById('in-mm');
+  var out = document.getElementById('out-mm');
+  var rows = document.getElementById('crispr-hits');
+  var note = document.getElementById('crispr-note');
+
+  // A site is worth showing if the protein could plausibly reach it: either a
+  // near match with a PAM, or a perfect match without one. The second case is
+  // the whole point of the exercise, so it is never filtered out.
+  var sites = [];
+  for (var i = 0; i + G + 3 <= genome.length; i++) {
+    var seq = genome.substr(i, G);
+    var pam = genome.substr(i + G, 3);
+    var hasPam = pam.charAt(1) === 'G' && pam.charAt(2) === 'G';
+    var mm = 0, near = null;
+    for (var j = 0; j < G; j++) {
+      if (seq.charAt(j) !== guide.charAt(j)) {
+        mm++;
+        near = G - j;
+      }
+    }
+    if ((hasPam && mm <= 4) || mm === 0) {
+      sites.push({ at: i, seq: seq, pam: pam, hasPam: hasPam, mm: mm, near: near });
+    }
+  }
+  sites.sort(function (a, b) { return a.mm - b.mm || a.at - b.at; });
+
+  function esc(s) { return s.replace(/&/g, '&amp;').replace(/</g, '&lt;'); }
+
+  // The count of mismatches is not the whole rule. The stretch of about ten
+  // letters next to the PAM is checked first, and a mismatch there usually stops
+  // the protein, while the same mismatch at the far end is often tolerated. A
+  // simulator that only counted mismatches would contradict the section above it.
+  var SEED = 10;
+  function cuts(s, tol) {
+    return s.hasPam && s.mm <= tol && (s.mm === 0 || s.near > SEED);
+  }
+
+  function draw() {
+    var tol = parseInt(slider.value, 10);
+    var cut = sites.filter(function (s) { return cuts(s, tol); });
+    var cutAt = {};
+    cut.forEach(function (s) { cutAt[s.at] = true; });
+
+    var html = '', pos = 0;
+    sites.slice().sort(function (a, b) { return a.at - b.at; }).forEach(function (s) {
+      if (s.at < pos) return;
+      html += esc(genome.slice(pos, s.at));
+      var cls = cutAt[s.at] ? 'crispr-site crispr-site--cut'
+              : (s.hasPam ? 'crispr-site' : 'crispr-site crispr-site--nopam');
+      html += '<span class="' + cls + '">' + esc(s.seq) + '</span>';
+      html += '<span class="crispr-pam-mark' + (s.hasPam ? '' : ' crispr-pam-mark--absent') + '">'
+           + esc(s.pam) + '</span>';
+      pos = s.at + G + 3;
+    });
+    html += esc(genome.slice(pos));
+    host.innerHTML = html;
+
+    out.textContent = tol;
+    rows.innerHTML = sites.map(function (s) {
+      var willCut = cuts(s, tol);
+      var verdict = !s.hasPam ? 'אין PAM, אין חיתוך'
+                  : (willCut ? (s.mm === 0 ? 'האתר המבוקש' : 'חיתוך לא מכוון')
+                    : (s.mm <= tol ? 'אי־ההתאמה צמודה ל-PAM. נעצר' : 'יותר מדי אי־התאמות'));
+      return '<tr class="' + (willCut ? 'is-cut' : '') + '">'
+        + '<td class="ltr">' + s.at + '</td>'
+        + '<td class="ltr">' + s.mm + '</td>'
+        + '<td class="ltr">' + (s.near === null ? '' : s.near) + '</td>'
+        + '<td class="ltr">' + esc(s.pam) + '</td>'
+        + '<td>' + verdict + '</td>'
+        + '</tr>';
+    }).join('');
+
+    var extra = cut.length - 1;
+    if (tol === 0) {
+      note.textContent = 'בסובלנות אפס נחתך אתר אחד בלבד. שימו לב לאתר השני ברשימה: '
+        + 'הוא מתאים למדריך בכל עשרים האותיות, ובכל זאת אינו נחתך, כי אחריו אין PAM.';
+    } else if (extra <= 0) {
+      note.textContent = 'עדיין אתר אחד. באתר הדומה השני אי־ההתאמות צמודות ל-PAM, ושם החלבון עוצר.';
+    } else {
+      note.textContent = 'בסובלנות של ' + tol + ' אי־התאמות נחתך אתר נוסף שלא התכוונו אליו. '
+        + 'ברצף של 196 אותיות זה נראה מעט. בגנום של שלושה מיליארד אותיות, זה מה שנקרא off-target.';
+    }
+  }
+
+  slider.addEventListener('input', draw);
+  draw();
+})();
+</script>
+
+<script>
+/* ===== מדמה ריבית דריבית ===== */
+(function () {
+  var svg = document.getElementById('sim-svg');
+  if (!svg) return;
+
+  var W = 640, H = 300, PAD = 8;
+  var keys = ['principal', 'rate', 'years', 'monthly'];
+  var inputs = {}, outs = {};
+  keys.forEach(function (k) {
+    inputs[k] = document.getElementById('in-' + k);
+    outs[k] = document.getElementById('out-' + k);
+  });
+  if (!inputs.principal) return;
+
+  var fmt = new Intl.NumberFormat('he-IL', { maximumFractionDigits: 0 });
+
+  function series(P, r, years, monthly) {
+    var simple = [], compound = [], paid = [];
+    var comp = P, totalPaid = P;
+    for (var t = 0; t <= years; t++) {
+      if (t > 0) {
+        comp = comp * (1 + r);
+        // הפקדות חודשיות נצברות במהלך השנה וגם הן צוברות ריבית
+        for (var m = 0; m < 12; m++) comp += monthly * Math.pow(1 + r, (12 - m - 1) / 12);
+        totalPaid += monthly * 12;
+      }
+      simple.push(P * (1 + r * t) + monthly * 12 * t);
+      compound.push(comp);
+      paid.push(totalPaid);
+    }
+    return { simple: simple, compound: compound, paid: paid };
+  }
+
+  function points(arr, max, years) {
+    var n = arr.length - 1;
+    return arr.map(function (v, i) {
+      var x = PAD + (i / Math.max(n, 1)) * (W - PAD * 2);
+      var y = H - PAD - (v / max) * (H - PAD * 2);
+      return x.toFixed(1) + ',' + y.toFixed(1);
+    }).join(' ');
+  }
+
+  function render() {
+    var P = +inputs.principal.value;
+    var rPct = +inputs.rate.value;
+    var years = +inputs.years.value;
+    var monthly = +inputs.monthly.value;
+    var r = rPct / 100;
+
+    outs.principal.textContent = fmt.format(P) + ' ₪';
+    outs.rate.textContent = rPct + '%';
+    outs.years.textContent = years + ' שנים';
+    outs.monthly.textContent = monthly ? fmt.format(monthly) + ' ₪' : 'ללא';
+
+    var s = series(P, r, years, monthly);
+    var max = Math.max(s.compound[years], s.simple[years]) * 1.05 || 1;
+
+    document.getElementById('sim-simple').setAttribute('points', points(s.simple, max, years));
+    document.getElementById('sim-compound').setAttribute('points', points(s.compound, max, years));
+
+    var fin = s.compound[years], sim = s.simple[years];
+    document.getElementById('sim-out-simple').textContent = fmt.format(Math.round(sim)) + ' ₪';
+    document.getElementById('sim-out-compound').textContent = fmt.format(Math.round(fin)) + ' ₪';
+    document.getElementById('sim-out-gap').textContent = fmt.format(Math.round(fin - sim)) + ' ₪';
+    document.getElementById('sim-out-paid').textContent = fmt.format(Math.round(s.paid[years])) + ' ₪';
+    document.getElementById('sim-years-axis').textContent = '0 – ' + years;
+
+    var note = document.getElementById('sim-note');
+    var times = s.paid[years] ? fin / s.paid[years] : 0;
+    var rule72 = rPct > 0 ? (72 / rPct) : 0;
+    note.textContent = 'בריבית של ' + rPct + '% הכסף מכפיל את עצמו בערך כל '
+      + rule72.toFixed(1) + ' שנים (כלל 72). אחרי ' + years + ' שנים היתרה גדולה פי '
+      + times.toFixed(1) + ' מסך מה שהפקדתם.';
+  }
+
+  keys.forEach(function (k) { inputs[k].addEventListener('input', render); });
+  render();
+})();
+
+/* ===== מדמה ההתכנסות אל e ===== */
+(function () {
+  var svg = document.getElementById('e-svg');
+  if (!svg) return;
+
+  var W = 640, H = 300, PAD = 8;
+  var E = Math.E, STEPS = 13;
+  var inN = document.getElementById('in-nexp');
+  var inT = document.getElementById('in-terms');
+  if (!inN || !inT) return;
+
+  function limitAt(n) { return Math.pow(1 + 1 / n, n); }
+
+  function seriesAt(terms) {
+    var s = 0, f = 1;
+    for (var k = 0; k < terms; k++) {
+      if (k > 0) f *= k;
+      s += 1 / f;
+    }
+    return s;
+  }
+
+  /* שתי העקומות מצוירות על אותו ציר צעדים כדי שההשוואה תהיה הוגנת: צעד אחד
+     בגבול הוא חלוקה נוספת, צעד אחד בטור הוא מחובר נוסף. תחתית הגרף היא 1.8
+     ולא אפס, אחרת כל ההבדל המעניין נדחס לפס דק. */
+  function points(fn) {
+    var lo = 1.8, hi = E + (E - lo) * 0.08;
+    var out = [];
+    for (var i = 1; i <= STEPS; i++) {
+      var v = Math.min(fn(i), hi);
+      var x = PAD + ((i - 1) / (STEPS - 1)) * (W - PAD * 2);
+      var y = H - PAD - ((v - lo) / (hi - lo)) * (H - PAD * 2);
+      out.push(x.toFixed(1) + ',' + Math.min(Math.max(y, PAD), H - PAD).toFixed(1));
+    }
+    return out.join(' ');
+  }
+
+  document.getElementById('e-limit').setAttribute('points', points(limitAt));
+  document.getElementById('e-series').setAttribute('points', points(seriesAt));
+
+  var fmtInt = new Intl.NumberFormat('he-IL', { maximumFractionDigits: 0 });
+
+  function render() {
+    var n = Math.pow(10, +inN.value);
+    var terms = +inT.value;
+    var lim = limitAt(n), ser = seriesAt(terms);
+
+    document.getElementById('out-nexp').textContent = 'n = ' + fmtInt.format(n);
+    document.getElementById('out-terms').textContent = terms;
+    document.getElementById('e-out-limit').textContent = lim.toFixed(10);
+    document.getElementById('e-out-series').textContent = ser.toFixed(10);
+    document.getElementById('e-out-cost').textContent =
+      fmtInt.format(n) + ' מול ' + terms;
+
+    /* ספרות נכונות אחרי הנקודה, לפי גודל השגיאה */
+    function digits(v) {
+      var err = Math.abs(v - E);
+      return err === 0 ? 12 : Math.max(0, Math.floor(-Math.log10(err)));
+    }
+    document.getElementById('e-note').textContent =
+      'ספרות נכונות אחרי הנקודה: הגבול עם ' + fmtInt.format(n) + ' חלוקות, '
+      + digits(lim) + '. הטור עם ' + terms + ' מחוברים, ' + digits(ser) + '.';
+  }
+
+  inN.addEventListener('input', render);
+  inT.addEventListener('input', render);
+  render();
+})();
+
+/* ===== בוחן ===== */
+(function () {
+  var form = document.getElementById('quiz-form');
+  if (!form) return;
+  var qs = Array.prototype.slice.call(form.querySelectorAll('.quiz__q'));
+  var scoreEl = document.getElementById('quiz-score');
+
+  document.getElementById('quiz-check').addEventListener('click', function () {
+    var right = 0, answered = 0;
+    qs.forEach(function (q) {
+      var correct = +q.dataset.answer;
+      var picked = q.querySelector('input:checked');
+      q.classList.remove('is-right', 'is-wrong');
+      if (!picked) return;
+      answered++;
+      if (+picked.value === correct) { q.classList.add('is-right'); right++; }
+      else { q.classList.add('is-wrong'); }
+      q.querySelectorAll('.quiz__opt').forEach(function (opt, i) {
+        opt.classList.toggle('is-answer', i === correct);
+      });
+    });
+    if (!answered) { scoreEl.textContent = 'בחרו תשובה לפחות בשאלה אחת.'; return; }
+    scoreEl.textContent = 'ענית נכון על ' + right + ' מתוך ' + qs.length + '.';
+  });
+
+  document.getElementById('quiz-reset').addEventListener('click', function () {
+    form.reset();
+    qs.forEach(function (q) {
+      q.classList.remove('is-right', 'is-wrong');
+      q.querySelectorAll('.quiz__opt').forEach(function (o) { o.classList.remove('is-answer'); });
+    });
+    scoreEl.textContent = '';
+  });
+})();
+
+/* ===== מדמה רזולוציה ליתוגרפית: CD = k1 · λ / NA ===== */
+(function () {
+  var svg = document.getElementById('euv-svg');
+  if (!svg) return;
+
+  var naIn = document.getElementById('in-na');
+  var k1In = document.getElementById('in-k1');
+  var naOut = document.getElementById('out-na');
+  var k1Out = document.getElementById('out-k1');
+  var linesG = document.getElementById('euv-lines');
+  var blurNode = document.getElementById('euv-blur-node');
+  var btns = Array.prototype.slice.call(document.querySelectorAll('.euv-source-btn'));
+  if (!naIn || !btns.length) return;
+
+  var W = 640, H = 190;
+  var lambda = +btns[0].dataset.lambda;
+  var naMax = +btns[0].dataset.namax;
+
+  function cd(lam, na, k1) { return k1 * lam / na; }
+
+  function draw() {
+    var na = Math.min(+naIn.value, naMax);
+    var k1 = +k1In.value;
+    var res = cd(lambda, na, k1);
+
+    naOut.textContent = na.toFixed(2);
+    k1Out.textContent = k1.toFixed(2);
+
+    // רוחב הקו על המסך פרופורציוני לרוחב האמיתי, בסקאלה קבועה
+    var nmPerPx = 0.9;                       // 640 פיקסלים = 576 ננומטר
+    var wpx = Math.max(1.2, res / nmPerPx);
+    var pitch = wpx * 2;
+    var n = Math.ceil(W / pitch) + 1;
+
+    var out = '';
+    for (var i = 0; i < n; i++) {
+      out += '<rect x="' + (i * pitch).toFixed(2) + '" y="18" width="' +
+             wpx.toFixed(2) + '" height="' + (H - 36) + '" class="euv-line"/>';
+    }
+    linesG.innerHTML = out;
+
+    // ככל שהקו מתקרב לגבול הפיזיקלי הוא נמרח. k1 נמוך = תהליך אגרסיבי = פחות חד.
+    // הטשטוש נחסם, אחרת קווים רחבים נראים מרוחים הרבה מעבר למה שהכוונה להמחיש
+    var sharp = Math.max(0, Math.min(1, (k1 - 0.25) / 0.20));
+    blurNode.setAttribute('stdDeviation',
+      Math.min(wpx * (1 - sharp) * 0.28, 4.5).toFixed(2));
+
+    document.getElementById('euv-out-cd').textContent = res.toFixed(1) + ' nm';
+    document.getElementById('euv-out-lambda').textContent = lambda + ' nm';
+    document.getElementById('euv-scale').textContent =
+      'רוחב התמונה כאן הוא כ-' + Math.round(W * nmPerPx) + ' ננומטר';
+
+    // ההשוואה ל-DUV נעשית בתנאים הטובים ביותר שיש לו: טבילה במים, NA 1.35
+    var duv = cd(193, 1.35, k1);
+    document.getElementById('euv-out-duv').textContent = duv.toFixed(1) + ' nm';
+
+    // כל מעבר הדפסה נוסף חוצה בקירוב את הצפיפות
+    var passes = duv <= res ? 1 : Math.pow(2, Math.ceil(Math.log(duv / res) / Math.log(2)));
+    document.getElementById('euv-out-passes').textContent =
+      lambda === 193 ? 'לא חל' : '×' + passes;
+
+    var note = document.getElementById('euv-note');
+    if (lambda === 193) {
+      note.textContent = 'ב-193 ננומטר צריך צמצם גדול מ-1, וזה אפשרי רק כשממלאים ' +
+        'את המרווח שבין העדשה לפרוסה במים. זה מה שנקרא ליתוגרפיית טבילה.';
+    } else {
+      note.textContent = 'קיצור אורך הגל פי כ-14 קונה את אותה רזולוציה בלי צמצם ענק ' +
+        'ובלי לחזור על ההדפסה. זו כל התכלית של EUV.';
+    }
+  }
+
+  btns.forEach(function (b) {
+    b.addEventListener('click', function () {
+      btns.forEach(function (o) { o.classList.remove('is-active'); });
+      b.classList.add('is-active');
+      lambda = +b.dataset.lambda;
+      naMax = +b.dataset.namax;
+      naIn.max = naMax;
+      // כל מקור אור מגיע עם הצמצם האופייני לו, אחרת ההשוואה חסרת משמעות
+      naIn.value = b.dataset.natypical;
+      draw();
+    });
+  });
+  [naIn, k1In].forEach(function (el) { el.addEventListener('input', draw); });
+  naIn.max = naMax;
+  draw();
+})();
+
+/* ===== מדמה האופטוגנטיקה: גן, אור, ואורך הגל הנכון ===== */
+(function () {
+  var stage = document.getElementById('opto-switch-stage');
+  if (!stage) return;
+
+  var boxes = Array.prototype.slice.call(document.querySelectorAll('.opto-switch__box'));
+  var state = document.getElementById('op-state');
+  var chanState = document.getElementById('op-channel-state');
+  var note = document.getElementById('op-note');
+  var channel = document.getElementById('op-channel');
+  var beam = document.getElementById('op-beam');
+  var lamp = document.getElementById('op-lamp');
+  var ions = ['op-ion1', 'op-ion2', 'op-ion3'].map(function (id) {
+    return document.getElementById(id);
+  });
+
+  var ON = 'diagram__dot diagram__dot--strong';
+  var OFF = 'diagram__dot';
+
+  function on(key) {
+    for (var i = 0; i < boxes.length; i++) {
+      if (boxes[i].getAttribute('data-key') === key) return boxes[i].checked;
+    }
+    return false;
+  }
+
+  function render() {
+    var gene = on('gene'), light = on('light'), blue = on('blue');
+    var lit = light && blue;
+    var open = gene && lit;
+
+    lamp.setAttribute('class', light ? ON : OFF);
+    beam.style.opacity = light ? '1' : '0.15';
+    channel.style.opacity = gene ? '1' : '0.15';
+    channel.setAttribute('class', open ? ON : OFF);
+    ions.forEach(function (c) {
+      c.setAttribute('class', open ? ON : OFF);
+      c.style.opacity = open ? '1' : '0.3';
+    });
+
+    if (open) {
+      state.textContent = 'יורה';
+      chanState.textContent = 'פתוחה';
+      note.textContent = 'שלושת התנאים התקיימו. האור הכחול פתח את התעלה, יונים טעונים ' +
+        'נכנסו, והנוירון ירה. שימו לב שהתא השכן מואר באותו אור בדיוק ואינו מגיב, ' +
+        'כי אין לו את החלבון. ההפרדה הזו היא כל העניין.';
+    } else if (gene && light && !blue) {
+      state.textContent = 'שקט';
+      chanState.textContent = 'סגורה';
+      note.textContent = 'החלבון נמצא בתא והאור דולק, אבל אורך הגל לא מתאים. ' +
+        'כלמידומונס מגיב לאור כחול, ואור אדום פשוט עובר דרך התעלה בלי לפתוח אותה.';
+    } else if (gene && !light) {
+      state.textContent = 'שקט';
+      chanState.textContent = 'סגורה';
+      note.textContent = 'הגן הוחדר והחלבון יושב בקרום, אבל בלי אור הוא אינו עושה דבר. ' +
+        'תא שנושא את החלבון בחושך מתנהג כמו כל תא אחר.';
+    } else if (!gene && lit) {
+      state.textContent = 'שקט';
+      chanState.textContent = 'אין תעלה בקרום';
+      note.textContent = 'זו הביקורת החשובה בניסוי. אור כחול על תא רגיל אינו מדליק אותו. ' +
+        'אם התא היה יורה כאן, הממצא כולו היה מתפרק.';
+    } else {
+      state.textContent = 'שקט';
+      chanState.textContent = 'אין תעלה בקרום';
+      note.textContent = 'מצב ההתחלה. הדליקו תנאים ובדקו מה נדרש כדי שהנוירון יירה.';
+    }
+  }
+
+  boxes.forEach(function (b) { b.addEventListener('change', render); });
+  render();
+})();
+</script>
+  </main>
+
+  <footer class="colophon">
+    <span>היום בקיצור</span>
+    <span>יוצר במלואו על ידי בינה מלאכותית</span>
+  </footer>
+
+</div>
+</body>
+</html>
