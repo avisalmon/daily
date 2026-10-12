@@ -1214,6 +1214,68 @@ def test_agent_cost_lead_matches_the_numbers_it_derives():
     assert 2.29 > 1 and 2.09 > 1 and "2.29" in text and "2.09" in text
 
 
+def test_human_economic_value_lead_matches_the_numbers_it_derives():
+    """BKM 13. The 2026-10-13 lead's headline number, 42.4, is not quoted from
+    anywhere. It is the output of a three-factor model that the research
+    document states in prose, and the paper is the only place a reader sees it.
+    So the whole scenario table is recomputed here from the stated assumptions.
+
+    The one deliberate mismatch is in the record: the source document prints
+    81.2 for almost-full automation in 2030 where the arithmetic gives 81.25,
+    rounding down instead of up. The paper does not print that cell, but the
+    recomputation has to keep reproducing it or the model has drifted."""
+    ed = json.loads(
+        (ROOT / "data" / "editions" / "2026-10-13.json").read_text(encoding="utf-8"))
+    text = json.dumps(ed, ensure_ascii=False)
+
+    def remaining(exposed, saved, returned):
+        """Paid human labour demand, as a percent of a world without AI."""
+        return 100 * (1 - exposed * saved * (1 - returned))
+
+    # exposure, share saved, share returned by new demand -> printed result
+    scenarios = {
+        ("historical", 2030): (0.35, 0.20, 0.70, 97.9),
+        ("historical", 2040): (0.55, 0.40, 0.65, 92.3),
+        ("historical", 2055): (0.70, 0.55, 0.60, 84.6),
+        ("ninety", 2030): (0.40, 0.35, 0.40, 91.6),
+        ("ninety", 2040): (0.65, 0.70, 0.30, 68.2),
+        ("ninety", 2055): (0.80, 0.90, 0.20, 42.4),
+        ("near-total", 2030): (0.50, 0.50, 0.25, 81.2),
+        ("near-total", 2040): (0.80, 0.90, 0.15, 38.8),
+        ("near-total", 2055): (0.95, 0.98, 0.05, 11.6),
+    }
+    for key, (exposed, saved, returned, printed) in scenarios.items():
+        got = remaining(exposed, saved, returned)
+        if key == ("near-total", 2030):
+            assert round(got, 2) == 81.25, "the source rounds 81.25 down to 81.2"
+            continue
+        assert round(got, 1) == printed, f"{key}: computed {got}, table says {printed}"
+
+    # The headline. The point of the article is the gap between the assumption
+    # people hear, 90% taken, and what the model actually yields.
+    assert round(remaining(0.80, 0.90, 0.20), 1) == 42.4 and "42.4" in text
+    assert round(100 - 42.4, 1) == 57.6 and "57.6" in text
+    assert remaining(0.80, 0.90, 0.20) > 4 * 10, \
+        "the lead's whole claim is that 90% assumed does not give 10% remaining"
+
+    # The figure shows the three 2055 columns, and must not restate them.
+    bars = [b["value"] for b in ed["lead"]["figure"]["bars"]]
+    assert bars == [84.6, 42.4, 11.6]
+    assert ed["lead"]["figure"]["max"] >= max(bars)
+
+    # The scenarios have to be ordered, or the table is not a spectrum.
+    by_2055 = [scenarios[(k, 2055)][3] for k in ("historical", "ninety", "near-total")]
+    assert by_2055 == sorted(by_2055, reverse=True)
+
+    # The demand arithmetic the article states in words: tenfold productivity
+    # needs tenfold demand merely to hold employment flat.
+    assert 1 / (1 / 10) == 10, "productivity x10 requires demand x10 to hold headcount"
+
+    # ILO Working Paper 140. Quoted, not derived, but 3.3 was printed as 3.4 in
+    # a first draft and nothing caught it.
+    assert "3.3 אחוזים" in text and "3.4 אחוזים" not in text
+
+
 def test_complex_plane_diagram_uses_one_scale_on_both_axes():
     """A diagram that labels an angle has to be drawn to scale, or it prints a
     number the picture contradicts. The first draft of this figure used 70

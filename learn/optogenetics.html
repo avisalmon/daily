@@ -68,6 +68,10 @@
 
 
 
+
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">האצה שיודעת לשחות אל האור</h2>
@@ -125,6 +129,10 @@
 
 
 
+
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">ביצת צפרדע מוכיחה את העניין</h2>
@@ -132,6 +140,10 @@
     <p>כשהאירו עליהן, התעלה נפתחה תוך 0.2 אלפיות השנייה. יונים טעונים חיובית זרמו פנימה ונוצר אות חשמלי. החלבון קיבל את השם צ&#39;אנלרודופסין, ותיאורו פורסם ב-2003 בכתב העת PNAS כתעלה קטיונית שנפתחת ישירות על ידי אור.</p>
     <p>ואז הגיעה התוצאה שהפכה את זה לכלי ולא לסקרנות: הם החדירו את אותו גן לתאי כליה של עובר אדם ולתאי כליה של אוגר, והתאים האלה נעשו רגישים לאור. לא משנה לאיזה תא הכניסו את החלבון, התא התחיל להגיב לאור.</p>
     <p>זו הנקודה שבה מחקר על אצה שוחה הפך לכלי אוניברסלי. החלבון לא דורש מהתא המארח שום דבר מיוחד. הוא מביא איתו את כל מה שצריך.</p>
+
+
+
+
 
 
 
@@ -197,6 +209,10 @@
 
 
 
+
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">למה דווקא אור, ולמה זה נקרא גם גנטיקה</h2>
@@ -248,6 +264,10 @@
 
 
 
+
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">מה זה כבר עשה למטופלים, ומה עוד לא</h2>
@@ -255,6 +275,10 @@
     <p>הצעד הקליני הראשון נעשה בעיניים. בניסויים קליניים מתמשכים מנסים להחזיר ראייה לאנשים שהתעוורו מרטיניטיס פיגמנטוזה, מחלה שהורסת את המדוכים והמדוקים ברשתית. כשהוחדר לרשתית של אדם עיוור חלבון דמוי צ&#39;אנלרודופסין, הוא החזיר ראייה חלקית: בעזרת משקפיים מיוחדים שפולטים אור הוא הצליח להבחין בחפצים על שולחן ולאחוז בהם.</p>
     <p>יש גם תקווה לשתלי שבלול. כיום הם מגרים את עצב השמיעה בחשמל, ואופטוגנטיקה אולי תאפשר לעשות זאת בדיוק גבוה יותר.</p>
     <p>מה שחשוב להחזיק: זו אינה תרופה זמינה. מדובר בניסויים קליניים, בהחזרת ראייה חלקית אצל מטופלים בודדים, ובשיטה שבמוח דורשת החדרת גן והכנסת סיב אופטי לגולגולת. הערך העיקרי שלה עד כה הוא בשאלות שהיא מאפשרת לשאול, לא בטיפולים שהיא מספקת.</p>
+
+
+
+
 
 
 
@@ -350,6 +374,7 @@
     <p class="sim__note" id="op-note"></p>
     <p class="sim__note euv-caveat">המדמה מציג שלושה תנאים מתוך ניסוי אמיתי שמערב גם עוצמת אור, כמות חלבון בקרום ובריאות התא. הוא נועד להמחיש את ההיגיון הסיבתי, ואינו מודל כמותי.</p>
   </section>
+
 
 
   <section class="quiz" id="quiz">
@@ -497,6 +522,57 @@
   </section>
 
 </article>
+
+<script>
+/* ===== שעון: רגישות לשדה מגנטי ===== */
+(function () {
+  var stage = document.getElementById('ck-stage');
+  if (!stage) return;
+
+  var RATIO = 1836;
+  var inField = document.getElementById('ck-in-field');
+  var outField = document.getElementById('ck-out-field');
+  var outE = document.getElementById('ck-out-e');
+  var outN = document.getElementById('ck-out-n');
+  var barE = document.getElementById('ck-bar-e');
+  var barN = document.getElementById('ck-bar-n');
+  var note = document.getElementById('ck-note');
+
+  function fmt(hz) {
+    if (hz >= 1000) return (hz / 1000).toFixed(1) + ' קילו-הרץ';
+    if (hz >= 1) return hz.toFixed(1) + ' הרץ';
+    if (hz >= 0.001) return (hz * 1000).toFixed(1) + ' מילי-הרץ';
+    return (hz * 1e6).toFixed(1) + ' מיקרו-הרץ';
+  }
+
+  function render() {
+    var mG = Number(inField.value);
+    var shiftE = 1.4e6 * (mG / 1000);
+    var shiftN = shiftE / RATIO;
+    var frac = mG / 100;
+
+    outField.textContent = mG + ' mG';
+    outE.textContent = fmt(shiftE);
+    outN.textContent = fmt(shiftN);
+
+    var hE = Math.round(120 * frac);
+    var hN = Math.round(120 * frac);
+    barE.setAttribute('height', hE);
+    barE.setAttribute('y', 150 - hE);
+    barN.setAttribute('height', hN);
+    barN.setAttribute('y', 150 - hN);
+
+    if (mG === 0) {
+      note.textContent = 'בלי שדה חיצוני שני המעברים יושבים בדיוק על התדר שלהם. זה המצב שכל שעון מנסה להתקרב אליו, ולשם הולך רוב המאמץ ההנדסי.';
+    } else {
+      note.textContent = 'שתי העמודות נראות שוות גובה רק מפני שהעמודה הגרעינית מצוירת בהגדלה של פי 1,836. בסקאלה אמיתית היא הייתה דקה מקו.';
+    }
+  }
+
+  inField.addEventListener('input', render);
+  render();
+})();
+</script>
 
 <script>
 /* ===== סימן מים: ההתנגשות בין איכות לשרידות ===== */

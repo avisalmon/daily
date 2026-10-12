@@ -549,6 +549,122 @@
     </figure>
     {% endif %}
 
+    {% if sec.diagram and sec.diagram.type == 'clock-counter-chain' %}
+    <figure class="diagram">
+      <svg viewBox="0 0 520 300" role="img" aria-label="שלוש שורות זהות במבנה. בכל שורה מתנד, חץ למונה, וחץ לתצוגה. ההבדל בין השורות הוא בתדר המתנד: מטוטלת, גביש קוורץ ואטום צזיום" preserveAspectRatio="xMidYMid meet">
+        <text x="500" y="22" class="diagram__label diagram__label--strong">מתנד ← מונה ← תצוגה</text>
+
+        <rect x="360" y="44" width="110" height="40" class="diagram__dot"/>
+        <text x="415" y="69" class="diagram__axis-label" text-anchor="middle">מטוטלת</text>
+        <line x1="360" y1="64" x2="300" y2="64" class="diagram__axis"/>
+        <rect x="190" y="44" width="110" height="40" class="diagram__dot"/>
+        <text x="245" y="69" class="diagram__axis-label" text-anchor="middle">גלגלי שיניים</text>
+        <line x1="190" y1="64" x2="130" y2="64" class="diagram__axis"/>
+        <text x="124" y="69" class="diagram__axis-label" text-anchor="end">1 בשנייה</text>
+
+        <rect x="360" y="124" width="110" height="40" class="diagram__dot"/>
+        <text x="415" y="149" class="diagram__axis-label" text-anchor="middle">גביש קוורץ</text>
+        <line x1="360" y1="144" x2="300" y2="144" class="diagram__axis"/>
+        <rect x="190" y="124" width="110" height="40" class="diagram__dot"/>
+        <text x="245" y="149" class="diagram__axis-label" text-anchor="middle">מונה דיגיטלי</text>
+        <line x1="190" y1="144" x2="130" y2="144" class="diagram__axis"/>
+        <text x="124" y="149" class="diagram__axis-label" text-anchor="end">32,768</text>
+
+        <rect x="360" y="204" width="110" height="40" class="diagram__dot diagram__dot--strong"/>
+        <text x="415" y="229" class="diagram__axis-label" text-anchor="middle">אטום צזיום</text>
+        <line x1="360" y1="224" x2="300" y2="224" class="diagram__axis"/>
+        <rect x="190" y="204" width="110" height="40" class="diagram__dot diagram__dot--strong"/>
+        <text x="245" y="229" class="diagram__axis-label" text-anchor="middle">מונה מיקרוגל</text>
+        <line x1="190" y1="224" x2="130" y2="224" class="diagram__axis"/>
+        <text x="124" y="229" class="diagram__axis-label" text-anchor="end">9,192,631,770</text>
+
+        <text x="260" y="284" class="diagram__axis-label" text-anchor="middle">אותו מבנה בשלושתם. משתנה רק כמה חריצים יש בסרגל.</text>
+      </svg>
+      <figcaption>{{ sec.diagram.caption }}</figcaption>
+    </figure>
+    {% endif %}
+
+    {% if sec.diagram and sec.diagram.type == 'clock-electron-vs-nucleus' %}
+    <figure class="diagram">
+      <svg viewBox="0 0 520 300" role="img" aria-label="ציר תדר לוגריתמי עם שלושה סימונים: מעבר מיקרוגל בצזיום, מעבר אופטי בשעון סריג, ומעבר גרעיני בתוריום באולטרה סגול" preserveAspectRatio="xMidYMid meet">
+        <text x="500" y="24" class="diagram__label diagram__label--strong">תדר המעבר, סקאלה לוגריתמית</text>
+        <line x1="50" y1="190" x2="480" y2="190" class="diagram__axis"/>
+
+        <rect x="396" y="130" width="40" height="60" class="diagram__dot"/>
+        <line x1="416" y1="130" x2="416" y2="104" class="diagram__axis"/>
+        <text x="416" y="96" class="diagram__axis-label" text-anchor="middle">מיקרוגל</text>
+        <text x="416" y="212" class="diagram__axis-label" text-anchor="middle">צזיום 133</text>
+        <text x="416" y="232" class="diagram__axis-label" text-anchor="middle">9.2 מיליארד</text>
+
+        <rect x="225" y="92" width="40" height="98" class="diagram__dot"/>
+        <line x1="245" y1="92" x2="245" y2="66" class="diagram__axis"/>
+        <text x="245" y="58" class="diagram__axis-label" text-anchor="middle">אור נראה</text>
+        <text x="245" y="212" class="diagram__axis-label" text-anchor="middle">שעון סריג אופטי</text>
+        <text x="245" y="232" class="diagram__axis-label" text-anchor="middle">מאות טריליונים</text>
+
+        <rect x="84" y="70" width="40" height="120" class="diagram__dot diagram__dot--strong"/>
+        <line x1="104" y1="70" x2="104" y2="44" class="diagram__axis"/>
+        <text x="104" y="36" class="diagram__axis-label" text-anchor="middle">אולטרה סגול</text>
+        <text x="104" y="212" class="diagram__axis-label" text-anchor="middle">תוריום 229</text>
+        <text x="104" y="232" class="diagram__axis-label" text-anchor="middle">כשני פטה-הרץ</text>
+
+        <text x="265" y="268" class="diagram__axis-label" text-anchor="middle">מחזורים בשנייה. כל צעד שמאלה על הציר הוא פי עשרה.</text>
+        <text x="265" y="290" class="diagram__axis-label" text-anchor="middle">יותר מחזורים, חריצים צפופים יותר, טעות זולה יותר.</text>
+      </svg>
+      <figcaption>{{ sec.diagram.caption }}</figcaption>
+    </figure>
+    {% endif %}
+
+    {% if sec.diagram and sec.diagram.type == 'clock-nucleus-shielding' %}
+    <figure class="diagram">
+      <svg viewBox="0 0 520 300" role="img" aria-label="שדה חיצוני מגיע משמאל כחיצים. ענן האלקטרונים סביב האטום סופג את רובו, והגרעין הקטן במרכז כמעט לא מושפע" preserveAspectRatio="xMidYMid meet">
+        <text x="500" y="24" class="diagram__label diagram__label--strong">שדה חיצוני פוגש את האטום</text>
+
+        <line x1="40" y1="90"  x2="128" y2="90"  class="diagram__axis"/>
+        <line x1="40" y1="150" x2="128" y2="150" class="diagram__axis"/>
+        <line x1="40" y1="210" x2="128" y2="210" class="diagram__axis"/>
+        <text x="84" y="252" class="diagram__axis-label" text-anchor="middle">שדה חשמלי או מגנטי</text>
+
+        <circle cx="280" cy="150" r="100" class="diagram__exp" fill="none"/>
+        <circle cx="280" cy="150" r="68"  class="diagram__linear" fill="none"/>
+        <text x="280" y="38" class="diagram__axis-label" text-anchor="middle">ענן האלקטרונים</text>
+
+        <circle cx="280" cy="150" r="9" class="diagram__dot diagram__dot--strong"/>
+        <line x1="280" y1="150" x2="280" y2="196" class="diagram__axis"/>
+        <text x="280" y="216" class="diagram__axis-label" text-anchor="middle">הגרעין</text>
+
+        <text x="268" y="288" class="diagram__axis-label" text-anchor="middle">הגרעין קטן מהאטום בערך פי עשרת אלפים. האיור אינו בקנה מידה.</text>
+      </svg>
+      <figcaption>{{ sec.diagram.caption }}</figcaption>
+    </figure>
+    {% endif %}
+
+    {% if sec.diagram and sec.diagram.type == 'clock-accuracy-ladder' %}
+    <figure class="diagram">
+      <svg viewBox="0 0 520 300" role="img" aria-label="ארבעה סוגי שעונים מסודרים לפי כמה זמן לוקח להם לסטות בשנייה אחת, על ציר לוגריתמי, ועוד סימון לשעון הגרעיני שאין לו עדיין ערך" preserveAspectRatio="xMidYMid meet">
+        <text x="500" y="24" class="diagram__label diagram__label--strong">זמן עד לסטייה של שנייה אחת</text>
+
+        <rect x="400" y="52" width="70" height="26" class="diagram__dot"/>
+        <text x="392" y="70" class="diagram__axis-label" text-anchor="end">שעון מטוטלת · יום</text>
+
+        <rect x="330" y="98" width="140" height="26" class="diagram__dot"/>
+        <text x="322" y="116" class="diagram__axis-label" text-anchor="end">שעון קוורץ · שבועות</text>
+
+        <rect x="180" y="144" width="290" height="26" class="diagram__dot"/>
+        <text x="172" y="162" class="diagram__axis-label" text-anchor="end">מזרקת צזיום · 300 מיליון שנה</text>
+
+        <rect x="110" y="190" width="360" height="26" class="diagram__dot diagram__dot--strong"/>
+        <text x="102" y="208" class="diagram__axis-label" text-anchor="end">סריג אופטי · 30 מיליארד שנה</text>
+
+        <rect x="110" y="236" width="360" height="26" class="diagram__dot-empty"/>
+        <text x="102" y="254" class="diagram__axis-label" text-anchor="end">שעון גרעיני · אין עדיין ערך</text>
+
+        <text x="270" y="290" class="diagram__axis-label" text-anchor="middle">הציר לוגריתמי. המספרים הם של המעבדות עצמן, בתנאי מעבדה.</text>
+      </svg>
+      <figcaption>{{ sec.diagram.caption }}</figcaption>
+    </figure>
+    {% endif %}
+
     {% if sec.table %}
     <figure class="datatable">
       <table>
@@ -998,6 +1114,53 @@
   </section>
   {% endif %}
 
+  {% if topic.sim and topic.sim.type == 'clock-field-sensitivity' %}
+  <section class="sim" id="sim">
+    <h2 class="topic__heading">{{ topic.sim.title }}</h2>
+    <p class="sim__intro">{{ topic.sim.intro }}</p>
+
+    <div class="sim__controls">
+      <label class="sim__control">
+        <span class="sim__control-head">
+          <span>עוצמת השדה המגנטי החיצוני</span>
+          <output id="ck-out-field" class="ltr"></output>
+        </span>
+        <input type="range" id="ck-in-field" min="0" max="100" step="1" value="30">
+        <span class="sim__control-hint">במיליגאוס. שדה כדור הארץ הוא כ-500 מיליגאוס</span>
+      </label>
+    </div>
+
+    <div class="gene-switch__stage" id="ck-stage">
+      <svg viewBox="0 0 520 190" role="img" aria-label="שתי עמודות. משמאל סטיית התדר במעבר של אלקטרון, מימין אותה סטייה במעבר בתוך הגרעין, קטנה בהרבה">
+        <line x1="40" y1="150" x2="480" y2="150" class="diagram__axis"/>
+        <rect x="300" y="150" width="90" height="0" id="ck-bar-e" class="wm-level"/>
+        <text x="345" y="170" class="diagram__axis-label" text-anchor="middle">מעבר של אלקטרון</text>
+        <rect x="130" y="150" width="90" height="0" id="ck-bar-n" class="wm-level"/>
+        <text x="175" y="170" class="diagram__axis-label" text-anchor="middle">מעבר בתוך הגרעין</text>
+        <text x="175" y="26" class="diagram__axis-label" text-anchor="middle">הציר כאן מוגדל פי 1,836</text>
+      </svg>
+    </div>
+
+    <div class="sim__readout sim__readout--three">
+      <div class="sim__stat">
+        <span class="sim__stat-label">סטייה, מעבר אלקטרוני</span>
+        <span class="sim__stat-value ltr" id="ck-out-e"></span>
+      </div>
+      <div class="sim__stat sim__stat--strong">
+        <span class="sim__stat-label">סטייה, מעבר גרעיני</span>
+        <span class="sim__stat-value ltr" id="ck-out-n"></span>
+      </div>
+      <div class="sim__stat">
+        <span class="sim__stat-label">פי כמה פחות</span>
+        <span class="sim__stat-value ltr">1,836</span>
+      </div>
+    </div>
+
+    <p class="sim__note" id="ck-note"></p>
+    <p class="sim__note euv-caveat">{{ topic.sim.caveat }}</p>
+  </section>
+  {% endif %}
+
   {% if topic.quiz %}
   <section class="quiz" id="quiz">
     <h2 class="topic__heading">בדקו את עצמכם</h2>
@@ -1036,6 +1199,57 @@
   {% endif %}
 
 </article>
+
+<script>
+/* ===== שעון: רגישות לשדה מגנטי ===== */
+(function () {
+  var stage = document.getElementById('ck-stage');
+  if (!stage) return;
+
+  var RATIO = 1836;
+  var inField = document.getElementById('ck-in-field');
+  var outField = document.getElementById('ck-out-field');
+  var outE = document.getElementById('ck-out-e');
+  var outN = document.getElementById('ck-out-n');
+  var barE = document.getElementById('ck-bar-e');
+  var barN = document.getElementById('ck-bar-n');
+  var note = document.getElementById('ck-note');
+
+  function fmt(hz) {
+    if (hz >= 1000) return (hz / 1000).toFixed(1) + ' קילו-הרץ';
+    if (hz >= 1) return hz.toFixed(1) + ' הרץ';
+    if (hz >= 0.001) return (hz * 1000).toFixed(1) + ' מילי-הרץ';
+    return (hz * 1e6).toFixed(1) + ' מיקרו-הרץ';
+  }
+
+  function render() {
+    var mG = Number(inField.value);
+    var shiftE = 1.4e6 * (mG / 1000);
+    var shiftN = shiftE / RATIO;
+    var frac = mG / 100;
+
+    outField.textContent = mG + ' mG';
+    outE.textContent = fmt(shiftE);
+    outN.textContent = fmt(shiftN);
+
+    var hE = Math.round(120 * frac);
+    var hN = Math.round(120 * frac);
+    barE.setAttribute('height', hE);
+    barE.setAttribute('y', 150 - hE);
+    barN.setAttribute('height', hN);
+    barN.setAttribute('y', 150 - hN);
+
+    if (mG === 0) {
+      note.textContent = 'בלי שדה חיצוני שני המעברים יושבים בדיוק על התדר שלהם. זה המצב שכל שעון מנסה להתקרב אליו, ולשם הולך רוב המאמץ ההנדסי.';
+    } else {
+      note.textContent = 'שתי העמודות נראות שוות גובה רק מפני שהעמודה הגרעינית מצוירת בהגדלה של פי 1,836. בסקאלה אמיתית היא הייתה דקה מקו.';
+    }
+  }
+
+  inField.addEventListener('input', render);
+  render();
+})();
+</script>
 
 <script>
 /* ===== סימן מים: ההתנגשות בין איכות לשרידות ===== */

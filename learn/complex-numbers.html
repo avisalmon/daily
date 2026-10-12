@@ -68,6 +68,10 @@
 
 
 
+
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">i, ומאיפה הוא באמת בא</h2>
@@ -82,6 +86,10 @@
       <p class="formula__label"></p>
       <p class="formula__legend"></p>
     </div>
+
+
+
+
 
 
 
@@ -152,6 +160,10 @@
 
 
 
+
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">כפל הוא סיבוב</h2>
@@ -209,6 +221,10 @@
 
 
 
+
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">נוסחת אוילר, ולמה מהנדס משתמש בה</h2>
@@ -222,6 +238,10 @@
       <p class="formula__label"></p>
       <p class="formula__legend"></p>
     </div>
+
+
+
+
 
 
 
@@ -291,6 +311,10 @@
 
 
 
+
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">מה מספר מרוכב איננו</h2>
@@ -298,6 +322,10 @@
     <p>הוא אינו וקטור, אף שאפשר לצייר אותו כמו וקטור. לוקטורים במישור אין פעולת כפל שמחזירה וקטור ומקיימת את חוקי החשבון הרגילים. למספרים מרוכבים יש, וזה כל ההבדל.</p>
     <p>הוא אינו סוף הסיפור. יש הרחבות נוספות, קווטרניונים בארבעה ממדים ואוקטוניונים בשמונה, ובכל הרחבה כזאת מוותרים על משהו. בקווטרניונים כפל כבר אינו חילופי, כלומר a כפול b אינו b כפול a. המספרים המרוכבים הם ההרחבה האחרונה שאינה גובה מחיר.</p>
     <p>והוא אינו כלי שנוח לוותר עליו. כל מה שנעשה כאן ניתן לביצוע בזוגות של מספרים ממשיים ובנוסחאות טריגונומטריות. פשוט אף אחד לא עושה את זה, מפני שהניסוח המרוכב הופך שלושה שלבי חישוב לכפל אחד.</p>
+
+
+
+
 
 
 
@@ -384,6 +412,7 @@
     </div>
     <p class="sim__note" id="cx-note"></p>
   </section>
+
 
 
 
@@ -533,6 +562,57 @@
   </section>
 
 </article>
+
+<script>
+/* ===== שעון: רגישות לשדה מגנטי ===== */
+(function () {
+  var stage = document.getElementById('ck-stage');
+  if (!stage) return;
+
+  var RATIO = 1836;
+  var inField = document.getElementById('ck-in-field');
+  var outField = document.getElementById('ck-out-field');
+  var outE = document.getElementById('ck-out-e');
+  var outN = document.getElementById('ck-out-n');
+  var barE = document.getElementById('ck-bar-e');
+  var barN = document.getElementById('ck-bar-n');
+  var note = document.getElementById('ck-note');
+
+  function fmt(hz) {
+    if (hz >= 1000) return (hz / 1000).toFixed(1) + ' קילו-הרץ';
+    if (hz >= 1) return hz.toFixed(1) + ' הרץ';
+    if (hz >= 0.001) return (hz * 1000).toFixed(1) + ' מילי-הרץ';
+    return (hz * 1e6).toFixed(1) + ' מיקרו-הרץ';
+  }
+
+  function render() {
+    var mG = Number(inField.value);
+    var shiftE = 1.4e6 * (mG / 1000);
+    var shiftN = shiftE / RATIO;
+    var frac = mG / 100;
+
+    outField.textContent = mG + ' mG';
+    outE.textContent = fmt(shiftE);
+    outN.textContent = fmt(shiftN);
+
+    var hE = Math.round(120 * frac);
+    var hN = Math.round(120 * frac);
+    barE.setAttribute('height', hE);
+    barE.setAttribute('y', 150 - hE);
+    barN.setAttribute('height', hN);
+    barN.setAttribute('y', 150 - hN);
+
+    if (mG === 0) {
+      note.textContent = 'בלי שדה חיצוני שני המעברים יושבים בדיוק על התדר שלהם. זה המצב שכל שעון מנסה להתקרב אליו, ולשם הולך רוב המאמץ ההנדסי.';
+    } else {
+      note.textContent = 'שתי העמודות נראות שוות גובה רק מפני שהעמודה הגרעינית מצוירת בהגדלה של פי 1,836. בסקאלה אמיתית היא הייתה דקה מקו.';
+    }
+  }
+
+  inField.addEventListener('input', render);
+  render();
+})();
+</script>
 
 <script>
 /* ===== סימן מים: ההתנגשות בין איכות לשרידות ===== */

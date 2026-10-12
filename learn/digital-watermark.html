@@ -67,6 +67,10 @@
 
 
 
+
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">גלוי וסמוי, ולמה הגלוי כמעט חסר ערך</h2>
@@ -129,6 +133,10 @@
 
 
 
+
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">איך מחביאים ביט בתוך תמונה</h2>
@@ -186,6 +194,10 @@
       </svg>
       <figcaption>אותה תמונה פעמיים. משמאל שתי הגרסאות, זהות לעין. מימין הפרש הערכים ביניהן, מוגבר פי מאה: התבנית החבויה נראית.</figcaption>
     </figure>
+
+
+
+
 
 
   </section>
@@ -248,11 +260,19 @@
       <figcaption>לפני כל מילה, אוצר המילים מחולק לשתי קבוצות לפי מפתח סודי, והמודל מוטה קלות לטובת אחת מהן. כל בחירה נראית טבעית, הסטייה מצטברת לאורך הטקסט.</figcaption>
     </figure>
 
+
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">מה שורד ומה שובר</h2>
     <p>חוסן הוא השאלה המעשית היחידה. סימן מים ששורד רק קובץ שלא נגעו בו אינו שווה דבר, מכיוון שאף קובץ ברשת אינו נשאר כפי שנוצר. הוא נדחס, משתנה בגודל, נחתך, מצולם ממסך ומועלה מחדש.</p>
     <p>הטבלה מפרידה בין שני דברים ששווה להפריד ביניהם: מה הטכנולוגיה אמורה לעשות, ומה פורסם בפועל במספרים. ההפרדה הזאת היא עיקר הלקוח מהשבוע שעבר.</p>
+
+
+
+
 
 
 
@@ -319,12 +339,20 @@
 
 
 
+
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">מי מסמן היום, ובמה</h2>
     <p>SynthID של גוגל עובד בתמונה, בווידאו ובשמע, ולא בטקסט. גוגל מדווחת שסימנה עד כה יותר מ-180 מיליארד תמונות וסרטונים ומעל 240 אלף שנות שמע. רשימת השותפים שהכלי יודע לקרוא כוללת את OpenAI, אנבידיה וקקאו, ואפל מופיעה כמי שתצטרף. הזמינות שתוארה כעולמית מנוסחת בהודעה עצמה כעולמית באנגלית.</p>
     <p>OpenAI הודיעה על סימון טקסט בטכנולוגיה בשם textGrain, שהיא מתכוונת לשחרר בקוד פתוח. ההפעלה היא באיחוד האירופי, בכל התוכניות שם, ולא הייתה פעילה ביום ההודעה אלא תוכננה לשבועות הקרובים. בממשק המתכנתים ההסדר הפוך: הסימון כבוי כברירת מחדל והמפתח צריך לבקש אותו, ושם זה חל בכל העולם.</p>
     <p>המשותף לשתי ההודעות הוא שהן אמצעי, לא פתרון. הן מקלות על מי שרוצה לתת ייחוס הוגן לתוכן שלו. הן אינן עונות על השאלה שהתחלנו ממנה, מכיוון שהיא שאלה שאי אפשר לענות עליה מתוך הקובץ.</p>
+
+
+
+
 
 
 
@@ -407,6 +435,7 @@
     <p class="sim__note" id="wm-note"></p>
     <p class="sim__note euv-caveat">המדמה ממחיש התנגשות, הוא אינו מודד מערכת אמיתית. העקומה שבו היא מודל חשבוני פשוט, והמספרים אינם לקוחים ממוצר מסחרי. המספרים המדודים היחידים שפורסמו בשבוע שעבר הם של OpenAI, על סימון טקסט, והם מופיעים בטבלת החוסן שלמעלה.</p>
   </section>
+
 
   <section class="quiz" id="quiz">
     <h2 class="topic__heading">בדקו את עצמכם</h2>
@@ -553,6 +582,57 @@
   </section>
 
 </article>
+
+<script>
+/* ===== שעון: רגישות לשדה מגנטי ===== */
+(function () {
+  var stage = document.getElementById('ck-stage');
+  if (!stage) return;
+
+  var RATIO = 1836;
+  var inField = document.getElementById('ck-in-field');
+  var outField = document.getElementById('ck-out-field');
+  var outE = document.getElementById('ck-out-e');
+  var outN = document.getElementById('ck-out-n');
+  var barE = document.getElementById('ck-bar-e');
+  var barN = document.getElementById('ck-bar-n');
+  var note = document.getElementById('ck-note');
+
+  function fmt(hz) {
+    if (hz >= 1000) return (hz / 1000).toFixed(1) + ' קילו-הרץ';
+    if (hz >= 1) return hz.toFixed(1) + ' הרץ';
+    if (hz >= 0.001) return (hz * 1000).toFixed(1) + ' מילי-הרץ';
+    return (hz * 1e6).toFixed(1) + ' מיקרו-הרץ';
+  }
+
+  function render() {
+    var mG = Number(inField.value);
+    var shiftE = 1.4e6 * (mG / 1000);
+    var shiftN = shiftE / RATIO;
+    var frac = mG / 100;
+
+    outField.textContent = mG + ' mG';
+    outE.textContent = fmt(shiftE);
+    outN.textContent = fmt(shiftN);
+
+    var hE = Math.round(120 * frac);
+    var hN = Math.round(120 * frac);
+    barE.setAttribute('height', hE);
+    barE.setAttribute('y', 150 - hE);
+    barN.setAttribute('height', hN);
+    barN.setAttribute('y', 150 - hN);
+
+    if (mG === 0) {
+      note.textContent = 'בלי שדה חיצוני שני המעברים יושבים בדיוק על התדר שלהם. זה המצב שכל שעון מנסה להתקרב אליו, ולשם הולך רוב המאמץ ההנדסי.';
+    } else {
+      note.textContent = 'שתי העמודות נראות שוות גובה רק מפני שהעמודה הגרעינית מצוירת בהגדלה של פי 1,836. בסקאלה אמיתית היא הייתה דקה מקו.';
+    }
+  }
+
+  inField.addEventListener('input', render);
+  render();
+})();
+</script>
 
 <script>
 /* ===== סימן מים: ההתנגשות בין איכות לשרידות ===== */
