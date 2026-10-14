@@ -48,10 +48,13 @@ HTTP = re.compile(r"^https?://", re.I)
 HEBREW = re.compile(r"[\u0590-\u05FF]")
 
 # BKM §6: sources that have proven unusable. Never cite them again.
+# nature.com used to sit here. It was removed on 2026-10-14 once a route that
+# actually works was found (the browser canvas, read_page), because a guard
+# whose premise is false is worse than no guard: it implies a protection that
+# is not there and pushes the paper to a weaker secondary source.
 BLOCKED_DOMAINS = {
     "calcalist.co.il": "returns 403 even with a browser UA - cannot be fact-checked",
     "calcalistech.com": "returns 403 even with a browser UA - cannot be fact-checked",
-    "nature.com": "returns 406 for the article, the PDF and Wayback - cannot be fact-checked",
 }
 
 # BKM §2: hedge words required when a story is a report rather than a fact.

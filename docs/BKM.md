@@ -131,7 +131,7 @@ even on success. Confirm with a separate import check.
 |---|---|
 | VentureBeat | `/category/ai/feed` works; **a trailing slash returns 308** |
 | Calcalist | **403 even with a browser UA** — blocked, rejected as a source |
-| nature.com | **406 for the article, the PDF and the Wayback copy** — blocked, rejected as a source |
+| nature.com | **406 to `web_fetch`, and a JS "Client Challenge" page to `urllib` even with a Chrome UA.** Not blocked: open the `browser` canvas and call `read_page`, which returns the full article text. `evaluate_javascript` reading `innerText` comes back empty, so `read_page` is the reliable action |
 | Times of Israel, Davar, Haaretz | **403 to fetching** — verify the story elsewhere and link the source you actually read |
 | openai.com | **403 to fetching** — fall back to their RSS `summary`, it's authoritative |
 | Hacker News | high noise, weight 0.7 |
@@ -147,6 +147,25 @@ outlet you can actually read, verify there, and link that. Record the original
 in the plan's `companion_url` so the substitution is visible later. This is how
 the Nature piece on the Nepal collapse was replaced with New Scientist, which
 turned out to carry a materially better-sourced version of the story.
+
+**But check whether the block is still true before routing around it.**
+nature.com sat in `BLOCKED_DOMAINS` from the Nepal story until 2026-10-14, when
+the Nikon disqualification brief needed it and the browser canvas turned out to
+read it fine. The entry had stopped describing reality and was quietly pushing
+the paper to weaker secondary coverage. A guard that is no longer true gets
+removed, not worked around. §10.
+
+**Paywalled or blocked papers: Europe PMC is the workhorse.** Metadata and
+abstract from
+`https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI:%22<doi>%22&resultType=core&format=json`,
+full text from `.../rest/PMC<id>/fullTextXML`. Never guess a PMC id, a wrong one
+returns HTTP 500; take it from the search result's `pmcid`. This is how the
+edition 14 misattribution was caught: the figure the research document built its
+thesis on was buried in another paper's discussion section, invisible to any
+summary-level read. PNAS returns 403, use the PMC mirror. arXiv `/abs/` pages
+return only a title to `web_fetch`; use
+`http://export.arxiv.org/api/query?id_list=<id>`, whose `comment` field is where
+conference acceptance hides.
 
 ---
 
@@ -636,4 +655,72 @@ to stop derived numbers going stale, and it caught a completely different bug fo
 free. **Numbers pinned to their artifact detect any change to the artifact,
 whatever caused it.**
 
+---
 
+## 18. A CSS rule beats a presentation attribute, and SVG text clips in silence
+
+Every diagram label in `topic.html.j2` carried a `text-anchor` attribute, and
+every one of them was dead. `newspaper.css` sets `text-anchor` on
+`.diagram__label` and on `.diagram__axis-label`, and an author stylesheet rule
+always wins over a presentation attribute. For three months labels were being
+positioned against an anchor that was never applied.
+
+The damage is invisible. SVG text that runs past the viewBox is not wrapped and
+not flagged. It is simply cut, and the sentence that remains still reads like a
+sentence. `ריבית דריבית` shipped as `ריבית`. The optogenetics legend lost 141
+units of text off its right edge. `כ-2% מקודדים חלבון` on the genome ruler ran
+94 units off the left. All of it on pages that had been read, reviewed and
+published.
+
+The fix is two things, and neither is "be careful":
+
+**Position against the anchor the stylesheet applies**, and never write a
+`text-anchor` attribute on a diagram label. `.diagram__label` resolves to
+`start`, which in an RTL page is the **right** edge, so `x` is where the text
+ends. `.diagram__axis-label` resolves to `middle`, so `x` is its centre.
+`test_no_svg_label_relies_on_a_text_anchor_attribute` fails the build on any
+new attribute, and also fails if the CSS stops setting the anchor, because then
+the attributes become live again and the rule should go.
+
+**Sweep with `getBBox` whenever a diagram is added or moved.** Only a real
+browser knows how wide Hebrew renders, so this cannot be a pytest. Serve the
+site, then in the browser canvas load every learning page into an iframe and
+compare each `<text>` bbox against its `svg.viewBox.baseVal`. 234 labels, under
+a minute, and the first run found eight that were being clipped. It is item 4
+in the RUNBOOK checklist.
+
+---
+
+## 19. `open(p, "w")` truncates before the right-hand side is evaluated
+
+A one-liner to restore a file from its backup:
+
+```python
+io.open(p, "w", encoding="utf-8").write(io.open(p + ".bak", encoding="utf-8").read())
+```
+
+In `A.write(B)`, Python evaluates `A` first. `io.open(p, "w")` truncates the
+real file to zero bytes, and only then does it try to read the backup. If the
+backup is missing, and it was, because the mutation script that should have
+written it had died on a syntax error, the file is gone and the exception
+arrives too late to matter. `topic.html.j2` lost 1,960 lines this way, including
+every uncommitted carbon-14 diagram branch.
+
+Two rules came out of it:
+
+**Never write a restore as one expression.** Read the backup into a variable,
+check it is non-empty, then open for writing.
+
+**Mutation testing belongs in a script file, not in `python -c` inside
+PowerShell.** The quoting is the whole problem: PowerShell ate the escaped
+quotes, Python got a syntax error, the backup was never written, and the
+"restore" then destroyed the original. Write the mutate-test-restore cycle as a
+file with `create` and run it, so a parse error happens before anything is
+touched.
+
+Recovery, when it happens: the **rendered output is a backup**. `git checkout`
+restored the committed template, and the five lost diagram branches were lifted
+straight back out of `learn/radiocarbon-dating.html`, which still held them
+fully rendered. Re-wrap each `<figure>` in its own `sec.diagram.type` guard,
+put the caption expression back, rebuild, and diff the bboxes
+against a sweep taken before the loss to prove the recovery is faithful.

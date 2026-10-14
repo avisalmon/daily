@@ -72,6 +72,11 @@
 
 
 
+
+
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">i, ומאיפה הוא באמת בא</h2>
@@ -86,6 +91,11 @@
       <p class="formula__label"></p>
       <p class="formula__legend"></p>
     </div>
+
+
+
+
+
 
 
 
@@ -164,6 +174,11 @@
 
 
 
+
+
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">כפל הוא סיבוב</h2>
@@ -209,10 +224,15 @@
         <path d="M310,113 A62,62 0 0,0 265,88" class="cplx-arc"/>
         <text x="300" y="82" class="diagram__label">כפל ב-i</text>
 
-        <text x="480" y="292" class="diagram__axis-label">המרחק מהראשית נשאר 3.606 בכל ארבע הנקודות</text>
+        <text x="360" y="292" class="diagram__axis-label">המרחק מהראשית נשאר 3.606 בכל ארבע הנקודות</text>
       </svg>
       <figcaption>כפל ב-i אינו מותח ואינו מכווץ. הוא מסובב ברבע סיבוב. שני כפלים כאלה מחזירים את הנקודה על אותו ישר בכיוון ההפוך, וזה בדיוק כפל במינוס אחד.</figcaption>
     </figure>
+
+
+
+
+
 
 
 
@@ -238,6 +258,11 @@
       <p class="formula__label"></p>
       <p class="formula__legend"></p>
     </div>
+
+
+
+
+
 
 
 
@@ -315,6 +340,11 @@
 
 
 
+
+
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">מה מספר מרוכב איננו</h2>
@@ -322,6 +352,11 @@
     <p>הוא אינו וקטור, אף שאפשר לצייר אותו כמו וקטור. לוקטורים במישור אין פעולת כפל שמחזירה וקטור ומקיימת את חוקי החשבון הרגילים. למספרים מרוכבים יש, וזה כל ההבדל.</p>
     <p>הוא אינו סוף הסיפור. יש הרחבות נוספות, קווטרניונים בארבעה ממדים ואוקטוניונים בשמונה, ובכל הרחבה כזאת מוותרים על משהו. בקווטרניונים כפל כבר אינו חילופי, כלומר a כפול b אינו b כפול a. המספרים המרוכבים הם ההרחבה האחרונה שאינה גובה מחיר.</p>
     <p>והוא אינו כלי שנוח לוותר עליו. כל מה שנעשה כאן ניתן לביצוע בזוגות של מספרים ממשיים ובנוסחאות טריגונומטריות. פשוט אף אחד לא עושה את זה, מפני שהניסוח המרוכב הופך שלושה שלבי חישוב לכפל אחד.</p>
+
+
+
+
+
 
 
 
@@ -412,6 +447,7 @@
     </div>
     <p class="sim__note" id="cx-note"></p>
   </section>
+
 
 
 
@@ -610,6 +646,66 @@
   }
 
   inField.addEventListener('input', render);
+  render();
+})();
+</script>
+
+<script>
+/* ===== פחמן 14: גיל, יחס, וגבול הזיהוי ===== */
+(function () {
+  var stage = document.getElementById('c14-stage');
+  if (!stage) return;
+
+  var HALF = 5730;
+  var MAXT = 60000;
+  var LIMIT = 51570;
+  var X0 = 470, X1 = 40, Y0 = 40, Y1 = 170;
+
+  var inAge = document.getElementById('c14-in-age');
+  var outAge = document.getElementById('c14-out-age');
+  var outFrac = document.getElementById('c14-out-frac');
+  var outHalves = document.getElementById('c14-out-halves');
+  var outSlope = document.getElementById('c14-out-slope');
+  var curve = document.getElementById('c14-curve');
+  var marker = document.getElementById('c14-marker');
+  var limit = document.getElementById('c14-limit');
+  var note = document.getElementById('c14-note');
+
+  function frac(t) { return Math.pow(0.5, t / HALF); }
+  function px(t) { return X0 - (X0 - X1) * (t / MAXT); }
+  function py(f) { return Y1 - (Y1 - Y0) * f; }
+
+  var pts = [];
+  for (var i = 0; i <= 120; i++) {
+    var t = (i / 120) * MAXT;
+    pts.push(px(t).toFixed(1) + ',' + py(frac(t)).toFixed(1));
+  }
+  curve.setAttribute('points', pts.join(' '));
+  limit.setAttribute('x1', px(LIMIT).toFixed(1));
+  limit.setAttribute('x2', px(LIMIT).toFixed(1));
+
+  function render() {
+    var t = Number(inAge.value);
+    var f = frac(t);
+    var drop = (f - frac(t + 100)) * 100;
+
+    outAge.textContent = t.toLocaleString('en-US') + ' שנה';
+    outFrac.textContent = (f * 100).toFixed(2) + '%';
+    outHalves.textContent = (t / HALF).toFixed(2);
+    outSlope.textContent = drop.toFixed(3) + ' נקודות אחוז';
+    marker.setAttribute('cx', px(t).toFixed(1));
+    marker.setAttribute('cy', py(f).toFixed(1));
+
+    if (t > LIMIT) {
+      note.textContent = 'מעבר לגבול. נשאר פחות מ-0.2 אחוזים, וזיהום זעיר בפחמן מודרני כבר גדול מהאות עצמו. בטווח הזה המדידה אינה אומרת כמה הדגימה ישנה, רק שהיא ישנה מדי.';
+    } else if (drop < 0.2) {
+      note.textContent = 'מאה שנות הפרש אמיתי כבר כמעט אינן נראות במדידה. זו הסיבה שטווח השגיאה שמדווח לצד התאריך גדל עם הגיל, הרבה לפני שהשיטה נעצרת.';
+    } else {
+      note.textContent = 'בטווח הזה מאה שנות הפרש עדיין מזיזות את היחס מספיק כדי למדוד אותן. זה הטווח שבו תיארוך רדיופחמני מדויק יחסית, והוא מכסה את רוב הארכיאולוגיה ההיסטורית.';
+    }
+  }
+
+  inAge.addEventListener('input', render);
   render();
 })();
 </script>

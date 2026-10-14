@@ -71,6 +71,11 @@
 
 
 
+
+
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">שני חלקים: אחד מחפש, אחד חותך</h2>
@@ -155,12 +160,22 @@
 
 
 
+
+
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">PAM: בלי הסיסמה הזאת אין חיתוך</h2>
     <p>התאמה של המדריך אינה מספיקה. Cas9 חותך רק אם צמוד למטרה, בצד אחד, מופיע רצף קצר שנקרא PAM. אצל Cas9 הנפוץ מדובר בשלוש אותיות שבהן השנייה והשלישית הן G, כלומר כל אות ואחריה GG.</p>
     <p>החלבון למעשה מחפש קודם את ה-PAM, ורק כשהוא מוצא אותו הוא טורח לפתוח את הסליל ולבדוק התאמה. זה קיצור דרך יעיל: במקום לבדוק שלושה מיליארד מיקומים לעומק, בודקים לעומק רק את אלה שנושאים את הסימן.</p>
     <p>יש לכך שתי השלכות. הראשונה מעשית: אי אפשר לחתוך בכל נקודה שרוצים, אלא רק ליד PAM, ולכן תכנון עריכה מתחיל תמיד בחיפוש PAM מתאים באזור. השנייה יפה יותר. בחיידק עצמו, הזיכרון הווירלי השמור אינו מלווה ב-PAM, ולכן המערכת אינה חותכת את הזיכרון של עצמה. אותו הבדל קטן הוא שמפריד בין הגנה ובין התאבדות.</p>
+
+
+
+
+
 
 
 
@@ -245,6 +260,11 @@
 
 
 
+
+
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">הבעיה האמיתית היא לא לחתוך, אלא לא לחתוך במקום הלא נכון</h2>
@@ -275,12 +295,22 @@
 
 
 
+
+
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">מה כבר מאושר לשימוש בבני אדם</h2>
     <p>ב-8 בדצמבר 2023 אישר מינהל המזון והתרופות האמריקאי את קסג&#39;בי, התרופה הראשונה שאושרה שם ומבוססת על עריכת גנום בשיטת CRISPR/Cas9. האישור ניתן לטיפול באנמיה חרמשית בחולים מגיל 12 ומעלה שסובלים מהתקפי כאב חוזרים.</p>
     <p>השיטה עוקפת את הבעיה במקום לתקן אותה. במקום לתקן את המוטציה בהמוגלובין, מוציאים מהחולה תאי גזע של מח העצם, עורכים אותם מחוץ לגוף כך שיחזרו לייצר המוגלובין עוברי, סוג שקיים בעובר ונכבה אחרי הלידה, ומחזירים אותם. המוגלובין עוברי מונע מכדוריות הדם האדומות להתעוות לצורת המגל.</p>
     <p>המספרים שפרסם ה-FDA: 44 מטופלים קיבלו את התכשיר בניסוי, ומתוך 31 שהיה להם מעקב ארוך מספיק כדי להיבדק, 29 שהם 93.5 אחוזים עברו שנה רצופה לפחות בלי התקף כאב חמור. חשוב לא פחות מה שהאישור אינו מסתיר: לפני החזרת התאים החולה עובר כימותרפיה במינון גבוה שמפנה את מח העצם, ותופעות הלוואי השכיחות כוללות ירידה בטסיות ובתאי דם לבנים, פצעים בפה, בחילות וכאבים. זו אינה זריקה במרפאה.</p>
+
+
+
+
+
 
 
 
@@ -349,6 +379,7 @@
     <p class="sim__note" id="crispr-note"></p>
     <p class="sim__note euv-caveat">הכלל שמופעל כאן פשוט בכוונה: אתר נחתך אם יש אחריו PAM, אם מספר אי־ההתאמות אינו עולה על הסובלנות שבחרתם, ואם אף אי־התאמה אינה נופלת בעשר האותיות הצמודות ל-PAM. חיתוך אמיתי תלוי גם במבנה הכרומטין, בריכוזים ובגרסת החלבון, וכלי תכנון מדרגים אתרים במודלים מורכבים בהרבה מספירת אותיות.</p>
   </section>
+
 
 
 
@@ -546,6 +577,66 @@
   }
 
   inField.addEventListener('input', render);
+  render();
+})();
+</script>
+
+<script>
+/* ===== פחמן 14: גיל, יחס, וגבול הזיהוי ===== */
+(function () {
+  var stage = document.getElementById('c14-stage');
+  if (!stage) return;
+
+  var HALF = 5730;
+  var MAXT = 60000;
+  var LIMIT = 51570;
+  var X0 = 470, X1 = 40, Y0 = 40, Y1 = 170;
+
+  var inAge = document.getElementById('c14-in-age');
+  var outAge = document.getElementById('c14-out-age');
+  var outFrac = document.getElementById('c14-out-frac');
+  var outHalves = document.getElementById('c14-out-halves');
+  var outSlope = document.getElementById('c14-out-slope');
+  var curve = document.getElementById('c14-curve');
+  var marker = document.getElementById('c14-marker');
+  var limit = document.getElementById('c14-limit');
+  var note = document.getElementById('c14-note');
+
+  function frac(t) { return Math.pow(0.5, t / HALF); }
+  function px(t) { return X0 - (X0 - X1) * (t / MAXT); }
+  function py(f) { return Y1 - (Y1 - Y0) * f; }
+
+  var pts = [];
+  for (var i = 0; i <= 120; i++) {
+    var t = (i / 120) * MAXT;
+    pts.push(px(t).toFixed(1) + ',' + py(frac(t)).toFixed(1));
+  }
+  curve.setAttribute('points', pts.join(' '));
+  limit.setAttribute('x1', px(LIMIT).toFixed(1));
+  limit.setAttribute('x2', px(LIMIT).toFixed(1));
+
+  function render() {
+    var t = Number(inAge.value);
+    var f = frac(t);
+    var drop = (f - frac(t + 100)) * 100;
+
+    outAge.textContent = t.toLocaleString('en-US') + ' שנה';
+    outFrac.textContent = (f * 100).toFixed(2) + '%';
+    outHalves.textContent = (t / HALF).toFixed(2);
+    outSlope.textContent = drop.toFixed(3) + ' נקודות אחוז';
+    marker.setAttribute('cx', px(t).toFixed(1));
+    marker.setAttribute('cy', py(f).toFixed(1));
+
+    if (t > LIMIT) {
+      note.textContent = 'מעבר לגבול. נשאר פחות מ-0.2 אחוזים, וזיהום זעיר בפחמן מודרני כבר גדול מהאות עצמו. בטווח הזה המדידה אינה אומרת כמה הדגימה ישנה, רק שהיא ישנה מדי.';
+    } else if (drop < 0.2) {
+      note.textContent = 'מאה שנות הפרש אמיתי כבר כמעט אינן נראות במדידה. זו הסיבה שטווח השגיאה שמדווח לצד התאריך גדל עם הגיל, הרבה לפני שהשיטה נעצרת.';
+    } else {
+      note.textContent = 'בטווח הזה מאה שנות הפרש עדיין מזיזות את היחס מספיק כדי למדוד אותן. זה הטווח שבו תיארוך רדיופחמני מדויק יחסית, והוא מכסה את רוב הארכיאולוגיה ההיסטורית.';
+    }
+  }
+
+  inAge.addEventListener('input', render);
   render();
 })();
 </script>

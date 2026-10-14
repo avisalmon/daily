@@ -1208,6 +1208,10 @@ img { max-width: 100%; display: block; }
 .diagram__dot { fill: var(--ink-faint); }
 .diagram__dot--strong { fill: var(--rule-dark); }
 .diagram__dot-empty { fill: none; stroke: var(--ink-faint); stroke-width: 1; stroke-dasharray: 4 4; }
+.diagram__dot-fill { fill: var(--rule-dark); }
+.diagram__curve { fill: none; stroke: var(--rule-dark); stroke-width: 2.5; }
+.diagram__ring { fill: none; stroke: var(--ink-faint); stroke-width: 1; }
+.diagram__axis--dashed { stroke-dasharray: 4 4; }
 .diagram__label {
   font-family: var(--sans);
   font-size: 12px;

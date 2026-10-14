@@ -76,6 +76,11 @@
 
 
 
+
+
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">למה זה נעצר</h2>
@@ -129,6 +134,11 @@
 
 
 
+
+
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">הדרך השנייה: סכום של עצרות</h2>
@@ -163,11 +173,21 @@
 
 
 
+
+
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">למה שתי הדרכים מגיעות לאותו מקום</h2>
     <p>אפשר לפתוח את הביטוי (1+1/n)^n לפי בינום ניוטון. מקבלים סכום של n+1 מחוברים, שהמחובר ה-k שבהם הוא אחד חלקי עצרת k, מוכפל בגורם תיקון של שברים כמו (1-1/n) ו-(1-2/n).</p>
     <p>כשn גדל, כל גורמי התיקון האלה מתקרבים לאחד, ומספר המחוברים גדל. מה שנשאר בגבול הוא בדיוק הטור. שתי הנוסחאות אינן שתי הגדרות מקבילות שהתמזל מזלן להיפגש. הן אותו ביטוי, כתוב פעמיים.</p>
+
+
+
+
+
 
 
 
@@ -236,6 +256,11 @@
 
 
 
+
+
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">איפה פוגשים את זה בחיים</h2>
@@ -272,12 +297,22 @@
 
 
 
+
+
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">מה e איננו</h2>
     <p>e אינו שבר. הוא מספר אי רציונלי, כפי שאוילר הוכיח, ומעבר לזה הוא טרנסצנדנטי: הרמיט הוכיח ב-1873 שאין שום משוואה פולינומית עם מקדמים שלמים שהוא פותר. 2.718 הוא קירוב, לא ערך.</p>
     <p>e אינו קשור לפאי מעבר לזהות של אוילר, ואינו הבסיס ה&#34;טבעי&#34; במובן של נפוץ בטבע יותר מאחרים. הוא טבעי במובן טכני בלבד: הבסיס שבו הנגזרת יוצאת נקייה.</p>
     <p>e אינו מספר הזהב ואינו קשור לסדרת פיבונאצ&#39;י, בלבול נפוץ. ובניגוד לשמועה, האות e לא נבחרה על שם אוילר. הוא השתמש בה ב-1731 כנראה פשוט מפני ש-a עד d כבר היו תפוסות.</p>
+
+
+
+
+
 
 
 
@@ -358,6 +393,7 @@
     </div>
     <p class="sim__note" id="e-note"></p>
   </section>
+
 
 
 
@@ -556,6 +592,66 @@
   }
 
   inField.addEventListener('input', render);
+  render();
+})();
+</script>
+
+<script>
+/* ===== פחמן 14: גיל, יחס, וגבול הזיהוי ===== */
+(function () {
+  var stage = document.getElementById('c14-stage');
+  if (!stage) return;
+
+  var HALF = 5730;
+  var MAXT = 60000;
+  var LIMIT = 51570;
+  var X0 = 470, X1 = 40, Y0 = 40, Y1 = 170;
+
+  var inAge = document.getElementById('c14-in-age');
+  var outAge = document.getElementById('c14-out-age');
+  var outFrac = document.getElementById('c14-out-frac');
+  var outHalves = document.getElementById('c14-out-halves');
+  var outSlope = document.getElementById('c14-out-slope');
+  var curve = document.getElementById('c14-curve');
+  var marker = document.getElementById('c14-marker');
+  var limit = document.getElementById('c14-limit');
+  var note = document.getElementById('c14-note');
+
+  function frac(t) { return Math.pow(0.5, t / HALF); }
+  function px(t) { return X0 - (X0 - X1) * (t / MAXT); }
+  function py(f) { return Y1 - (Y1 - Y0) * f; }
+
+  var pts = [];
+  for (var i = 0; i <= 120; i++) {
+    var t = (i / 120) * MAXT;
+    pts.push(px(t).toFixed(1) + ',' + py(frac(t)).toFixed(1));
+  }
+  curve.setAttribute('points', pts.join(' '));
+  limit.setAttribute('x1', px(LIMIT).toFixed(1));
+  limit.setAttribute('x2', px(LIMIT).toFixed(1));
+
+  function render() {
+    var t = Number(inAge.value);
+    var f = frac(t);
+    var drop = (f - frac(t + 100)) * 100;
+
+    outAge.textContent = t.toLocaleString('en-US') + ' שנה';
+    outFrac.textContent = (f * 100).toFixed(2) + '%';
+    outHalves.textContent = (t / HALF).toFixed(2);
+    outSlope.textContent = drop.toFixed(3) + ' נקודות אחוז';
+    marker.setAttribute('cx', px(t).toFixed(1));
+    marker.setAttribute('cy', py(f).toFixed(1));
+
+    if (t > LIMIT) {
+      note.textContent = 'מעבר לגבול. נשאר פחות מ-0.2 אחוזים, וזיהום זעיר בפחמן מודרני כבר גדול מהאות עצמו. בטווח הזה המדידה אינה אומרת כמה הדגימה ישנה, רק שהיא ישנה מדי.';
+    } else if (drop < 0.2) {
+      note.textContent = 'מאה שנות הפרש אמיתי כבר כמעט אינן נראות במדידה. זו הסיבה שטווח השגיאה שמדווח לצד התאריך גדל עם הגיל, הרבה לפני שהשיטה נעצרת.';
+    } else {
+      note.textContent = 'בטווח הזה מאה שנות הפרש עדיין מזיזות את היחס מספיק כדי למדוד אותן. זה הטווח שבו תיארוך רדיופחמני מדויק יחסית, והוא מכסה את רוב הארכיאולוגיה ההיסטורית.';
+    }
+  }
+
+  inAge.addEventListener('input', render);
   render();
 })();
 </script>

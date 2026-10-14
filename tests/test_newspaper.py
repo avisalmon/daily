@@ -17,6 +17,7 @@ import subprocess
 import sys
 from datetime import date, datetime
 from pathlib import Path
+from urllib.parse import urlsplit
 from zoneinfo import ZoneInfo
 
 import pytest
@@ -317,9 +318,13 @@ def test_two_research_pdfs_for_one_date_is_refused(tmp_path, monkeypatch):
 
 def test_a_source_that_blocks_fetching_cannot_be_cited():
     """BKM §6 - a source we cannot fetch is a source we cannot fact-check.
-    nature.com returns 406 for the article, the PDF and the Wayback copy, so a
-    Nature link in a brief is a claim nobody in this pipeline can check. It was
-    picked for an edition once and had to be swapped at build time."""
+    Calcalist returns 403 to everything, so a Calcalist link in a brief is a
+    claim nobody in this pipeline can check.
+
+    nature.com used to be the example here. It was removed from the list on
+    2026-10-14 once the browser canvas turned out to read it fine, so the test
+    moved to a domain that is still genuinely unreachable. A guard has to keep
+    describing reality or it is just pushing the paper to a weaker source."""
     edition = {
         "date": "2026-01-01",
         "number": 1,
@@ -328,13 +333,28 @@ def test_a_source_that_blocks_fetching_cannot_be_cited():
         "grid": [{"name": "מדע", "stories": [{
             "headline": "כותרת הידיעה",
             "summary": "טקסט בעברית שארוך מספיק כדי לעבור את סף התקציר שנקבע בוולידטור, ולכן הבדיקה תיפול על המקור ולא על האורך.",
-            "source": "Nature",
-            "url": "https://www.nature.com/articles/d41586-026-02746-4",
+            "source": "כלכליסט",
+            "url": "https://www.calcalist.co.il/local_news/article/abc123",
         }]}],
     }
     errors: list[str] = []
     validate.check_edition(edition, Path("2026-01-01.json"), {}, errors)
-    assert any("nature.com" in e for e in errors), errors
+    assert any("calcalist.co.il" in e for e in errors), errors
+
+
+def test_no_published_brief_cites_a_blocked_source():
+    """The fixture above proves the rule fires. This one walks the real
+    editions, because a guard that only ever sees a hand-made dictionary is
+    looking nowhere."""
+    for path in sorted((ROOT / "data" / "editions").glob("*.json")):
+        ed = json.loads(path.read_text(encoding="utf-8"))
+        urls = [(ed.get("lead") or {}).get("url", "")]
+        urls += [s.get("url", "") for sec in ed.get("grid", []) for s in sec.get("stories", [])]
+        for url in urls:
+            host = urlsplit(url).netloc.lower().removeprefix("www.")
+            for blocked in validate.BLOCKED_DOMAINS:
+                assert not (host == blocked or host.endswith("." + blocked)), \
+                    f"{path.name} cites {blocked}, which cannot be fact-checked"
 
 
 def test_crispr_simulator_teaches_all_three_rules():
@@ -1603,3 +1623,103 @@ def test_every_diagram_and_sim_type_has_a_template_branch():
                     f"{path.name} asks for diagram {diagram['type']!r}, which the "
                     f"template has no branch for. Known: {sorted(diagram_branches)}"
                 )
+
+
+def test_radiocarbon_topic_matches_the_numbers_it_derives():
+    """BKM 13. Nothing in the radiocarbon learning page is quoted. Every
+    percentage on it is the output of 0.5 ** (t / 5730), computed here and
+    printed there, which means the page is the only place a reader meets the
+    number and no reader can catch a wrong one. So they get recomputed.
+
+    The page's whole argument rests on one of these: that the same hundred
+    years of real age produce a measurable signal at two thousand years and
+    almost none at twenty thousand. If the ratio drifts, the argument is
+    wrong even when every sentence around it still reads fine."""
+    HALF_LIFE = 5730
+
+    def left(t):
+        """Fraction of the original carbon 14 still present after t years."""
+        return 100 * 0.5 ** (t / HALF_LIFE)
+
+    topic = json.loads(
+        (ROOT / "data" / "topics" / "radiocarbon-dating.json").read_text(encoding="utf-8"))
+    text = json.dumps(topic, ensure_ascii=False)
+
+    # The practical floor. Nine half-lives is where the page says the method
+    # stops, and the "under two per mille" phrasing depends on this value.
+    assert 9 * HALF_LIFE == 51570 and "51,570" in text
+    assert round(left(51570), 3) == 0.195 and "0.195" in text
+    assert left(51570) < 0.2, "the page calls this under two per mille"
+
+    # The signal-shrink comparison, which is the section's entire point.
+    young, young_older = left(2000), left(2100)
+    old, old_older = left(20000), left(20100)
+    assert round(young, 1) == 78.5 and "78.5" in text
+    assert round(young_older, 1) == 77.6 and "77.6" in text
+    assert round(old, 2) == 8.90 and "8.90" in text
+    assert round(old_older, 2) == 8.79 and "8.79" in text
+
+    young_drop = young - young_older
+    old_drop = old - old_older
+    assert round(young_drop, 2) == 0.94
+    assert round(old_drop, 2) == 0.11
+    assert round(young_drop / old_drop) == 9 and "פי תשעה" in text, \
+        "the page says the same hundred years move the reading nine times less"
+
+    # The decay curve in the template is plotted, not stated, so the mapping
+    # that drew it is pinned too: x = 470 - 430 * (t / 57300), y = 250 - 2*pct.
+    svg = (ROOT / "templates" / "topic.html.j2").read_text(encoding="utf-8")
+    curve = re.search(
+        r"carbon14-decay-curve.*?<polyline class=\"diagram__curve\" points=\"([^\"]+)\"",
+        svg, re.S)
+    assert curve, "the decay-curve branch lost its polyline"
+    points = [tuple(float(v) for v in p.split(",")) for p in curve.group(1).split()]
+    assert len(points) == 101
+    for i, (x, y) in enumerate(points):
+        t = 57300 * i / 100
+        assert x == round(470 - 430 * (t / 57300), 1), f"point {i} x drifted"
+        assert y == round(250 - 2 * left(t), 1), f"point {i} y drifted"
+
+    # The half-life tick marks under the axis are multiples, not guesses.
+    for n, label in ((1, "5,730"), (3, "17,190"), (5, "28,650"), (7, "40,110")):
+        assert str(f"{n * HALF_LIFE:,}") == label and label in svg
+
+
+def test_no_svg_label_relies_on_a_text_anchor_attribute():
+    """A text-anchor attribute on a diagram label is a lie, and an expensive one.
+
+    The stylesheet sets text-anchor on .diagram__label (start) and on
+    .diagram__axis-label (middle), and a CSS rule always beats a presentation
+    attribute. So every text-anchor="end" written into the template for three
+    months did nothing at all. Labels got positioned against an anchor that
+    was never applied, and eight Hebrew labels across four published learning
+    pages were running outside their own viewBox and being clipped: the
+    optogenetics legend lost 141 units of text off the right edge, and
+    "כ-2% מקודדים חלבון" on the genome ruler ran 94 units off the left.
+
+    A getBBox sweep in a browser is the only thing that sees the clipping, and
+    it is not available here. What is available is the cause, so that is what
+    is guarded: write the position against the anchor the stylesheet actually
+    applies, and never against an attribute that is silently discarded."""
+    css = (ROOT / "assets" / "css" / "newspaper.css").read_text(encoding="utf-8")
+    for cls in ("diagram__label", "diagram__axis-label"):
+        rule = re.search(rf"\.{cls}\s*\{{(.*?)\}}", css, re.S)
+        assert rule and "text-anchor" in rule.group(1), (
+            f".{cls} no longer sets text-anchor in CSS. If that is deliberate, "
+            f"the attributes become live again and this test should go"
+        )
+
+    for path in sorted((ROOT / "templates").glob("*.j2")):
+        src = path.read_text(encoding="utf-8")
+        for m in re.finditer(r"<(?:text|tspan)\b[^>]*>", src):
+            tag = m.group(0)
+            if "text-anchor=" not in tag or "diagram__" not in tag:
+                continue
+            line = src[:m.start()].count("\n") + 1
+            raise AssertionError(
+                f"{path.name}:{line} sets a text-anchor attribute on a diagram "
+                f"label. CSS overrides it, so the label will not sit where the "
+                f"attribute says. Position it against the CSS anchor instead "
+                f"(.diagram__label is start, which in RTL is the right edge; "
+                f".diagram__axis-label is middle). Tag: {tag[:120]}"
+            )

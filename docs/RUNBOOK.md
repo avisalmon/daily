@@ -200,6 +200,12 @@ refuses to commit anything if `validate.py`, the build or the tests fail.
 - [ ] Built **without** `--include-future` as the last build before committing
 - [ ] Opened in a browser: index, archive, search (Hebrew **and** Latin term),
       learn, the topic page, and one archived edition
+- [ ] **New SVG diagram or simulator: run the getBBox sweep** over every
+      learning page and confirm zero labels fall outside their viewBox. A
+      Hebrew label that runs off the edge is clipped in silence, and no test
+      and no quick glance will catch it (BKM §18). The sweep is one script in
+      the browser canvas against a local `http.server`; it reported 8 clipped
+      labels on four already-published pages the first time it was run
 - [ ] Checked at ≤700px
 - [ ] After pushing, **both** GitHub runs are green: `publish` **and**
       `pages-build-deployment`. They are separate, and a red deploy leaves the
