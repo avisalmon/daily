@@ -783,9 +783,50 @@ def test_no_page_references_a_missing_local_asset():
             assert (base / ref).resolve().exists(), f"{page.name} -> missing {ref}"
 
 
-def _site_fingerprint() -> dict[str, str]:
-    files = [
-        ROOT / "index.html", ROOT / "archive.html", ROOT / "learn.html",
+GOATCOUNTER = "https://avisalmon-daily.goatcounter.com/count"
+
+
+def _served_pages() -> list[Path]:
+    return [p for p in [
+        ROOT / "index.html", ROOT / "archive.html",
+        ROOT / "learn.html", ROOT / "search.html",
+        *(ROOT / "editions").glob("*.html"),
+        *(ROOT / "learn").glob("*.html"),
+    ] if p.exists()]
+
+
+def test_every_served_page_carries_the_visitor_tracking_script():
+    pages = _served_pages()
+    assert len(pages) > 5, "site does not look built"
+    for page in pages:
+        html = page.read_text(encoding="utf-8")
+        assert GOATCOUNTER in html, f"{page.relative_to(ROOT)} has no tracking script"
+
+
+def test_the_visible_counter_appears_once_and_only_on_the_front_page():
+    front = (ROOT / "index.html").read_text(encoding="utf-8")
+    assert front.count('id="site-counter"') == 1, "front page counter is missing or duplicated"
+    assert front.count("counter/TOTAL.json") == 1, "front page does not read the count itself"
+    assert "visit_count(" not in front, (
+        "the GoatCounter widget embeds an iframe; the paper prints the number as text")
+    assert 'id="site-counter-box" hidden' in front, (
+        "the counter line must start hidden so a failed fetch prints nothing")
+    for page in _served_pages():
+        if page.name == "index.html":
+            continue
+        html = page.read_text(encoding="utf-8")
+        assert 'id="site-counter"' not in html, (
+            f"{page.relative_to(ROOT)} shows the site-wide counter; it belongs only on the front page")
+
+
+def test_research_pdf_source_is_not_tracked():
+    # research.html.j2 is printed to PDF by headless Chromium, never served.
+    text = (ROOT / "templates" / "research.html.j2").read_text(encoding="utf-8")
+    assert "goatcounter" not in text and "_analytics" not in text, (
+        "the research document is a PDF source; a remote tracker there blocks printing")
+
+
+def _site_fingerprint() -> dict[str, str]:    files = [        ROOT / "index.html", ROOT / "archive.html", ROOT / "learn.html",
         ROOT / "assets" / "search-index.json",
         *(ROOT / "editions").glob("*.html"),
         *(ROOT / "learn").glob("*.html"),
@@ -1683,6 +1724,172 @@ def test_radiocarbon_topic_matches_the_numbers_it_derives():
     # The half-life tick marks under the axis are multiples, not guesses.
     for n, label in ((1, "5,730"), (3, "17,190"), (5, "28,650"), (7, "40,110")):
         assert str(f"{n * HALF_LIFE:,}") == label and label in svg
+
+
+def _sound_absorption_db_per_m(f_hz, temp_k=293.15, rel_humidity=50.0, pressure_pa=101325.0):
+    """Atmospheric absorption of sound, ISO 9613-1. Returns dB per metre.
+
+    The bat page quotes no absorption figure from anywhere. It prints the
+    output of this function, so the function lives here as well and the two
+    have to agree."""
+    t0, t01 = 293.15, 273.16
+    pr = 101325.0
+    psat = pr * 10 ** (-6.8346 * (t01 / temp_k) ** 1.261 + 4.6151)
+    h = rel_humidity * (psat / pressure_pa)
+    fr_o = (pressure_pa / pr) * (24 + 4.04e4 * h * (0.02 + h) / (0.391 + h))
+    fr_n = (pressure_pa / pr) * (temp_k / t0) ** -0.5 * (
+        9 + 280 * h * math.exp(-4.170 * ((temp_k / t0) ** (-1 / 3) - 1)))
+    f2 = f_hz * f_hz
+    return 8.686 * f2 * (
+        1.84e-11 * (pr / pressure_pa) * (temp_k / t0) ** 0.5
+        + (temp_k / t0) ** -2.5 * (
+            0.01275 * math.exp(-2239.1 / temp_k) / (fr_o + f2 / fr_o)
+            + 0.1068 * math.exp(-3352.0 / temp_k) / (fr_n + f2 / fr_n)))
+
+
+def test_bat_echolocation_topic_matches_the_numbers_it_derives():
+    """BKM 13. Almost nothing on the bat page is quoted from anywhere.
+
+    The distances, the wavelengths, the attenuation percentages, the call
+    intervals and the Doppler shift are all outputs of three formulas run
+    against one constant, the speed of sound at 20 C. A reader meets those
+    numbers only on this page, so no reader can catch a wrong one. They get
+    recomputed here, including the coordinates of the plotted curve, because a
+    polyline that drifts away from the prose it illustrates still looks like a
+    graph."""
+    C = 343.0  # m/s at 20 C, the figure the page states it computes from
+
+    def distance(t_ms):
+        """Round trip: the wave covered the gap twice."""
+        return C * (t_ms / 1000.0) / 2
+
+    def echo_ms(d_m):
+        return 2 * d_m / C * 1000.0
+
+    def wavelength_mm(f_khz):
+        return C / (f_khz * 1000.0) * 1000.0
+
+    topic = json.loads(
+        (ROOT / "data" / "topics" / "bat-echolocation.json").read_text(encoding="utf-8"))
+    text = json.dumps(topic, ensure_ascii=False)
+    svg = (ROOT / "templates" / "topic.html.j2").read_text(encoding="utf-8")
+    roundtrip = re.search(r"bat-echo-roundtrip.*?</svg>", svg, re.S).group(0)
+    waves = re.search(r"sonar-wavelength-resolution.*?</svg>", svg, re.S).group(0)
+    attenuation = re.search(r"sonar-attenuation-range.*?</svg>", svg, re.S).group(0)
+    hunt = re.search(r"bat-hunt-call-rate.*?</svg>", svg, re.S).group(0)
+
+    assert "343 מטר לשנייה" in text, "the page has to state the constant it computes from"
+    assert text.count("343 מטר לשנייה") == 4
+    assert roundtrip.count("343") == 1
+
+    # d = c * t / 2. Every pair the page prints, in both directions. The counts
+    # matter: these numbers appear more than once, and one stale copy is enough
+    # to make the page wrong while every other sentence still reads fine.
+    assert round(distance(6), 3) == 1.029
+    assert text.count("1.029 מטר") == 2 and text.count("1.029 m") == 1
+    assert roundtrip.count("1.029 מטר") == 1 and roundtrip.count("0.006") == 1
+    assert round(distance(12), 3) == 2.058 and text.count("2.058 מטר") == 2
+    assert round(distance(30), 3) == 5.145 and text.count("5.145 מטר") == 1
+    assert round(distance(12), 3) == round(2 * distance(6), 3), \
+        "double the time is double the distance, and the quiz leans on it"
+    assert round(C * 0.012, 3) == 4.116 and text.count("4.116 מטר") == 2, \
+        "the quiz offers the undivided answer as the trap"
+    assert round(echo_ms(1), 2) == 5.83 and text.count("5.83 אלפיות") == 1
+    assert round(echo_ms(5), 2) == 29.15 and text.count("29.15 אלפיות") == 1
+
+    # lambda = c / f. The resolution argument is nothing but this.
+    assert round(wavelength_mm(20), 2) == 17.15
+    assert text.count("17.15 מילימטר") == 2 and waves.count("17.15 מילימטר") == 1
+    assert round(wavelength_mm(50), 2) == 6.86
+    assert text.count("6.86 מילימטר") == 4 and waves.count("6.86 מילימטר") == 1
+    assert round(wavelength_mm(100), 2) == 3.43
+    assert text.count("3.43 מילימטר") == 1 and waves.count("3.43 מילימטר") == 1
+    assert round(wavelength_mm(12.7), 2) == 27.01 and text.count("27.01 מילימטר") == 1, \
+        "the low-frequency bat pays in wavelength, and the page says how much"
+    assert round(wavelength_mm(50)) == 7, "the page calls this about seven millimetres"
+    assert round(wavelength_mm(20) / 7, 2) == 2.45
+    assert text.count("פי 2.45") == 2 and waves.count("פי 2.45") == 1
+
+    # The drawn waves are scaled at 6 px per millimetre, half-period per arc,
+    # alternating sweep flags. Every arc is counted, not just the first.
+    for f_khz, half, arcs in ((20, 51.45, 6), (50, 20.58, 14), (100, 10.29, 28)):
+        assert round(wavelength_mm(f_khz) * 6 / 2, 3) == half
+        quarter = round(half / 2, 3)
+        assert quarter == {20: 25.725, 50: 10.29, 100: 5.145}[f_khz]
+        for flag in (0, 1):
+            arc = f"a {quarter:g} 16 0 0 {flag} -{half:g} 0"
+            assert waves.count(arc) == arcs // 2, f"{f_khz} kHz wave lost an arc"
+
+    # Atmospheric absorption. 20 C, 50% relative humidity, standard pressure.
+    a25 = _sound_absorption_db_per_m(25_000)
+    a100 = _sound_absorption_db_per_m(100_000)
+
+    def remains(alpha, d_m):
+        return 100 * 10 ** (-alpha * d_m / 10)
+
+    assert round(remains(a25, 4), 1) == 51.0
+    assert text.count("51.0 אחוזים") == 3 and attenuation.count("51.0%") == 1
+    assert round(remains(a100, 4), 1) == 4.9
+    assert text.count("4.9 אחוזים") == 3 and attenuation.count("4.9%") == 1
+    assert round(remains(a25, 10), 1) == 18.6 and text.count("18.6 אחוזים") == 1
+    assert remains(a100, 10) < 0.1, "the page calls this under a tenth of a per cent"
+    assert round(remains(a25, 8), 1) == 26.0 and attenuation.count("26.0%") == 1
+    assert round(remains(a100, 2), 1) == 22.1 and attenuation.count("22.1%") == 1
+
+    # The curves are plotted, not stated: x = 470 - 43*d, y = 250 - 2*percent.
+    curves = re.findall(r"points=\"([^\"]+)\"", attenuation)
+    assert len(curves) == 2, "the attenuation branch lost a curve"
+    for alpha, raw in zip((a25, a100), curves):
+        points = [tuple(float(v) for v in p.split(",")) for p in raw.split()]
+        assert len(points) == 51
+        for i, (x, y) in enumerate(points):
+            d = i * 10 / 50
+            assert x == round(470 - 430 * (d / 10), 1), f"point {i} x drifted"
+            assert y == round(250 - 2 * remains(alpha, d), 1), f"point {i} y drifted"
+
+    # The marked dots sit on those same curves, not near them.
+    for cx, cy, alpha, d in (("298", "148", a25, 4), ("126", "198", a25, 8),
+                             ("384", "206", a100, 2), ("298", "240", a100, 4)):
+        assert round(470 - 43 * d) == int(cx)
+        assert round(250 - 2 * remains(alpha, d)) == int(cy)
+        assert f'<circle cx="{cx}" cy="{cy}"' in attenuation
+
+    # Call rate. The interval is not a style choice, it is the round trip.
+    assert round(1000 / 10) == 100 and text.count("100 אלפיות שנייה") == 2
+    assert hunt.count("100 אלפיות שנייה") == 1
+    assert round(distance(100), 2) == 17.15
+    assert text.count("17.15 מטרים") == 2 and hunt.count("17.15 מטרים") == 1
+    assert round(echo_ms(2), 2) == 11.66 and text.count("11.66 אלפיות") == 1
+    assert round(1000 / 85, 2) == 11.76 and hunt.count("11.76 אלפיות") == 1, \
+        "the prose rounds the echo at two metres, the diagram labels the interval"
+    assert math.floor(1 / (2 * 2 / C)) == 85 and text.count("85 קריאות") == 1, \
+        "85 calls per second is the most that fits without overrunning the echo"
+    assert round(1000 / 200) == 5 and text.count("5 אלפיות שנייה") == 3
+    assert hunt.count("5 אלפיות שנייה") == 1 and text.count("200 קריאות") == 2
+    assert round(distance(5) * 100) == 86
+    assert text.count("86 סנטימטרים") == 2 and hunt.count("86 סנטימטרים") == 1
+
+    # The pulse combs are the same arithmetic drawn: 410 px span = 300 ms.
+    for interval, baseline, count in ((100.0, 86, 4), (1000 / 85, 170, 26), (5.0, 254, 61)):
+        xs = re.findall(rf'<line x1="([\d.]+)" y1="{baseline - 22}" ', hunt)
+        assert len(xs) == count, f"the {interval:.2f} ms comb has the wrong pulse count"
+        for k, x in enumerate(xs):
+            assert float(x) == round(470 - (410 / 300) * k * interval, 1)
+
+    # Doppler, stationary listener, approaching source of the echo.
+    f_echo = 50_000 * (C + 5) / (C - 5)
+    assert round(f_echo) == 51479 and text.count("51,479 הרץ") == 2
+    assert round(f_echo - 50_000) == 1479 and text.count("כ-1,479 הרץ") == 3
+
+    # The simulator has to run the same physics as the page, not its own.
+    sim = re.search(r"סונאר של עטלף.*?\}\)\(\);", svg, re.S).group(0)
+    assert "var C = 343;" in sim
+    assert "6.8346" in sim and "4.6151" in sim and "4.04e4" in sim and "8.686" in sim, \
+        "the simulator must use the same ISO 9613-1 absorption as the curve"
+    assert "2 * d / C" in sim and "C / (fkHz * 1000)" in sim
+    # The 60 dB two-way budget, split in half for the one-way distance.
+    assert round(30 / _sound_absorption_db_per_m(50_000), 1) == 18.1
+    assert "BUDGET = 60" in sim and "(BUDGET / 2) / alphaDbPerM" in sim
 
 
 def test_no_svg_label_relies_on_a_text_anchor_attribute():

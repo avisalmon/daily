@@ -833,6 +833,215 @@
     </figure>
     {% endif %}
 
+    {% if sec.diagram and sec.diagram.type == 'bat-echo-roundtrip' %}
+    <figure class="diagram">
+    <svg viewBox="0 0 520 300" role="img" aria-label="עטלף בצד ימין שולח קריאה שמאלה אל חרק, וההד חוזר אליו. מתחת, ציר זמן שמסמן שש אלפיות שנייה בין הקריאה להד, והמרחק שמתקבל מהן" preserveAspectRatio="xMidYMid meet">
+    <text x="500" y="24" class="diagram__label diagram__label--strong">מדידה אחת: קריאה, הד, זמן</text>
+
+    <line x1="392" y1="58" x2="128" y2="58" class="diagram__axis"/>
+    <polygon points="120,58 132,53 132,63" class="diagram__dot-fill"/>
+    <text x="260" y="46" class="diagram__axis-label">הקריאה יוצאת</text>
+
+    <rect x="400" y="84" width="80" height="32" class="diagram__dot diagram__dot--strong"/>
+    <text x="440" y="104" class="diagram__axis-label">עטלף</text>
+
+    <rect x="40" y="88" width="68" height="26" class="diagram__dot"/>
+    <text x="74" y="106" class="diagram__axis-label">חרק</text>
+    <text x="74" y="132" class="diagram__axis-label">יתוש, כ-7 מילימטרים</text>
+
+    <line x1="120" y1="158" x2="384" y2="158" class="diagram__axis"/>
+    <polygon points="392,158 380,153 380,163" class="diagram__dot-fill"/>
+    <text x="260" y="176" class="diagram__axis-label">ההד חוזר</text>
+
+    <line x1="40" y1="212" x2="480" y2="212" class="diagram__axis"/>
+    <line x1="470" y1="204" x2="470" y2="220" class="diagram__axis"/>
+    <line x1="120" y1="204" x2="120" y2="220" class="diagram__axis"/>
+    <text x="470" y="236" class="diagram__axis-label">0</text>
+    <text x="120" y="236" class="diagram__axis-label">6 אלפיות שנייה</text>
+    <text x="295" y="236" class="diagram__axis-label">הזמן שנמדד</text>
+
+    <text x="255" y="266" class="diagram__axis-label">343 מטר לשנייה כפול 0.006 שנייה, חלקי שתיים</text>
+    <text x="255" y="286" class="diagram__axis-label">המרחק לחרק: 1.029 מטר</text>
+    </svg>
+    <figcaption>{{ sec.diagram.caption }}</figcaption>
+    </figure>
+    {% endif %}
+
+    {% if sec.diagram and sec.diagram.type == 'sonar-wavelength-resolution' %}
+    <figure class="diagram">
+    <svg viewBox="0 0 520 300" role="img" aria-label="שלושה גלים באורכי גל שונים מול אותו יתוש בגודל שבעה מילימטרים. בעשרים קילו-הרץ הגל ארוך מהיתוש, בחמישים הוא בגודלו, ובמאה הוא כחצי ממנו" preserveAspectRatio="xMidYMid meet">
+    <text x="500" y="24" class="diagram__label diagram__label--strong">אורך הגל קובע מה אפשר להבחין בו</text>
+    <text x="429" y="46" class="diagram__axis-label">יתוש, כ-7 מילימטרים</text>
+
+    <text x="500" y="70" class="diagram__label">20 קילו-הרץ, אורך גל 17.15 מילימטר</text>
+    <rect x="408" y="80" width="42" height="32" class="diagram__dot"/>
+    <path d="M 400 96 a 25.725 16 0 0 0 -51.45 0 a 25.725 16 0 0 1 -51.45 0 a 25.725 16 0 0 0 -51.45 0 a 25.725 16 0 0 1 -51.45 0 a 25.725 16 0 0 0 -51.45 0 a 25.725 16 0 0 1 -51.45 0" class="diagram__curve"/>
+    <text x="265" y="128" class="diagram__axis-label">הגל ארוך פי 2.45 מהיתוש. כמעט כלום לא חוזר.</text>
+
+    <text x="500" y="144" class="diagram__label diagram__label--strong">50 קילו-הרץ, אורך גל 6.86 מילימטר</text>
+    <rect x="408" y="154" width="42" height="32" class="diagram__dot diagram__dot--strong"/>
+    <path d="M 400 170 a 10.29 16 0 0 0 -20.58 0 a 10.29 16 0 0 1 -20.58 0 a 10.29 16 0 0 0 -20.58 0 a 10.29 16 0 0 1 -20.58 0 a 10.29 16 0 0 0 -20.58 0 a 10.29 16 0 0 1 -20.58 0 a 10.29 16 0 0 0 -20.58 0 a 10.29 16 0 0 1 -20.58 0 a 10.29 16 0 0 0 -20.58 0 a 10.29 16 0 0 1 -20.58 0 a 10.29 16 0 0 0 -20.58 0 a 10.29 16 0 0 1 -20.58 0 a 10.29 16 0 0 0 -20.58 0 a 10.29 16 0 0 1 -20.58 0" class="diagram__curve"/>
+    <text x="265" y="202" class="diagram__axis-label">אורך הגל כמעט בדיוק בגודל היתוש. ההד ברור.</text>
+
+    <text x="500" y="218" class="diagram__label">100 קילו-הרץ, אורך גל 3.43 מילימטר</text>
+    <rect x="408" y="228" width="42" height="32" class="diagram__dot"/>
+    <path d="M 400 244 a 5.145 16 0 0 0 -10.29 0 a 5.145 16 0 0 1 -10.29 0 a 5.145 16 0 0 0 -10.29 0 a 5.145 16 0 0 1 -10.29 0 a 5.145 16 0 0 0 -10.29 0 a 5.145 16 0 0 1 -10.29 0 a 5.145 16 0 0 0 -10.29 0 a 5.145 16 0 0 1 -10.29 0 a 5.145 16 0 0 0 -10.29 0 a 5.145 16 0 0 1 -10.29 0 a 5.145 16 0 0 0 -10.29 0 a 5.145 16 0 0 1 -10.29 0 a 5.145 16 0 0 0 -10.29 0 a 5.145 16 0 0 1 -10.29 0 a 5.145 16 0 0 0 -10.29 0 a 5.145 16 0 0 1 -10.29 0 a 5.145 16 0 0 0 -10.29 0 a 5.145 16 0 0 1 -10.29 0 a 5.145 16 0 0 0 -10.29 0 a 5.145 16 0 0 1 -10.29 0 a 5.145 16 0 0 0 -10.29 0 a 5.145 16 0 0 1 -10.29 0 a 5.145 16 0 0 0 -10.29 0 a 5.145 16 0 0 1 -10.29 0 a 5.145 16 0 0 0 -10.29 0 a 5.145 16 0 0 1 -10.29 0 a 5.145 16 0 0 0 -10.29 0 a 5.145 16 0 0 1 -10.29 0" class="diagram__curve"/>
+    <text x="265" y="276" class="diagram__axis-label">אורך הגל כחצי מהיתוש. חוזר גם מידע על פרטים שעליו.</text>
+    </svg>
+    <figcaption>{{ sec.diagram.caption }}</figcaption>
+    </figure>
+    {% endif %}
+
+    {% if sec.diagram and sec.diagram.type == 'sonar-attenuation-range' %}
+    <figure class="diagram">
+    <svg viewBox="0 0 520 300" role="img" aria-label="שתי עקומות בליעה. בעשרים וחמישה קילו-הרץ נשארים אחרי ארבעה מטרים כ-51 אחוזים מהאנרגיה, ובמאה קילו-הרץ כ-5 אחוזים בלבד" preserveAspectRatio="xMidYMid meet">
+    <text x="500" y="24" class="diagram__label diagram__label--strong">אחוז מאנרגיית הגל שנשאר</text>
+
+    <line x1="40" y1="250" x2="480" y2="250" class="diagram__axis"/>
+    <line x1="470" y1="44" x2="470" y2="256" class="diagram__axis"/>
+
+    <polyline class="diagram__curve" points="470.0,50.0 461.4,56.6 452.8,63.0 444.2,69.2 435.6,75.2 427.0,81.0 418.4,86.6 409.8,92.0 401.2,97.3 392.6,102.3 384.0,107.2 375.4,111.9 366.8,116.5 358.2,120.9 349.6,125.2 341.0,129.3 332.4,133.3 323.8,137.2 315.2,140.9 306.6,144.6 298.0,148.1 289.4,151.4 280.8,154.7 272.2,157.9 263.6,160.9 255.0,163.9 246.4,166.7 237.8,169.5 229.2,172.1 220.6,174.7 212.0,177.2 203.4,179.6 194.8,182.0 186.2,184.2 177.6,186.4 169.0,188.5 160.4,190.5 151.8,192.5 143.2,194.4 134.6,196.3 126.0,198.0 117.4,199.8 108.8,201.4 100.2,203.0 91.6,204.6 83.0,206.1 74.4,207.5 65.8,209.0 57.2,210.3 48.6,211.6 40.0,212.9"/>
+    <polyline class="diagram__linear" points="470.0,50.0 461.4,78.0 452.8,102.2 444.2,122.9 435.6,140.7 427.0,156.0 418.4,169.2 409.8,180.5 401.2,190.3 392.6,198.6 384.0,205.8 375.4,212.0 366.8,217.4 358.2,221.9 349.6,225.9 341.0,229.3 332.4,232.2 323.8,234.7 315.2,236.8 306.6,238.7 298.0,240.3 289.4,241.6 280.8,242.8 272.2,243.8 263.6,244.7 255.0,245.4 246.4,246.1 237.8,246.6 229.2,247.1 220.6,247.5 212.0,247.8 203.4,248.2 194.8,248.4 186.2,248.6 177.6,248.8 169.0,249.0 160.4,249.1 151.8,249.3 143.2,249.4 134.6,249.4 126.0,249.5 117.4,249.6 108.8,249.6 100.2,249.7 91.6,249.7 83.0,249.8 74.4,249.8 65.8,249.8 57.2,249.9 48.6,249.9 40.0,249.9"/>
+
+    <circle cx="470" cy="50" r="4" class="diagram__dot-fill"/>
+    <text x="470" y="42" class="diagram__axis-label">100%</text>
+
+    <circle cx="298" cy="148" r="4" class="diagram__dot-fill"/>
+    <text x="298" y="136" class="diagram__axis-label">51.0%</text>
+    <circle cx="126" cy="198" r="4" class="diagram__dot-fill"/>
+    <text x="126" y="186" class="diagram__axis-label">26.0%</text>
+    <text x="200" y="120" class="diagram__axis-label">25 קילו-הרץ</text>
+
+    <circle cx="384" cy="206" r="4" class="diagram__dot-fill"/>
+    <text x="384" y="192" class="diagram__axis-label">22.1%</text>
+    <circle cx="298" cy="240" r="4" class="diagram__dot-fill"/>
+    <text x="270" y="230" class="diagram__axis-label">4.9%</text>
+    <text x="200" y="232" class="diagram__axis-label">100 קילו-הרץ</text>
+
+    <text x="470" y="272" class="diagram__axis-label">0</text>
+    <text x="384" y="272" class="diagram__axis-label">2</text>
+    <text x="298" y="272" class="diagram__axis-label">4</text>
+    <text x="212" y="272" class="diagram__axis-label">6</text>
+    <text x="126" y="272" class="diagram__axis-label">8</text>
+    <text x="40" y="272" class="diagram__axis-label">10</text>
+    <text x="255" y="292" class="diagram__axis-label">מרחק במטרים. המרחק גדל שמאלה.</text>
+    </svg>
+    <figcaption>{{ sec.diagram.caption }}</figcaption>
+    </figure>
+    {% endif %}
+
+    {% if sec.diagram and sec.diagram.type == 'bat-hunt-call-rate' %}
+    <figure class="diagram">
+    <svg viewBox="0 0 520 300" role="img" aria-label="שלוש שורות של פולסים על אותו ציר זמן באורך שלוש מאות אלפיות שנייה. בשלב החיפוש ארבעה פולסים, בהתקרבות עשרים ושישה, ובבאז הסיום שישים ואחד" preserveAspectRatio="xMidYMid meet">
+    <text x="500" y="24" class="diagram__label diagram__label--strong">קצב הקריאות לאורך ציד אחד</text>
+
+    <text x="500" y="52" class="diagram__label">חיפוש: 10 קריאות בשנייה</text>
+    <line x1="40" y1="86" x2="480" y2="86" class="diagram__axis"/>
+    <line x1="470.0" y1="64" x2="470.0" y2="86" class="diagram__axis"/>
+    <line x1="333.3" y1="64" x2="333.3" y2="86" class="diagram__axis"/>
+    <line x1="196.7" y1="64" x2="196.7" y2="86" class="diagram__axis"/>
+    <line x1="60.0" y1="64" x2="60.0" y2="86" class="diagram__axis"/>
+    <text x="265" y="106" class="diagram__axis-label">מרווח 100 אלפיות שנייה. בזמן הזה הד חוזר ממרחק 17.15 מטרים.</text>
+
+    <text x="500" y="136" class="diagram__label">התקרבות: עד 85 קריאות בשנייה</text>
+    <line x1="40" y1="170" x2="480" y2="170" class="diagram__axis"/>
+    <line x1="470.0" y1="148" x2="470.0" y2="170" class="diagram__axis"/>
+    <line x1="453.9" y1="148" x2="453.9" y2="170" class="diagram__axis"/>
+    <line x1="437.8" y1="148" x2="437.8" y2="170" class="diagram__axis"/>
+    <line x1="421.8" y1="148" x2="421.8" y2="170" class="diagram__axis"/>
+    <line x1="405.7" y1="148" x2="405.7" y2="170" class="diagram__axis"/>
+    <line x1="389.6" y1="148" x2="389.6" y2="170" class="diagram__axis"/>
+    <line x1="373.5" y1="148" x2="373.5" y2="170" class="diagram__axis"/>
+    <line x1="357.5" y1="148" x2="357.5" y2="170" class="diagram__axis"/>
+    <line x1="341.4" y1="148" x2="341.4" y2="170" class="diagram__axis"/>
+    <line x1="325.3" y1="148" x2="325.3" y2="170" class="diagram__axis"/>
+    <line x1="309.2" y1="148" x2="309.2" y2="170" class="diagram__axis"/>
+    <line x1="293.1" y1="148" x2="293.1" y2="170" class="diagram__axis"/>
+    <line x1="277.1" y1="148" x2="277.1" y2="170" class="diagram__axis"/>
+    <line x1="261.0" y1="148" x2="261.0" y2="170" class="diagram__axis"/>
+    <line x1="244.9" y1="148" x2="244.9" y2="170" class="diagram__axis"/>
+    <line x1="228.8" y1="148" x2="228.8" y2="170" class="diagram__axis"/>
+    <line x1="212.7" y1="148" x2="212.7" y2="170" class="diagram__axis"/>
+    <line x1="196.7" y1="148" x2="196.7" y2="170" class="diagram__axis"/>
+    <line x1="180.6" y1="148" x2="180.6" y2="170" class="diagram__axis"/>
+    <line x1="164.5" y1="148" x2="164.5" y2="170" class="diagram__axis"/>
+    <line x1="148.4" y1="148" x2="148.4" y2="170" class="diagram__axis"/>
+    <line x1="132.4" y1="148" x2="132.4" y2="170" class="diagram__axis"/>
+    <line x1="116.3" y1="148" x2="116.3" y2="170" class="diagram__axis"/>
+    <line x1="100.2" y1="148" x2="100.2" y2="170" class="diagram__axis"/>
+    <line x1="84.1" y1="148" x2="84.1" y2="170" class="diagram__axis"/>
+    <line x1="68.0" y1="148" x2="68.0" y2="170" class="diagram__axis"/>
+    <text x="265" y="190" class="diagram__axis-label">מרווח 11.76 אלפיות שנייה, הזמן שההד חוזר ממרחק שני מטרים.</text>
+
+    <text x="500" y="220" class="diagram__label diagram__label--strong">באז הסיום: עד 200 קריאות בשנייה</text>
+    <line x1="40" y1="254" x2="480" y2="254" class="diagram__axis"/>
+    <line x1="470.0" y1="232" x2="470.0" y2="254" class="diagram__axis"/>
+    <line x1="463.2" y1="232" x2="463.2" y2="254" class="diagram__axis"/>
+    <line x1="456.3" y1="232" x2="456.3" y2="254" class="diagram__axis"/>
+    <line x1="449.5" y1="232" x2="449.5" y2="254" class="diagram__axis"/>
+    <line x1="442.7" y1="232" x2="442.7" y2="254" class="diagram__axis"/>
+    <line x1="435.8" y1="232" x2="435.8" y2="254" class="diagram__axis"/>
+    <line x1="429.0" y1="232" x2="429.0" y2="254" class="diagram__axis"/>
+    <line x1="422.2" y1="232" x2="422.2" y2="254" class="diagram__axis"/>
+    <line x1="415.3" y1="232" x2="415.3" y2="254" class="diagram__axis"/>
+    <line x1="408.5" y1="232" x2="408.5" y2="254" class="diagram__axis"/>
+    <line x1="401.7" y1="232" x2="401.7" y2="254" class="diagram__axis"/>
+    <line x1="394.8" y1="232" x2="394.8" y2="254" class="diagram__axis"/>
+    <line x1="388.0" y1="232" x2="388.0" y2="254" class="diagram__axis"/>
+    <line x1="381.2" y1="232" x2="381.2" y2="254" class="diagram__axis"/>
+    <line x1="374.3" y1="232" x2="374.3" y2="254" class="diagram__axis"/>
+    <line x1="367.5" y1="232" x2="367.5" y2="254" class="diagram__axis"/>
+    <line x1="360.7" y1="232" x2="360.7" y2="254" class="diagram__axis"/>
+    <line x1="353.8" y1="232" x2="353.8" y2="254" class="diagram__axis"/>
+    <line x1="347.0" y1="232" x2="347.0" y2="254" class="diagram__axis"/>
+    <line x1="340.2" y1="232" x2="340.2" y2="254" class="diagram__axis"/>
+    <line x1="333.3" y1="232" x2="333.3" y2="254" class="diagram__axis"/>
+    <line x1="326.5" y1="232" x2="326.5" y2="254" class="diagram__axis"/>
+    <line x1="319.7" y1="232" x2="319.7" y2="254" class="diagram__axis"/>
+    <line x1="312.8" y1="232" x2="312.8" y2="254" class="diagram__axis"/>
+    <line x1="306.0" y1="232" x2="306.0" y2="254" class="diagram__axis"/>
+    <line x1="299.2" y1="232" x2="299.2" y2="254" class="diagram__axis"/>
+    <line x1="292.3" y1="232" x2="292.3" y2="254" class="diagram__axis"/>
+    <line x1="285.5" y1="232" x2="285.5" y2="254" class="diagram__axis"/>
+    <line x1="278.7" y1="232" x2="278.7" y2="254" class="diagram__axis"/>
+    <line x1="271.8" y1="232" x2="271.8" y2="254" class="diagram__axis"/>
+    <line x1="265.0" y1="232" x2="265.0" y2="254" class="diagram__axis"/>
+    <line x1="258.2" y1="232" x2="258.2" y2="254" class="diagram__axis"/>
+    <line x1="251.3" y1="232" x2="251.3" y2="254" class="diagram__axis"/>
+    <line x1="244.5" y1="232" x2="244.5" y2="254" class="diagram__axis"/>
+    <line x1="237.7" y1="232" x2="237.7" y2="254" class="diagram__axis"/>
+    <line x1="230.8" y1="232" x2="230.8" y2="254" class="diagram__axis"/>
+    <line x1="224.0" y1="232" x2="224.0" y2="254" class="diagram__axis"/>
+    <line x1="217.2" y1="232" x2="217.2" y2="254" class="diagram__axis"/>
+    <line x1="210.3" y1="232" x2="210.3" y2="254" class="diagram__axis"/>
+    <line x1="203.5" y1="232" x2="203.5" y2="254" class="diagram__axis"/>
+    <line x1="196.7" y1="232" x2="196.7" y2="254" class="diagram__axis"/>
+    <line x1="189.8" y1="232" x2="189.8" y2="254" class="diagram__axis"/>
+    <line x1="183.0" y1="232" x2="183.0" y2="254" class="diagram__axis"/>
+    <line x1="176.2" y1="232" x2="176.2" y2="254" class="diagram__axis"/>
+    <line x1="169.3" y1="232" x2="169.3" y2="254" class="diagram__axis"/>
+    <line x1="162.5" y1="232" x2="162.5" y2="254" class="diagram__axis"/>
+    <line x1="155.7" y1="232" x2="155.7" y2="254" class="diagram__axis"/>
+    <line x1="148.8" y1="232" x2="148.8" y2="254" class="diagram__axis"/>
+    <line x1="142.0" y1="232" x2="142.0" y2="254" class="diagram__axis"/>
+    <line x1="135.2" y1="232" x2="135.2" y2="254" class="diagram__axis"/>
+    <line x1="128.3" y1="232" x2="128.3" y2="254" class="diagram__axis"/>
+    <line x1="121.5" y1="232" x2="121.5" y2="254" class="diagram__axis"/>
+    <line x1="114.7" y1="232" x2="114.7" y2="254" class="diagram__axis"/>
+    <line x1="107.8" y1="232" x2="107.8" y2="254" class="diagram__axis"/>
+    <line x1="101.0" y1="232" x2="101.0" y2="254" class="diagram__axis"/>
+    <line x1="94.2" y1="232" x2="94.2" y2="254" class="diagram__axis"/>
+    <line x1="87.3" y1="232" x2="87.3" y2="254" class="diagram__axis"/>
+    <line x1="80.5" y1="232" x2="80.5" y2="254" class="diagram__axis"/>
+    <line x1="73.7" y1="232" x2="73.7" y2="254" class="diagram__axis"/>
+    <line x1="66.8" y1="232" x2="66.8" y2="254" class="diagram__axis"/>
+    <line x1="60.0" y1="232" x2="60.0" y2="254" class="diagram__axis"/>
+    <text x="265" y="274" class="diagram__axis-label">מרווח 5 אלפיות שנייה. בזמן הזה הד חוזר רק מ-86 סנטימטרים.</text>
+    </svg>
+    <figcaption>{{ sec.diagram.caption }}</figcaption>
+    </figure>
+    {% endif %}
+
     {% if sec.table %}
     <figure class="datatable">
       <table>
@@ -1377,6 +1586,63 @@
   </section>
   {% endif %}
 
+  {% if topic.sim and topic.sim.type == 'bat-sonar-readout' %}
+  <section class="sim" id="sim">
+  <h2 class="topic__heading">{{ topic.sim.title }}</h2>
+  <p class="sim__intro">{{ topic.sim.intro }}</p>
+
+  <div class="sim__controls">
+  <label class="sim__control">
+  <span class="sim__control-head">
+  <span>תדר הקריאה</span>
+  <output id="bs-out-freq" class="ltr"></output>
+  </span>
+  <input type="range" id="bs-in-freq" min="20" max="120" step="1" value="50">
+  <span class="sim__control-hint">בקילו-הרץ. אוזן אנושית נעצרת סביב 20</span>
+  </label>
+  <label class="sim__control">
+  <span class="sim__control-head">
+  <span>מרחק המטרה</span>
+  <output id="bs-out-dist" class="ltr"></output>
+  </span>
+  <input type="range" id="bs-in-dist" min="0.2" max="10" step="0.1" value="2">
+  <span class="sim__control-hint">במטרים, מהעטלף אל החרק</span>
+  </label>
+  </div>
+
+  <div class="gene-switch__stage" id="bs-stage">
+  <svg viewBox="0 0 520 150" role="img" aria-label="ציר מרחק באורך שישים מטרים. העמודה מראה את הטווח המרבי שבו ההד עוד חזק מספיק, והקו המקווקו את מרחק המטרה שנבחר">
+  <text x="500" y="26" class="diagram__label diagram__label--strong">טווח מרבי לפי בליעה באוויר</text>
+  <text x="200" y="52" class="diagram__axis-label">הקו המקווקו: מרחק המטרה</text>
+  <line x1="40" y1="110" x2="480" y2="110" class="diagram__axis"/>
+  <rect id="bs-bar-range" x="470" y="78" width="0" height="26" class="wm-level"/>
+  <line id="bs-marker" x1="470" y1="62" x2="470" y2="118" class="diagram__axis diagram__axis--dashed"/>
+  <text x="470" y="134" class="diagram__axis-label">0</text>
+  <text x="255" y="134" class="diagram__axis-label">30 מטר</text>
+  <text x="45" y="134" class="diagram__axis-label">60 מטר</text>
+  </svg>
+  </div>
+
+  <div class="sim__readout sim__readout--three">
+  <div class="sim__stat">
+  <span class="sim__stat-label">זמן ההד</span>
+  <span class="sim__stat-value ltr" id="bs-out-time"></span>
+  </div>
+  <div class="sim__stat sim__stat--strong">
+  <span class="sim__stat-label">אורך הגל, הפרט הקטן ביותר</span>
+  <span class="sim__stat-value ltr" id="bs-out-lambda"></span>
+  </div>
+  <div class="sim__stat">
+  <span class="sim__stat-label">טווח מרבי</span>
+  <span class="sim__stat-value ltr" id="bs-out-range"></span>
+  </div>
+  </div>
+
+  <p class="sim__note" id="bs-note"></p>
+  <p class="sim__note euv-caveat">{{ topic.sim.caveat }}</p>
+  </section>
+  {% endif %}
+
   {% if topic.quiz %}
   <section class="quiz" id="quiz">
     <h2 class="topic__heading">בדקו את עצמכם</h2>
@@ -1523,6 +1789,75 @@
   }
 
   inAge.addEventListener('input', render);
+  render();
+})();
+</script>
+
+<script>
+/* ===== סונאר של עטלף: תדר, מרחק, וטווח ===== */
+(function () {
+  var stage = document.getElementById('bs-stage');
+  if (!stage) return;
+
+  var C = 343;
+  var X0 = 470, X1 = 40, DSPAN = 60, BUDGET = 60;
+
+  var inFreq = document.getElementById('bs-in-freq');
+  var inDist = document.getElementById('bs-in-dist');
+  var outFreq = document.getElementById('bs-out-freq');
+  var outDist = document.getElementById('bs-out-dist');
+  var outTime = document.getElementById('bs-out-time');
+  var outLambda = document.getElementById('bs-out-lambda');
+  var outRange = document.getElementById('bs-out-range');
+  var bar = document.getElementById('bs-bar-range');
+  var marker = document.getElementById('bs-marker');
+  var note = document.getElementById('bs-note');
+
+  /* ISO 9613-1, 20 מעלות צלזיוס, לחות יחסית 50 אחוזים, לחץ אטמוספרי תקני */
+  function alphaDbPerM(fHz) {
+    var T = 293.15, T0 = 293.15, T01 = 273.16;
+    var pa = 101325, pr = 101325, hr = 50;
+    var psat = pr * Math.pow(10, -6.8346 * Math.pow(T01 / T, 1.261) + 4.6151);
+    var h = hr * (psat / pa);
+    var frO = (pa / pr) * (24 + 4.04e4 * h * (0.02 + h) / (0.391 + h));
+    var frN = (pa / pr) * Math.pow(T / T0, -0.5) * (9 + 280 * h * Math.exp(-4.170 * (Math.pow(T / T0, -1 / 3) - 1)));
+    var f2 = fHz * fHz;
+    return 8.686 * f2 * (1.84e-11 * (pr / pa) * Math.pow(T / T0, 0.5)
+      + Math.pow(T / T0, -2.5) * (0.01275 * Math.exp(-2239.1 / T) / (frO + f2 / frO)
+        + 0.1068 * Math.exp(-3352.0 / T) / (frN + f2 / frN)));
+  }
+
+  function px(d) { return X0 - (X0 - X1) * Math.min(d, DSPAN) / DSPAN; }
+
+  function render() {
+    var fkHz = Number(inFreq.value);
+    var d = Number(inDist.value);
+    var t = 2 * d / C;
+    var lambda = C / (fkHz * 1000);
+    var dmax = (BUDGET / 2) / alphaDbPerM(fkHz * 1000);
+
+    outFreq.textContent = fkHz + ' kHz';
+    outDist.textContent = d.toFixed(1) + ' m';
+    outTime.textContent = (t * 1000).toFixed(2) + ' ms';
+    outLambda.textContent = (lambda * 1000).toFixed(2) + ' mm';
+    outRange.textContent = dmax.toFixed(1) + ' m';
+
+    bar.setAttribute('x', px(dmax).toFixed(1));
+    bar.setAttribute('width', (X0 - px(dmax)).toFixed(1));
+    marker.setAttribute('x1', px(d).toFixed(1));
+    marker.setAttribute('x2', px(d).toFixed(1));
+
+    if (d > dmax) {
+      note.textContent = 'בתדר הזה הגל נבלע באוויר לפני שהוא מגיע חזרה. המטרה בתוך הטווח של תדר נמוך יותר, לא של זה.';
+    } else if (lambda * 1000 > 7) {
+      note.textContent = 'אורך הגל גדול מיתוש בגודל שבעה מילימטרים. הטווח נוח, אבל מטרה קטנה כזאת כמעט לא מחזירה הד.';
+    } else {
+      note.textContent = 'אורך הגל קטן מיתוש, ולכן הוא מחזיר הד ברור. שימו לב כמה הטווח המרבי התכווץ בדרך לכאן.';
+    }
+  }
+
+  inFreq.addEventListener('input', render);
+  inDist.addEventListener('input', render);
   render();
 })();
 </script>

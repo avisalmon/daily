@@ -310,6 +310,7 @@
     <span>{{ site.title }} · מהדורה מס׳ {{ edition.number }}</span>
     <span>נערך בשעה <span class="ltr">{{ edition.compiled_at }}</span></span>
     <span>{{ site.colophon }}</span>
+    {% if is_front %}<span id="site-counter-box" hidden>כניסות לאתר: <span class="ltr" id="site-counter"></span></span>{% endif %}
   </footer>
 
 </div>
@@ -426,6 +427,27 @@
   });
 
   paint();
+})();
+</script>
+{% endif %}
+
+{% include "_analytics.html.j2" %}
+{% if is_front %}
+<script>
+/* מונה הכניסות. נמשך כמספר ומודפס בטיפוגרפיה של העיתון, בלי מסגרת ובלי ווידג'ט.
+   אם הבקשה נכשלת, השורה כולה נשארת מוסתרת ולא מודפס מספר שגוי. */
+(function () {
+  var box = document.getElementById('site-counter-box');
+  var out = document.getElementById('site-counter');
+  if (!box || !out || !window.fetch) return;
+  fetch('https://avisalmon-daily.goatcounter.com/counter/TOTAL.json')
+    .then(function (r) { return r.ok ? r.json() : Promise.reject(r.status); })
+    .then(function (d) {
+      if (!d || !d.count) return;
+      out.textContent = d.count;
+      box.hidden = false;
+    })
+    .catch(function () { /* השורה נשארת מוסתרת */ });
 })();
 </script>
 {% endif %}

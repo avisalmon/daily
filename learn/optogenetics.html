@@ -77,6 +77,10 @@
 
 
 
+
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">האצה שיודעת לשחות אל האור</h2>
@@ -143,6 +147,10 @@
 
 
 
+
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">ביצת צפרדע מוכיחה את העניין</h2>
@@ -150,6 +158,10 @@
     <p>כשהאירו עליהן, התעלה נפתחה תוך 0.2 אלפיות השנייה. יונים טעונים חיובית זרמו פנימה ונוצר אות חשמלי. החלבון קיבל את השם צ&#39;אנלרודופסין, ותיאורו פורסם ב-2003 בכתב העת PNAS כתעלה קטיונית שנפתחת ישירות על ידי אור.</p>
     <p>ואז הגיעה התוצאה שהפכה את זה לכלי ולא לסקרנות: הם החדירו את אותו גן לתאי כליה של עובר אדם ולתאי כליה של אוגר, והתאים האלה נעשו רגישים לאור. לא משנה לאיזה תא הכניסו את החלבון, התא התחיל להגיב לאור.</p>
     <p>זו הנקודה שבה מחקר על אצה שוחה הפך לכלי אוניברסלי. החלבון לא דורש מהתא המארח שום דבר מיוחד. הוא מביא איתו את כל מה שצריך.</p>
+
+
+
+
 
 
 
@@ -233,6 +245,10 @@
 
 
 
+
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">למה דווקא אור, ולמה זה נקרא גם גנטיקה</h2>
@@ -293,6 +309,10 @@
 
 
 
+
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">מה זה כבר עשה למטופלים, ומה עוד לא</h2>
@@ -300,6 +320,10 @@
     <p>הצעד הקליני הראשון נעשה בעיניים. בניסויים קליניים מתמשכים מנסים להחזיר ראייה לאנשים שהתעוורו מרטיניטיס פיגמנטוזה, מחלה שהורסת את המדוכים והמדוקים ברשתית. כשהוחדר לרשתית של אדם עיוור חלבון דמוי צ&#39;אנלרודופסין, הוא החזיר ראייה חלקית: בעזרת משקפיים מיוחדים שפולטים אור הוא הצליח להבחין בחפצים על שולחן ולאחוז בהם.</p>
     <p>יש גם תקווה לשתלי שבלול. כיום הם מגרים את עצב השמיעה בחשמל, ואופטוגנטיקה אולי תאפשר לעשות זאת בדיוק גבוה יותר.</p>
     <p>מה שחשוב להחזיק: זו אינה תרופה זמינה. מדובר בניסויים קליניים, בהחזרת ראייה חלקית אצל מטופלים בודדים, ובשיטה שבמוח דורשת החדרת גן והכנסת סיב אופטי לגולגולת. הערך העיקרי שלה עד כה הוא בשאלות שהיא מאפשרת לשאול, לא בטיפולים שהיא מספקת.</p>
+
+
+
+
 
 
 
@@ -404,6 +428,7 @@
     <p class="sim__note" id="op-note"></p>
     <p class="sim__note euv-caveat">המדמה מציג שלושה תנאים מתוך ניסוי אמיתי שמערב גם עוצמת אור, כמות חלבון בקרום ובריאות התא. הוא נועד להמחיש את ההיגיון הסיבתי, ואינו מודל כמותי.</p>
   </section>
+
 
 
 
@@ -661,6 +686,75 @@
   }
 
   inAge.addEventListener('input', render);
+  render();
+})();
+</script>
+
+<script>
+/* ===== סונאר של עטלף: תדר, מרחק, וטווח ===== */
+(function () {
+  var stage = document.getElementById('bs-stage');
+  if (!stage) return;
+
+  var C = 343;
+  var X0 = 470, X1 = 40, DSPAN = 60, BUDGET = 60;
+
+  var inFreq = document.getElementById('bs-in-freq');
+  var inDist = document.getElementById('bs-in-dist');
+  var outFreq = document.getElementById('bs-out-freq');
+  var outDist = document.getElementById('bs-out-dist');
+  var outTime = document.getElementById('bs-out-time');
+  var outLambda = document.getElementById('bs-out-lambda');
+  var outRange = document.getElementById('bs-out-range');
+  var bar = document.getElementById('bs-bar-range');
+  var marker = document.getElementById('bs-marker');
+  var note = document.getElementById('bs-note');
+
+  /* ISO 9613-1, 20 מעלות צלזיוס, לחות יחסית 50 אחוזים, לחץ אטמוספרי תקני */
+  function alphaDbPerM(fHz) {
+    var T = 293.15, T0 = 293.15, T01 = 273.16;
+    var pa = 101325, pr = 101325, hr = 50;
+    var psat = pr * Math.pow(10, -6.8346 * Math.pow(T01 / T, 1.261) + 4.6151);
+    var h = hr * (psat / pa);
+    var frO = (pa / pr) * (24 + 4.04e4 * h * (0.02 + h) / (0.391 + h));
+    var frN = (pa / pr) * Math.pow(T / T0, -0.5) * (9 + 280 * h * Math.exp(-4.170 * (Math.pow(T / T0, -1 / 3) - 1)));
+    var f2 = fHz * fHz;
+    return 8.686 * f2 * (1.84e-11 * (pr / pa) * Math.pow(T / T0, 0.5)
+      + Math.pow(T / T0, -2.5) * (0.01275 * Math.exp(-2239.1 / T) / (frO + f2 / frO)
+        + 0.1068 * Math.exp(-3352.0 / T) / (frN + f2 / frN)));
+  }
+
+  function px(d) { return X0 - (X0 - X1) * Math.min(d, DSPAN) / DSPAN; }
+
+  function render() {
+    var fkHz = Number(inFreq.value);
+    var d = Number(inDist.value);
+    var t = 2 * d / C;
+    var lambda = C / (fkHz * 1000);
+    var dmax = (BUDGET / 2) / alphaDbPerM(fkHz * 1000);
+
+    outFreq.textContent = fkHz + ' kHz';
+    outDist.textContent = d.toFixed(1) + ' m';
+    outTime.textContent = (t * 1000).toFixed(2) + ' ms';
+    outLambda.textContent = (lambda * 1000).toFixed(2) + ' mm';
+    outRange.textContent = dmax.toFixed(1) + ' m';
+
+    bar.setAttribute('x', px(dmax).toFixed(1));
+    bar.setAttribute('width', (X0 - px(dmax)).toFixed(1));
+    marker.setAttribute('x1', px(d).toFixed(1));
+    marker.setAttribute('x2', px(d).toFixed(1));
+
+    if (d > dmax) {
+      note.textContent = 'בתדר הזה הגל נבלע באוויר לפני שהוא מגיע חזרה. המטרה בתוך הטווח של תדר נמוך יותר, לא של זה.';
+    } else if (lambda * 1000 > 7) {
+      note.textContent = 'אורך הגל גדול מיתוש בגודל שבעה מילימטרים. הטווח נוח, אבל מטרה קטנה כזאת כמעט לא מחזירה הד.';
+    } else {
+      note.textContent = 'אורך הגל קטן מיתוש, ולכן הוא מחזיר הד ברור. שימו לב כמה הטווח המרבי התכווץ בדרך לכאן.';
+    }
+  }
+
+  inFreq.addEventListener('input', render);
+  inDist.addEventListener('input', render);
   render();
 })();
 </script>
@@ -1379,5 +1473,7 @@
   </footer>
 
 </div>
-</body>
+
+<script data-goatcounter="https://avisalmon-daily.goatcounter.com/count"
+        async src="https://gc.zgo.at/count.js"></script></body>
 </html>

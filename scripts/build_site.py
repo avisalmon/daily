@@ -408,6 +408,7 @@ def build(include_future: bool = False) -> None:
             archive=archive,
             base="../",
             is_latest=edition["date"] == latest["date"],
+            is_front=False,
         )
         (EDITIONS_DIR / f"{edition['date']}.html").write_text(html, encoding="utf-8")
 
@@ -428,6 +429,7 @@ def build(include_future: bool = False) -> None:
         archive=archive,
         base="",
         is_latest=True,
+        is_front=True,
     )
     (ROOT / "index.html").write_text(index_html, encoding="utf-8")
 
