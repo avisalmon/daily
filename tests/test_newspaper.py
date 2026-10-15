@@ -1275,6 +1275,54 @@ def test_agent_cost_lead_matches_the_numbers_it_derives():
     assert 2.29 > 1 and 2.09 > 1 and "2.29" in text and "2.09" in text
 
 
+def test_credit_spread_lead_matches_the_numbers_it_derives():
+    """BKM 13. The 2026-10-16 lead quotes two anchor percentages from FRED and
+    then does arithmetic on them. The gap, the ratio, the three-month rise and
+    its percentage are the paper's own, and so is the CPI rate in the inflation
+    brief, which is computed from two index levels rather than quoted. A reader
+    cannot catch a wrong one, because the paper is where they first appear."""
+    ed = json.loads(
+        (ROOT / "data" / "editions" / "2026-10-16.json").read_text(encoding="utf-8"))
+    text = json.dumps(ed, ensure_ascii=False)
+
+    # The two quoted anchors, 13 October 2026, and their basis-point form.
+    broad_pct, ccc_pct = 3.16, 12.67
+    broad, ccc = round(broad_pct * 100), round(ccc_pct * 100)
+    assert (broad, ccc) == (316, 1267)
+    assert "3.16" in text and "12.67" in text
+    assert "316 נקודות בסיס" in text and "1,267 נקודות בסיס" in text
+
+    # The gap, printed as a round number of basis points.
+    assert ccc - broad == 951 and "951 נקודות" in text
+
+    # "כמעט פי ארבעה" is a ratio the paper never prints as a figure, so the
+    # word has to keep being true: just over four, and under four and a half.
+    assert 4.0 < ccc / broad < 4.5
+    assert round(ccc / broad, 2) == 4.01 and "כמעט פי ארבעה" in text
+
+    # End of June to 13 October: the rise, and the percentage of it.
+    june = 970
+    assert "970 נקודות" in text
+    assert ccc - june == 297 and "297 נקודות" in text
+    assert round(100 * (ccc - june) / june, 1) == 30.6, "the rise is 30.6%"
+    assert "כ-31 אחוזים" in text, "which the paper rounds to about 31"
+
+    # The figure restates the three spreads it was built from, and nothing else.
+    bars = [b["value"] for b in ed["lead"]["figure"]["bars"]]
+    assert bars == [ccc, june, broad]
+    assert ed["lead"]["figure"]["max"] >= max(bars)
+
+    # The broad spread is far below both reference crises the paper names.
+    assert broad < 1000 < 2000
+
+    # CPI, computed from the BLS index levels the brief prints rather than
+    # quoted from a report. The headline rounds to one decimal, the body to two.
+    sep26, sep25 = 336.940, 324.800
+    assert round(100 * (sep26 / sep25 - 1), 2) == 3.74 and "3.74 אחוזים" in text
+    assert round(100 * (sep26 / sep25 - 1), 1) == 3.7 and "3.7 אחוזים" in text
+    assert "336.940" in text and "324.800" in text
+
+
 def test_human_economic_value_lead_matches_the_numbers_it_derives():
     """BKM 13. The 2026-10-13 lead's headline number, 42.4, is not quoted from
     anywhere. It is the output of a three-factor model that the research
