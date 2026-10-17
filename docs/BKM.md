@@ -505,6 +505,33 @@ rail. This is not the same as `--include-future`, which only proves the edition
 `index.html`, and committing that publishes the paper a day early. `pytest` will
 catch it, but do not rely on that.
 
+This is now `test_a_held_back_edition_actually_publishes_on_its_day`, which runs
+the rehearsal automatically over every pending edition and rebuilds plainly in a
+`finally`. The manual recipe above is still how you debug a failure.
+
+The sibling test proves tomorrow's paper is invisible tonight. That is only half
+the promise, and the easy half: a paper that is invisible tonight and still
+invisible tomorrow passes every test that checks for absence, and nobody is at
+the keyboard at midnight to notice. **Whenever you guard that something is
+hidden, guard in the same breath that it appears.**
+
+## 12a. Guard by absence of anything else, not by the name of what you dropped
+
+The GoatCounter tracker was replaced with another one. The guard written that
+day grepped the templates for the string `goatcounter`, which protected against
+exactly one vendor and would have passed happily on a third. Worse, it kept the
+dead vendor's name alive in the test file long after every trace of it was gone
+from the site.
+
+The guard that works enumerates every remote `<script src>` in the templates and
+in the built pages, and asserts the only host present is the one in use. It
+catches any second tracker, named or not, and it mentions no vendor it does not
+load. Proven red by adding a second script tag to the shared partial.
+
+The general shape: **a guard that names the thing you removed stops protecting
+you the moment there is a different thing.** Name what is allowed, not what was
+forbidden.
+
 ## 13. Compute a number before you print it
 
 The `e` learning page states what the limit gives at n=12 and n=365, what ten

@@ -285,6 +285,46 @@ def test_an_edition_dated_ahead_is_not_published_anywhere(path: Path):
 
 
 @pytest.mark.parametrize("path", PENDING_EDITIONS, ids=lambda p: p.stem)
+def test_a_held_back_edition_actually_publishes_on_its_day(path: Path, monkeypatch):
+    """The sibling above proves tomorrow's paper is invisible tonight. That is
+    only half the promise: a paper that is invisible tonight and still invisible
+    tomorrow is a paper nobody reads, and nobody is at the keyboard at midnight
+    to notice.
+
+    So rehearse the promotion rather than reason about it. Move the paper's
+    clock to the edition's own date, run the real build, and look at the front
+    page. Then rebuild plainly in a finally, because every other test in this
+    file reads the built site off disk and must not find a preview there."""
+    ed = json.loads(path.read_text(encoding="utf-8"))
+    date_str = ed["date"]
+    try:
+        monkeypatch.setattr(build_site, "paper_today",
+                            lambda: date.fromisoformat(date_str))
+        build_site.build()
+
+        index = (ROOT / "index.html").read_text(encoding="utf-8")
+        assert ed["lead"]["headline"] in index, (
+            f"{date_str} arrived and the front page still does not carry its lead")
+        assert (ROOT / "editions" / f"{date_str}.html").exists(), (
+            f"{date_str} arrived and its edition page was not rendered")
+        assert date_str in (ROOT / "archive.html").read_text(encoding="utf-8"), (
+            f"{date_str} arrived and the archive does not link it")
+
+        # A learning topic pinned to this edition is held back with it, so it
+        # has to arrive with it too. gps.html shipped dark once for this reason.
+        for topic in (ROOT / "data" / "topics").glob("*.json"):
+            if json.loads(topic.read_text(encoding="utf-8")).get("edition") != date_str:
+                continue
+            assert (ROOT / "learn" / f"{topic.stem}.html").exists(), (
+                f"{topic.stem} is pinned to {date_str} but did not publish with it")
+            assert f"{topic.stem}.html" in (ROOT / "learn.html").read_text(encoding="utf-8"), (
+                f"{topic.stem} published but is not listed on the learning index")
+    finally:
+        monkeypatch.undo()
+        build_site.build()
+
+
+@pytest.mark.parametrize("path", PENDING_EDITIONS, ids=lambda p: p.stem)
 def test_a_held_back_edition_keeps_its_research_pdf_in_the_repo(path: Path):
     """The source PDF under data/research/ is gitignored, so research/<date>.pdf
     is the only copy committed. Withdrawing it left the cloud build with nothing
@@ -839,18 +879,25 @@ def test_research_pdf_source_is_not_tracked():
         "the research document is a PDF source; a remote tracker there blocks printing")
 
 
-def test_no_trace_of_the_retired_counter_remains():
-    """GoatCounter was replaced. A second tracker left wired into the templates
-    would keep sending pageviews to an account nobody reads, and the stale
-    visible counter would print a number from the wrong source."""
+def test_the_counter_in_use_is_the_only_one_wired_in():
+    """A counter was replaced once. A second tracker left wired into the
+    templates would keep sending pageviews to an account nobody reads, and the
+    stale visible counter would print a number from the wrong source. The
+    guard is by absence of anything else, not by the name of what was dropped,
+    so the next replacement is caught too."""
+    allowed = "babook.co.il"
+    script_src = re.compile(r"<script[^>]*\bsrc=[\"']([^\"']+)[\"']", re.I)
     for path in sorted((ROOT / "templates").glob("*.j2")):
-        text = path.read_text(encoding="utf-8")
-        assert "goatcounter" not in text.lower(), f"{path.name} still loads GoatCounter"
-        assert "gc.zgo.at" not in text, f"{path.name} still loads the GoatCounter library"
+        for src in script_src.findall(path.read_text(encoding="utf-8")):
+            if src.startswith(("http://", "https://", "//")):
+                assert allowed in src, (
+                    f"{path.name} loads a second remote script: {src}")
     for page in _served_pages():
-        html = page.read_text(encoding="utf-8")
-        assert "goatcounter" not in html.lower(), (
-            f"{page.relative_to(ROOT)} is stale; rebuild the site")
+        for src in script_src.findall(page.read_text(encoding="utf-8")):
+            if src.startswith(("http://", "https://", "//")):
+                assert allowed in src, (
+                    f"{page.relative_to(ROOT)} loads a second remote script: {src}; "
+                    "rebuild the site if the templates are already clean")
 
 
 def _site_fingerprint() -> dict[str, str]:    files = [        ROOT / "index.html", ROOT / "archive.html", ROOT / "learn.html",
