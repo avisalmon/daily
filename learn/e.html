@@ -85,6 +85,9 @@
 
 
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">למה זה נעצר</h2>
@@ -119,6 +122,9 @@
       </svg>
       <figcaption>אותה ריבית שנתית, מספר חלוקות גדל. התוספת מכל חלוקה נוספת מתכווצת.</figcaption>
     </figure>
+
+
+
 
 
 
@@ -190,11 +196,17 @@
 
 
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">למה שתי הדרכים מגיעות לאותו מקום</h2>
     <p>אפשר לפתוח את הביטוי (1+1/n)^n לפי בינום ניוטון. מקבלים סכום של n+1 מחוברים, שהמחובר ה-k שבהם הוא אחד חלקי עצרת k, מוכפל בגורם תיקון של שברים כמו (1-1/n) ו-(1-2/n).</p>
     <p>כשn גדל, כל גורמי התיקון האלה מתקרבים לאחד, ומספר המחוברים גדל. מה שנשאר בגבול הוא בדיוק הטור. שתי הנוסחאות אינן שתי הגדרות מקבילות שהתמזל מזלן להיפגש. הן אותו ביטוי, כתוב פעמיים.</p>
+
+
+
 
 
 
@@ -281,6 +293,9 @@
 
 
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">איפה פוגשים את זה בחיים</h2>
@@ -326,12 +341,18 @@
 
 
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">מה e איננו</h2>
     <p>e אינו שבר. הוא מספר אי רציונלי, כפי שאוילר הוכיח, ומעבר לזה הוא טרנסצנדנטי: הרמיט הוכיח ב-1873 שאין שום משוואה פולינומית עם מקדמים שלמים שהוא פותר. 2.718 הוא קירוב, לא ערך.</p>
     <p>e אינו קשור לפאי מעבר לזהות של אוילר, ואינו הבסיס ה&#34;טבעי&#34; במובן של נפוץ בטבע יותר מאחרים. הוא טבעי במובן טכני בלבד: הבסיס שבו הנגזרת יוצאת נקייה.</p>
     <p>e אינו מספר הזהב ואינו קשור לסדרת פיבונאצ&#39;י, בלבול נפוץ. ובניגוד לשמועה, האות e לא נבחרה על שם אוילר. הוא השתמש בה ב-1731 כנראה פשוט מפני ש-a עד d כבר היו תפוסות.</p>
+
+
+
 
 
 
@@ -421,6 +442,7 @@
     </div>
     <p class="sim__note" id="e-note"></p>
   </section>
+
 
 
 
@@ -681,6 +703,60 @@
   }
 
   inAge.addEventListener('input', render);
+  render();
+})();
+</script>
+
+<script>
+/* ===== GPS: זמן, מרחק, ושגיאת שעון ===== */
+(function () {
+  var stage = document.getElementById('gp-stage');
+  if (!stage) return;
+
+  var C = 299792458;
+  var inDelay = document.getElementById('gp-in-delay');
+  var inClock = document.getElementById('gp-in-clock');
+  var outDelay = document.getElementById('gp-out-delay');
+  var outClock = document.getElementById('gp-out-clock');
+  var outDist = document.getElementById('gp-out-dist');
+  var outErr = document.getElementById('gp-out-err');
+  var outNs = document.getElementById('gp-out-ns');
+  var bar = document.getElementById('gp-bar-err');
+  var note = document.getElementById('gp-note');
+
+  function render() {
+    var ms = Number(inDelay.value);
+    var ns = Number(inClock.value);
+
+    var distKm = C * (ms / 1000) / 1000;
+    var errM = C * (ns / 1e9);
+
+    outDelay.textContent = ms.toFixed(1) + ' ms';
+    outClock.textContent = ns + ' ns';
+    outDist.textContent = Math.round(distKm).toLocaleString('en-US') + ' ק"מ';
+    outErr.textContent = errM.toFixed(1) + ' מטר';
+    outNs.textContent = (C / 1e9).toFixed(2) + ' מטר';
+
+    var frac = Math.min(errM / 300, 1);
+    var w = Math.round(430 * frac);
+    bar.setAttribute('width', String(w));
+    bar.setAttribute('x', String(470 - w));
+
+    var msg;
+    if (errM < 1) {
+      msg = 'שגיאה מתחת למטר. כדי להגיע לכאן צריך שעון שפתור לכמה ננו-שניות, וזה בדיוק מה שהלוויין הרביעי עושה.';
+    } else if (errM < 30) {
+      msg = 'זה הסדר גודל שמקלט בטלפון מגיע אליו ביום בהיר בשטח פתוח. מספיק כדי לדעת באיזה רחוב אתה, לא תמיד באיזה צד שלו.';
+    } else if (errM < 150) {
+      msg = 'כאן כבר אי אפשר לדעת באיזה בניין מדובר. שימו לב שמדובר בעשרות ננו-שניות בלבד.';
+    } else {
+      msg = 'מיקרו-שנייה אחת היא כבר כ-300 מטר. זו הסיבה שהמערכת כולה נבנתה סביב שעונים אטומיים ולא סביב שעוני קוורץ.';
+    }
+    note.textContent = msg;
+  }
+
+  inDelay.addEventListener('input', render);
+  inClock.addEventListener('input', render);
   render();
 })();
 </script>

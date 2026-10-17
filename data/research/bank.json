@@ -18,6 +18,23 @@
       "claimed_at": "2026-08-30T13:42:55+00:00"
     },
     {
+      "id": "authenticity-in-the-age-of-artificial-intelligence",
+      "file": "authenticity-in-the-age-of-ai.pdf",
+      "title": "Authenticity in the Age of Artificial Intelligence",
+      "kind": "pdf",
+      "language": "en",
+      "pages": 24,
+      "words": 2718,
+      "sources": 0,
+      "extractable": true,
+      "preview": "Authenticity in the Age of Artificial Intelligence Executive synthesis Artificial intelligence creates a peculiar problem for authenticity because it increasingly separates the observable qualities of an expression from the history, mind, effort, and relationship we ordinarily infer behind it. A condolence can sound ca…",
+      "added_at": "2026-10-17T17:10:32+00:00",
+      "used_in": "2026-10-18",
+      "notes": "",
+      "missing": false,
+      "claimed_at": "2026-10-17T17:26:41+00:00"
+    },
+    {
       "id": "vibe-coding-and-ai-assisted-development",
       "file": "vibe-coding.pdf",
       "title": "Vibe Coding and AI-Assisted Development",

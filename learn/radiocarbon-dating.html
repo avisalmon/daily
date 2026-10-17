@@ -125,12 +125,18 @@
 
 
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">המוות הוא הרגע שבו השעון מתחיל</h2>
     <p>ברגע שהיצור מת, הוא מפסיק לאכול, לנשום ולהטמיע פחמן חדש. פחמן 12 שבגופו נשאר בדיוק כפי שהוא, לנצח. פחמן 14 ממשיך להתפרק, כל גרעין בתורו, וחוזר להיות חנקן 14.</p>
     <p>זהו כל הרעיון. מה שנמדד אינו כמות אלא יחס: כמה פחמן 14 נשאר ביחס לפחמן 12 שלא זז. היחס הזה ידוע ברגע ההתחלה, משום שהוא היה היחס באוויר. ככל שעובר זמן הוא קטן, ובקצב ידוע. מדידת היחס היום מאפשרת לחשב כמה זמן עבר.</p>
     <p>לכן גם ברור מה השיטה אינה יכולה לעשות. אבן מעולם לא נשמה, ואין בה שעון כזה. מתכת גם לא. חרס שרוף אינו מתוארך בעצמו, אלא רק גרגרי פחם או שאריות אורגניות שנלכדו בו. מה שמתוארך הוא תמיד הרגע שבו משהו חי הפסיק להחליף פחמן עם העולם, לא הרגע שבו מישהו עשה ממנו חפץ.</p>
+
+
+
 
 
 
@@ -237,6 +243,9 @@
 
 
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">למה המדידה הולכת ונעשית קשה</h2>
@@ -293,6 +302,9 @@
     </svg>
     <figcaption>אותן מאה שנות הפרש, בשני מקומות על העקומה. בגיל 2,000 הן מזיזות את היחס בכ-0.94 נקודת אחוז. בגיל 20,000 בכ-0.11 נקודה. ככל שמתרחקים, אותו הפרש זמן אמיתי מייצר אות קטן יותר, ולכן טווח השגיאה גדל.</figcaption>
     </figure>
+
+
+
 
 
 
@@ -370,6 +382,9 @@
 
 
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">דגים נראים זקנים, ואנחנו נראים צעירים</h2>
@@ -378,6 +393,9 @@
     <p>השני הוא דלק מאובנים. פחם ונפט נוצרו לפני מיליוני שנים, וכל הפחמן 14 שבהם דעך מזמן. שריפתם מדללת את האטמוספרה בפחמן ישן. מסוף המאה התשע עשרה והלאה היחס באוויר ירד בגלל זה.</p>
     <p>השלישי הוא ההפוך, והוא חד וקיצוני. ניסויי הגרעין באוויר בשנות החמישים והשישים הציפו את האטמוספרה בנייטרונים וייצרו פחמן 14 בכמויות. סביב 1965 הגיעה הכמות באוויר לכמעט כפליים מרמתה לפני הניסויים. מאז אמנת האיסור החלקי מ-10 באוקטובר 1963 הרמה יורדת בהתמדה, בעיקר משום שהפחמן נקלט באוקיינוסים ובצמחייה.</p>
     <p>התוצאה המעשית: כל מי שחי בעשורים האלה נושא בגופו חתימה איזוטופית שאין לאף אדם שחי לפניהם. היא מקלקלת תיארוך רגיל של חומר צעיר, אבל היא גם הפכה לכלי משלה. היא מאפשרת לקבוע באיזו שנה נוצרה רקמה, ומשמשת לזיהוי פלילי ולבדיקת גיל של יין וחפצי אמנות שנטען שהם עתיקים.</p>
+
+
+
 
 
 
@@ -474,6 +492,9 @@
 
 
 
+
+
+
   </section>
 
 
@@ -530,6 +551,7 @@
   <p class="sim__note" id="c14-note"></p>
   <p class="sim__note euv-caveat">החישוב משתמש במחצית חיים של 5,730 שנה ובדעיכה מעריכית נקייה. מעבדה אמיתית מחשבת גיל רדיופחמני עם הערך ההיסטורי 5,568 שנה, מתקנת על הפרדה איזוטופית, ומעבירה את התוצאה דרך עקומת כיול שאינה חלקה. הגבול המסומן הוא הערכה גסה: מעבדות שונות עובדות עם סף שונה, ובתנאי הכנה מיוחדים אפשר לפעמים לרדת מתחתיו. אין להסיק מההדמיה מספרי דיוק של שום מעבדה.</p>
   </section>
+
 
 
   <section class="quiz" id="quiz">
@@ -765,6 +787,60 @@
   }
 
   inAge.addEventListener('input', render);
+  render();
+})();
+</script>
+
+<script>
+/* ===== GPS: זמן, מרחק, ושגיאת שעון ===== */
+(function () {
+  var stage = document.getElementById('gp-stage');
+  if (!stage) return;
+
+  var C = 299792458;
+  var inDelay = document.getElementById('gp-in-delay');
+  var inClock = document.getElementById('gp-in-clock');
+  var outDelay = document.getElementById('gp-out-delay');
+  var outClock = document.getElementById('gp-out-clock');
+  var outDist = document.getElementById('gp-out-dist');
+  var outErr = document.getElementById('gp-out-err');
+  var outNs = document.getElementById('gp-out-ns');
+  var bar = document.getElementById('gp-bar-err');
+  var note = document.getElementById('gp-note');
+
+  function render() {
+    var ms = Number(inDelay.value);
+    var ns = Number(inClock.value);
+
+    var distKm = C * (ms / 1000) / 1000;
+    var errM = C * (ns / 1e9);
+
+    outDelay.textContent = ms.toFixed(1) + ' ms';
+    outClock.textContent = ns + ' ns';
+    outDist.textContent = Math.round(distKm).toLocaleString('en-US') + ' ק"מ';
+    outErr.textContent = errM.toFixed(1) + ' מטר';
+    outNs.textContent = (C / 1e9).toFixed(2) + ' מטר';
+
+    var frac = Math.min(errM / 300, 1);
+    var w = Math.round(430 * frac);
+    bar.setAttribute('width', String(w));
+    bar.setAttribute('x', String(470 - w));
+
+    var msg;
+    if (errM < 1) {
+      msg = 'שגיאה מתחת למטר. כדי להגיע לכאן צריך שעון שפתור לכמה ננו-שניות, וזה בדיוק מה שהלוויין הרביעי עושה.';
+    } else if (errM < 30) {
+      msg = 'זה הסדר גודל שמקלט בטלפון מגיע אליו ביום בהיר בשטח פתוח. מספיק כדי לדעת באיזה רחוב אתה, לא תמיד באיזה צד שלו.';
+    } else if (errM < 150) {
+      msg = 'כאן כבר אי אפשר לדעת באיזה בניין מדובר. שימו לב שמדובר בעשרות ננו-שניות בלבד.';
+    } else {
+      msg = 'מיקרו-שנייה אחת היא כבר כ-300 מטר. זו הסיבה שהמערכת כולה נבנתה סביב שעונים אטומיים ולא סביב שעוני קוורץ.';
+    }
+    note.textContent = msg;
+  }
+
+  inDelay.addEventListener('input', render);
+  inClock.addEventListener('input', render);
   render();
 })();
 </script>

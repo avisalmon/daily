@@ -80,6 +80,9 @@
 
 
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">גלוי וסמוי, ולמה הגלוי כמעט חסר ערך</h2>
@@ -139,6 +142,9 @@
       </svg>
       <figcaption>משמאל, סימן גלוי שתופס אזור אחד ונחתך בשניה. מימין, סימן סמוי שפזור על פני כל הקובץ, וכל חלק ממנו נושא עותק.</figcaption>
     </figure>
+
+
+
 
 
 
@@ -227,6 +233,9 @@
 
 
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">בטקסט אין איפה להתחבא</h2>
@@ -300,11 +309,17 @@
 
 
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">מה שורד ומה שובר</h2>
     <p>חוסן הוא השאלה המעשית היחידה. סימן מים ששורד רק קובץ שלא נגעו בו אינו שווה דבר, מכיוון שאף קובץ ברשת אינו נשאר כפי שנוצר. הוא נדחס, משתנה בגודל, נחתך, מצולם ממסך ומועלה מחדש.</p>
     <p>הטבלה מפרידה בין שני דברים ששווה להפריד ביניהם: מה הטכנולוגיה אמורה לעשות, ומה פורסם בפועל במספרים. ההפרדה הזאת היא עיקר הלקוח מהשבוע שעבר.</p>
+
+
+
 
 
 
@@ -397,12 +412,18 @@
 
 
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">מי מסמן היום, ובמה</h2>
     <p>SynthID של גוגל עובד בתמונה, בווידאו ובשמע, ולא בטקסט. גוגל מדווחת שסימנה עד כה יותר מ-180 מיליארד תמונות וסרטונים ומעל 240 אלף שנות שמע. רשימת השותפים שהכלי יודע לקרוא כוללת את OpenAI, אנבידיה וקקאו, ואפל מופיעה כמי שתצטרף. הזמינות שתוארה כעולמית מנוסחת בהודעה עצמה כעולמית באנגלית.</p>
     <p>OpenAI הודיעה על סימון טקסט בטכנולוגיה בשם textGrain, שהיא מתכוונת לשחרר בקוד פתוח. ההפעלה היא באיחוד האירופי, בכל התוכניות שם, ולא הייתה פעילה ביום ההודעה אלא תוכננה לשבועות הקרובים. בממשק המתכנתים ההסדר הפוך: הסימון כבוי כברירת מחדל והמפתח צריך לבקש אותו, ושם זה חל בכל העולם.</p>
     <p>המשותף לשתי ההודעות הוא שהן אמצעי, לא פתרון. הן מקלות על מי שרוצה לתת ייחוס הוגן לתוכן שלו. הן אינן עונות על השאלה שהתחלנו ממנה, מכיוון שהיא שאלה שאי אפשר לענות עליה מתוך הקובץ.</p>
+
+
+
 
 
 
@@ -498,6 +519,7 @@
     <p class="sim__note" id="wm-note"></p>
     <p class="sim__note euv-caveat">המדמה ממחיש התנגשות, הוא אינו מודד מערכת אמיתית. העקומה שבו היא מודל חשבוני פשוט, והמספרים אינם לקוחים ממוצר מסחרי. המספרים המדודים היחידים שפורסמו בשבוע שעבר הם של OpenAI, על סימון טקסט, והם מופיעים בטבלת החוסן שלמעלה.</p>
   </section>
+
 
 
 
@@ -755,6 +777,60 @@
   }
 
   inAge.addEventListener('input', render);
+  render();
+})();
+</script>
+
+<script>
+/* ===== GPS: זמן, מרחק, ושגיאת שעון ===== */
+(function () {
+  var stage = document.getElementById('gp-stage');
+  if (!stage) return;
+
+  var C = 299792458;
+  var inDelay = document.getElementById('gp-in-delay');
+  var inClock = document.getElementById('gp-in-clock');
+  var outDelay = document.getElementById('gp-out-delay');
+  var outClock = document.getElementById('gp-out-clock');
+  var outDist = document.getElementById('gp-out-dist');
+  var outErr = document.getElementById('gp-out-err');
+  var outNs = document.getElementById('gp-out-ns');
+  var bar = document.getElementById('gp-bar-err');
+  var note = document.getElementById('gp-note');
+
+  function render() {
+    var ms = Number(inDelay.value);
+    var ns = Number(inClock.value);
+
+    var distKm = C * (ms / 1000) / 1000;
+    var errM = C * (ns / 1e9);
+
+    outDelay.textContent = ms.toFixed(1) + ' ms';
+    outClock.textContent = ns + ' ns';
+    outDist.textContent = Math.round(distKm).toLocaleString('en-US') + ' ק"מ';
+    outErr.textContent = errM.toFixed(1) + ' מטר';
+    outNs.textContent = (C / 1e9).toFixed(2) + ' מטר';
+
+    var frac = Math.min(errM / 300, 1);
+    var w = Math.round(430 * frac);
+    bar.setAttribute('width', String(w));
+    bar.setAttribute('x', String(470 - w));
+
+    var msg;
+    if (errM < 1) {
+      msg = 'שגיאה מתחת למטר. כדי להגיע לכאן צריך שעון שפתור לכמה ננו-שניות, וזה בדיוק מה שהלוויין הרביעי עושה.';
+    } else if (errM < 30) {
+      msg = 'זה הסדר גודל שמקלט בטלפון מגיע אליו ביום בהיר בשטח פתוח. מספיק כדי לדעת באיזה רחוב אתה, לא תמיד באיזה צד שלו.';
+    } else if (errM < 150) {
+      msg = 'כאן כבר אי אפשר לדעת באיזה בניין מדובר. שימו לב שמדובר בעשרות ננו-שניות בלבד.';
+    } else {
+      msg = 'מיקרו-שנייה אחת היא כבר כ-300 מטר. זו הסיבה שהמערכת כולה נבנתה סביב שעונים אטומיים ולא סביב שעוני קוורץ.';
+    }
+    note.textContent = msg;
+  }
+
+  inDelay.addEventListener('input', render);
+  inClock.addEventListener('input', render);
   render();
 })();
 </script>

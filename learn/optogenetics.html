@@ -81,6 +81,9 @@
 
 
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">האצה שיודעת לשחות אל האור</h2>
@@ -151,6 +154,9 @@
 
 
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">ביצת צפרדע מוכיחה את העניין</h2>
@@ -158,6 +164,9 @@
     <p>כשהאירו עליהן, התעלה נפתחה תוך 0.2 אלפיות השנייה. יונים טעונים חיובית זרמו פנימה ונוצר אות חשמלי. החלבון קיבל את השם צ&#39;אנלרודופסין, ותיאורו פורסם ב-2003 בכתב העת PNAS כתעלה קטיונית שנפתחת ישירות על ידי אור.</p>
     <p>ואז הגיעה התוצאה שהפכה את זה לכלי ולא לסקרנות: הם החדירו את אותו גן לתאי כליה של עובר אדם ולתאי כליה של אוגר, והתאים האלה נעשו רגישים לאור. לא משנה לאיזה תא הכניסו את החלבון, התא התחיל להגיב לאור.</p>
     <p>זו הנקודה שבה מחקר על אצה שוחה הפך לכלי אוניברסלי. החלבון לא דורש מהתא המארח שום דבר מיוחד. הוא מביא איתו את כל מה שצריך.</p>
+
+
+
 
 
 
@@ -249,6 +258,9 @@
 
 
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">למה דווקא אור, ולמה זה נקרא גם גנטיקה</h2>
@@ -313,6 +325,9 @@
 
 
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">מה זה כבר עשה למטופלים, ומה עוד לא</h2>
@@ -320,6 +335,9 @@
     <p>הצעד הקליני הראשון נעשה בעיניים. בניסויים קליניים מתמשכים מנסים להחזיר ראייה לאנשים שהתעוורו מרטיניטיס פיגמנטוזה, מחלה שהורסת את המדוכים והמדוקים ברשתית. כשהוחדר לרשתית של אדם עיוור חלבון דמוי צ&#39;אנלרודופסין, הוא החזיר ראייה חלקית: בעזרת משקפיים מיוחדים שפולטים אור הוא הצליח להבחין בחפצים על שולחן ולאחוז בהם.</p>
     <p>יש גם תקווה לשתלי שבלול. כיום הם מגרים את עצב השמיעה בחשמל, ואופטוגנטיקה אולי תאפשר לעשות זאת בדיוק גבוה יותר.</p>
     <p>מה שחשוב להחזיק: זו אינה תרופה זמינה. מדובר בניסויים קליניים, בהחזרת ראייה חלקית אצל מטופלים בודדים, ובשיטה שבמוח דורשת החדרת גן והכנסת סיב אופטי לגולגולת. הערך העיקרי שלה עד כה הוא בשאלות שהיא מאפשרת לשאול, לא בטיפולים שהיא מספקת.</p>
+
+
+
 
 
 
@@ -428,6 +446,7 @@
     <p class="sim__note" id="op-note"></p>
     <p class="sim__note euv-caveat">המדמה מציג שלושה תנאים מתוך ניסוי אמיתי שמערב גם עוצמת אור, כמות חלבון בקרום ובריאות התא. הוא נועד להמחיש את ההיגיון הסיבתי, ואינו מודל כמותי.</p>
   </section>
+
 
 
 
@@ -686,6 +705,60 @@
   }
 
   inAge.addEventListener('input', render);
+  render();
+})();
+</script>
+
+<script>
+/* ===== GPS: זמן, מרחק, ושגיאת שעון ===== */
+(function () {
+  var stage = document.getElementById('gp-stage');
+  if (!stage) return;
+
+  var C = 299792458;
+  var inDelay = document.getElementById('gp-in-delay');
+  var inClock = document.getElementById('gp-in-clock');
+  var outDelay = document.getElementById('gp-out-delay');
+  var outClock = document.getElementById('gp-out-clock');
+  var outDist = document.getElementById('gp-out-dist');
+  var outErr = document.getElementById('gp-out-err');
+  var outNs = document.getElementById('gp-out-ns');
+  var bar = document.getElementById('gp-bar-err');
+  var note = document.getElementById('gp-note');
+
+  function render() {
+    var ms = Number(inDelay.value);
+    var ns = Number(inClock.value);
+
+    var distKm = C * (ms / 1000) / 1000;
+    var errM = C * (ns / 1e9);
+
+    outDelay.textContent = ms.toFixed(1) + ' ms';
+    outClock.textContent = ns + ' ns';
+    outDist.textContent = Math.round(distKm).toLocaleString('en-US') + ' ק"מ';
+    outErr.textContent = errM.toFixed(1) + ' מטר';
+    outNs.textContent = (C / 1e9).toFixed(2) + ' מטר';
+
+    var frac = Math.min(errM / 300, 1);
+    var w = Math.round(430 * frac);
+    bar.setAttribute('width', String(w));
+    bar.setAttribute('x', String(470 - w));
+
+    var msg;
+    if (errM < 1) {
+      msg = 'שגיאה מתחת למטר. כדי להגיע לכאן צריך שעון שפתור לכמה ננו-שניות, וזה בדיוק מה שהלוויין הרביעי עושה.';
+    } else if (errM < 30) {
+      msg = 'זה הסדר גודל שמקלט בטלפון מגיע אליו ביום בהיר בשטח פתוח. מספיק כדי לדעת באיזה רחוב אתה, לא תמיד באיזה צד שלו.';
+    } else if (errM < 150) {
+      msg = 'כאן כבר אי אפשר לדעת באיזה בניין מדובר. שימו לב שמדובר בעשרות ננו-שניות בלבד.';
+    } else {
+      msg = 'מיקרו-שנייה אחת היא כבר כ-300 מטר. זו הסיבה שהמערכת כולה נבנתה סביב שעונים אטומיים ולא סביב שעוני קוורץ.';
+    }
+    note.textContent = msg;
+  }
+
+  inDelay.addEventListener('input', render);
+  inClock.addEventListener('input', render);
   render();
 })();
 </script>

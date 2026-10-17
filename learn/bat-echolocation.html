@@ -76,6 +76,9 @@
 
 
 
+
+
+
     <figure class="diagram">
     <svg viewBox="0 0 520 300" role="img" aria-label="עטלף בצד ימין שולח קריאה שמאלה אל חרק, וההד חוזר אליו. מתחת, ציר זמן שמסמן שש אלפיות שנייה בין הקריאה להד, והמרחק שמתקבל מהן" preserveAspectRatio="xMidYMid meet">
     <text x="500" y="24" class="diagram__label diagram__label--strong">מדידה אחת: קריאה, הד, זמן</text>
@@ -162,12 +165,18 @@
 
 
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">למה אולטרסאונד ולא קול רגיל</h2>
     <p>אורך הגל קובע את הפרט הקטן ביותר שאפשר להבחין בו. גל שארוך בהרבה מהעצם פשוט עוקף אותו ומחזיר ממנו כמעט כלום. גל שקצר ממנו מחזיר הד ברור.</p>
     <p>אורך הגל הוא מהירות הקול חלקי התדר. ב-50 קילו-הרץ מתקבלים 6.86 מילימטרים, כלומר בערך שבעה מילימטרים, בדיוק הסדר גודל של יתוש.</p>
     <p>אוזן אנושית נעצרת סביב 20 קילו-הרץ, ושם אורך הגל הוא 17.15 מילימטרים, פי 2.45 מהיתוש. בקול ששומעים, היתוש איננו.</p>
+
+
+
 
 
 
@@ -243,6 +252,9 @@
     <p>בתנאים של 20 מעלות ולחות יחסית של 50 אחוזים, אחרי ארבעה מטרים נשארים מגל של 25 קילו-הרץ כ-51.0 אחוזים מהאנרגיה. מגל של 100 קילו-הרץ נשארים באותו מרחק 4.9 אחוזים.</p>
     <p>אחרי עשרה מטרים הפער כבר לא מעניין: 18.6 אחוזים מול פחות מעשירית האחוז. עטלפים שצדים במרחב פתוח משתמשים בתדרים נמוכים יותר מעטלפים שמלקטים חרקים מתוך עלווה, וזאת הסיבה.</p>
     <p>אותה עסקה בדיוק מופיעה בסונאר של צוללת וברדאר. חדות מול טווח, ואי אפשר לקבל את שניהם.</p>
+
+
+
 
 
 
@@ -350,6 +362,9 @@
 
 
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">הבעיה של מי שצועק ומקשיב באותו רגע</h2>
@@ -389,12 +404,18 @@
 
 
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">קצב הקריאות משתנה תוך כדי ציד</h2>
     <p>בשלב החיפוש הקצב איטי, בערך 10 עד 20 קריאות בשנייה. מרווח של 100 אלפיות שנייה נותן להד זמן לחזור ממרחק של 17.15 מטרים, וזה בדיוק מה שצריך כשסורקים מרחב.</p>
     <p>כשהעטלף מתקרב הוא מקצר. חרק במרחק שני מטרים מחזיר הד אחרי 11.66 אלפיות שנייה, ולכן אפשר להעלות את הקצב עד כ-85 קריאות בשנייה בלי שקריאה חדשה תדרוס הד שעוד לא חזר.</p>
     <p>ממש לפני התפיסה מגיע הבאז: עד כ-200 קריאות בשנייה. מרווח של 5 אלפיות שנייה מתאים לטווח של 86 סנטימטרים, וזה כל מה שנחוץ. בשלב הזה העטלף כבר לא מחפש, הוא נועל.</p>
+
+
+
 
 
 
@@ -576,6 +597,9 @@
 
 
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">אותו עיקרון במקומות אחרים</h2>
@@ -616,7 +640,11 @@
 
 
 
+
+
+
   </section>
+
 
 
 
@@ -937,6 +965,60 @@
   }
 
   inAge.addEventListener('input', render);
+  render();
+})();
+</script>
+
+<script>
+/* ===== GPS: זמן, מרחק, ושגיאת שעון ===== */
+(function () {
+  var stage = document.getElementById('gp-stage');
+  if (!stage) return;
+
+  var C = 299792458;
+  var inDelay = document.getElementById('gp-in-delay');
+  var inClock = document.getElementById('gp-in-clock');
+  var outDelay = document.getElementById('gp-out-delay');
+  var outClock = document.getElementById('gp-out-clock');
+  var outDist = document.getElementById('gp-out-dist');
+  var outErr = document.getElementById('gp-out-err');
+  var outNs = document.getElementById('gp-out-ns');
+  var bar = document.getElementById('gp-bar-err');
+  var note = document.getElementById('gp-note');
+
+  function render() {
+    var ms = Number(inDelay.value);
+    var ns = Number(inClock.value);
+
+    var distKm = C * (ms / 1000) / 1000;
+    var errM = C * (ns / 1e9);
+
+    outDelay.textContent = ms.toFixed(1) + ' ms';
+    outClock.textContent = ns + ' ns';
+    outDist.textContent = Math.round(distKm).toLocaleString('en-US') + ' ק"מ';
+    outErr.textContent = errM.toFixed(1) + ' מטר';
+    outNs.textContent = (C / 1e9).toFixed(2) + ' מטר';
+
+    var frac = Math.min(errM / 300, 1);
+    var w = Math.round(430 * frac);
+    bar.setAttribute('width', String(w));
+    bar.setAttribute('x', String(470 - w));
+
+    var msg;
+    if (errM < 1) {
+      msg = 'שגיאה מתחת למטר. כדי להגיע לכאן צריך שעון שפתור לכמה ננו-שניות, וזה בדיוק מה שהלוויין הרביעי עושה.';
+    } else if (errM < 30) {
+      msg = 'זה הסדר גודל שמקלט בטלפון מגיע אליו ביום בהיר בשטח פתוח. מספיק כדי לדעת באיזה רחוב אתה, לא תמיד באיזה צד שלו.';
+    } else if (errM < 150) {
+      msg = 'כאן כבר אי אפשר לדעת באיזה בניין מדובר. שימו לב שמדובר בעשרות ננו-שניות בלבד.';
+    } else {
+      msg = 'מיקרו-שנייה אחת היא כבר כ-300 מטר. זו הסיבה שהמערכת כולה נבנתה סביב שעונים אטומיים ולא סביב שעוני קוורץ.';
+    }
+    note.textContent = msg;
+  }
+
+  inDelay.addEventListener('input', render);
+  inClock.addEventListener('input', render);
   render();
 })();
 </script>

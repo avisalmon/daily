@@ -91,6 +91,9 @@
 
 
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">ההבדל בין קו לעקומה</h2>
@@ -143,11 +146,17 @@
 
 
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">הזמן הוא המשתנה החזק ביותר</h2>
     <p>בנוסחה של ריבית דריבית, הקרן והריבית מוכפלות, אבל הזמן נמצא במעריך. משתנה במעריך משפיע הרבה יותר חזק ממשתנה בבסיס.</p>
     <p>נסו את זה במדמה שלמטה: הכפילו את הקרן, והתוצאה הסופית תוכפל בדיוק פי שניים. הכפילו את מספר השנים, והתוצאה תגדל הרבה יותר מפי שניים. אחרי 10 שנים תגיעו ל-2,594 שקל במקום 2,000. אחרי 30 שנה תגיעו ל-17,449 שקל במקום 4,000.</p>
+
+
+
 
 
 
@@ -219,11 +228,17 @@
 
 
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">אותה עקומה, בכיוון ההפוך</h2>
     <p>בדיוק מאותה סיבה, ריבית דריבית עובדת גם לרעתכם. חוב בכרטיס אשראי או הלוואה שלא נפרעת צוברים ריבית על הריבית באותה עקומה בדיוק, רק שהפעם אתם בצד שמשלם.</p>
     <p>כאן ההבדל דרמטי במיוחד, כי הריבית על אשראי צרכני גבוהה בהרבה מתשואה שגרתית על חיסכון. חוב שנשאר פתוח מספיק זמן יכול לגדול לסכום גדול בהרבה מהסכום שנלקח במקור.</p>
+
+
+
 
 
 
@@ -332,6 +347,7 @@
     </div>
     <p class="sim__note" id="sim-note"></p>
   </section>
+
 
 
 
@@ -593,6 +609,60 @@
   }
 
   inAge.addEventListener('input', render);
+  render();
+})();
+</script>
+
+<script>
+/* ===== GPS: זמן, מרחק, ושגיאת שעון ===== */
+(function () {
+  var stage = document.getElementById('gp-stage');
+  if (!stage) return;
+
+  var C = 299792458;
+  var inDelay = document.getElementById('gp-in-delay');
+  var inClock = document.getElementById('gp-in-clock');
+  var outDelay = document.getElementById('gp-out-delay');
+  var outClock = document.getElementById('gp-out-clock');
+  var outDist = document.getElementById('gp-out-dist');
+  var outErr = document.getElementById('gp-out-err');
+  var outNs = document.getElementById('gp-out-ns');
+  var bar = document.getElementById('gp-bar-err');
+  var note = document.getElementById('gp-note');
+
+  function render() {
+    var ms = Number(inDelay.value);
+    var ns = Number(inClock.value);
+
+    var distKm = C * (ms / 1000) / 1000;
+    var errM = C * (ns / 1e9);
+
+    outDelay.textContent = ms.toFixed(1) + ' ms';
+    outClock.textContent = ns + ' ns';
+    outDist.textContent = Math.round(distKm).toLocaleString('en-US') + ' ק"מ';
+    outErr.textContent = errM.toFixed(1) + ' מטר';
+    outNs.textContent = (C / 1e9).toFixed(2) + ' מטר';
+
+    var frac = Math.min(errM / 300, 1);
+    var w = Math.round(430 * frac);
+    bar.setAttribute('width', String(w));
+    bar.setAttribute('x', String(470 - w));
+
+    var msg;
+    if (errM < 1) {
+      msg = 'שגיאה מתחת למטר. כדי להגיע לכאן צריך שעון שפתור לכמה ננו-שניות, וזה בדיוק מה שהלוויין הרביעי עושה.';
+    } else if (errM < 30) {
+      msg = 'זה הסדר גודל שמקלט בטלפון מגיע אליו ביום בהיר בשטח פתוח. מספיק כדי לדעת באיזה רחוב אתה, לא תמיד באיזה צד שלו.';
+    } else if (errM < 150) {
+      msg = 'כאן כבר אי אפשר לדעת באיזה בניין מדובר. שימו לב שמדובר בעשרות ננו-שניות בלבד.';
+    } else {
+      msg = 'מיקרו-שנייה אחת היא כבר כ-300 מטר. זו הסיבה שהמערכת כולה נבנתה סביב שעונים אטומיים ולא סביב שעוני קוורץ.';
+    }
+    note.textContent = msg;
+  }
+
+  inDelay.addEventListener('input', render);
+  inClock.addEventListener('input', render);
   render();
 })();
 </script>

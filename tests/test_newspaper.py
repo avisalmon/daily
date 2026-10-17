@@ -1350,6 +1350,82 @@ def test_credit_spread_lead_matches_the_numbers_it_derives():
     assert "336.940" in text and "324.800" in text
 
 
+def test_authenticity_lead_matches_the_number_it_derives():
+    """BKM 13. The 2026-10-18 lead quotes two effects from Porter and Machery's
+    second study, 0.814 and 1.045 rating points, and then prints their sum as
+    the distance between the two directions. That third bar is the desk's own
+    arithmetic: no reader can catch it being wrong, because the paper is where
+    it first appears."""
+    ed = json.loads(
+        (ROOT / "data" / "editions" / "2026-10-18.json").read_text(encoding="utf-8"))
+    text = json.dumps(ed, ensure_ascii=False)
+
+    label_penalty, authorship_gain = 0.814, 1.045
+    assert "0.814" in text and "1.045" in text
+
+    gap = round(label_penalty + authorship_gain, 3)
+    assert gap == 1.859
+
+    bars = [b["value"] for b in ed["lead"]["figure"]["bars"]]
+    assert bars == [authorship_gain, label_penalty, gap]
+    assert ed["lead"]["figure"]["max"] >= max(bars)
+
+    # Both effects are on the same seven-point scale, so the derived gap has to
+    # stay inside it or the two numbers were never comparable to begin with.
+    assert gap < 7
+
+    # The figure note has to keep saying the third bar was computed here. The
+    # moment it reads as quoted, the reader loses the only warning they get.
+    note = ed["lead"]["figure"]["note"]
+    assert "חושבה כאן" in note and "אינה מצוטטת" in note
+
+
+def test_gps_page_matches_the_relativity_numbers_it_derives():
+    """BKM 13. The GPS page prints four numbers that are not quoted from any
+    source: the two relativistic clock rates, their sum, and the daily ground
+    error that follows. They are recomputed here from the two formulas the page
+    itself prints, so a drift in either the text or the diagram fails."""
+    topic = json.loads(
+        (ROOT / "data" / "topics" / "gps.json").read_text(encoding="utf-8"))
+    text = json.dumps(topic, ensure_ascii=False)
+    svg = (ROOT / "templates" / "topic.html.j2").read_text(encoding="utf-8")
+
+    c = 299_792_458.0          # m/s, exact by definition
+    GM = 3.986_004_418e14      # m^3/s^2, WGS 84
+    r_earth = 6_371_000.0      # m, mean radius
+    a = 26_560_000.0           # m, GPS semi-major axis
+    period = 43_082.0          # s, half a sidereal day
+    day = 86_400.0
+
+    v = 2 * math.pi * a / period
+    assert round(v) == 3874, "orbital speed, metres per second"
+    assert "3,874 מטר לשנייה" in text
+
+    # Special relativity: the moving clock loses.
+    slow = v * v / (2 * c * c) * day * 1e6
+    assert round(slow, 1) == 7.2
+    assert "7.2 מיקרו-שניות" in text and "7.2 מיקרו-שניות" in svg
+
+    # General relativity: the clock higher in the well gains, and gains more.
+    fast = GM / (c * c) * (1 / r_earth - 1 / a) * day * 1e6
+    assert round(fast, 1) == 45.7
+    assert "45.7 מיקרו-שניות" in text and "45.7 מיקרו-שניות" in svg
+    assert fast > slow, "the page says gravity wins; if it stops winning, so must the page"
+
+    net = round(fast - slow, 1)
+    assert net == 38.5
+    assert "38.5 מיקרו-שניות" in text and "38.5 מיקרו-שניות" in svg
+
+    # The whole point of the section: what those microseconds cost on the ground.
+    km_per_day = net * 1e-6 * c / 1000
+    assert round(km_per_day, 1) == 11.5
+    assert "11.5 קילומטר ביום" in text and "11.5 קילומטר ביום" in svg
+
+    # And the conversion the rest of the page leans on, light in one nanosecond.
+    assert round(c / 1e9, 2) == 0.30
+    assert "30 סנטימטר" in text
+
+
 def test_human_economic_value_lead_matches_the_numbers_it_derives():
     """BKM 13. The 2026-10-13 lead's headline number, 42.4, is not quoted from
     anywhere. It is the output of a three-factor model that the research

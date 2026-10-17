@@ -833,6 +833,90 @@
     </figure>
     {% endif %}
 
+    {% if sec.diagram and sec.diagram.type == 'gps-signal-delay' %}
+    <figure class="diagram">
+    <svg viewBox="0 0 520 300" role="img" aria-label="לוויין בפינה הימנית העליונה משדר אות אל מכשיר בפינה השמאלית התחתונה. מתחת, ציר זמן שמסמן שבעים אלפיות שנייה של השהיה ואת המרחק שהן מתורגמות אליו" preserveAspectRatio="xMidYMid meet">
+    <text x="500" y="24" class="diagram__label diagram__label--strong">מה עובר בין השניים</text>
+
+    <rect x="400" y="44" width="88" height="34" class="diagram__dot diagram__dot--strong"/>
+    <text x="358" y="66" class="diagram__axis-label">לוויין</text>
+    <text x="500" y="126" class="diagram__label">משדר: מי אני, ומה השעה אצלי</text>
+    <text x="500" y="144" class="diagram__label">12:00:00.000000</text>
+
+    <line x1="396" y1="86" x2="160" y2="156" class="diagram__axis"/>
+    <polygon points="152,158 165,151 167,161" class="diagram__dot-fill"/>
+
+    <rect x="56" y="164" width="88" height="34" class="diagram__dot"/>
+    <text x="196" y="186" class="diagram__axis-label">מכשיר</text>
+    <text x="100" y="222" class="diagram__axis-label">קלט ב-12:00:00.067300</text>
+
+    <line x1="40" y1="252" x2="480" y2="252" class="diagram__axis"/>
+    <line x1="470" y1="244" x2="470" y2="260" class="diagram__axis"/>
+    <line x1="152" y1="244" x2="152" y2="260" class="diagram__axis"/>
+    <text x="470" y="274" class="diagram__axis-label">0</text>
+    <text x="152" y="274" class="diagram__axis-label">67.3 אלפיות שנייה</text>
+    <text x="500" y="294" class="diagram__label">כפול מהירות האור: 20,176 קילומטר</text>
+    </svg>
+    <figcaption>{{ sec.diagram.caption }}</figcaption>
+    </figure>
+    {% endif %}
+
+    {% if sec.diagram and sec.diagram.type == 'gps-trilateration' %}
+    <figure class="diagram">
+    <svg viewBox="0 0 520 300" role="img" aria-label="שלושה מעגלים סביב שלושה לוויינים. שני המעגלים הראשונים נחתכים בשתי נקודות, והמעגל השלישי עובר רק באחת מהן" preserveAspectRatio="xMidYMid meet">
+    <text x="500" y="22" class="diagram__label diagram__label--strong">כל מעגל נוסף מצמצם את מה שנותר</text>
+
+    <circle cx="195" cy="110" r="79" class="diagram__curve" fill="none"/>
+    <circle cx="325" cy="112" r="77.9" class="diagram__curve" fill="none"/>
+    <circle cx="262" cy="225" r="70" class="diagram__curve" fill="none"/>
+
+    <circle cx="195" cy="110" r="5" class="diagram__dot-fill"/>
+    <circle cx="325" cy="112" r="5" class="diagram__dot-fill"/>
+    <circle cx="262" cy="225" r="5" class="diagram__dot-fill"/>
+    <text x="195" y="98" class="diagram__axis-label">לוויין 1</text>
+    <text x="325" y="100" class="diagram__axis-label">לוויין 2</text>
+    <text x="262" y="247" class="diagram__axis-label">לוויין 3</text>
+
+    <circle cx="260" cy="67" r="6" class="diagram__curve" fill="none"/>
+    <text x="352" y="62" class="diagram__axis-label">נפסל</text>
+
+    <circle cx="260" cy="155" r="7" class="diagram__dot-fill"/>
+    <text x="178" y="146" class="diagram__axis-label">כאן אתה</text>
+    </svg>
+    <figcaption>{{ sec.diagram.caption }}</figcaption>
+    </figure>
+    {% endif %}
+
+    {% if sec.diagram and sec.diagram.type == 'gps-relativity-arrows' %}
+    <figure class="diagram">
+    <svg viewBox="0 0 520 300" role="img" aria-label="שלושה חצים על אותו ציר. החץ הראשון מראה פיגור של 7.2 מיקרו-שניות ביום בגלל המהירות, השני הקדמה של 45.7 בגלל הכבידה, והשלישי את הסכום, הקדמה של 38.5" preserveAspectRatio="xMidYMid meet">
+    <text x="500" y="24" class="diagram__label diagram__label--strong">שני אפקטים על אותו שעון, ביום אחד</text>
+
+    <text x="500" y="56" class="diagram__label">מהירות המסלול, 3,874 מטר לשנייה</text>
+    <line x1="180" y1="76" x2="141" y2="76" class="diagram__axis"/>
+    <polygon points="133,76 145,71 145,81" class="diagram__dot-fill"/>
+    <text x="88" y="96" class="diagram__axis-label">פיגור, 7.2 מיקרו-שניות</text>
+
+    <text x="500" y="116" class="diagram__label">כבידה חלשה יותר בגובה 20,200 קילומטר</text>
+    <line x1="180" y1="136" x2="446" y2="136" class="diagram__axis"/>
+    <polygon points="454,136 442,131 442,141" class="diagram__dot-fill"/>
+    <text x="320" y="156" class="diagram__axis-label">הקדמה, 45.7 מיקרו-שניות</text>
+
+    <text x="500" y="186" class="diagram__label diagram__label--strong">הסכום, וזה מה שמתקנים</text>
+    <line x1="180" y1="206" x2="403" y2="206" class="diagram__axis"/>
+    <polygon points="411,206 399,201 399,211" class="diagram__dot-fill"/>
+    <text x="300" y="226" class="diagram__axis-label">הקדמה, 38.5 מיקרו-שניות</text>
+
+    <line x1="40" y1="250" x2="480" y2="250" class="diagram__axis"/>
+    <line x1="180" y1="242" x2="180" y2="258" class="diagram__axis"/>
+    <text x="180" y="272" class="diagram__axis-label">0</text>
+
+    <text x="500" y="292" class="diagram__label">38.5 מיקרו-שניות כפול מהירות האור: כ-11.5 קילומטר ביום</text>
+    </svg>
+    <figcaption>{{ sec.diagram.caption }}</figcaption>
+    </figure>
+    {% endif %}
+
     {% if sec.diagram and sec.diagram.type == 'bat-echo-roundtrip' %}
     <figure class="diagram">
     <svg viewBox="0 0 520 300" role="img" aria-label="עטלף בצד ימין שולח קריאה שמאלה אל חרק, וההד חוזר אליו. מתחת, ציר זמן שמסמן שש אלפיות שנייה בין הקריאה להד, והמרחק שמתקבל מהן" preserveAspectRatio="xMidYMid meet">
@@ -1586,6 +1670,62 @@
   </section>
   {% endif %}
 
+  {% if topic.sim and topic.sim.type == 'gps-fix-readout' %}
+  <section class="sim" id="sim">
+  <h2 class="topic__heading">{{ topic.sim.title }}</h2>
+  <p class="sim__intro">{{ topic.sim.intro }}</p>
+
+  <div class="sim__controls">
+  <label class="sim__control">
+  <span class="sim__control-head">
+  <span>זמן ההשהיה שנמדד</span>
+  <output id="gp-out-delay" class="ltr"></output>
+  </span>
+  <input type="range" id="gp-in-delay" min="60" max="90" step="0.1" value="67.3">
+  <span class="sim__control-hint">באלפיות שנייה. מעל הראש כ-67, באופק כ-86</span>
+  </label>
+  <label class="sim__control">
+  <span class="sim__control-head">
+  <span>טעות שנותרה בשעון המקלט</span>
+  <output id="gp-out-clock" class="ltr"></output>
+  </span>
+  <input type="range" id="gp-in-clock" min="0" max="1000" step="10" value="100">
+  <span class="sim__control-hint">בננו-שניות. האור עובר כ-30 סנטימטר בכל אחת</span>
+  </label>
+  </div>
+
+  <div class="gene-switch__stage" id="gp-stage">
+  <svg viewBox="0 0 520 150" role="img" aria-label="ציר שגיאה באורך שלוש מאות מטרים. העמודה מראה את השגיאה על הקרקע שנובעת מטעות השעון שנבחרה">
+  <text x="500" y="26" class="diagram__label diagram__label--strong">השגיאה על הקרקע</text>
+  <text x="200" y="52" class="diagram__axis-label">טעות הזמן, מתורגמת למטרים</text>
+  <line x1="40" y1="110" x2="480" y2="110" class="diagram__axis"/>
+  <rect id="gp-bar-err" x="470" y="78" width="0" height="26" class="wm-level"/>
+  <text x="470" y="134" class="diagram__axis-label">0</text>
+  <text x="255" y="134" class="diagram__axis-label">150 מטר</text>
+  <text x="45" y="134" class="diagram__axis-label">300 מטר</text>
+  </svg>
+  </div>
+
+  <div class="sim__readout sim__readout--three">
+  <div class="sim__stat sim__stat--strong">
+  <span class="sim__stat-label">המרחק ללוויין</span>
+  <span class="sim__stat-value ltr" id="gp-out-dist"></span>
+  </div>
+  <div class="sim__stat">
+  <span class="sim__stat-label">השגיאה על הקרקע</span>
+  <span class="sim__stat-value ltr" id="gp-out-err"></span>
+  </div>
+  <div class="sim__stat">
+  <span class="sim__stat-label">כמה עובר האור בננו-שנייה</span>
+  <span class="sim__stat-value ltr" id="gp-out-ns"></span>
+  </div>
+  </div>
+
+  <p class="sim__note" id="gp-note"></p>
+  <p class="sim__note euv-caveat">{{ topic.sim.caveat }}</p>
+  </section>
+  {% endif %}
+
   {% if topic.sim and topic.sim.type == 'bat-sonar-readout' %}
   <section class="sim" id="sim">
   <h2 class="topic__heading">{{ topic.sim.title }}</h2>
@@ -1789,6 +1929,60 @@
   }
 
   inAge.addEventListener('input', render);
+  render();
+})();
+</script>
+
+<script>
+/* ===== GPS: זמן, מרחק, ושגיאת שעון ===== */
+(function () {
+  var stage = document.getElementById('gp-stage');
+  if (!stage) return;
+
+  var C = 299792458;
+  var inDelay = document.getElementById('gp-in-delay');
+  var inClock = document.getElementById('gp-in-clock');
+  var outDelay = document.getElementById('gp-out-delay');
+  var outClock = document.getElementById('gp-out-clock');
+  var outDist = document.getElementById('gp-out-dist');
+  var outErr = document.getElementById('gp-out-err');
+  var outNs = document.getElementById('gp-out-ns');
+  var bar = document.getElementById('gp-bar-err');
+  var note = document.getElementById('gp-note');
+
+  function render() {
+    var ms = Number(inDelay.value);
+    var ns = Number(inClock.value);
+
+    var distKm = C * (ms / 1000) / 1000;
+    var errM = C * (ns / 1e9);
+
+    outDelay.textContent = ms.toFixed(1) + ' ms';
+    outClock.textContent = ns + ' ns';
+    outDist.textContent = Math.round(distKm).toLocaleString('en-US') + ' ק"מ';
+    outErr.textContent = errM.toFixed(1) + ' מטר';
+    outNs.textContent = (C / 1e9).toFixed(2) + ' מטר';
+
+    var frac = Math.min(errM / 300, 1);
+    var w = Math.round(430 * frac);
+    bar.setAttribute('width', String(w));
+    bar.setAttribute('x', String(470 - w));
+
+    var msg;
+    if (errM < 1) {
+      msg = 'שגיאה מתחת למטר. כדי להגיע לכאן צריך שעון שפתור לכמה ננו-שניות, וזה בדיוק מה שהלוויין הרביעי עושה.';
+    } else if (errM < 30) {
+      msg = 'זה הסדר גודל שמקלט בטלפון מגיע אליו ביום בהיר בשטח פתוח. מספיק כדי לדעת באיזה רחוב אתה, לא תמיד באיזה צד שלו.';
+    } else if (errM < 150) {
+      msg = 'כאן כבר אי אפשר לדעת באיזה בניין מדובר. שימו לב שמדובר בעשרות ננו-שניות בלבד.';
+    } else {
+      msg = 'מיקרו-שנייה אחת היא כבר כ-300 מטר. זו הסיבה שהמערכת כולה נבנתה סביב שעונים אטומיים ולא סביב שעוני קוורץ.';
+    }
+    note.textContent = msg;
+  }
+
+  inDelay.addEventListener('input', render);
+  inClock.addEventListener('input', render);
   render();
 })();
 </script>
