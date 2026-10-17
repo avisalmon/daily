@@ -1,0 +1,1642 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#f7f4ec">
+<title>היום בקיצור, מה זה GPS: איך הטלפון יודע איפה אתה</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@300..900&family=Noto+Serif+Hebrew:wght@300..700&family=Heebo:wght@400..800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/newspaper.css">
+</head>
+<body>
+
+<div class="wrap">
+
+  <header class="masthead masthead--compact">
+    <h1 class="masthead__title">
+      <a href="../index.html">היום <span class="thin">בקיצור</span></a>
+    </h1>
+    <p class="masthead__tagline">דברים שקרו היום ומעניינים אותי</p>
+    <hr class="masthead__rule">
+  </header>
+
+  <nav class="sitenav" aria-label="ניווט ראשי">
+    <a href="../index.html" >המהדורה</a>
+    <a href="../archive.html" >ארכיון</a>
+    <a href="../search.html" >חיפוש</a>
+    <a href="../learn.html" class="is-current">נושאי לימוד</a>
+  </nav>
+
+  <main class="page">
+    <div class="section-head"><span class="section-head__label">לומדים היום</span></div>
+<article class="topic">
+
+  <header class="topic__head">
+    <p class="topic__level">חטיבה עליונה · קריאה של 12 דקות</p>
+    <h1 class="topic__title">מה זה GPS: איך הטלפון יודע איפה אתה</h1>
+<p class="topic__subtitle">הלוויין משדר שתי עובדות בלבד. כל השאר הוא חשבון, ושעון</p>    <p class="topic__summary">הלוויין אינו יודע איפה אתה, ואינו מנסה לדעת. הוא משדר מי הוא ומה השעה, והמכשיר בכיס עושה את כל השאר. העמוד מסביר איך השהיה של אלפיות שנייה הופכת למרחק, למה שלושה לוויינים אינם מספיקים אף שיש רק שלושה נעלמים במרחב, למה שגיאת שעון של מיליונית שנייה היא שלוש מאות מטר על הקרקע, ולמה בלי שני תיקונים הפוכים מתורת היחסות המכשיר היה נודד מהאמת בקילומטרים ביום. יש בו סימולטור.</p>
+    <p class="topic__origin">
+      פורסם לראשונה במהדורת <a href="../editions/2026-10-18.html">יום ראשון, 18 באוקטובר 2026</a>
+    </p>
+  </header>
+
+  <section class="topic__section">
+    <h2 class="topic__heading">מה הלוויין באמת משדר</h2>
+    <p>השם מטעה. לוויין GPS אינו מאתר אותך, אינו קולט ממך דבר, ואינו יודע שאתה קיים. הוא משדר לכל מי שמקשיב שתי עובדות: מי אני, ומה השעה אצלי עכשיו. את המיקום שלך מחשב המכשיר שבכיס.</p>
+    <p>זה אומר שני דברים. ראשית, המערכת אינה מתעייפת: מיליארד מכשירים יכולים להאזין לאותו לוויין בלי שישתנה דבר, כי אין בה תנועה חוזרת. שנית, המכשיר שלך אינו משדר שום דבר כשהוא מוצא את מיקומו. האפליקציה אולי שולחת אותו הלאה, אבל זה שלב אחר לגמרי.</p>
+    <p>לכל לוויין יש שעון אטומי, ולעיתים יותר מאחד. השעונים האלה מסונכרנים בקפידה מהקרקע, ולכן אפשר להתייחס לזמן שהם משדרים כאל זמן אחד משותף. ההודעה כוללת גם את מסלול הלוויין, כדי שהמכשיר יוכל לחשב איפה הוא היה בדיוק ברגע שהאות יצא.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <figure class="diagram">
+    <svg viewBox="0 0 520 300" role="img" aria-label="לוויין בפינה הימנית העליונה משדר אות אל מכשיר בפינה השמאלית התחתונה. מתחת, ציר זמן שמסמן שבעים אלפיות שנייה של השהיה ואת המרחק שהן מתורגמות אליו" preserveAspectRatio="xMidYMid meet">
+    <text x="500" y="24" class="diagram__label diagram__label--strong">מה עובר בין השניים</text>
+
+    <rect x="400" y="44" width="88" height="34" class="diagram__dot diagram__dot--strong"/>
+    <text x="358" y="66" class="diagram__axis-label">לוויין</text>
+    <text x="500" y="126" class="diagram__label">משדר: מי אני, ומה השעה אצלי</text>
+    <text x="500" y="144" class="diagram__label">12:00:00.000000</text>
+
+    <line x1="396" y1="86" x2="160" y2="156" class="diagram__axis"/>
+    <polygon points="152,158 165,151 167,161" class="diagram__dot-fill"/>
+
+    <rect x="56" y="164" width="88" height="34" class="diagram__dot"/>
+    <text x="196" y="186" class="diagram__axis-label">מכשיר</text>
+    <text x="100" y="222" class="diagram__axis-label">קלט ב-12:00:00.067300</text>
+
+    <line x1="40" y1="252" x2="480" y2="252" class="diagram__axis"/>
+    <line x1="470" y1="244" x2="470" y2="260" class="diagram__axis"/>
+    <line x1="152" y1="244" x2="152" y2="260" class="diagram__axis"/>
+    <text x="470" y="274" class="diagram__axis-label">0</text>
+    <text x="152" y="274" class="diagram__axis-label">67.3 אלפיות שנייה</text>
+    <text x="500" y="294" class="diagram__label">כפול מהירות האור: 20,176 קילומטר</text>
+    </svg>
+    <figcaption>הלוויין משדר חותמת זמן. המכשיר משווה אותה לשעון שלו, ומתרגם את ההפרש למרחק.</figcaption>
+    </figure>
+
+
+
+
+
+
+
+  </section>
+  <section class="topic__section">
+    <h2 class="topic__heading">החישוב היחיד שצריך</h2>
+    <p>האות נוסע במהירות האור. אם המכשיר יודע מתי האות יצא ומתי הוא הגיע, הוא יודע כמה זמן הוא היה בדרך, והמרחק הוא הזמן כפול המהירות. זה כל הרעיון.</p>
+    <p>לוויין ישירות מעל הראש נמצא במרחק של כ-20,200 קילומטר, ולכן האות ממנו מגיע אחרי כ-67 אלפיות שנייה. לוויין נמוך באופק רחוק יותר, כ-25,800 קילומטר, ולכן האות ממנו מגיע אחרי כ-86 אלפיות שנייה. ההפרש בין שני המספרים האלה הוא כל המידע שיש למכשיר.</p>
+
+    <div class="formula">
+      <p class="formula__label">מרחק מתוך זמן</p>
+      <p class="formula__line">
+        <span class="formula__name">הנוסחה</span>
+        <span class="formula__expr ltr">d = c · (t_rx − t_tx)</span>
+      </p>
+      <p class="formula__line">
+        <span class="formula__name">דוגמה</span>
+        <span class="formula__expr ltr">299,792 · 0.0673 = 20,176 km</span>
+      </p>
+      <p class="formula__legend">c היא מהירות האור בריק, 299,792 קילומטר לשנייה. t_tx היא חותמת הזמן שהלוויין שידר, t_rx היא השעה שבה המכשיר קלט אותה. בניגוד להד של עטלף אין כאן חלוקה בשתיים, כי האות עושה את הדרך פעם אחת בלבד.</p>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </section>
+  <section class="topic__section">
+    <h2 class="topic__heading">ספירה, מעגל, שתי נקודות</h2>
+    <p>מרחק מלוויין אחד אינו נותן מיקום. הוא נותן ספירה: כל הנקודות במרחב שנמצאות במרחק הזה מהלוויין. אתה איפשהו על הקליפה שלה.</p>
+    <p>לוויין שני מוסיף ספירה שנייה. שתי ספירות שחותכות זו את זו נפגשות במעגל, ואתה איפשהו עליו. לוויין שלישי חותך את המעגל בשתי נקודות בלבד. בדרך כלל אחת מהן נמצאת במעמקי החלל או עמוק באדמה, ולכן המכשיר פוסל אותה בלי מאמץ.</p>
+    <p>זה נקרא טרילטרציה, מדידה לפי מרחקים. היא אינה טריאנגולציה, שמודדת זוויות. במערכות לוויינים אין זוויות בכלל, רק זמנים.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <figure class="diagram">
+    <svg viewBox="0 0 520 300" role="img" aria-label="שלושה מעגלים סביב שלושה לוויינים. שני המעגלים הראשונים נחתכים בשתי נקודות, והמעגל השלישי עובר רק באחת מהן" preserveAspectRatio="xMidYMid meet">
+    <text x="500" y="22" class="diagram__label diagram__label--strong">כל מעגל נוסף מצמצם את מה שנותר</text>
+
+    <circle cx="195" cy="110" r="79" class="diagram__curve" fill="none"/>
+    <circle cx="325" cy="112" r="77.9" class="diagram__curve" fill="none"/>
+    <circle cx="262" cy="225" r="70" class="diagram__curve" fill="none"/>
+
+    <circle cx="195" cy="110" r="5" class="diagram__dot-fill"/>
+    <circle cx="325" cy="112" r="5" class="diagram__dot-fill"/>
+    <circle cx="262" cy="225" r="5" class="diagram__dot-fill"/>
+    <text x="195" y="98" class="diagram__axis-label">לוויין 1</text>
+    <text x="325" y="100" class="diagram__axis-label">לוויין 2</text>
+    <text x="262" y="247" class="diagram__axis-label">לוויין 3</text>
+
+    <circle cx="260" cy="67" r="6" class="diagram__curve" fill="none"/>
+    <text x="352" y="62" class="diagram__axis-label">נפסל</text>
+
+    <circle cx="260" cy="155" r="7" class="diagram__dot-fill"/>
+    <text x="178" y="146" class="diagram__axis-label">כאן אתה</text>
+    </svg>
+    <figcaption>שלושה מעגלים בחתך דו-ממדי, שהרדיוס של כל אחד מהם הוא הזמן שנמדד כפול מהירות האור. שני הראשונים נחתכים בשתי נקודות, והמעגל השלישי פוסל את העליונה ומשאיר אחת.</figcaption>
+    </figure>
+
+
+
+
+
+
+  </section>
+  <section class="topic__section">
+    <h2 class="topic__heading">הלוויין הרביעי אינו בשביל המיקום</h2>
+    <p>במרחב יש שלושה נעלמים: אורך, רוחב וגובה. שלושה לוויינים אמורים היו להספיק. בפועל צריך ארבעה, והסיבה אינה גיאומטרית.</p>
+    <p>כל החישוב נשען על ההנחה שהמכשיר יודע את השעה המדויקת. הוא אינו יודע. שעון אטומי עולה עשרות אלפי דולרים, צורך חשמל ואינו נכנס לטלפון. השעון בטלפון הוא גביש קוורץ זול, והוא סוטה.</p>
+    <p>לכן יש נעלם רביעי, והוא אינו מיקום אלא הטעות בשעון המקומי. ארבע מדידות מארבעה לוויינים נותנות ארבע משוואות, וארבע משוואות פותרות ארבעה נעלמים. המכשיר מוצא בבת אחת את שלוש הקואורדינטות ואת השעה המדויקת.</p>
+    <p>זו הסיבה שמקלט GPS הוא גם אחד השעונים הטובים בעולם. רשתות חשמל, בורסות וממסרים סלולריים מסתמכים על GPS לא בשביל לדעת איפה הם, אלא בשביל לדעת מה השעה. כשהאות משובש, הדבר הראשון שנשבר הוא בדרך כלל הסנכרון ולא הניווט.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </section>
+  <section class="topic__section">
+    <h2 class="topic__heading">למה מיליארדית שנייה אינה מותרות</h2>
+    <p>האור עובר כמעט שלושים סנטימטר בננו-שנייה. מכאן אפשר לתרגם כל שגיאת זמן ישירות לשגיאה על הקרקע, ולראות למה הדרישות כאן נראות מוגזמות עד שמחשבים אותן.</p>
+    <p>שעון הקוורץ בטלפון סוטה בקלות באלפיות שנייה. אלפית שנייה היא שלוש מאות קילומטר. זו הסיבה שהנעלם הרביעי אינו הידור אלא תנאי לכך שהדבר יעבוד בכלל.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <figure class="datatable">
+      <table>
+        <caption>שגיאת זמן, ומה היא עושה על הקרקע</caption>
+        <thead>
+          <tr><th scope="col">שגיאה בשעון</th><th scope="col">שגיאה במרחק</th></tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">ננו-שנייה אחת</th><td>30 סנטימטר</td></tr>
+          <tr><th scope="row">מיקרו-שנייה אחת</th><td>300 מטר</td></tr>
+          <tr><th scope="row">מילישנייה אחת</th><td>300 קילומטר</td></tr>
+        </tbody>
+      </table>
+<figcaption>המספרים הם מהירות האור כפול הזמן, מעוגלים. הם מסבירים למה מערכת שלמה נבנתה סביב שעונים אטומיים, ולמה המכשיר הזול שבקצה חייב לפתור את השעון שלו במקום להניח אותו.</figcaption>    </figure>
+  </section>
+  <section class="topic__section">
+    <h2 class="topic__heading">השעון בלוויין אינו מסכים עם השעון שלך</h2>
+    <p>כאן נכנסת ההפתעה. שני אפקטים מתורת היחסות פועלים על השעון בלוויין, ושניהם בכיוונים הפוכים.</p>
+    <p>האפקט הראשון מגיע מתורת היחסות הפרטית. הלוויין נע במסלולו במהירות של כ-3,874 מטר לשנייה, ושעון נע מפגר ביחס לשעון נייח. התרומה כאן היא פיגור של כ-7.2 מיקרו-שניות ביום.</p>
+    <p>האפקט השני מגיע מתורת היחסות הכללית. הלוויין נמצא גבוה, בשדה כבידה חלש יותר מזה שעל פני כדור הארץ, ושעון בכבידה חלשה יותר מקדים. התרומה כאן היא הקדמה של כ-45.7 מיקרו-שניות ביום.</p>
+    <p>הכבידה מנצחת. הסכום הוא הקדמה של כ-38.5 מיקרו-שניות ביום. זה נשמע אפסי עד שמכפילים במהירות האור: בלי תיקון, השגיאה שהמערכת הייתה צוברת היא כ-11.5 קילומטר ביום. לא בחודש, ביום.</p>
+    <p>התיקון אינו נעשה בדיעבד בתוכנה בלבד. תדר השעון בלוויין מכוון מראש, עוד לפני השיגור, כך שבמסלול הוא ירוץ נכון. שאר ההפרש, שנובע מכך שהמסלול אינו מעגל מושלם, מתוקן בחישוב במקלט.</p>
+    <p>GPS הוא אחד המקומות הבודדים שבהם תורת היחסות אינה נושא לדיון פילוסופי אלא פרמטר הנדסי שמישהו הזין לפני השיגור.</p>
+
+    <div class="formula">
+      <p class="formula__label">שני התיקונים</p>
+      <p class="formula__line">
+        <span class="formula__name">מהירות, פיגור</span>
+        <span class="formula__expr ltr">Δt/t = −v² / 2c²</span>
+      </p>
+      <p class="formula__line">
+        <span class="formula__name">כבידה, הקדמה</span>
+        <span class="formula__expr ltr">Δt/t = (GM/c²) · (1/R⊕ − 1/r)</span>
+      </p>
+      <p class="formula__line">
+        <span class="formula__name">סכום ליום</span>
+        <span class="formula__expr ltr">−7.2 + 45.7 = +38.5 µs</span>
+      </p>
+      <p class="formula__legend">v היא מהירות הלוויין במסלולו, GM הוא הפרמטר הכבידתי של כדור הארץ, R⊕ רדיוס כדור הארץ ו-r הרדיוס המסלולי. המספרים חושבו כאן מהנוסחאות האלה ואינם מצוטטים. המסלול אינו מעגל מושלם ולכן התרומה האמיתית משתנה מעט לאורך ההקפה.</p>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <figure class="diagram">
+    <svg viewBox="0 0 520 300" role="img" aria-label="שלושה חצים על אותו ציר. החץ הראשון מראה פיגור של 7.2 מיקרו-שניות ביום בגלל המהירות, השני הקדמה של 45.7 בגלל הכבידה, והשלישי את הסכום, הקדמה של 38.5" preserveAspectRatio="xMidYMid meet">
+    <text x="500" y="24" class="diagram__label diagram__label--strong">שני אפקטים על אותו שעון, ביום אחד</text>
+
+    <text x="500" y="56" class="diagram__label">מהירות המסלול, 3,874 מטר לשנייה</text>
+    <line x1="180" y1="76" x2="141" y2="76" class="diagram__axis"/>
+    <polygon points="133,76 145,71 145,81" class="diagram__dot-fill"/>
+    <text x="88" y="96" class="diagram__axis-label">פיגור, 7.2 מיקרו-שניות</text>
+
+    <text x="500" y="116" class="diagram__label">כבידה חלשה יותר בגובה 20,200 קילומטר</text>
+    <line x1="180" y1="136" x2="446" y2="136" class="diagram__axis"/>
+    <polygon points="454,136 442,131 442,141" class="diagram__dot-fill"/>
+    <text x="320" y="156" class="diagram__axis-label">הקדמה, 45.7 מיקרו-שניות</text>
+
+    <text x="500" y="186" class="diagram__label diagram__label--strong">הסכום, וזה מה שמתקנים</text>
+    <line x1="180" y1="206" x2="403" y2="206" class="diagram__axis"/>
+    <polygon points="411,206 399,201 399,211" class="diagram__dot-fill"/>
+    <text x="300" y="226" class="diagram__axis-label">הקדמה, 38.5 מיקרו-שניות</text>
+
+    <line x1="40" y1="250" x2="480" y2="250" class="diagram__axis"/>
+    <line x1="180" y1="242" x2="180" y2="258" class="diagram__axis"/>
+    <text x="180" y="272" class="diagram__axis-label">0</text>
+
+    <text x="500" y="292" class="diagram__label">38.5 מיקרו-שניות כפול מהירות האור: כ-11.5 קילומטר ביום</text>
+    </svg>
+    <figcaption>שני אפקטים על אותו ציר, בכיוונים הפוכים. הגובה שוקל יותר מהמהירות, ולכן השעון בלוויין מקדים.</figcaption>
+    </figure>
+
+
+
+
+
+  </section>
+  <section class="topic__section">
+    <h2 class="topic__heading">למה המיקום קופץ בין מגדלים</h2>
+    <p>האות שמגיע מגובה 20 אלף קילומטר חלש מאוד. ההספק שמגיע לאנטנה בטלפון נמוך מרעש הרקע, והמקלט שולף אותו משם בעזרת קוד ידוע מראש שהוא מחפש בתוך הרעש. זו הסיבה שחניון תת-קרקעי מנתק אותך, ושבתוך בניין נדרשות לעיתים דקות עד לאיתור.</p>
+    <p>בעיר יש בעיה שונה וגרועה יותר. האות אינו נחסם אלא מוחזר מקיר זכוכית או מחזית אבן, ואז הוא מגיע למכשיר בדרך ארוכה יותר מהישירה. המכשיר מתרגם זמן למרחק, ולכן הוא מקבל מרחק גדול מדי מהלוויין הזה. התוצאה היא מיקום שקופץ עשרות מטרים בין הצד הנכון של הרחוב לצד השני. זה נקרא ריבוי מסלולים, ובניגוד לאות חלש הוא אינו מתריע על עצמו: המכשיר בטוח שהוא קלט אות תקין.</p>
+    <p>לכן הטלפון כמעט אף פעם אינו משתמש ב-GPS לבד. הוא מצליב מיקום משדרים סלולריים, ממסד נתונים של רשתות Wi-Fi שמופה מראש, ומחיישני התנועה שבו. בעיר, במקרים רבים, לא ה-GPS הוא שנתן את התשובה.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </section>
+  <section class="topic__section">
+    <h2 class="topic__heading">אותו עיקרון, מערכות אחרות</h2>
+    <p>GPS הוא אמריקאי, והתכנון הבסיסי שלו דורש 24 לוויינים פעילים בשישה מישורי מסלול. לצידו פועלות מערכות שבנויות על אותו עיקרון בדיוק: GLONASS הרוסית, Galileo האירופית ו-BeiDou הסינית. מקלט מודרני בטלפון מאזין לכולן יחד, ולכן הוא רואה הרבה יותר לוויינים ממה שמערכת אחת מספקת, וזה עוזר במיוחד בעיר שבה חלק מהשמיים חסום.</p>
+    <p>יש גם שיטה שמשיגה דיוק של סנטימטרים, ושמה RTK. היא אינה מערכת לוויינים חדשה אלא תיקון מקומי: תחנה קבועה על הקרקע, שמיקומה המדויק ידוע, מודדת את אותם לוויינים, מחשבת כמה היא טועה כרגע ומשדרת את התיקון למקלט שלידה. רוב מקורות השגיאה, ובראשם ההאטה של האות ביונוספירה, משותפים לשני המקלטים כשהם קרובים זה לזה, ולכן התיקון מבטל אותם. זה מה שמשמש מדידות קרקע וחקלאות מדייקת.</p>
+    <p>השעונים עצמם הם נושא בפני עצמו. אם מעניין אתכם למה שעון אטומי מדויק יותר מכל דבר אחר שבנינו, יש על כך עמוד נפרד כאן בעיתון.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </section>
+
+
+
+
+
+
+
+
+
+
+
+  <section class="sim" id="sim">
+  <h2 class="topic__heading">הזיזו את הזמן, וראו את המרחק</h2>
+  <p class="sim__intro">המחוון הראשון הוא זמן ההשהיה שהמכשיר מדד, והוא מתורגם ישירות למרחק מהלוויין. המחוון השני הוא הטעות שנותרה בשעון המקלט אחרי הפתרון, והיא מתורגמת לשגיאה על הקרקע. שימו לב כמה מהר שגיאת זמן זעירה הופכת למטרים.</p>
+
+  <div class="sim__controls">
+  <label class="sim__control">
+  <span class="sim__control-head">
+  <span>זמן ההשהיה שנמדד</span>
+  <output id="gp-out-delay" class="ltr"></output>
+  </span>
+  <input type="range" id="gp-in-delay" min="60" max="90" step="0.1" value="67.3">
+  <span class="sim__control-hint">באלפיות שנייה. מעל הראש כ-67, באופק כ-86</span>
+  </label>
+  <label class="sim__control">
+  <span class="sim__control-head">
+  <span>טעות שנותרה בשעון המקלט</span>
+  <output id="gp-out-clock" class="ltr"></output>
+  </span>
+  <input type="range" id="gp-in-clock" min="0" max="1000" step="10" value="100">
+  <span class="sim__control-hint">בננו-שניות. האור עובר כ-30 סנטימטר בכל אחת</span>
+  </label>
+  </div>
+
+  <div class="gene-switch__stage" id="gp-stage">
+  <svg viewBox="0 0 520 150" role="img" aria-label="ציר שגיאה באורך שלוש מאות מטרים. העמודה מראה את השגיאה על הקרקע שנובעת מטעות השעון שנבחרה">
+  <text x="500" y="26" class="diagram__label diagram__label--strong">השגיאה על הקרקע</text>
+  <text x="200" y="52" class="diagram__axis-label">טעות הזמן, מתורגמת למטרים</text>
+  <line x1="40" y1="110" x2="480" y2="110" class="diagram__axis"/>
+  <rect id="gp-bar-err" x="470" y="78" width="0" height="26" class="wm-level"/>
+  <text x="470" y="134" class="diagram__axis-label">0</text>
+  <text x="255" y="134" class="diagram__axis-label">150 מטר</text>
+  <text x="45" y="134" class="diagram__axis-label">300 מטר</text>
+  </svg>
+  </div>
+
+  <div class="sim__readout sim__readout--three">
+  <div class="sim__stat sim__stat--strong">
+  <span class="sim__stat-label">המרחק ללוויין</span>
+  <span class="sim__stat-value ltr" id="gp-out-dist"></span>
+  </div>
+  <div class="sim__stat">
+  <span class="sim__stat-label">השגיאה על הקרקע</span>
+  <span class="sim__stat-value ltr" id="gp-out-err"></span>
+  </div>
+  <div class="sim__stat">
+  <span class="sim__stat-label">כמה עובר האור בננו-שנייה</span>
+  <span class="sim__stat-value ltr" id="gp-out-ns"></span>
+  </div>
+  </div>
+
+  <p class="sim__note" id="gp-note"></p>
+  <p class="sim__note euv-caveat">החישוב כאן הוא מהירות האור כפול זמן, וזה בדיוק מה שקורה בשלב הראשון במקלט אמיתי. מקלט אמיתי מוסיף עליו תיקונים שאינם כאן, ובראשם ההאטה של האות ביונוספירה ובטרופוספירה, מסלול הלוויין שאינו בדיוק זה ששודר, וריבוי מסלולים. לכן המספרים כאן מראים את הקשר הנכון בין זמן למרחק, ולא את הדיוק הסופי של מכשיר בשטח.</p>
+  </section>
+
+
+  <section class="quiz" id="quiz">
+    <h2 class="topic__heading">בדקו את עצמכם</h2>
+    <form id="quiz-form">
+      <fieldset class="quiz__q" data-answer="1">
+        <legend class="quiz__legend"><span class="quiz__num">1</span>מה הלוויין משדר?</legend>
+        <label class="quiz__opt">
+          <input type="radio" name="q0" value="0">
+          <span>את המיקום של המכשיר שקלט אותו</span>
+        </label>
+        <label class="quiz__opt">
+          <input type="radio" name="q0" value="1">
+          <span>מי הוא, ומה השעה אצלו</span>
+        </label>
+        <label class="quiz__opt">
+          <input type="radio" name="q0" value="2">
+          <span>בקשה למכשיר לשדר את מיקומו חזרה</span>
+        </label>
+        <label class="quiz__opt">
+          <input type="radio" name="q0" value="3">
+          <span>מפה של האזור שמתחתיו</span>
+        </label>
+        <p class="quiz__why">הלוויין משדר זהות וחותמת זמן, ולצידן את נתוני מסלולו. את המיקום מחשב המכשיר, והלוויין אינו קולט ממנו דבר.</p>
+      </fieldset>
+      <fieldset class="quiz__q" data-answer="2">
+        <legend class="quiz__legend"><span class="quiz__num">2</span>למה צריך לוויין רביעי אם במרחב יש רק שלושה נעלמים?</legend>
+        <label class="quiz__opt">
+          <input type="radio" name="q1" value="0">
+          <span>כדי לשפר את הדיוק בכך שממצעים ארבע מדידות</span>
+        </label>
+        <label class="quiz__opt">
+          <input type="radio" name="q1" value="1">
+          <span>כי הלוויין הרביעי משמש גיבוי אם אחד מהשלושה נופל</span>
+        </label>
+        <label class="quiz__opt">
+          <input type="radio" name="q1" value="2">
+          <span>כי יש נעלם רביעי, הטעות בשעון של המכשיר</span>
+        </label>
+        <label class="quiz__opt">
+          <input type="radio" name="q1" value="3">
+          <span>כי שלוש ספירות אינן נחתכות בנקודה</span>
+        </label>
+        <p class="quiz__why">במכשיר אין שעון אטומי, ולכן השעה המקומית אינה ידועה אלא נעלמת. ארבע משוואות פותרות שלוש קואורדינטות ואת הטעות בשעון יחד.</p>
+      </fieldset>
+      <fieldset class="quiz__q" data-answer="1">
+        <legend class="quiz__legend"><span class="quiz__num">3</span>שעון המקלט טועה במיקרו-שנייה אחת. כמה זה על הקרקע?</legend>
+        <label class="quiz__opt">
+          <input type="radio" name="q2" value="0">
+          <span>30 סנטימטר</span>
+        </label>
+        <label class="quiz__opt">
+          <input type="radio" name="q2" value="1">
+          <span>300 מטר</span>
+        </label>
+        <label class="quiz__opt">
+          <input type="radio" name="q2" value="2">
+          <span>3 מטר</span>
+        </label>
+        <label class="quiz__opt">
+          <input type="radio" name="q2" value="3">
+          <span>300 קילומטר</span>
+        </label>
+        <p class="quiz__why">האור עובר כ-30 סנטימטר בננו-שנייה, ומיקרו-שנייה היא אלף ננו-שניות. התוצאה היא כ-300 מטר.</p>
+      </fieldset>
+      <fieldset class="quiz__q" data-answer="1">
+        <legend class="quiz__legend"><span class="quiz__num">4</span>שני אפקטי היחסות פועלים על השעון בלוויין. מי מהם גדול יותר?</legend>
+        <label class="quiz__opt">
+          <input type="radio" name="q3" value="0">
+          <span>המהירות, ולכן השעון מפגר</span>
+        </label>
+        <label class="quiz__opt">
+          <input type="radio" name="q3" value="1">
+          <span>הכבידה, ולכן השעון מקדים</span>
+        </label>
+        <label class="quiz__opt">
+          <input type="radio" name="q3" value="2">
+          <span>הם שווים ומתבטלים</span>
+        </label>
+        <label class="quiz__opt">
+          <input type="radio" name="q3" value="3">
+          <span>המהירות, ולכן השעון מקדים</span>
+        </label>
+        <p class="quiz__why">המהירות גורמת לפיגור של כ-7.2 מיקרו-שניות ביום, והכבידה החלשה יותר בגובה גורמת להקדמה של כ-45.7. הסכום הוא הקדמה של כ-38.5 מיקרו-שניות ביום.</p>
+      </fieldset>
+      <fieldset class="quiz__q" data-answer="1">
+        <legend class="quiz__legend"><span class="quiz__num">5</span>בין מגדלים בעיר המיקום קופץ. מה הסיבה הנפוצה?</legend>
+        <label class="quiz__opt">
+          <input type="radio" name="q4" value="0">
+          <span>הלוויינים רחוקים יותר מבניין גבוה</span>
+        </label>
+        <label class="quiz__opt">
+          <input type="radio" name="q4" value="1">
+          <span>האות מוחזר מקירות ומגיע בדרך ארוכה מהישירה</span>
+        </label>
+        <label class="quiz__opt">
+          <input type="radio" name="q4" value="2">
+          <span>השעון בלוויין מושפע מהבניינים</span>
+        </label>
+        <label class="quiz__opt">
+          <input type="radio" name="q4" value="3">
+          <span>המכשיר מאזין לפחות מארבעה לוויינים</span>
+        </label>
+        <p class="quiz__why">ריבוי מסלולים. אות שהוחזר עבר דרך ארוכה יותר, המכשיר מתרגם את הזמן הארוך למרחק גדול יותר, והמיקום זז. האות נראה תקין לגמרי, ולכן זו שגיאה שאינה מתריעה על עצמה.</p>
+      </fieldset>
+      <div class="quiz__actions">
+        <button type="button" id="quiz-check" class="quiz__btn">בדקו את התשובות</button>
+        <button type="button" id="quiz-reset" class="quiz__btn quiz__btn--ghost">נקו</button>
+        <p class="quiz__score" id="quiz-score" role="status"></p>
+      </div>
+    </form>
+  </section>
+
+  <section class="takeaways">
+    <h2 class="topic__heading">מה חשוב לזכור</h2>
+    <ul class="takeaways__list">
+      <li>הלוויין אינו יודע איפה אתה. הוא משדר מי הוא ומה השעה, והמכשיר מחשב.</li>
+      <li>מרחק הוא מהירות האור כפול זמן ההשהיה. זה כל החישוב.</li>
+      <li>לוויין אחד נותן ספירה, שניים מעגל, שלושה שתי נקודות, וארבעה פותרים גם את השעון של המכשיר.</li>
+      <li>הנעלם הרביעי הוא הזמן, לא המיקום. לכן מקלט GPS הוא גם שעון מצוין.</li>
+      <li>ננו-שנייה היא שלושים סנטימטר. מיקרו-שנייה היא שלוש מאות מטר.</li>
+      <li>המהירות מפגרת את השעון בלוויין בכ-7.2 מיקרו-שניות ביום, והכבידה מקדימה אותו בכ-45.7. הכבידה מנצחת, והסכום הוא כ-11.5 קילומטר שגיאה ביום בלי תיקון.</li>
+      <li>בעיר הבעיה אינה חסימה אלא החזרה. אות שהוחזר נראה תקין ומזיז את המיקום.</li>
+      <li>הטלפון מצליב GPS עם סלולר, Wi-Fi וחיישני תנועה. לא תמיד ה-GPS נתן את התשובה.</li>
+    </ul>
+  </section>
+
+</article>
+
+<script>
+/* ===== שעון: רגישות לשדה מגנטי ===== */
+(function () {
+  var stage = document.getElementById('ck-stage');
+  if (!stage) return;
+
+  var RATIO = 1836;
+  var inField = document.getElementById('ck-in-field');
+  var outField = document.getElementById('ck-out-field');
+  var outE = document.getElementById('ck-out-e');
+  var outN = document.getElementById('ck-out-n');
+  var barE = document.getElementById('ck-bar-e');
+  var barN = document.getElementById('ck-bar-n');
+  var note = document.getElementById('ck-note');
+
+  function fmt(hz) {
+    if (hz >= 1000) return (hz / 1000).toFixed(1) + ' קילו-הרץ';
+    if (hz >= 1) return hz.toFixed(1) + ' הרץ';
+    if (hz >= 0.001) return (hz * 1000).toFixed(1) + ' מילי-הרץ';
+    return (hz * 1e6).toFixed(1) + ' מיקרו-הרץ';
+  }
+
+  function render() {
+    var mG = Number(inField.value);
+    var shiftE = 1.4e6 * (mG / 1000);
+    var shiftN = shiftE / RATIO;
+    var frac = mG / 100;
+
+    outField.textContent = mG + ' mG';
+    outE.textContent = fmt(shiftE);
+    outN.textContent = fmt(shiftN);
+
+    var hE = Math.round(120 * frac);
+    var hN = Math.round(120 * frac);
+    barE.setAttribute('height', hE);
+    barE.setAttribute('y', 150 - hE);
+    barN.setAttribute('height', hN);
+    barN.setAttribute('y', 150 - hN);
+
+    if (mG === 0) {
+      note.textContent = 'בלי שדה חיצוני שני המעברים יושבים בדיוק על התדר שלהם. זה המצב שכל שעון מנסה להתקרב אליו, ולשם הולך רוב המאמץ ההנדסי.';
+    } else {
+      note.textContent = 'שתי העמודות נראות שוות גובה רק מפני שהעמודה הגרעינית מצוירת בהגדלה של פי 1,836. בסקאלה אמיתית היא הייתה דקה מקו.';
+    }
+  }
+
+  inField.addEventListener('input', render);
+  render();
+})();
+</script>
+
+<script>
+/* ===== פחמן 14: גיל, יחס, וגבול הזיהוי ===== */
+(function () {
+  var stage = document.getElementById('c14-stage');
+  if (!stage) return;
+
+  var HALF = 5730;
+  var MAXT = 60000;
+  var LIMIT = 51570;
+  var X0 = 470, X1 = 40, Y0 = 40, Y1 = 170;
+
+  var inAge = document.getElementById('c14-in-age');
+  var outAge = document.getElementById('c14-out-age');
+  var outFrac = document.getElementById('c14-out-frac');
+  var outHalves = document.getElementById('c14-out-halves');
+  var outSlope = document.getElementById('c14-out-slope');
+  var curve = document.getElementById('c14-curve');
+  var marker = document.getElementById('c14-marker');
+  var limit = document.getElementById('c14-limit');
+  var note = document.getElementById('c14-note');
+
+  function frac(t) { return Math.pow(0.5, t / HALF); }
+  function px(t) { return X0 - (X0 - X1) * (t / MAXT); }
+  function py(f) { return Y1 - (Y1 - Y0) * f; }
+
+  var pts = [];
+  for (var i = 0; i <= 120; i++) {
+    var t = (i / 120) * MAXT;
+    pts.push(px(t).toFixed(1) + ',' + py(frac(t)).toFixed(1));
+  }
+  curve.setAttribute('points', pts.join(' '));
+  limit.setAttribute('x1', px(LIMIT).toFixed(1));
+  limit.setAttribute('x2', px(LIMIT).toFixed(1));
+
+  function render() {
+    var t = Number(inAge.value);
+    var f = frac(t);
+    var drop = (f - frac(t + 100)) * 100;
+
+    outAge.textContent = t.toLocaleString('en-US') + ' שנה';
+    outFrac.textContent = (f * 100).toFixed(2) + '%';
+    outHalves.textContent = (t / HALF).toFixed(2);
+    outSlope.textContent = drop.toFixed(3) + ' נקודות אחוז';
+    marker.setAttribute('cx', px(t).toFixed(1));
+    marker.setAttribute('cy', py(f).toFixed(1));
+
+    if (t > LIMIT) {
+      note.textContent = 'מעבר לגבול. נשאר פחות מ-0.2 אחוזים, וזיהום זעיר בפחמן מודרני כבר גדול מהאות עצמו. בטווח הזה המדידה אינה אומרת כמה הדגימה ישנה, רק שהיא ישנה מדי.';
+    } else if (drop < 0.2) {
+      note.textContent = 'מאה שנות הפרש אמיתי כבר כמעט אינן נראות במדידה. זו הסיבה שטווח השגיאה שמדווח לצד התאריך גדל עם הגיל, הרבה לפני שהשיטה נעצרת.';
+    } else {
+      note.textContent = 'בטווח הזה מאה שנות הפרש עדיין מזיזות את היחס מספיק כדי למדוד אותן. זה הטווח שבו תיארוך רדיופחמני מדויק יחסית, והוא מכסה את רוב הארכיאולוגיה ההיסטורית.';
+    }
+  }
+
+  inAge.addEventListener('input', render);
+  render();
+})();
+</script>
+
+<script>
+/* ===== GPS: זמן, מרחק, ושגיאת שעון ===== */
+(function () {
+  var stage = document.getElementById('gp-stage');
+  if (!stage) return;
+
+  var C = 299792458;
+  var inDelay = document.getElementById('gp-in-delay');
+  var inClock = document.getElementById('gp-in-clock');
+  var outDelay = document.getElementById('gp-out-delay');
+  var outClock = document.getElementById('gp-out-clock');
+  var outDist = document.getElementById('gp-out-dist');
+  var outErr = document.getElementById('gp-out-err');
+  var outNs = document.getElementById('gp-out-ns');
+  var bar = document.getElementById('gp-bar-err');
+  var note = document.getElementById('gp-note');
+
+  function render() {
+    var ms = Number(inDelay.value);
+    var ns = Number(inClock.value);
+
+    var distKm = C * (ms / 1000) / 1000;
+    var errM = C * (ns / 1e9);
+
+    outDelay.textContent = ms.toFixed(1) + ' ms';
+    outClock.textContent = ns + ' ns';
+    outDist.textContent = Math.round(distKm).toLocaleString('en-US') + ' ק"מ';
+    outErr.textContent = errM.toFixed(1) + ' מטר';
+    outNs.textContent = (C / 1e9).toFixed(2) + ' מטר';
+
+    var frac = Math.min(errM / 300, 1);
+    var w = Math.round(430 * frac);
+    bar.setAttribute('width', String(w));
+    bar.setAttribute('x', String(470 - w));
+
+    var msg;
+    if (errM < 1) {
+      msg = 'שגיאה מתחת למטר. כדי להגיע לכאן צריך שעון שפתור לכמה ננו-שניות, וזה בדיוק מה שהלוויין הרביעי עושה.';
+    } else if (errM < 30) {
+      msg = 'זה הסדר גודל שמקלט בטלפון מגיע אליו ביום בהיר בשטח פתוח. מספיק כדי לדעת באיזה רחוב אתה, לא תמיד באיזה צד שלו.';
+    } else if (errM < 150) {
+      msg = 'כאן כבר אי אפשר לדעת באיזה בניין מדובר. שימו לב שמדובר בעשרות ננו-שניות בלבד.';
+    } else {
+      msg = 'מיקרו-שנייה אחת היא כבר כ-300 מטר. זו הסיבה שהמערכת כולה נבנתה סביב שעונים אטומיים ולא סביב שעוני קוורץ.';
+    }
+    note.textContent = msg;
+  }
+
+  inDelay.addEventListener('input', render);
+  inClock.addEventListener('input', render);
+  render();
+})();
+</script>
+
+<script>
+/* ===== סונאר של עטלף: תדר, מרחק, וטווח ===== */
+(function () {
+  var stage = document.getElementById('bs-stage');
+  if (!stage) return;
+
+  var C = 343;
+  var X0 = 470, X1 = 40, DSPAN = 60, BUDGET = 60;
+
+  var inFreq = document.getElementById('bs-in-freq');
+  var inDist = document.getElementById('bs-in-dist');
+  var outFreq = document.getElementById('bs-out-freq');
+  var outDist = document.getElementById('bs-out-dist');
+  var outTime = document.getElementById('bs-out-time');
+  var outLambda = document.getElementById('bs-out-lambda');
+  var outRange = document.getElementById('bs-out-range');
+  var bar = document.getElementById('bs-bar-range');
+  var marker = document.getElementById('bs-marker');
+  var note = document.getElementById('bs-note');
+
+  /* ISO 9613-1, 20 מעלות צלזיוס, לחות יחסית 50 אחוזים, לחץ אטמוספרי תקני */
+  function alphaDbPerM(fHz) {
+    var T = 293.15, T0 = 293.15, T01 = 273.16;
+    var pa = 101325, pr = 101325, hr = 50;
+    var psat = pr * Math.pow(10, -6.8346 * Math.pow(T01 / T, 1.261) + 4.6151);
+    var h = hr * (psat / pa);
+    var frO = (pa / pr) * (24 + 4.04e4 * h * (0.02 + h) / (0.391 + h));
+    var frN = (pa / pr) * Math.pow(T / T0, -0.5) * (9 + 280 * h * Math.exp(-4.170 * (Math.pow(T / T0, -1 / 3) - 1)));
+    var f2 = fHz * fHz;
+    return 8.686 * f2 * (1.84e-11 * (pr / pa) * Math.pow(T / T0, 0.5)
+      + Math.pow(T / T0, -2.5) * (0.01275 * Math.exp(-2239.1 / T) / (frO + f2 / frO)
+        + 0.1068 * Math.exp(-3352.0 / T) / (frN + f2 / frN)));
+  }
+
+  function px(d) { return X0 - (X0 - X1) * Math.min(d, DSPAN) / DSPAN; }
+
+  function render() {
+    var fkHz = Number(inFreq.value);
+    var d = Number(inDist.value);
+    var t = 2 * d / C;
+    var lambda = C / (fkHz * 1000);
+    var dmax = (BUDGET / 2) / alphaDbPerM(fkHz * 1000);
+
+    outFreq.textContent = fkHz + ' kHz';
+    outDist.textContent = d.toFixed(1) + ' m';
+    outTime.textContent = (t * 1000).toFixed(2) + ' ms';
+    outLambda.textContent = (lambda * 1000).toFixed(2) + ' mm';
+    outRange.textContent = dmax.toFixed(1) + ' m';
+
+    bar.setAttribute('x', px(dmax).toFixed(1));
+    bar.setAttribute('width', (X0 - px(dmax)).toFixed(1));
+    marker.setAttribute('x1', px(d).toFixed(1));
+    marker.setAttribute('x2', px(d).toFixed(1));
+
+    if (d > dmax) {
+      note.textContent = 'בתדר הזה הגל נבלע באוויר לפני שהוא מגיע חזרה. המטרה בתוך הטווח של תדר נמוך יותר, לא של זה.';
+    } else if (lambda * 1000 > 7) {
+      note.textContent = 'אורך הגל גדול מיתוש בגודל שבעה מילימטרים. הטווח נוח, אבל מטרה קטנה כזאת כמעט לא מחזירה הד.';
+    } else {
+      note.textContent = 'אורך הגל קטן מיתוש, ולכן הוא מחזיר הד ברור. שימו לב כמה הטווח המרבי התכווץ בדרך לכאן.';
+    }
+  }
+
+  inFreq.addEventListener('input', render);
+  inDist.addEventListener('input', render);
+  render();
+})();
+</script>
+
+<script>
+/* ===== סימן מים: ההתנגשות בין איכות לשרידות ===== */
+(function () {
+  var stage = document.getElementById('wm-stage');
+  if (!stage) return;
+
+  var inStrength = document.getElementById('wm-in-strength');
+  var inAttack = document.getElementById('wm-in-attack');
+  var outStrength = document.getElementById('wm-out-strength');
+  var outAttack = document.getElementById('wm-out-attack');
+  var outDetect = document.getElementById('wm-out-detect');
+  var outVisible = document.getElementById('wm-out-visible');
+  var outAttackName = document.getElementById('wm-out-attack-name');
+  var level = document.getElementById('wm-level');
+  var noise = document.getElementById('wm-noise');
+  var note = document.getElementById('wm-note');
+
+  var ATTACKS = [
+    'הקובץ כפי שנוצר',
+    'שמירה מחדש באיכות גבוהה',
+    'שליחה ברשת חברתית',
+    'הקטנה לרוחב חצי',
+    'הקטנה ודחיסה חוזרת',
+    'חיתוך של שליש מהתמונה',
+    'צילום מסך',
+    'צילום מסך והעלאה מחדש',
+    'צילום מסך, הקטנה ודחיסה',
+    'צילום של המסך בטלפון',
+    'ציור מחדש של חלק מהתמונה'
+  ];
+
+  /* תבנית קבועה, כדי שהרעש לא יקפוץ בכל הזזה של המחוון */
+  var SPECKS = [];
+  var seed = 7;
+  for (var i = 0; i < 90; i++) {
+    seed = (seed * 1103515245 + 12345) % 2147483648;
+    var x = 288 + (seed % 106);
+    seed = (seed * 1103515245 + 12345) % 2147483648;
+    var y = 22 + (seed % 92);
+    SPECKS.push([x, y]);
+  }
+  for (var j = 0; j < SPECKS.length; j++) {
+    var c = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    c.setAttribute('cx', SPECKS[j][0]);
+    c.setAttribute('cy', SPECKS[j][1]);
+    c.setAttribute('r', '1.5');
+    noise.appendChild(c);
+  }
+
+  function render() {
+    var s = parseInt(inStrength.value, 10);
+    var a = parseInt(inAttack.value, 10);
+
+    /* מודל ממחיש: הסימן נקרא כשהוא גדול ביחס למה שהעיבוד מחק */
+    var ratio = s / (1 + 1.45 * a);
+    var detect = 100 * (ratio * ratio) / (ratio * ratio + 1);
+    detect = Math.max(2, Math.min(99, detect));
+
+    outStrength.textContent = '±' + s + ' רמות';
+    outAttack.textContent = ATTACKS[a];
+    outDetect.textContent = detect.toFixed(0) + '%';
+    outAttackName.textContent = ATTACKS[a];
+
+    outVisible.textContent = s <= 3 ? 'לא' : (s <= 7 ? 'בקושי' : 'כן, הקובץ מתלכלך');
+
+    var h = 96 * detect / 100;
+    level.setAttribute('y', 116 - h);
+    level.setAttribute('height', h);
+    noise.style.opacity = Math.min(0.85, s / 14).toFixed(2);
+
+    if (s <= 3 && detect < 40) {
+      note.textContent = 'הטמעה עדינה שורדת קובץ שכמעט לא נגעו בו, ונעלמת ברגע שמישהו שלח אותו הלאה. זה המצב שבו המערכת נראית מצוינת במעבדה וחסרת ערך ברשת.';
+    } else if (s >= 9 && detect > 75) {
+      note.textContent = 'הסימן עמיד, אבל שימו לב לריבוע הימני. כדי להגיע לכאן שילמתם באיכות, וזה בדיוק מה שמי שמוכר מודל ליצירת תמונות אינו מוכן לשלם.';
+    } else if (detect > 75) {
+      note.textContent = 'זה אזור העבודה שמערכות אמיתיות מכוונות אליו: סימן שאינו מורגש ושורד את העיבוד השכיח. הוא לא שורד את כל העיבודים.';
+    } else if (a >= 9) {
+      note.textContent = 'בקצה הזה אין מה לשפר בהטמעה. ציור מחדש של אזור מייצר פיקסלים חדשים שמעולם לא נשאו סימן, וצילום של מסך בטלפון מעביר את התמונה דרך עדשה.';
+    } else {
+      note.textContent = 'כאן נמצא הגבול. העלאת העוצמה תעזור לזיהוי ותפגע באיכות, והורדתה תעשה את ההפך. אין הגדרה שמנצחת בשני הצירים.';
+    }
+  }
+
+  inStrength.addEventListener('input', render);
+  inAttack.addEventListener('input', render);
+  render();
+})();
+</script>
+
+<script>
+/* ===== מדמה המתג הגנטי: אותו רצף, תאים שונים, תוצאה הפוכה ===== */
+(function () {
+  var stage = document.getElementById('gene-switch-stage');
+  if (!stage) return;
+
+  var boxes = Array.prototype.slice.call(document.querySelectorAll('.gene-switch__box'));
+  var state = document.getElementById('gs-state');
+  var siteState = document.getElementById('gs-site-state');
+  var note = document.getElementById('gs-note');
+  var site = document.getElementById('gs-site');
+  var gene = document.getElementById('gs-gene');
+  var myb = document.getElementById('gs-myb');
+  var cbp = document.getElementById('gs-cbp');
+  var mybLabel = document.getElementById('gs-myb-label');
+  var cbpLabel = document.getElementById('gs-cbp-label');
+
+  var ON = 'diagram__dot diagram__dot--strong';
+  var OFF = 'diagram__dot';
+
+  function on(key) {
+    for (var i = 0; i < boxes.length; i++) {
+      if (boxes[i].getAttribute('data-key') === key) return boxes[i].checked;
+    }
+    return false;
+  }
+
+  function render() {
+    var mutation = on('mutation'), hasMyb = on('myb'), hasCbp = on('cbp');
+    var bound = mutation && hasMyb;
+    var enhancer = bound && hasCbp;
+
+    site.setAttribute('class', mutation ? ON : OFF);
+    gene.setAttribute('class', enhancer ? ON : OFF);
+    myb.style.opacity = hasMyb ? '1' : '0.18';
+    mybLabel.style.opacity = hasMyb ? '1' : '0.18';
+    cbp.style.opacity = hasCbp ? '1' : '0.18';
+    cbpLabel.style.opacity = hasCbp ? '1' : '0.18';
+    myb.setAttribute('class', bound ? ON : OFF);
+    cbp.setAttribute('class', enhancer ? ON : OFF);
+
+    if (enhancer) {
+      state.textContent = 'דלוק ללא הפסקה';
+      siteState.textContent = 'אנהנסר חזק';
+      note.textContent = 'שלושת התנאים התקיימו. MYB נקשר לאתר שהמוטציה יצרה, CBP סימן את האזור כפעיל, והגן נדלק בלי בקרה. אף חלבון לא השתנה, רק ההוראה מתי לייצר אותו.';
+    } else if (bound) {
+      state.textContent = 'כבוי';
+      siteState.textContent = 'אתר קשירה תפוס, בלי הגברה';
+      note.textContent = 'MYB נקשר, אבל בלי CBP האזור אינו מסומן כפעיל ואינו הופך לאנהנסר. אתר קשירה בודד אינו מתג.';
+    } else if (mutation && !hasMyb) {
+      state.textContent = 'כבוי';
+      siteState.textContent = 'אתר קשירה קיים וריק';
+      note.textContent = 'זה בדיוק המצב בתא שאינו מייצר MYB. המוטציה נמצאת ברצף, זהה אות באות, ואין מפתח שנכנס למנעול. אותו DNA בדיוק, תוצאה אחרת.';
+    } else if (!mutation && hasMyb) {
+      state.textContent = 'כבוי';
+      siteState.textContent = 'אין אתר קשירה';
+      note.textContent = 'MYB נמצא בתא, אבל ברצף התקין אין לו למה להיקשר כאן. גורם שעתוק אינו יכול להפעיל אתר שאינו קיים.';
+    } else {
+      state.textContent = 'כבוי';
+      siteState.textContent = 'רצף תקין, שקט';
+      note.textContent = 'זה המצב התקין. האזור הזה לפני הגן אינו מקודד דבר, ובלי המוטציה הוא גם אינו מפעיל דבר.';
+    }
+  }
+
+  boxes.forEach(function (b) { b.addEventListener('change', render); });
+  render();
+})();
+</script>
+
+<script>
+/* ===== מדמה כפל מרוכב: הגדלים מוכפלים והזוויות מתחברות ===== */
+(function () {
+  var svg = document.getElementById('cx-svg');
+  if (!svg) return;
+
+  var CX = 320, CY = 170, SCALE = 26;   // 26 pixels to one unit on both axes
+  var AX = 3, AY = 2;                   // the fixed operand, 3 + 2i
+
+  var inMag = document.getElementById('in-mag');
+  var inAng = document.getElementById('in-ang');
+
+  var grid = document.getElementById('cx-grid');
+  var g = '';
+  for (var u = -11; u <= 11; u++) {
+    if (u === 0) continue;
+    g += '<line x1="' + (CX + u * SCALE) + '" y1="165" x2="' + (CX + u * SCALE) + '" y2="175" class="diagram__axis"/>';
+    if (Math.abs(u * SCALE) < 150) {
+      g += '<line x1="315" y1="' + (CY - u * SCALE) + '" x2="325" y2="' + (CY - u * SCALE) + '" class="diagram__axis"/>';
+    }
+  }
+  grid.innerHTML = g;
+
+  // One decimal is the honest precision here: the sliders move in steps of
+  // 0.05 and 5 degrees, so more digits would be inventing accuracy.
+  function fmt(n) {
+    var v = Math.round(n * 100) / 100;
+    return (v < 0 ? '−' : '') + Math.abs(v).toFixed(2);
+  }
+  function pair(re, im) {
+    return fmt(re) + (im < 0 ? ' − ' : ' + ') + fmt(Math.abs(im)) + 'i';
+  }
+
+  function place(el, x, y) { el.setAttribute('x', x); el.setAttribute('y', y); }
+
+  function draw() {
+    var m = parseFloat(inMag.value);
+    var degs = parseFloat(inAng.value);
+    var rad = degs * Math.PI / 180;
+
+    var mre = m * Math.cos(rad), mim = m * Math.sin(rad);
+    var pre = AX * mre - AY * mim;
+    var pim = AX * mim + AY * mre;
+
+    var aMag = Math.sqrt(AX * AX + AY * AY);
+    var aAng = Math.atan2(AY, AX) * 180 / Math.PI;
+    var pMag = aMag * m;
+    var pAng = aAng + degs;
+
+    document.getElementById('out-mag').textContent = fmt(m);
+    document.getElementById('out-ang').textContent = degs + '°';
+    document.getElementById('cx-out-mult').textContent = pair(mre, mim);
+    document.getElementById('cx-out-prod').textContent = pair(pre, pim);
+    document.getElementById('cx-out-mag').textContent = fmt(m) + ' = ' + fmt(pMag);
+    document.getElementById('cx-out-ang').textContent = fmt(degs) + '° = ' + fmt(pAng) + '°';
+
+    var ax = CX + AX * SCALE, ay = CY - AY * SCALE;
+    var bx = CX + pre * SCALE, by = CY - pim * SCALE;
+
+    document.getElementById('cx-ray-a').setAttribute('x2', ax);
+    document.getElementById('cx-ray-a').setAttribute('y2', ay);
+    document.getElementById('cx-ray-b').setAttribute('x2', bx);
+    document.getElementById('cx-ray-b').setAttribute('y2', by);
+    document.getElementById('cx-dot-a').setAttribute('cx', ax);
+    document.getElementById('cx-dot-a').setAttribute('cy', ay);
+    document.getElementById('cx-dot-b').setAttribute('cx', bx);
+    document.getElementById('cx-dot-b').setAttribute('cy', by);
+
+    var la = document.getElementById('cx-lbl-a');
+    la.textContent = pair(AX, AY);
+    place(la, ax + 26, ay - 8);
+    var lb = document.getElementById('cx-lbl-b');
+    lb.textContent = pair(pre, pim);
+    place(lb, bx + 26, by - 8);
+
+    // The arc runs from the original angle to the product angle at a fixed
+    // radius, so it reads as "this much was added", not as a distance.
+    var r = 62;
+    var a0 = aAng * Math.PI / 180, a1 = pAng * Math.PI / 180;
+    var sweep = degs < 0 ? 1 : 0;
+    var large = Math.abs(degs) > 180 ? 1 : 0;
+    var arc = 'M' + (CX + r * Math.cos(a0)) + ',' + (CY - r * Math.sin(a0)) +
+              ' A' + r + ',' + r + ' 0 ' + large + ',' + sweep + ' ' +
+              (CX + r * Math.cos(a1)) + ',' + (CY - r * Math.sin(a1));
+    document.getElementById('cx-arc').setAttribute('d', Math.abs(degs) < 0.5 ? '' : arc);
+
+    var note = document.getElementById('cx-note');
+    if (Math.abs(m - 1) < 0.001 && degs === 90) {
+      note.textContent = 'זהו בדיוק כפל ב-i: גודל 1, זווית 90 מעלות. הנקודה הסתובבה רבע סיבוב והמרחק מהראשית לא זז.';
+    } else if (Math.abs(m - 1) < 0.001 && Math.abs(degs) === 180) {
+      note.textContent = 'גודל 1 וזווית 180 מעלות הם כפל במינוס אחד. שני כפלים ב-i נותנים בדיוק את זה, ומכאן i²=−1.';
+    } else if (degs === 0) {
+      note.textContent = 'זווית אפס: המכפיל הוא מספר ממשי רגיל, והוא רק מותח או מכווץ לאורך אותו ישר.';
+    } else if (Math.abs(m - 1) < 0.001) {
+      note.textContent = 'גודל 1 פירושו סיבוב טהור. המרחק מהראשית נשמר, רק הזווית זזה.';
+    } else {
+      note.textContent = 'שתי הפעולות קורות יחד: הגודל מוכפל ב-' + fmt(m) + ' והזווית זזה ב-' + degs + ' מעלות.';
+    }
+  }
+
+  inMag.addEventListener('input', draw);
+  inAng.addEventListener('input', draw);
+  draw();
+}());
+</script>
+
+<script>
+/* ===== מדמה חיפוש מטרה של CRISPR ===== */
+(function () {
+  var host = document.getElementById('crispr-genome');
+  if (!host) return;
+
+  var genome = host.getAttribute('data-genome') || '';
+  var guide = host.getAttribute('data-guide') || '';
+  var G = guide.length;
+  var slider = document.getElementById('in-mm');
+  var out = document.getElementById('out-mm');
+  var rows = document.getElementById('crispr-hits');
+  var note = document.getElementById('crispr-note');
+
+  // A site is worth showing if the protein could plausibly reach it: either a
+  // near match with a PAM, or a perfect match without one. The second case is
+  // the whole point of the exercise, so it is never filtered out.
+  var sites = [];
+  for (var i = 0; i + G + 3 <= genome.length; i++) {
+    var seq = genome.substr(i, G);
+    var pam = genome.substr(i + G, 3);
+    var hasPam = pam.charAt(1) === 'G' && pam.charAt(2) === 'G';
+    var mm = 0, near = null;
+    for (var j = 0; j < G; j++) {
+      if (seq.charAt(j) !== guide.charAt(j)) {
+        mm++;
+        near = G - j;
+      }
+    }
+    if ((hasPam && mm <= 4) || mm === 0) {
+      sites.push({ at: i, seq: seq, pam: pam, hasPam: hasPam, mm: mm, near: near });
+    }
+  }
+  sites.sort(function (a, b) { return a.mm - b.mm || a.at - b.at; });
+
+  function esc(s) { return s.replace(/&/g, '&amp;').replace(/</g, '&lt;'); }
+
+  // The count of mismatches is not the whole rule. The stretch of about ten
+  // letters next to the PAM is checked first, and a mismatch there usually stops
+  // the protein, while the same mismatch at the far end is often tolerated. A
+  // simulator that only counted mismatches would contradict the section above it.
+  var SEED = 10;
+  function cuts(s, tol) {
+    return s.hasPam && s.mm <= tol && (s.mm === 0 || s.near > SEED);
+  }
+
+  function draw() {
+    var tol = parseInt(slider.value, 10);
+    var cut = sites.filter(function (s) { return cuts(s, tol); });
+    var cutAt = {};
+    cut.forEach(function (s) { cutAt[s.at] = true; });
+
+    var html = '', pos = 0;
+    sites.slice().sort(function (a, b) { return a.at - b.at; }).forEach(function (s) {
+      if (s.at < pos) return;
+      html += esc(genome.slice(pos, s.at));
+      var cls = cutAt[s.at] ? 'crispr-site crispr-site--cut'
+              : (s.hasPam ? 'crispr-site' : 'crispr-site crispr-site--nopam');
+      html += '<span class="' + cls + '">' + esc(s.seq) + '</span>';
+      html += '<span class="crispr-pam-mark' + (s.hasPam ? '' : ' crispr-pam-mark--absent') + '">'
+           + esc(s.pam) + '</span>';
+      pos = s.at + G + 3;
+    });
+    html += esc(genome.slice(pos));
+    host.innerHTML = html;
+
+    out.textContent = tol;
+    rows.innerHTML = sites.map(function (s) {
+      var willCut = cuts(s, tol);
+      var verdict = !s.hasPam ? 'אין PAM, אין חיתוך'
+                  : (willCut ? (s.mm === 0 ? 'האתר המבוקש' : 'חיתוך לא מכוון')
+                    : (s.mm <= tol ? 'אי־ההתאמה צמודה ל-PAM. נעצר' : 'יותר מדי אי־התאמות'));
+      return '<tr class="' + (willCut ? 'is-cut' : '') + '">'
+        + '<td class="ltr">' + s.at + '</td>'
+        + '<td class="ltr">' + s.mm + '</td>'
+        + '<td class="ltr">' + (s.near === null ? '' : s.near) + '</td>'
+        + '<td class="ltr">' + esc(s.pam) + '</td>'
+        + '<td>' + verdict + '</td>'
+        + '</tr>';
+    }).join('');
+
+    var extra = cut.length - 1;
+    if (tol === 0) {
+      note.textContent = 'בסובלנות אפס נחתך אתר אחד בלבד. שימו לב לאתר השני ברשימה: '
+        + 'הוא מתאים למדריך בכל עשרים האותיות, ובכל זאת אינו נחתך, כי אחריו אין PAM.';
+    } else if (extra <= 0) {
+      note.textContent = 'עדיין אתר אחד. באתר הדומה השני אי־ההתאמות צמודות ל-PAM, ושם החלבון עוצר.';
+    } else {
+      note.textContent = 'בסובלנות של ' + tol + ' אי־התאמות נחתך אתר נוסף שלא התכוונו אליו. '
+        + 'ברצף של 196 אותיות זה נראה מעט. בגנום של שלושה מיליארד אותיות, זה מה שנקרא off-target.';
+    }
+  }
+
+  slider.addEventListener('input', draw);
+  draw();
+})();
+</script>
+
+<script>
+/* ===== מדמה ריבית דריבית ===== */
+(function () {
+  var svg = document.getElementById('sim-svg');
+  if (!svg) return;
+
+  var W = 640, H = 300, PAD = 8;
+  var keys = ['principal', 'rate', 'years', 'monthly'];
+  var inputs = {}, outs = {};
+  keys.forEach(function (k) {
+    inputs[k] = document.getElementById('in-' + k);
+    outs[k] = document.getElementById('out-' + k);
+  });
+  if (!inputs.principal) return;
+
+  var fmt = new Intl.NumberFormat('he-IL', { maximumFractionDigits: 0 });
+
+  function series(P, r, years, monthly) {
+    var simple = [], compound = [], paid = [];
+    var comp = P, totalPaid = P;
+    for (var t = 0; t <= years; t++) {
+      if (t > 0) {
+        comp = comp * (1 + r);
+        // הפקדות חודשיות נצברות במהלך השנה וגם הן צוברות ריבית
+        for (var m = 0; m < 12; m++) comp += monthly * Math.pow(1 + r, (12 - m - 1) / 12);
+        totalPaid += monthly * 12;
+      }
+      simple.push(P * (1 + r * t) + monthly * 12 * t);
+      compound.push(comp);
+      paid.push(totalPaid);
+    }
+    return { simple: simple, compound: compound, paid: paid };
+  }
+
+  function points(arr, max, years) {
+    var n = arr.length - 1;
+    return arr.map(function (v, i) {
+      var x = PAD + (i / Math.max(n, 1)) * (W - PAD * 2);
+      var y = H - PAD - (v / max) * (H - PAD * 2);
+      return x.toFixed(1) + ',' + y.toFixed(1);
+    }).join(' ');
+  }
+
+  function render() {
+    var P = +inputs.principal.value;
+    var rPct = +inputs.rate.value;
+    var years = +inputs.years.value;
+    var monthly = +inputs.monthly.value;
+    var r = rPct / 100;
+
+    outs.principal.textContent = fmt.format(P) + ' ₪';
+    outs.rate.textContent = rPct + '%';
+    outs.years.textContent = years + ' שנים';
+    outs.monthly.textContent = monthly ? fmt.format(monthly) + ' ₪' : 'ללא';
+
+    var s = series(P, r, years, monthly);
+    var max = Math.max(s.compound[years], s.simple[years]) * 1.05 || 1;
+
+    document.getElementById('sim-simple').setAttribute('points', points(s.simple, max, years));
+    document.getElementById('sim-compound').setAttribute('points', points(s.compound, max, years));
+
+    var fin = s.compound[years], sim = s.simple[years];
+    document.getElementById('sim-out-simple').textContent = fmt.format(Math.round(sim)) + ' ₪';
+    document.getElementById('sim-out-compound').textContent = fmt.format(Math.round(fin)) + ' ₪';
+    document.getElementById('sim-out-gap').textContent = fmt.format(Math.round(fin - sim)) + ' ₪';
+    document.getElementById('sim-out-paid').textContent = fmt.format(Math.round(s.paid[years])) + ' ₪';
+    document.getElementById('sim-years-axis').textContent = '0 – ' + years;
+
+    var note = document.getElementById('sim-note');
+    var times = s.paid[years] ? fin / s.paid[years] : 0;
+    var rule72 = rPct > 0 ? (72 / rPct) : 0;
+    note.textContent = 'בריבית של ' + rPct + '% הכסף מכפיל את עצמו בערך כל '
+      + rule72.toFixed(1) + ' שנים (כלל 72). אחרי ' + years + ' שנים היתרה גדולה פי '
+      + times.toFixed(1) + ' מסך מה שהפקדתם.';
+  }
+
+  keys.forEach(function (k) { inputs[k].addEventListener('input', render); });
+  render();
+})();
+
+/* ===== מדמה ההתכנסות אל e ===== */
+(function () {
+  var svg = document.getElementById('e-svg');
+  if (!svg) return;
+
+  var W = 640, H = 300, PAD = 8;
+  var E = Math.E, STEPS = 13;
+  var inN = document.getElementById('in-nexp');
+  var inT = document.getElementById('in-terms');
+  if (!inN || !inT) return;
+
+  function limitAt(n) { return Math.pow(1 + 1 / n, n); }
+
+  function seriesAt(terms) {
+    var s = 0, f = 1;
+    for (var k = 0; k < terms; k++) {
+      if (k > 0) f *= k;
+      s += 1 / f;
+    }
+    return s;
+  }
+
+  /* שתי העקומות מצוירות על אותו ציר צעדים כדי שההשוואה תהיה הוגנת: צעד אחד
+     בגבול הוא חלוקה נוספת, צעד אחד בטור הוא מחובר נוסף. תחתית הגרף היא 1.8
+     ולא אפס, אחרת כל ההבדל המעניין נדחס לפס דק. */
+  function points(fn) {
+    var lo = 1.8, hi = E + (E - lo) * 0.08;
+    var out = [];
+    for (var i = 1; i <= STEPS; i++) {
+      var v = Math.min(fn(i), hi);
+      var x = PAD + ((i - 1) / (STEPS - 1)) * (W - PAD * 2);
+      var y = H - PAD - ((v - lo) / (hi - lo)) * (H - PAD * 2);
+      out.push(x.toFixed(1) + ',' + Math.min(Math.max(y, PAD), H - PAD).toFixed(1));
+    }
+    return out.join(' ');
+  }
+
+  document.getElementById('e-limit').setAttribute('points', points(limitAt));
+  document.getElementById('e-series').setAttribute('points', points(seriesAt));
+
+  var fmtInt = new Intl.NumberFormat('he-IL', { maximumFractionDigits: 0 });
+
+  function render() {
+    var n = Math.pow(10, +inN.value);
+    var terms = +inT.value;
+    var lim = limitAt(n), ser = seriesAt(terms);
+
+    document.getElementById('out-nexp').textContent = 'n = ' + fmtInt.format(n);
+    document.getElementById('out-terms').textContent = terms;
+    document.getElementById('e-out-limit').textContent = lim.toFixed(10);
+    document.getElementById('e-out-series').textContent = ser.toFixed(10);
+    document.getElementById('e-out-cost').textContent =
+      fmtInt.format(n) + ' מול ' + terms;
+
+    /* ספרות נכונות אחרי הנקודה, לפי גודל השגיאה */
+    function digits(v) {
+      var err = Math.abs(v - E);
+      return err === 0 ? 12 : Math.max(0, Math.floor(-Math.log10(err)));
+    }
+    document.getElementById('e-note').textContent =
+      'ספרות נכונות אחרי הנקודה: הגבול עם ' + fmtInt.format(n) + ' חלוקות, '
+      + digits(lim) + '. הטור עם ' + terms + ' מחוברים, ' + digits(ser) + '.';
+  }
+
+  inN.addEventListener('input', render);
+  inT.addEventListener('input', render);
+  render();
+})();
+
+/* ===== בוחן ===== */
+(function () {
+  var form = document.getElementById('quiz-form');
+  if (!form) return;
+  var qs = Array.prototype.slice.call(form.querySelectorAll('.quiz__q'));
+  var scoreEl = document.getElementById('quiz-score');
+
+  document.getElementById('quiz-check').addEventListener('click', function () {
+    var right = 0, answered = 0;
+    qs.forEach(function (q) {
+      var correct = +q.dataset.answer;
+      var picked = q.querySelector('input:checked');
+      q.classList.remove('is-right', 'is-wrong');
+      if (!picked) return;
+      answered++;
+      if (+picked.value === correct) { q.classList.add('is-right'); right++; }
+      else { q.classList.add('is-wrong'); }
+      q.querySelectorAll('.quiz__opt').forEach(function (opt, i) {
+        opt.classList.toggle('is-answer', i === correct);
+      });
+    });
+    if (!answered) { scoreEl.textContent = 'בחרו תשובה לפחות בשאלה אחת.'; return; }
+    scoreEl.textContent = 'ענית נכון על ' + right + ' מתוך ' + qs.length + '.';
+  });
+
+  document.getElementById('quiz-reset').addEventListener('click', function () {
+    form.reset();
+    qs.forEach(function (q) {
+      q.classList.remove('is-right', 'is-wrong');
+      q.querySelectorAll('.quiz__opt').forEach(function (o) { o.classList.remove('is-answer'); });
+    });
+    scoreEl.textContent = '';
+  });
+})();
+
+/* ===== מדמה רזולוציה ליתוגרפית: CD = k1 · λ / NA ===== */
+(function () {
+  var svg = document.getElementById('euv-svg');
+  if (!svg) return;
+
+  var naIn = document.getElementById('in-na');
+  var k1In = document.getElementById('in-k1');
+  var naOut = document.getElementById('out-na');
+  var k1Out = document.getElementById('out-k1');
+  var linesG = document.getElementById('euv-lines');
+  var blurNode = document.getElementById('euv-blur-node');
+  var btns = Array.prototype.slice.call(document.querySelectorAll('.euv-source-btn'));
+  if (!naIn || !btns.length) return;
+
+  var W = 640, H = 190;
+  var lambda = +btns[0].dataset.lambda;
+  var naMax = +btns[0].dataset.namax;
+
+  function cd(lam, na, k1) { return k1 * lam / na; }
+
+  function draw() {
+    var na = Math.min(+naIn.value, naMax);
+    var k1 = +k1In.value;
+    var res = cd(lambda, na, k1);
+
+    naOut.textContent = na.toFixed(2);
+    k1Out.textContent = k1.toFixed(2);
+
+    // רוחב הקו על המסך פרופורציוני לרוחב האמיתי, בסקאלה קבועה
+    var nmPerPx = 0.9;                       // 640 פיקסלים = 576 ננומטר
+    var wpx = Math.max(1.2, res / nmPerPx);
+    var pitch = wpx * 2;
+    var n = Math.ceil(W / pitch) + 1;
+
+    var out = '';
+    for (var i = 0; i < n; i++) {
+      out += '<rect x="' + (i * pitch).toFixed(2) + '" y="18" width="' +
+             wpx.toFixed(2) + '" height="' + (H - 36) + '" class="euv-line"/>';
+    }
+    linesG.innerHTML = out;
+
+    // ככל שהקו מתקרב לגבול הפיזיקלי הוא נמרח. k1 נמוך = תהליך אגרסיבי = פחות חד.
+    // הטשטוש נחסם, אחרת קווים רחבים נראים מרוחים הרבה מעבר למה שהכוונה להמחיש
+    var sharp = Math.max(0, Math.min(1, (k1 - 0.25) / 0.20));
+    blurNode.setAttribute('stdDeviation',
+      Math.min(wpx * (1 - sharp) * 0.28, 4.5).toFixed(2));
+
+    document.getElementById('euv-out-cd').textContent = res.toFixed(1) + ' nm';
+    document.getElementById('euv-out-lambda').textContent = lambda + ' nm';
+    document.getElementById('euv-scale').textContent =
+      'רוחב התמונה כאן הוא כ-' + Math.round(W * nmPerPx) + ' ננומטר';
+
+    // ההשוואה ל-DUV נעשית בתנאים הטובים ביותר שיש לו: טבילה במים, NA 1.35
+    var duv = cd(193, 1.35, k1);
+    document.getElementById('euv-out-duv').textContent = duv.toFixed(1) + ' nm';
+
+    // כל מעבר הדפסה נוסף חוצה בקירוב את הצפיפות
+    var passes = duv <= res ? 1 : Math.pow(2, Math.ceil(Math.log(duv / res) / Math.log(2)));
+    document.getElementById('euv-out-passes').textContent =
+      lambda === 193 ? 'לא חל' : '×' + passes;
+
+    var note = document.getElementById('euv-note');
+    if (lambda === 193) {
+      note.textContent = 'ב-193 ננומטר צריך צמצם גדול מ-1, וזה אפשרי רק כשממלאים ' +
+        'את המרווח שבין העדשה לפרוסה במים. זה מה שנקרא ליתוגרפיית טבילה.';
+    } else {
+      note.textContent = 'קיצור אורך הגל פי כ-14 קונה את אותה רזולוציה בלי צמצם ענק ' +
+        'ובלי לחזור על ההדפסה. זו כל התכלית של EUV.';
+    }
+  }
+
+  btns.forEach(function (b) {
+    b.addEventListener('click', function () {
+      btns.forEach(function (o) { o.classList.remove('is-active'); });
+      b.classList.add('is-active');
+      lambda = +b.dataset.lambda;
+      naMax = +b.dataset.namax;
+      naIn.max = naMax;
+      // כל מקור אור מגיע עם הצמצם האופייני לו, אחרת ההשוואה חסרת משמעות
+      naIn.value = b.dataset.natypical;
+      draw();
+    });
+  });
+  [naIn, k1In].forEach(function (el) { el.addEventListener('input', draw); });
+  naIn.max = naMax;
+  draw();
+})();
+
+/* ===== מדמה האופטוגנטיקה: גן, אור, ואורך הגל הנכון ===== */
+(function () {
+  var stage = document.getElementById('opto-switch-stage');
+  if (!stage) return;
+
+  var boxes = Array.prototype.slice.call(document.querySelectorAll('.opto-switch__box'));
+  var state = document.getElementById('op-state');
+  var chanState = document.getElementById('op-channel-state');
+  var note = document.getElementById('op-note');
+  var channel = document.getElementById('op-channel');
+  var beam = document.getElementById('op-beam');
+  var lamp = document.getElementById('op-lamp');
+  var ions = ['op-ion1', 'op-ion2', 'op-ion3'].map(function (id) {
+    return document.getElementById(id);
+  });
+
+  var ON = 'diagram__dot diagram__dot--strong';
+  var OFF = 'diagram__dot';
+
+  function on(key) {
+    for (var i = 0; i < boxes.length; i++) {
+      if (boxes[i].getAttribute('data-key') === key) return boxes[i].checked;
+    }
+    return false;
+  }
+
+  function render() {
+    var gene = on('gene'), light = on('light'), blue = on('blue');
+    var lit = light && blue;
+    var open = gene && lit;
+
+    lamp.setAttribute('class', light ? ON : OFF);
+    beam.style.opacity = light ? '1' : '0.15';
+    channel.style.opacity = gene ? '1' : '0.15';
+    channel.setAttribute('class', open ? ON : OFF);
+    ions.forEach(function (c) {
+      c.setAttribute('class', open ? ON : OFF);
+      c.style.opacity = open ? '1' : '0.3';
+    });
+
+    if (open) {
+      state.textContent = 'יורה';
+      chanState.textContent = 'פתוחה';
+      note.textContent = 'שלושת התנאים התקיימו. האור הכחול פתח את התעלה, יונים טעונים ' +
+        'נכנסו, והנוירון ירה. שימו לב שהתא השכן מואר באותו אור בדיוק ואינו מגיב, ' +
+        'כי אין לו את החלבון. ההפרדה הזו היא כל העניין.';
+    } else if (gene && light && !blue) {
+      state.textContent = 'שקט';
+      chanState.textContent = 'סגורה';
+      note.textContent = 'החלבון נמצא בתא והאור דולק, אבל אורך הגל לא מתאים. ' +
+        'כלמידומונס מגיב לאור כחול, ואור אדום פשוט עובר דרך התעלה בלי לפתוח אותה.';
+    } else if (gene && !light) {
+      state.textContent = 'שקט';
+      chanState.textContent = 'סגורה';
+      note.textContent = 'הגן הוחדר והחלבון יושב בקרום, אבל בלי אור הוא אינו עושה דבר. ' +
+        'תא שנושא את החלבון בחושך מתנהג כמו כל תא אחר.';
+    } else if (!gene && lit) {
+      state.textContent = 'שקט';
+      chanState.textContent = 'אין תעלה בקרום';
+      note.textContent = 'זו הביקורת החשובה בניסוי. אור כחול על תא רגיל אינו מדליק אותו. ' +
+        'אם התא היה יורה כאן, הממצא כולו היה מתפרק.';
+    } else {
+      state.textContent = 'שקט';
+      chanState.textContent = 'אין תעלה בקרום';
+      note.textContent = 'מצב ההתחלה. הדליקו תנאים ובדקו מה נדרש כדי שהנוירון יירה.';
+    }
+  }
+
+  boxes.forEach(function (b) { b.addEventListener('change', render); });
+  render();
+})();
+</script>
+  </main>
+
+  <footer class="colophon">
+    <span>היום בקיצור</span>
+    <span>יוצר במלואו על ידי בינה מלאכותית</span>
+  </footer>
+
+</div>
+
+<script defer src="https://babook.co.il/counter/c.js" data-site="c6b824abd1"></script></body>
+</html>
