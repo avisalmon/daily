@@ -297,7 +297,7 @@
     <span>היום בקיצור · מהדורה מס׳ 15</span>
     <span>נערך בשעה <span class="ltr">06:10</span></span>
     <span>הופק אוטומטית</span>
-<span id="site-counter-box" hidden>כניסות לאתר: <span class="ltr" id="site-counter"></span></span>  </footer>
+<span id="site-counter-box" hidden>כניסות לאתר: <span class="ltr" id="site-counter" data-counter="views" data-counter-scope="site"></span></span>  </footer>
 
 </div>
 
@@ -349,22 +349,20 @@
 })();
 </script>
 
-<script data-goatcounter="https://avisalmon-daily.goatcounter.com/count"
-        async src="https://gc.zgo.at/count.js"></script><script>
-/* מונה הכניסות. נמשך כמספר ומודפס בטיפוגרפיה של העיתון, בלי מסגרת ובלי ווידג'ט.
-   אם הבקשה נכשלת, השורה כולה נשארת מוסתרת ולא מודפס מספר שגוי. */
+<script defer src="https://babook.co.il/counter/c.js" data-site="a67e8d5598"></script><script>
+/* מונה הכניסות. את המספר עצמו ממלא סקריפט המונה, והקוד כאן רק חושף את השורה
+   ברגע שהגיע מספר אמיתי. אם המונה אינו זמין, השורה נשארת מוסתרת ולא מודפסת
+   תווית ריקה. */
 (function () {
   var box = document.getElementById('site-counter-box');
   var out = document.getElementById('site-counter');
-  if (!box || !out || !window.fetch) return;
-  fetch('https://avisalmon-daily.goatcounter.com/counter/TOTAL.json')
-    .then(function (r) { return r.ok ? r.json() : Promise.reject(r.status); })
-    .then(function (d) {
-      if (!d || !d.count) return;
-      out.textContent = d.count;
-      box.hidden = false;
-    })
-    .catch(function () { /* השורה נשארת מוסתרת */ });
+  if (!box || !out || !window.MutationObserver) return;
+  var watch = new MutationObserver(function () {
+    if (!out.textContent.trim()) return;
+    box.hidden = false;
+    watch.disconnect();
+  });
+  watch.observe(out, { childList: true, characterData: true, subtree: true });
 })();
 </script>
 

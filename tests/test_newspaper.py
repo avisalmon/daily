@@ -783,7 +783,8 @@ def test_no_page_references_a_missing_local_asset():
             assert (base / ref).resolve().exists(), f"{page.name} -> missing {ref}"
 
 
-GOATCOUNTER = "https://avisalmon-daily.goatcounter.com/count"
+COUNTER_SRC = "https://babook.co.il/counter/c.js"
+COUNTER_KEY = 'data-site="a67e8d5598"'
 
 
 def _served_pages() -> list[Path]:
@@ -800,30 +801,56 @@ def test_every_served_page_carries_the_visitor_tracking_script():
     assert len(pages) > 5, "site does not look built"
     for page in pages:
         html = page.read_text(encoding="utf-8")
-        assert GOATCOUNTER in html, f"{page.relative_to(ROOT)} has no tracking script"
+        where = page.relative_to(ROOT)
+        assert COUNTER_SRC in html, f"{where} has no tracking script"
+        assert COUNTER_KEY in html, f"{where} carries the script without a site key"
+        # The script fills the counter elements the moment it runs, so it has
+        # to run after the document is parsed. async would race the DOM.
+        assert f'<script defer src="{COUNTER_SRC}"' in html, (
+            f"{where} must load the counter with defer, not async")
 
 
 def test_the_visible_counter_appears_once_and_only_on_the_front_page():
     front = (ROOT / "index.html").read_text(encoding="utf-8")
     assert front.count('id="site-counter"') == 1, "front page counter is missing or duplicated"
-    assert front.count("counter/TOTAL.json") == 1, "front page does not read the count itself"
-    assert "visit_count(" not in front, (
-        "the GoatCounter widget embeds an iframe; the paper prints the number as text")
+    assert front.count('data-counter-scope="site"') == 1, (
+        "the printed number must be the site-wide total, asked for exactly once")
     assert 'id="site-counter-box" hidden' in front, (
-        "the counter line must start hidden so a failed fetch prints nothing")
+        "the counter line must start hidden so an unreachable counter prints nothing")
+    assert "MutationObserver" in front, (
+        "something has to reveal the line once a real number lands in it")
+    # Checking only for the word is not enough: it survives in the capability
+    # test even when the reveal is gone. Assert the three parts that do the work.
+    assert "new MutationObserver" in front, "the observer is never constructed"
+    assert ".observe(out" in front, "the observer never watches the counter element"
+    assert "box.hidden = false" in front, "nothing ever unhides the line"
     for page in _served_pages():
         if page.name == "index.html":
             continue
         html = page.read_text(encoding="utf-8")
-        assert 'id="site-counter"' not in html, (
-            f"{page.relative_to(ROOT)} shows the site-wide counter; it belongs only on the front page")
+        assert "data-counter" not in html, (
+            f"{page.relative_to(ROOT)} shows a visible count; it belongs only on the front page")
 
 
 def test_research_pdf_source_is_not_tracked():
     # research.html.j2 is printed to PDF by headless Chromium, never served.
     text = (ROOT / "templates" / "research.html.j2").read_text(encoding="utf-8")
-    assert "goatcounter" not in text and "_analytics" not in text, (
+    assert "babook" not in text and "_analytics" not in text, (
         "the research document is a PDF source; a remote tracker there blocks printing")
+
+
+def test_no_trace_of_the_retired_counter_remains():
+    """GoatCounter was replaced. A second tracker left wired into the templates
+    would keep sending pageviews to an account nobody reads, and the stale
+    visible counter would print a number from the wrong source."""
+    for path in sorted((ROOT / "templates").glob("*.j2")):
+        text = path.read_text(encoding="utf-8")
+        assert "goatcounter" not in text.lower(), f"{path.name} still loads GoatCounter"
+        assert "gc.zgo.at" not in text, f"{path.name} still loads the GoatCounter library"
+    for page in _served_pages():
+        html = page.read_text(encoding="utf-8")
+        assert "goatcounter" not in html.lower(), (
+            f"{page.relative_to(ROOT)} is stale; rebuild the site")
 
 
 def _site_fingerprint() -> dict[str, str]:    files = [        ROOT / "index.html", ROOT / "archive.html", ROOT / "learn.html",

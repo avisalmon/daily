@@ -1,6 +1,8 @@
-{# GoatCounter tracking. One include, every served page.
-   The visible count is NOT this script: the front page reads
-   /counter/TOTAL.json itself and prints the number as text, so the
-   paper keeps its own typography and no widget frame is embedded. #}
-<script data-goatcounter="https://avisalmon-daily.goatcounter.com/count"
-        async src="https://gc.zgo.at/count.js"></script>
+{# Visitor counter. One script, no libraries, no cookies, on every served page.
+   It records a view per page load and fills any [data-counter] element with
+   the number. If it is unreachable it catches its own errors and the page is
+   unaffected.
+
+   defer, not async: the script fills the counter elements as soon as it runs,
+   so it has to run after the document is parsed or it would find nothing. #}
+<script defer src="https://babook.co.il/counter/c.js" data-site="a67e8d5598"></script>
