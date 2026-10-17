@@ -784,7 +784,7 @@ def test_no_page_references_a_missing_local_asset():
 
 
 COUNTER_SRC = "https://babook.co.il/counter/c.js"
-COUNTER_KEY = 'data-site="a67e8d5598"'
+COUNTER_KEY = 'data-site="c6b824abd1"'
 
 
 def _served_pages() -> list[Path]:
