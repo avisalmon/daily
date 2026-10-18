@@ -88,6 +88,9 @@
 
 
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">למה זה נעצר</h2>
@@ -122,6 +125,9 @@
       </svg>
       <figcaption>אותה ריבית שנתית, מספר חלוקות גדל. התוספת מכל חלוקה נוספת מתכווצת.</figcaption>
     </figure>
+
+
+
 
 
 
@@ -199,11 +205,17 @@
 
 
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">למה שתי הדרכים מגיעות לאותו מקום</h2>
     <p>אפשר לפתוח את הביטוי (1+1/n)^n לפי בינום ניוטון. מקבלים סכום של n+1 מחוברים, שהמחובר ה-k שבהם הוא אחד חלקי עצרת k, מוכפל בגורם תיקון של שברים כמו (1-1/n) ו-(1-2/n).</p>
     <p>כשn גדל, כל גורמי התיקון האלה מתקרבים לאחד, ומספר המחוברים גדל. מה שנשאר בגבול הוא בדיוק הטור. שתי הנוסחאות אינן שתי הגדרות מקבילות שהתמזל מזלן להיפגש. הן אותו ביטוי, כתוב פעמיים.</p>
+
+
+
 
 
 
@@ -296,6 +308,9 @@
 
 
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">איפה פוגשים את זה בחיים</h2>
@@ -344,12 +359,18 @@
 
 
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">מה e איננו</h2>
     <p>e אינו שבר. הוא מספר אי רציונלי, כפי שאוילר הוכיח, ומעבר לזה הוא טרנסצנדנטי: הרמיט הוכיח ב-1873 שאין שום משוואה פולינומית עם מקדמים שלמים שהוא פותר. 2.718 הוא קירוב, לא ערך.</p>
     <p>e אינו קשור לפאי מעבר לזהות של אוילר, ואינו הבסיס ה&#34;טבעי&#34; במובן של נפוץ בטבע יותר מאחרים. הוא טבעי במובן טכני בלבד: הבסיס שבו הנגזרת יוצאת נקייה.</p>
     <p>e אינו מספר הזהב ואינו קשור לסדרת פיבונאצ&#39;י, בלבול נפוץ. ובניגוד לשמועה, האות e לא נבחרה על שם אוילר. הוא השתמש בה ב-1731 כנראה פשוט מפני ש-a עד d כבר היו תפוסות.</p>
+
+
+
 
 
 
@@ -442,6 +463,7 @@
     </div>
     <p class="sim__note" id="e-note"></p>
   </section>
+
 
 
 
@@ -757,6 +779,72 @@
 
   inDelay.addEventListener('input', render);
   inClock.addEventListener('input', render);
+  render();
+})();
+</script>
+
+<script>
+/* ===== דיפי-הלמן: חילוף מפתחות על שעון בגודל 23 ===== */
+(function () {
+  var stage = document.getElementById('dh-stage');
+  if (!stage) return;
+
+  var P = 23, G = 5;
+
+  var inA = document.getElementById('dh-in-a');
+  var inB = document.getElementById('dh-in-b');
+  var outA = document.getElementById('dh-out-a');
+  var outB = document.getElementById('dh-out-b');
+  var outPa = document.getElementById('dh-out-pa');
+  var outPb = document.getElementById('dh-out-pb');
+  var outK = document.getElementById('dh-out-k');
+  var bar = document.getElementById('dh-bar');
+  var note = document.getElementById('dh-note');
+
+  function powMod(base, exp, mod) {
+    var r = 1, b = base % mod;
+    while (exp > 0) {
+      if (exp % 2 === 1) r = (r * b) % mod;
+      b = (b * b) % mod;
+      exp = Math.floor(exp / 2);
+    }
+    return r;
+  }
+
+  function render() {
+    var a = Number(inA.value);
+    var b = Number(inB.value);
+
+    var pubA = powMod(G, a, P);
+    var pubB = powMod(G, b, P);
+    var kAlice = powMod(pubB, a, P);
+    var kBob = powMod(pubA, b, P);
+
+    var tries = 0;
+    for (var k = 1; k <= P - 1; k++) {
+      tries = k;
+      if (powMod(G, k, P) === pubA) break;
+    }
+
+    outA.textContent = String(a);
+    outB.textContent = String(b);
+    outPa.textContent = String(pubA);
+    outPb.textContent = String(pubB);
+    outK.textContent = String(kAlice);
+
+    var frac = tries / (P - 1);
+    var w = Math.round(430 * frac);
+    bar.setAttribute('width', String(w));
+    bar.setAttribute('x', String(470 - w));
+
+    var msg = 'אליס חישבה ' + pubB + ' בחזקת ' + a + ' וקיבלה ' + kAlice + '. בוב חישב ' + pubA + ' בחזקת ' + b + ' וקיבל ' + kBob + '. ';
+    msg += (kAlice === kBob) ? 'אותו מספר, בלי שאף אחד שלח אותו. ' : 'משהו בחישוב אינו מסתדר. ';
+    msg += 'המאזין, שראה רק את ' + pubA + ' ואת ' + pubB + ', היה מגיע לסוד של אליס אחרי ' + tries + ' ניסיונות.';
+    note.textContent = msg;
+  }
+
+  inA.addEventListener('input', render);
+  inB.addEventListener('input', render);
   render();
 })();
 </script>

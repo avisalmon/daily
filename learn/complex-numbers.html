@@ -84,6 +84,9 @@
 
 
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">i, ומאיפה הוא באמת בא</h2>
@@ -98,6 +101,9 @@
       <p class="formula__label"></p>
       <p class="formula__legend"></p>
     </div>
+
+
+
 
 
 
@@ -200,6 +206,9 @@
 
 
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">כפל הוא סיבוב</h2>
@@ -273,6 +282,9 @@
 
 
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">נוסחת אוילר, ולמה מהנדס משתמש בה</h2>
@@ -286,6 +298,9 @@
       <p class="formula__label"></p>
       <p class="formula__legend"></p>
     </div>
+
+
+
 
 
 
@@ -387,6 +402,9 @@
 
 
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">מה מספר מרוכב איננו</h2>
@@ -394,6 +412,9 @@
     <p>הוא אינו וקטור, אף שאפשר לצייר אותו כמו וקטור. לוקטורים במישור אין פעולת כפל שמחזירה וקטור ומקיימת את חוקי החשבון הרגילים. למספרים מרוכבים יש, וזה כל ההבדל.</p>
     <p>הוא אינו סוף הסיפור. יש הרחבות נוספות, קווטרניונים בארבעה ממדים ואוקטוניונים בשמונה, ובכל הרחבה כזאת מוותרים על משהו. בקווטרניונים כפל כבר אינו חילופי, כלומר a כפול b אינו b כפול a. המספרים המרוכבים הם ההרחבה האחרונה שאינה גובה מחיר.</p>
     <p>והוא אינו כלי שנוח לוותר עליו. כל מה שנעשה כאן ניתן לביצוע בזוגות של מספרים ממשיים ובנוסחאות טריגונומטריות. פשוט אף אחד לא עושה את זה, מפני שהניסוח המרוכב הופך שלושה שלבי חישוב לכפל אחד.</p>
+
+
+
 
 
 
@@ -496,6 +517,7 @@
     </div>
     <p class="sim__note" id="cx-note"></p>
   </section>
+
 
 
 
@@ -811,6 +833,72 @@
 
   inDelay.addEventListener('input', render);
   inClock.addEventListener('input', render);
+  render();
+})();
+</script>
+
+<script>
+/* ===== דיפי-הלמן: חילוף מפתחות על שעון בגודל 23 ===== */
+(function () {
+  var stage = document.getElementById('dh-stage');
+  if (!stage) return;
+
+  var P = 23, G = 5;
+
+  var inA = document.getElementById('dh-in-a');
+  var inB = document.getElementById('dh-in-b');
+  var outA = document.getElementById('dh-out-a');
+  var outB = document.getElementById('dh-out-b');
+  var outPa = document.getElementById('dh-out-pa');
+  var outPb = document.getElementById('dh-out-pb');
+  var outK = document.getElementById('dh-out-k');
+  var bar = document.getElementById('dh-bar');
+  var note = document.getElementById('dh-note');
+
+  function powMod(base, exp, mod) {
+    var r = 1, b = base % mod;
+    while (exp > 0) {
+      if (exp % 2 === 1) r = (r * b) % mod;
+      b = (b * b) % mod;
+      exp = Math.floor(exp / 2);
+    }
+    return r;
+  }
+
+  function render() {
+    var a = Number(inA.value);
+    var b = Number(inB.value);
+
+    var pubA = powMod(G, a, P);
+    var pubB = powMod(G, b, P);
+    var kAlice = powMod(pubB, a, P);
+    var kBob = powMod(pubA, b, P);
+
+    var tries = 0;
+    for (var k = 1; k <= P - 1; k++) {
+      tries = k;
+      if (powMod(G, k, P) === pubA) break;
+    }
+
+    outA.textContent = String(a);
+    outB.textContent = String(b);
+    outPa.textContent = String(pubA);
+    outPb.textContent = String(pubB);
+    outK.textContent = String(kAlice);
+
+    var frac = tries / (P - 1);
+    var w = Math.round(430 * frac);
+    bar.setAttribute('width', String(w));
+    bar.setAttribute('x', String(470 - w));
+
+    var msg = 'אליס חישבה ' + pubB + ' בחזקת ' + a + ' וקיבלה ' + kAlice + '. בוב חישב ' + pubA + ' בחזקת ' + b + ' וקיבל ' + kBob + '. ';
+    msg += (kAlice === kBob) ? 'אותו מספר, בלי שאף אחד שלח אותו. ' : 'משהו בחישוב אינו מסתדר. ';
+    msg += 'המאזין, שראה רק את ' + pubA + ' ואת ' + pubB + ', היה מגיע לסוד של אליס אחרי ' + tries + ' ניסיונות.';
+    note.textContent = msg;
+  }
+
+  inA.addEventListener('input', render);
+  inB.addEventListener('input', render);
   render();
 })();
 </script>

@@ -917,6 +917,85 @@
     </figure>
     {% endif %}
 
+    {% if sec.diagram and sec.diagram.type == 'dh-color-mix' %}
+    <figure class="diagram">
+    <svg viewBox="0 0 520 300" role="img" aria-label="שלוש שורות. בשורה העליונה הסוד של אליס מימין, הצבע הציבורי במרכז, והסוד של בוב משמאל. באמצע הערוץ הפתוח ובו שתי התערובות שעוברות בגלוי. בשורה התחתונה אותה תערובת סופית בשני הקצוות" preserveAspectRatio="xMidYMid meet">
+    <text x="500" y="22" class="diagram__label diagram__label--strong">מה נשאר בבית, ומה עובר בערוץ</text>
+
+    <circle cx="430" cy="66" r="19" class="diagram__dot-fill"/>
+    <text x="430" y="100" class="diagram__axis-label">הסוד של אליס</text>
+    <circle cx="260" cy="66" r="19" class="diagram__dot"/>
+    <text x="260" y="100" class="diagram__axis-label">הצבע הציבורי, ידוע לכולם</text>
+    <circle cx="90" cy="66" r="19" class="diagram__dot-fill"/>
+    <text x="90" y="100" class="diagram__axis-label">הסוד של בוב</text>
+
+    <line x1="40" y1="148" x2="480" y2="148" class="diagram__axis"/>
+    <text x="500" y="140" class="diagram__label">הערוץ הפתוח</text>
+
+    <circle cx="345" cy="176" r="17" class="diagram__dot"/>
+    <text x="345" y="210" class="diagram__axis-label">תערובת אליס, בגלוי</text>
+    <circle cx="175" cy="176" r="17" class="diagram__dot"/>
+    <text x="175" y="210" class="diagram__axis-label">תערובת בוב, בגלוי</text>
+
+    <circle cx="430" cy="246" r="19" class="diagram__dot-fill"/>
+    <circle cx="90" cy="246" r="19" class="diagram__dot-fill"/>
+    <text x="260" y="252" class="diagram__axis-label">אותה תערובת סופית בשני הקצוות</text>
+    <text x="260" y="288" class="diagram__axis-label">המאזין ראה הכול, וחסר לו צבע סודי אחד</text>
+    </svg>
+    <figcaption>{{ sec.diagram.caption }}</figcaption>
+    </figure>
+    {% endif %}
+
+    {% if sec.diagram and sec.diagram.type == 'pk-one-way' %}
+    <figure class="diagram">
+    <svg viewBox="0 0 520 300" role="img" aria-label="שני חצים. החץ העליון ארוך ומסמן חישוב קדימה שנגמר בצעד אחד. החץ התחתון קצר מאוד ומסמן שהכיוון ההפוך דורש חיפוש. מתחת, השוואת זמנים עם מספר ראשוני אמיתי" preserveAspectRatio="xMidYMid meet">
+    <text x="500" y="24" class="diagram__label diagram__label--strong">אותו חשבון, שני כיוונים</text>
+
+    <text x="500" y="58" class="diagram__label">קדימה: 5 בחזקת 6, מודולו 23</text>
+    <line x1="400" y1="80" x2="148" y2="80" class="diagram__axis"/>
+    <polygon points="140,80 152,75 152,85" class="diagram__dot-fill"/>
+    <text x="270" y="102" class="diagram__axis-label">צעד אחד, והתשובה היא 8</text>
+
+    <text x="500" y="140" class="diagram__label">אחורה: איזו חזקה של 5 נותנת 8</text>
+    <line x1="400" y1="162" x2="378" y2="162" class="diagram__axis"/>
+    <polygon points="370,162 382,157 382,167" class="diagram__dot-fill"/>
+    <text x="250" y="184" class="diagram__axis-label">אין קיצור דרך, צריך לנסות מספר אחרי מספר</text>
+
+    <line x1="40" y1="228" x2="480" y2="228" class="diagram__axis"/>
+    <text x="500" y="220" class="diagram__label diagram__label--strong">עם מספר ראשוני באורך 2048 ביט</text>
+    <text x="260" y="252" class="diagram__axis-label">קדימה: אלפיות שנייה</text>
+    <text x="260" y="276" class="diagram__axis-label">אחורה: יותר שנים מגיל היקום, בכל המחשבים שיש</text>
+    </svg>
+    <figcaption>{{ sec.diagram.caption }}</figcaption>
+    </figure>
+    {% endif %}
+
+    {% if sec.diagram and sec.diagram.type == 'pk-signature' %}
+    <figure class="diagram">
+    <svg viewBox="0 0 520 300" role="img" aria-label="שתי שורות. בשורה העליונה, הצפנה: המפתח הציבורי נועל בצד אחד והפרטי פותח בצד השני. בשורה התחתונה, חתימה: הפרטי חותם והציבורי מאמת" preserveAspectRatio="xMidYMid meet">
+    <text x="500" y="24" class="diagram__label diagram__label--strong">אותו זוג מפתחות, שני שימושים</text>
+
+    <text x="500" y="60" class="diagram__label">הצפנה</text>
+    <line x1="378" y1="84" x2="138" y2="84" class="diagram__axis"/>
+    <polygon points="130,84 142,79 142,89" class="diagram__dot-fill"/>
+    <text x="440" y="90" class="diagram__axis-label">הציבורי נועל</text>
+    <text x="78" y="90" class="diagram__axis-label">הפרטי פותח</text>
+    <text x="258" y="114" class="diagram__axis-label">כל אחד יכול לשלוח, רק הנמען יכול לקרוא</text>
+
+    <text x="500" y="166" class="diagram__label">חתימה</text>
+    <line x1="378" y1="190" x2="138" y2="190" class="diagram__axis"/>
+    <polygon points="130,190 142,185 142,195" class="diagram__dot-fill"/>
+    <text x="440" y="196" class="diagram__axis-label">הפרטי חותם</text>
+    <text x="78" y="196" class="diagram__axis-label">הציבורי מאמת</text>
+    <text x="258" y="220" class="diagram__axis-label">רק אחד יכול לחתום, כל אחד יכול לבדוק</text>
+
+    <line x1="40" y1="256" x2="480" y2="256" class="diagram__axis"/>
+    <text x="260" y="282" class="diagram__axis-label">חתימה אינה מסתירה דבר, היא רק מוכיחה מי כתב</text>
+    </svg>
+    <figcaption>{{ sec.diagram.caption }}</figcaption>
+    </figure>
+    {% endif %}
+
     {% if sec.diagram and sec.diagram.type == 'bat-echo-roundtrip' %}
     <figure class="diagram">
     <svg viewBox="0 0 520 300" role="img" aria-label="עטלף בצד ימין שולח קריאה שמאלה אל חרק, וההד חוזר אליו. מתחת, ציר זמן שמסמן שש אלפיות שנייה בין הקריאה להד, והמרחק שמתקבל מהן" preserveAspectRatio="xMidYMid meet">
@@ -1726,6 +1805,62 @@
   </section>
   {% endif %}
 
+  {% if topic.sim and topic.sim.type == 'dh-exchange' %}
+  <section class="sim" id="sim">
+  <h2 class="topic__heading">{{ topic.sim.title }}</h2>
+  <p class="sim__intro">{{ topic.sim.intro }}</p>
+
+  <div class="sim__controls">
+  <label class="sim__control">
+  <span class="sim__control-head">
+  <span>הסוד של אליס</span>
+  <output id="dh-out-a" class="ltr"></output>
+  </span>
+  <input type="range" id="dh-in-a" min="1" max="22" step="1" value="6">
+  <span class="sim__control-hint">מספר שלם בין 1 ל-22. אינו עוזב את המחשב שלה</span>
+  </label>
+  <label class="sim__control">
+  <span class="sim__control-head">
+  <span>הסוד של בוב</span>
+  <output id="dh-out-b" class="ltr"></output>
+  </span>
+  <input type="range" id="dh-in-b" min="1" max="22" step="1" value="15">
+  <span class="sim__control-hint">גם הוא בין 1 ל-22, ונבחר בלי קשר לסוד של אליס</span>
+  </label>
+  </div>
+
+  <div class="gene-switch__stage" id="dh-stage">
+  <svg viewBox="0 0 520 150" role="img" aria-label="ציר של עשרים ושתיים אפשרויות. העמודה מראה אחרי כמה ניסיונות המאזין מגיע לסוד של אליס">
+  <text x="500" y="24" class="diagram__label diagram__label--strong">החיפוש של מי שמקשיב</text>
+  <text x="230" y="50" class="diagram__axis-label">הוא מנסה חזקה אחרי חזקה עד שמתקבל המספר של אליס</text>
+  <line x1="40" y1="100" x2="480" y2="100" class="diagram__axis"/>
+  <rect id="dh-bar" x="470" y="70" width="0" height="26" class="wm-level"/>
+  <text x="470" y="126" class="diagram__axis-label">1</text>
+  <text x="255" y="126" class="diagram__axis-label">11</text>
+  <text x="46" y="126" class="diagram__axis-label">22</text>
+  </svg>
+  </div>
+
+  <div class="sim__readout sim__readout--three">
+  <div class="sim__stat">
+  <span class="sim__stat-label">עובר בערוץ מאליס</span>
+  <span class="sim__stat-value ltr" id="dh-out-pa"></span>
+  </div>
+  <div class="sim__stat">
+  <span class="sim__stat-label">עובר בערוץ מבוב</span>
+  <span class="sim__stat-value ltr" id="dh-out-pb"></span>
+  </div>
+  <div class="sim__stat sim__stat--strong">
+  <span class="sim__stat-label">הסוד המשותף שהתקבל</span>
+  <span class="sim__stat-value ltr" id="dh-out-k"></span>
+  </div>
+  </div>
+
+  <p class="sim__note" id="dh-note"></p>
+  <p class="sim__note euv-caveat">{{ topic.sim.caveat }}</p>
+  </section>
+  {% endif %}
+
   {% if topic.sim and topic.sim.type == 'bat-sonar-readout' %}
   <section class="sim" id="sim">
   <h2 class="topic__heading">{{ topic.sim.title }}</h2>
@@ -1983,6 +2118,72 @@
 
   inDelay.addEventListener('input', render);
   inClock.addEventListener('input', render);
+  render();
+})();
+</script>
+
+<script>
+/* ===== דיפי-הלמן: חילוף מפתחות על שעון בגודל 23 ===== */
+(function () {
+  var stage = document.getElementById('dh-stage');
+  if (!stage) return;
+
+  var P = 23, G = 5;
+
+  var inA = document.getElementById('dh-in-a');
+  var inB = document.getElementById('dh-in-b');
+  var outA = document.getElementById('dh-out-a');
+  var outB = document.getElementById('dh-out-b');
+  var outPa = document.getElementById('dh-out-pa');
+  var outPb = document.getElementById('dh-out-pb');
+  var outK = document.getElementById('dh-out-k');
+  var bar = document.getElementById('dh-bar');
+  var note = document.getElementById('dh-note');
+
+  function powMod(base, exp, mod) {
+    var r = 1, b = base % mod;
+    while (exp > 0) {
+      if (exp % 2 === 1) r = (r * b) % mod;
+      b = (b * b) % mod;
+      exp = Math.floor(exp / 2);
+    }
+    return r;
+  }
+
+  function render() {
+    var a = Number(inA.value);
+    var b = Number(inB.value);
+
+    var pubA = powMod(G, a, P);
+    var pubB = powMod(G, b, P);
+    var kAlice = powMod(pubB, a, P);
+    var kBob = powMod(pubA, b, P);
+
+    var tries = 0;
+    for (var k = 1; k <= P - 1; k++) {
+      tries = k;
+      if (powMod(G, k, P) === pubA) break;
+    }
+
+    outA.textContent = String(a);
+    outB.textContent = String(b);
+    outPa.textContent = String(pubA);
+    outPb.textContent = String(pubB);
+    outK.textContent = String(kAlice);
+
+    var frac = tries / (P - 1);
+    var w = Math.round(430 * frac);
+    bar.setAttribute('width', String(w));
+    bar.setAttribute('x', String(470 - w));
+
+    var msg = 'אליס חישבה ' + pubB + ' בחזקת ' + a + ' וקיבלה ' + kAlice + '. בוב חישב ' + pubA + ' בחזקת ' + b + ' וקיבל ' + kBob + '. ';
+    msg += (kAlice === kBob) ? 'אותו מספר, בלי שאף אחד שלח אותו. ' : 'משהו בחישוב אינו מסתדר. ';
+    msg += 'המאזין, שראה רק את ' + pubA + ' ואת ' + pubB + ', היה מגיע לסוד של אליס אחרי ' + tries + ' ניסיונות.';
+    note.textContent = msg;
+  }
+
+  inA.addEventListener('input', render);
+  inB.addEventListener('input', render);
   render();
 })();
 </script>

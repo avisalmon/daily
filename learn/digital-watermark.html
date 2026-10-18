@@ -83,6 +83,9 @@
 
 
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">גלוי וסמוי, ולמה הגלוי כמעט חסר ערך</h2>
@@ -142,6 +145,9 @@
       </svg>
       <figcaption>משמאל, סימן גלוי שתופס אזור אחד ונחתך בשניה. מימין, סימן סמוי שפזור על פני כל הקובץ, וכל חלק ממנו נושא עותק.</figcaption>
     </figure>
+
+
+
 
 
 
@@ -236,6 +242,9 @@
 
 
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">בטקסט אין איפה להתחבא</h2>
@@ -312,11 +321,17 @@
 
 
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">מה שורד ומה שובר</h2>
     <p>חוסן הוא השאלה המעשית היחידה. סימן מים ששורד רק קובץ שלא נגעו בו אינו שווה דבר, מכיוון שאף קובץ ברשת אינו נשאר כפי שנוצר. הוא נדחס, משתנה בגודל, נחתך, מצולם ממסך ומועלה מחדש.</p>
     <p>הטבלה מפרידה בין שני דברים ששווה להפריד ביניהם: מה הטכנולוגיה אמורה לעשות, ומה פורסם בפועל במספרים. ההפרדה הזאת היא עיקר הלקוח מהשבוע שעבר.</p>
+
+
+
 
 
 
@@ -415,12 +430,18 @@
 
 
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">מי מסמן היום, ובמה</h2>
     <p>SynthID של גוגל עובד בתמונה, בווידאו ובשמע, ולא בטקסט. גוגל מדווחת שסימנה עד כה יותר מ-180 מיליארד תמונות וסרטונים ומעל 240 אלף שנות שמע. רשימת השותפים שהכלי יודע לקרוא כוללת את OpenAI, אנבידיה וקקאו, ואפל מופיעה כמי שתצטרף. הזמינות שתוארה כעולמית מנוסחת בהודעה עצמה כעולמית באנגלית.</p>
     <p>OpenAI הודיעה על סימון טקסט בטכנולוגיה בשם textGrain, שהיא מתכוונת לשחרר בקוד פתוח. ההפעלה היא באיחוד האירופי, בכל התוכניות שם, ולא הייתה פעילה ביום ההודעה אלא תוכננה לשבועות הקרובים. בממשק המתכנתים ההסדר הפוך: הסימון כבוי כברירת מחדל והמפתח צריך לבקש אותו, ושם זה חל בכל העולם.</p>
     <p>המשותף לשתי ההודעות הוא שהן אמצעי, לא פתרון. הן מקלות על מי שרוצה לתת ייחוס הוגן לתוכן שלו. הן אינן עונות על השאלה שהתחלנו ממנה, מכיוון שהיא שאלה שאי אפשר לענות עליה מתוך הקובץ.</p>
+
+
+
 
 
 
@@ -519,6 +540,7 @@
     <p class="sim__note" id="wm-note"></p>
     <p class="sim__note euv-caveat">המדמה ממחיש התנגשות, הוא אינו מודד מערכת אמיתית. העקומה שבו היא מודל חשבוני פשוט, והמספרים אינם לקוחים ממוצר מסחרי. המספרים המדודים היחידים שפורסמו בשבוע שעבר הם של OpenAI, על סימון טקסט, והם מופיעים בטבלת החוסן שלמעלה.</p>
   </section>
+
 
 
 
@@ -831,6 +853,72 @@
 
   inDelay.addEventListener('input', render);
   inClock.addEventListener('input', render);
+  render();
+})();
+</script>
+
+<script>
+/* ===== דיפי-הלמן: חילוף מפתחות על שעון בגודל 23 ===== */
+(function () {
+  var stage = document.getElementById('dh-stage');
+  if (!stage) return;
+
+  var P = 23, G = 5;
+
+  var inA = document.getElementById('dh-in-a');
+  var inB = document.getElementById('dh-in-b');
+  var outA = document.getElementById('dh-out-a');
+  var outB = document.getElementById('dh-out-b');
+  var outPa = document.getElementById('dh-out-pa');
+  var outPb = document.getElementById('dh-out-pb');
+  var outK = document.getElementById('dh-out-k');
+  var bar = document.getElementById('dh-bar');
+  var note = document.getElementById('dh-note');
+
+  function powMod(base, exp, mod) {
+    var r = 1, b = base % mod;
+    while (exp > 0) {
+      if (exp % 2 === 1) r = (r * b) % mod;
+      b = (b * b) % mod;
+      exp = Math.floor(exp / 2);
+    }
+    return r;
+  }
+
+  function render() {
+    var a = Number(inA.value);
+    var b = Number(inB.value);
+
+    var pubA = powMod(G, a, P);
+    var pubB = powMod(G, b, P);
+    var kAlice = powMod(pubB, a, P);
+    var kBob = powMod(pubA, b, P);
+
+    var tries = 0;
+    for (var k = 1; k <= P - 1; k++) {
+      tries = k;
+      if (powMod(G, k, P) === pubA) break;
+    }
+
+    outA.textContent = String(a);
+    outB.textContent = String(b);
+    outPa.textContent = String(pubA);
+    outPb.textContent = String(pubB);
+    outK.textContent = String(kAlice);
+
+    var frac = tries / (P - 1);
+    var w = Math.round(430 * frac);
+    bar.setAttribute('width', String(w));
+    bar.setAttribute('x', String(470 - w));
+
+    var msg = 'אליס חישבה ' + pubB + ' בחזקת ' + a + ' וקיבלה ' + kAlice + '. בוב חישב ' + pubA + ' בחזקת ' + b + ' וקיבל ' + kBob + '. ';
+    msg += (kAlice === kBob) ? 'אותו מספר, בלי שאף אחד שלח אותו. ' : 'משהו בחישוב אינו מסתדר. ';
+    msg += 'המאזין, שראה רק את ' + pubA + ' ואת ' + pubB + ', היה מגיע לסוד של אליס אחרי ' + tries + ' ניסיונות.';
+    note.textContent = msg;
+  }
+
+  inA.addEventListener('input', render);
+  inB.addEventListener('input', render);
   render();
 })();
 </script>

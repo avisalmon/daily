@@ -83,6 +83,9 @@
 
 
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">החוק שקובע כמה קטן אפשר ללכת</h2>
@@ -148,12 +151,18 @@
 
 
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">למה נתקענו על 193 ננומטר</h2>
     <p>במשך יותר מעשרים שנה כל השבבים המתקדמים בעולם הודפסו באורך גל אחד: 193 ננומטר, אור אולטרה סגול עמוק שמיוצר בלייזר ארגון פלואוריד. הניסיון לרדת ל-157 ננומטר נכשל, בין היתר מפני שקשה למצוא חומרים שקופים לאור כזה. אז במקום לקצר את הגל, התעשייה סחטה את שני הגורמים האחרים.</p>
     <p>הצעד הראשון היה ליתוגרפיית טבילה: ממלאים את המרווח שבין העדשה האחרונה לפרוסה במים מזוקקים. מקדם השבירה של מים גבוה מזה של אוויר, וזה מעלה את הצמצם הנומרי מעבר ל-1, לאזור של 1.35. זה קנה דור שלם.</p>
     <p>הצעד השני היה ריבוי הדפסות. אם אי אפשר להדפיס תבנית צפופה בבת אחת, מדפיסים אותה בשני מעברים או ארבעה, כל פעם חצי מהקווים, ומרכיבים אותם זה לצד זה. זה עובד, אבל כל מעבר נוסף מוסיף מסכה, מוסיף זמן מכונה, ומוסיף עוד הזדמנות ששכבה תזוז ביחס לקודמתה. העלות והסיכון גדלים מהר יותר מהתועלת.</p>
+
+
+
 
 
 
@@ -269,6 +278,9 @@
 
 
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">איך בכלל מייצרים את האור הזה</h2>
@@ -339,12 +351,18 @@
 
 
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">מה הלאה</h2>
     <p>אחרי שאורך הגל קוצר, חוזרים לגורם השני בנוסחה. הדור הבא של המכונות מעלה את הצמצם הנומרי מכ-0.33 לכ-0.55, וזה מה שנקרא High-NA. התמורה אינה חינם: שדה ההדפסה נחצה, ולכן שבב גדול צריך להיות מודפס בשני חצאים שנתפרים יחד.</p>
     <p>מעבר לכך, שני הגורמים הנותרים מתקרבים לקיר. k1 לא יורד מתחת ל-0.25 מסיבות פיזיקליות, והגדלת הצמצם מתחילה לפגוע בעומק המיקוד: ככל שהקונוס רחב יותר, הטווח שבו התמונה חדה מצטמצם, והפרוסה חייבת להיות שטוחה ומיוצבת ברמה של ננומטרים.</p>
     <p>לכן השיפור בשנים הקרובות מגיע פחות מהדפסה קטנה יותר ויותר, ויותר מארגון מחדש של הטרנזיסטור והשכבות. אבל כל אחד מהכיוונים האלה עדיין מודפס. הליתוגרפיה נשארת השער שכל דבר אחר צריך לעבור דרכו.</p>
+
+
+
 
 
 
@@ -447,6 +465,7 @@
     <p class="sim__note" id="euv-note"></p>
     <p class="sim__note euv-caveat">ההדמיה ממחישה את קריטריון ריילי בלבד. הטשטוש הוא איור של איכות התהליך, לא חישוב אופטי, וספירת המעברים היא הערכה גסה של ריבוי הדפסות.</p>
   </section>
+
 
 
 
@@ -744,6 +763,72 @@
 
   inDelay.addEventListener('input', render);
   inClock.addEventListener('input', render);
+  render();
+})();
+</script>
+
+<script>
+/* ===== דיפי-הלמן: חילוף מפתחות על שעון בגודל 23 ===== */
+(function () {
+  var stage = document.getElementById('dh-stage');
+  if (!stage) return;
+
+  var P = 23, G = 5;
+
+  var inA = document.getElementById('dh-in-a');
+  var inB = document.getElementById('dh-in-b');
+  var outA = document.getElementById('dh-out-a');
+  var outB = document.getElementById('dh-out-b');
+  var outPa = document.getElementById('dh-out-pa');
+  var outPb = document.getElementById('dh-out-pb');
+  var outK = document.getElementById('dh-out-k');
+  var bar = document.getElementById('dh-bar');
+  var note = document.getElementById('dh-note');
+
+  function powMod(base, exp, mod) {
+    var r = 1, b = base % mod;
+    while (exp > 0) {
+      if (exp % 2 === 1) r = (r * b) % mod;
+      b = (b * b) % mod;
+      exp = Math.floor(exp / 2);
+    }
+    return r;
+  }
+
+  function render() {
+    var a = Number(inA.value);
+    var b = Number(inB.value);
+
+    var pubA = powMod(G, a, P);
+    var pubB = powMod(G, b, P);
+    var kAlice = powMod(pubB, a, P);
+    var kBob = powMod(pubA, b, P);
+
+    var tries = 0;
+    for (var k = 1; k <= P - 1; k++) {
+      tries = k;
+      if (powMod(G, k, P) === pubA) break;
+    }
+
+    outA.textContent = String(a);
+    outB.textContent = String(b);
+    outPa.textContent = String(pubA);
+    outPb.textContent = String(pubB);
+    outK.textContent = String(kAlice);
+
+    var frac = tries / (P - 1);
+    var w = Math.round(430 * frac);
+    bar.setAttribute('width', String(w));
+    bar.setAttribute('x', String(470 - w));
+
+    var msg = 'אליס חישבה ' + pubB + ' בחזקת ' + a + ' וקיבלה ' + kAlice + '. בוב חישב ' + pubA + ' בחזקת ' + b + ' וקיבל ' + kBob + '. ';
+    msg += (kAlice === kBob) ? 'אותו מספר, בלי שאף אחד שלח אותו. ' : 'משהו בחישוב אינו מסתדר. ';
+    msg += 'המאזין, שראה רק את ' + pubA + ' ואת ' + pubB + ', היה מגיע לסוד של אליס אחרי ' + tries + ' ניסיונות.';
+    note.textContent = msg;
+  }
+
+  inA.addEventListener('input', render);
+  inB.addEventListener('input', render);
   render();
 })();
 </script>

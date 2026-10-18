@@ -2128,3 +2128,95 @@ def test_no_svg_label_relies_on_a_text_anchor_attribute():
                 f"(.diagram__label is start, which in RTL is the right edge; "
                 f".diagram__axis-label is middle). Tag: {tag[:120]}"
             )
+
+
+def test_efficiency_lead_matches_the_ratios_and_rates_it_derives():
+    """BKM 13. The 2026-10-19 lead's whole argument is arithmetic the desk does
+    itself. The headcount ratios are not quoted anywhere, and the two revenue
+    per employee figures are divisions of numbers taken from 10-K filings. No
+    reader can catch any of them being wrong, because the paper is where they
+    first appear."""
+    ed = json.loads(
+        (ROOT / "data" / "editions" / "2026-10-19.json").read_text(encoding="utf-8"))
+    text = json.dumps(ed, ensure_ascii=False)
+
+    # Output per worker needed to hold output constant after a headcount cut.
+    assert round(1 / 0.5, 1) == 2.0
+    assert round(1 / 0.2, 1) == 5.0
+    # And with output itself growing 30 percent.
+    assert round(1.3 / 0.5, 1) == 2.6
+    assert round(1.3 / 0.2, 1) == 6.5
+    for printed in ("פי 2.6", "פי 6.5"):
+        assert printed in text, f"the lead no longer prints {printed}"
+
+    # The measured field-study gain the whole piece is weighed against. 15
+    # percent and 5,172 agents are the published QJE abstract, not the 14
+    # percent and 5,179 the received research document carried.
+    assert "15 אחוז" in text and "5,172" in text
+    assert "5,179" not in text and "34 אחוז" not in text
+
+    # Revenue per employee, computed from the filings, in millions of dollars.
+    palantir = 4_475_446_000 / 4_429
+    servicenow = 13_278_000_000 / 29_187
+    assert round(palantir / 1e6, 2) == 1.01
+    assert round(servicenow / 1e6, 3) == 0.455
+    assert round(servicenow / 1e3) == 455 and "455 אלף" in text
+
+    bars = {b["label"]: b["value"] for b in ed["lead"]["figure"]["bars"]}
+    values = list(bars.values())
+    assert values == sorted(values, reverse=True), "figure bars must descend"
+    assert ed["lead"]["figure"]["max"] >= max(values)
+    assert 2.0 in values, "the claimed threshold bar is gone"
+    assert round(palantir / 1e6, 2) in values
+    assert round(servicenow / 1e6, 3) in values
+
+    # The only bar above the claimed threshold is a self-defined metric, and
+    # the note is the reader's only warning that it is not the same division.
+    top = max(bars, key=bars.get)
+    assert bars[top] == 2.57 and "מדד שהחברה הגדירה" in top
+    note = ed["lead"]["figure"]["note"]
+    assert "מדד שהחברה מגדירה בעצמה" in note and "אינה אותו חישוב" in note
+
+
+def test_public_key_page_matches_the_exchange_it_works_through():
+    """BKM 13. The public-key page walks a full Diffie-Hellman exchange by hand
+    and prints every intermediate number, and the simulator recomputes the same
+    thing in the browser. Nothing here is quoted, so a typo in either the prose
+    or the JavaScript would ship looking perfectly reasonable."""
+    topic = json.loads(
+        (ROOT / "data" / "topics" / "public-key.json").read_text(encoding="utf-8"))
+    text = json.dumps(topic, ensure_ascii=False)
+
+    p, g, a, b = 23, 5, 6, 15
+    pub_a = pow(g, a, p)
+    pub_b = pow(g, b, p)
+    assert pub_a == 8 and pub_b == 19
+
+    shared = pow(pub_b, a, p)
+    assert shared == pow(pub_a, b, p) == 2, "the two sides must agree"
+    # The reason they agree, stated in the prose as 5 to the ninetieth.
+    assert pow(g, a * b, p) == shared and a * b == 90
+    assert "5 בחזקת 90" in text
+
+    for printed in ("15,625", "השארית היא 8", "ומקבל 19", "התוצאה היא 2"):
+        assert printed in text, f"the page no longer prints {printed!r}"
+
+    # The eavesdropper's search is what the simulator's bar measures: a plain
+    # scan for the exponent, which on a clock this small ends almost at once.
+    tries = next(k for k in range(1, p) if pow(g, k, p) == pub_a)
+    assert tries == a <= p - 1
+
+    sim = topic["sim"]
+    assert sim["type"] == "dh-exchange"
+    src = (ROOT / "templates" / "topic.html.j2").read_text(encoding="utf-8")
+    block = src.split("דיפי-הלמן: חילוף מפתחות")[1]
+    assert f"var P = {p}, G = {g};" in block, (
+        "the simulator no longer uses the same clock and base as the prose"
+    )
+    for element in ("dh-in-a", "dh-in-b", "dh-out-pa", "dh-out-pb", "dh-out-k", "dh-bar"):
+        assert f'id="{element}"' in src, f"the simulator lost {element}"
+
+    # The page must keep saying this is a demonstration. A 23-hour clock is not
+    # encryption, and the caveat is the only place the reader is told so.
+    assert "2048 ביט" in sim["caveat"] and "הדגמה" in sim["caveat"]
+

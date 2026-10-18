@@ -128,12 +128,18 @@
 
 
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">המוות הוא הרגע שבו השעון מתחיל</h2>
     <p>ברגע שהיצור מת, הוא מפסיק לאכול, לנשום ולהטמיע פחמן חדש. פחמן 12 שבגופו נשאר בדיוק כפי שהוא, לנצח. פחמן 14 ממשיך להתפרק, כל גרעין בתורו, וחוזר להיות חנקן 14.</p>
     <p>זהו כל הרעיון. מה שנמדד אינו כמות אלא יחס: כמה פחמן 14 נשאר ביחס לפחמן 12 שלא זז. היחס הזה ידוע ברגע ההתחלה, משום שהוא היה היחס באוויר. ככל שעובר זמן הוא קטן, ובקצב ידוע. מדידת היחס היום מאפשרת לחשב כמה זמן עבר.</p>
     <p>לכן גם ברור מה השיטה אינה יכולה לעשות. אבן מעולם לא נשמה, ואין בה שעון כזה. מתכת גם לא. חרס שרוף אינו מתוארך בעצמו, אלא רק גרגרי פחם או שאריות אורגניות שנלכדו בו. מה שמתוארך הוא תמיד הרגע שבו משהו חי הפסיק להחליף פחמן עם העולם, לא הרגע שבו מישהו עשה ממנו חפץ.</p>
+
+
+
 
 
 
@@ -246,6 +252,9 @@
 
 
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">למה המדידה הולכת ונעשית קשה</h2>
@@ -302,6 +311,9 @@
     </svg>
     <figcaption>אותן מאה שנות הפרש, בשני מקומות על העקומה. בגיל 2,000 הן מזיזות את היחס בכ-0.94 נקודת אחוז. בגיל 20,000 בכ-0.11 נקודה. ככל שמתרחקים, אותו הפרש זמן אמיתי מייצר אות קטן יותר, ולכן טווח השגיאה גדל.</figcaption>
     </figure>
+
+
+
 
 
 
@@ -385,6 +397,9 @@
 
 
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">דגים נראים זקנים, ואנחנו נראים צעירים</h2>
@@ -393,6 +408,9 @@
     <p>השני הוא דלק מאובנים. פחם ונפט נוצרו לפני מיליוני שנים, וכל הפחמן 14 שבהם דעך מזמן. שריפתם מדללת את האטמוספרה בפחמן ישן. מסוף המאה התשע עשרה והלאה היחס באוויר ירד בגלל זה.</p>
     <p>השלישי הוא ההפוך, והוא חד וקיצוני. ניסויי הגרעין באוויר בשנות החמישים והשישים הציפו את האטמוספרה בנייטרונים וייצרו פחמן 14 בכמויות. סביב 1965 הגיעה הכמות באוויר לכמעט כפליים מרמתה לפני הניסויים. מאז אמנת האיסור החלקי מ-10 באוקטובר 1963 הרמה יורדת בהתמדה, בעיקר משום שהפחמן נקלט באוקיינוסים ובצמחייה.</p>
     <p>התוצאה המעשית: כל מי שחי בעשורים האלה נושא בגופו חתימה איזוטופית שאין לאף אדם שחי לפניהם. היא מקלקלת תיארוך רגיל של חומר צעיר, אבל היא גם הפכה לכלי משלה. היא מאפשרת לקבוע באיזו שנה נוצרה רקמה, ומשמשת לזיהוי פלילי ולבדיקת גיל של יין וחפצי אמנות שנטען שהם עתיקים.</p>
+
+
+
 
 
 
@@ -495,6 +513,9 @@
 
 
 
+
+
+
   </section>
 
 
@@ -551,6 +572,7 @@
   <p class="sim__note" id="c14-note"></p>
   <p class="sim__note euv-caveat">החישוב משתמש במחצית חיים של 5,730 שנה ובדעיכה מעריכית נקייה. מעבדה אמיתית מחשבת גיל רדיופחמני עם הערך ההיסטורי 5,568 שנה, מתקנת על הפרדה איזוטופית, ומעבירה את התוצאה דרך עקומת כיול שאינה חלקה. הגבול המסומן הוא הערכה גסה: מעבדות שונות עובדות עם סף שונה, ובתנאי הכנה מיוחדים אפשר לפעמים לרדת מתחתיו. אין להסיק מההדמיה מספרי דיוק של שום מעבדה.</p>
   </section>
+
 
 
 
@@ -841,6 +863,72 @@
 
   inDelay.addEventListener('input', render);
   inClock.addEventListener('input', render);
+  render();
+})();
+</script>
+
+<script>
+/* ===== דיפי-הלמן: חילוף מפתחות על שעון בגודל 23 ===== */
+(function () {
+  var stage = document.getElementById('dh-stage');
+  if (!stage) return;
+
+  var P = 23, G = 5;
+
+  var inA = document.getElementById('dh-in-a');
+  var inB = document.getElementById('dh-in-b');
+  var outA = document.getElementById('dh-out-a');
+  var outB = document.getElementById('dh-out-b');
+  var outPa = document.getElementById('dh-out-pa');
+  var outPb = document.getElementById('dh-out-pb');
+  var outK = document.getElementById('dh-out-k');
+  var bar = document.getElementById('dh-bar');
+  var note = document.getElementById('dh-note');
+
+  function powMod(base, exp, mod) {
+    var r = 1, b = base % mod;
+    while (exp > 0) {
+      if (exp % 2 === 1) r = (r * b) % mod;
+      b = (b * b) % mod;
+      exp = Math.floor(exp / 2);
+    }
+    return r;
+  }
+
+  function render() {
+    var a = Number(inA.value);
+    var b = Number(inB.value);
+
+    var pubA = powMod(G, a, P);
+    var pubB = powMod(G, b, P);
+    var kAlice = powMod(pubB, a, P);
+    var kBob = powMod(pubA, b, P);
+
+    var tries = 0;
+    for (var k = 1; k <= P - 1; k++) {
+      tries = k;
+      if (powMod(G, k, P) === pubA) break;
+    }
+
+    outA.textContent = String(a);
+    outB.textContent = String(b);
+    outPa.textContent = String(pubA);
+    outPb.textContent = String(pubB);
+    outK.textContent = String(kAlice);
+
+    var frac = tries / (P - 1);
+    var w = Math.round(430 * frac);
+    bar.setAttribute('width', String(w));
+    bar.setAttribute('x', String(470 - w));
+
+    var msg = 'אליס חישבה ' + pubB + ' בחזקת ' + a + ' וקיבלה ' + kAlice + '. בוב חישב ' + pubA + ' בחזקת ' + b + ' וקיבל ' + kBob + '. ';
+    msg += (kAlice === kBob) ? 'אותו מספר, בלי שאף אחד שלח אותו. ' : 'משהו בחישוב אינו מסתדר. ';
+    msg += 'המאזין, שראה רק את ' + pubA + ' ואת ' + pubB + ', היה מגיע לסוד של אליס אחרי ' + tries + ' ניסיונות.';
+    note.textContent = msg;
+  }
+
+  inA.addEventListener('input', render);
+  inB.addEventListener('input', render);
   render();
 })();
 </script>

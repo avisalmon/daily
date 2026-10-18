@@ -115,6 +115,9 @@
 
 
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">למה דווקא אטום</h2>
@@ -122,6 +125,9 @@
     <p>האלקטרונים באטום יכולים לשבת רק ברמות אנרגיה מסוימות, לא בכל ערך. כדי לעבור מרמה לרמה האטום צריך לבלוע בדיוק את הפרש האנרגיה, ולקרינה אלקטרומגנטית הפרש אנרגיה הוא תדר. לכן לכל מעבר באטום יש תדר משלו, והתדר הזה נקבע על ידי טבעו של האטום בלבד.</p>
     <p>מכאן נובעת ההגדרה הרשמית של השנייה משנת 1967: שנייה אחת היא משך הזמן שבו הקרינה המתאימה למעבר מסוים בצזיום 133 משלימה 9,192,631,770 מחזורים. המספר נראה שרירותי מפני שהוא אכן שרירותי. בחרו אותו כך שהשנייה החדשה תהיה שווה לשנייה האסטרונומית שהייתה נהוגה קודם.</p>
     <p>שימו לב להיפוך. פעם מדדו את תדר האטום לפי השנייה. היום מודדים את השנייה לפי תדר האטום.</p>
+
+
+
 
 
 
@@ -229,6 +235,9 @@
 
 
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">דיוק ויציבות אינם אותו דבר</h2>
@@ -236,6 +245,9 @@
     <p>יציבות אומרת כמה התשובה חוזרת על עצמה. שעון יציב נותן אותה מדידה שוב ושוב, גם אם כולן שגויות באותו שיעור. זה מה שחשוב כשרוצים להשוות שני זמנים או למדוד הפרש.</p>
     <p>דיוק אומר כמה התשובה קרובה לאמת. שעון מדויק אינו סוטה מהתדר האמיתי של המעבר, וכדי לדעת את זה צריך לחשב בדיוק את כל ההפרעות שהסביבה מכניסה ולהחסיר אותן.</p>
     <p>שעון שממהר בדיוק שנייה ביום הוא יציב מאוד ולא מדויק כלל. בפועל אפשר לתקן אותו בקלות. שעון שסוטה אקראית בחצי שנייה לכל כיוון מדויק בממוצע וחסר תועלת. זו הסיבה שבפרסומים מדעיים מוצאים את שני המספרים, וזו גם הסיבה שהידיעה בגיליון הזה מדגישה שהניסוי בתוריום אינו שעון שרץ אלא שיטת מדידה.</p>
+
+
+
 
 
 
@@ -336,6 +348,9 @@
 
 
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">למה דווקא תוריום 229</h2>
@@ -343,6 +358,9 @@
     <p>תוריום 229 הוא חריג יחיד כמעט. יש לו מצב מעורר נמוך בצורה יוצאת דופן, בסדר גודל של שמונה אלקטרון וולט, שזה אולטרה סגול רחוק ולא גמא. זה בטווח שאפשר להגיע אליו בלייזר, ולכן הוא היחיד שמציע מעבר גרעיני שאפשר לכוון אליו.</p>
     <p>זה גם מסביר למה זה לקח זמן. במשך עשרות שנים אפילו לא ידעו את האנרגיה במדויק, והחיפוש אחריה היה כמו לחפש תחנת רדיו אחת כשהחוגה משתרעת על טווח עצום. רק בשנים האחרונות צומצם הטווח מספיק כדי שהעירור יהיה בר ביצוע.</p>
     <p>הידיעה בגיליון הזה היא צעד בתוך הסיפור הזה, לא סופו. היא עוסקת באיך מודדים את המעבר ביעילות, ובאיתור אתר בגביש שבו השדה החשמלי המקומי קטן מספיק כדי שהמעבר יהיה יציב. שעון גרעיני שעובד ברציפות ומתחרה בשעונים האופטיים עוד לא קיים.</p>
+
+
+
 
 
 
@@ -445,6 +463,9 @@
 
 
 
+
+
+
   </section>
 
 
@@ -499,6 +520,7 @@
     <p class="sim__note" id="ck-note"></p>
     <p class="sim__note euv-caveat">ההדמיה ממחישה עיקרון אחד בלבד: רגישות מגנטית תלויה במסת החלקיק, והיחס שבה הוא היחס בין מגנטון בוהר למגנטון הגרעיני, כ-1,836. היא אינה מודל של שעון אמיתי. בשעון אמיתי בוחרים מעברים שבהם התלות בשדה מבוטלת מראש, ונשארות הפרעות אחרות לגמרי, ולכן אין להסיק מכאן מספר ביצועים של שום מכשיר.</p>
   </section>
+
 
 
 
@@ -832,6 +854,72 @@
 
   inDelay.addEventListener('input', render);
   inClock.addEventListener('input', render);
+  render();
+})();
+</script>
+
+<script>
+/* ===== דיפי-הלמן: חילוף מפתחות על שעון בגודל 23 ===== */
+(function () {
+  var stage = document.getElementById('dh-stage');
+  if (!stage) return;
+
+  var P = 23, G = 5;
+
+  var inA = document.getElementById('dh-in-a');
+  var inB = document.getElementById('dh-in-b');
+  var outA = document.getElementById('dh-out-a');
+  var outB = document.getElementById('dh-out-b');
+  var outPa = document.getElementById('dh-out-pa');
+  var outPb = document.getElementById('dh-out-pb');
+  var outK = document.getElementById('dh-out-k');
+  var bar = document.getElementById('dh-bar');
+  var note = document.getElementById('dh-note');
+
+  function powMod(base, exp, mod) {
+    var r = 1, b = base % mod;
+    while (exp > 0) {
+      if (exp % 2 === 1) r = (r * b) % mod;
+      b = (b * b) % mod;
+      exp = Math.floor(exp / 2);
+    }
+    return r;
+  }
+
+  function render() {
+    var a = Number(inA.value);
+    var b = Number(inB.value);
+
+    var pubA = powMod(G, a, P);
+    var pubB = powMod(G, b, P);
+    var kAlice = powMod(pubB, a, P);
+    var kBob = powMod(pubA, b, P);
+
+    var tries = 0;
+    for (var k = 1; k <= P - 1; k++) {
+      tries = k;
+      if (powMod(G, k, P) === pubA) break;
+    }
+
+    outA.textContent = String(a);
+    outB.textContent = String(b);
+    outPa.textContent = String(pubA);
+    outPb.textContent = String(pubB);
+    outK.textContent = String(kAlice);
+
+    var frac = tries / (P - 1);
+    var w = Math.round(430 * frac);
+    bar.setAttribute('width', String(w));
+    bar.setAttribute('x', String(470 - w));
+
+    var msg = 'אליס חישבה ' + pubB + ' בחזקת ' + a + ' וקיבלה ' + kAlice + '. בוב חישב ' + pubA + ' בחזקת ' + b + ' וקיבל ' + kBob + '. ';
+    msg += (kAlice === kBob) ? 'אותו מספר, בלי שאף אחד שלח אותו. ' : 'משהו בחישוב אינו מסתדר. ';
+    msg += 'המאזין, שראה רק את ' + pubA + ' ואת ' + pubB + ', היה מגיע לסוד של אליס אחרי ' + tries + ' ניסיונות.';
+    note.textContent = msg;
+  }
+
+  inA.addEventListener('input', render);
+  inB.addEventListener('input', render);
   render();
 })();
 </script>

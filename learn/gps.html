@@ -108,6 +108,9 @@
 
 
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">החישוב היחיד שצריך</h2>
@@ -126,6 +129,9 @@
       </p>
       <p class="formula__legend">c היא מהירות האור בריק, 299,792 קילומטר לשנייה. t_tx היא חותמת הזמן שהלוויין שידר, t_rx היא השעה שבה המכשיר קלט אותה. בניגוד להד של עטלף אין כאן חלוקה בשתיים, כי האות עושה את הדרך פעם אחת בלבד.</p>
     </div>
+
+
+
 
 
 
@@ -226,6 +232,9 @@
 
 
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">הלוויין הרביעי אינו בשביל המיקום</h2>
@@ -269,11 +278,17 @@
 
 
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">למה מיליארדית שנייה אינה מותרות</h2>
     <p>האור עובר כמעט שלושים סנטימטר בננו-שנייה. מכאן אפשר לתרגם כל שגיאת זמן ישירות לשגיאה על הקרקע, ולראות למה הדרישות כאן נראות מוגזמות עד שמחשבים אותן.</p>
     <p>שעון הקוורץ בטלפון סוטה בקלות באלפיות שנייה. אלפית שנייה היא שלוש מאות קילומטר. זו הסיבה שהנעלם הרביעי אינו הידור אלא תנאי לכך שהדבר יעבוד בכלל.</p>
+
+
+
 
 
 
@@ -411,6 +426,9 @@
 
 
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">למה המיקום קופץ בין מגדלים</h2>
@@ -453,12 +471,18 @@
 
 
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">אותו עיקרון, מערכות אחרות</h2>
     <p>GPS הוא אמריקאי, והתכנון הבסיסי שלו דורש 24 לוויינים פעילים בשישה מישורי מסלול. לצידו פועלות מערכות שבנויות על אותו עיקרון בדיוק: GLONASS הרוסית, Galileo האירופית ו-BeiDou הסינית. מקלט מודרני בטלפון מאזין לכולן יחד, ולכן הוא רואה הרבה יותר לוויינים ממה שמערכת אחת מספקת, וזה עוזר במיוחד בעיר שבה חלק מהשמיים חסום.</p>
     <p>יש גם שיטה שמשיגה דיוק של סנטימטרים, ושמה RTK. היא אינה מערכת לוויינים חדשה אלא תיקון מקומי: תחנה קבועה על הקרקע, שמיקומה המדויק ידוע, מודדת את אותם לוויינים, מחשבת כמה היא טועה כרגע ומשדרת את התיקון למקלט שלידה. רוב מקורות השגיאה, ובראשם ההאטה של האות ביונוספירה, משותפים לשני המקלטים כשהם קרובים זה לזה, ולכן התיקון מבטל אותם. זה מה שמשמש מדידות קרקע וחקלאות מדייקת.</p>
     <p>השעונים עצמם הם נושא בפני עצמו. אם מעניין אתכם למה שעון אטומי מדויק יותר מכל דבר אחר שבנינו, יש על כך עמוד נפרד כאן בעיתון.</p>
+
+
+
 
 
 
@@ -560,6 +584,7 @@
   <p class="sim__note" id="gp-note"></p>
   <p class="sim__note euv-caveat">החישוב כאן הוא מהירות האור כפול זמן, וזה בדיוק מה שקורה בשלב הראשון במקלט אמיתי. מקלט אמיתי מוסיף עליו תיקונים שאינם כאן, ובראשם ההאטה של האות ביונוספירה ובטרופוספירה, מסלול הלוויין שאינו בדיוק זה ששודר, וריבוי מסלולים. לכן המספרים כאן מראים את הקשר הנכון בין זמן למרחק, ולא את הדיוק הסופי של מכשיר בשטח.</p>
   </section>
+
 
 
   <section class="quiz" id="quiz">
@@ -850,6 +875,72 @@
 
   inDelay.addEventListener('input', render);
   inClock.addEventListener('input', render);
+  render();
+})();
+</script>
+
+<script>
+/* ===== דיפי-הלמן: חילוף מפתחות על שעון בגודל 23 ===== */
+(function () {
+  var stage = document.getElementById('dh-stage');
+  if (!stage) return;
+
+  var P = 23, G = 5;
+
+  var inA = document.getElementById('dh-in-a');
+  var inB = document.getElementById('dh-in-b');
+  var outA = document.getElementById('dh-out-a');
+  var outB = document.getElementById('dh-out-b');
+  var outPa = document.getElementById('dh-out-pa');
+  var outPb = document.getElementById('dh-out-pb');
+  var outK = document.getElementById('dh-out-k');
+  var bar = document.getElementById('dh-bar');
+  var note = document.getElementById('dh-note');
+
+  function powMod(base, exp, mod) {
+    var r = 1, b = base % mod;
+    while (exp > 0) {
+      if (exp % 2 === 1) r = (r * b) % mod;
+      b = (b * b) % mod;
+      exp = Math.floor(exp / 2);
+    }
+    return r;
+  }
+
+  function render() {
+    var a = Number(inA.value);
+    var b = Number(inB.value);
+
+    var pubA = powMod(G, a, P);
+    var pubB = powMod(G, b, P);
+    var kAlice = powMod(pubB, a, P);
+    var kBob = powMod(pubA, b, P);
+
+    var tries = 0;
+    for (var k = 1; k <= P - 1; k++) {
+      tries = k;
+      if (powMod(G, k, P) === pubA) break;
+    }
+
+    outA.textContent = String(a);
+    outB.textContent = String(b);
+    outPa.textContent = String(pubA);
+    outPb.textContent = String(pubB);
+    outK.textContent = String(kAlice);
+
+    var frac = tries / (P - 1);
+    var w = Math.round(430 * frac);
+    bar.setAttribute('width', String(w));
+    bar.setAttribute('x', String(470 - w));
+
+    var msg = 'אליס חישבה ' + pubB + ' בחזקת ' + a + ' וקיבלה ' + kAlice + '. בוב חישב ' + pubA + ' בחזקת ' + b + ' וקיבל ' + kBob + '. ';
+    msg += (kAlice === kBob) ? 'אותו מספר, בלי שאף אחד שלח אותו. ' : 'משהו בחישוב אינו מסתדר. ';
+    msg += 'המאזין, שראה רק את ' + pubA + ' ואת ' + pubB + ', היה מגיע לסוד של אליס אחרי ' + tries + ' ניסיונות.';
+    note.textContent = msg;
+  }
+
+  inA.addEventListener('input', render);
+  inB.addEventListener('input', render);
   render();
 })();
 </script>

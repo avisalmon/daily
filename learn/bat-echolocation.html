@@ -79,6 +79,9 @@
 
 
 
+
+
+
     <figure class="diagram">
     <svg viewBox="0 0 520 300" role="img" aria-label="עטלף בצד ימין שולח קריאה שמאלה אל חרק, וההד חוזר אליו. מתחת, ציר זמן שמסמן שש אלפיות שנייה בין הקריאה להד, והמרחק שמתקבל מהן" preserveAspectRatio="xMidYMid meet">
     <text x="500" y="24" class="diagram__label diagram__label--strong">מדידה אחת: קריאה, הד, זמן</text>
@@ -168,12 +171,18 @@
 
 
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">למה אולטרסאונד ולא קול רגיל</h2>
     <p>אורך הגל קובע את הפרט הקטן ביותר שאפשר להבחין בו. גל שארוך בהרבה מהעצם פשוט עוקף אותו ומחזיר ממנו כמעט כלום. גל שקצר ממנו מחזיר הד ברור.</p>
     <p>אורך הגל הוא מהירות הקול חלקי התדר. ב-50 קילו-הרץ מתקבלים 6.86 מילימטרים, כלומר בערך שבעה מילימטרים, בדיוק הסדר גודל של יתוש.</p>
     <p>אוזן אנושית נעצרת סביב 20 קילו-הרץ, ושם אורך הגל הוא 17.15 מילימטרים, פי 2.45 מהיתוש. בקול ששומעים, היתוש איננו.</p>
+
+
+
 
 
 
@@ -252,6 +261,9 @@
     <p>בתנאים של 20 מעלות ולחות יחסית של 50 אחוזים, אחרי ארבעה מטרים נשארים מגל של 25 קילו-הרץ כ-51.0 אחוזים מהאנרגיה. מגל של 100 קילו-הרץ נשארים באותו מרחק 4.9 אחוזים.</p>
     <p>אחרי עשרה מטרים הפער כבר לא מעניין: 18.6 אחוזים מול פחות מעשירית האחוז. עטלפים שצדים במרחב פתוח משתמשים בתדרים נמוכים יותר מעטלפים שמלקטים חרקים מתוך עלווה, וזאת הסיבה.</p>
     <p>אותה עסקה בדיוק מופיעה בסונאר של צוללת וברדאר. חדות מול טווח, ואי אפשר לקבל את שניהם.</p>
+
+
+
 
 
 
@@ -365,6 +377,9 @@
 
 
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">הבעיה של מי שצועק ומקשיב באותו רגע</h2>
@@ -407,12 +422,18 @@
 
 
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">קצב הקריאות משתנה תוך כדי ציד</h2>
     <p>בשלב החיפוש הקצב איטי, בערך 10 עד 20 קריאות בשנייה. מרווח של 100 אלפיות שנייה נותן להד זמן לחזור ממרחק של 17.15 מטרים, וזה בדיוק מה שצריך כשסורקים מרחב.</p>
     <p>כשהעטלף מתקרב הוא מקצר. חרק במרחק שני מטרים מחזיר הד אחרי 11.66 אלפיות שנייה, ולכן אפשר להעלות את הקצב עד כ-85 קריאות בשנייה בלי שקריאה חדשה תדרוס הד שעוד לא חזר.</p>
     <p>ממש לפני התפיסה מגיע הבאז: עד כ-200 קריאות בשנייה. מרווח של 5 אלפיות שנייה מתאים לטווח של 86 סנטימטרים, וזה כל מה שנחוץ. בשלב הזה העטלף כבר לא מחפש, הוא נועל.</p>
+
+
+
 
 
 
@@ -600,6 +621,9 @@
 
 
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">אותו עיקרון במקומות אחרים</h2>
@@ -643,7 +667,11 @@
 
 
 
+
+
+
   </section>
+
 
 
 
@@ -1019,6 +1047,72 @@
 
   inDelay.addEventListener('input', render);
   inClock.addEventListener('input', render);
+  render();
+})();
+</script>
+
+<script>
+/* ===== דיפי-הלמן: חילוף מפתחות על שעון בגודל 23 ===== */
+(function () {
+  var stage = document.getElementById('dh-stage');
+  if (!stage) return;
+
+  var P = 23, G = 5;
+
+  var inA = document.getElementById('dh-in-a');
+  var inB = document.getElementById('dh-in-b');
+  var outA = document.getElementById('dh-out-a');
+  var outB = document.getElementById('dh-out-b');
+  var outPa = document.getElementById('dh-out-pa');
+  var outPb = document.getElementById('dh-out-pb');
+  var outK = document.getElementById('dh-out-k');
+  var bar = document.getElementById('dh-bar');
+  var note = document.getElementById('dh-note');
+
+  function powMod(base, exp, mod) {
+    var r = 1, b = base % mod;
+    while (exp > 0) {
+      if (exp % 2 === 1) r = (r * b) % mod;
+      b = (b * b) % mod;
+      exp = Math.floor(exp / 2);
+    }
+    return r;
+  }
+
+  function render() {
+    var a = Number(inA.value);
+    var b = Number(inB.value);
+
+    var pubA = powMod(G, a, P);
+    var pubB = powMod(G, b, P);
+    var kAlice = powMod(pubB, a, P);
+    var kBob = powMod(pubA, b, P);
+
+    var tries = 0;
+    for (var k = 1; k <= P - 1; k++) {
+      tries = k;
+      if (powMod(G, k, P) === pubA) break;
+    }
+
+    outA.textContent = String(a);
+    outB.textContent = String(b);
+    outPa.textContent = String(pubA);
+    outPb.textContent = String(pubB);
+    outK.textContent = String(kAlice);
+
+    var frac = tries / (P - 1);
+    var w = Math.round(430 * frac);
+    bar.setAttribute('width', String(w));
+    bar.setAttribute('x', String(470 - w));
+
+    var msg = 'אליס חישבה ' + pubB + ' בחזקת ' + a + ' וקיבלה ' + kAlice + '. בוב חישב ' + pubA + ' בחזקת ' + b + ' וקיבל ' + kBob + '. ';
+    msg += (kAlice === kBob) ? 'אותו מספר, בלי שאף אחד שלח אותו. ' : 'משהו בחישוב אינו מסתדר. ';
+    msg += 'המאזין, שראה רק את ' + pubA + ' ואת ' + pubB + ', היה מגיע לסוד של אליס אחרי ' + tries + ' ניסיונות.';
+    note.textContent = msg;
+  }
+
+  inA.addEventListener('input', render);
+  inB.addEventListener('input', render);
   render();
 })();
 </script>
