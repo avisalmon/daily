@@ -117,6 +117,9 @@
 
 
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">החישוב היחיד שצריך</h2>
@@ -136,6 +139,9 @@
       </p>
       <p class="formula__legend">c היא מהירות הקול באוויר, 343 מטר לשנייה ב-20 מעלות צלזיוס. t הוא הזמן מרגע הקריאה ועד ההד.</p>
     </div>
+
+
+
 
 
 
@@ -241,6 +247,9 @@
 
 
 
+
+
+
     <figure class="datatable">
       <table>
         <caption>אורך הגל באוויר לפי תדר</caption>
@@ -335,6 +344,9 @@
     </figure>
 
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">דופלר: למדוד גם מהירות</h2>
@@ -380,12 +392,18 @@
 
 
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">הבעיה של מי שצועק ומקשיב באותו רגע</h2>
     <p>קריאה של עטלף שצד באוויר פתוח מגיעה ל-133 דציבלים, נמדד במרחק עשרה סנטימטרים מהפה. ההד שחוזר חלש ממנה פי מאות.</p>
     <p>אוזן שקולטת את הצעקה במלוא עוצמתה לא תשמע את מה שבא אחריה. הפתרון הוא שריר קטן באוזן התיכונה, שריר הסטפדיוס, שמתכווץ ברגע הקריאה ומרפה את שרשרת עצמות השמע, ומשתחרר מיד אחר כך כדי להקשיב.</p>
     <p>ההיגיון זהה לזה של מכשיר שמשדר ומקבל באותה אנטנה: צריך לסגור את המקלט בזמן השידור ולפתוח אותו מיד אחריו. העטלף עושה את זה מאות פעמים בשנייה.</p>
+
+
+
 
 
 
@@ -579,12 +597,18 @@
     <figcaption>שלושה שלבים באותו ציד, על אותו ציר זמן של 300 אלפיות שנייה. המרווח בין קריאות אינו שרירותי: הוא חייב להספיק להד לחזור.</figcaption>
     </figure>
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">מרוץ חימוש באוויר</h2>
     <p>עשים רבים מחזיקים איבר שמיעה פשוט, האיבר הטימפנלי, שרגיש בדיוק לתדרים שעטלפים קוראים בהם. כששומעים קריאה קרובה הם מפסיקים לעוף וצונחים כמה סנטימטרים.</p>
     <p>עש הנמר Bertholdia trigona הולך צעד רחוק יותר. הוא מחזיר סדרת נקישות אולטרה-סוניות, עד כ-4,500 נקישות בשנייה, ומשבש את ההד שהעטלף מצפה לקבל. העבודה שהראתה זאת פורסמה בכתב העת Science בשנת 2009, ובניסוי שדה מאוחר יותר צנח שיעור התפיסות המוצלחות פי עשרה.</p>
     <p>מהצד השני יש עטלפים שברחו לתדרים שהעשים כמעט לא שומעים. Euderma maculatum קורא סביב 12.7 קילו-הרץ, מתחת לטווח שאליו מכוונת אוזן העש. המחיר ידוע מראש: אורך גל של 27.01 מילימטרים, כלומר חדות גרועה יותר.</p>
+
+
+
 
 
 
@@ -670,7 +694,11 @@
 
 
 
+
+
+
   </section>
+
 
 
 
@@ -1047,6 +1075,75 @@
 
   inDelay.addEventListener('input', render);
   inClock.addEventListener('input', render);
+  render();
+})();
+</script>
+
+<script>
+/* ===== דלתא-וי: לאן נעלם המטען ===== */
+(function () {
+  var stage = document.getElementById('dvm-stage');
+  if (!stage) return;
+
+  var STRUCT = 0.08, FULL = 430, X0 = 470;
+
+  var inDv = document.getElementById('dvm-in-dv');
+  var inVe = document.getElementById('dvm-in-ve');
+  var outDv = document.getElementById('dvm-out-dv');
+  var outVe = document.getElementById('dvm-out-ve');
+  var outMr = document.getElementById('dvm-out-mr');
+  var outProp = document.getElementById('dvm-out-prop');
+  var outPay = document.getElementById('dvm-out-pay');
+  var barProp = document.getElementById('dvm-bar-prop');
+  var barStruct = document.getElementById('dvm-bar-struct');
+  var barPay = document.getElementById('dvm-bar-pay');
+  var marker = document.getElementById('dvm-marker');
+  var note = document.getElementById('dvm-note');
+
+  function place(rect, right, w) {
+    rect.setAttribute('width', String(Math.max(0, w)));
+    rect.setAttribute('x', String(right - Math.max(0, w)));
+  }
+
+  function render() {
+    var dv = Number(inDv.value);
+    var ve = Number(inVe.value);
+
+    var mr = Math.exp(dv / ve);
+    var prop = 1 - 1 / mr;
+    var payload = 1 - prop - STRUCT;
+
+    var wProp = Math.min(prop, 1) * FULL;
+    var wStruct = Math.min(STRUCT * FULL, FULL - wProp);
+    var wPay = Math.max(payload, 0) * FULL;
+
+    place(barProp, X0, wProp);
+    place(barStruct, X0 - wProp, wStruct);
+    place(barPay, X0 - wProp - wStruct, wPay);
+
+    var mx = X0 - (prop + STRUCT) * FULL;
+    if (mx < 24) mx = 24;
+    marker.setAttribute('x1', String(mx));
+    marker.setAttribute('x2', String(mx));
+
+    outDv.textContent = dv.toFixed(1);
+    outVe.textContent = ve.toFixed(1);
+    outMr.textContent = mr.toFixed(2);
+    outProp.textContent = (prop * 100).toFixed(1) + '%';
+    outPay.textContent = (payload * 100).toFixed(1) + '%';
+
+    var msg = 'כדי לייצר ' + dv.toFixed(1) + ' קילומטרים לשנייה במהירות פליטה ' + ve.toFixed(1) + ', הרקטה חייבת לשקול בהמראה פי ' + mr.toFixed(2) + ' ממה שיישאר ממנה בסוף הבעירה. ';
+    msg += 'הדלק תופס ' + (prop * 100).toFixed(1) + ' אחוזים ממסת ההמראה, והמבנה עוד 8. ';
+    if (payload > 0.001) {
+      msg += 'למטען נשארים ' + (payload * 100).toFixed(1) + ' אחוזים.';
+    } else {
+      msg += 'יחד הם ' + ((prop + STRUCT) * 100).toFixed(1) + ' אחוזים, יותר מהרקטה כולה. למטען נשאר ' + (payload * 100).toFixed(1) + ' אחוזים, ולכן שלב יחיד כזה אינו מגיע למסלול גם ריק לגמרי. הקו המקווקו חרג מקצה העמודה.';
+    }
+    note.textContent = msg;
+  }
+
+  inDv.addEventListener('input', render);
+  inVe.addEventListener('input', render);
   render();
 })();
 </script>

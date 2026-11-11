@@ -63,6 +63,61 @@ def test_there_is_at_least_one_edition():
 
 
 # --------------------------------------------------------------------------
+# The newsroom has to actually produce.
+#
+# Between 19 October and 11 November 2026 the hourly publish job ran green
+# every hour of every day while the site served a three-week-old paper. Three
+# editorial meetings had run and written their plans; no edition was ever
+# built. Nothing in the repository noticed, because publish.py is a promoter
+# and not a writer: with no new edition on disk it correctly finds nothing to
+# do, reports success, and exits 0.
+#
+# A green workflow over a stale paper is worse than a red one. It answers the
+# only question the reader actually asks, "is this today's paper", with the
+# wrong answer, and it answers it 24 times a day.
+# --------------------------------------------------------------------------
+
+STALE_AFTER_DAYS = 7
+
+
+def newsroom_gap_days(edition_dates: list[date], today: date) -> int:
+    """How many days behind `today` the newest edition *written* is.
+
+    Measured against editions on disk rather than editions published, so a
+    paper written tonight for tomorrow counts as fresh: the newsroom is
+    working even though nothing has been promoted to the front page yet.
+    """
+    if not edition_dates:
+        return 10**6
+    return max(0, (today - max(edition_dates)).days)
+
+
+def test_the_paper_is_not_stale():
+    gap = newsroom_gap_days([date.fromisoformat(p.stem) for p in ALL_EDITIONS], paper_today())
+    assert gap <= STALE_AFTER_DAYS, (
+        f"the newest edition on disk is {gap} days old, and the publish job "
+        f"will go on reporting success anyway, because it promotes editions "
+        f"and does not write them. A plan in data/plans/ is a decision, not an "
+        f"edition. Run the editorial meeting, then build."
+    )
+
+
+def test_newsroom_gap_counts_tomorrows_paper_as_fresh():
+    assert newsroom_gap_days([date(2026, 11, 12)], date(2026, 11, 11)) == 0
+
+
+def test_newsroom_gap_measures_the_newest_not_the_count():
+    dates = [date(2026, 1, 1), date(2026, 11, 4), date(2026, 2, 2)]
+    assert newsroom_gap_days(dates, date(2026, 11, 11)) == 7
+
+
+def test_newsroom_gap_would_have_caught_the_october_silence():
+    """The real incident, pinned: on 11 November the newest edition was 19 October."""
+    assert newsroom_gap_days([date(2026, 10, 19)], date(2026, 11, 11)) == 23
+    assert 23 > STALE_AFTER_DAYS, "the threshold no longer catches the case it was written for"
+
+
+# --------------------------------------------------------------------------
 # Encoding. PowerShell silently rewrote docs/SPEC.md as cp1252 once and turned
 # every Hebrew word into mojibake. Nothing shipped may contain it again.
 # --------------------------------------------------------------------------
@@ -433,6 +488,95 @@ def test_compound_interest_matches_the_numbers_in_the_article():
     assert round(P * (1 + r) ** 30) == 17449
     assert round(P * (1 + r * 10)) == 2000
     assert round(P * (1 + r * 30)) == 4000
+
+
+def test_delta_v_matches_the_numbers_in_the_article():
+    """No reader can catch a wrong derived number, because the paper is the
+    source. Edition 18's learning page is arithmetic end to end, so every
+    figure it prints is recomputed here."""
+    import math
+
+    # Climbing 100 km is cheap. Reaching orbital speed is not.
+    climb = 9.81 * 100_000                      # J/kg
+    speed = 0.5 * 7800 ** 2                     # J/kg
+    assert round(climb / 1000) == 981           # 981 kJ/kg
+    assert round(speed / 1e6, 2) == 30.42       # 30.42 MJ/kg
+    assert round(speed / climb, 2) == 31.01     # the article's "pi 31"
+    assert round(100 * speed / (speed + climb), 1) == 96.9
+    assert round(100 * climb / (speed + climb), 1) == 3.1
+
+    # Tsiolkovsky at the standard LEO budget on kerosene and oxygen.
+    mr = math.exp(9.4 / 3.3)
+    assert round(mr, 2) == 17.26
+    prop = 1 - 1 / mr
+    assert round(prop * 100, 1) == 94.2
+
+    # The simulator's payoff: with 8 percent structure the payload is negative,
+    # so a single stage of this kind cannot reach orbit even empty.
+    payload = 1 - prop - 0.08
+    assert payload < 0
+    assert round(payload * 100, 1) == -2.2
+
+    # Splitting the same budget over two stages needs a far gentler ratio.
+    assert round(math.exp(4.7 / 3.3), 1) == 4.2
+
+    # The closing comparison: the energy itself is worth a few shekels.
+    assert round(speed / 3.6e6, 2) == 8.45      # kWh per kg
+
+
+def test_orbital_compute_figure_matches_the_numbers_in_the_article():
+    """Edition 18's lead figure and body are the paper's own calculation, not a
+    quote. Every number in them is rebuilt from the stated assumptions."""
+    SOLAR, EFF, SIGMA, EPS, PUE = 1361.0, 0.320, 5.670374419e-8, 0.9, 1.20
+
+    assert round(SOLAR * EFF, 1) == 435.5       # W per square metre, ideal
+
+    def radiate(k):
+        return EPS * SIGMA * k ** 4
+
+    assert round(radiate(300), 1) == 413.4
+    assert round(radiate(350), 1) == 765.8
+    assert round(radiate(400), 1) == 1306.5
+    assert round(radiate(400) / radiate(300), 2) == 3.16
+
+    heat = 1e6 * PUE                            # watts to shed per MW of compute
+    assert round(heat / radiate(300)) == 2903
+    assert round(heat / radiate(350)) == 1567
+    assert round(heat / radiate(400)) == 919
+    assert round(heat / (SOLAR * EFF * 0.70)) == 3936
+
+    # Launch price. Both figures pair a price with the payload mass quoted in
+    # the same breath; mixing a reusable price with an expendable mass is the
+    # error the article names.
+    f9 = 74e6 / 22_800
+    fh = 150e6 / 63_800
+    assert round(f9) == 3246
+    assert round(fh) == 2351
+    assert round(f9 / 200, 1) == 16.2           # to Google's own threshold
+
+
+def test_every_topic_diagram_and_sim_type_is_handled_by_the_template():
+    """Jinja does not raise on a value it has no branch for. A diagram type the
+    template never matches renders nothing at all and the page ships looking
+    fine, so the data is walked here instead of trusted."""
+    tpl = (ROOT / "templates" / "topic.html.j2").read_text(encoding="utf-8")
+    missing = []
+    for path in TOPICS:
+        topic = json.loads(path.read_text(encoding="utf-8"))
+        wanted = []
+        for sec in topic.get("sections", []):
+            diagram = sec.get("diagram")
+            if diagram and diagram.get("type"):
+                wanted.append(("diagram", diagram["type"],
+                               f"sec.diagram.type == '{diagram['type']}'"))
+        sim = topic.get("sim")
+        if sim and sim.get("type"):
+            wanted.append(("sim", sim["type"],
+                           f"topic.sim.type == '{sim['type']}'"))
+        for kind, name, needle in wanted:
+            if needle not in tpl:
+                missing.append(f"{path.name}: {kind} '{name}' has no branch")
+    assert not missing, "topic.html.j2 silently drops: " + "; ".join(missing)
 
 
 # --------------------------------------------------------------------------

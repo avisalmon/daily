@@ -87,6 +87,9 @@
 
 
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">האצה שיודעת לשחות אל האור</h2>
@@ -163,6 +166,9 @@
 
 
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">ביצת צפרדע מוכיחה את העניין</h2>
@@ -170,6 +176,9 @@
     <p>כשהאירו עליהן, התעלה נפתחה תוך 0.2 אלפיות השנייה. יונים טעונים חיובית זרמו פנימה ונוצר אות חשמלי. החלבון קיבל את השם צ&#39;אנלרודופסין, ותיאורו פורסם ב-2003 בכתב העת PNAS כתעלה קטיונית שנפתחת ישירות על ידי אור.</p>
     <p>ואז הגיעה התוצאה שהפכה את זה לכלי ולא לסקרנות: הם החדירו את אותו גן לתאי כליה של עובר אדם ולתאי כליה של אוגר, והתאים האלה נעשו רגישים לאור. לא משנה לאיזה תא הכניסו את החלבון, התא התחיל להגיב לאור.</p>
     <p>זו הנקודה שבה מחקר על אצה שוחה הפך לכלי אוניברסלי. החלבון לא דורש מהתא המארח שום דבר מיוחד. הוא מביא איתו את כל מה שצריך.</p>
+
+
+
 
 
 
@@ -273,6 +282,9 @@
 
 
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">למה דווקא אור, ולמה זה נקרא גם גנטיקה</h2>
@@ -343,6 +355,9 @@
 
 
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">מה זה כבר עשה למטופלים, ומה עוד לא</h2>
@@ -350,6 +365,9 @@
     <p>הצעד הקליני הראשון נעשה בעיניים. בניסויים קליניים מתמשכים מנסים להחזיר ראייה לאנשים שהתעוורו מרטיניטיס פיגמנטוזה, מחלה שהורסת את המדוכים והמדוקים ברשתית. כשהוחדר לרשתית של אדם עיוור חלבון דמוי צ&#39;אנלרודופסין, הוא החזיר ראייה חלקית: בעזרת משקפיים מיוחדים שפולטים אור הוא הצליח להבחין בחפצים על שולחן ולאחוז בהם.</p>
     <p>יש גם תקווה לשתלי שבלול. כיום הם מגרים את עצב השמיעה בחשמל, ואופטוגנטיקה אולי תאפשר לעשות זאת בדיוק גבוה יותר.</p>
     <p>מה שחשוב להחזיק: זו אינה תרופה זמינה. מדובר בניסויים קליניים, בהחזרת ראייה חלקית אצל מטופלים בודדים, ובשיטה שבמוח דורשת החדרת גן והכנסת סיב אופטי לגולגולת. הערך העיקרי שלה עד כה הוא בשאלות שהיא מאפשרת לשאול, לא בטיפולים שהיא מספקת.</p>
+
+
+
 
 
 
@@ -464,6 +482,7 @@
     <p class="sim__note" id="op-note"></p>
     <p class="sim__note euv-caveat">המדמה מציג שלושה תנאים מתוך ניסוי אמיתי שמערב גם עוצמת אור, כמות חלבון בקרום ובריאות התא. הוא נועד להמחיש את ההיגיון הסיבתי, ואינו מודל כמותי.</p>
   </section>
+
 
 
 
@@ -778,6 +797,75 @@
 
   inDelay.addEventListener('input', render);
   inClock.addEventListener('input', render);
+  render();
+})();
+</script>
+
+<script>
+/* ===== דלתא-וי: לאן נעלם המטען ===== */
+(function () {
+  var stage = document.getElementById('dvm-stage');
+  if (!stage) return;
+
+  var STRUCT = 0.08, FULL = 430, X0 = 470;
+
+  var inDv = document.getElementById('dvm-in-dv');
+  var inVe = document.getElementById('dvm-in-ve');
+  var outDv = document.getElementById('dvm-out-dv');
+  var outVe = document.getElementById('dvm-out-ve');
+  var outMr = document.getElementById('dvm-out-mr');
+  var outProp = document.getElementById('dvm-out-prop');
+  var outPay = document.getElementById('dvm-out-pay');
+  var barProp = document.getElementById('dvm-bar-prop');
+  var barStruct = document.getElementById('dvm-bar-struct');
+  var barPay = document.getElementById('dvm-bar-pay');
+  var marker = document.getElementById('dvm-marker');
+  var note = document.getElementById('dvm-note');
+
+  function place(rect, right, w) {
+    rect.setAttribute('width', String(Math.max(0, w)));
+    rect.setAttribute('x', String(right - Math.max(0, w)));
+  }
+
+  function render() {
+    var dv = Number(inDv.value);
+    var ve = Number(inVe.value);
+
+    var mr = Math.exp(dv / ve);
+    var prop = 1 - 1 / mr;
+    var payload = 1 - prop - STRUCT;
+
+    var wProp = Math.min(prop, 1) * FULL;
+    var wStruct = Math.min(STRUCT * FULL, FULL - wProp);
+    var wPay = Math.max(payload, 0) * FULL;
+
+    place(barProp, X0, wProp);
+    place(barStruct, X0 - wProp, wStruct);
+    place(barPay, X0 - wProp - wStruct, wPay);
+
+    var mx = X0 - (prop + STRUCT) * FULL;
+    if (mx < 24) mx = 24;
+    marker.setAttribute('x1', String(mx));
+    marker.setAttribute('x2', String(mx));
+
+    outDv.textContent = dv.toFixed(1);
+    outVe.textContent = ve.toFixed(1);
+    outMr.textContent = mr.toFixed(2);
+    outProp.textContent = (prop * 100).toFixed(1) + '%';
+    outPay.textContent = (payload * 100).toFixed(1) + '%';
+
+    var msg = 'כדי לייצר ' + dv.toFixed(1) + ' קילומטרים לשנייה במהירות פליטה ' + ve.toFixed(1) + ', הרקטה חייבת לשקול בהמראה פי ' + mr.toFixed(2) + ' ממה שיישאר ממנה בסוף הבעירה. ';
+    msg += 'הדלק תופס ' + (prop * 100).toFixed(1) + ' אחוזים ממסת ההמראה, והמבנה עוד 8. ';
+    if (payload > 0.001) {
+      msg += 'למטען נשארים ' + (payload * 100).toFixed(1) + ' אחוזים.';
+    } else {
+      msg += 'יחד הם ' + ((prop + STRUCT) * 100).toFixed(1) + ' אחוזים, יותר מהרקטה כולה. למטען נשאר ' + (payload * 100).toFixed(1) + ' אחוזים, ולכן שלב יחיד כזה אינו מגיע למסלול גם ריק לגמרי. הקו המקווקו חרג מקצה העמודה.';
+    }
+    note.textContent = msg;
+  }
+
+  inDv.addEventListener('input', render);
+  inVe.addEventListener('input', render);
   render();
 })();
 </script>

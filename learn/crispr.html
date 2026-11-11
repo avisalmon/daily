@@ -86,6 +86,9 @@
 
 
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">שני חלקים: אחד מחפש, אחד חותך</h2>
@@ -185,12 +188,18 @@
 
 
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">PAM: בלי הסיסמה הזאת אין חיתוך</h2>
     <p>התאמה של המדריך אינה מספיקה. Cas9 חותך רק אם צמוד למטרה, בצד אחד, מופיע רצף קצר שנקרא PAM. אצל Cas9 הנפוץ מדובר בשלוש אותיות שבהן השנייה והשלישית הן G, כלומר כל אות ואחריה GG.</p>
     <p>החלבון למעשה מחפש קודם את ה-PAM, ורק כשהוא מוצא אותו הוא טורח לפתוח את הסליל ולבדוק התאמה. זה קיצור דרך יעיל: במקום לבדוק שלושה מיליארד מיקומים לעומק, בודקים לעומק רק את אלה שנושאים את הסימן.</p>
     <p>יש לכך שתי השלכות. הראשונה מעשית: אי אפשר לחתוך בכל נקודה שרוצים, אלא רק ליד PAM, ולכן תכנון עריכה מתחיל תמיד בחיפוש PAM מתאים באזור. השנייה יפה יותר. בחיידק עצמו, הזיכרון הווירלי השמור אינו מלווה ב-PAM, ולכן המערכת אינה חותכת את הזיכרון של עצמה. אותו הבדל קטן הוא שמפריד בין הגנה ובין התאבדות.</p>
+
+
+
 
 
 
@@ -305,12 +314,18 @@
 
 
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">הבעיה האמיתית היא לא לחתוך, אלא לא לחתוך במקום הלא נכון</h2>
     <p>חישוב האותיות למעלה הראה שהתאמה מושלמת נדירה. אלא ש-Cas9 אינו דורש שלמות. הוא סובל לעיתים אי־התאמה של אות או שתיים, ובעיקר כשהן רחוקות מה-PAM. אות שאינה מתאימה בקצה המרוחק עשויה לעבור בשקט, ואילו אי־התאמה צמודה ל-PAM בדרך כלל עוצרת את החיתוך.</p>
     <p>מכאן שהמדריך יוצר לא מטרה אחת אלא דירוג של מטרות: אתר אחד מושלם, וכמה אתרים דומים בגנום שעלולים להיחתך גם הם. חיתוך כזה נקרא off-target, והוא הסיכון המרכזי של השיטה, כי אם הוא נופל בתוך גן חשוב התוצאה היא נזק שלא התכוונו אליו.</p>
     <p>לכן העבודה האמיתית בעריכה גנטית אינה החיתוך אלא הבחירה. בוחרים מדריך שהאתרים הדומים לו בגנום מעטים ורחוקים ממקומות רגישים, משתמשים בגרסאות חלבון שתוכננו להיות פחות סלחניות לאי־התאמה, ומודדים אחר כך בפועל היכן נחתך הגנום. הסימולטור למטה ממחיש את הדירוג הזה על רצף קצר.</p>
+
+
+
 
 
 
@@ -395,6 +410,9 @@
 
 
 
+
+
+
   </section>
 
 
@@ -439,6 +457,7 @@
     <p class="sim__note" id="crispr-note"></p>
     <p class="sim__note euv-caveat">הכלל שמופעל כאן פשוט בכוונה: אתר נחתך אם יש אחריו PAM, אם מספר אי־ההתאמות אינו עולה על הסובלנות שבחרתם, ואם אף אי־התאמה אינה נופלת בעשר האותיות הצמודות ל-PAM. חיתוך אמיתי תלוי גם במבנה הכרומטין, בריכוזים ובגרסת החלבון, וכלי תכנון מדרגים אתרים במודלים מורכבים בהרבה מספירת אותיות.</p>
   </section>
+
 
 
 
@@ -754,6 +773,75 @@
 
   inDelay.addEventListener('input', render);
   inClock.addEventListener('input', render);
+  render();
+})();
+</script>
+
+<script>
+/* ===== דלתא-וי: לאן נעלם המטען ===== */
+(function () {
+  var stage = document.getElementById('dvm-stage');
+  if (!stage) return;
+
+  var STRUCT = 0.08, FULL = 430, X0 = 470;
+
+  var inDv = document.getElementById('dvm-in-dv');
+  var inVe = document.getElementById('dvm-in-ve');
+  var outDv = document.getElementById('dvm-out-dv');
+  var outVe = document.getElementById('dvm-out-ve');
+  var outMr = document.getElementById('dvm-out-mr');
+  var outProp = document.getElementById('dvm-out-prop');
+  var outPay = document.getElementById('dvm-out-pay');
+  var barProp = document.getElementById('dvm-bar-prop');
+  var barStruct = document.getElementById('dvm-bar-struct');
+  var barPay = document.getElementById('dvm-bar-pay');
+  var marker = document.getElementById('dvm-marker');
+  var note = document.getElementById('dvm-note');
+
+  function place(rect, right, w) {
+    rect.setAttribute('width', String(Math.max(0, w)));
+    rect.setAttribute('x', String(right - Math.max(0, w)));
+  }
+
+  function render() {
+    var dv = Number(inDv.value);
+    var ve = Number(inVe.value);
+
+    var mr = Math.exp(dv / ve);
+    var prop = 1 - 1 / mr;
+    var payload = 1 - prop - STRUCT;
+
+    var wProp = Math.min(prop, 1) * FULL;
+    var wStruct = Math.min(STRUCT * FULL, FULL - wProp);
+    var wPay = Math.max(payload, 0) * FULL;
+
+    place(barProp, X0, wProp);
+    place(barStruct, X0 - wProp, wStruct);
+    place(barPay, X0 - wProp - wStruct, wPay);
+
+    var mx = X0 - (prop + STRUCT) * FULL;
+    if (mx < 24) mx = 24;
+    marker.setAttribute('x1', String(mx));
+    marker.setAttribute('x2', String(mx));
+
+    outDv.textContent = dv.toFixed(1);
+    outVe.textContent = ve.toFixed(1);
+    outMr.textContent = mr.toFixed(2);
+    outProp.textContent = (prop * 100).toFixed(1) + '%';
+    outPay.textContent = (payload * 100).toFixed(1) + '%';
+
+    var msg = 'כדי לייצר ' + dv.toFixed(1) + ' קילומטרים לשנייה במהירות פליטה ' + ve.toFixed(1) + ', הרקטה חייבת לשקול בהמראה פי ' + mr.toFixed(2) + ' ממה שיישאר ממנה בסוף הבעירה. ';
+    msg += 'הדלק תופס ' + (prop * 100).toFixed(1) + ' אחוזים ממסת ההמראה, והמבנה עוד 8. ';
+    if (payload > 0.001) {
+      msg += 'למטען נשארים ' + (payload * 100).toFixed(1) + ' אחוזים.';
+    } else {
+      msg += 'יחד הם ' + ((prop + STRUCT) * 100).toFixed(1) + ' אחוזים, יותר מהרקטה כולה. למטען נשאר ' + (payload * 100).toFixed(1) + ' אחוזים, ולכן שלב יחיד כזה אינו מגיע למסלול גם ריק לגמרי. הקו המקווקו חרג מקצה העמודה.';
+    }
+    note.textContent = msg;
+  }
+
+  inDv.addEventListener('input', render);
+  inVe.addEventListener('input', render);
   render();
 })();
 </script>

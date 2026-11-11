@@ -111,6 +111,9 @@
 
 
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">החישוב היחיד שצריך</h2>
@@ -129,6 +132,9 @@
       </p>
       <p class="formula__legend">c היא מהירות האור בריק, 299,792 קילומטר לשנייה. t_tx היא חותמת הזמן שהלוויין שידר, t_rx היא השעה שבה המכשיר קלט אותה. בניגוד להד של עטלף אין כאן חלוקה בשתיים, כי האות עושה את הדרך פעם אחת בלבד.</p>
     </div>
+
+
+
 
 
 
@@ -235,6 +241,9 @@
 
 
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">הלוויין הרביעי אינו בשביל המיקום</h2>
@@ -281,11 +290,17 @@
 
 
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">למה מיליארדית שנייה אינה מותרות</h2>
     <p>האור עובר כמעט שלושים סנטימטר בננו-שנייה. מכאן אפשר לתרגם כל שגיאת זמן ישירות לשגיאה על הקרקע, ולראות למה הדרישות כאן נראות מוגזמות עד שמחשבים אותן.</p>
     <p>שעון הקוורץ בטלפון סוטה בקלות באלפיות שנייה. אלפית שנייה היא שלוש מאות קילומטר. זו הסיבה שהנעלם הרביעי אינו הידור אלא תנאי לכך שהדבר יעבוד בכלל.</p>
+
+
+
 
 
 
@@ -429,6 +444,9 @@
 
 
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">למה המיקום קופץ בין מגדלים</h2>
@@ -474,12 +492,18 @@
 
 
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">אותו עיקרון, מערכות אחרות</h2>
     <p>GPS הוא אמריקאי, והתכנון הבסיסי שלו דורש 24 לוויינים פעילים בשישה מישורי מסלול. לצידו פועלות מערכות שבנויות על אותו עיקרון בדיוק: GLONASS הרוסית, Galileo האירופית ו-BeiDou הסינית. מקלט מודרני בטלפון מאזין לכולן יחד, ולכן הוא רואה הרבה יותר לוויינים ממה שמערכת אחת מספקת, וזה עוזר במיוחד בעיר שבה חלק מהשמיים חסום.</p>
     <p>יש גם שיטה שמשיגה דיוק של סנטימטרים, ושמה RTK. היא אינה מערכת לוויינים חדשה אלא תיקון מקומי: תחנה קבועה על הקרקע, שמיקומה המדויק ידוע, מודדת את אותם לוויינים, מחשבת כמה היא טועה כרגע ומשדרת את התיקון למקלט שלידה. רוב מקורות השגיאה, ובראשם ההאטה של האות ביונוספירה, משותפים לשני המקלטים כשהם קרובים זה לזה, ולכן התיקון מבטל אותם. זה מה שמשמש מדידות קרקע וחקלאות מדייקת.</p>
     <p>השעונים עצמם הם נושא בפני עצמו. אם מעניין אתכם למה שעון אטומי מדויק יותר מכל דבר אחר שבנינו, יש על כך עמוד נפרד כאן בעיתון.</p>
+
+
+
 
 
 
@@ -584,6 +608,7 @@
   <p class="sim__note" id="gp-note"></p>
   <p class="sim__note euv-caveat">החישוב כאן הוא מהירות האור כפול זמן, וזה בדיוק מה שקורה בשלב הראשון במקלט אמיתי. מקלט אמיתי מוסיף עליו תיקונים שאינם כאן, ובראשם ההאטה של האות ביונוספירה ובטרופוספירה, מסלול הלוויין שאינו בדיוק זה ששודר, וריבוי מסלולים. לכן המספרים כאן מראים את הקשר הנכון בין זמן למרחק, ולא את הדיוק הסופי של מכשיר בשטח.</p>
   </section>
+
 
 
 
@@ -875,6 +900,75 @@
 
   inDelay.addEventListener('input', render);
   inClock.addEventListener('input', render);
+  render();
+})();
+</script>
+
+<script>
+/* ===== דלתא-וי: לאן נעלם המטען ===== */
+(function () {
+  var stage = document.getElementById('dvm-stage');
+  if (!stage) return;
+
+  var STRUCT = 0.08, FULL = 430, X0 = 470;
+
+  var inDv = document.getElementById('dvm-in-dv');
+  var inVe = document.getElementById('dvm-in-ve');
+  var outDv = document.getElementById('dvm-out-dv');
+  var outVe = document.getElementById('dvm-out-ve');
+  var outMr = document.getElementById('dvm-out-mr');
+  var outProp = document.getElementById('dvm-out-prop');
+  var outPay = document.getElementById('dvm-out-pay');
+  var barProp = document.getElementById('dvm-bar-prop');
+  var barStruct = document.getElementById('dvm-bar-struct');
+  var barPay = document.getElementById('dvm-bar-pay');
+  var marker = document.getElementById('dvm-marker');
+  var note = document.getElementById('dvm-note');
+
+  function place(rect, right, w) {
+    rect.setAttribute('width', String(Math.max(0, w)));
+    rect.setAttribute('x', String(right - Math.max(0, w)));
+  }
+
+  function render() {
+    var dv = Number(inDv.value);
+    var ve = Number(inVe.value);
+
+    var mr = Math.exp(dv / ve);
+    var prop = 1 - 1 / mr;
+    var payload = 1 - prop - STRUCT;
+
+    var wProp = Math.min(prop, 1) * FULL;
+    var wStruct = Math.min(STRUCT * FULL, FULL - wProp);
+    var wPay = Math.max(payload, 0) * FULL;
+
+    place(barProp, X0, wProp);
+    place(barStruct, X0 - wProp, wStruct);
+    place(barPay, X0 - wProp - wStruct, wPay);
+
+    var mx = X0 - (prop + STRUCT) * FULL;
+    if (mx < 24) mx = 24;
+    marker.setAttribute('x1', String(mx));
+    marker.setAttribute('x2', String(mx));
+
+    outDv.textContent = dv.toFixed(1);
+    outVe.textContent = ve.toFixed(1);
+    outMr.textContent = mr.toFixed(2);
+    outProp.textContent = (prop * 100).toFixed(1) + '%';
+    outPay.textContent = (payload * 100).toFixed(1) + '%';
+
+    var msg = 'כדי לייצר ' + dv.toFixed(1) + ' קילומטרים לשנייה במהירות פליטה ' + ve.toFixed(1) + ', הרקטה חייבת לשקול בהמראה פי ' + mr.toFixed(2) + ' ממה שיישאר ממנה בסוף הבעירה. ';
+    msg += 'הדלק תופס ' + (prop * 100).toFixed(1) + ' אחוזים ממסת ההמראה, והמבנה עוד 8. ';
+    if (payload > 0.001) {
+      msg += 'למטען נשארים ' + (payload * 100).toFixed(1) + ' אחוזים.';
+    } else {
+      msg += 'יחד הם ' + ((prop + STRUCT) * 100).toFixed(1) + ' אחוזים, יותר מהרקטה כולה. למטען נשאר ' + (payload * 100).toFixed(1) + ' אחוזים, ולכן שלב יחיד כזה אינו מגיע למסלול גם ריק לגמרי. הקו המקווקו חרג מקצה העמודה.';
+    }
+    note.textContent = msg;
+  }
+
+  inDv.addEventListener('input', render);
+  inVe.addEventListener('input', render);
   render();
 })();
 </script>

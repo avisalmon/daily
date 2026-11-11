@@ -97,6 +97,9 @@
 
 
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">ההבדל בין קו לעקומה</h2>
@@ -155,11 +158,17 @@
 
 
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">הזמן הוא המשתנה החזק ביותר</h2>
     <p>בנוסחה של ריבית דריבית, הקרן והריבית מוכפלות, אבל הזמן נמצא במעריך. משתנה במעריך משפיע הרבה יותר חזק ממשתנה בבסיס.</p>
     <p>נסו את זה במדמה שלמטה: הכפילו את הקרן, והתוצאה הסופית תוכפל בדיוק פי שניים. הכפילו את מספר השנים, והתוצאה תגדל הרבה יותר מפי שניים. אחרי 10 שנים תגיעו ל-2,594 שקל במקום 2,000. אחרי 30 שנה תגיעו ל-17,449 שקל במקום 4,000.</p>
+
+
+
 
 
 
@@ -243,11 +252,17 @@
 
 
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">אותה עקומה, בכיוון ההפוך</h2>
     <p>בדיוק מאותה סיבה, ריבית דריבית עובדת גם לרעתכם. חוב בכרטיס אשראי או הלוואה שלא נפרעת צוברים ריבית על הריבית באותה עקומה בדיוק, רק שהפעם אתם בצד שמשלם.</p>
     <p>כאן ההבדל דרמטי במיוחד, כי הריבית על אשראי צרכני גבוהה בהרבה מתשואה שגרתית על חיסכון. חוב שנשאר פתוח מספיק זמן יכול לגדול לסכום גדול בהרבה מהסכום שנלקח במקור.</p>
+
+
+
 
 
 
@@ -362,6 +377,7 @@
     </div>
     <p class="sim__note" id="sim-note"></p>
   </section>
+
 
 
 
@@ -679,6 +695,75 @@
 
   inDelay.addEventListener('input', render);
   inClock.addEventListener('input', render);
+  render();
+})();
+</script>
+
+<script>
+/* ===== דלתא-וי: לאן נעלם המטען ===== */
+(function () {
+  var stage = document.getElementById('dvm-stage');
+  if (!stage) return;
+
+  var STRUCT = 0.08, FULL = 430, X0 = 470;
+
+  var inDv = document.getElementById('dvm-in-dv');
+  var inVe = document.getElementById('dvm-in-ve');
+  var outDv = document.getElementById('dvm-out-dv');
+  var outVe = document.getElementById('dvm-out-ve');
+  var outMr = document.getElementById('dvm-out-mr');
+  var outProp = document.getElementById('dvm-out-prop');
+  var outPay = document.getElementById('dvm-out-pay');
+  var barProp = document.getElementById('dvm-bar-prop');
+  var barStruct = document.getElementById('dvm-bar-struct');
+  var barPay = document.getElementById('dvm-bar-pay');
+  var marker = document.getElementById('dvm-marker');
+  var note = document.getElementById('dvm-note');
+
+  function place(rect, right, w) {
+    rect.setAttribute('width', String(Math.max(0, w)));
+    rect.setAttribute('x', String(right - Math.max(0, w)));
+  }
+
+  function render() {
+    var dv = Number(inDv.value);
+    var ve = Number(inVe.value);
+
+    var mr = Math.exp(dv / ve);
+    var prop = 1 - 1 / mr;
+    var payload = 1 - prop - STRUCT;
+
+    var wProp = Math.min(prop, 1) * FULL;
+    var wStruct = Math.min(STRUCT * FULL, FULL - wProp);
+    var wPay = Math.max(payload, 0) * FULL;
+
+    place(barProp, X0, wProp);
+    place(barStruct, X0 - wProp, wStruct);
+    place(barPay, X0 - wProp - wStruct, wPay);
+
+    var mx = X0 - (prop + STRUCT) * FULL;
+    if (mx < 24) mx = 24;
+    marker.setAttribute('x1', String(mx));
+    marker.setAttribute('x2', String(mx));
+
+    outDv.textContent = dv.toFixed(1);
+    outVe.textContent = ve.toFixed(1);
+    outMr.textContent = mr.toFixed(2);
+    outProp.textContent = (prop * 100).toFixed(1) + '%';
+    outPay.textContent = (payload * 100).toFixed(1) + '%';
+
+    var msg = 'כדי לייצר ' + dv.toFixed(1) + ' קילומטרים לשנייה במהירות פליטה ' + ve.toFixed(1) + ', הרקטה חייבת לשקול בהמראה פי ' + mr.toFixed(2) + ' ממה שיישאר ממנה בסוף הבעירה. ';
+    msg += 'הדלק תופס ' + (prop * 100).toFixed(1) + ' אחוזים ממסת ההמראה, והמבנה עוד 8. ';
+    if (payload > 0.001) {
+      msg += 'למטען נשארים ' + (payload * 100).toFixed(1) + ' אחוזים.';
+    } else {
+      msg += 'יחד הם ' + ((prop + STRUCT) * 100).toFixed(1) + ' אחוזים, יותר מהרקטה כולה. למטען נשאר ' + (payload * 100).toFixed(1) + ' אחוזים, ולכן שלב יחיד כזה אינו מגיע למסלול גם ריק לגמרי. הקו המקווקו חרג מקצה העמודה.';
+    }
+    note.textContent = msg;
+  }
+
+  inDv.addEventListener('input', render);
+  inVe.addEventListener('input', render);
   render();
 })();
 </script>

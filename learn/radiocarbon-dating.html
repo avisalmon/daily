@@ -131,12 +131,18 @@
 
 
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">המוות הוא הרגע שבו השעון מתחיל</h2>
     <p>ברגע שהיצור מת, הוא מפסיק לאכול, לנשום ולהטמיע פחמן חדש. פחמן 12 שבגופו נשאר בדיוק כפי שהוא, לנצח. פחמן 14 ממשיך להתפרק, כל גרעין בתורו, וחוזר להיות חנקן 14.</p>
     <p>זהו כל הרעיון. מה שנמדד אינו כמות אלא יחס: כמה פחמן 14 נשאר ביחס לפחמן 12 שלא זז. היחס הזה ידוע ברגע ההתחלה, משום שהוא היה היחס באוויר. ככל שעובר זמן הוא קטן, ובקצב ידוע. מדידת היחס היום מאפשרת לחשב כמה זמן עבר.</p>
     <p>לכן גם ברור מה השיטה אינה יכולה לעשות. אבן מעולם לא נשמה, ואין בה שעון כזה. מתכת גם לא. חרס שרוף אינו מתוארך בעצמו, אלא רק גרגרי פחם או שאריות אורגניות שנלכדו בו. מה שמתוארך הוא תמיד הרגע שבו משהו חי הפסיק להחליף פחמן עם העולם, לא הרגע שבו מישהו עשה ממנו חפץ.</p>
+
+
+
 
 
 
@@ -255,6 +261,9 @@
 
 
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">למה המדידה הולכת ונעשית קשה</h2>
@@ -311,6 +320,9 @@
     </svg>
     <figcaption>אותן מאה שנות הפרש, בשני מקומות על העקומה. בגיל 2,000 הן מזיזות את היחס בכ-0.94 נקודת אחוז. בגיל 20,000 בכ-0.11 נקודה. ככל שמתרחקים, אותו הפרש זמן אמיתי מייצר אות קטן יותר, ולכן טווח השגיאה גדל.</figcaption>
     </figure>
+
+
+
 
 
 
@@ -400,6 +412,9 @@
 
 
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">דגים נראים זקנים, ואנחנו נראים צעירים</h2>
@@ -408,6 +423,9 @@
     <p>השני הוא דלק מאובנים. פחם ונפט נוצרו לפני מיליוני שנים, וכל הפחמן 14 שבהם דעך מזמן. שריפתם מדללת את האטמוספרה בפחמן ישן. מסוף המאה התשע עשרה והלאה היחס באוויר ירד בגלל זה.</p>
     <p>השלישי הוא ההפוך, והוא חד וקיצוני. ניסויי הגרעין באוויר בשנות החמישים והשישים הציפו את האטמוספרה בנייטרונים וייצרו פחמן 14 בכמויות. סביב 1965 הגיעה הכמות באוויר לכמעט כפליים מרמתה לפני הניסויים. מאז אמנת האיסור החלקי מ-10 באוקטובר 1963 הרמה יורדת בהתמדה, בעיקר משום שהפחמן נקלט באוקיינוסים ובצמחייה.</p>
     <p>התוצאה המעשית: כל מי שחי בעשורים האלה נושא בגופו חתימה איזוטופית שאין לאף אדם שחי לפניהם. היא מקלקלת תיארוך רגיל של חומר צעיר, אבל היא גם הפכה לכלי משלה. היא מאפשרת לקבוע באיזו שנה נוצרה רקמה, ומשמשת לזיהוי פלילי ולבדיקת גיל של יין וחפצי אמנות שנטען שהם עתיקים.</p>
+
+
+
 
 
 
@@ -516,6 +534,9 @@
 
 
 
+
+
+
   </section>
 
 
@@ -572,6 +593,7 @@
   <p class="sim__note" id="c14-note"></p>
   <p class="sim__note euv-caveat">החישוב משתמש במחצית חיים של 5,730 שנה ובדעיכה מעריכית נקייה. מעבדה אמיתית מחשבת גיל רדיופחמני עם הערך ההיסטורי 5,568 שנה, מתקנת על הפרדה איזוטופית, ומעבירה את התוצאה דרך עקומת כיול שאינה חלקה. הגבול המסומן הוא הערכה גסה: מעבדות שונות עובדות עם סף שונה, ובתנאי הכנה מיוחדים אפשר לפעמים לרדת מתחתיו. אין להסיק מההדמיה מספרי דיוק של שום מעבדה.</p>
   </section>
+
 
 
 
@@ -863,6 +885,75 @@
 
   inDelay.addEventListener('input', render);
   inClock.addEventListener('input', render);
+  render();
+})();
+</script>
+
+<script>
+/* ===== דלתא-וי: לאן נעלם המטען ===== */
+(function () {
+  var stage = document.getElementById('dvm-stage');
+  if (!stage) return;
+
+  var STRUCT = 0.08, FULL = 430, X0 = 470;
+
+  var inDv = document.getElementById('dvm-in-dv');
+  var inVe = document.getElementById('dvm-in-ve');
+  var outDv = document.getElementById('dvm-out-dv');
+  var outVe = document.getElementById('dvm-out-ve');
+  var outMr = document.getElementById('dvm-out-mr');
+  var outProp = document.getElementById('dvm-out-prop');
+  var outPay = document.getElementById('dvm-out-pay');
+  var barProp = document.getElementById('dvm-bar-prop');
+  var barStruct = document.getElementById('dvm-bar-struct');
+  var barPay = document.getElementById('dvm-bar-pay');
+  var marker = document.getElementById('dvm-marker');
+  var note = document.getElementById('dvm-note');
+
+  function place(rect, right, w) {
+    rect.setAttribute('width', String(Math.max(0, w)));
+    rect.setAttribute('x', String(right - Math.max(0, w)));
+  }
+
+  function render() {
+    var dv = Number(inDv.value);
+    var ve = Number(inVe.value);
+
+    var mr = Math.exp(dv / ve);
+    var prop = 1 - 1 / mr;
+    var payload = 1 - prop - STRUCT;
+
+    var wProp = Math.min(prop, 1) * FULL;
+    var wStruct = Math.min(STRUCT * FULL, FULL - wProp);
+    var wPay = Math.max(payload, 0) * FULL;
+
+    place(barProp, X0, wProp);
+    place(barStruct, X0 - wProp, wStruct);
+    place(barPay, X0 - wProp - wStruct, wPay);
+
+    var mx = X0 - (prop + STRUCT) * FULL;
+    if (mx < 24) mx = 24;
+    marker.setAttribute('x1', String(mx));
+    marker.setAttribute('x2', String(mx));
+
+    outDv.textContent = dv.toFixed(1);
+    outVe.textContent = ve.toFixed(1);
+    outMr.textContent = mr.toFixed(2);
+    outProp.textContent = (prop * 100).toFixed(1) + '%';
+    outPay.textContent = (payload * 100).toFixed(1) + '%';
+
+    var msg = 'כדי לייצר ' + dv.toFixed(1) + ' קילומטרים לשנייה במהירות פליטה ' + ve.toFixed(1) + ', הרקטה חייבת לשקול בהמראה פי ' + mr.toFixed(2) + ' ממה שיישאר ממנה בסוף הבעירה. ';
+    msg += 'הדלק תופס ' + (prop * 100).toFixed(1) + ' אחוזים ממסת ההמראה, והמבנה עוד 8. ';
+    if (payload > 0.001) {
+      msg += 'למטען נשארים ' + (payload * 100).toFixed(1) + ' אחוזים.';
+    } else {
+      msg += 'יחד הם ' + ((prop + STRUCT) * 100).toFixed(1) + ' אחוזים, יותר מהרקטה כולה. למטען נשאר ' + (payload * 100).toFixed(1) + ' אחוזים, ולכן שלב יחיד כזה אינו מגיע למסלול גם ריק לגמרי. הקו המקווקו חרג מקצה העמודה.';
+    }
+    note.textContent = msg;
+  }
+
+  inDv.addEventListener('input', render);
+  inVe.addEventListener('input', render);
   render();
 })();
 </script>

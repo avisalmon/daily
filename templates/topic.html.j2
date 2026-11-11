@@ -1205,6 +1205,89 @@
     </figure>
     {% endif %}
 
+    {% if sec.diagram and sec.diagram.type == 'newton-cannonball' %}
+    <figure class="diagram">
+    <svg viewBox="0 0 520 300" role="img" aria-label="תותח על הר מעל כדור הארץ יורה אופקית. שתי יריות איטיות נופלות אל הקרקע במרחקים גדלים, והשלישית מקיפה את כדור הארץ במעגל סגור" preserveAspectRatio="xMidYMid meet">
+    <text x="500" y="24" class="diagram__label diagram__label--strong">אותו תותח, מהירויות שונות</text>
+    <text x="500" y="48" class="diagram__label">יריה איטית. נופלת קרוב.</text>
+    <text x="500" y="70" class="diagram__label">מהירה יותר. נופלת רחוק יותר.</text>
+    <text x="500" y="92" class="diagram__label">מהירה מספיק. הנפילה כבר מחטיאה.</text>
+    <text x="500" y="118" class="diagram__label">במסלול נמוך זה קורה ב-7.8 קילומטרים לשנייה</text>
+
+    <circle cx="255" cy="386" r="180" class="diagram__ring"/>
+    <circle cx="255" cy="386" r="204" class="diagram__curve"/>
+
+    <path d="M 243 208 L 255 182 L 267 208 Z" class="diagram__dot"/>
+    <circle cx="255" cy="182" r="3.5" class="diagram__dot-fill"/>
+
+    <path d="M 255 182 Q 212 185 178.9 222.9" class="diagram__linear"/>
+    <path d="M 255 182 Q 190 184 139.3 248.1" class="diagram__linear"/>
+
+    <circle cx="178.9" cy="222.9" r="3" class="diagram__dot"/>
+    <circle cx="139.3" cy="248.1" r="3" class="diagram__dot"/>
+
+    <text x="500" y="188" class="diagram__label">המעגל נסגר</text>
+    </svg>
+    <figcaption>{{ sec.diagram.caption }}</figcaption>
+    </figure>
+    {% endif %}
+
+    {% if sec.diagram and sec.diagram.type == 'dv-energy-bars' %}
+    <figure class="diagram">
+    <svg viewBox="0 0 520 300" role="img" aria-label="שני עמודים בקנה מידה אחד. הטיפוס למאה קילומטרים הוא פס דקיק של 0.98 מגה-ג'אול לקילוגרם, וההאצה למהירות מסלולית היא עמוד מלא של 30.42" preserveAspectRatio="xMidYMid meet">
+    <text x="500" y="28" class="diagram__label diagram__label--strong">אנרגיה לכל קילוגרם מטען</text>
+
+    <text x="500" y="66" class="diagram__label">לטפס 100 קילומטרים</text>
+    <rect x="456.1" y="78" width="13.9" height="26" class="diagram__dot"/>
+    <text x="500" y="124" class="diagram__label">0.98 מגה-ג'אול. זה הפס הדקיק שמימין</text>
+
+    <text x="500" y="164" class="diagram__label diagram__label--strong">להאיץ ל-7.8 קילומטרים בשנייה</text>
+    <rect x="40" y="176" width="430" height="26" class="diagram__dot--strong"/>
+    <text x="500" y="222" class="diagram__label">30.42 מגה-ג'אול</text>
+
+    <text x="500" y="258" class="diagram__label">היחס הוא 31. ההאצה היא 96.9 אחוזים מהעבודה.</text>
+    <text x="500" y="280" class="diagram__label">הטיפוס הוא 3.1 אחוזים בלבד.</text>
+    </svg>
+    <figcaption>{{ sec.diagram.caption }}</figcaption>
+    </figure>
+    {% endif %}
+
+    {% if sec.diagram and sec.diagram.type == 'dv-rocket-curve' %}
+    <figure class="diagram">
+    <svg viewBox="0 0 520 300" role="img" aria-label="עקומה של יחס המסות הנדרש כפונקציה של דלתא-וי. היא כמעט שטוחה עד ארבעה קילומטרים לשנייה ומזנקת אחר כך. מסלול כדור הארץ הנמוך מסומן על המדרון התלול ביחס מסות 17.3" preserveAspectRatio="xMidYMid meet">
+    <text x="500" y="24" class="diagram__label diagram__label--strong">יחס המסות הנדרש</text>
+
+    <line x1="40" y1="250" x2="480" y2="250" class="diagram__axis"/>
+    <line x1="470" y1="44" x2="470" y2="256" class="diagram__axis"/>
+
+    <line x1="464" y1="250" x2="470" y2="250" class="diagram__axis"/>
+    <line x1="464" y1="203.8" x2="470" y2="203.8" class="diagram__axis"/>
+    <line x1="464" y1="152.6" x2="470" y2="152.6" class="diagram__axis"/>
+    <line x1="464" y1="101.3" x2="470" y2="101.3" class="diagram__axis"/>
+    <line x1="464" y1="50" x2="470" y2="50" class="diagram__axis"/>
+    <text x="505" y="254" class="diagram__axis-label">פי 1</text>
+    <text x="505" y="208" class="diagram__axis-label">פי 10</text>
+    <text x="505" y="157" class="diagram__axis-label">פי 20</text>
+    <text x="505" y="105" class="diagram__axis-label">פי 30</text>
+    <text x="505" y="54" class="diagram__axis-label">פי 40</text>
+
+    <polyline class="diagram__curve" points="470.0,250.0 461.0,249.6 452.1,249.2 443.1,248.7 434.2,248.2 425.2,247.6 416.2,247.0 407.3,246.4 398.3,245.7 389.4,245.0 380.4,244.2 371.5,243.3 362.5,242.4 353.5,241.4 344.6,240.3 335.6,239.2 326.7,237.9 317.7,236.5 308.8,235.1 299.8,233.5 290.8,231.8 281.9,230.0 272.9,228.0 264.0,225.8 255.0,223.5 246.0,221.0 237.1,218.4 228.1,215.5 219.2,212.4 210.2,209.0 201.2,205.4 192.3,201.4 183.3,197.2 174.4,192.7 165.4,187.7 156.5,182.4 147.5,176.7 138.5,170.5 129.6,163.9 120.6,156.7 111.7,149.0 102.7,140.6 93.8,131.6 84.8,121.9 75.8,111.4 66.9,100.1 57.9,87.9 49.0,74.7 40.0,60.5"/>
+
+    <line x1="133.2" y1="166.6" x2="133.2" y2="250" class="diagram__axis diagram__axis--dashed"/>
+    <circle cx="133.2" cy="166.6" r="4.5" class="diagram__dot-fill"/>
+    <text x="290" y="158" class="diagram__axis-label">מסלול נמוך: 9.4, יחס 17.3</text>
+
+    <text x="470" y="270" class="diagram__axis-label">0</text>
+    <text x="362.5" y="270" class="diagram__axis-label">3</text>
+    <text x="255" y="270" class="diagram__axis-label">6</text>
+    <text x="147.5" y="270" class="diagram__axis-label">9</text>
+    <text x="40" y="270" class="diagram__axis-label">12</text>
+    <text x="500" y="292" class="diagram__label">דלתא-וי בקילומטרים לשנייה. גדל שמאלה.</text>
+    </svg>
+    <figcaption>{{ sec.diagram.caption }}</figcaption>
+    </figure>
+    {% endif %}
+
     {% if sec.table %}
     <figure class="datatable">
       <table>
@@ -1805,6 +1888,65 @@
   </section>
   {% endif %}
 
+  {% if topic.sim and topic.sim.type == 'dv-mass-budget' %}
+  <section class="sim" id="sim">
+  <h2 class="topic__heading">{{ topic.sim.title }}</h2>
+  <p class="sim__intro">{{ topic.sim.intro }}</p>
+
+  <div class="sim__controls">
+  <label class="sim__control">
+  <span class="sim__control-head">
+  <span>דלתא-וי נדרש</span>
+  <output id="dvm-out-dv" class="ltr"></output>
+  </span>
+  <input type="range" id="dvm-in-dv" min="6" max="13" step="0.1" value="9.4">
+  <span class="sim__control-hint">בקילומטרים לשנייה. מסלול נמוך מהקרקע דורש כ-9.4</span>
+  </label>
+  <label class="sim__control">
+  <span class="sim__control-head">
+  <span>מהירות פליטה</span>
+  <output id="dvm-out-ve" class="ltr"></output>
+  </span>
+  <input type="range" id="dvm-in-ve" min="2" max="4.5" step="0.1" value="3.3">
+  <span class="sim__control-hint">קרוסין וחמצן נוזלי סביב 3.3, מימן וחמצן כ-4.4</span>
+  </label>
+  </div>
+
+  <div class="gene-switch__stage" id="dvm-stage">
+  <svg viewBox="0 0 520 150" role="img" aria-label="עמודה אחת שאורכה הוא מלוא מסת ההמראה, מחולקת לדלק, מבנה ומטען. קו מקווקו מסמן היכן נגמרים הדלק והמבנה יחד, והוא יכול לחרוג אל מחוץ לעמודה">
+  <text x="500" y="24" class="diagram__label diagram__label--strong">חלוקת מסת ההמראה</text>
+  <text x="500" y="46" class="diagram__label">כהה: דלק. בהיר: מבנה. מתאר מקווקו: מטען.</text>
+  <line x1="40" y1="110" x2="480" y2="110" class="diagram__axis"/>
+  <rect id="dvm-bar-prop" x="470" y="72" width="0" height="26" class="wm-level"/>
+  <rect id="dvm-bar-struct" x="470" y="72" width="0" height="26" class="diagram__dot"/>
+  <rect id="dvm-bar-pay" x="470" y="72" width="0" height="26" class="diagram__dot-empty"/>
+  <line id="dvm-marker" x1="40" y1="62" x2="40" y2="118" class="diagram__axis diagram__axis--dashed"/>
+  <text x="470" y="130" class="diagram__axis-label">0</text>
+  <text x="258" y="130" class="diagram__axis-label">50 אחוז</text>
+  <text x="48" y="130" class="diagram__axis-label">100 אחוז</text>
+  </svg>
+  </div>
+
+  <div class="sim__readout sim__readout--three">
+  <div class="sim__stat">
+  <span class="sim__stat-label">יחס מסות נדרש</span>
+  <span class="sim__stat-value ltr" id="dvm-out-mr"></span>
+  </div>
+  <div class="sim__stat">
+  <span class="sim__stat-label">דלק, מתוך מסת ההמראה</span>
+  <span class="sim__stat-value ltr" id="dvm-out-prop"></span>
+  </div>
+  <div class="sim__stat sim__stat--strong">
+  <span class="sim__stat-label">נשאר למטען</span>
+  <span class="sim__stat-value ltr" id="dvm-out-pay"></span>
+  </div>
+  </div>
+
+  <p class="sim__note" id="dvm-note"></p>
+  <p class="sim__note euv-caveat">{{ topic.sim.caveat }}</p>
+  </section>
+  {% endif %}
+
   {% if topic.sim and topic.sim.type == 'dh-exchange' %}
   <section class="sim" id="sim">
   <h2 class="topic__heading">{{ topic.sim.title }}</h2>
@@ -2118,6 +2260,75 @@
 
   inDelay.addEventListener('input', render);
   inClock.addEventListener('input', render);
+  render();
+})();
+</script>
+
+<script>
+/* ===== דלתא-וי: לאן נעלם המטען ===== */
+(function () {
+  var stage = document.getElementById('dvm-stage');
+  if (!stage) return;
+
+  var STRUCT = 0.08, FULL = 430, X0 = 470;
+
+  var inDv = document.getElementById('dvm-in-dv');
+  var inVe = document.getElementById('dvm-in-ve');
+  var outDv = document.getElementById('dvm-out-dv');
+  var outVe = document.getElementById('dvm-out-ve');
+  var outMr = document.getElementById('dvm-out-mr');
+  var outProp = document.getElementById('dvm-out-prop');
+  var outPay = document.getElementById('dvm-out-pay');
+  var barProp = document.getElementById('dvm-bar-prop');
+  var barStruct = document.getElementById('dvm-bar-struct');
+  var barPay = document.getElementById('dvm-bar-pay');
+  var marker = document.getElementById('dvm-marker');
+  var note = document.getElementById('dvm-note');
+
+  function place(rect, right, w) {
+    rect.setAttribute('width', String(Math.max(0, w)));
+    rect.setAttribute('x', String(right - Math.max(0, w)));
+  }
+
+  function render() {
+    var dv = Number(inDv.value);
+    var ve = Number(inVe.value);
+
+    var mr = Math.exp(dv / ve);
+    var prop = 1 - 1 / mr;
+    var payload = 1 - prop - STRUCT;
+
+    var wProp = Math.min(prop, 1) * FULL;
+    var wStruct = Math.min(STRUCT * FULL, FULL - wProp);
+    var wPay = Math.max(payload, 0) * FULL;
+
+    place(barProp, X0, wProp);
+    place(barStruct, X0 - wProp, wStruct);
+    place(barPay, X0 - wProp - wStruct, wPay);
+
+    var mx = X0 - (prop + STRUCT) * FULL;
+    if (mx < 24) mx = 24;
+    marker.setAttribute('x1', String(mx));
+    marker.setAttribute('x2', String(mx));
+
+    outDv.textContent = dv.toFixed(1);
+    outVe.textContent = ve.toFixed(1);
+    outMr.textContent = mr.toFixed(2);
+    outProp.textContent = (prop * 100).toFixed(1) + '%';
+    outPay.textContent = (payload * 100).toFixed(1) + '%';
+
+    var msg = 'כדי לייצר ' + dv.toFixed(1) + ' קילומטרים לשנייה במהירות פליטה ' + ve.toFixed(1) + ', הרקטה חייבת לשקול בהמראה פי ' + mr.toFixed(2) + ' ממה שיישאר ממנה בסוף הבעירה. ';
+    msg += 'הדלק תופס ' + (prop * 100).toFixed(1) + ' אחוזים ממסת ההמראה, והמבנה עוד 8. ';
+    if (payload > 0.001) {
+      msg += 'למטען נשארים ' + (payload * 100).toFixed(1) + ' אחוזים.';
+    } else {
+      msg += 'יחד הם ' + ((prop + STRUCT) * 100).toFixed(1) + ' אחוזים, יותר מהרקטה כולה. למטען נשאר ' + (payload * 100).toFixed(1) + ' אחוזים, ולכן שלב יחיד כזה אינו מגיע למסלול גם ריק לגמרי. הקו המקווקו חרג מקצה העמודה.';
+    }
+    note.textContent = msg;
+  }
+
+  inDv.addEventListener('input', render);
+  inVe.addEventListener('input', render);
   render();
 })();
 </script>

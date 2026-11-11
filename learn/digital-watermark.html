@@ -86,6 +86,9 @@
 
 
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">גלוי וסמוי, ולמה הגלוי כמעט חסר ערך</h2>
@@ -145,6 +148,9 @@
       </svg>
       <figcaption>משמאל, סימן גלוי שתופס אזור אחד ונחתך בשניה. מימין, סימן סמוי שפזור על פני כל הקובץ, וכל חלק ממנו נושא עותק.</figcaption>
     </figure>
+
+
+
 
 
 
@@ -245,6 +251,9 @@
 
 
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">בטקסט אין איפה להתחבא</h2>
@@ -324,11 +333,17 @@
 
 
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">מה שורד ומה שובר</h2>
     <p>חוסן הוא השאלה המעשית היחידה. סימן מים ששורד רק קובץ שלא נגעו בו אינו שווה דבר, מכיוון שאף קובץ ברשת אינו נשאר כפי שנוצר. הוא נדחס, משתנה בגודל, נחתך, מצולם ממסך ומועלה מחדש.</p>
     <p>הטבלה מפרידה בין שני דברים ששווה להפריד ביניהם: מה הטכנולוגיה אמורה לעשות, ומה פורסם בפועל במספרים. ההפרדה הזאת היא עיקר הלקוח מהשבוע שעבר.</p>
+
+
+
 
 
 
@@ -433,12 +448,18 @@
 
 
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">מי מסמן היום, ובמה</h2>
     <p>SynthID של גוגל עובד בתמונה, בווידאו ובשמע, ולא בטקסט. גוגל מדווחת שסימנה עד כה יותר מ-180 מיליארד תמונות וסרטונים ומעל 240 אלף שנות שמע. רשימת השותפים שהכלי יודע לקרוא כוללת את OpenAI, אנבידיה וקקאו, ואפל מופיעה כמי שתצטרף. הזמינות שתוארה כעולמית מנוסחת בהודעה עצמה כעולמית באנגלית.</p>
     <p>OpenAI הודיעה על סימון טקסט בטכנולוגיה בשם textGrain, שהיא מתכוונת לשחרר בקוד פתוח. ההפעלה היא באיחוד האירופי, בכל התוכניות שם, ולא הייתה פעילה ביום ההודעה אלא תוכננה לשבועות הקרובים. בממשק המתכנתים ההסדר הפוך: הסימון כבוי כברירת מחדל והמפתח צריך לבקש אותו, ושם זה חל בכל העולם.</p>
     <p>המשותף לשתי ההודעות הוא שהן אמצעי, לא פתרון. הן מקלות על מי שרוצה לתת ייחוס הוגן לתוכן שלו. הן אינן עונות על השאלה שהתחלנו ממנה, מכיוון שהיא שאלה שאי אפשר לענות עליה מתוך הקובץ.</p>
+
+
+
 
 
 
@@ -540,6 +561,7 @@
     <p class="sim__note" id="wm-note"></p>
     <p class="sim__note euv-caveat">המדמה ממחיש התנגשות, הוא אינו מודד מערכת אמיתית. העקומה שבו היא מודל חשבוני פשוט, והמספרים אינם לקוחים ממוצר מסחרי. המספרים המדודים היחידים שפורסמו בשבוע שעבר הם של OpenAI, על סימון טקסט, והם מופיעים בטבלת החוסן שלמעלה.</p>
   </section>
+
 
 
 
@@ -853,6 +875,75 @@
 
   inDelay.addEventListener('input', render);
   inClock.addEventListener('input', render);
+  render();
+})();
+</script>
+
+<script>
+/* ===== דלתא-וי: לאן נעלם המטען ===== */
+(function () {
+  var stage = document.getElementById('dvm-stage');
+  if (!stage) return;
+
+  var STRUCT = 0.08, FULL = 430, X0 = 470;
+
+  var inDv = document.getElementById('dvm-in-dv');
+  var inVe = document.getElementById('dvm-in-ve');
+  var outDv = document.getElementById('dvm-out-dv');
+  var outVe = document.getElementById('dvm-out-ve');
+  var outMr = document.getElementById('dvm-out-mr');
+  var outProp = document.getElementById('dvm-out-prop');
+  var outPay = document.getElementById('dvm-out-pay');
+  var barProp = document.getElementById('dvm-bar-prop');
+  var barStruct = document.getElementById('dvm-bar-struct');
+  var barPay = document.getElementById('dvm-bar-pay');
+  var marker = document.getElementById('dvm-marker');
+  var note = document.getElementById('dvm-note');
+
+  function place(rect, right, w) {
+    rect.setAttribute('width', String(Math.max(0, w)));
+    rect.setAttribute('x', String(right - Math.max(0, w)));
+  }
+
+  function render() {
+    var dv = Number(inDv.value);
+    var ve = Number(inVe.value);
+
+    var mr = Math.exp(dv / ve);
+    var prop = 1 - 1 / mr;
+    var payload = 1 - prop - STRUCT;
+
+    var wProp = Math.min(prop, 1) * FULL;
+    var wStruct = Math.min(STRUCT * FULL, FULL - wProp);
+    var wPay = Math.max(payload, 0) * FULL;
+
+    place(barProp, X0, wProp);
+    place(barStruct, X0 - wProp, wStruct);
+    place(barPay, X0 - wProp - wStruct, wPay);
+
+    var mx = X0 - (prop + STRUCT) * FULL;
+    if (mx < 24) mx = 24;
+    marker.setAttribute('x1', String(mx));
+    marker.setAttribute('x2', String(mx));
+
+    outDv.textContent = dv.toFixed(1);
+    outVe.textContent = ve.toFixed(1);
+    outMr.textContent = mr.toFixed(2);
+    outProp.textContent = (prop * 100).toFixed(1) + '%';
+    outPay.textContent = (payload * 100).toFixed(1) + '%';
+
+    var msg = 'כדי לייצר ' + dv.toFixed(1) + ' קילומטרים לשנייה במהירות פליטה ' + ve.toFixed(1) + ', הרקטה חייבת לשקול בהמראה פי ' + mr.toFixed(2) + ' ממה שיישאר ממנה בסוף הבעירה. ';
+    msg += 'הדלק תופס ' + (prop * 100).toFixed(1) + ' אחוזים ממסת ההמראה, והמבנה עוד 8. ';
+    if (payload > 0.001) {
+      msg += 'למטען נשארים ' + (payload * 100).toFixed(1) + ' אחוזים.';
+    } else {
+      msg += 'יחד הם ' + ((prop + STRUCT) * 100).toFixed(1) + ' אחוזים, יותר מהרקטה כולה. למטען נשאר ' + (payload * 100).toFixed(1) + ' אחוזים, ולכן שלב יחיד כזה אינו מגיע למסלול גם ריק לגמרי. הקו המקווקו חרג מקצה העמודה.';
+    }
+    note.textContent = msg;
+  }
+
+  inDv.addEventListener('input', render);
+  inVe.addEventListener('input', render);
   render();
 })();
 </script>

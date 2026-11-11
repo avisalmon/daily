@@ -118,6 +118,9 @@
 
 
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">למה דווקא אטום</h2>
@@ -125,6 +128,9 @@
     <p>האלקטרונים באטום יכולים לשבת רק ברמות אנרגיה מסוימות, לא בכל ערך. כדי לעבור מרמה לרמה האטום צריך לבלוע בדיוק את הפרש האנרגיה, ולקרינה אלקטרומגנטית הפרש אנרגיה הוא תדר. לכן לכל מעבר באטום יש תדר משלו, והתדר הזה נקבע על ידי טבעו של האטום בלבד.</p>
     <p>מכאן נובעת ההגדרה הרשמית של השנייה משנת 1967: שנייה אחת היא משך הזמן שבו הקרינה המתאימה למעבר מסוים בצזיום 133 משלימה 9,192,631,770 מחזורים. המספר נראה שרירותי מפני שהוא אכן שרירותי. בחרו אותו כך שהשנייה החדשה תהיה שווה לשנייה האסטרונומית שהייתה נהוגה קודם.</p>
     <p>שימו לב להיפוך. פעם מדדו את תדר האטום לפי השנייה. היום מודדים את השנייה לפי תדר האטום.</p>
+
+
+
 
 
 
@@ -238,6 +244,9 @@
 
 
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">דיוק ויציבות אינם אותו דבר</h2>
@@ -245,6 +254,9 @@
     <p>יציבות אומרת כמה התשובה חוזרת על עצמה. שעון יציב נותן אותה מדידה שוב ושוב, גם אם כולן שגויות באותו שיעור. זה מה שחשוב כשרוצים להשוות שני זמנים או למדוד הפרש.</p>
     <p>דיוק אומר כמה התשובה קרובה לאמת. שעון מדויק אינו סוטה מהתדר האמיתי של המעבר, וכדי לדעת את זה צריך לחשב בדיוק את כל ההפרעות שהסביבה מכניסה ולהחסיר אותן.</p>
     <p>שעון שממהר בדיוק שנייה ביום הוא יציב מאוד ולא מדויק כלל. בפועל אפשר לתקן אותו בקלות. שעון שסוטה אקראית בחצי שנייה לכל כיוון מדויק בממוצע וחסר תועלת. זו הסיבה שבפרסומים מדעיים מוצאים את שני המספרים, וזו גם הסיבה שהידיעה בגיליון הזה מדגישה שהניסוי בתוריום אינו שעון שרץ אלא שיטת מדידה.</p>
+
+
+
 
 
 
@@ -351,6 +363,9 @@
 
 
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">למה דווקא תוריום 229</h2>
@@ -358,6 +373,9 @@
     <p>תוריום 229 הוא חריג יחיד כמעט. יש לו מצב מעורר נמוך בצורה יוצאת דופן, בסדר גודל של שמונה אלקטרון וולט, שזה אולטרה סגול רחוק ולא גמא. זה בטווח שאפשר להגיע אליו בלייזר, ולכן הוא היחיד שמציע מעבר גרעיני שאפשר לכוון אליו.</p>
     <p>זה גם מסביר למה זה לקח זמן. במשך עשרות שנים אפילו לא ידעו את האנרגיה במדויק, והחיפוש אחריה היה כמו לחפש תחנת רדיו אחת כשהחוגה משתרעת על טווח עצום. רק בשנים האחרונות צומצם הטווח מספיק כדי שהעירור יהיה בר ביצוע.</p>
     <p>הידיעה בגיליון הזה היא צעד בתוך הסיפור הזה, לא סופו. היא עוסקת באיך מודדים את המעבר ביעילות, ובאיתור אתר בגביש שבו השדה החשמלי המקומי קטן מספיק כדי שהמעבר יהיה יציב. שעון גרעיני שעובד ברציפות ומתחרה בשעונים האופטיים עוד לא קיים.</p>
+
+
+
 
 
 
@@ -466,6 +484,9 @@
 
 
 
+
+
+
   </section>
 
 
@@ -520,6 +541,7 @@
     <p class="sim__note" id="ck-note"></p>
     <p class="sim__note euv-caveat">ההדמיה ממחישה עיקרון אחד בלבד: רגישות מגנטית תלויה במסת החלקיק, והיחס שבה הוא היחס בין מגנטון בוהר למגנטון הגרעיני, כ-1,836. היא אינה מודל של שעון אמיתי. בשעון אמיתי בוחרים מעברים שבהם התלות בשדה מבוטלת מראש, ונשארות הפרעות אחרות לגמרי, ולכן אין להסיק מכאן מספר ביצועים של שום מכשיר.</p>
   </section>
+
 
 
 
@@ -854,6 +876,75 @@
 
   inDelay.addEventListener('input', render);
   inClock.addEventListener('input', render);
+  render();
+})();
+</script>
+
+<script>
+/* ===== דלתא-וי: לאן נעלם המטען ===== */
+(function () {
+  var stage = document.getElementById('dvm-stage');
+  if (!stage) return;
+
+  var STRUCT = 0.08, FULL = 430, X0 = 470;
+
+  var inDv = document.getElementById('dvm-in-dv');
+  var inVe = document.getElementById('dvm-in-ve');
+  var outDv = document.getElementById('dvm-out-dv');
+  var outVe = document.getElementById('dvm-out-ve');
+  var outMr = document.getElementById('dvm-out-mr');
+  var outProp = document.getElementById('dvm-out-prop');
+  var outPay = document.getElementById('dvm-out-pay');
+  var barProp = document.getElementById('dvm-bar-prop');
+  var barStruct = document.getElementById('dvm-bar-struct');
+  var barPay = document.getElementById('dvm-bar-pay');
+  var marker = document.getElementById('dvm-marker');
+  var note = document.getElementById('dvm-note');
+
+  function place(rect, right, w) {
+    rect.setAttribute('width', String(Math.max(0, w)));
+    rect.setAttribute('x', String(right - Math.max(0, w)));
+  }
+
+  function render() {
+    var dv = Number(inDv.value);
+    var ve = Number(inVe.value);
+
+    var mr = Math.exp(dv / ve);
+    var prop = 1 - 1 / mr;
+    var payload = 1 - prop - STRUCT;
+
+    var wProp = Math.min(prop, 1) * FULL;
+    var wStruct = Math.min(STRUCT * FULL, FULL - wProp);
+    var wPay = Math.max(payload, 0) * FULL;
+
+    place(barProp, X0, wProp);
+    place(barStruct, X0 - wProp, wStruct);
+    place(barPay, X0 - wProp - wStruct, wPay);
+
+    var mx = X0 - (prop + STRUCT) * FULL;
+    if (mx < 24) mx = 24;
+    marker.setAttribute('x1', String(mx));
+    marker.setAttribute('x2', String(mx));
+
+    outDv.textContent = dv.toFixed(1);
+    outVe.textContent = ve.toFixed(1);
+    outMr.textContent = mr.toFixed(2);
+    outProp.textContent = (prop * 100).toFixed(1) + '%';
+    outPay.textContent = (payload * 100).toFixed(1) + '%';
+
+    var msg = 'כדי לייצר ' + dv.toFixed(1) + ' קילומטרים לשנייה במהירות פליטה ' + ve.toFixed(1) + ', הרקטה חייבת לשקול בהמראה פי ' + mr.toFixed(2) + ' ממה שיישאר ממנה בסוף הבעירה. ';
+    msg += 'הדלק תופס ' + (prop * 100).toFixed(1) + ' אחוזים ממסת ההמראה, והמבנה עוד 8. ';
+    if (payload > 0.001) {
+      msg += 'למטען נשארים ' + (payload * 100).toFixed(1) + ' אחוזים.';
+    } else {
+      msg += 'יחד הם ' + ((prop + STRUCT) * 100).toFixed(1) + ' אחוזים, יותר מהרקטה כולה. למטען נשאר ' + (payload * 100).toFixed(1) + ' אחוזים, ולכן שלב יחיד כזה אינו מגיע למסלול גם ריק לגמרי. הקו המקווקו חרג מקצה העמודה.';
+    }
+    note.textContent = msg;
+  }
+
+  inDv.addEventListener('input', render);
+  inVe.addEventListener('input', render);
   render();
 })();
 </script>

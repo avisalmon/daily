@@ -87,6 +87,9 @@
 
 
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">הפתרון, בצבעים</h2>
@@ -152,6 +155,9 @@
     </svg>
     <figcaption>שני הסודות לעולם אינם עוברים בערוץ. מה שעובר הוא תערובות, והן מספיקות כדי להגיע לאותה תוצאה.</figcaption>
     </figure>
+
+
+
 
 
 
@@ -225,6 +231,9 @@
 
 
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">החשבון עצמו: שעון עם 23 שעות</h2>
@@ -273,6 +282,9 @@
 
 
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">להסכים על סוד, או לשלוח סוד</h2>
@@ -280,6 +292,9 @@
     <p>שנה אחר כך הגיע רעיון קרוב ושונה, שנקרא RSA על שם שלושת ממציאיו. כאן לכל אדם יש זוג מפתחות קבוע: אחד ציבורי, שהוא מפרסם לכל העולם, ואחד פרטי, ששמור אצלו. מה שננעל באחד נפתח רק בשני.</p>
     <p>זה פותר את הבעיה בצורה אחרת. אם אתם רוצים לשלוח לי הודעה, אתם נועלים אותה במפתח הציבורי שלי, שמופיע בגלוי. מהרגע שהיא נעולה, רק אני יכול לפתוח. גם אתם כבר לא יכולים.</p>
     <p>בפועל שתי השיטות עובדות יחד. חיבור מאובטח בדפדפן משתמש בחשבון מהסוג הזה כדי להסכים על מפתח, ומהרגע שיש מפתח משותף הוא עובר להצפנה הקלאסית והמהירה. המתמטיקה היקרה רצה פעם אחת, בהתחלה.</p>
+
+
+
 
 
 
@@ -387,6 +402,9 @@
 
 
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">מה זה לא פותר</h2>
@@ -394,6 +412,9 @@
     <p>נניח שמישהו הצליח לשבת באמצע ולהתחזות. הוא מנהל חילוף מפתחות מושלם איתכם, ובמקביל חילוף מפתחות מושלם נוסף עם האתר שחשבתם שאתם מדברים איתו. שני החיבורים מוצפנים ללא רבב. הוא קורא הכול.</p>
     <p>לכן נדרשת שכבה נוספת, ותפקידה לענות על שאלה אחרת לגמרי: האם המפתח הציבורי הזה באמת שייך למי שהוא טוען. התשובה היא תעודה, מסמך שבו גוף שלישי חותם על כך שהמפתח הזה שייך לאתר הזה. את החתימה ההיא בודקים בדיוק באותו מנגנון חתימה דיגיטלית.</p>
     <p>המערכת הזו נשענת בסופו של דבר על רשימה של גופים שהדפדפן שלכם סומך עליהם מראש. זו אינה מתמטיקה. זו החלטה, והיא החוליה הרכה בשרשרת.</p>
+
+
+
 
 
 
@@ -479,7 +500,11 @@
 
 
 
+
+
+
   </section>
+
 
 
 
@@ -835,6 +860,75 @@
 
   inDelay.addEventListener('input', render);
   inClock.addEventListener('input', render);
+  render();
+})();
+</script>
+
+<script>
+/* ===== דלתא-וי: לאן נעלם המטען ===== */
+(function () {
+  var stage = document.getElementById('dvm-stage');
+  if (!stage) return;
+
+  var STRUCT = 0.08, FULL = 430, X0 = 470;
+
+  var inDv = document.getElementById('dvm-in-dv');
+  var inVe = document.getElementById('dvm-in-ve');
+  var outDv = document.getElementById('dvm-out-dv');
+  var outVe = document.getElementById('dvm-out-ve');
+  var outMr = document.getElementById('dvm-out-mr');
+  var outProp = document.getElementById('dvm-out-prop');
+  var outPay = document.getElementById('dvm-out-pay');
+  var barProp = document.getElementById('dvm-bar-prop');
+  var barStruct = document.getElementById('dvm-bar-struct');
+  var barPay = document.getElementById('dvm-bar-pay');
+  var marker = document.getElementById('dvm-marker');
+  var note = document.getElementById('dvm-note');
+
+  function place(rect, right, w) {
+    rect.setAttribute('width', String(Math.max(0, w)));
+    rect.setAttribute('x', String(right - Math.max(0, w)));
+  }
+
+  function render() {
+    var dv = Number(inDv.value);
+    var ve = Number(inVe.value);
+
+    var mr = Math.exp(dv / ve);
+    var prop = 1 - 1 / mr;
+    var payload = 1 - prop - STRUCT;
+
+    var wProp = Math.min(prop, 1) * FULL;
+    var wStruct = Math.min(STRUCT * FULL, FULL - wProp);
+    var wPay = Math.max(payload, 0) * FULL;
+
+    place(barProp, X0, wProp);
+    place(barStruct, X0 - wProp, wStruct);
+    place(barPay, X0 - wProp - wStruct, wPay);
+
+    var mx = X0 - (prop + STRUCT) * FULL;
+    if (mx < 24) mx = 24;
+    marker.setAttribute('x1', String(mx));
+    marker.setAttribute('x2', String(mx));
+
+    outDv.textContent = dv.toFixed(1);
+    outVe.textContent = ve.toFixed(1);
+    outMr.textContent = mr.toFixed(2);
+    outProp.textContent = (prop * 100).toFixed(1) + '%';
+    outPay.textContent = (payload * 100).toFixed(1) + '%';
+
+    var msg = 'כדי לייצר ' + dv.toFixed(1) + ' קילומטרים לשנייה במהירות פליטה ' + ve.toFixed(1) + ', הרקטה חייבת לשקול בהמראה פי ' + mr.toFixed(2) + ' ממה שיישאר ממנה בסוף הבעירה. ';
+    msg += 'הדלק תופס ' + (prop * 100).toFixed(1) + ' אחוזים ממסת ההמראה, והמבנה עוד 8. ';
+    if (payload > 0.001) {
+      msg += 'למטען נשארים ' + (payload * 100).toFixed(1) + ' אחוזים.';
+    } else {
+      msg += 'יחד הם ' + ((prop + STRUCT) * 100).toFixed(1) + ' אחוזים, יותר מהרקטה כולה. למטען נשאר ' + (payload * 100).toFixed(1) + ' אחוזים, ולכן שלב יחיד כזה אינו מגיע למסלול גם ריק לגמרי. הקו המקווקו חרג מקצה העמודה.';
+    }
+    note.textContent = msg;
+  }
+
+  inDv.addEventListener('input', render);
+  inVe.addEventListener('input', render);
   render();
 })();
 </script>
