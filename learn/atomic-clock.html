@@ -121,6 +121,9 @@
 
 
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">למה דווקא אטום</h2>
@@ -128,6 +131,9 @@
     <p>האלקטרונים באטום יכולים לשבת רק ברמות אנרגיה מסוימות, לא בכל ערך. כדי לעבור מרמה לרמה האטום צריך לבלוע בדיוק את הפרש האנרגיה, ולקרינה אלקטרומגנטית הפרש אנרגיה הוא תדר. לכן לכל מעבר באטום יש תדר משלו, והתדר הזה נקבע על ידי טבעו של האטום בלבד.</p>
     <p>מכאן נובעת ההגדרה הרשמית של השנייה משנת 1967: שנייה אחת היא משך הזמן שבו הקרינה המתאימה למעבר מסוים בצזיום 133 משלימה 9,192,631,770 מחזורים. המספר נראה שרירותי מפני שהוא אכן שרירותי. בחרו אותו כך שהשנייה החדשה תהיה שווה לשנייה האסטרונומית שהייתה נהוגה קודם.</p>
     <p>שימו לב להיפוך. פעם מדדו את תדר האטום לפי השנייה. היום מודדים את השנייה לפי תדר האטום.</p>
+
+
+
 
 
 
@@ -247,6 +253,9 @@
 
 
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">דיוק ויציבות אינם אותו דבר</h2>
@@ -254,6 +263,9 @@
     <p>יציבות אומרת כמה התשובה חוזרת על עצמה. שעון יציב נותן אותה מדידה שוב ושוב, גם אם כולן שגויות באותו שיעור. זה מה שחשוב כשרוצים להשוות שני זמנים או למדוד הפרש.</p>
     <p>דיוק אומר כמה התשובה קרובה לאמת. שעון מדויק אינו סוטה מהתדר האמיתי של המעבר, וכדי לדעת את זה צריך לחשב בדיוק את כל ההפרעות שהסביבה מכניסה ולהחסיר אותן.</p>
     <p>שעון שממהר בדיוק שנייה ביום הוא יציב מאוד ולא מדויק כלל. בפועל אפשר לתקן אותו בקלות. שעון שסוטה אקראית בחצי שנייה לכל כיוון מדויק בממוצע וחסר תועלת. זו הסיבה שבפרסומים מדעיים מוצאים את שני המספרים, וזו גם הסיבה שהידיעה בגיליון הזה מדגישה שהניסוי בתוריום אינו שעון שרץ אלא שיטת מדידה.</p>
+
+
+
 
 
 
@@ -366,6 +378,9 @@
 
 
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">למה דווקא תוריום 229</h2>
@@ -373,6 +388,9 @@
     <p>תוריום 229 הוא חריג יחיד כמעט. יש לו מצב מעורר נמוך בצורה יוצאת דופן, בסדר גודל של שמונה אלקטרון וולט, שזה אולטרה סגול רחוק ולא גמא. זה בטווח שאפשר להגיע אליו בלייזר, ולכן הוא היחיד שמציע מעבר גרעיני שאפשר לכוון אליו.</p>
     <p>זה גם מסביר למה זה לקח זמן. במשך עשרות שנים אפילו לא ידעו את האנרגיה במדויק, והחיפוש אחריה היה כמו לחפש תחנת רדיו אחת כשהחוגה משתרעת על טווח עצום. רק בשנים האחרונות צומצם הטווח מספיק כדי שהעירור יהיה בר ביצוע.</p>
     <p>הידיעה בגיליון הזה היא צעד בתוך הסיפור הזה, לא סופו. היא עוסקת באיך מודדים את המעבר ביעילות, ובאיתור אתר בגביש שבו השדה החשמלי המקומי קטן מספיק כדי שהמעבר יהיה יציב. שעון גרעיני שעובד ברציפות ומתחרה בשעונים האופטיים עוד לא קיים.</p>
+
+
+
 
 
 
@@ -487,6 +505,9 @@
 
 
 
+
+
+
   </section>
 
 
@@ -541,6 +562,7 @@
     <p class="sim__note" id="ck-note"></p>
     <p class="sim__note euv-caveat">ההדמיה ממחישה עיקרון אחד בלבד: רגישות מגנטית תלויה במסת החלקיק, והיחס שבה הוא היחס בין מגנטון בוהר למגנטון הגרעיני, כ-1,836. היא אינה מודל של שעון אמיתי. בשעון אמיתי בוחרים מעברים שבהם התלות בשדה מבוטלת מראש, ונשארות הפרעות אחרות לגמרי, ולכן אין להסיק מכאן מספר ביצועים של שום מכשיר.</p>
   </section>
+
 
 
 
@@ -945,6 +967,95 @@
 
   inDv.addEventListener('input', render);
   inVe.addEventListener('input', render);
+  render();
+})();
+</script>
+
+<script>
+/* ===== כוכב לכת ננסי: איפה עובר הקו ===== */
+(function () {
+  var stage = document.getElementById('dp-stage');
+  if (!stage) return;
+
+  var K = 1.53e5;
+  var X0 = 470, XSPAN = 430, LOGA_MIN = -0.5, LOGA_SPAN = 2.5;
+  var Y0 = 250, YSPAN = 200, LOGM_MIN = -4.5, LOGM_SPAN = 7.5;
+  var PLUTO_M = 0.00218;
+
+  var inMass = document.getElementById('dp-in-mass');
+  var inDist = document.getElementById('dp-in-dist');
+  var outMass = document.getElementById('dp-out-mass');
+  var outDist = document.getElementById('dp-out-dist');
+  var outLambda = document.getElementById('dp-out-lambda');
+  var outEdge = document.getElementById('dp-out-edge');
+  var outVerdict = document.getElementById('dp-out-verdict');
+  var dot = document.getElementById('dp-dot');
+  var guide = document.getElementById('dp-guide');
+  var note = document.getElementById('dp-note');
+
+  function group(n) {
+    return String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  }
+
+  function fmtLambda(v) {
+    if (v >= 1e9) return (v / 1e9).toFixed(1) + ' מיליארד';
+    if (v >= 1e6) return (v / 1e6).toFixed(1) + ' מיליון';
+    if (v >= 1e3) return group(v);
+    if (v >= 1) return v.toFixed(1);
+    if (v >= 1e-4) return v.toPrecision(2);
+    return 'פחות מ-0.0001';
+  }
+
+  function fmtPlain(v) {
+    if (v >= 1000) return group(v);
+    if (v >= 100) return v.toFixed(0);
+    if (v >= 10) return v.toFixed(1);
+    if (v >= 1) return v.toFixed(2);
+    if (v >= 1e-4) return v.toPrecision(2);
+    return 'פחות מ-0.0001';
+  }
+
+  function render() {
+    var logM = Number(inMass.value);
+    var logA = Number(inDist.value);
+    var m = Math.pow(10, logM);
+    var a = Math.pow(10, logA);
+
+    var lambda = K * m * m / Math.pow(a, 1.5);
+    var edge = Math.pow(K * m * m, 2 / 3);
+
+    var x = X0 - (logA - LOGA_MIN) / LOGA_SPAN * XSPAN;
+    var y = Y0 - (logM - LOGM_MIN) / LOGM_SPAN * YSPAN;
+    var yLine = 159.1 + (x - 40) / XSPAN * 50;
+
+    dot.setAttribute('cx', x.toFixed(1));
+    dot.setAttribute('cy', y.toFixed(1));
+    guide.setAttribute('x1', x.toFixed(1));
+    guide.setAttribute('x2', x.toFixed(1));
+    guide.setAttribute('y1', y.toFixed(1));
+    guide.setAttribute('y2', yLine.toFixed(1));
+
+    outMass.textContent = fmtPlain(m);
+    outDist.textContent = fmtPlain(a);
+    outLambda.textContent = fmtLambda(lambda);
+    outEdge.textContent = fmtPlain(edge);
+    outVerdict.textContent = lambda >= 1 ? 'מפנה את מסלולו' : 'אינו מפנה את מסלולו';
+
+    var plutoRatio = m / PLUTO_M;
+    var msg = 'גוף במסה של ' + fmtPlain(m) + ' מסות כדור הארץ, ';
+    msg += plutoRatio >= 1 ? 'כבד פי ' + fmtPlain(plutoRatio) + ' מפלוטו, ' : fmtPlain(plutoRatio * 100) + ' אחוזים ממסת פלוטו, ';
+    msg += 'במרחק ' + fmtPlain(a) + ' יחידות אסטרונומיות מהשמש, מקבל Λ של ' + fmtLambda(lambda) + '. ';
+    if (lambda >= 1) {
+      msg += 'הוא מספיק לפנות את מסלולו בתוך גיל מערכת השמש. במסה הזאת הוא היה מפנה כל מסלול עד ' + fmtPlain(edge) + ' יחידות אסטרונומיות.';
+    } else {
+      var need = Math.sqrt(1 / lambda);
+      msg += 'הוא אינו מפנה את מסלולו. כדי לעבור את הסף במרחק הזה היה צריך להיות כבד פי ' + fmtPlain(need) + ', ובמסה הנוכחית הוא היה מפנה רק מסלול קרוב מ-' + fmtPlain(edge) + ' יחידות אסטרונומיות.';
+    }
+    note.textContent = msg;
+  }
+
+  inMass.addEventListener('input', render);
+  inDist.addEventListener('input', render);
   render();
 })();
 </script>

@@ -332,6 +332,12 @@ img { max-width: 100%; display: block; }
 
 .lead__body p { margin: 0 0 12px; }
 
+.lead__related {
+  font-family: var(--sans);
+  font-size: 14px;
+  color: var(--ink-faint);
+}
+
 .lead__body > p:first-of-type::first-letter {
   float: right;
   font-family: var(--display);

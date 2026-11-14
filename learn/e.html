@@ -94,6 +94,9 @@
 
 
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">למה זה נעצר</h2>
@@ -128,6 +131,9 @@
       </svg>
       <figcaption>אותה ריבית שנתית, מספר חלוקות גדל. התוספת מכל חלוקה נוספת מתכווצת.</figcaption>
     </figure>
+
+
+
 
 
 
@@ -217,11 +223,17 @@
 
 
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">למה שתי הדרכים מגיעות לאותו מקום</h2>
     <p>אפשר לפתוח את הביטוי (1+1/n)^n לפי בינום ניוטון. מקבלים סכום של n+1 מחוברים, שהמחובר ה-k שבהם הוא אחד חלקי עצרת k, מוכפל בגורם תיקון של שברים כמו (1-1/n) ו-(1-2/n).</p>
     <p>כשn גדל, כל גורמי התיקון האלה מתקרבים לאחד, ומספר המחוברים גדל. מה שנשאר בגבול הוא בדיוק הטור. שתי הנוסחאות אינן שתי הגדרות מקבילות שהתמזל מזלן להיפגש. הן אותו ביטוי, כתוב פעמיים.</p>
+
+
+
 
 
 
@@ -326,6 +338,9 @@
 
 
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">איפה פוגשים את זה בחיים</h2>
@@ -380,12 +395,18 @@
 
 
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">מה e איננו</h2>
     <p>e אינו שבר. הוא מספר אי רציונלי, כפי שאוילר הוכיח, ומעבר לזה הוא טרנסצנדנטי: הרמיט הוכיח ב-1873 שאין שום משוואה פולינומית עם מקדמים שלמים שהוא פותר. 2.718 הוא קירוב, לא ערך.</p>
     <p>e אינו קשור לפאי מעבר לזהות של אוילר, ואינו הבסיס ה&#34;טבעי&#34; במובן של נפוץ בטבע יותר מאחרים. הוא טבעי במובן טכני בלבד: הבסיס שבו הנגזרת יוצאת נקייה.</p>
     <p>e אינו מספר הזהב ואינו קשור לסדרת פיבונאצ&#39;י, בלבול נפוץ. ובניגוד לשמועה, האות e לא נבחרה על שם אוילר. הוא השתמש בה ב-1731 כנראה פשוט מפני ש-a עד d כבר היו תפוסות.</p>
+
+
+
 
 
 
@@ -484,6 +505,7 @@
     </div>
     <p class="sim__note" id="e-note"></p>
   </section>
+
 
 
 
@@ -870,6 +892,95 @@
 
   inDv.addEventListener('input', render);
   inVe.addEventListener('input', render);
+  render();
+})();
+</script>
+
+<script>
+/* ===== כוכב לכת ננסי: איפה עובר הקו ===== */
+(function () {
+  var stage = document.getElementById('dp-stage');
+  if (!stage) return;
+
+  var K = 1.53e5;
+  var X0 = 470, XSPAN = 430, LOGA_MIN = -0.5, LOGA_SPAN = 2.5;
+  var Y0 = 250, YSPAN = 200, LOGM_MIN = -4.5, LOGM_SPAN = 7.5;
+  var PLUTO_M = 0.00218;
+
+  var inMass = document.getElementById('dp-in-mass');
+  var inDist = document.getElementById('dp-in-dist');
+  var outMass = document.getElementById('dp-out-mass');
+  var outDist = document.getElementById('dp-out-dist');
+  var outLambda = document.getElementById('dp-out-lambda');
+  var outEdge = document.getElementById('dp-out-edge');
+  var outVerdict = document.getElementById('dp-out-verdict');
+  var dot = document.getElementById('dp-dot');
+  var guide = document.getElementById('dp-guide');
+  var note = document.getElementById('dp-note');
+
+  function group(n) {
+    return String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  }
+
+  function fmtLambda(v) {
+    if (v >= 1e9) return (v / 1e9).toFixed(1) + ' מיליארד';
+    if (v >= 1e6) return (v / 1e6).toFixed(1) + ' מיליון';
+    if (v >= 1e3) return group(v);
+    if (v >= 1) return v.toFixed(1);
+    if (v >= 1e-4) return v.toPrecision(2);
+    return 'פחות מ-0.0001';
+  }
+
+  function fmtPlain(v) {
+    if (v >= 1000) return group(v);
+    if (v >= 100) return v.toFixed(0);
+    if (v >= 10) return v.toFixed(1);
+    if (v >= 1) return v.toFixed(2);
+    if (v >= 1e-4) return v.toPrecision(2);
+    return 'פחות מ-0.0001';
+  }
+
+  function render() {
+    var logM = Number(inMass.value);
+    var logA = Number(inDist.value);
+    var m = Math.pow(10, logM);
+    var a = Math.pow(10, logA);
+
+    var lambda = K * m * m / Math.pow(a, 1.5);
+    var edge = Math.pow(K * m * m, 2 / 3);
+
+    var x = X0 - (logA - LOGA_MIN) / LOGA_SPAN * XSPAN;
+    var y = Y0 - (logM - LOGM_MIN) / LOGM_SPAN * YSPAN;
+    var yLine = 159.1 + (x - 40) / XSPAN * 50;
+
+    dot.setAttribute('cx', x.toFixed(1));
+    dot.setAttribute('cy', y.toFixed(1));
+    guide.setAttribute('x1', x.toFixed(1));
+    guide.setAttribute('x2', x.toFixed(1));
+    guide.setAttribute('y1', y.toFixed(1));
+    guide.setAttribute('y2', yLine.toFixed(1));
+
+    outMass.textContent = fmtPlain(m);
+    outDist.textContent = fmtPlain(a);
+    outLambda.textContent = fmtLambda(lambda);
+    outEdge.textContent = fmtPlain(edge);
+    outVerdict.textContent = lambda >= 1 ? 'מפנה את מסלולו' : 'אינו מפנה את מסלולו';
+
+    var plutoRatio = m / PLUTO_M;
+    var msg = 'גוף במסה של ' + fmtPlain(m) + ' מסות כדור הארץ, ';
+    msg += plutoRatio >= 1 ? 'כבד פי ' + fmtPlain(plutoRatio) + ' מפלוטו, ' : fmtPlain(plutoRatio * 100) + ' אחוזים ממסת פלוטו, ';
+    msg += 'במרחק ' + fmtPlain(a) + ' יחידות אסטרונומיות מהשמש, מקבל Λ של ' + fmtLambda(lambda) + '. ';
+    if (lambda >= 1) {
+      msg += 'הוא מספיק לפנות את מסלולו בתוך גיל מערכת השמש. במסה הזאת הוא היה מפנה כל מסלול עד ' + fmtPlain(edge) + ' יחידות אסטרונומיות.';
+    } else {
+      var need = Math.sqrt(1 / lambda);
+      msg += 'הוא אינו מפנה את מסלולו. כדי לעבור את הסף במרחק הזה היה צריך להיות כבד פי ' + fmtPlain(need) + ', ובמסה הנוכחית הוא היה מפנה רק מסלול קרוב מ-' + fmtPlain(edge) + ' יחידות אסטרונומיות.';
+    }
+    note.textContent = msg;
+  }
+
+  inMass.addEventListener('input', render);
+  inDist.addEventListener('input', render);
   render();
 })();
 </script>

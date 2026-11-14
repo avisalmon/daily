@@ -100,6 +100,9 @@
 
 
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">ההבדל בין קו לעקומה</h2>
@@ -161,11 +164,17 @@
 
 
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">הזמן הוא המשתנה החזק ביותר</h2>
     <p>בנוסחה של ריבית דריבית, הקרן והריבית מוכפלות, אבל הזמן נמצא במעריך. משתנה במעריך משפיע הרבה יותר חזק ממשתנה בבסיס.</p>
     <p>נסו את זה במדמה שלמטה: הכפילו את הקרן, והתוצאה הסופית תוכפל בדיוק פי שניים. הכפילו את מספר השנים, והתוצאה תגדל הרבה יותר מפי שניים. אחרי 10 שנים תגיעו ל-2,594 שקל במקום 2,000. אחרי 30 שנה תגיעו ל-17,449 שקל במקום 4,000.</p>
+
+
+
 
 
 
@@ -255,11 +264,17 @@
 
 
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">אותה עקומה, בכיוון ההפוך</h2>
     <p>בדיוק מאותה סיבה, ריבית דריבית עובדת גם לרעתכם. חוב בכרטיס אשראי או הלוואה שלא נפרעת צוברים ריבית על הריבית באותה עקומה בדיוק, רק שהפעם אתם בצד שמשלם.</p>
     <p>כאן ההבדל דרמטי במיוחד, כי הריבית על אשראי צרכני גבוהה בהרבה מתשואה שגרתית על חיסכון. חוב שנשאר פתוח מספיק זמן יכול לגדול לסכום גדול בהרבה מהסכום שנלקח במקור.</p>
+
+
+
 
 
 
@@ -377,6 +392,7 @@
     </div>
     <p class="sim__note" id="sim-note"></p>
   </section>
+
 
 
 
@@ -764,6 +780,95 @@
 
   inDv.addEventListener('input', render);
   inVe.addEventListener('input', render);
+  render();
+})();
+</script>
+
+<script>
+/* ===== כוכב לכת ננסי: איפה עובר הקו ===== */
+(function () {
+  var stage = document.getElementById('dp-stage');
+  if (!stage) return;
+
+  var K = 1.53e5;
+  var X0 = 470, XSPAN = 430, LOGA_MIN = -0.5, LOGA_SPAN = 2.5;
+  var Y0 = 250, YSPAN = 200, LOGM_MIN = -4.5, LOGM_SPAN = 7.5;
+  var PLUTO_M = 0.00218;
+
+  var inMass = document.getElementById('dp-in-mass');
+  var inDist = document.getElementById('dp-in-dist');
+  var outMass = document.getElementById('dp-out-mass');
+  var outDist = document.getElementById('dp-out-dist');
+  var outLambda = document.getElementById('dp-out-lambda');
+  var outEdge = document.getElementById('dp-out-edge');
+  var outVerdict = document.getElementById('dp-out-verdict');
+  var dot = document.getElementById('dp-dot');
+  var guide = document.getElementById('dp-guide');
+  var note = document.getElementById('dp-note');
+
+  function group(n) {
+    return String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  }
+
+  function fmtLambda(v) {
+    if (v >= 1e9) return (v / 1e9).toFixed(1) + ' מיליארד';
+    if (v >= 1e6) return (v / 1e6).toFixed(1) + ' מיליון';
+    if (v >= 1e3) return group(v);
+    if (v >= 1) return v.toFixed(1);
+    if (v >= 1e-4) return v.toPrecision(2);
+    return 'פחות מ-0.0001';
+  }
+
+  function fmtPlain(v) {
+    if (v >= 1000) return group(v);
+    if (v >= 100) return v.toFixed(0);
+    if (v >= 10) return v.toFixed(1);
+    if (v >= 1) return v.toFixed(2);
+    if (v >= 1e-4) return v.toPrecision(2);
+    return 'פחות מ-0.0001';
+  }
+
+  function render() {
+    var logM = Number(inMass.value);
+    var logA = Number(inDist.value);
+    var m = Math.pow(10, logM);
+    var a = Math.pow(10, logA);
+
+    var lambda = K * m * m / Math.pow(a, 1.5);
+    var edge = Math.pow(K * m * m, 2 / 3);
+
+    var x = X0 - (logA - LOGA_MIN) / LOGA_SPAN * XSPAN;
+    var y = Y0 - (logM - LOGM_MIN) / LOGM_SPAN * YSPAN;
+    var yLine = 159.1 + (x - 40) / XSPAN * 50;
+
+    dot.setAttribute('cx', x.toFixed(1));
+    dot.setAttribute('cy', y.toFixed(1));
+    guide.setAttribute('x1', x.toFixed(1));
+    guide.setAttribute('x2', x.toFixed(1));
+    guide.setAttribute('y1', y.toFixed(1));
+    guide.setAttribute('y2', yLine.toFixed(1));
+
+    outMass.textContent = fmtPlain(m);
+    outDist.textContent = fmtPlain(a);
+    outLambda.textContent = fmtLambda(lambda);
+    outEdge.textContent = fmtPlain(edge);
+    outVerdict.textContent = lambda >= 1 ? 'מפנה את מסלולו' : 'אינו מפנה את מסלולו';
+
+    var plutoRatio = m / PLUTO_M;
+    var msg = 'גוף במסה של ' + fmtPlain(m) + ' מסות כדור הארץ, ';
+    msg += plutoRatio >= 1 ? 'כבד פי ' + fmtPlain(plutoRatio) + ' מפלוטו, ' : fmtPlain(plutoRatio * 100) + ' אחוזים ממסת פלוטו, ';
+    msg += 'במרחק ' + fmtPlain(a) + ' יחידות אסטרונומיות מהשמש, מקבל Λ של ' + fmtLambda(lambda) + '. ';
+    if (lambda >= 1) {
+      msg += 'הוא מספיק לפנות את מסלולו בתוך גיל מערכת השמש. במסה הזאת הוא היה מפנה כל מסלול עד ' + fmtPlain(edge) + ' יחידות אסטרונומיות.';
+    } else {
+      var need = Math.sqrt(1 / lambda);
+      msg += 'הוא אינו מפנה את מסלולו. כדי לעבור את הסף במרחק הזה היה צריך להיות כבד פי ' + fmtPlain(need) + ', ובמסה הנוכחית הוא היה מפנה רק מסלול קרוב מ-' + fmtPlain(edge) + ' יחידות אסטרונומיות.';
+    }
+    note.textContent = msg;
+  }
+
+  inMass.addEventListener('input', render);
+  inDist.addEventListener('input', render);
   render();
 })();
 </script>

@@ -90,6 +90,9 @@
 
 
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">הפתרון, בצבעים</h2>
@@ -155,6 +158,9 @@
     </svg>
     <figcaption>שני הסודות לעולם אינם עוברים בערוץ. מה שעובר הוא תערובות, והן מספיקות כדי להגיע לאותה תוצאה.</figcaption>
     </figure>
+
+
+
 
 
 
@@ -234,6 +240,9 @@
 
 
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">החשבון עצמו: שעון עם 23 שעות</h2>
@@ -285,6 +294,9 @@
 
 
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">להסכים על סוד, או לשלוח סוד</h2>
@@ -292,6 +304,9 @@
     <p>שנה אחר כך הגיע רעיון קרוב ושונה, שנקרא RSA על שם שלושת ממציאיו. כאן לכל אדם יש זוג מפתחות קבוע: אחד ציבורי, שהוא מפרסם לכל העולם, ואחד פרטי, ששמור אצלו. מה שננעל באחד נפתח רק בשני.</p>
     <p>זה פותר את הבעיה בצורה אחרת. אם אתם רוצים לשלוח לי הודעה, אתם נועלים אותה במפתח הציבורי שלי, שמופיע בגלוי. מהרגע שהיא נעולה, רק אני יכול לפתוח. גם אתם כבר לא יכולים.</p>
     <p>בפועל שתי השיטות עובדות יחד. חיבור מאובטח בדפדפן משתמש בחשבון מהסוג הזה כדי להסכים על מפתח, ומהרגע שיש מפתח משותף הוא עובר להצפנה הקלאסית והמהירה. המתמטיקה היקרה רצה פעם אחת, בהתחלה.</p>
+
+
+
 
 
 
@@ -405,6 +420,9 @@
 
 
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">מה זה לא פותר</h2>
@@ -412,6 +430,9 @@
     <p>נניח שמישהו הצליח לשבת באמצע ולהתחזות. הוא מנהל חילוף מפתחות מושלם איתכם, ובמקביל חילוף מפתחות מושלם נוסף עם האתר שחשבתם שאתם מדברים איתו. שני החיבורים מוצפנים ללא רבב. הוא קורא הכול.</p>
     <p>לכן נדרשת שכבה נוספת, ותפקידה לענות על שאלה אחרת לגמרי: האם המפתח הציבורי הזה באמת שייך למי שהוא טוען. התשובה היא תעודה, מסמך שבו גוף שלישי חותם על כך שהמפתח הזה שייך לאתר הזה. את החתימה ההיא בודקים בדיוק באותו מנגנון חתימה דיגיטלית.</p>
     <p>המערכת הזו נשענת בסופו של דבר על רשימה של גופים שהדפדפן שלכם סומך עליהם מראש. זו אינה מתמטיקה. זו החלטה, והיא החוליה הרכה בשרשרת.</p>
+
+
+
 
 
 
@@ -503,7 +524,11 @@
 
 
 
+
+
+
   </section>
+
 
 
 
@@ -929,6 +954,95 @@
 
   inDv.addEventListener('input', render);
   inVe.addEventListener('input', render);
+  render();
+})();
+</script>
+
+<script>
+/* ===== כוכב לכת ננסי: איפה עובר הקו ===== */
+(function () {
+  var stage = document.getElementById('dp-stage');
+  if (!stage) return;
+
+  var K = 1.53e5;
+  var X0 = 470, XSPAN = 430, LOGA_MIN = -0.5, LOGA_SPAN = 2.5;
+  var Y0 = 250, YSPAN = 200, LOGM_MIN = -4.5, LOGM_SPAN = 7.5;
+  var PLUTO_M = 0.00218;
+
+  var inMass = document.getElementById('dp-in-mass');
+  var inDist = document.getElementById('dp-in-dist');
+  var outMass = document.getElementById('dp-out-mass');
+  var outDist = document.getElementById('dp-out-dist');
+  var outLambda = document.getElementById('dp-out-lambda');
+  var outEdge = document.getElementById('dp-out-edge');
+  var outVerdict = document.getElementById('dp-out-verdict');
+  var dot = document.getElementById('dp-dot');
+  var guide = document.getElementById('dp-guide');
+  var note = document.getElementById('dp-note');
+
+  function group(n) {
+    return String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  }
+
+  function fmtLambda(v) {
+    if (v >= 1e9) return (v / 1e9).toFixed(1) + ' מיליארד';
+    if (v >= 1e6) return (v / 1e6).toFixed(1) + ' מיליון';
+    if (v >= 1e3) return group(v);
+    if (v >= 1) return v.toFixed(1);
+    if (v >= 1e-4) return v.toPrecision(2);
+    return 'פחות מ-0.0001';
+  }
+
+  function fmtPlain(v) {
+    if (v >= 1000) return group(v);
+    if (v >= 100) return v.toFixed(0);
+    if (v >= 10) return v.toFixed(1);
+    if (v >= 1) return v.toFixed(2);
+    if (v >= 1e-4) return v.toPrecision(2);
+    return 'פחות מ-0.0001';
+  }
+
+  function render() {
+    var logM = Number(inMass.value);
+    var logA = Number(inDist.value);
+    var m = Math.pow(10, logM);
+    var a = Math.pow(10, logA);
+
+    var lambda = K * m * m / Math.pow(a, 1.5);
+    var edge = Math.pow(K * m * m, 2 / 3);
+
+    var x = X0 - (logA - LOGA_MIN) / LOGA_SPAN * XSPAN;
+    var y = Y0 - (logM - LOGM_MIN) / LOGM_SPAN * YSPAN;
+    var yLine = 159.1 + (x - 40) / XSPAN * 50;
+
+    dot.setAttribute('cx', x.toFixed(1));
+    dot.setAttribute('cy', y.toFixed(1));
+    guide.setAttribute('x1', x.toFixed(1));
+    guide.setAttribute('x2', x.toFixed(1));
+    guide.setAttribute('y1', y.toFixed(1));
+    guide.setAttribute('y2', yLine.toFixed(1));
+
+    outMass.textContent = fmtPlain(m);
+    outDist.textContent = fmtPlain(a);
+    outLambda.textContent = fmtLambda(lambda);
+    outEdge.textContent = fmtPlain(edge);
+    outVerdict.textContent = lambda >= 1 ? 'מפנה את מסלולו' : 'אינו מפנה את מסלולו';
+
+    var plutoRatio = m / PLUTO_M;
+    var msg = 'גוף במסה של ' + fmtPlain(m) + ' מסות כדור הארץ, ';
+    msg += plutoRatio >= 1 ? 'כבד פי ' + fmtPlain(plutoRatio) + ' מפלוטו, ' : fmtPlain(plutoRatio * 100) + ' אחוזים ממסת פלוטו, ';
+    msg += 'במרחק ' + fmtPlain(a) + ' יחידות אסטרונומיות מהשמש, מקבל Λ של ' + fmtLambda(lambda) + '. ';
+    if (lambda >= 1) {
+      msg += 'הוא מספיק לפנות את מסלולו בתוך גיל מערכת השמש. במסה הזאת הוא היה מפנה כל מסלול עד ' + fmtPlain(edge) + ' יחידות אסטרונומיות.';
+    } else {
+      var need = Math.sqrt(1 / lambda);
+      msg += 'הוא אינו מפנה את מסלולו. כדי לעבור את הסף במרחק הזה היה צריך להיות כבד פי ' + fmtPlain(need) + ', ובמסה הנוכחית הוא היה מפנה רק מסלול קרוב מ-' + fmtPlain(edge) + ' יחידות אסטרונומיות.';
+    }
+    note.textContent = msg;
+  }
+
+  inMass.addEventListener('input', render);
+  inDist.addEventListener('input', render);
   render();
 })();
 </script>

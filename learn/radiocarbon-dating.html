@@ -134,12 +134,18 @@
 
 
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">המוות הוא הרגע שבו השעון מתחיל</h2>
     <p>ברגע שהיצור מת, הוא מפסיק לאכול, לנשום ולהטמיע פחמן חדש. פחמן 12 שבגופו נשאר בדיוק כפי שהוא, לנצח. פחמן 14 ממשיך להתפרק, כל גרעין בתורו, וחוזר להיות חנקן 14.</p>
     <p>זהו כל הרעיון. מה שנמדד אינו כמות אלא יחס: כמה פחמן 14 נשאר ביחס לפחמן 12 שלא זז. היחס הזה ידוע ברגע ההתחלה, משום שהוא היה היחס באוויר. ככל שעובר זמן הוא קטן, ובקצב ידוע. מדידת היחס היום מאפשרת לחשב כמה זמן עבר.</p>
     <p>לכן גם ברור מה השיטה אינה יכולה לעשות. אבן מעולם לא נשמה, ואין בה שעון כזה. מתכת גם לא. חרס שרוף אינו מתוארך בעצמו, אלא רק גרגרי פחם או שאריות אורגניות שנלכדו בו. מה שמתוארך הוא תמיד הרגע שבו משהו חי הפסיק להחליף פחמן עם העולם, לא הרגע שבו מישהו עשה ממנו חפץ.</p>
+
+
+
 
 
 
@@ -264,6 +270,9 @@
 
 
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">למה המדידה הולכת ונעשית קשה</h2>
@@ -320,6 +329,9 @@
     </svg>
     <figcaption>אותן מאה שנות הפרש, בשני מקומות על העקומה. בגיל 2,000 הן מזיזות את היחס בכ-0.94 נקודת אחוז. בגיל 20,000 בכ-0.11 נקודה. ככל שמתרחקים, אותו הפרש זמן אמיתי מייצר אות קטן יותר, ולכן טווח השגיאה גדל.</figcaption>
     </figure>
+
+
+
 
 
 
@@ -415,6 +427,9 @@
 
 
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">דגים נראים זקנים, ואנחנו נראים צעירים</h2>
@@ -423,6 +438,9 @@
     <p>השני הוא דלק מאובנים. פחם ונפט נוצרו לפני מיליוני שנים, וכל הפחמן 14 שבהם דעך מזמן. שריפתם מדללת את האטמוספרה בפחמן ישן. מסוף המאה התשע עשרה והלאה היחס באוויר ירד בגלל זה.</p>
     <p>השלישי הוא ההפוך, והוא חד וקיצוני. ניסויי הגרעין באוויר בשנות החמישים והשישים הציפו את האטמוספרה בנייטרונים וייצרו פחמן 14 בכמויות. סביב 1965 הגיעה הכמות באוויר לכמעט כפליים מרמתה לפני הניסויים. מאז אמנת האיסור החלקי מ-10 באוקטובר 1963 הרמה יורדת בהתמדה, בעיקר משום שהפחמן נקלט באוקיינוסים ובצמחייה.</p>
     <p>התוצאה המעשית: כל מי שחי בעשורים האלה נושא בגופו חתימה איזוטופית שאין לאף אדם שחי לפניהם. היא מקלקלת תיארוך רגיל של חומר צעיר, אבל היא גם הפכה לכלי משלה. היא מאפשרת לקבוע באיזו שנה נוצרה רקמה, ומשמשת לזיהוי פלילי ולבדיקת גיל של יין וחפצי אמנות שנטען שהם עתיקים.</p>
+
+
+
 
 
 
@@ -537,6 +555,9 @@
 
 
 
+
+
+
   </section>
 
 
@@ -593,6 +614,7 @@
   <p class="sim__note" id="c14-note"></p>
   <p class="sim__note euv-caveat">החישוב משתמש במחצית חיים של 5,730 שנה ובדעיכה מעריכית נקייה. מעבדה אמיתית מחשבת גיל רדיופחמני עם הערך ההיסטורי 5,568 שנה, מתקנת על הפרדה איזוטופית, ומעבירה את התוצאה דרך עקומת כיול שאינה חלקה. הגבול המסומן הוא הערכה גסה: מעבדות שונות עובדות עם סף שונה, ובתנאי הכנה מיוחדים אפשר לפעמים לרדת מתחתיו. אין להסיק מההדמיה מספרי דיוק של שום מעבדה.</p>
   </section>
+
 
 
 
@@ -954,6 +976,95 @@
 
   inDv.addEventListener('input', render);
   inVe.addEventListener('input', render);
+  render();
+})();
+</script>
+
+<script>
+/* ===== כוכב לכת ננסי: איפה עובר הקו ===== */
+(function () {
+  var stage = document.getElementById('dp-stage');
+  if (!stage) return;
+
+  var K = 1.53e5;
+  var X0 = 470, XSPAN = 430, LOGA_MIN = -0.5, LOGA_SPAN = 2.5;
+  var Y0 = 250, YSPAN = 200, LOGM_MIN = -4.5, LOGM_SPAN = 7.5;
+  var PLUTO_M = 0.00218;
+
+  var inMass = document.getElementById('dp-in-mass');
+  var inDist = document.getElementById('dp-in-dist');
+  var outMass = document.getElementById('dp-out-mass');
+  var outDist = document.getElementById('dp-out-dist');
+  var outLambda = document.getElementById('dp-out-lambda');
+  var outEdge = document.getElementById('dp-out-edge');
+  var outVerdict = document.getElementById('dp-out-verdict');
+  var dot = document.getElementById('dp-dot');
+  var guide = document.getElementById('dp-guide');
+  var note = document.getElementById('dp-note');
+
+  function group(n) {
+    return String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  }
+
+  function fmtLambda(v) {
+    if (v >= 1e9) return (v / 1e9).toFixed(1) + ' מיליארד';
+    if (v >= 1e6) return (v / 1e6).toFixed(1) + ' מיליון';
+    if (v >= 1e3) return group(v);
+    if (v >= 1) return v.toFixed(1);
+    if (v >= 1e-4) return v.toPrecision(2);
+    return 'פחות מ-0.0001';
+  }
+
+  function fmtPlain(v) {
+    if (v >= 1000) return group(v);
+    if (v >= 100) return v.toFixed(0);
+    if (v >= 10) return v.toFixed(1);
+    if (v >= 1) return v.toFixed(2);
+    if (v >= 1e-4) return v.toPrecision(2);
+    return 'פחות מ-0.0001';
+  }
+
+  function render() {
+    var logM = Number(inMass.value);
+    var logA = Number(inDist.value);
+    var m = Math.pow(10, logM);
+    var a = Math.pow(10, logA);
+
+    var lambda = K * m * m / Math.pow(a, 1.5);
+    var edge = Math.pow(K * m * m, 2 / 3);
+
+    var x = X0 - (logA - LOGA_MIN) / LOGA_SPAN * XSPAN;
+    var y = Y0 - (logM - LOGM_MIN) / LOGM_SPAN * YSPAN;
+    var yLine = 159.1 + (x - 40) / XSPAN * 50;
+
+    dot.setAttribute('cx', x.toFixed(1));
+    dot.setAttribute('cy', y.toFixed(1));
+    guide.setAttribute('x1', x.toFixed(1));
+    guide.setAttribute('x2', x.toFixed(1));
+    guide.setAttribute('y1', y.toFixed(1));
+    guide.setAttribute('y2', yLine.toFixed(1));
+
+    outMass.textContent = fmtPlain(m);
+    outDist.textContent = fmtPlain(a);
+    outLambda.textContent = fmtLambda(lambda);
+    outEdge.textContent = fmtPlain(edge);
+    outVerdict.textContent = lambda >= 1 ? 'מפנה את מסלולו' : 'אינו מפנה את מסלולו';
+
+    var plutoRatio = m / PLUTO_M;
+    var msg = 'גוף במסה של ' + fmtPlain(m) + ' מסות כדור הארץ, ';
+    msg += plutoRatio >= 1 ? 'כבד פי ' + fmtPlain(plutoRatio) + ' מפלוטו, ' : fmtPlain(plutoRatio * 100) + ' אחוזים ממסת פלוטו, ';
+    msg += 'במרחק ' + fmtPlain(a) + ' יחידות אסטרונומיות מהשמש, מקבל Λ של ' + fmtLambda(lambda) + '. ';
+    if (lambda >= 1) {
+      msg += 'הוא מספיק לפנות את מסלולו בתוך גיל מערכת השמש. במסה הזאת הוא היה מפנה כל מסלול עד ' + fmtPlain(edge) + ' יחידות אסטרונומיות.';
+    } else {
+      var need = Math.sqrt(1 / lambda);
+      msg += 'הוא אינו מפנה את מסלולו. כדי לעבור את הסף במרחק הזה היה צריך להיות כבד פי ' + fmtPlain(need) + ', ובמסה הנוכחית הוא היה מפנה רק מסלול קרוב מ-' + fmtPlain(edge) + ' יחידות אסטרונומיות.';
+    }
+    note.textContent = msg;
+  }
+
+  inMass.addEventListener('input', render);
+  inDist.addEventListener('input', render);
   render();
 })();
 </script>

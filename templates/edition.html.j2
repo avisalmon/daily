@@ -118,6 +118,13 @@
             {% endif %}
             <p>{{ para }}</p>
             {% endfor %}
+            {# A lead that leans on an earlier learning page points at it
+               instead of explaining again. The slug must name a topic on disk;
+               validate.py checks it the way it checks learning.slug. #}
+            {% if edition.lead.related %}
+            {% set rel = edition.lead.related %}
+            <p class="lead__related">{{ rel.label | default('ראו גם') }}: <a href="{{ base }}learn/{{ rel.slug }}.html">{{ rel.title }}</a></p>
+            {% endif %}
           </div>
           {# A video in the lead rides the same frame as a story's, and the same
              rules: the nocookie host, lazy, and a credit that the edition test

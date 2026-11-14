@@ -89,6 +89,9 @@
 
 
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">שני חלקים: אחד מחפש, אחד חותך</h2>
@@ -191,12 +194,18 @@
 
 
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">PAM: בלי הסיסמה הזאת אין חיתוך</h2>
     <p>התאמה של המדריך אינה מספיקה. Cas9 חותך רק אם צמוד למטרה, בצד אחד, מופיע רצף קצר שנקרא PAM. אצל Cas9 הנפוץ מדובר בשלוש אותיות שבהן השנייה והשלישית הן G, כלומר כל אות ואחריה GG.</p>
     <p>החלבון למעשה מחפש קודם את ה-PAM, ורק כשהוא מוצא אותו הוא טורח לפתוח את הסליל ולבדוק התאמה. זה קיצור דרך יעיל: במקום לבדוק שלושה מיליארד מיקומים לעומק, בודקים לעומק רק את אלה שנושאים את הסימן.</p>
     <p>יש לכך שתי השלכות. הראשונה מעשית: אי אפשר לחתוך בכל נקודה שרוצים, אלא רק ליד PAM, ולכן תכנון עריכה מתחיל תמיד בחיפוש PAM מתאים באזור. השנייה יפה יותר. בחיידק עצמו, הזיכרון הווירלי השמור אינו מלווה ב-PAM, ולכן המערכת אינה חותכת את הזיכרון של עצמה. אותו הבדל קטן הוא שמפריד בין הגנה ובין התאבדות.</p>
+
+
+
 
 
 
@@ -317,12 +326,18 @@
 
 
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">הבעיה האמיתית היא לא לחתוך, אלא לא לחתוך במקום הלא נכון</h2>
     <p>חישוב האותיות למעלה הראה שהתאמה מושלמת נדירה. אלא ש-Cas9 אינו דורש שלמות. הוא סובל לעיתים אי־התאמה של אות או שתיים, ובעיקר כשהן רחוקות מה-PAM. אות שאינה מתאימה בקצה המרוחק עשויה לעבור בשקט, ואילו אי־התאמה צמודה ל-PAM בדרך כלל עוצרת את החיתוך.</p>
     <p>מכאן שהמדריך יוצר לא מטרה אחת אלא דירוג של מטרות: אתר אחד מושלם, וכמה אתרים דומים בגנום שעלולים להיחתך גם הם. חיתוך כזה נקרא off-target, והוא הסיכון המרכזי של השיטה, כי אם הוא נופל בתוך גן חשוב התוצאה היא נזק שלא התכוונו אליו.</p>
     <p>לכן העבודה האמיתית בעריכה גנטית אינה החיתוך אלא הבחירה. בוחרים מדריך שהאתרים הדומים לו בגנום מעטים ורחוקים ממקומות רגישים, משתמשים בגרסאות חלבון שתוכננו להיות פחות סלחניות לאי־התאמה, ומודדים אחר כך בפועל היכן נחתך הגנום. הסימולטור למטה ממחיש את הדירוג הזה על רצף קצר.</p>
+
+
+
 
 
 
@@ -413,6 +428,9 @@
 
 
 
+
+
+
   </section>
 
 
@@ -457,6 +475,7 @@
     <p class="sim__note" id="crispr-note"></p>
     <p class="sim__note euv-caveat">הכלל שמופעל כאן פשוט בכוונה: אתר נחתך אם יש אחריו PAM, אם מספר אי־ההתאמות אינו עולה על הסובלנות שבחרתם, ואם אף אי־התאמה אינה נופלת בעשר האותיות הצמודות ל-PAM. חיתוך אמיתי תלוי גם במבנה הכרומטין, בריכוזים ובגרסת החלבון, וכלי תכנון מדרגים אתרים במודלים מורכבים בהרבה מספירת אותיות.</p>
   </section>
+
 
 
 
@@ -842,6 +861,95 @@
 
   inDv.addEventListener('input', render);
   inVe.addEventListener('input', render);
+  render();
+})();
+</script>
+
+<script>
+/* ===== כוכב לכת ננסי: איפה עובר הקו ===== */
+(function () {
+  var stage = document.getElementById('dp-stage');
+  if (!stage) return;
+
+  var K = 1.53e5;
+  var X0 = 470, XSPAN = 430, LOGA_MIN = -0.5, LOGA_SPAN = 2.5;
+  var Y0 = 250, YSPAN = 200, LOGM_MIN = -4.5, LOGM_SPAN = 7.5;
+  var PLUTO_M = 0.00218;
+
+  var inMass = document.getElementById('dp-in-mass');
+  var inDist = document.getElementById('dp-in-dist');
+  var outMass = document.getElementById('dp-out-mass');
+  var outDist = document.getElementById('dp-out-dist');
+  var outLambda = document.getElementById('dp-out-lambda');
+  var outEdge = document.getElementById('dp-out-edge');
+  var outVerdict = document.getElementById('dp-out-verdict');
+  var dot = document.getElementById('dp-dot');
+  var guide = document.getElementById('dp-guide');
+  var note = document.getElementById('dp-note');
+
+  function group(n) {
+    return String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  }
+
+  function fmtLambda(v) {
+    if (v >= 1e9) return (v / 1e9).toFixed(1) + ' מיליארד';
+    if (v >= 1e6) return (v / 1e6).toFixed(1) + ' מיליון';
+    if (v >= 1e3) return group(v);
+    if (v >= 1) return v.toFixed(1);
+    if (v >= 1e-4) return v.toPrecision(2);
+    return 'פחות מ-0.0001';
+  }
+
+  function fmtPlain(v) {
+    if (v >= 1000) return group(v);
+    if (v >= 100) return v.toFixed(0);
+    if (v >= 10) return v.toFixed(1);
+    if (v >= 1) return v.toFixed(2);
+    if (v >= 1e-4) return v.toPrecision(2);
+    return 'פחות מ-0.0001';
+  }
+
+  function render() {
+    var logM = Number(inMass.value);
+    var logA = Number(inDist.value);
+    var m = Math.pow(10, logM);
+    var a = Math.pow(10, logA);
+
+    var lambda = K * m * m / Math.pow(a, 1.5);
+    var edge = Math.pow(K * m * m, 2 / 3);
+
+    var x = X0 - (logA - LOGA_MIN) / LOGA_SPAN * XSPAN;
+    var y = Y0 - (logM - LOGM_MIN) / LOGM_SPAN * YSPAN;
+    var yLine = 159.1 + (x - 40) / XSPAN * 50;
+
+    dot.setAttribute('cx', x.toFixed(1));
+    dot.setAttribute('cy', y.toFixed(1));
+    guide.setAttribute('x1', x.toFixed(1));
+    guide.setAttribute('x2', x.toFixed(1));
+    guide.setAttribute('y1', y.toFixed(1));
+    guide.setAttribute('y2', yLine.toFixed(1));
+
+    outMass.textContent = fmtPlain(m);
+    outDist.textContent = fmtPlain(a);
+    outLambda.textContent = fmtLambda(lambda);
+    outEdge.textContent = fmtPlain(edge);
+    outVerdict.textContent = lambda >= 1 ? 'מפנה את מסלולו' : 'אינו מפנה את מסלולו';
+
+    var plutoRatio = m / PLUTO_M;
+    var msg = 'גוף במסה של ' + fmtPlain(m) + ' מסות כדור הארץ, ';
+    msg += plutoRatio >= 1 ? 'כבד פי ' + fmtPlain(plutoRatio) + ' מפלוטו, ' : fmtPlain(plutoRatio * 100) + ' אחוזים ממסת פלוטו, ';
+    msg += 'במרחק ' + fmtPlain(a) + ' יחידות אסטרונומיות מהשמש, מקבל Λ של ' + fmtLambda(lambda) + '. ';
+    if (lambda >= 1) {
+      msg += 'הוא מספיק לפנות את מסלולו בתוך גיל מערכת השמש. במסה הזאת הוא היה מפנה כל מסלול עד ' + fmtPlain(edge) + ' יחידות אסטרונומיות.';
+    } else {
+      var need = Math.sqrt(1 / lambda);
+      msg += 'הוא אינו מפנה את מסלולו. כדי לעבור את הסף במרחק הזה היה צריך להיות כבד פי ' + fmtPlain(need) + ', ובמסה הנוכחית הוא היה מפנה רק מסלול קרוב מ-' + fmtPlain(edge) + ' יחידות אסטרונומיות.';
+    }
+    note.textContent = msg;
+  }
+
+  inMass.addEventListener('input', render);
+  inDist.addEventListener('input', render);
   render();
 })();
 </script>

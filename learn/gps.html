@@ -114,6 +114,9 @@
 
 
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">החישוב היחיד שצריך</h2>
@@ -132,6 +135,9 @@
       </p>
       <p class="formula__legend">c היא מהירות האור בריק, 299,792 קילומטר לשנייה. t_tx היא חותמת הזמן שהלוויין שידר, t_rx היא השעה שבה המכשיר קלט אותה. בניגוד להד של עטלף אין כאן חלוקה בשתיים, כי האות עושה את הדרך פעם אחת בלבד.</p>
     </div>
+
+
+
 
 
 
@@ -244,6 +250,9 @@
 
 
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">הלוויין הרביעי אינו בשביל המיקום</h2>
@@ -293,11 +302,17 @@
 
 
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">למה מיליארדית שנייה אינה מותרות</h2>
     <p>האור עובר כמעט שלושים סנטימטר בננו-שנייה. מכאן אפשר לתרגם כל שגיאת זמן ישירות לשגיאה על הקרקע, ולראות למה הדרישות כאן נראות מוגזמות עד שמחשבים אותן.</p>
     <p>שעון הקוורץ בטלפון סוטה בקלות באלפיות שנייה. אלפית שנייה היא שלוש מאות קילומטר. זו הסיבה שהנעלם הרביעי אינו הידור אלא תנאי לכך שהדבר יעבוד בכלל.</p>
+
+
+
 
 
 
@@ -447,6 +462,9 @@
 
 
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">למה המיקום קופץ בין מגדלים</h2>
@@ -495,12 +513,18 @@
 
 
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">אותו עיקרון, מערכות אחרות</h2>
     <p>GPS הוא אמריקאי, והתכנון הבסיסי שלו דורש 24 לוויינים פעילים בשישה מישורי מסלול. לצידו פועלות מערכות שבנויות על אותו עיקרון בדיוק: GLONASS הרוסית, Galileo האירופית ו-BeiDou הסינית. מקלט מודרני בטלפון מאזין לכולן יחד, ולכן הוא רואה הרבה יותר לוויינים ממה שמערכת אחת מספקת, וזה עוזר במיוחד בעיר שבה חלק מהשמיים חסום.</p>
     <p>יש גם שיטה שמשיגה דיוק של סנטימטרים, ושמה RTK. היא אינה מערכת לוויינים חדשה אלא תיקון מקומי: תחנה קבועה על הקרקע, שמיקומה המדויק ידוע, מודדת את אותם לוויינים, מחשבת כמה היא טועה כרגע ומשדרת את התיקון למקלט שלידה. רוב מקורות השגיאה, ובראשם ההאטה של האות ביונוספירה, משותפים לשני המקלטים כשהם קרובים זה לזה, ולכן התיקון מבטל אותם. זה מה שמשמש מדידות קרקע וחקלאות מדייקת.</p>
     <p>השעונים עצמם הם נושא בפני עצמו. אם מעניין אתכם למה שעון אטומי מדויק יותר מכל דבר אחר שבנינו, יש על כך עמוד נפרד כאן בעיתון.</p>
+
+
+
 
 
 
@@ -608,6 +632,7 @@
   <p class="sim__note" id="gp-note"></p>
   <p class="sim__note euv-caveat">החישוב כאן הוא מהירות האור כפול זמן, וזה בדיוק מה שקורה בשלב הראשון במקלט אמיתי. מקלט אמיתי מוסיף עליו תיקונים שאינם כאן, ובראשם ההאטה של האות ביונוספירה ובטרופוספירה, מסלול הלוויין שאינו בדיוק זה ששודר, וריבוי מסלולים. לכן המספרים כאן מראים את הקשר הנכון בין זמן למרחק, ולא את הדיוק הסופי של מכשיר בשטח.</p>
   </section>
+
 
 
 
@@ -969,6 +994,95 @@
 
   inDv.addEventListener('input', render);
   inVe.addEventListener('input', render);
+  render();
+})();
+</script>
+
+<script>
+/* ===== כוכב לכת ננסי: איפה עובר הקו ===== */
+(function () {
+  var stage = document.getElementById('dp-stage');
+  if (!stage) return;
+
+  var K = 1.53e5;
+  var X0 = 470, XSPAN = 430, LOGA_MIN = -0.5, LOGA_SPAN = 2.5;
+  var Y0 = 250, YSPAN = 200, LOGM_MIN = -4.5, LOGM_SPAN = 7.5;
+  var PLUTO_M = 0.00218;
+
+  var inMass = document.getElementById('dp-in-mass');
+  var inDist = document.getElementById('dp-in-dist');
+  var outMass = document.getElementById('dp-out-mass');
+  var outDist = document.getElementById('dp-out-dist');
+  var outLambda = document.getElementById('dp-out-lambda');
+  var outEdge = document.getElementById('dp-out-edge');
+  var outVerdict = document.getElementById('dp-out-verdict');
+  var dot = document.getElementById('dp-dot');
+  var guide = document.getElementById('dp-guide');
+  var note = document.getElementById('dp-note');
+
+  function group(n) {
+    return String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  }
+
+  function fmtLambda(v) {
+    if (v >= 1e9) return (v / 1e9).toFixed(1) + ' מיליארד';
+    if (v >= 1e6) return (v / 1e6).toFixed(1) + ' מיליון';
+    if (v >= 1e3) return group(v);
+    if (v >= 1) return v.toFixed(1);
+    if (v >= 1e-4) return v.toPrecision(2);
+    return 'פחות מ-0.0001';
+  }
+
+  function fmtPlain(v) {
+    if (v >= 1000) return group(v);
+    if (v >= 100) return v.toFixed(0);
+    if (v >= 10) return v.toFixed(1);
+    if (v >= 1) return v.toFixed(2);
+    if (v >= 1e-4) return v.toPrecision(2);
+    return 'פחות מ-0.0001';
+  }
+
+  function render() {
+    var logM = Number(inMass.value);
+    var logA = Number(inDist.value);
+    var m = Math.pow(10, logM);
+    var a = Math.pow(10, logA);
+
+    var lambda = K * m * m / Math.pow(a, 1.5);
+    var edge = Math.pow(K * m * m, 2 / 3);
+
+    var x = X0 - (logA - LOGA_MIN) / LOGA_SPAN * XSPAN;
+    var y = Y0 - (logM - LOGM_MIN) / LOGM_SPAN * YSPAN;
+    var yLine = 159.1 + (x - 40) / XSPAN * 50;
+
+    dot.setAttribute('cx', x.toFixed(1));
+    dot.setAttribute('cy', y.toFixed(1));
+    guide.setAttribute('x1', x.toFixed(1));
+    guide.setAttribute('x2', x.toFixed(1));
+    guide.setAttribute('y1', y.toFixed(1));
+    guide.setAttribute('y2', yLine.toFixed(1));
+
+    outMass.textContent = fmtPlain(m);
+    outDist.textContent = fmtPlain(a);
+    outLambda.textContent = fmtLambda(lambda);
+    outEdge.textContent = fmtPlain(edge);
+    outVerdict.textContent = lambda >= 1 ? 'מפנה את מסלולו' : 'אינו מפנה את מסלולו';
+
+    var plutoRatio = m / PLUTO_M;
+    var msg = 'גוף במסה של ' + fmtPlain(m) + ' מסות כדור הארץ, ';
+    msg += plutoRatio >= 1 ? 'כבד פי ' + fmtPlain(plutoRatio) + ' מפלוטו, ' : fmtPlain(plutoRatio * 100) + ' אחוזים ממסת פלוטו, ';
+    msg += 'במרחק ' + fmtPlain(a) + ' יחידות אסטרונומיות מהשמש, מקבל Λ של ' + fmtLambda(lambda) + '. ';
+    if (lambda >= 1) {
+      msg += 'הוא מספיק לפנות את מסלולו בתוך גיל מערכת השמש. במסה הזאת הוא היה מפנה כל מסלול עד ' + fmtPlain(edge) + ' יחידות אסטרונומיות.';
+    } else {
+      var need = Math.sqrt(1 / lambda);
+      msg += 'הוא אינו מפנה את מסלולו. כדי לעבור את הסף במרחק הזה היה צריך להיות כבד פי ' + fmtPlain(need) + ', ובמסה הנוכחית הוא היה מפנה רק מסלול קרוב מ-' + fmtPlain(edge) + ' יחידות אסטרונומיות.';
+    }
+    note.textContent = msg;
+  }
+
+  inMass.addEventListener('input', render);
+  inDist.addEventListener('input', render);
   render();
 })();
 </script>

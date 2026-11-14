@@ -524,6 +524,111 @@ def test_delta_v_matches_the_numbers_in_the_article():
     assert round(speed / 3.6e6, 2) == 8.45      # kWh per kg
 
 
+def test_dwarf_planet_topic_matches_the_numbers_it_derives():
+    """Edition 19's learning page computes the orbit-clearing parameter itself
+    and prints the results as fact. Every derived figure in the text, the
+    table and the simulator's defaults is rebuilt here from the inputs the
+    page names: NASA fact sheets, JPL SBDB, and the Stern-Levison form with
+    the constant that reproduces the accepted value for Earth."""
+    import json
+    import math
+    import re
+
+    EARTH = 5.9722e24
+    K = 1.53e5
+
+    def lam(mass_kg, a_au):
+        return K * (mass_kg / EARTH) ** 2 / a_au ** 1.5
+
+    pluto_m, pluto_a = 0.01303e24, 39.48
+    eris_m, eris_a = 1.67e22, 67.9
+    ceres_m, ceres_a = 9.393e20, 2.768
+    mars_m, mars_a = 0.642e24, 1.524
+
+    # Table column "Λ (חישוב העיתון)" and the ratio the text leans on.
+    assert round(lam(EARTH, 1.0)) == 153_000
+    assert round(lam(mars_m, mars_a), -1) == 940
+    assert round(lam(ceres_m, ceres_a), 4) == 0.0008
+    assert round(lam(pluto_m, pluto_a), 4) == 0.0029
+    assert round(lam(eris_m, eris_a), 4) == 0.0021
+    assert round(lam(EARTH, 1.0) / lam(pluto_m, pluto_a) / 1e6) == 52
+
+    # Table column "מסה (כדור הארץ = 1)".
+    assert round(pluto_m / EARTH, 4) == 0.0022
+    assert round(eris_m / EARTH, 4) == 0.0028
+    assert round(ceres_m / EARTH, 5) == 0.00016
+    assert round(mars_m / EARTH, 3) == 0.107
+    assert round(100 * pluto_m / EARTH, 2) == 0.22
+
+    # The thought experiments in the clearing section.
+    assert round(lam(pluto_m, 1.0), 2) == 0.73
+    assert round(lam(mars_m, pluto_a)) == 7
+    assert round(lam(EARTH, pluto_a)) == 617
+    need = math.sqrt(pluto_a ** 1.5 / K) * EARTH       # mass that clears at Pluto's a
+    assert round(need / pluto_m, 1) == 18.5
+    assert round(100 * need / EARTH) == 4
+    # Pluto at 1 AU would need 1 / sqrt(0.73) times its mass.
+    assert round(math.sqrt(1 / lam(pluto_m, 1.0)), 1) == 1.2
+
+    # Comparisons of bodies. Eris's mass is Brown and Schaller's 1.67e22 kg;
+    # Pluto's is the NASA fact sheet, not the lighter Wikipedia figure.
+    assert round(eris_m / pluto_m, 2) == 1.28
+    assert round(100 * (eris_m / pluto_m - 1)) == 28
+    assert round(pluto_m / ceres_m) == 14
+
+    # Periods from the quoted orbital data.
+    assert round(90_560 / 365.25, 1) == 247.9
+    assert round(205_000 / 365.25, -1) == 560
+    assert round(103_000 / 365.25) == 282
+
+    # The candidate, under the assumption the page states: D = 1,000 km,
+    # density 2 g/cm3.
+    cand_m = 2000 * (4 / 3) * math.pi * (500_000) ** 3
+    assert round(cand_m / 1e21, 2) == 1.05
+    assert round(lam(cand_m, 42.9), 5) == 0.00002
+
+    # Simulator defaults land on Pluto and reproduce the article's 0.0029.
+    topic_dir = ROOT / "data" / "topics"
+    assert (topic_dir / "dwarf-planet.json").exists()
+    html = (ROOT / "templates" / "topic.html.j2").read_text(encoding="utf-8")
+    sim = html[html.index("dp-clearing"):]
+    mass_default = float(re.search(r'id="dp-in-mass"[^>]*value="([-\d.]+)"', sim).group(1))
+    dist_default = float(re.search(r'id="dp-in-dist"[^>]*value="([-\d.]+)"', sim).group(1))
+    m_default = 10 ** mass_default
+    a_default = 10 ** dist_default
+    assert round(m_default, 4) == 0.0022
+    assert round(a_default, 1) == 39.8
+    assert round(K * m_default ** 2 / a_default ** 1.5, 4) == 0.0029
+    # The Λ = 1 line is drawn through its endpoints: at 100 AU and at 0.316 AU.
+    for a_au, x_px, y_px in ((100.0, 40.0, 159.1), (10 ** -0.5, 470.0, 209.1)):
+        m_line = math.sqrt(a_au ** 1.5 / K)
+        assert round(470 - (math.log10(a_au) + 0.5) / 2.5 * 430, 1) == x_px
+        assert round(250 - (math.log10(m_line) + 4.5) / 7.5 * 200, 1) == y_px
+
+    # The size ladder is drawn to one scale: 170 px for Earth's 12,756 km.
+    scale = 170 / 12_756
+    assert round(2376 * scale / 2, 1) == 15.8      # Pluto
+    assert round(2400 * scale / 2, 1) == 16.0      # Eris
+    assert round(3475 * scale / 2, 1) == 23.2      # Moon
+    assert round(950 * scale / 2, 1) == 6.3        # Ceres
+    assert round(1500 * scale / 2, 1) == 10.0      # candidate, upper bound
+    assert round(600 * scale / 2, 1) == 4.0        # candidate, lower bound
+
+    # The orbit diagram: 2.3 px per AU, perihelia and aphelia from JPL/NASA.
+    S = 2.3
+    assert round(30.178 * S, 1) == 69.4                                   # Neptune ring
+    for a_au, e, rx, ry in ((39.48, 0.2444, 90.8, 88.1), (42.9, 0.142, 98.7, 97.7), (67.9, 0.438, 156.2, 140.4)):
+        assert round(a_au * S, 1) == rx
+        assert round(a_au * math.sqrt(1 - e * e) * S, 1) == ry
+    assert round(39.48 * (1 - 0.2444), 2) == 29.83                        # inside Neptune's 30.18
+
+    # The page's own words carry the same figures.
+    topic = json.loads((topic_dir / "dwarf-planet.json").read_text(encoding="utf-8"))
+    text = json.dumps(topic, ensure_ascii=False)
+    for needle in ("0.0029", "153,000", "52 מיליון", "פי 18.5", "0.73", "617", "0.22 אחוזים", "כ-28 אחוזים", "כ-560 שנה", "כ-282 שנה", "29.65", "30.18"):
+        assert needle in text, needle
+
+
 def test_orbital_compute_figure_matches_the_numbers_in_the_article():
     """Edition 18's lead figure and body are the paper's own calculation, not a
     quote. Every number in them is rebuilt from the stated assumptions."""
@@ -2363,4 +2468,134 @@ def test_public_key_page_matches_the_exchange_it_works_through():
     # The page must keep saying this is a demonstration. A 23-hour clock is not
     # encryption, and the caveat is the only place the reader is told so.
     assert "2048 ביט" in sim["caveat"] and "הדגמה" in sim["caveat"]
+
+
+def test_post_quantum_lead_matches_the_numbers_it_derives():
+    """BKM 13. The 2026-11-15 lead quotes two qubit estimates (Gidney and Ekerå
+    2019: about 20 million; Gidney 2025: under one million) and two machine
+    sizes (Willow 105, Helios 98). Everything else numeric on the page is the
+    desk's own arithmetic: the "more than twentyfold" drop, the "four orders of
+    magnitude" between a hundred and a million, the 617 decimal digits of a
+    2048-bit key, and the figure that draws the two estimates side by side. No
+    reader can catch a wrong one, because the paper is where they first appear."""
+    ed = json.loads(
+        (ROOT / "data" / "editions" / "2026-11-15.json").read_text(encoding="utf-8"))
+    text = json.dumps(ed, ensure_ascii=False)
+
+    old, new = 20_000_000, 1_000_000
+    assert "20 מיליון" in text and "ממיליון" in text
+    assert old / new == 20 and "יותר מפי 20" in text, \
+        "the drop is exactly twentyfold at the bound, and more below it"
+
+    # Both machines the article names are about a hundred qubits, and the
+    # bound is a million: four decimal orders of magnitude, not three or five.
+    willow, helios = 105, 98
+    assert "105 קיוביטים" in text and "מונה 98" in text
+    for machine in (willow, helios):
+        assert round(math.log10(new / machine)) == 4
+    assert "ארבעה סדרי גודל" in text
+
+    # A 2048-bit number has ceil(2048 * log10 2) decimal digits. The quote's
+    # byline and the body both print it, so a drift would show in two places.
+    digits = math.ceil(2048 * math.log10(2))
+    assert digits == 617 and text.count("617 ספרות") == 2
+
+    # The figure restates the two estimates in millions and nothing else, with
+    # the smaller bar drawn at the bound the paper actually gives. The unit
+    # lives in the title so the value column prints a bare number.
+    fig = ed["lead"]["figure"]
+    bars = [b["value"] for b in fig["bars"]]
+    assert bars == [old // 1_000_000, new // 1_000_000] == [20, 1]
+    assert fig["unit"] == "" and "במיליונים" in fig["title"]
+    assert fig["max"] >= max(bars)
+    assert "חסם עליון" in fig["note"], \
+        "the note has to keep saying the second bar is a bound, not a measurement"
+    assert "מאה מתוך 20 מיליון" in fig["note"]
+    assert fig["source"]
+
+    # The largest number factored honestly on quantum hardware, per Cloudflare's
+    # 2025 review, is 15. It appears in the body and in the pull quote.
+    assert "הוא 15" in text and ed["quote"]["text"].count("15") == 1
+
+
+def _render_lead_related(lead: dict) -> str:
+    """Render the lead's cross-reference block through the real template."""
+    from jinja2 import Environment, FileSystemLoader, select_autoescape
+
+    import build_site
+
+    env = Environment(
+        loader=FileSystemLoader(build_site.TEMPLATE_DIR),
+        autoescape=select_autoescape(["html", "j2"]),
+        trim_blocks=True,
+        lstrip_blocks=True,
+    )
+    src = (build_site.TEMPLATE_DIR / "edition.html.j2").read_text(encoding="utf-8")
+    start = src.index("{% if edition.lead.related %}")
+    end = src.index("{% endif %}", start) + len("{% endif %}")
+    return env.from_string(src[start:end]).render(edition={"lead": lead}, base="../")
+
+
+def test_a_lead_cross_reference_renders_as_a_link_to_the_topic_page():
+    """BKM 11. Jinja renders a missing key as nothing, so a lead whose `related`
+    block named the wrong key would ship with a silent hole where the link to
+    the earlier learning page should be. The block is rendered through the real
+    template with the real key names, and the link has to come out."""
+    html = _render_lead_related({"headline": "כותרת", "related": {
+        "slug": "public-key", "title": "מה זו הצפנת מפתח ציבורי"}})
+    assert 'href="../learn/public-key.html"' in html
+    assert "מה זו הצפנת מפתח ציבורי" in html
+    assert "ראו גם:" in html, "the default label is used when none is given"
+
+    html = _render_lead_related({"headline": "כותרת", "related": {
+        "label": "רקע", "slug": "public-key", "title": "ת"}})
+    assert "רקע:" in html and "ראו גם" not in html
+
+    assert "lead__related" not in _render_lead_related({"headline": "כותרת"})
+
+
+def test_a_lead_cross_reference_must_name_a_topic_on_disk(tmp_path):
+    """The template cannot tell a slug with no topic file from a real one; it
+    renders a link to a 404 either way. The validator has to catch it, the same
+    way it catches a learning block that names a topic that does not exist."""
+    base = {"date": "2020-01-01", "number": 1, "compiled_at": "2020-01-01T00:00:00"}
+
+    def related_errors(rel: dict) -> list[str]:
+        errors: list[str] = []
+        validate.check_edition(dict(base, lead={"related": rel}),
+                               tmp_path / "x.json", {}, errors)
+        return [e for e in errors if "lead.related" in e]
+
+    assert not related_errors({"slug": "public-key", "title": "ת"})
+    assert related_errors({"slug": "no-such-topic", "title": "ת"}), \
+        "a cross-reference to a topic that does not exist was accepted"
+    assert related_errors({"slug": "public-key"}), \
+        "a cross-reference with no visible title was accepted"
+    assert related_errors({"title": "ת"}), \
+        "a cross-reference with no slug was accepted"
+
+
+def test_every_lead_cross_reference_in_every_edition_resolves():
+    """The two rules above, applied to the real editions rather than fixtures,
+    including editions not yet due. The block must render a link to a topic page
+    the catalog actually builds, and the title the reader clicks on must be the
+    topic's own, not a paraphrase that drifted when the page was renamed."""
+    seen = 0
+    for path in ALL_EDITIONS:
+        ed = json.loads(path.read_text(encoding="utf-8-sig"))
+        rel = (ed.get("lead") or {}).get("related")
+        if not rel:
+            continue
+        seen += 1
+        topic_path = ROOT / "data" / "topics" / f"{rel['slug']}.json"
+        assert topic_path.exists(), f"{path.name}: lead.related names {rel['slug']!r}, no such topic"
+        topic = json.loads(topic_path.read_text(encoding="utf-8-sig"))
+        stem = topic["title"].split(":")[0].strip()
+        assert stem in rel["title"], \
+            f"{path.name}: the cross-reference title no longer matches the topic's"
+        html = _render_lead_related(ed["lead"])
+        assert f'href="../learn/{rel["slug"]}.html"' in html
+        assert rel["title"] in html
+    assert seen, "no edition carries a lead cross-reference; this walk checks nothing"
+
 

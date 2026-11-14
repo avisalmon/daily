@@ -90,6 +90,9 @@
 
 
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">האצה שיודעת לשחות אל האור</h2>
@@ -169,6 +172,9 @@
 
 
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">ביצת צפרדע מוכיחה את העניין</h2>
@@ -176,6 +182,9 @@
     <p>כשהאירו עליהן, התעלה נפתחה תוך 0.2 אלפיות השנייה. יונים טעונים חיובית זרמו פנימה ונוצר אות חשמלי. החלבון קיבל את השם צ&#39;אנלרודופסין, ותיאורו פורסם ב-2003 בכתב העת PNAS כתעלה קטיונית שנפתחת ישירות על ידי אור.</p>
     <p>ואז הגיעה התוצאה שהפכה את זה לכלי ולא לסקרנות: הם החדירו את אותו גן לתאי כליה של עובר אדם ולתאי כליה של אוגר, והתאים האלה נעשו רגישים לאור. לא משנה לאיזה תא הכניסו את החלבון, התא התחיל להגיב לאור.</p>
     <p>זו הנקודה שבה מחקר על אצה שוחה הפך לכלי אוניברסלי. החלבון לא דורש מהתא המארח שום דבר מיוחד. הוא מביא איתו את כל מה שצריך.</p>
+
+
+
 
 
 
@@ -285,6 +294,9 @@
 
 
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">למה דווקא אור, ולמה זה נקרא גם גנטיקה</h2>
@@ -358,6 +370,9 @@
 
 
 
+
+
+
   </section>
   <section class="topic__section">
     <h2 class="topic__heading">מה זה כבר עשה למטופלים, ומה עוד לא</h2>
@@ -365,6 +380,9 @@
     <p>הצעד הקליני הראשון נעשה בעיניים. בניסויים קליניים מתמשכים מנסים להחזיר ראייה לאנשים שהתעוורו מרטיניטיס פיגמנטוזה, מחלה שהורסת את המדוכים והמדוקים ברשתית. כשהוחדר לרשתית של אדם עיוור חלבון דמוי צ&#39;אנלרודופסין, הוא החזיר ראייה חלקית: בעזרת משקפיים מיוחדים שפולטים אור הוא הצליח להבחין בחפצים על שולחן ולאחוז בהם.</p>
     <p>יש גם תקווה לשתלי שבלול. כיום הם מגרים את עצב השמיעה בחשמל, ואופטוגנטיקה אולי תאפשר לעשות זאת בדיוק גבוה יותר.</p>
     <p>מה שחשוב להחזיק: זו אינה תרופה זמינה. מדובר בניסויים קליניים, בהחזרת ראייה חלקית אצל מטופלים בודדים, ובשיטה שבמוח דורשת החדרת גן והכנסת סיב אופטי לגולגולת. הערך העיקרי שלה עד כה הוא בשאלות שהיא מאפשרת לשאול, לא בטיפולים שהיא מספקת.</p>
+
+
+
 
 
 
@@ -482,6 +500,7 @@
     <p class="sim__note" id="op-note"></p>
     <p class="sim__note euv-caveat">המדמה מציג שלושה תנאים מתוך ניסוי אמיתי שמערב גם עוצמת אור, כמות חלבון בקרום ובריאות התא. הוא נועד להמחיש את ההיגיון הסיבתי, ואינו מודל כמותי.</p>
   </section>
+
 
 
 
@@ -866,6 +885,95 @@
 
   inDv.addEventListener('input', render);
   inVe.addEventListener('input', render);
+  render();
+})();
+</script>
+
+<script>
+/* ===== כוכב לכת ננסי: איפה עובר הקו ===== */
+(function () {
+  var stage = document.getElementById('dp-stage');
+  if (!stage) return;
+
+  var K = 1.53e5;
+  var X0 = 470, XSPAN = 430, LOGA_MIN = -0.5, LOGA_SPAN = 2.5;
+  var Y0 = 250, YSPAN = 200, LOGM_MIN = -4.5, LOGM_SPAN = 7.5;
+  var PLUTO_M = 0.00218;
+
+  var inMass = document.getElementById('dp-in-mass');
+  var inDist = document.getElementById('dp-in-dist');
+  var outMass = document.getElementById('dp-out-mass');
+  var outDist = document.getElementById('dp-out-dist');
+  var outLambda = document.getElementById('dp-out-lambda');
+  var outEdge = document.getElementById('dp-out-edge');
+  var outVerdict = document.getElementById('dp-out-verdict');
+  var dot = document.getElementById('dp-dot');
+  var guide = document.getElementById('dp-guide');
+  var note = document.getElementById('dp-note');
+
+  function group(n) {
+    return String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  }
+
+  function fmtLambda(v) {
+    if (v >= 1e9) return (v / 1e9).toFixed(1) + ' מיליארד';
+    if (v >= 1e6) return (v / 1e6).toFixed(1) + ' מיליון';
+    if (v >= 1e3) return group(v);
+    if (v >= 1) return v.toFixed(1);
+    if (v >= 1e-4) return v.toPrecision(2);
+    return 'פחות מ-0.0001';
+  }
+
+  function fmtPlain(v) {
+    if (v >= 1000) return group(v);
+    if (v >= 100) return v.toFixed(0);
+    if (v >= 10) return v.toFixed(1);
+    if (v >= 1) return v.toFixed(2);
+    if (v >= 1e-4) return v.toPrecision(2);
+    return 'פחות מ-0.0001';
+  }
+
+  function render() {
+    var logM = Number(inMass.value);
+    var logA = Number(inDist.value);
+    var m = Math.pow(10, logM);
+    var a = Math.pow(10, logA);
+
+    var lambda = K * m * m / Math.pow(a, 1.5);
+    var edge = Math.pow(K * m * m, 2 / 3);
+
+    var x = X0 - (logA - LOGA_MIN) / LOGA_SPAN * XSPAN;
+    var y = Y0 - (logM - LOGM_MIN) / LOGM_SPAN * YSPAN;
+    var yLine = 159.1 + (x - 40) / XSPAN * 50;
+
+    dot.setAttribute('cx', x.toFixed(1));
+    dot.setAttribute('cy', y.toFixed(1));
+    guide.setAttribute('x1', x.toFixed(1));
+    guide.setAttribute('x2', x.toFixed(1));
+    guide.setAttribute('y1', y.toFixed(1));
+    guide.setAttribute('y2', yLine.toFixed(1));
+
+    outMass.textContent = fmtPlain(m);
+    outDist.textContent = fmtPlain(a);
+    outLambda.textContent = fmtLambda(lambda);
+    outEdge.textContent = fmtPlain(edge);
+    outVerdict.textContent = lambda >= 1 ? 'מפנה את מסלולו' : 'אינו מפנה את מסלולו';
+
+    var plutoRatio = m / PLUTO_M;
+    var msg = 'גוף במסה של ' + fmtPlain(m) + ' מסות כדור הארץ, ';
+    msg += plutoRatio >= 1 ? 'כבד פי ' + fmtPlain(plutoRatio) + ' מפלוטו, ' : fmtPlain(plutoRatio * 100) + ' אחוזים ממסת פלוטו, ';
+    msg += 'במרחק ' + fmtPlain(a) + ' יחידות אסטרונומיות מהשמש, מקבל Λ של ' + fmtLambda(lambda) + '. ';
+    if (lambda >= 1) {
+      msg += 'הוא מספיק לפנות את מסלולו בתוך גיל מערכת השמש. במסה הזאת הוא היה מפנה כל מסלול עד ' + fmtPlain(edge) + ' יחידות אסטרונומיות.';
+    } else {
+      var need = Math.sqrt(1 / lambda);
+      msg += 'הוא אינו מפנה את מסלולו. כדי לעבור את הסף במרחק הזה היה צריך להיות כבד פי ' + fmtPlain(need) + ', ובמסה הנוכחית הוא היה מפנה רק מסלול קרוב מ-' + fmtPlain(edge) + ' יחידות אסטרונומיות.';
+    }
+    note.textContent = msg;
+  }
+
+  inMass.addEventListener('input', render);
+  inDist.addEventListener('input', render);
   render();
 })();
 </script>

@@ -267,6 +267,19 @@ def check_edition(ed: dict, path: Path, seen_urls: dict[str, str], errors: list[
         if slug and not (TOPIC_DIR / f"{slug}.json").exists():
             _fail(errors, where, f"learning.slug {slug!r} has no data/topics/{slug}.json")
 
+    # ---- lead cross-reference ---------------------------------------------
+    # A lead that points at an earlier learning page instead of re-explaining
+    # it names the topic by slug. A slug with no topic file renders a link to a
+    # 404, and the template cannot tell.
+    rel = (ed.get("lead") or {}).get("related")
+    if rel:
+        for field in ("slug", "title"):
+            if not rel.get(field):
+                _fail(errors, where, f"lead.related is missing '{field}'")
+        rslug = rel.get("slug")
+        if rslug and not (TOPIC_DIR / f"{rslug}.json").exists():
+            _fail(errors, where, f"lead.related.slug {rslug!r} has no data/topics/{rslug}.json")
+
     # ---- nothing half-written, nothing mangled ----------------------------
     blob = json.dumps(ed, ensure_ascii=False)
     for marker in PLACEHOLDER_RE.findall(blob):
