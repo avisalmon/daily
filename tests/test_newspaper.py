@@ -629,6 +629,163 @@ def test_dwarf_planet_topic_matches_the_numbers_it_derives():
         assert needle in text, needle
 
 
+def test_el_nino_topic_matches_the_numbers_it_derives():
+    """Edition 20's learning page reads NOAA's RONI and ONI files itself and
+    prints what it finds: peaks, their seasons, ranks, swings, how many
+    episodes ever crossed 2.0, and the polylines of the timeline diagram.
+    The paper is the only source for every one of those, so they are rebuilt
+    here from the series the page carries and compared with its words, its
+    table, and the template that draws them. BKM section 13."""
+    import json
+    import re
+
+    SEASONS = ["DJF", "JFM", "FMA", "MAM", "AMJ", "MJJ", "JJA", "JAS", "ASO", "SON", "OND", "NDJ"]
+    topic = json.loads((ROOT / "data" / "topics" / "el-nino.json").read_text(encoding="utf-8"))
+    series = topic["sim"]["series"]
+    names = topic["sim"]["season_names"]
+    start, roni, oni = series["start_year"], series["roni"], series["oni"]
+    assert start == 1950
+    assert len(roni) == len(oni) == 921          # DJF 1950 to ASO 2026
+    assert len(names) == 12
+
+    def idx(year, season):
+        return (year - start) * 12 + SEASONS.index(season)
+
+    def label(i):
+        return f"{names[i % 12]} {start + i // 12}"
+
+    assert idx(2026, "ASO") == len(roni) - 1
+
+    def peak(vals, year):
+        """Highest value from JJA of the start year to AMJ of the next, or to
+        the end of the record. The table's note states this definition."""
+        lo, hi = idx(year, "JJA"), min(idx(year + 1, "AMJ"), len(vals) - 1)
+        best = max(range(lo, hi + 1), key=lambda i: vals[i])
+        return vals[best], label(best)
+
+    # The table: both rulers, value and season of each peak.
+    table = next(sec["table"] for sec in topic["sections"] if sec.get("table"))
+    years = {"1982–83": 1982, "1991–92": 1991, "1997–98": 1997,
+             "2015–16": 2015, "2023–24": 2023, "2026, עד כה": 2026}
+    assert [row[0] for row in table["rows"]] == list(years)
+    for row in table["rows"]:
+        r_val, r_when = peak(roni, years[row[0]])
+        o_val, o_when = peak(oni, years[row[0]])
+        assert row[1:] == [f"{r_val:.2f}", r_when, f"{o_val:.2f}", o_when], row
+
+    # The sentences around it.
+    assert max(roni) == 2.40 and label(roni.index(max(roni))) == "דצמבר–פברואר 1983"
+    assert max(oni) == 2.59 and label(oni.index(max(oni))) == "נובמבר–ינואר 2015"
+    assert roni[-1] == 1.97 and oni[-1] == 2.46
+    assert round(100 * roni[-1] / max(roni)) == 82
+    # ONI in ASO 2026 is the third highest season on record, behind two
+    # seasons of the 2015-16 winter.
+    assert sorted((v for v in oni if v > oni[-1]), reverse=True) == [2.59, 2.50]
+    # On RONI, 2015-16 drops to third among the big events.
+    ranked = sorted(((peak(roni, y)[0], y) for y in (1982, 1991, 1997, 2015)), reverse=True)
+    assert [y for _, y in ranked] == [1982, 1997, 2015, 1991]
+
+    # The swing from DJF to ASO of the same calendar year, RONI.
+    def swing(year):
+        return round(roni[idx(year, "ASO")] - roni[idx(year, "DJF")], 2)
+
+    assert roni[idx(2026, "DJF")] == -0.91
+    assert swing(2026) == 2.88
+    assert swing(1997) == 2.28
+    assert swing(1982) == 1.53
+    assert swing(2015) == 1.26
+
+    # Episodes: runs of consecutive seasons at or above a threshold. This is
+    # the simulator's definition, stated in its caveat, not NOAA's.
+    def runs(vals, t):
+        out, run = [], None
+        for i, v in enumerate(vals):
+            if v >= t - 1e-9:
+                if run is None:
+                    run = [i, i]
+                    out.append(run)
+                run[1] = i
+            else:
+                run = None
+        return out
+
+    strong = runs(roni, 2.0)
+    assert [label(max(range(a, b + 1), key=lambda i: roni[i])) for a, b in strong] == [
+        "דצמבר–פברואר 1983", "דצמבר–פברואר 1992", "נובמבר–ינואר 1997", "נובמבר–ינואר 2015"]
+    assert sum(v >= 2.0 for v in roni) == 16
+    assert runs(roni, 2.5) == []                       # "שלא נרשם מעולם ב-RONI"
+    assert len(runs(oni, 2.5)) == 1 and sum(v >= 2.5 for v in oni) == 2
+    assert len(runs(oni, 2.0)) == 4
+
+    # Niño 3.4: 50 degrees of longitude on the equator by 10 of latitude.
+    assert round(50 * 111.32) == 5566
+    assert round(50 * 111.32 * 10 * 111.32 / 1e6, 1) == 6.2
+
+    tpl = (ROOT / "templates" / "topic.html.j2").read_text(encoding="utf-8")
+
+    def branch(needle):
+        at = tpl.index(needle)
+        return tpl[at:tpl.index("{% endif %}", at)]
+
+    # The timeline diagram: its polylines are these series, drawn at
+    # x = 90 + i * 380 / 13 and y = 260 - (v + 1) * 210 / 3.6.
+    timeline = branch("sec.diagram.type == 'enso-roni-timeline'")
+
+    def points(year, n):
+        lo = idx(year, "DJF")
+        return " ".join(f"{90 + i * 380 / 13:.1f},{260 - (roni[lo + i] + 1.0) * 210 / 3.6:.1f}"
+                        for i in range(n))
+
+    drawn = re.findall(r'<polyline points="([^"]+)" class="(enso-line[^"]*)"', timeline)
+    assert drawn == [
+        (points(1982, 14), "enso-line enso-line--dotted"),
+        (points(1997, 14), "enso-line enso-line--dashed"),
+        (points(2015, 14), "enso-line"),
+        (points(2026, 9), "enso-line enso-line--now"),
+    ]
+    assert idx(2026, "DJF") + 9 == len(roni), "the 2026 line must run to the last season"
+    last_x, last_y = points(2026, 9).split()[-1].split(",")
+    assert f'<circle cx="{last_x}" cy="{last_y}" r="4" class="enso-hit"/>' in timeline
+    for v, y in ((2.0, "85"), (0.5, "172.5")):
+        assert f"{260 - (v + 1.0) * 210 / 3.6:g}" == y
+        assert f'<line x1="80" y1="{y}" x2="484" y2="{y}" class="enso-threshold"/>' in timeline
+    assert round(260 - 1.0 * 210 / 3.6, 1) == 201.7
+    assert '<line x1="80" y1="201.7" x2="484" y2="201.7" class="enso-zero"/>' in timeline
+
+    # The map: x = 40 + (degrees east of 120E) * 440 / 170, y = 160 - 4 * lat.
+    def lon_x(deg_east_of_120e):
+        return round(40 + deg_east_of_120e * 440 / 170, 1)
+
+    def lat_y(lat):
+        return round(160 - 4 * lat, 1)
+
+    regions = branch("sec.diagram.type == 'enso-nino-regions'")
+    assert (lon_x(70), lon_x(120), lat_y(5), lat_y(-5)) == (221.2, 350.6, 140, 180)   # 170W-120W, 5N-5S
+    assert f'<rect x="221.2" y="140" width="{350.6 - 221.2:.1f}" height="40" class="enso-box"/>' in regions
+    assert (lat_y(20), lat_y(-20)) == (80, 240)
+    assert '<rect x="40" y="80" width="440" height="160" class="enso-band"/>' in regions
+    assert (lon_x(360 - 149.5 - 120), lat_y(-17.5)) == (274.2, 230)                  # Tahiti
+    assert (lon_x(130.8 - 120), lat_y(-12.5)) == (68.0, 210)                          # Darwin
+    assert '<circle cx="274.2" cy="230" r="4" class="enso-station"/>' in regions
+    assert '<circle cx="68" cy="210" r="4" class="enso-station"/>' in regions
+
+    # The simulator: the record fills the stage exactly, and the slider
+    # starts on the "very strong" line the text talks about.
+    sim = tpl[tpl.index("topic.sim.type == 'enso-history'"):]
+    assert re.search(r'id="enso-in-threshold"[^>]*value="2.0"', sim)
+    for year, x in ((1950, 20), (1980, 308), (2020, 692)):
+        assert 20 + (year - 1950) * 12 * 0.8 == x
+        assert f'<text x="{x}" y="257" class="diagram__axis-label">{year}</text>' in sim
+    assert round(20 + (len(roni) - 1) * 0.8, 1) == 756.0 and 'x2="756"' in sim
+    assert round(130 - 2 * 110 / 3, 1) == 56.7 and 'y1="56.7" x2="768"' in sim
+
+    # The page's own words carry the same figures.
+    text = json.dumps(topic, ensure_ascii=False)
+    for needle in ("5,566", "6.2 מיליון", "82 אחוזים", "2.88", "מינוס 0.91", "השלישי בגובהו",
+                   "ארבעה אירועים", "2.40", "2.59"):
+        assert needle in text, needle
+
+
 def test_orbital_compute_figure_matches_the_numbers_in_the_article():
     """Edition 18's lead figure and body are the paper's own calculation, not a
     quote. Every number in them is rebuilt from the stated assumptions."""
@@ -2516,6 +2673,62 @@ def test_post_quantum_lead_matches_the_numbers_it_derives():
     # The largest number factored honestly on quantum hardware, per Cloudflare's
     # 2025 review, is 15. It appears in the body and in the pull quote.
     assert "הוא 15" in text and ed["quote"]["text"].count("15") == 1
+
+
+def test_free_innovation_lead_matches_the_numbers_it_derives():
+    """BKM 13. The 2026-11-16 lead quotes the bank experiment's raw counts, 33
+    of 158 invited newcomers gone against 22 of 63 controls, and then prints
+    the desk's own arithmetic on them: two leave rates, a gap of 14 points, a
+    drop of about 40 percent, the 67 invitees who never came, and Intel IT's
+    122 weekly hours turned into a year. The authors' "about 50 percent" comes
+    from their logistic regression and must stay theirs. The background
+    document prints the same numbers, so it is walked too."""
+    ed = json.loads(
+        (ROOT / "data" / "editions" / "2026-11-16.json").read_text(encoding="utf-8"))
+    doc = json.loads(
+        (ROOT / "data" / "research" / "2026-11-16.doc.json").read_text(encoding="utf-8"))
+    lead = ed["lead"]
+    fig = lead["figure"]
+    paragraphs = [lead["standfirst"], *lead["body"], fig["note"]]
+    text = " ".join(paragraphs)
+    doc_text = json.dumps(doc, ensure_ascii=False)
+
+    invited, invited_left, control, control_left, attended = 158, 33, 63, 22, 91
+    invited_rate = round(invited_left / invited * 100, 1)
+    control_rate = round(control_left / control * 100, 1)
+    assert (invited_rate, control_rate) == (20.9, 34.9)
+    gap = control_left / control - invited_left / invited
+    assert round(gap * 100) == 14
+    assert round(gap / (control_left / control) * 100) == 40
+    assert invited + control == 221 and invited - attended == 67
+    assert 122 * 52 == 6344
+
+    for needle in ("20.9 אחוז", "34.9 אחוז", "33 מתוך 158", "22 מתוך 63",
+                   "14 נקודות אחוז", "כ-40 אחוז", "6,344"):
+        assert needle in text, f"the lead lost {needle!r}"
+        assert needle in doc_text, f"the background document lost {needle!r}"
+    assert "221 עובדים" in text and "67 שלא הגיעו" in fig["note"]
+    assert "122 שעות" in text
+
+    # The 50 percent is the authors' model, not the raw rates. Wherever the
+    # lead prints it, the authors and their regression are named beside it.
+    fifty = [p for p in paragraphs if "50 אחוז" in p]
+    assert fifty
+    for p in fifty:
+        assert "המחברים" in p and "רגרסיה לוגיסטית" in p
+
+    # The figure draws control before invited, overall then men then women,
+    # and the gender rates are the authors', printed in the body as drawn.
+    bars = fig["bars"]
+    values = [b["value"] for b in bars]
+    assert values == [control_rate, invited_rate, 42.42, 20.65, 26.67, 21.21]
+    assert [b.get("muted", False) for b in bars] == [True, False] * 3
+    assert f"{control_left} מתוך {control}" in bars[0]["label"]
+    assert f"{invited_left} מתוך {invited}" in bars[1]["label"]
+    for v in values[2:]:
+        assert f"{v:g}" in text
+    assert fig["max"] >= max(values) and fig["unit"] == "%"
+    assert "אינו מובהק" in fig["note"] and fig["source"]
 
 
 def _render_lead_related(lead: dict) -> str:

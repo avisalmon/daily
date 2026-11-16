@@ -1542,6 +1542,38 @@ img { max-width: 100%; display: block; }
 .crispr-hits td { border-bottom: 1px solid var(--rule); padding: 7px 8px; }
 .crispr-hits tr.is-cut td { font-weight: 700; }
 
+/* אל ניניו: חתך האוקיינוס, מפת האזורים, ציר הזמן והמדמה */
+.enso-warm { fill: var(--ink-faint); opacity: 0.38; }
+.enso-cold { fill: var(--ink-faint); opacity: 0.12; }
+.enso-land { fill: var(--rule-dark); opacity: 0.85; }
+.enso-surface { stroke: var(--rule-dark); stroke-width: 1.5; }
+.enso-cloud { fill: var(--rule-dark); opacity: 0.5; }
+.enso-rain { stroke: var(--rule-dark); stroke-width: 1.2; stroke-dasharray: 3 3; }
+.enso-wind { fill: none; stroke: var(--rule-dark); stroke-width: 2.5; stroke-linejoin: round; }
+.enso-wind--weak { stroke-width: 1.4; stroke-dasharray: 5 4; }
+.enso-flow { fill: none; stroke: var(--ink-faint); stroke-width: 1.6; stroke-linejoin: round; }
+.enso-band { fill: var(--ink-faint); opacity: 0.1; }
+.enso-box { fill: var(--rule-dark); opacity: 0.7; }
+.enso-grid { stroke: var(--ink-faint); stroke-width: 0.8; stroke-dasharray: 2 5; }
+.enso-station { fill: var(--accent); }
+.enso-zero { stroke: var(--ink-faint); stroke-width: 1; }
+.enso-threshold { stroke: var(--accent); stroke-width: 1; stroke-dasharray: 5 4; }
+.enso-hit { fill: var(--accent); }
+.enso-line { fill: none; stroke: var(--rule-dark); stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; }
+.enso-line--dotted { stroke-dasharray: 1 5; }
+.enso-line--dashed { stroke-dasharray: 7 5; }
+.enso-line--now { stroke-width: 3.5; }
+.enso-trace { fill: none; stroke: var(--rule-dark); stroke-width: 1.1; stroke-linejoin: round; }
+
+.enso-stage { margin: 4px 0 18px; }
+.enso-stage svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  border: 1px solid var(--rule);
+  background: var(--paper);
+}
+
 /* בוחן */
 .quiz { margin: 34px 0; }
 
