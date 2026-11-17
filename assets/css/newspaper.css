@@ -1574,6 +1574,14 @@ img { max-width: 100%; display: block; }
   background: var(--paper);
 }
 
+/* יום־אור: הסרגל בקנה מידה, פקודה ותשובה */
+.ld-bracket { fill: none; stroke: var(--ink-faint); stroke-width: 1; }
+.ld-life { stroke: var(--ink-faint); stroke-width: 1.5; }
+.ld-signal { fill: none; stroke: var(--rule-dark); stroke-width: 2; }
+.ld-signal--reply { stroke-dasharray: 7 5; }
+.ld-head { fill: var(--rule-dark); }
+.ld-today { fill: var(--accent); }
+
 /* בוחן */
 .quiz { margin: 34px 0; }
 

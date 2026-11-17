@@ -629,6 +629,111 @@ def test_dwarf_planet_topic_matches_the_numbers_it_derives():
         assert needle in text, needle
 
 
+def test_light_day_topic_matches_the_numbers_it_derives():
+    """Edition 21's learning page converts between light-time and distance and
+    prints every result as fact: the unit ladder, light times to the Moon,
+    Sun, Mars, Neptune, Proxima and Andromeda, Voyager's speed ratio and the
+    trip to Proxima. The paper is the only source for those, so each one is
+    rebuilt here from the defined constants and the distances the page names,
+    then compared with its words and with the template that draws them.
+    BKM section 13."""
+    import json
+    import math
+    import re
+    from datetime import date
+
+    C = 299_792.458                 # km/s, exact since the 1983 metre
+    DAY = 86_400
+    YEAR = 365.25 * DAY             # the IAU's Julian year
+    AU = 149_597_870.7              # km, exact since 2012
+    LD = C * DAY
+    LY = C * YEAR
+
+    # The formula lines and the unit ladder table.
+    assert 299_792_458 * 86_400 == 25_902_068_371_200
+    assert 299_792_458 * 31_557_600 == 9_460_730_472_580_800
+    assert YEAR == 31_557_600
+    assert f"{C * 60:,.2f}" == "17,987,547.48"
+    assert f"{C * 3600:,.1f}" == "1,079,252,848.8"
+    assert f"{LD:,.1f}" == "25,902,068,371.2"
+    assert f"{LY:,.1f}" == "9,460,730,472,580.8"
+    assert round(C / AU, 3) == 0.002
+    assert round(C * 60 / AU, 2) == 0.12
+    assert round(C * 3600 / AU, 1) == 7.2
+    assert round(LD / AU, 1) == 173.1
+    assert f"{LY / AU:,.0f}" == "63,241"
+    assert 7.45 < C / 40_075.017 < 7.5          # "כמעט שבע וחצי הקפות"
+
+    def light(km):
+        return km / C
+
+    # Light times in the text and the second table.
+    assert round(light(384_400), 1) == 1.3
+    assert round(2 * light(384_400), 1) == 2.6
+    assert divmod(round(light(AU)), 60) == (8, 19)
+    assert round(light(54.6e6) / 60) == 3
+    assert round(light(401.4e6) / 60) == 22
+    assert divmod(round(light(4.5e9) / 60), 60) == (4, 10)
+    assert math.isclose(light(LD), DAY)
+    assert round(4.24 * 365.25, -1) == 1550                   # Proxima in light-days
+
+    # Voyager 1: 61,000 km/h against light, 49 years since launch, and the
+    # trip to Proxima at its present speed.
+    v_kms = 61_000 / 3600
+    assert round(C / v_kms, -2) == 17_700
+    assert int((date(2026, 11, 18) - date(1977, 9, 5)).days / 365.25) == 49
+    assert round(4.24 * LY / 61_000 / (YEAR / 3600), -3) == 75_000
+
+    # The to-scale ruler: 432.9 px for 24 light-hours, the Sun at 480.
+    def ruler(hours):
+        return round(480 - hours / 24 * 432.9, 1)
+
+    html = (ROOT / "templates" / "topic.html.j2").read_text(encoding="utf-8")
+    scale = html[html.index("'ld-to-scale'"):html.index("'ld-round-trip'")]
+    for hours, x in ((6, 371.8), (12, 263.6), (18, 155.3), (24, 47.1)):
+        assert ruler(hours) == x
+        assert f'x1="{x}"' in scale
+    assert ruler(light(4.5e9) / 3600) == 404.8                  # Neptune
+    assert 'cx="404.8"' in scale and 'cx="47.1"' in scale
+
+    # The simulator's log ruler: one second at 480, 440 px for 14 decades.
+    sim = html[html.index("'ld-signal-delay'"):]
+    sim = sim[:sim.index("</section>")]
+
+    def log_x(seconds):
+        return round(480 - math.log10(seconds) / 14 * 440, 1)
+
+    for seconds, x in ((60, 424.1), (3600, 368.2), (DAY, 324.9), (YEAR, 244.3), (1e3 * YEAR, 150.0), (1e6 * YEAR, 55.7)):
+        assert log_x(seconds) == x
+        assert re.search(rf'x1="{x:g}"', sim), x
+    for km, x in ((384_400, 476.6), (AU, 395.2), (4.5e9, 348.7), (LD, 324.9), (4.24 * LY, 224.6), (2.5e6 * LY, 43.2)):
+        assert log_x(light(km)) == x
+        assert f'cx="{x:g}"' in sim, x
+
+    # The slider opens on Voyager and spans the Moon to past Andromeda.
+    lo, hi, start = (float(re.search(rf'id="ld-in-dist"[^>]*{k}="([\d.]+)"', sim).group(1)) for k in ("min", "max", "value"))
+    assert start == round(math.log10(LD), 2)
+    assert lo < math.log10(384_400) and hi > math.log10(2.5e6 * LY)
+
+    # The destinations the buttons send are the distances the page prints.
+    topic = json.loads((ROOT / "data" / "topics" / "light-day.json").read_text(encoding="utf-8"))
+    km = {d["label"]: d["km"] for d in topic["sim"]["destinations"]}
+    assert km["הירח"] == 384_400 and km["השמש"] == AU and km["נפטון"] == 4.5e9
+    assert km["מאדים, הכי קרוב"] == 54.6e6 and km["מאדים, הכי רחוק"] == 401.4e6
+    assert math.isclose(km["וויאג'ר 1"], LD)
+    assert math.isclose(km["פרוקסימה קנטאורי"], 4.24 * LY)
+    assert math.isclose(km["אנדרומדה"], 2.5e6 * LY)
+    assert [d["label"] for d in topic["sim"]["destinations"] if d.get("default")] == ["וויאג'ר 1"]
+
+    # The page's own words carry the same figures.
+    text = json.dumps(topic, ensure_ascii=False)
+    for needle in ("25,902,068,371.2", "299,792.458", "17,987,547.48", "1,079,252,848.8",
+                   "9,460,730,472,580.8", "173.1", "63,241", "1.3 שניות", "כ-2.6 שניות",
+                   "8 דקות ו-19 שניות", "בין 3 ל-22 דקות־אור", "4 שעות ו-10 דקות",
+                   "4.24 שנים", "כ-1,550 ימי־אור", "פי 17,700", "כ-75,000 שנה", "ב-49 שנים", "12:16"):
+        assert needle in text, needle
+
+
 def test_el_nino_topic_matches_the_numbers_it_derives():
     """Edition 20's learning page reads NOAA's RONI and ONI files itself and
     prints what it finds: peaks, their seasons, ranks, swings, how many
@@ -2729,6 +2834,69 @@ def test_free_innovation_lead_matches_the_numbers_it_derives():
         assert f"{v:g}" in text
     assert fig["max"] >= max(values) and fig["unit"] == "%"
     assert "אינו מובהק" in fig["note"] and fig["source"]
+
+
+def test_patents_lead_matches_the_numbers_it_derives():
+    """BKM 13. The 2026-11-18 lead turns WIPO's 35.3 percent still in force at
+    year ten into "about two in three" gone and its 17 percent into "about one
+    in six", sums Humira's annual sales into "more than 200 billion", counts
+    the American exclusivity in years, and divides Qualcomm's segment results
+    into two shares Qualcomm never printed. The figure redraws the 10-K series.
+    The background document prints the same numbers, so it is walked too."""
+    ed = json.loads(
+        (ROOT / "data" / "editions" / "2026-11-18.json").read_text(encoding="utf-8"))
+    doc = json.loads(
+        (ROOT / "data" / "research" / "2026-11-18.doc.json").read_text(encoding="utf-8"))
+    lead = ed["lead"]
+    fig = lead["figure"]
+    text = " ".join([lead["standfirst"], *lead["body"], fig["note"]])
+    doc_text = json.dumps(doc, ensure_ascii=False)
+
+    in_force_at_ten, full_term, moore_lapsed = 35.3, 17, 53.71
+    assert round(100 - in_force_at_ten, 1) == 64.7 and "64.7" in doc_text
+    assert abs((100 - in_force_at_ten) / 100 - 2 / 3) < 0.02
+    assert abs(full_term / 100 - 1 / 6) < 0.01
+    assert "שניים מכל שלושה" in text and "אחד מכל שישה" in lead["standfirst"]
+    assert moore_lapsed > 50 and "יותר ממחצית" in text
+
+    # Worldwide Humira sales in billions of dollars, Abbott then AbbVie 10-Ks.
+    humira = {
+        2003: 0.280, 2004: 0.852, 2005: 1.4, 2006: 2.0, 2007: 3.0, 2008: 4.5,
+        2009: 5.5, 2010: 6.5, 2011: 7.9, 2012: 9.265, 2013: 10.659,
+        2014: 12.543, 2015: 14.012, 2016: 16.078, 2017: 18.427, 2018: 19.936,
+        2019: 19.169, 2020: 19.832, 2021: 20.694, 2022: 21.237, 2023: 14.404,
+        2024: 8.993, 2025: 4.540,
+    }
+    exclusive = sum(v for year, v in humira.items() if year <= 2022)
+    assert round(exclusive, 2) == 213.78 and exclusive > 200
+    assert "213.78" in doc_text and "213.78" in fig["note"]
+    assert "200 מיליארד" in text
+    assert max(humira, key=humira.get) == 2022
+    assert 2023 - 2003 == 20 and "20 שנה" in lead["standfirst"]
+    molecule_expiry, first_biosimilar = (2016, 12), (2023, 1)
+    months = (first_biosimilar[0] - molecule_expiry[0]) * 12 + first_biosimilar[1] - molecule_expiry[1]
+    assert months > 6 * 12 and "יותר משש שנים" in text
+    assert 2002 + 12 == 2014
+    for needle in ("21.237", "14.404", "8.993", "4.540", "דצמבר 2014"):
+        assert needle in text, f"the lead lost {needle!r}"
+        assert needle in doc_text, f"the background document lost {needle!r}"
+
+    qtl_revenue, qualcomm_revenue, qtl_ebt, qct_ebt = 5556, 43120, 4022, 10101
+    assert round(qtl_revenue / qualcomm_revenue * 100, 1) == 12.9
+    assert round(qtl_ebt / (qtl_ebt + qct_ebt) * 100, 1) == 28.5
+    assert round(qtl_ebt / qtl_revenue * 100) == 72
+    for needle in ("12.9 אחוז", "28.5 אחוז", "72 אחוז"):
+        assert needle in text, f"the lead lost {needle!r}"
+        assert needle in doc_text, f"the background document lost {needle!r}"
+
+    years = list(range(2014, 2026))
+    bars = fig["bars"]
+    assert [b["label"] for b in bars] == [str(y) for y in years]
+    assert [b["value"] for b in bars] == [round(humira[y], 1) for y in years]
+    assert [b.get("muted", False) for b in bars] == [y >= 2023 for y in years]
+    assert fig["max"] >= max(b["value"] for b in bars) and fig["unit"] == ""
+    assert "21.237" in lead["body"][fig["after"]], (
+        "the Humira chart no longer sits under the paragraph that prints its numbers")
 
 
 def _render_lead_related(lead: dict) -> str:

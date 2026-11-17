@@ -1534,6 +1534,75 @@
     </figure>
     {% endif %}
 
+    {% if sec.diagram and sec.diagram.type == 'ld-to-scale' %}
+    <figure class="diagram">
+    <svg viewBox="0 0 520 210" role="img" aria-label="סרגל בקנה מידה אחד, מאפס ועד 24 שעות־אור מהשמש. השמש בקצה הימני. צדק, שבתאי, אורנוס ונפטון צפופים לידה, ונפטון רחוק ממנה מעט יותר מ-4 שעות־אור. וויאג'ר 1 בקצה השמאלי, יום־אור אחד מכדור הארץ" preserveAspectRatio="xMidYMid meet">
+    <text x="500" y="24" class="diagram__label diagram__label--strong">24 שעות־אור בקנה מידה אחד</text>
+    <text x="500" y="44" class="diagram__label">כל שנתה היא 6 שעות־אור</text>
+
+    <line x1="40" y1="140" x2="484" y2="140" class="diagram__axis"/>
+    <line x1="480" y1="140" x2="480" y2="146" class="diagram__axis"/>
+    <line x1="371.8" y1="140" x2="371.8" y2="146" class="diagram__axis"/>
+    <line x1="263.6" y1="140" x2="263.6" y2="146" class="diagram__axis"/>
+    <line x1="155.3" y1="140" x2="155.3" y2="146" class="diagram__axis"/>
+    <line x1="47.1" y1="140" x2="47.1" y2="146" class="diagram__axis"/>
+    <text x="480" y="162" class="diagram__axis-label">0</text>
+    <text x="371.8" y="162" class="diagram__axis-label">6</text>
+    <text x="263.6" y="162" class="diagram__axis-label">12</text>
+    <text x="155.3" y="162" class="diagram__axis-label">18</text>
+    <text x="47.1" y="162" class="diagram__axis-label">24</text>
+
+    <path d="M480,106 L480,100 L404.8,100 L404.8,106" class="ld-bracket"/>
+    <text x="442.4" y="92" class="diagram__axis-label">כל כוכבי הלכת</text>
+
+    <circle cx="480" cy="140" r="6" class="diagram__dot-fill"/>
+    <circle cx="467" cy="140" r="2.5" class="diagram__dot"/>
+    <circle cx="456.2" cy="140" r="2.5" class="diagram__dot"/>
+    <circle cx="432" cy="140" r="2.5" class="diagram__dot"/>
+    <circle cx="404.8" cy="140" r="2.5" class="diagram__dot"/>
+    <circle cx="47.1" cy="140" r="5" class="ld-today"/>
+    <text x="480" y="124" class="diagram__axis-label">השמש</text>
+    <text x="404.8" y="124" class="diagram__axis-label">נפטון</text>
+    <text x="47.1" y="124" class="diagram__axis-label">וויאג'ר 1</text>
+    <text x="500" y="192" class="diagram__label">שעות־אור מהשמש. המרחק גדל שמאלה.</text>
+    </svg>
+    <figcaption>{{ sec.diagram.caption }}</figcaption>
+    </figure>
+    {% endif %}
+
+    {% if sec.diagram and sec.diagram.type == 'ld-round-trip' %}
+    <figure class="diagram">
+    <svg viewBox="0 0 520 300" role="img" aria-label="שני קווים אנכיים, כדור הארץ בצד ימין והחללית וויאג'ר 1 בצד שמאל, והזמן זורם מלמעלה למטה. קו אלכסוני יוצא מכדור הארץ ביום רביעי ומגיע לחללית ביום חמישי. קו מקווקו חוזר ממנה ומגיע לכדור הארץ ביום שישי" preserveAspectRatio="xMidYMid meet">
+    <text x="500" y="24" class="diagram__label diagram__label--strong">פקודה ותשובה</text>
+    <text x="400" y="48" class="diagram__axis-label">כדור הארץ</text>
+    <text x="120" y="48" class="diagram__axis-label">וויאג'ר 1</text>
+    <line x1="400" y1="56" x2="400" y2="262" class="ld-life"/>
+    <line x1="120" y1="56" x2="120" y2="262" class="ld-life"/>
+
+    <line x1="400" y1="60" x2="406" y2="60" class="diagram__axis"/>
+    <line x1="400" y1="160" x2="406" y2="160" class="diagram__axis"/>
+    <line x1="400" y1="260" x2="406" y2="260" class="diagram__axis"/>
+    <text x="500" y="64" class="diagram__label">יום רביעי</text>
+    <text x="500" y="164" class="diagram__label">יום חמישי</text>
+    <text x="500" y="264" class="diagram__label">יום שישי</text>
+
+    <line x1="400" y1="60" x2="131.3" y2="156" class="ld-signal"/>
+    <polygon points="120,160 133.0,160.7 129.6,151.3" class="ld-head"/>
+    <text x="300" y="84" class="diagram__axis-label">פקודה</text>
+
+    <line x1="120" y1="160" x2="388.7" y2="256" class="ld-signal ld-signal--reply"/>
+    <polygon points="400,260 387.0,260.7 390.4,251.3" class="ld-head"/>
+    <text x="260" y="232" class="diagram__axis-label">תשובה</text>
+
+    <line x1="120" y1="276" x2="400" y2="276" class="diagram__axis"/>
+    <line x1="120" y1="271" x2="120" y2="281" class="diagram__axis"/>
+    <line x1="400" y1="271" x2="400" y2="281" class="diagram__axis"/>
+    <text x="260" y="294" class="diagram__axis-label">יום־אור אחד, 25.9 מיליארד ק"מ</text>
+    </svg>
+    <figcaption>{{ sec.diagram.caption }}</figcaption>
+    </figure>
+    {% endif %}
+
     {% if sec.table %}
     <figure class="datatable">
       <table>
@@ -2293,6 +2362,86 @@
   </section>
   {% endif %}
 
+  {% if topic.sim and topic.sim.type == 'ld-signal-delay' %}
+  <section class="sim" id="sim">
+  <h2 class="topic__heading">{{ topic.sim.title }}</h2>
+  <p class="sim__intro">{{ topic.sim.intro }}</p>
+
+  <div class="euv-sources" role="group" aria-label="בחירת יעד">
+  {% for d in topic.sim.destinations %}
+  <button type="button" class="euv-source-btn ld-dest-btn{% if d.default %} is-active{% endif %}" data-km="{{ d.km }}" data-to="{{ d.to }}">{{ d.label }}</button>
+  {% endfor %}
+  </div>
+
+  <div class="sim__controls">
+  <label class="sim__control">
+  <span class="sim__control-head">
+  <span>מרחק</span>
+  <output id="ld-out-dist"></output>
+  </span>
+  <input type="range" id="ld-in-dist" min="5.5" max="19.5" step="0.01" value="10.41">
+  <span class="sim__control-hint">המחוון לוגריתמי. הוא מתחיל קצת לפני הירח ונגמר אחרי גלקסיית אנדרומדה</span>
+  </label>
+  </div>
+
+  <div class="gene-switch__stage" id="ld-stage">
+  <svg viewBox="0 0 520 150" role="img" aria-label="סרגל לוגריתמי של זמן המעבר של האור, משנייה בקצה הימני ועד מיליוני שנים בקצה השמאלי. נקודות קבועות לירח, לשמש, לנפטון, לוויאג'ר 1, לפרוקסימה קנטאורי ולאנדרומדה, ונקודה נעה לפי המרחק שנבחר">
+  <text x="500" y="24" class="diagram__label diagram__label--strong">כמה זמן האור בדרך</text>
+  <text x="500" y="44" class="diagram__label">סולם לוגריתמי. הזמן גדל שמאלה.</text>
+
+  <line x1="40" y1="96" x2="484" y2="96" class="diagram__axis"/>
+  <line x1="480" y1="90" x2="480" y2="96" class="diagram__axis"/>
+  <line x1="424.1" y1="90" x2="424.1" y2="96" class="diagram__axis"/>
+  <line x1="368.2" y1="90" x2="368.2" y2="96" class="diagram__axis"/>
+  <line x1="324.9" y1="90" x2="324.9" y2="96" class="diagram__axis"/>
+  <line x1="244.3" y1="90" x2="244.3" y2="96" class="diagram__axis"/>
+  <line x1="150" y1="90" x2="150" y2="96" class="diagram__axis"/>
+  <line x1="55.7" y1="90" x2="55.7" y2="96" class="diagram__axis"/>
+  <text x="480" y="82" class="diagram__axis-label">שנייה</text>
+  <text x="424.1" y="82" class="diagram__axis-label">דקה</text>
+  <text x="368.2" y="82" class="diagram__axis-label">שעה</text>
+  <text x="324.9" y="82" class="diagram__axis-label">יממה</text>
+  <text x="244.3" y="82" class="diagram__axis-label">שנה</text>
+  <text x="150" y="82" class="diagram__axis-label">אלף שנה</text>
+  <text x="55.7" y="82" class="diagram__axis-label">מיליון שנה</text>
+
+  <circle cx="476.6" cy="96" r="3.5" class="diagram__dot"/>
+  <circle cx="395.2" cy="96" r="3.5" class="diagram__dot"/>
+  <circle cx="348.7" cy="96" r="3.5" class="diagram__dot"/>
+  <circle cx="324.9" cy="96" r="3.5" class="diagram__dot"/>
+  <circle cx="224.6" cy="96" r="3.5" class="diagram__dot"/>
+  <circle cx="43.2" cy="96" r="3.5" class="diagram__dot"/>
+  <text x="476.6" y="116" class="diagram__axis-label">הירח</text>
+  <text x="395.2" y="116" class="diagram__axis-label">השמש</text>
+  <text x="348.7" y="116" class="diagram__axis-label">נפטון</text>
+  <text x="324.9" y="134" class="diagram__axis-label">וויאג'ר 1</text>
+  <text x="224.6" y="116" class="diagram__axis-label">פרוקסימה</text>
+  <text x="43.2" y="116" class="diagram__axis-label">אנדרומדה</text>
+
+  <circle id="ld-dot" cx="324.9" cy="96" r="6" class="diagram__dot-fill"/>
+  </svg>
+  </div>
+
+  <div class="sim__readout sim__readout--three">
+  <div class="sim__stat sim__stat--strong">
+  <span class="sim__stat-label">זמן בכיוון אחד</span>
+  <span class="sim__stat-value" id="ld-out-oneway"></span>
+  </div>
+  <div class="sim__stat">
+  <span class="sim__stat-label">הלוך ושוב</span>
+  <span class="sim__stat-value" id="ld-out-round"></span>
+  </div>
+  <div class="sim__stat">
+  <span class="sim__stat-label">ימי־אור</span>
+  <span class="sim__stat-value" id="ld-out-lightdays"></span>
+  </div>
+  </div>
+
+  <p class="sim__note" id="ld-note"></p>
+  <p class="sim__note euv-caveat">{{ topic.sim.caveat }}</p>
+  </section>
+  {% endif %}
+
   {% if topic.sim and topic.sim.type == 'enso-history' %}
   <section class="sim" id="sim">
   <h2 class="topic__heading">{{ topic.sim.title }}</h2>
@@ -2970,6 +3119,145 @@
   slider.addEventListener('input', render);
   drawTrace();
   render();
+})();
+</script>
+{% endif %}
+
+{% if topic.sim and topic.sim.type == 'ld-signal-delay' %}
+<script>
+/* ===== יום־אור: כמה זמן האות בדרך ===== */
+(function () {
+  var stage = document.getElementById('ld-stage');
+  if (!stage) return;
+
+  var C_KM = 299792.458;
+  var DAY = 86400;
+  var YEAR = 365.25 * DAY;
+  var LD_KM = C_KM * DAY;
+  var LY_KM = C_KM * YEAR;
+
+  var input = document.getElementById('ld-in-dist');
+  var outDist = document.getElementById('ld-out-dist');
+  var outOne = document.getElementById('ld-out-oneway');
+  var outRound = document.getElementById('ld-out-round');
+  var outDays = document.getElementById('ld-out-lightdays');
+  var note = document.getElementById('ld-note');
+  var dot = document.getElementById('ld-dot');
+  var buttons = document.querySelectorAll('.ld-dest-btn');
+
+  var FORMS = {
+    s: ['שנייה', 'שנייה אחת', 'שתי שניות', 'שניות'],
+    m: ['דקה', 'דקה אחת', 'שתי דקות', 'דקות'],
+    h: ['שעה', 'שעה אחת', 'שעתיים', 'שעות'],
+    d: ['יום', 'יום אחד', 'יומיים', 'ימים']
+  };
+
+  function group(n) {
+    return String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  }
+
+  function trim(v, digits) {
+    return String(parseFloat(v.toFixed(digits)));
+  }
+
+  function count(n, unit, inPair) {
+    var f = FORMS[unit];
+    if (n === 1) return inPair ? f[0] : f[1];
+    if (n === 2) return f[2];
+    return group(n) + ' ' + f[3];
+  }
+
+  function pair(a, unitA, b, unitB) {
+    if (b === 0) return count(a, unitA, false);
+    var second = count(b, unitB, true);
+    return count(a, unitA, true) + ' ו' + (/^\d/.test(second) ? '-' : '') + second;
+  }
+
+  function duration(s) {
+    if (s < 9.95) {
+      var v = trim(s, 1);
+      if (v === '1') return FORMS.s[1];
+      if (v === '2') return FORMS.s[2];
+      return v + ' ' + FORMS.s[3];
+    }
+    if (s < 59.5) return count(Math.round(s), 's', false);
+    if (s < 3599.5) {
+      var secs = Math.round(s);
+      return pair(Math.floor(secs / 60), 'm', secs % 60, 's');
+    }
+    if (s < DAY - 30) {
+      var mins = Math.round(s / 60);
+      return pair(Math.floor(mins / 60), 'h', mins % 60, 'm');
+    }
+    if (s < YEAR - 1800) {
+      var hours = Math.round(s / 3600);
+      return pair(Math.floor(hours / 24), 'd', hours % 24, 'h');
+    }
+    var y = s / YEAR;
+    if (y < 10.995) {
+      var yv = trim(y, 2);
+      if (yv === '1') return 'שנה אחת';
+      if (yv === '2') return 'שנתיים';
+      return yv + ' שנים';
+    }
+    if (y < 999999.5) return group(y) + ' שנה';
+    return trim(y / 1e6, 1) + ' מיליון שנה';
+  }
+
+  function distance(km) {
+    if (km < 999999.5) return group(km) + ' ק"מ';
+    if (km < 999.95e6) return trim(km / 1e6, km < 1e7 ? 2 : 1) + ' מיליון ק"מ';
+    if (km < 999.95e9) return trim(km / 1e9, km < 1e10 ? 2 : 1) + ' מיליארד ק"מ';
+    if (km < 1e13) return trim(km / 1e12, 2) + ' טריליון ק"מ';
+    var ly = km / LY_KM;
+    if (ly < 10) return trim(ly, 2) + ' שנות־אור';
+    if (ly < 100) return trim(ly, 1) + ' שנות־אור';
+    if (ly < 999999.5) return group(ly) + ' שנות־אור';
+    return trim(ly / 1e6, 1) + ' מיליון שנות־אור';
+  }
+
+  function lightDays(d) {
+    if (d >= 999.95e6) return trim(d / 1e9, 2) + ' מיליארד';
+    if (d >= 999999.5) return trim(d / 1e6, 1) + ' מיליון';
+    if (d >= 100) return group(d);
+    if (d >= 0.01) return trim(d, 2);
+    return d.toPrecision(2);
+  }
+
+  function render(km, to) {
+    var s = km / C_KM;
+    var x = 480 - Math.log(s) / Math.LN10 / 14 * 440;
+    x = Math.max(40, Math.min(480, x));
+    dot.setAttribute('cx', x.toFixed(1));
+    outDist.textContent = distance(km);
+    outOne.textContent = duration(s);
+    outRound.textContent = duration(2 * s);
+    outDays.textContent = lightDays(km / LD_KM);
+    note.textContent = 'אות שיוצא עכשיו ' + to + ' יגיע בעוד ' + duration(s) + '.';
+  }
+
+  function clearActive() {
+    for (var i = 0; i < buttons.length; i++) buttons[i].classList.remove('is-active');
+  }
+
+  function choose(btn) {
+    clearActive();
+    btn.classList.add('is-active');
+    var km = Number(btn.getAttribute('data-km'));
+    input.value = (Math.log(km) / Math.LN10).toFixed(2);
+    render(km, btn.getAttribute('data-to'));
+  }
+
+  for (var i = 0; i < buttons.length; i++) {
+    buttons[i].addEventListener('click', function () { choose(this); });
+  }
+
+  input.addEventListener('input', function () {
+    clearActive();
+    render(Math.pow(10, Number(input.value)), 'למרחק שנבחר');
+  });
+
+  if (buttons.length) choose(document.querySelector('.ld-dest-btn.is-active') || buttons[0]);
 })();
 </script>
 {% endif %}
