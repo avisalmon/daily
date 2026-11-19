@@ -1603,6 +1603,142 @@
     </figure>
     {% endif %}
 
+    {% if sec.diagram and sec.diagram.type == 'fpga-lut' %}
+    <figure class="diagram">
+    <svg viewBox="0 0 520 275" role="img" aria-label="טבלה של ארבע שורות. ליד כל צירוף של שתי כניסות, 00, 01, 10 ו-11, שמור ביט אחד: 0, 0, 0 ו-1. מכל שורה יוצא חוט למרבב. הכניסות A ו-B, שתיהן 1, נכנסות למרבב מלמטה ובוחרות את השורה 11, והביט שבה, 1, יוצא כפלט" preserveAspectRatio="xMidYMid meet">
+    <text x="500" y="22" class="diagram__label diagram__label--strong">טבלת חיפוש עם שתי כניסות</text>
+    <text x="500" y="40" class="diagram__label">כאן היא מחקה שער AND</text>
+    <text x="430" y="64" class="diagram__axis-label">AB</text>
+    <text x="385" y="64" class="diagram__axis-label">תוכן</text>
+    <text x="235" y="64" class="diagram__axis-label">מרבב</text>
+
+    <rect x="365" y="77" width="40" height="30" class="fpga-cell"/>
+    <rect x="365" y="117" width="40" height="30" class="fpga-cell"/>
+    <rect x="365" y="157" width="40" height="30" class="fpga-cell"/>
+    <rect x="365" y="197" width="40" height="30" class="fpga-cell fpga-cell--on"/>
+    <text x="385" y="97" class="fpga-cell-text">0</text>
+    <text x="385" y="137" class="fpga-cell-text">0</text>
+    <text x="385" y="177" class="fpga-cell-text">0</text>
+    <text x="385" y="217" class="fpga-cell-text">1</text>
+    <text x="430" y="96" class="diagram__axis-label">00</text>
+    <text x="430" y="136" class="diagram__axis-label">01</text>
+    <text x="430" y="176" class="diagram__axis-label">10</text>
+    <text x="430" y="216" class="diagram__axis-label">11</text>
+    <line x1="365" y1="92" x2="260" y2="92" class="fpga-wire"/>
+    <line x1="365" y1="132" x2="260" y2="132" class="fpga-wire"/>
+    <line x1="365" y1="172" x2="260" y2="172" class="fpga-wire"/>
+    <line x1="365" y1="212" x2="260" y2="212" class="fpga-wire fpga-wire--on"/>
+
+    <polygon points="260,72 260,232 210,202 210,102" class="fpga-mux"/>
+    <line x1="252" y1="250" x2="252" y2="227.2" class="fpga-wire fpga-wire--on"/>
+    <line x1="218" y1="250" x2="218" y2="206.8" class="fpga-wire fpga-wire--on"/>
+    <text x="252" y="264" class="diagram__axis-label">A=1</text>
+    <text x="218" y="264" class="diagram__axis-label">B=1</text>
+
+    <line x1="210" y1="152" x2="108" y2="152" class="fpga-wire fpga-wire--on"/>
+    <circle cx="92" cy="152" r="16" class="fpga-out"/>
+    <text x="92" y="157" class="fpga-out-text">1</text>
+    <text x="92" y="188" class="diagram__axis-label">פלט</text>
+    </svg>
+    <figcaption>{{ sec.diagram.caption }}</figcaption>
+    </figure>
+    {% endif %}
+
+    {% if sec.diagram and sec.diagram.type == 'fpga-fabric' %}
+    <figure class="diagram">
+    <svg viewBox="0 0 520 300" role="img" aria-label="מבט מלמעלה על שבב FPGA, בסכמה. רשת של 28 בלוקים בשבע עמודות וארבע שורות. חמש עמודות הן בלוקים לוגיים, עמודה אחת היא בלוקי זיכרון ועמודה אחת מכפלים. בין הבלוקים עוברים ערוצי חוטים, ובכל צומת שלהם יש מתג. בשולי השבב יש בלוקים קטנים של קלט ופלט" preserveAspectRatio="xMidYMid meet">
+    <text x="500" y="24" class="diagram__label diagram__label--strong">מבט מלמעלה על FPGA</text>
+    <text x="500" y="42" class="diagram__label">סכמה. בשבב אמיתי יש עד מיליוני טבלאות</text>
+    <rect x="30" y="60" width="300" height="220" class="fpga-chip"/>
+    {% for x in [85, 123, 161, 199, 237, 275] %}
+    <line x1="{{ x }}" y1="80" x2="{{ x }}" y2="260" class="fpga-track"/>
+    {% endfor %}
+    {% for y in [124, 170, 216] %}
+    <line x1="50" y1="{{ y }}" x2="310" y2="{{ y }}" class="fpga-track"/>
+    {% endfor %}
+    {% for x in [54, 92, 130, 168, 206, 244, 282] %}{% for y in [87, 133, 179, 225] %}
+    <rect x="{{ x }}" y="{{ y }}" width="24" height="28" class="{% if x == 130 %}fpga-mem{% elif x == 244 %}fpga-dsp{% else %}fpga-clb{% endif %}"/>
+    {% endfor %}{% endfor %}
+    {% for x in [82, 120, 158, 196, 234, 272] %}{% for y in [121, 167, 213] %}
+    <rect x="{{ x }}" y="{{ y }}" width="6" height="6" class="fpga-switch"/>
+    {% endfor %}{% endfor %}
+    {% for x in [60, 98, 136, 174, 212, 250, 288] %}
+    <rect x="{{ x }}" y="66" width="12" height="12" class="fpga-io"/>
+    <rect x="{{ x }}" y="262" width="12" height="12" class="fpga-io"/>
+    {% endfor %}
+    {% for y in [95, 141, 187, 233] %}
+    <rect x="36" y="{{ y }}" width="12" height="12" class="fpga-io"/>
+    <rect x="312" y="{{ y }}" width="12" height="12" class="fpga-io"/>
+    {% endfor %}
+
+    <rect x="476" y="89" width="14" height="14" class="fpga-clb"/>
+    <text x="468" y="100" class="diagram__label">בלוק לוגי</text>
+    <rect x="476" y="119" width="14" height="14" class="fpga-mem"/>
+    <text x="468" y="130" class="diagram__label">בלוק זיכרון</text>
+    <rect x="476" y="149" width="14" height="14" class="fpga-dsp"/>
+    <text x="468" y="160" class="diagram__label">מכפלים</text>
+    <rect x="477" y="180" width="12" height="12" class="fpga-io"/>
+    <text x="468" y="190" class="diagram__label">קלט ופלט</text>
+    <line x1="474" y1="216" x2="492" y2="216" class="fpga-track"/>
+    <rect x="480" y="213" width="6" height="6" class="fpga-switch"/>
+    <text x="468" y="220" class="diagram__label">חוטים ומתגים</text>
+    </svg>
+    <figcaption>{{ sec.diagram.caption }}</figcaption>
+    </figure>
+    {% endif %}
+
+    {% if sec.diagram and sec.diagram.type == 'fpga-critical-path' %}
+    <figure class="diagram">
+    <svg viewBox="0 0 520 280" role="img" aria-label="שלושה מסלולים בין שני טורים של רכיבי זיכרון. העליון עובר טבלה אחת וצריך 1.75 ננו-שניות, האמצעי עובר שתיים וצריך 2.5, והתחתון עובר ארבע טבלאות וצריך 4 ננו-שניות. התחתון הוא המסלול הקריטי, והוא מגביל את השעון ל-250 מגה-הרץ" preserveAspectRatio="xMidYMid meet">
+    <text x="500" y="24" class="diagram__label diagram__label--strong">שלושה מסלולים, שעון אחד</text>
+    <text x="452" y="48" class="diagram__axis-label">רכיב זיכרון</text>
+    <text x="68" y="48" class="diagram__axis-label">רכיב זיכרון</text>
+
+    <rect x="440" y="68" width="24" height="36" class="fpga-reg"/>
+    <rect x="56" y="68" width="24" height="36" class="fpga-reg"/>
+    <line x1="440" y1="86" x2="274" y2="86" class="fpga-path"/>
+    <rect x="246" y="74" width="28" height="24" class="fpga-lutbox"/>
+    <text x="260" y="90" class="fpga-lut-text">LUT</text>
+    <line x1="246" y1="86" x2="90" y2="86" class="fpga-path"/>
+    <polygon points="80,86 90,81 90,91" class="fpga-head"/>
+    <text x="260" y="66" class="diagram__axis-label">1.75 ננו-שניות</text>
+
+    <rect x="440" y="128" width="24" height="36" class="fpga-reg"/>
+    <rect x="56" y="128" width="24" height="36" class="fpga-reg"/>
+    <line x1="440" y1="146" x2="334" y2="146" class="fpga-path"/>
+    <rect x="306" y="134" width="28" height="24" class="fpga-lutbox"/>
+    <text x="320" y="150" class="fpga-lut-text">LUT</text>
+    <line x1="306" y1="146" x2="214" y2="146" class="fpga-path"/>
+    <rect x="186" y="134" width="28" height="24" class="fpga-lutbox"/>
+    <text x="200" y="150" class="fpga-lut-text">LUT</text>
+    <line x1="186" y1="146" x2="90" y2="146" class="fpga-path"/>
+    <polygon points="80,146 90,141 90,151" class="fpga-head"/>
+    <text x="260" y="126" class="diagram__axis-label">2.5 ננו-שניות</text>
+
+    <rect x="440" y="188" width="24" height="36" class="fpga-reg"/>
+    <rect x="56" y="188" width="24" height="36" class="fpga-reg"/>
+    <line x1="440" y1="206" x2="394" y2="206" class="fpga-path fpga-path--hot"/>
+    <rect x="366" y="194" width="28" height="24" class="fpga-lutbox fpga-lutbox--hot"/>
+    <text x="380" y="210" class="fpga-lut-text">LUT</text>
+    <line x1="366" y1="206" x2="314" y2="206" class="fpga-path fpga-path--hot"/>
+    <rect x="286" y="194" width="28" height="24" class="fpga-lutbox fpga-lutbox--hot"/>
+    <text x="300" y="210" class="fpga-lut-text">LUT</text>
+    <line x1="286" y1="206" x2="234" y2="206" class="fpga-path fpga-path--hot"/>
+    <rect x="206" y="194" width="28" height="24" class="fpga-lutbox fpga-lutbox--hot"/>
+    <text x="220" y="210" class="fpga-lut-text">LUT</text>
+    <line x1="206" y1="206" x2="154" y2="206" class="fpga-path fpga-path--hot"/>
+    <rect x="126" y="194" width="28" height="24" class="fpga-lutbox fpga-lutbox--hot"/>
+    <text x="140" y="210" class="fpga-lut-text">LUT</text>
+    <line x1="126" y1="206" x2="90" y2="206" class="fpga-path fpga-path--hot"/>
+    <polygon points="80,206 90,201 90,211" class="fpga-head fpga-head--hot"/>
+    <text x="260" y="186" class="diagram__axis-label fpga-hot-label">4 ננו-שניות, המסלול הקריטי</text>
+
+    <text x="500" y="262" class="diagram__label">השעון לא יכול להיות מהיר מ-250 מגה-הרץ</text>
+    </svg>
+    <figcaption>{{ sec.diagram.caption }}</figcaption>
+    </figure>
+    {% endif %}
+
     {% if sec.table %}
     <figure class="datatable">
       <table>
@@ -2442,6 +2578,84 @@
   </section>
   {% endif %}
 
+  {% if topic.sim and topic.sim.type == 'fpga-lut' %}
+  {% set fpga = namespace(bits='0001', name='AND') %}
+  {% for p in topic.sim.presets %}{% if p.default %}{% set fpga.bits = p.bits %}{% set fpga.name = p.label %}{% endif %}{% endfor %}
+  <section class="sim" id="sim">
+  <h2 class="topic__heading">{{ topic.sim.title }}</h2>
+  <p class="sim__intro">{{ topic.sim.intro }}</p>
+
+  <div class="euv-sources" role="group" aria-label="התוכן של שערים מוכרים">
+  {% for p in topic.sim.presets %}
+  <button type="button" class="euv-source-btn fpga-preset{% if p.bits == fpga.bits %} is-active{% endif %}" data-bits="{{ p.bits }}">{{ p.label }}</button>
+  {% endfor %}
+  </div>
+
+  <div class="sim__controls">
+  <div class="sim__control">
+  <span class="sim__control-head"><span>תוכן הטבלה</span></span>
+  <div class="fpga-bits" role="group" aria-label="ארבעת הביטים שבטבלה">
+  {% for addr in ['00', '01', '10', '11'] %}
+  <button type="button" class="fpga-toggle fpga-bit{% if loop.last %} is-selected{% endif %}" data-row="{{ loop.index0 }}" aria-pressed="{{ 'true' if fpga.bits[loop.index0] == '1' else 'false' }}" aria-label="הביט בשורה {{ addr }}"><span class="fpga-toggle__addr">{{ addr }}</span><span class="fpga-toggle__val">{{ fpga.bits[loop.index0] }}</span></button>
+  {% endfor %}
+  </div>
+  <span class="sim__control-hint">לחיצה על תא הופכת את הביט שבו</span>
+  </div>
+  <div class="sim__control">
+  <span class="sim__control-head"><span>הכניסות</span></span>
+  <div class="fpga-bits" role="group" aria-label="הכניסות A ו-B">
+  <button type="button" class="fpga-toggle fpga-in" data-in="a" aria-pressed="true" aria-label="הכניסה A"><span class="fpga-toggle__addr">A</span><span class="fpga-toggle__val">1</span></button>
+  <button type="button" class="fpga-toggle fpga-in" data-in="b" aria-pressed="true" aria-label="הכניסה B"><span class="fpga-toggle__addr">B</span><span class="fpga-toggle__val">1</span></button>
+  </div>
+  <span class="sim__control-hint">הכניסות בוחרות שורה. הן לא משנות את מה שכתוב בה</span>
+  </div>
+  </div>
+
+  <div class="gene-switch__stage" id="fpga-stage">
+  <svg viewBox="0 0 520 255" role="img" aria-label="הטבלה שבמדמה: ארבע שורות עם הביטים שנבחרו, מרבב, והכניסות A ו-B שבוחרות שורה. השורה שנבחרה מודגשת, והביט שבה מוצג כפלט">
+  <text x="500" y="20" class="diagram__label diagram__label--strong">הטבלה שלכם</text>
+  <text x="430" y="42" class="diagram__axis-label">AB</text>
+  <text x="385" y="42" class="diagram__axis-label">תוכן</text>
+  <text x="235" y="42" class="diagram__axis-label">מרבב</text>
+  {% for addr in ['00', '01', '10', '11'] %}
+  {% set yc = 70 + 40 * loop.index0 %}
+  <rect x="365" y="{{ yc - 15 }}" width="40" height="30" class="fpga-cell{% if loop.last %} is-selected{% endif %}"/>
+  <text x="385" y="{{ yc + 5 }}" class="fpga-cell-text">{{ fpga.bits[loop.index0] }}</text>
+  <text x="430" y="{{ yc + 4 }}" class="diagram__axis-label">{{ addr }}</text>
+  <line x1="365" y1="{{ yc }}" x2="260" y2="{{ yc }}" class="fpga-wire fpga-row-wire{% if loop.last %} is-selected{% endif %}"/>
+  {% endfor %}
+  <polygon points="260,50 260,210 210,180 210,80" class="fpga-mux"/>
+  <line x1="252" y1="228" x2="252" y2="205.2" class="fpga-wire fpga-wire--on"/>
+  <line x1="218" y1="228" x2="218" y2="184.8" class="fpga-wire fpga-wire--on"/>
+  <text x="252" y="242" class="diagram__axis-label" id="fpga-a-text">A=1</text>
+  <text x="218" y="242" class="diagram__axis-label" id="fpga-b-text">B=1</text>
+  <line x1="210" y1="130" x2="108" y2="130" class="fpga-wire fpga-wire--on"/>
+  <circle cx="92" cy="130" r="16" class="fpga-out{% if fpga.bits[3] == '0' %} is-off{% endif %}" id="fpga-out-dot"/>
+  <text x="92" y="135" class="fpga-out-text{% if fpga.bits[3] == '0' %} is-off{% endif %}" id="fpga-out-dot-text">{{ fpga.bits[3] }}</text>
+  <text x="92" y="166" class="diagram__axis-label">פלט</text>
+  </svg>
+  </div>
+
+  <div class="sim__readout sim__readout--three">
+  <div class="sim__stat sim__stat--strong">
+  <span class="sim__stat-label">הפלט</span>
+  <span class="sim__stat-value" id="fpga-read-out">{{ fpga.bits[3] }}</span>
+  </div>
+  <div class="sim__stat">
+  <span class="sim__stat-label">תוכן הטבלה</span>
+  <span class="sim__stat-value"><span class="ltr" id="fpga-read-bits">{{ fpga.bits }}</span></span>
+  </div>
+  <div class="sim__stat">
+  <span class="sim__stat-label">מה היא מחשבת</span>
+  <span class="sim__stat-value" id="fpga-read-name">{{ fpga.name }}</span>
+  </div>
+  </div>
+
+  <p class="sim__note" id="fpga-note"></p>
+  <p class="sim__note euv-caveat">{{ topic.sim.caveat }}</p>
+  </section>
+  {% endif %}
+
   {% if topic.sim and topic.sim.type == 'enso-history' %}
   <section class="sim" id="sim">
   <h2 class="topic__heading">{{ topic.sim.title }}</h2>
@@ -3258,6 +3472,109 @@
   });
 
   if (buttons.length) choose(document.querySelector('.ld-dest-btn.is-active') || buttons[0]);
+})();
+</script>
+{% endif %}
+
+{% if topic.sim and topic.sim.type == 'fpga-lut' %}
+<script>
+/* ===== FPGA: טבלת חיפוש שמתכנתים ביד ===== */
+(function () {
+  var stage = document.getElementById('fpga-stage');
+  if (!stage) return;
+
+  var ADDR = ['00', '01', '10', '11'];
+  /* The four bits, read in the order 00, 01, 10, 11, as a binary number. */
+  var TABLE_NAMES = [
+    'תמיד 0', 'AND', 'A וגם לא B', 'העתק של A',
+    'B וגם לא A', 'העתק של B', 'XOR', 'OR',
+    'NOR', 'XNOR', 'ההפך של B', 'A או לא B',
+    'ההפך של A', 'B או לא A', 'NAND', 'תמיד 1'
+  ];
+
+  var cells = stage.querySelectorAll('.fpga-cell');
+  var cellTexts = stage.querySelectorAll('.fpga-cell-text');
+  var wires = stage.querySelectorAll('.fpga-row-wire');
+  var aText = document.getElementById('fpga-a-text');
+  var bText = document.getElementById('fpga-b-text');
+  var outDot = document.getElementById('fpga-out-dot');
+  var outDotText = document.getElementById('fpga-out-dot-text');
+  var readOut = document.getElementById('fpga-read-out');
+  var readBits = document.getElementById('fpga-read-bits');
+  var readName = document.getElementById('fpga-read-name');
+  var note = document.getElementById('fpga-note');
+  var bitButtons = document.querySelectorAll('.fpga-bit');
+  var inButtons = document.querySelectorAll('.fpga-in');
+  var presets = document.querySelectorAll('.fpga-preset');
+
+  var bits = [0, 0, 0, 1];
+  var a = 1;
+  var b = 1;
+
+  function setBits(s) {
+    for (var i = 0; i < 4; i++) bits[i] = s.charAt(i) === '1' ? 1 : 0;
+  }
+
+  function show(button, value) {
+    button.setAttribute('aria-pressed', value ? 'true' : 'false');
+    button.querySelector('.fpga-toggle__val').textContent = String(value);
+  }
+
+  function render() {
+    var row = a * 2 + b;
+    var out = bits[row];
+    var key = bits.join('');
+    for (var i = 0; i < 4; i++) {
+      cellTexts[i].textContent = String(bits[i]);
+      cells[i].classList.toggle('is-selected', i === row);
+      wires[i].classList.toggle('is-selected', i === row);
+      bitButtons[i].classList.toggle('is-selected', i === row);
+      show(bitButtons[i], bits[i]);
+    }
+    for (var j = 0; j < inButtons.length; j++) {
+      show(inButtons[j], inButtons[j].getAttribute('data-in') === 'a' ? a : b);
+    }
+    aText.textContent = 'A=' + a;
+    bText.textContent = 'B=' + b;
+    outDot.classList.toggle('is-off', out === 0);
+    outDotText.classList.toggle('is-off', out === 0);
+    outDotText.textContent = String(out);
+    readOut.textContent = String(out);
+    readBits.textContent = key;
+    readName.textContent = TABLE_NAMES[parseInt(key, 2)];
+    note.textContent = 'כש-A הוא ' + a + ' ו-B הוא ' + b + ', נבחרת השורה ' + ADDR[row] +
+      '. כתוב בה ' + out + ', וזה הפלט.';
+    for (var k = 0; k < presets.length; k++) {
+      presets[k].classList.toggle('is-active', presets[k].getAttribute('data-bits') === key);
+    }
+  }
+
+  for (var p = 0; p < presets.length; p++) {
+    presets[p].addEventListener('click', function () {
+      setBits(this.getAttribute('data-bits'));
+      render();
+    });
+  }
+
+  for (var q = 0; q < bitButtons.length; q++) {
+    bitButtons[q].addEventListener('click', function () {
+      var r = Number(this.getAttribute('data-row'));
+      bits[r] = 1 - bits[r];
+      render();
+    });
+  }
+
+  for (var s = 0; s < inButtons.length; s++) {
+    inButtons[s].addEventListener('click', function () {
+      if (this.getAttribute('data-in') === 'a') a = 1 - a;
+      else b = 1 - b;
+      render();
+    });
+  }
+
+  var start = document.querySelector('.fpga-preset.is-active');
+  if (start) setBits(start.getAttribute('data-bits'));
+  render();
 })();
 </script>
 {% endif %}

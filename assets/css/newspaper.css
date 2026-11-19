@@ -1582,6 +1582,80 @@ img { max-width: 100%; display: block; }
 .ld-head { fill: var(--rule-dark); }
 .ld-today { fill: var(--accent); }
 
+/* FPGA: טבלת החיפוש, הרשת, המסלול הקריטי והמדמה */
+.fpga-cell { fill: var(--paper); stroke: var(--ink-faint); stroke-width: 1; }
+.fpga-cell--on,
+.fpga-cell.is-selected { stroke: var(--rule-dark); stroke-width: 2.5; }
+.fpga-cell-text {
+  font-family: var(--sans);
+  font-size: 16px;
+  font-weight: 700;
+  fill: var(--ink);
+  text-anchor: middle;
+}
+.fpga-wire { fill: none; stroke: var(--ink-faint); stroke-width: 1.5; }
+.fpga-wire--on,
+.fpga-wire.is-selected { stroke: var(--rule-dark); stroke-width: 3; }
+.fpga-mux { fill: var(--paper); stroke: var(--rule-dark); stroke-width: 1.5; }
+.fpga-out { fill: var(--rule-dark); }
+.fpga-out.is-off { fill: var(--paper); stroke: var(--rule-dark); stroke-width: 2; }
+.fpga-out-text {
+  font-family: var(--sans);
+  font-size: 15px;
+  font-weight: 700;
+  fill: var(--paper);
+  text-anchor: middle;
+}
+.fpga-out-text.is-off { fill: var(--rule-dark); }
+
+.fpga-chip { fill: none; stroke: var(--rule-dark); stroke-width: 2; }
+.fpga-clb { fill: var(--ink-faint); opacity: 0.25; }
+.fpga-mem { fill: var(--rule-dark); opacity: 0.8; }
+.fpga-dsp { fill: var(--paper); stroke: var(--rule-dark); stroke-width: 2; }
+.fpga-io { fill: none; stroke: var(--ink-faint); stroke-width: 1.2; }
+.fpga-track { stroke: var(--ink-faint); stroke-width: 1; stroke-dasharray: 3 3; }
+.fpga-switch { fill: var(--ink-soft); }
+
+.fpga-reg { fill: var(--paper); stroke: var(--rule-dark); stroke-width: 1.5; }
+.fpga-lutbox { fill: var(--paper); stroke: var(--ink-faint); stroke-width: 1.2; }
+.fpga-lutbox--hot { stroke: var(--rule-dark); stroke-width: 2; }
+.fpga-lut-text {
+  font-family: var(--sans);
+  font-size: 10px;
+  fill: var(--ink-soft);
+  text-anchor: middle;
+}
+.fpga-path { stroke: var(--ink-faint); stroke-width: 1.5; }
+.fpga-path--hot { stroke: var(--rule-dark); stroke-width: 2.5; }
+.fpga-head { fill: var(--ink-faint); }
+.fpga-head--hot { fill: var(--rule-dark); }
+.fpga-hot-label { fill: var(--rule-dark); font-weight: 700; }
+
+/* The bits read 00 to 11 left to right, the order of the string under them. */
+.fpga-bits { display: flex; gap: 8px; direction: ltr; margin: 2px 0 6px; }
+.fpga-toggle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  min-width: 52px;
+  padding: 6px 10px;
+  font-family: var(--sans);
+  background: transparent;
+  color: var(--ink);
+  border: 1px solid var(--rule);
+  cursor: pointer;
+}
+.fpga-toggle:hover { border-color: var(--rule-dark); }
+.fpga-toggle[aria-pressed="true"] {
+  background: var(--rule-dark);
+  border-color: var(--rule-dark);
+  color: var(--paper);
+}
+.fpga-toggle.is-selected { outline: 2px solid var(--rule-dark); outline-offset: 2px; }
+.fpga-toggle__addr { font-size: 11px; opacity: 0.75; }
+.fpga-toggle__val { font-size: 18px; font-weight: 700; font-variant-numeric: tabular-nums; }
+
 /* בוחן */
 .quiz { margin: 34px 0; }
 

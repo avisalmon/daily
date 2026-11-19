@@ -734,6 +734,117 @@ def test_light_day_topic_matches_the_numbers_it_derives():
         assert needle in text, needle
 
 
+def test_fpga_topic_matches_the_numbers_it_derives():
+    """Edition 22's learning page counts the circuits one lookup table can
+    hold, names all 16 two-input tables in its simulator, turns a path delay
+    into a clock rate and a bitstream into bytes. The paper is the only source
+    for those, so each is recomputed here and compared with the page's words,
+    the simulator's presets and names, and the template that draws them.
+    BKM section 13."""
+    import json
+    import re
+    from datetime import date
+
+    topic = json.loads((ROOT / "data" / "topics" / "fpga.json").read_text(encoding="utf-8"))
+    text = json.dumps(topic, ensure_ascii=False)
+    html = (ROOT / "templates" / "topic.html.j2").read_text(encoding="utf-8")
+    sections = {s["heading"]: s for s in topic["sections"]}
+
+    # k inputs give 2^k rows and 2^(2^k) different tables.
+    for k, row in enumerate(sections["כמה מעגלים בטבלה אחת"]["table"]["rows"], start=1):
+        assert row == [str(k), str(2 ** k), f"{2 ** 2 ** k:,}"], row
+    assert 18 * 10 ** 18 < 2 ** 64 < 19 * 10 ** 18            # "יותר מ-18 מיליארד מיליארד"
+    for needle in ("16 טבלאות שונות", "זה 65,536", "יותר מ-18 מיליארד מיליארד", "2 בחזקת 16 פונקציות"):
+        assert needle in text, needle
+
+    # Each preset is the truth table of the gate it is named after, rows 00, 01, 10, 11.
+    def truth(f):
+        return "".join(str(f(a, b)) for a in (0, 1) for b in (0, 1))
+
+    gates = {"AND": lambda a, b: a & b, "OR": lambda a, b: a | b, "XOR": lambda a, b: a ^ b,
+             "NAND": lambda a, b: 1 - (a & b), "NOR": lambda a, b: 1 - (a | b),
+             "XNOR": lambda a, b: 1 - (a ^ b)}
+    presets = topic["sim"]["presets"]
+    assert {p["label"]: p["bits"] for p in presets} == {g: truth(f) for g, f in gates.items()}
+    assert [p["label"] for p in presets if p.get("default")] == ["AND"]
+
+    def spoken(g):
+        return ", ".join(truth(gates[g]))
+
+    assert f"אם בתאים כתוב {spoken('AND')}, הטבלה מתנהגת כמו AND" in text
+    assert f"אם כתוב {spoken('OR')}, היא OR" in text
+    assert f"אם כתוב {spoken('XOR')}, היא XOR" in text
+    quiz = next(q for q in topic["quiz"] if "איזה שער היא מחקה" in q["q"])
+    assert spoken("XOR") in quiz["q"] and quiz["options"][quiz["answer"]] == "XOR"
+
+    # The static diagram shows AND, and both muxes are wired where they are drawn:
+    # the select lines stop on the slanted edge, the output leaves the narrow side's middle.
+    lut = html[html.index("sec.diagram.type == 'fpga-lut'"):html.index("sec.diagram.type == 'fpga-fabric'")]
+    assert "".join(re.findall(r'class="fpga-cell-text">([01])<', lut)) == truth(gates["AND"])
+    stage = html[html.index('id="fpga-stage"'):]
+    stage = stage[:stage.index("</svg>")]
+    for section in (lut, stage):
+        points = re.search(r'<polygon points="([\d.,\s]+)" class="fpga-mux"/>', section).group(1)
+        (xr, _), (_, yr), (xl, yl), (_, yt) = (tuple(map(float, p.split(","))) for p in points.split())
+        for x in (252, 218):
+            y = round(yr - (xr - x) * (yr - yl) / (xr - xl), 1)
+            assert f'x2="{x}" y2="{y:g}"' in section, (x, y)
+        assert f'<line x1="{xl:g}" y1="{(yl + yt) / 2:g}"' in section
+
+    # The simulator names all 16 tables, indexed by the four bits read as a binary number.
+    script = html[html.index("/* ===== FPGA:"):]
+    script = script[:script.index("</script>")]
+    names = re.findall(r"'([^']+)'", re.search(r"var TABLE_NAMES = \[(.*?)\];", script, re.S).group(1))
+    described = {
+        "תמיד 0": lambda a, b: 0, "AND": gates["AND"], "A וגם לא B": lambda a, b: a & (1 - b),
+        "העתק של A": lambda a, b: a, "B וגם לא A": lambda a, b: b & (1 - a),
+        "העתק של B": lambda a, b: b, "XOR": gates["XOR"], "OR": gates["OR"],
+        "NOR": gates["NOR"], "XNOR": gates["XNOR"], "ההפך של B": lambda a, b: 1 - b,
+        "A או לא B": lambda a, b: a | (1 - b), "ההפך של A": lambda a, b: 1 - a,
+        "B או לא A": lambda a, b: b | (1 - a), "NAND": gates["NAND"], "תמיד 1": lambda a, b: 1,
+    }
+    assert len(names) == 16 and sorted(names) == sorted(described)
+    for index, name in enumerate(names):
+        assert truth(described[name]) == f"{index:04b}", name
+    assert "TABLE_NAMES[parseInt(key, 2)]" in script and "var row = a * 2 + b;" in script
+    assert "var ADDR = ['00', '01', '10', '11'];" in script
+    assert "ארבעה ביטים נותנים 16 טבלאות אפשריות" in topic["sim"]["intro"]
+
+    # A path delay sets the clock: Fmax = 1 / t.
+    def mhz(ns):
+        return 1 / (ns * 1e-9) / 1e6
+
+    assert round(mhz(4)) == 250 and round(mhz(5)) == 200
+    assert "1 / 4 ns = 250 MHz" in text and "4 ננו-שניות" in text and "250 מגה-הרץ" in text
+    quiz = next(q for q in topic["quiz"] if "5 ננו-שניות" in q["q"])
+    assert quiz["options"][quiz["answer"]] == "200 מגה-הרץ"
+
+    # The critical-path diagram's example: 1.0 ns plus 0.75 ns for each table on the path.
+    path = html[html.index("sec.diagram.type == 'fpga-critical-path'"):]
+    path = path[:path.index("{% endif %}")]
+    tables = [len(re.findall(r'class="fpga-lutbox[ "]', row)) for row in path.split('class="fpga-head')[:-1]]
+    assert tables == [1, 2, 4]
+    delays = [1.0 + 0.75 * n for n in tables]
+    assert delays == [1.75, 2.5, 4.0]
+    for d in delays:
+        assert f">{d:g} ננו-שניות" in path, d
+    assert round(mhz(max(delays))) == 250 and "מהיר מ-250 מגה-הרץ" in path
+
+    # The Artix-7 bitstream in bytes, and Freeman's dates.
+    assert round(30_606_304 / 8 / 1e6, 1) == 3.8
+    assert "30,606,304 ביטים, כ-3.8 מיליון בייט" in text
+    born, granted, died = date(1948, 7, 26), date(1989, 9, 26), date(1989, 10, 22)
+    assert (died - granted).days < 30
+    assert died.year - born.year - ((died.month, died.day) < (born.month, born.day)) == 41
+    assert "ב-26 בספטמבר 1989, ופרימן מת פחות מחודש אחר כך, בגיל 41" in text
+
+    # The takeaway's ranges are the two rows of the Kuon and Rose table.
+    rows = sections["מחיר הגמישות"]["table"]["rows"]
+    area, delay, power = ([float(r[i].replace("פי ", "")) for r in rows] for i in (1, 2, 3))
+    for column, word in ((area, "גדול"), (delay, "איטי"), (power, "וצרך")):
+        assert f"{word} פי {min(column):g} עד {max(column):g}" in text, word
+
+
 def test_el_nino_topic_matches_the_numbers_it_derives():
     """Edition 20's learning page reads NOAA's RONI and ONI files itself and
     prints what it finds: peaks, their seasons, ranks, swings, how many
@@ -2897,6 +3008,88 @@ def test_patents_lead_matches_the_numbers_it_derives():
     assert fig["max"] >= max(b["value"] for b in bars) and fig["unit"] == ""
     assert "21.237" in lead["body"][fig["after"]], (
         "the Humira chart no longer sits under the paragraph that prints its numbers")
+
+
+def test_fpga_lead_matches_the_numbers_it_derives():
+    """BKM 13. The 2026-11-20 lead sets one model's two scores side by side,
+    58 percent on VerilogEval's study exercises and 31 percent on CVDP's
+    engineer-written problems, and calls the gap "almost double". It divides
+    LATCH's held-out results by the in-sample ones into "less than half" and
+    "about a third", and the figure note prints both ratios. LATCH split its
+    16 designs eight and eight, so the halves must average back to the
+    whole-set numbers the lead also prints. The background document prints the
+    same numbers, so it is walked too."""
+    ed = json.loads(
+        (ROOT / "data" / "editions" / "2026-11-20.json").read_text(encoding="utf-8"))
+    doc = json.loads(
+        (ROOT / "data" / "research" / "2026-11-20.doc.json").read_text(encoding="utf-8"))
+    lead = ed["lead"]
+    fig = lead["figure"]
+    text = " ".join([lead["standfirst"], *lead["body"], fig["note"]])
+    doc_text = json.dumps(doc, ensure_ascii=False)
+
+    # Llama 3.1 405B, writing a circuit from a spec: VerilogEval, then CVDP.
+    study, engineers = 58, 31
+    assert round(study / engineers, 2) == 1.87 and "1.87" in doc_text
+    assert 1.75 < study / engineers < 2
+    assert "כמעט פי שניים" in text and "כמעט פי שניים" in doc_text
+
+    # LATCH: the model with its knowledge base and the plain rule, on held-out
+    # designs against the designs they were built from.
+    model_new, model_seen, rule_new, rule_seen = 11.9, 28.6, 9.7, 30.1
+    assert round(model_new / model_seen, 2) == 0.42 < 0.5
+    assert round(rule_new / rule_seen, 2) == 0.32
+    assert abs(rule_new / rule_seen - 1 / 3) < 0.02
+    assert "פחות ממחצית" in text and "כשליש" in text
+    assert "0.42" in fig["note"] and "0.32" in fig["note"]
+    assert abs((model_new + model_seen) / 2 - 20.3) < 0.1
+    assert round((rule_new + rule_seen) / 2, 1) == 19.9
+    for needle in ("58 אחוז", "31 אחוז", "11.9", "28.6", "9.7", "30.1",
+                   "19.9", "20.3", "98.2"):
+        assert needle in text, f"the lead lost {needle!r}"
+        assert needle in doc_text, f"the background document lost {needle!r}"
+
+    bars = fig["bars"]
+    assert [b["value"] for b in bars] == [model_seen, model_new, rule_seen, rule_new]
+    assert [b.get("muted", False) for b in bars] == [True, False, True, False]
+    assert fig["max"] >= max(b["value"] for b in bars) and fig["unit"] == "%"
+    assert "11.9" in lead["body"][fig["after"]], (
+        "the LATCH chart no longer sits under the paragraph that prints its numbers")
+
+    # Altera was Intel's, Intel still holds 49 percent of it, and Intel employs
+    # the editor. The disclosure travels with every lead that names Altera.
+    assert "אלטרה" in text and "אינטל היא מקום עבודתו של עורך העיתון" in text
+
+
+def test_edition_22_briefs_match_the_numbers_they_derive():
+    """BKM 13. Two briefs on 2026-11-20 print numbers their sources never did.
+    Anthropic gave a price and a share count but no deal size, so 81.3 billion
+    is 980 million shares at 83 dollars. The upsizing from 825 million is all
+    new company stock only because the seven founders sell 3,378,378 shares
+    each both before and after. Nvidia gave 2.4 billion of licensed Hopper
+    sales and 115.8 billion of revenue, and the brief calls the first about 2
+    percent of the second."""
+    ed = json.loads(
+        (ROOT / "data" / "editions" / "2026-11-20.json").read_text(encoding="utf-8"))
+    stories = {s["url"]: s["summary"] for sec in ed["grid"] for s in sec["stories"]}
+
+    anthropic = stories[
+        "https://www.anthropic.com/news/anthropic-prices-initial-public-offering"]
+    company, founders, per_founder = 956_351_354, 23_648_646, 3_378_378
+    total, before, price = 980_000_000, 825_000_000, 83
+    assert company + founders == total
+    assert founders == 7 * per_founder and "שבעת המייסדים" in anthropic
+    assert company - (before - founders) == total - before == 155_000_000
+    assert round(total * price / 1e9, 1) == 81.3
+    for needle in ("956,351,354", "23,648,646", "980 מיליון", "825 מיליון",
+                   "83 דולר", "81.3 מיליארד", "חשבון העיתון"):
+        assert needle in anthropic, f"the Anthropic brief lost {needle!r}"
+
+    nvidia = stories["https://www.cbsnews.com/news/nvidia-stops-shipping-hopper-chips-china/"]
+    hopper, revenue = 2.4, 115.8
+    assert round(hopper / revenue * 100) == 2
+    for needle in ("2.4 מיליארד", "115.8 מיליארד", "כ-2 אחוז", "חשבון העיתון"):
+        assert needle in nvidia, f"the Nvidia brief lost {needle!r}"
 
 
 def _render_lead_related(lead: dict) -> str:
